@@ -1,5 +1,5 @@
 ---
-name: zackd-style-edit
+name: edit
 description: ตัดต่อคลิปแนวตั้งสไตล์ Zack D. Films (Shorts/Reels/TikTok แนว explainer) จากฟุตเทจ + เสียงบรรยาย — ตัดช็อตถี่ ~1.4 วิ ตามวลี, ซับขาวตัวหนาทีละ 1–3 คำกลางล่างจอ, กราฟิกตัวเลข/คำเรืองแสง/เส้นความเร็ว, เสียง −17 LUFS. ใช้ FFmpeg + Whisper + HyperFrames. ใช้เมื่อผู้ใช้ขอ "ตัดสไตล์ Zack D", "ตัดแบบคลิปอ้างอิง", ทำ Shorts explainer หรือแกะสไตล์คลิปอ้างอิงใหม่
 ---
 

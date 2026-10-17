@@ -306,7 +306,7 @@ tl.seek(0);
     for f in ("hyperframes.json", "meta.json"):
         p = os.path.join(a.out, f)
         if not os.path.exists(p):
-            json.dump({"id": os.path.basename(os.path.abspath(a.out)), "name": "zackd-style-edit"} if f == "meta.json" else {},
+            json.dump({"id": os.path.basename(os.path.abspath(a.out)), "name": "edit"} if f == "meta.json" else {},
                       open(p, "w"))
     n = len(chunks)
     print(f"built {a.out}: {total:.2f}s, {len(shots)} shots (avg {total / len(shots):.2f}s), "
