@@ -48,7 +48,7 @@ def load_words(path):
 
 def clean(tok):
     # keep ? and ! (reference keeps "run faster?"), drop trailing , . ; :
-    return re.sub(r"[,.;:\"“”]+$", "", re.sub(r"^[\"“”]+", "", tok))
+    return re.sub(r"[,.;:…\"“”]+$", "", re.sub(r"^[\"“”…]+", "", tok))
 
 
 def chunk_captions(words):

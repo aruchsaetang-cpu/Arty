@@ -1,41 +1,45 @@
-# Tesla Roadster บินได้: สคริปต์ (ฮุค → บริบท → แต่ → เฉลย)
+# Tesla Roadster "flying" demo: script (Hook → Context → But → Reveal)
 
-ความยาวประมาณ 28–32 วินาที ถ้าอ่านเร็วแบบ Zack D
+Target: about 35 s at Zack D pace (~3 words/s). Send the AI voiceover reading exactly this text (also in lines.txt). Leave a short natural pause at each comma and full stop.
 
-## ฮุค
-รถเทสลาคันนี้ เพิ่งขับขึ้นทางลาดกลับหัว แล้วลอยกลับลงมาจอดเองได้
+## Hook
+This Tesla just drove up an upside-down ramp… and flew back down on its own.
 
-## บริบท
-เมื่อวันที่ 15 ตุลาคม 2026 ที่ฐานทดสอบของ SpaceX ในเท็กซัส อีลอน มัสก์ เปิดตัว Tesla Roadster รุ่นใหม่
-รถพุ่งขึ้นทางลาดโค้ง เกาะอยู่แบบกลับหัว แล้วหลุดออกมากลางอากาศ
-ทรัสเตอร์อัดอากาศจาก SpaceX พลิกตัวรถกลับ ลอยค้างครู่หนึ่ง แล้วลงจอดท่ามกลางควัน
-มัสก์ประกาศทันทีว่า "รถบินได้ มีอยู่จริงแล้ว"
+## Context
+On October 15th, at a SpaceX test site in Texas, Musk unveiled the new Roadster.
+It shot up a curved ramp, stuck to it upside down, and launched into the air.
+SpaceX thrusters flipped it upright, it hovered, then landed in a cloud of smoke.
+Musk's verdict? Flying cars are real.
 
-## แต่
-แต่ในรถคันนั้น ไม่มีคนขับเลยสักคน
+## But
+But there was nobody inside.
 
-## เฉลย
-รถถูกบังคับจากระยะไกล และมัสก์ยอมรับเองว่าไม่รับประกันว่าจะสำเร็จ
-รุ่นที่บินได้ยังไม่ได้รับอนุญาตให้วิ่งบนถนน และยังไม่ได้ขอใบรับรองการบิน
-ตอนนี้มันจึงเป็นแค่โชว์ในสนามปิด ไม่ใช่รถบินที่คุณจะขับไปทำงานได้ อย่างน้อยก็ยังไม่ใช่ตอนนี้
+## Reveal
+It was remote-controlled from a safe distance, and Musk admitted success wasn't guaranteed.
+The flying version isn't approved for public roads, or certified to fly.
+So for now, it's a stunt, not a car you can fly to work.
+At least… not yet.
 
 ---
 
-## แผนภาพและกราฟิก
+## Shot plan (3D, Three.js)
 
-| ช่วง | ภาพที่ต้องใช้ | กราฟิก |
-|------|-------------|--------|
-| ฮุค | รถหลุดจากทางลาดกลับหัวกลางอากาศ (ช็อตที่แรงที่สุด) | flash ที่เฟรมแรก และ burst |
-| "15 ตุลาคม 2026" | ภาพมุมกว้างของฐานทดสอบ SpaceX | stat: 15 / ต.ค. 2026 |
-| "ทางลาดโค้ง… กลับหัว" | รถวิ่งขึ้น half-loop | highlight ที่ตัวรถ |
-| "ทรัสเตอร์…" | close-up ตอนพ่นลม / ควัน | burst |
-| "รถบินได้ มีอยู่จริงแล้ว" | มัสก์บนเวที | ไม่มี |
-| **"แต่…"** | **ตัดแข็งไปที่ห้องคนขับที่ว่างเปล่า** | flash |
-| เฉลย | รีโมต/ผู้ชมที่ยืนอยู่ไกล, ป้าย "not approved for road use" | glow: "0 คนขับ" |
+| Line | Shot (clip) | Overlay graphic |
+|------|-------------|-----------------|
+| Hook | `a_hook`: low angle, car leaves the loop upside down | flash on frame 1, burst |
+| "October 15th… Texas" | `b_site`: wide drone shot of the test site | stat: 15 / OCT |
+| "shot up a curved ramp… upside down" | `c_loop`: side tracking shot around the loop | burst |
+| "cold-gas thrusters flipped it" | `d_thrusters`: close-up, gas jets, flip | none |
+| "hovered… cloud of smoke" | `e_land`: wide landing in smoke | none |
+| "Flying cars are real" | `f_quote`: dark stage, quote card | none |
+| **"But there was nobody inside."** | **`g_empty`: hard cut to top-down view of the empty seats** | flash + highlight on driver seat |
+| "remote-controlled… safe distance" | `h_remote`: controller in foreground, car far away | none |
+| "isn't approved… certification" | `i_stamp`: car on road, NOT APPROVED stamp | none |
+| "not yet" | `j_end`: car lifts off into the sky, "?" | glow: "NOT YET" |
 
-## ข้อเท็จจริงที่ตรวจแล้ว
-- 15 ต.ค. 2026 ที่ฐานทดสอบ SpaceX ในเท็กซัส ทางลาดกลับหัว ทรัสเตอร์พลิกรถ ลอย แล้วลงจอด ไม่มีคนขับ ควบคุมจากระยะไกล
-  แหล่งข่าวระบุเมืองไม่ตรงกัน (Waco หรือ McGregor) สคริปต์จึงใช้แค่ "เท็กซัส"
-- คำพูดของมัสก์ "flying cars are real" และ "Success is not guaranteed"
-- รุ่นบินได้ไม่ได้รับอนุญาตให้วิ่งบนถนน และไม่ได้ขอใบรับรองการบิน
-- ไม่ได้ใส่ตัวเลข 0–60 ใน 0.81 วิ เพราะเจอแค่แหล่งเดียว และแหล่งอื่นรายงานว่า 1.1 วิ
+## Fact notes
+- Oct 15, 2026, SpaceX test facility in Texas: inverted ramp, thrusters flipped the car, brief hover, landing in smoke, no driver, remote-controlled.
+  Outlets disagree on the town (Waco vs McGregor), so the script says only "Texas".
+- Musk quotes: "flying cars are real", "Success is not guaranteed".
+- Flying version not approved for public road use; no aviation certification sought.
+- The 0–60 in 0.81 s figure appeared in only one headline (others report 1.1 s), so it is left out.
