@@ -53,7 +53,10 @@ for li, pieces in enumerate(MAP):
         d = (t1 - t0) / n
         src = f"{CLIPS}/{clip}.mp4"
         cin = max(0.0, min(cin, dur(src) - d - 0.05))
-        shots.append({"src": src, "in": round(cin, 3), "dur": round(d, 3), "move": "in" if len(shots) % 2 == 0 else "out"})
+        m = max(1, round(d / 1.45))                 # Zack pacing: ~1.4 s per shot, alternating push-in / pull-out
+        for j in range(m):
+            shots.append({"src": src, "in": round(cin + j * d / m, 3), "dur": round(d / m, 3),
+                          "move": "in" if len(shots) % 2 == 0 else "out"})
 
 plan = {
     "shots": shots,

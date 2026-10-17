@@ -66,7 +66,7 @@ def chunk_captions(words):
         thai = bool(THAI.search(tok))
         limit = CAP_MAX_THAI_CHARS if thai else CAP_MAX_CHARS
         cur_len = sum(len(clean(x[0])) + 1 for x in cur)
-        if cur and (re.search(r"[.,!?;:]$", cur[-1][0])
+        if cur and (re.search(r"[.,!?;:…]$", cur[-1][0])
                     or tok.lower().strip(",.") in BREAK_BEFORE
                     or w[1] - cur[-1][2] > CAP_GAP_HIDE):
             flush()
