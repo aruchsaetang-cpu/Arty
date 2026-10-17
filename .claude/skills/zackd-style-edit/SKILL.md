@@ -1,0 +1,88 @@
+---
+name: zackd-style-edit
+description: ตัดต่อคลิปแนวตั้งสไตล์ Zack D. Films (Shorts/Reels/TikTok แนว explainer) จากฟุตเทจ + เสียงบรรยาย — ตัดช็อตถี่ ~1.4 วิ ตามวลี, ซับขาวตัวหนาทีละ 1–3 คำกลางล่างจอ, กราฟิกตัวเลข/คำเรืองแสง/เส้นความเร็ว, เสียง −17 LUFS. ใช้ FFmpeg + Whisper + HyperFrames. ใช้เมื่อผู้ใช้ขอ "ตัดสไตล์ Zack D", "ตัดแบบคลิปอ้างอิง", ทำ Shorts explainer หรือแกะสไตล์คลิปอ้างอิงใหม่
+---
+
+# Zack D. Films style edit
+
+ตัวเลขทุกค่าที่สกิลนี้ใช้มาจากการแกะคลิปอ้างอิง 6 คลิป ดูรายละเอียดได้ที่ `references/style-analysis.md`
+ถ้าจะปรับค่าอะไร ให้แก้ค่าคงที่ส่วนบนของ `scripts/build.py`
+
+## สิ่งที่ต้องติดตั้ง (ติดตั้งเองได้เลย ไม่ต้องถามผู้ใช้)
+
+```bash
+command -v ffmpeg || (apt-get update && apt-get install -y ffmpeg)
+command -v whisper || pip install openai-whisper
+command -v hyperframes || npm install -g hyperframes
+hyperframes browser ensure      # ดาวน์โหลด Chrome headless ที่ใช้เรนเดอร์
+```
+
+ถ้า Whisper ดาวน์โหลดโมเดลไม่ได้ (network policy บล็อก `openaipublic.azureedge.net`) ให้บอกผู้ใช้ว่าต้องเปิดโดเมนนั้น
+ระหว่างรอ ให้ใช้สคริปต์ (ข้อความ) ที่ผู้ใช้ให้มา แล้วกำหนดเวลาของคำเองใน `plan.captions`
+
+## สไตล์หลัก (ห้ามเปลี่ยนถ้าผู้ใช้ไม่ได้ขอ)
+
+- 1080×1920, 30 fps, ช็อตยาว 1.0–2.2 s (เฉลี่ยประมาณ 1.4 s) ตัดตรงรอยต่อวลีของซับ
+- กล้องต้องขยับทุกช็อต: push-in หรือ pull-out 9% สลับกันไป (`move: "in"|"out"`)
+- ซับเป็นก้อนละ 1–3 คำ บรรทัดเดียว สีขาว Montserrat 800 ขนาด 84 px มีขอบเข้ม 3 px และเงาตก
+  จุดกลางอยู่ที่ y≈1500 สลับก้อนแบบตัดแข็ง ไม่มีแอนิเมชัน และไม่เน้นสีคำ
+- เสียงบรรยายต่อกันไม่มีช่องว่าง (ช่องว่างไม่เกินประมาณ 0.08 s) มีดนตรีรองพื้นเบาๆ ประมาณ −16 dB ใต้เสียงพูด และมาสเตอร์ที่ −17 LUFS
+- คำที่มีตัวเลขหรือสิ่งสำคัญ ให้เน้นด้วยกราฟิกในฉาก ไม่ใช่ด้วยซับ
+
+## ขั้นตอน
+
+ให้เก็บงานไว้ในโฟลเดอร์ทำงานของโปรเจกต์ เช่น `work/<ชื่อคลิป>/`
+
+1. **เตรียมเสียงบรรยาย** ตัดช่วงเงียบและเสียงหายใจ บีบอัด และปรับความดัง
+   `scripts/prep_vo.sh <vo หรือวิดีโอที่มีเสียงพูด> work/x/vo.wav`
+2. **ถอดเสียงพร้อมเวลาทีละคำ**
+   `scripts/transcribe.sh work/x/vo.wav work/x en` (ภาษาไทยใช้ `th small`) ได้ไฟล์ `work/x/vo.json`
+3. **เขียนสคริปต์และแผนกราฟิก** `work/x/plan.json` (ทุกช่องไม่บังคับ)
+   ```json
+   {
+     "graphics": [
+       {"type": "stat", "at": 1.2, "dur": 1.8, "from": 0, "to": 2000, "label": "HOURS"},
+       {"type": "glow", "at": 6.6, "dur": 1.5, "steps": ["2 Times", "3 Times", "5 Times"]},
+       {"type": "burst", "at": 4.6, "dur": 0.6},
+       {"type": "flash", "at": 5.9, "dur": 0.15},
+       {"type": "highlight", "at": 3.0, "dur": 1.2, "box": [340, 700, 400, 500]}
+     ],
+     "shots": [{"src": "clips/a.mp4", "in": 2.0, "dur": 1.4, "move": "in"}],
+     "captions": [{"text": "If you leaned", "start": 0.0, "dur": 0.6}]
+   }
+   ```
+   - `stat` คือป้ายตัวเลขพลิกที่นับขึ้น ใช้ตอนพูดถึงตัวเลข
+   - `glow` คือคำเรืองแสงสีฟ้าที่เปลี่ยนเป็นขั้น ใช้กับการเปรียบเทียบแบบ "x เท่า"
+   - `burst` คือเส้นความเร็วแบบอนิเมะ ใช้ตอนคำถาม ความเร็ว หรือความตกใจ
+   - `flash` คือแฟลชขาวตอนตัดเข้าเหตุการณ์ใหญ่
+   - `highlight` คือแสงเหลืองเรืองบนวัตถุที่กำลังพูดถึง (`box` = x, y, w, h ในพิกัด 1080×1920)
+   - ใส่ `at` ให้ตรงกับเวลาเริ่มของคำนั้นใน `vo.json`
+   - ถ้าไม่ใส่ `shots` สคริปต์จะตัดให้อัตโนมัติ โดยวนใช้ `--clips` ตามลำดับ
+   - ใส่ `captions` เมื่ออยากแบ่งซับเอง
+4. **สร้างโปรเจกต์**
+   ```bash
+   python3 scripts/build.py --vo work/x/vo.wav --words work/x/vo.json \
+     --clips clips/*.mp4 --music music/bed.mp3 --plan work/x/plan.json --out work/x/proj
+   ```
+   สคริปต์จะสรุปจำนวนช็อต ความยาวเฉลี่ย และจำนวนคำต่อซับ ซับทั้งหมดอยู่ใน `work/x/proj/edit.json`
+   - ตรวจซับก่อน ถ้ามีก้อนที่อ่านแล้วตัดวลีผิดที่ ให้คัดลอก `captions` จาก edit.json ไปใส่ใน plan.json แล้วแก้เอง
+5. **ตรวจ** `cd work/x/proj && hyperframes lint` (คำเตือนเรื่อง track_too_dense ไม่ต้องสนใจ)
+   แล้วรัน `hyperframes snapshot --at 1,3,5 --no-end -o snap` และเปิดภาพดูทุกครั้ง
+6. **เรนเดอร์และมาสเตอร์เสียง** `scripts/render.sh work/x/proj work/x/final.mp4`
+7. **ตรวจผลงาน** ด้วย `scripts/analyze.sh work/x/final.mp4 work/x/qa` แล้วเทียบกับตัวเลขในหัวข้อ "สไตล์หลัก"
+   ทั้งช็อตเฉลี่ย loudness และช่วงเงียบ จากนั้นดู `qa/sheet.jpg`
+
+## แกะคลิปอ้างอิงใหม่
+
+`scripts/analyze.sh <ref.mp4> work/ref1` จะให้ metadata, จุดตัด, เวลาที่ซับเปลี่ยน, ช่วงเงียบ, loudness, เฟรม 4 fps และ contact sheet
+จากนั้นถอดเสียงด้วย `transcribe.sh work/ref1/audio.wav work/ref1` แล้วอัปเดต `references/style-analysis.md`
+พร้อมค่าคงที่ใน `build.py` ถ้าสไตล์ต่างจากเดิม
+
+## ข้อควรรู้
+
+- สกิลนี้สร้างภาพ 3D แบบต้นฉบับไม่ได้ ภาพทั้งหมดต้องมาจากฟุตเทจของผู้ใช้
+  ถ้าผู้ใช้ไม่มีฟุตเทจ ให้บอกตรงๆ และเสนอใช้ภาพนิ่งที่ซูมเคลื่อนไหวแทน
+- ซับภาษาไทยใช้ฟอนต์ Kanit (ฝังมาแล้ว) และจำกัดก้อนละไม่เกิน 14 ตัวอักษร
+- ใน composition ห้ามใช้ `Math.random()` หรือ `Date.now()` (HyperFrames เรนเดอร์แบบ deterministic)
+  และห้ามโหลดไฟล์จาก CDN เพราะ GSAP กับฟอนต์ถูกคัดลอกมาไว้ในโปรเจกต์แล้ว
+- ฟอนต์ Montserrat และ Kanit ใช้สัญญาอนุญาต OFL (ดู `assets/OFL-*.txt`)
