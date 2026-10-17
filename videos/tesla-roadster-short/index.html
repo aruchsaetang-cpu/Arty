@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Tesla Roadster — รถบินได้จริงไหม</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-900-normal.woff2") format("woff2");
+        font-weight: 900;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+
+      :root {
+        --bg: #0e0a0b;
+        --bg-2: #1a1214;
+        --fg: #f7eeef;
+        --muted: #b9a9ac;
+        --accent: #e31937;
+        --accent-text: #ff4a5c;
+        --steel: #a7adb3;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Kanit", sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* ---------- persistent background ---------- */
+      .glow {
+        position: absolute;
+        left: -260px;
+        top: 520px;
+        width: 1600px;
+        height: 1600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(227, 25, 55, 0.28) 0%, rgba(227, 25, 55, 0.08) 38%, rgba(14, 10, 11, 0) 68%);
+      }
+      .ghost {
+        position: absolute;
+        right: 0;
+        top: 200px;
+        width: 240px;
+        height: 1300px;
+        overflow: visible;
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.16;
+        background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
+      }
+      .topbar {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 96px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+      .topbar .tag {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: var(--fg);
+      }
+      .dot {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .progress {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 156px;
+        height: 6px;
+        background: rgba(247, 238, 239, 0.14);
+      }
+      .progress-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+
+      /* ---------- type ---------- */
+      .copy {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 260px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .line {
+        display: block;
+        font-weight: 900;
+        font-size: 96px;
+        line-height: 1.22;
+        letter-spacing: -0.01em;
+        transform-origin: left center;
+      }
+      .line.md {
+        font-size: 80px;
+      }
+      .line.sm {
+        font-size: 64px;
+        font-weight: 700;
+      }
+      .red {
+        color: var(--accent-text);
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .kicker {
+        display: block;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.14em;
+        color: var(--accent-text);
+        margin-bottom: 18px;
+      }
+
+      /* ---------- cars & props ---------- */
+      .car {
+        position: absolute;
+        width: 600px;
+        height: 180px;
+      }
+      .car svg,
+      .truck svg,
+      .tower svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .flames {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 150px;
+        height: 260px;
+        opacity: 0;
+      }
+      .flame {
+        position: absolute;
+        top: 0;
+        width: 96px;
+        height: 260px;
+        border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%;
+        background: radial-gradient(ellipse at 50% 12%, #fff6e6 0%, #ffb34a 26%, rgba(227, 25, 55, 0.75) 52%, rgba(227, 25, 55, 0) 78%);
+        transform-origin: 50% 0%;
+      }
+      .flame.f1 {
+        left: 90px;
+      }
+      .flame.f2 {
+        left: 418px;
+      }
+      .shadow {
+        position: absolute;
+        width: 520px;
+        height: 40px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 70%);
+      }
+      .ground {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: rgba(247, 238, 239, 0.3);
+        transform-origin: left center;
+      }
+      .floor {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(90deg, rgba(247, 238, 239, 0.07) 0 3px, transparent 3px 120px), linear-gradient(180deg, #1a1214 0%, #0e0a0b 100%);
+      }
+      .truck {
+        position: absolute;
+        width: 520px;
+        height: 190px;
+      }
+      .tower {
+        position: absolute;
+        width: 260px;
+        height: 1180px;
+      }
+
+      /* ---------- scene specifics ---------- */
+      .big-eight {
+        position: absolute;
+        right: 40px;
+        top: 640px;
+        font-weight: 900;
+        font-size: 620px;
+        line-height: 1;
+        color: rgba(227, 25, 55, 0.22);
+      }
+      .pin {
+        position: absolute;
+        left: 80px;
+        top: 760px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 30px;
+        border: 3px solid var(--accent);
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--fg);
+        background: rgba(14, 10, 11, 0.8);
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: var(--fg);
+        opacity: 0;
+      }
+      .but-word {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 520px;
+        text-align: center;
+        font-weight: 900;
+        font-size: 360px;
+        line-height: 1.1;
+        color: var(--accent-text);
+      }
+      .but-copy {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 1060px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .timer {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 760px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .timer-label {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      .timer-track {
+        display: block;
+        width: 100%;
+        height: 26px;
+        border-radius: 13px;
+        background: rgba(247, 238, 239, 0.14);
+        overflow: hidden;
+      }
+      .timer-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+      .remote {
+        position: absolute;
+        left: 120px;
+        top: 1120px;
+        width: 200px;
+        height: 300px;
+      }
+      .waves {
+        position: absolute;
+        left: 300px;
+        top: 1120px;
+        width: 260px;
+        height: 200px;
+      }
+      .tiles {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 820px;
+        display: flex;
+        gap: 40px;
+      }
+      .tile {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 44px 40px;
+        border: 3px solid rgba(247, 238, 239, 0.22);
+        border-radius: 28px;
+        background: var(--bg-2);
+      }
+      .tile-label {
+        display: block;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      .tile-value {
+        display: block;
+        font-weight: 900;
+        font-size: 120px;
+        line-height: 1.1;
+        color: var(--fg);
+      }
+      .tile-value.red {
+        color: var(--accent-text);
+      }
+      .strike {
+        position: absolute;
+        left: 80px;
+        top: 1015px;
+        width: 760px;
+        height: 14px;
+        border-radius: 7px;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+      .stamp {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 1100px;
+        display: flex;
+        justify-content: flex-start;
+      }
+      .stamp span {
+        display: block;
+        padding: 20px 44px;
+        border: 6px solid var(--accent);
+        border-radius: 22px;
+        font-weight: 900;
+        font-size: 92px;
+        line-height: 1.2;
+        color: var(--accent-text);
+        background: rgba(14, 10, 11, 0.85);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- shared drawings -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="sym-roadster" viewBox="0 0 600 180">
+          <path d="M18,128 C18,112 34,102 74,97 L176,88 C214,62 270,46 330,46 C382,46 414,60 446,80 L534,92 C566,97 584,108 586,124 L586,134 C586,138 582,140 578,140 L22,140 C19,140 18,136 18,128 Z" fill="#e31937" />
+          <path d="M208,88 C240,66 286,56 330,56 C370,56 398,66 422,84 Z" fill="#1c1517" />
+          <path d="M318,57 L318,86" stroke="#e31937" stroke-width="5" />
+          <path d="M60,110 L560,110" stroke="#ff7d89" stroke-width="3" opacity="0.6" />
+          <path d="M562,101 L585,113" stroke="#fff6e6" stroke-width="6" stroke-linecap="round" />
+          <rect x="18" y="104" width="16" height="7" rx="2" fill="#ff2a3d" />
+          <circle cx="138" cy="140" r="42" fill="#0e0a0b" />
+          <circle cx="466" cy="140" r="42" fill="#0e0a0b" />
+          <circle cx="138" cy="140" r="33" fill="#141010" stroke="#4a4043" stroke-width="7" />
+          <circle cx="466" cy="140" r="33" fill="#141010" stroke="#4a4043" stroke-width="7" />
+          <circle cx="138" cy="140" r="12" fill="#9a9093" />
+          <circle cx="466" cy="140" r="12" fill="#9a9093" />
+        </symbol>
+        <symbol id="sym-truck" viewBox="0 0 520 190">
+          <path d="M14,152 L14,118 L62,88 L252,34 L488,94 L506,120 L506,152 Z" fill="#a7adb3" />
+          <path d="M124,86 L252,48 L420,90 Z" fill="#2a2f34" />
+          <path d="M14,124 L506,124" stroke="#7d8389" stroke-width="3" />
+          <path d="M490,98 L506,120" stroke="#fff6e6" stroke-width="5" stroke-linecap="round" />
+          <circle cx="118" cy="152" r="42" fill="#0e0a0b" />
+          <circle cx="404" cy="152" r="42" fill="#0e0a0b" />
+          <circle cx="118" cy="152" r="34" fill="#141010" stroke="#4a4043" stroke-width="7" />
+          <circle cx="404" cy="152" r="34" fill="#141010" stroke="#4a4043" stroke-width="7" />
+          <circle cx="118" cy="152" r="12" fill="#7d8389" />
+          <circle cx="404" cy="152" r="12" fill="#7d8389" />
+        </symbol>
+        <pattern id="lattice" width="130" height="90" patternUnits="userSpaceOnUse">
+          <path d="M0,0 L130,90 M130,0 L0,90 M0,0 H130" stroke="#6b5a5e" stroke-width="5" />
+        </pattern>
+      </defs>
+    </svg>
+
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+      <!-- persistent background -->
+      <div id="bg" class="clip" data-start="0" data-duration="30" data-track-index="0">
+        <div class="glow" id="bg-glow"></div>
+        <svg class="ghost" id="bg-ghost" viewBox="0 0 240 1300" aria-hidden="true"><g stroke="rgba(227,25,55,0.22)" stroke-width="6"><path d="M200,0 L40,1300" /><path d="M240,120 L110,1300" /><path d="M240,520 L170,1300" /></g></svg>
+        <div class="grain"></div>
+      </div>
+
+      <!-- 0–3 hook (A-roll: hero car lifting off) -->
+      <section id="s-hook" class="clip" data-start="0" data-duration="3" data-track-index="1">
+        <div class="copy">
+          <span class="kicker" id="hook-kicker">TESLA ROADSTER</span>
+          <span class="line md" id="hook-l1">Tesla เพิ่งเปิดตัว</span>
+          <span class="line" id="hook-l2">รถบินได้…</span>
+          <span class="line md red" id="hook-l3">แต่ไม่มีใครกล้านั่ง</span>
+        </div>
+        <div class="shadow" id="hook-shadow" style="left: 280px; top: 1500px"></div>
+        <div class="car" id="hook-car" style="left: 240px; top: 1330px">
+          <div class="flames" id="hook-flames" data-layout-allow-overflow><div class="flame f1"></div><div class="flame f2"></div></div>
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 3–6.5 promise (A-roll: hero car push-in) -->
+      <section id="s-promise" class="clip" data-start="3" data-duration="3.5" data-track-index="1">
+        <div class="big-eight" id="pr-eight">8</div>
+        <div class="copy">
+          <span class="kicker" id="pr-kicker">8 ปีก่อน</span>
+          <span class="line md" id="pr-l1">มัสก์สัญญาไว้</span>
+          <span class="line md" id="pr-l2">ตั้งแต่ 8 ปีก่อน</span>
+          <span class="line sm muted" id="pr-l3">ว่า Roadster รุ่นใหม่</span>
+          <span class="line md red" id="pr-l4">จะบินได้</span>
+        </div>
+        <div class="car" id="pr-car" style="left: 60px; top: 1360px; width: 900px; height: 270px">
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 3–6.5 / 6.5–9.4 base (B-roll: launch tower) -->
+      <section id="s-base" class="clip" data-start="6.5" data-duration="2.9" data-track-index="1">
+        <div class="tower" id="base-tower" style="left: 760px; top: 520px">
+          <svg viewBox="0 0 260 1180" preserveAspectRatio="none">
+            <rect x="40" y="0" width="180" height="1180" fill="url(#lattice)" stroke="#8a777b" stroke-width="8" />
+            <rect x="0" y="300" width="260" height="22" fill="#8a777b" />
+            <rect x="0" y="380" width="260" height="22" fill="#8a777b" />
+          </svg>
+        </div>
+        <div class="copy">
+          <span class="kicker" id="base-kicker">ล่าสุด</span>
+          <span class="line md" id="base-l1">เปิดตัวจริง</span>
+          <span class="line md" id="base-l2">ที่ฐานจรวด</span>
+          <span class="line md red" id="base-l3">SpaceX</span>
+          <span class="line sm muted" id="base-l4">ในเท็กซัส</span>
+        </div>
+        <div class="pin" id="base-pin" style="top: 1000px"><span class="dot"></span>STARBASE · TEXAS</div>
+        <div class="ground" id="base-ground" style="top: 1700px"></div>
+        <div class="car" id="base-car" style="left: 60px; top: 1530px; width: 450px; height: 135px">
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 9.4–15 jump (B-roll: launch, jump over Cybertruck, flip) -->
+      <section id="s-jump" class="clip" data-start="9.4" data-duration="5.6" data-track-index="1">
+        <div class="floor" id="jump-floor" style="top: 1500px"></div>
+        <div class="ground" id="jump-ground" style="top: 1500px"></div>
+        <div class="copy">
+          <span class="line md" id="jump-l1">รถพุ่งขึ้นฟ้า</span>
+          <span class="line md" id="jump-l2">กระโดดข้าม <span class="red">Cybertruck</span></span>
+          <span class="line md" id="jump-l3">แล้วตีลังกากลางอากาศ</span>
+        </div>
+        <div class="truck" id="jump-truck" style="left: 280px; top: 1314px">
+          <svg><use href="#sym-truck" /></svg>
+        </div>
+        <div class="shadow" id="jump-shadow" style="left: -220px; top: 1484px; width: 420px"></div>
+        <div class="car" id="jump-car" style="left: -230px; top: 1371px; width: 450px; height: 135px">
+          <div class="flames" id="jump-flames" data-layout-allow-overflow style="top: 112px; height: 200px">
+            <div class="flame f1" style="left: 66px; width: 72px; height: 200px"></div>
+            <div class="flame f2" style="left: 312px; width: 72px; height: 200px"></div>
+          </div>
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 15–18 the turn (0.5s held pause, then "แต่") -->
+      <section id="s-but" class="clip" data-start="15" data-duration="3" data-track-index="1">
+        <div class="but-word" id="but-word">แต่…</div>
+        <div class="but-copy">
+          <span class="line sm muted" id="but-l1">ความจริงคือ</span>
+          <span class="line md" id="but-l2">มันไม่ได้บิน</span>
+          <span class="line md red" id="but-l3">อย่างที่คุณคิด</span>
+        </div>
+      </section>
+
+      <!-- 18–21.2 reveal 1: thrusters, few seconds -->
+      <section id="s-thrust" class="clip" data-start="18" data-duration="3.2" data-track-index="1">
+        <div class="copy">
+          <span class="kicker" id="th-kicker">ความจริง #1</span>
+          <span class="line md" id="th-l1">ใช้หัวพ่นลมยกตัว</span>
+          <span class="line md red" id="th-l2">ได้แค่ไม่กี่วินาที</span>
+        </div>
+        <div class="timer" id="th-timer" style="top: 720px">
+          <div class="timer-label"><span>เวลาลอยตัว</span><span id="th-secs">3.0 วิ</span></div>
+          <span class="timer-track"><span class="timer-fill" id="th-fill"></span></span>
+        </div>
+        <div class="ground" style="top: 1640px"></div>
+        <div class="shadow" id="th-shadow" style="left: 260px; top: 1622px"></div>
+        <div class="car" id="th-car" style="left: 240px; top: 1300px">
+          <div class="flames" id="th-flames" data-layout-allow-overflow style="opacity: 1"><div class="flame f1"></div><div class="flame f2"></div></div>
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 21.2–23.6 reveal 2: no driver, remote control -->
+      <section id="s-remote" class="clip" data-start="21.2" data-duration="2.4" data-track-index="1">
+        <div class="copy">
+          <span class="kicker" id="rm-kicker">ความจริง #2</span>
+          <span class="line md" id="rm-l1">ในรถไม่มีคนขับ</span>
+          <span class="line sm muted" id="rm-l2">เพราะบังคับจากระยะไกล</span>
+          <span class="line md red" id="rm-l3">กันพลาด</span>
+        </div>
+        <svg class="remote" id="rm-remote" viewBox="0 0 200 300">
+          <rect x="30" y="80" width="140" height="210" rx="26" fill="#2a2124" stroke="#8a777b" stroke-width="6" />
+          <path d="M150,82 L176,10" stroke="#8a777b" stroke-width="8" stroke-linecap="round" />
+          <circle cx="100" cy="170" r="40" fill="#1a1214" stroke="#e31937" stroke-width="6" />
+          <circle cx="100" cy="170" r="12" fill="#e31937" />
+          <rect x="62" y="236" width="76" height="18" rx="9" fill="#8a777b" />
+        </svg>
+        <svg class="waves" id="rm-waves" viewBox="0 0 260 200">
+          <path class="wave" d="M20,60 Q60,100 20,140" fill="none" stroke="#ff4a5c" stroke-width="8" stroke-linecap="round" />
+          <path class="wave" d="M70,30 Q130,100 70,170" fill="none" stroke="#ff4a5c" stroke-width="8" stroke-linecap="round" />
+          <path class="wave" d="M120,4 Q200,100 120,196" fill="none" stroke="#ff4a5c" stroke-width="8" stroke-linecap="round" />
+        </svg>
+        <div class="car" id="rm-car" style="left: 560px; top: 1280px; width: 450px; height: 135px">
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 23.6–26.8 reveal 3: no price, production 2028 -->
+      <section id="s-facts" class="clip" data-start="23.6" data-duration="3.2" data-track-index="1">
+        <div class="copy">
+          <span class="kicker" id="fc-kicker">ความจริง #3</span>
+          <span class="line md" id="fc-l1">แถมยังไม่มีราคา</span>
+          <span class="line md" id="fc-l2">และจะผลิตจริงปี <span class="red">2028</span></span>
+        </div>
+        <div class="tiles">
+          <div class="tile" id="fc-tile1">
+            <span class="tile-label">ราคา</span>
+            <span class="tile-value" id="fc-price">฿ ???</span>
+          </div>
+          <div class="tile" id="fc-tile2">
+            <span class="tile-label">ผลิตจริง</span>
+            <span class="tile-value red" id="fc-year">2028</span>
+          </div>
+        </div>
+        <div class="car" id="fc-car" style="left: 240px; top: 1380px">
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- 26.8–30 verdict -->
+      <section id="s-end" class="clip" data-start="26.8" data-duration="3.2" data-track-index="1">
+        <div class="copy">
+          <span class="kicker" id="end-kicker">สรุปคือ</span>
+          <span class="line" id="end-l1">รถที่กระโดดเก่ง</span>
+          <span class="line" id="end-l2">ที่สุดในโลก</span>
+        </div>
+        <div class="stamp" id="end-stamp"><span>แต่ยังไม่ใช่รถบิน</span></div>
+        <div class="ground" style="top: 1660px"></div>
+        <div class="shadow" id="end-shadow" style="left: 280px; top: 1642px"></div>
+        <div class="car" id="end-car" style="left: 240px; top: 1490px">
+          <svg><use href="#sym-roadster" /></svg>
+        </div>
+      </section>
+
+      <!-- persistent HUD -->
+      <div id="hud" class="clip" data-start="0" data-duration="30" data-track-index="2">
+        <div class="topbar">
+          <span class="tag"><span class="dot"></span>TESLA ROADSTER</span>
+          <span>บินได้จริงไหม?</span>
+        </div>
+        <div class="progress"><span class="progress-fill" id="hud-progress"></span></div>
+      </div>
+
+      <div id="flash" class="clip" data-start="0" data-duration="30" data-track-index="3">
+        <div class="flash" id="flash-a"></div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // reusable entrance
+      const rise = (sel, t, d = 0.45, ease = "power3.out") => tl.fromTo(sel, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: d, ease }, t);
+      const slide = (sel, t, d = 0.45) => tl.fromTo(sel, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: d, ease: "expo.out" }, t);
+      const pop = (sel, t, d = 0.4) => tl.fromTo(sel, { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(2.2)" }, t);
+      const flash = (t) => tl.fromTo("#flash-a", { opacity: 0.55 }, { opacity: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, t);
+      const flicker = (sel, start, dur) => {
+        const cycle = 0.12;
+        tl.fromTo(sel, { scaleY: 0.82, scaleX: 1 }, { scaleY: 1.12, scaleX: 0.9, duration: cycle / 2, ease: "sine.inOut", yoyo: true, repeat: Math.max(0, Math.floor(dur / (cycle / 2)) - 1) }, start);
+      };
+
+      // ---------- persistent background ----------
+      tl.fromTo("#bg-glow", { scale: 0.9, x: 0 }, { scale: 1.12, x: 120, duration: 15, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+      tl.fromTo("#bg-ghost", { y: 0 }, { y: -320, duration: 30, ease: "none" }, 0);
+      tl.fromTo("#hud-progress", { scaleX: 0 }, { scaleX: 1, duration: 30, ease: "none" }, 0);
+
+      // ---------- 0–3 hook ----------
+      slide("#hook-kicker", 0.05, 0.4);
+      rise("#hook-l1", 0.1, 0.4);
+      tl.fromTo("#hook-l2", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.4);
+      tl.fromTo("#hook-flames", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.35);
+      flicker("#hook-flames .flame", 0.35, 2.6);
+      tl.fromTo("#hook-car", { y: 0, rotation: 0 }, { y: -170, rotation: -4, duration: 1.3, ease: "power2.out" }, 0.4);
+      tl.to("#hook-car", { y: -150, rotation: 2, duration: 1.2, ease: "sine.inOut" }, 1.7);
+      tl.fromTo("#hook-shadow", { scale: 1, opacity: 1 }, { scale: 0.6, opacity: 0.4, duration: 1.3, ease: "power2.out" }, 0.4);
+      tl.fromTo("#hook-l3", { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power4.out" }, 1.55);
+      tl.fromTo("#hook-l3", { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 1.9);
+
+      // ---------- 3–6.5 promise ----------
+      flash(3.0);
+      tl.fromTo("#pr-eight", { scale: 1.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, 3.0);
+      tl.fromTo("#pr-eight", { y: 0 }, { y: -60, duration: 3.5, ease: "none" }, 3.0);
+      slide("#pr-kicker", 3.05);
+      rise("#pr-l1", 3.15);
+      rise("#pr-l2", 3.35);
+      tl.fromTo("#pr-l3", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 4.5);
+      pop("#pr-l4", 4.85, 0.45);
+      tl.fromTo("#pr-car", { x: -260, scale: 0.95 }, { x: 0, scale: 1.08, duration: 3.5, ease: "power2.out" }, 3.0);
+
+      // ---------- 6.5–9.4 base ----------
+      tl.fromTo("#base-tower", { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 6.5);
+      tl.fromTo("#base-tower", { scale: 1 }, { scale: 1.06, duration: 2.9, ease: "none" }, 6.5);
+      slide("#base-kicker", 6.55);
+      rise("#base-l1", 6.6);
+      rise("#base-l2", 6.85);
+      pop("#base-l3", 7.1);
+      tl.fromTo("#base-l4", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 7.5);
+      tl.fromTo("#base-pin", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 7.8);
+      tl.fromTo("#base-ground", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 6.5);
+      tl.fromTo("#base-car", { x: -500 }, { x: 0, duration: 1.2, ease: "power3.out" }, 7.0);
+
+      // ---------- 9.4–15 jump ----------
+      flash(9.4);
+      tl.fromTo("#jump-ground", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 9.4);
+      tl.fromTo("#jump-truck", { x: 400, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 9.4);
+      // drive in
+      tl.fromTo("#jump-car", { x: -300 }, { x: 160, duration: 1.0, ease: "power2.in" }, 9.6);
+      tl.fromTo("#jump-shadow", { x: -300 }, { x: 160, duration: 1.0, ease: "power2.in" }, 9.6);
+      // thrusters fire + launch
+      tl.fromTo("#jump-flames", { opacity: 0 }, { opacity: 1, duration: 0.15 }, 10.5);
+      flicker("#jump-flames .flame", 10.5, 2.2);
+      rise("#jump-l1", 10.5, 0.4, "expo.out");
+      tl.to("#jump-car", { x: 1180, duration: 2.2, ease: "none" }, 10.6);
+      tl.to("#jump-shadow", { x: 1180, duration: 2.2, ease: "none" }, 10.6);
+      tl.to("#jump-car", { y: -720, duration: 1.1, ease: "power2.out" }, 10.6);
+      tl.to("#jump-car", { y: 0, duration: 1.1, ease: "power2.in" }, 11.7);
+      tl.to("#jump-shadow", { scale: 0.45, opacity: 0.3, duration: 1.1, ease: "power2.out" }, 10.6);
+      tl.to("#jump-shadow", { scale: 1, opacity: 1, duration: 1.1, ease: "power2.in" }, 11.7);
+      rise("#jump-l2", 11.1, 0.4);
+      // flip at the apex
+      tl.fromTo("#jump-car", { rotation: 0 }, { rotation: -360, duration: 1.0, ease: "power1.inOut" }, 11.2);
+      slide("#jump-l3", 11.9, 0.45);
+      tl.to("#jump-flames", { opacity: 0, duration: 0.2 }, 12.6);
+      // landing bump
+      tl.fromTo("#jump-truck", { y: 0 }, { y: 6, duration: 0.08, yoyo: true, repeat: 3, ease: "none" }, 12.8);
+      tl.fromTo("#jump-ground", { y: 0 }, { y: 4, duration: 0.08, yoyo: true, repeat: 3, ease: "none" }, 12.8);
+      tl.fromTo("#jump-truck", { scale: 1 }, { scale: 1.05, duration: 2.2, ease: "none" }, 12.8);
+
+      // ---------- 15–18 "แต่" (15.0–15.5 held empty) ----------
+      tl.fromTo("#but-word", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "expo.out" }, 15.5);
+      tl.fromTo("#but-word", { x: 0 }, { x: 14, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 15.85);
+      tl.fromTo("#but-l1", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 16.1);
+      rise("#but-l2", 16.4, 0.45);
+      tl.fromTo("#but-l3", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 16.8);
+
+      // ---------- 18–21.2 thrusters, few seconds ----------
+      flash(18.0);
+      slide("#th-kicker", 18.0);
+      rise("#th-l1", 18.1);
+      pop("#th-l2", 18.45, 0.45);
+      tl.fromTo("#th-timer", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 18.6);
+      tl.fromTo("#th-car", { y: 0 }, { y: -40, duration: 1.0, ease: "sine.inOut", yoyo: true, repeat: 1 }, 18.0);
+      flicker("#th-flames .flame", 18.0, 2.3);
+      const secs = { v: 3 };
+      tl.fromTo("#th-fill", { scaleX: 1 }, { scaleX: 0, duration: 1.9, ease: "none" }, 18.8);
+      tl.fromTo(secs, { v: 3 }, { v: 0, duration: 1.9, ease: "none", onUpdate: () => { document.getElementById("th-secs").textContent = secs.v.toFixed(1) + " วิ"; } }, 18.8);
+      tl.to("#th-flames", { opacity: 0, duration: 0.15 }, 20.7);
+      tl.to("#th-car", { y: 320, duration: 0.35, ease: "power3.in" }, 20.7);
+      tl.fromTo("#th-shadow", { scale: 0.7, opacity: 0.5 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power3.in" }, 20.7);
+
+      // ---------- 21.2–23.6 no driver, remote ----------
+      slide("#rm-kicker", 21.2);
+      rise("#rm-l1", 21.25);
+      tl.fromTo("#rm-l2", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 21.75);
+      pop("#rm-l3", 22.4, 0.4);
+      tl.fromTo("#rm-remote", { y: 200, opacity: 0, rotation: -12 }, { y: 0, opacity: 1, rotation: 0, duration: 0.55, ease: "power3.out" }, 21.3);
+      tl.fromTo("#rm-waves .wave", { opacity: 0 }, { opacity: 1, duration: 0.18, stagger: 0.12, yoyo: true, repeat: 3, ease: "none" }, 21.8);
+      tl.fromTo("#rm-car", { x: 300 }, { x: 0, duration: 0.7, ease: "expo.out" }, 21.4);
+      tl.fromTo("#rm-car", { rotation: 0 }, { rotation: -3, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 22.2);
+
+      // ---------- 23.6–26.8 price + 2028 ----------
+      flash(23.6);
+      slide("#fc-kicker", 23.6);
+      rise("#fc-l1", 23.65);
+      tl.fromTo("#fc-tile1", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 23.8);
+      tl.fromTo("#fc-price", { x: 0 }, { x: 8, duration: 0.06, yoyo: true, repeat: 7, ease: "none" }, 24.4);
+      rise("#fc-l2", 25.0);
+      tl.fromTo("#fc-tile2", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 25.1);
+      const yr = { v: 2025 };
+      tl.fromTo(yr, { v: 2025 }, { v: 2028, duration: 0.8, ease: "power2.out", onUpdate: () => { document.getElementById("fc-year").textContent = String(Math.round(yr.v)); } }, 25.2);
+      tl.fromTo("#fc-car", { x: -700 }, { x: 0, duration: 0.9, ease: "power3.out" }, 23.7);
+
+      // ---------- 26.8–30 verdict ----------
+      slide("#end-kicker", 26.8);
+      rise("#end-l1", 26.9, 0.45);
+      rise("#end-l2", 27.15, 0.45);
+      tl.fromTo("#end-car", { y: 0 }, { y: -160, duration: 0.35, ease: "power2.out", yoyo: true, repeat: 3 }, 27.0);
+      tl.fromTo("#end-shadow", { scale: 1, opacity: 1 }, { scale: 0.6, opacity: 0.4, duration: 0.35, ease: "power2.out", yoyo: true, repeat: 3 }, 27.0);
+      tl.fromTo("#end-stamp", { scale: 1.8, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, ease: "expo.out" }, 28.3);
+      tl.fromTo("#end-stamp", { x: 0 }, { x: 10, duration: 0.05, yoyo: true, repeat: 5, ease: "none" }, 28.65);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
