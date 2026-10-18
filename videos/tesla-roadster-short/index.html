@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Tesla Roadster — รถบินได้จริงไหม</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-900-normal.woff2") format("woff2");
+        font-weight: 900;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+
+      :root {
+        --bg: #0e0a0b;
+        --bg-2: #1a1214;
+        --fg: #f7eeef;
+        --muted: #b9a9ac;
+        --accent: #e31937;
+        --accent-text: #ff4a5c;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Kanit", sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* ---------- layers ---------- */
+      #bg {
+        z-index: 0;
+      }
+      .vwin {
+        position: absolute;
+        left: 0;
+        top: 840px;
+        width: 1080px;
+        height: 1080px;
+        z-index: 1;
+        -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 260px);
+        mask-image: linear-gradient(180deg, transparent 0, #000 260px);
+      }
+      .vwin video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #shade {
+        z-index: 2;
+      }
+      section.clip {
+        z-index: 3;
+      }
+      #hud {
+        z-index: 4;
+      }
+      #flash {
+        z-index: 5;
+      }
+
+      /* ---------- background ---------- */
+      .glow {
+        position: absolute;
+        left: -260px;
+        top: -300px;
+        width: 1600px;
+        height: 1600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(227, 25, 55, 0.24) 0%, rgba(227, 25, 55, 0.07) 38%, rgba(14, 10, 11, 0) 68%);
+      }
+      .ghost {
+        position: absolute;
+        right: 0;
+        top: 120px;
+        width: 240px;
+        height: 760px;
+        overflow: visible;
+      }
+      .shade-top {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 840px;
+        height: 260px;
+        background: linear-gradient(180deg, var(--bg) 0%, rgba(14, 10, 11, 0.6) 45%, rgba(14, 10, 11, 0) 100%);
+      }
+      .shade-bottom {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 220px;
+        background: linear-gradient(0deg, rgba(14, 10, 11, 0.85) 0%, rgba(14, 10, 11, 0) 100%);
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.14;
+        background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
+      }
+
+      /* ---------- HUD ---------- */
+      .topbar {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 96px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+      .topbar .tag {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: var(--fg);
+      }
+      .dot {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .progress {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 156px;
+        height: 6px;
+        background: rgba(247, 238, 239, 0.14);
+      }
+      .progress-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+
+      /* ---------- type ---------- */
+      .copy {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 230px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .line {
+        display: block;
+        font-weight: 900;
+        font-size: 96px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        transform-origin: left center;
+      }
+      .line.md {
+        font-size: 80px;
+      }
+      .line.sm {
+        font-size: 60px;
+        font-weight: 700;
+      }
+      .red {
+        color: var(--accent-text);
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .kicker {
+        display: block;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.14em;
+        color: var(--accent-text);
+        margin-bottom: 12px;
+      }
+
+      /* ---------- overlays ---------- */
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: var(--fg);
+        opacity: 0;
+      }
+      .pin {
+        position: absolute;
+        left: 80px;
+        top: 1700px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 30px;
+        border: 3px solid var(--accent);
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--fg);
+        background: rgba(14, 10, 11, 0.85);
+        transform-origin: left center;
+      }
+      .but-word {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 520px;
+        text-align: center;
+        font-weight: 900;
+        font-size: 360px;
+        line-height: 1.1;
+        color: var(--accent-text);
+      }
+      .but-copy {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 1060px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .but-copy .line {
+        transform-origin: center center;
+      }
+      .timer {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 600px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .timer-label {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      .timer-label .secs {
+        color: var(--fg);
+      }
+      .timer-track {
+        display: block;
+        width: 100%;
+        height: 26px;
+        border-radius: 13px;
+        background: rgba(247, 238, 239, 0.14);
+        overflow: hidden;
+      }
+      .timer-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+      .pip {
+        position: absolute;
+        left: 32px;
+        top: 1000px;
+        width: 1016px;
+        height: 568px;
+        border: 6px solid var(--accent);
+        border-radius: 28px;
+        overflow: hidden;
+        z-index: 1;
+        background: var(--bg-2);
+      }
+      .pip video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .pip-tag {
+        position: absolute;
+        left: 70px;
+        top: 1600px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+      .tiles {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 560px;
+        display: flex;
+        gap: 40px;
+      }
+      .tile {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 36px 40px;
+        border: 3px solid rgba(247, 238, 239, 0.22);
+        border-radius: 28px;
+        background: var(--bg-2);
+      }
+      .tile-label {
+        display: block;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+      .tile-value {
+        display: block;
+        font-weight: 900;
+        font-size: 110px;
+        line-height: 1.1;
+        color: var(--fg);
+      }
+      .tile-value.red {
+        color: var(--accent-text);
+      }
+      .stamp {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 640px;
+        display: flex;
+        justify-content: flex-start;
+      }
+      .stamp span {
+        display: block;
+        padding: 20px 44px;
+        border: 6px solid var(--accent);
+        border-radius: 22px;
+        font-weight: 900;
+        font-size: 92px;
+        line-height: 1.2;
+        color: var(--accent-text);
+        background: rgba(14, 10, 11, 0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+      <!-- persistent background -->
+      <div id="bg" class="clip" data-start="0" data-duration="30" data-track-index="0">
+        <div class="glow" id="bg-glow"></div>
+        <svg class="ghost" id="bg-ghost" viewBox="0 0 240 760" aria-hidden="true">
+          <g stroke="rgba(227,25,55,0.22)" stroke-width="6"><path d="M200,0 L60,760" /><path d="M240,90 L130,760" /><path d="M240,380 L190,760" /></g>
+        </svg>
+      </div>
+
+      <!-- footage (real demo clips), one window, cut per beat -->
+      <div class="vwin" id="win-hook"><video id="v-hook" class="clip" src="assets/footage/hook-flight-slowmo.mp4" data-start="0" data-duration="3.4" data-track-index="1" muted playsinline></video></div>
+      <div class="vwin" id="win-reveal"><video id="v-reveal" class="clip" src="assets/footage/roadster-reveal.mp4" data-start="3.4" data-duration="3.2" data-track-index="1" muted playsinline></video></div>
+      <div class="vwin" id="win-ramp"><video id="v-ramp" class="clip" src="assets/footage/ramp-climb.mp4" data-start="6.6" data-duration="3.1" data-track-index="1" muted playsinline></video></div>
+      <div class="vwin" id="win-jump"><video id="v-jump" class="clip" src="assets/footage/jump-launch-flip.mp4" data-start="9.7" data-duration="4" data-track-index="1" muted playsinline></video></div>
+      <div class="vwin" id="win-thrust"><video id="v-thrust" class="clip" src="assets/footage/thrusters-slowmo.mp4" data-start="16.9" data-duration="2.6" data-track-index="1" muted playsinline></video></div>
+      <div class="pip" id="win-cabin"><video id="v-cabin" class="clip" src="assets/footage/cabin-optimus.mp4" data-start="19.5" data-duration="3.2" data-track-index="1" muted playsinline></video></div>
+      <div class="vwin" id="win-drive"><video id="v-drive" class="clip" src="assets/footage/drive-away.mp4" data-start="22.7" data-duration="3.4" data-track-index="1" muted playsinline></video></div>
+      <div class="vwin" id="win-land"><video id="v-land" class="clip" src="assets/footage/landing-smoke.mp4" data-start="26.1" data-duration="3.9" data-track-index="1" muted playsinline></video></div>
+
+      <!-- blends the footage window into the page -->
+      <div id="shade" class="clip" data-start="0" data-duration="30" data-track-index="2">
+        <div class="shade-bottom"></div>
+        <div class="grain"></div>
+      </div>
+
+      <!-- 0–3.4 hook -->
+      <section id="s-hook" class="clip" data-start="0" data-duration="3.4" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="hook-kicker">TESLA ROADSTER</span>
+          <span class="line md" id="hook-l1">Tesla เพิ่งเปิดตัว</span>
+          <span class="line" id="hook-l2">รถบินได้…</span>
+          <span class="line md red" id="hook-l3">แต่ไม่มีใครกล้านั่ง</span>
+        </div>
+      </section>
+
+      <!-- 3.4–6.6 promise -->
+      <section id="s-promise" class="clip" data-start="3.4" data-duration="3.2" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="pr-kicker">8 ปีก่อน</span>
+          <span class="line md" id="pr-l1">มัสก์สัญญาไว้</span>
+          <span class="line md" id="pr-l2">ตั้งแต่ 8 ปีก่อน</span>
+          <span class="line sm muted" id="pr-l3">ว่า Roadster รุ่นใหม่</span>
+          <span class="line md red" id="pr-l4">จะบินได้</span>
+        </div>
+      </section>
+
+      <!-- 6.6–9.7 base -->
+      <section id="s-base" class="clip" data-start="6.6" data-duration="3.1" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="base-kicker">ล่าสุด</span>
+          <span class="line md" id="base-l1">เปิดตัวจริง</span>
+          <span class="line md" id="base-l2">ที่ฐานจรวด <span class="red">SpaceX</span></span>
+          <span class="line sm muted" id="base-l3">ในเท็กซัส</span>
+        </div>
+        <div class="pin" id="base-pin"><span class="dot"></span>STARBASE · TEXAS</div>
+      </section>
+
+      <!-- 9.7–13.7 jump -->
+      <section id="s-jump" class="clip" data-start="9.7" data-duration="4" data-track-index="3">
+        <div class="copy">
+          <span class="line md" id="jump-l1">รถพุ่งขึ้นฟ้า</span>
+          <span class="line md" id="jump-l2">กระโดดข้าม <span class="red">Cybertruck</span></span>
+          <span class="line md" id="jump-l3">แล้วตีลังกากลางอากาศ</span>
+        </div>
+      </section>
+
+      <!-- 13.7–16.9 the turn (held empty until the voice says แต่ at 14.3) -->
+      <section id="s-but" class="clip" data-start="13.7" data-duration="3.2" data-track-index="3">
+        <div class="but-word" id="but-word">แต่…</div>
+        <div class="but-copy">
+          <span class="line sm muted" id="but-l1">ความจริงคือ</span>
+          <span class="line md" id="but-l2">มันไม่ได้บิน</span>
+          <span class="line md red" id="but-l3">อย่างที่คุณคิด</span>
+        </div>
+      </section>
+
+      <!-- 16.9–19.5 thrusters, few seconds -->
+      <section id="s-thrust" class="clip" data-start="16.9" data-duration="2.6" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="th-kicker">ความจริง #1</span>
+          <span class="line md" id="th-l1">ใช้หัวพ่นลมยกตัว</span>
+          <span class="line md red" id="th-l2">ได้แค่ไม่กี่วินาที</span>
+        </div>
+        <div class="timer" id="th-timer">
+          <div class="timer-label"><span>เวลาลอยตัว</span><span class="secs" id="th-secs">3.0 วิ</span></div>
+          <span class="timer-track"><span class="timer-fill" id="th-fill"></span></span>
+        </div>
+      </section>
+
+      <!-- 19.5–22.7 no driver, remote -->
+      <section id="s-remote" class="clip" data-start="19.5" data-duration="3.2" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="rm-kicker">ความจริง #2</span>
+          <span class="line md" id="rm-l1">ในรถไม่มีคนขับ</span>
+          <span class="line sm muted" id="rm-l2">เพราะบังคับจากระยะไกล</span>
+          <span class="line md red" id="rm-l3">กันพลาด</span>
+        </div>
+        <div class="pip-tag" id="rm-tag"><span class="dot"></span>กล้องในห้องโดยสาร</div>
+      </section>
+
+      <!-- 22.7–26.1 price + 2028 -->
+      <section id="s-facts" class="clip" data-start="22.7" data-duration="3.4" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="fc-kicker">ความจริง #3</span>
+          <span class="line md" id="fc-l1">แถมยังไม่มีราคา</span>
+          <span class="line md" id="fc-l2">และจะผลิตจริงปี <span class="red">2028</span></span>
+        </div>
+        <div class="tiles">
+          <div class="tile" id="fc-tile1">
+            <span class="tile-label">ราคา</span>
+            <span class="tile-value" id="fc-price">฿ ???</span>
+          </div>
+          <div class="tile" id="fc-tile2">
+            <span class="tile-label">ผลิตจริง</span>
+            <span class="tile-value red" id="fc-year">2028</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 26.1–30 verdict -->
+      <section id="s-end" class="clip" data-start="26.1" data-duration="3.9" data-track-index="3">
+        <div class="copy">
+          <span class="kicker" id="end-kicker">สรุปคือ</span>
+          <span class="line" id="end-l1">รถที่กระโดดเก่ง</span>
+          <span class="line" id="end-l2">ที่สุดในโลก</span>
+        </div>
+        <div class="stamp" id="end-stamp"><span>แต่ยังไม่ใช่รถบิน</span></div>
+      </section>
+
+      <!-- persistent HUD -->
+      <div id="hud" class="clip" data-start="0" data-duration="30" data-track-index="4">
+        <div class="topbar">
+          <span class="tag"><span class="dot"></span>TESLA ROADSTER</span>
+          <span>บินได้จริงไหม?</span>
+        </div>
+        <div class="progress"><span class="progress-fill" id="hud-progress"></span></div>
+      </div>
+
+      <!-- voiceover (denoised, trimmed 0.5s lead-in) -->
+      <audio id="vo" src="assets/audio/voiceover.m4a" data-start="0" data-duration="30" data-track-index="6" data-volume="0.74"></audio>
+
+      <div id="flash" class="clip" data-start="0" data-duration="30" data-track-index="5">
+        <div class="flash" id="flash-a"></div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // reusable entrances
+      const rise = (sel, t, d = 0.45, ease = "power3.out") => tl.fromTo(sel, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: d, ease }, t);
+      const slide = (sel, t, d = 0.45) => tl.fromTo(sel, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: d, ease: "expo.out" }, t);
+      const pop = (sel, t, d = 0.4) => tl.fromTo(sel, { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(2.2)" }, t);
+      const flash = (t) => tl.fromTo("#flash-a", { opacity: 0.55 }, { opacity: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, t);
+      // slow push-in on a footage window
+      const push = (sel, t, d, from = 1, to = 1.08) => tl.fromTo(sel, { scale: from }, { scale: to, duration: d, ease: "none" }, t);
+      const shake = (sel, t, amt = 10, n = 5) => tl.fromTo(sel, { x: 0 }, { x: amt, duration: 0.05, yoyo: true, repeat: n, ease: "none" }, t);
+
+      // ---------- persistent ----------
+      tl.fromTo("#bg-glow", { scale: 0.9, x: 0 }, { scale: 1.12, x: 120, duration: 15, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+      tl.fromTo("#bg-ghost", { y: 0 }, { y: -120, duration: 30, ease: "none" }, 0);
+      tl.fromTo("#hud-progress", { scaleX: 0 }, { scaleX: 1, duration: 30, ease: "none" }, 0);
+
+      // cue times follow the voiceover's sentence starts
+      // ---------- 0–3.4 hook (slow-mo flight) ----------
+      push("#win-hook", 0, 3.4, 1.12, 1.0);
+      slide("#hook-kicker", 0.05, 0.4);
+      rise("#hook-l1", 0.3, 0.4);
+      tl.fromTo("#hook-l2", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.9);
+      tl.fromTo("#hook-l3", { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power4.out" }, 1.8);
+      shake("#hook-l3", 2.15);
+
+      // ---------- 3.4–6.6 promise (car reveal) ----------
+      flash(3.4);
+      push("#win-reveal", 3.4, 3.2, 1.0, 1.1);
+      slide("#pr-kicker", 3.45);
+      rise("#pr-l1", 3.5);
+      rise("#pr-l2", 4.1);
+      tl.fromTo("#pr-l3", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 4.9);
+      pop("#pr-l4", 5.7, 0.45);
+
+      // ---------- 6.6–9.7 base (ramp climb) ----------
+      push("#win-ramp", 6.6, 3.1, 1.0, 1.06);
+      slide("#base-kicker", 6.65);
+      rise("#base-l1", 6.7);
+      rise("#base-l2", 7.4);
+      tl.fromTo("#base-l3", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 8.4);
+      tl.fromTo("#base-pin", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 8.6);
+
+      // ---------- 9.7–13.7 jump (launch, flip, landing) ----------
+      flash(9.7);
+      push("#win-jump", 9.7, 4.0, 1.0, 1.08);
+      rise("#jump-l1", 9.9, 0.4, "expo.out");
+      rise("#jump-l2", 10.7, 0.4);
+      slide("#jump-l3", 11.6, 0.45);
+      // landing impact
+      shake("#win-jump", 13.3, 8, 5);
+
+      // ---------- 13.7–16.9 "แต่" (voice pauses 13.6–14.3) ----------
+      tl.fromTo("#but-word", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "expo.out" }, 14.3);
+      shake("#but-word", 14.65, 14);
+      tl.fromTo("#but-l1", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 14.6);
+      rise("#but-l2", 15.0, 0.45);
+      tl.fromTo("#but-l3", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 15.7);
+
+      // ---------- 16.9–19.5 thrusters, few seconds ----------
+      flash(16.9);
+      push("#win-thrust", 16.9, 2.6, 1.0, 1.15);
+      slide("#th-kicker", 16.9);
+      rise("#th-l1", 17.1);
+      pop("#th-l2", 18.2, 0.45);
+      tl.fromTo("#th-timer", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 17.2);
+      const secs = { v: 3 };
+      tl.fromTo("#th-fill", { scaleX: 1 }, { scaleX: 0, duration: 2.0, ease: "none" }, 17.4);
+      tl.fromTo(secs, { v: 3 }, { v: 0, duration: 2.0, ease: "none", onUpdate: () => { document.getElementById("th-secs").textContent = secs.v.toFixed(1) + " วิ"; } }, 17.4);
+
+      // ---------- 19.5–22.7 no driver ----------
+      slide("#rm-kicker", 19.5);
+      rise("#rm-l1", 19.6);
+      tl.fromTo("#rm-l2", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 20.7);
+      pop("#rm-l3", 22.0, 0.4);
+      tl.fromTo("#win-cabin", { y: 120, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "power3.out" }, 19.5);
+      tl.fromTo("#rm-tag", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 19.9);
+      tl.to("#win-cabin", { opacity: 0, duration: 0.15 }, 22.55);
+
+      // ---------- 22.7–26.1 price + 2028 ----------
+      flash(22.7);
+      push("#win-drive", 22.7, 3.4, 1.0, 1.08);
+      slide("#fc-kicker", 22.7);
+      rise("#fc-l1", 22.9);
+      tl.fromTo("#fc-tile1", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 23.1);
+      shake("#fc-price", 23.7, 8, 7);
+      rise("#fc-l2", 24.5);
+      tl.fromTo("#fc-tile2", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 24.6);
+      const yr = { v: 2025 };
+      tl.fromTo(yr, { v: 2025 }, { v: 2028, duration: 0.8, ease: "power2.out", onUpdate: () => { document.getElementById("fc-year").textContent = String(Math.round(yr.v)); } }, 24.7);
+
+      // ---------- 26.1–30 verdict (smoke landing) ----------
+      push("#win-land", 26.1, 3.9, 1.0, 1.1);
+      slide("#end-kicker", 26.15);
+      rise("#end-l1", 27.4, 0.45);
+      rise("#end-l2", 27.8, 0.45);
+      tl.fromTo("#end-stamp", { scale: 1.8, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, ease: "expo.out" }, 28.5);
+      shake("#end-stamp", 28.85);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

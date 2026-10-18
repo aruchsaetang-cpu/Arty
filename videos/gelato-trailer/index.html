@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>The Last Scoop — gelato trailer</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Cinzel";
+        src: url("assets/fonts/cinzel-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Cinzel";
+        src: url("assets/fonts/cinzel-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: "Cinzel";
+        src: url("assets/fonts/cinzel-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+      }
+      @font-face {
+        font-family: "Oswald";
+        src: url("assets/fonts/oswald-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Oswald";
+        src: url("assets/fonts/oswald-latin-600-normal.woff2") format("woff2");
+        font-weight: 600;
+      }
+
+      :root {
+        --bg: #061113;
+        --bg-2: #0c1f23;
+        --fg: #f6ecdf;
+        --muted: #a9b6b4;
+        --amber: #ff9a3c;
+        --amber-text: #ffb066;
+        --pistachio: #a8c96a;
+        --strawberry: #f2879c;
+        --choc: #6b3b2a;
+        --cone: #d79a52;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Cinzel", serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      #bg {
+        z-index: 0;
+      }
+      section.clip {
+        z-index: 2;
+      }
+      #fx {
+        z-index: 6;
+      }
+      #bars {
+        z-index: 8;
+      }
+
+      /* ---------- atmosphere ---------- */
+      .sun {
+        position: absolute;
+        left: 90px;
+        top: 1080px;
+        width: 900px;
+        height: 900px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 154, 60, 0.55) 0%, rgba(255, 120, 40, 0.22) 30%, rgba(6, 17, 19, 0) 66%);
+      }
+      .cool {
+        position: absolute;
+        left: -300px;
+        top: -200px;
+        width: 1300px;
+        height: 1300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(40, 140, 160, 0.22) 0%, rgba(6, 17, 19, 0) 65%);
+      }
+      .dust {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .dust i {
+        position: absolute;
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 200, 140, 0.55);
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.22;
+        background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 4px);
+      }
+      .vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.75) 100%);
+      }
+      .streak {
+        position: absolute;
+        left: -400px;
+        top: 900px;
+        width: 1880px;
+        height: 10px;
+        border-radius: 5px;
+        background: linear-gradient(90deg, rgba(120, 200, 255, 0) 0%, rgba(160, 220, 255, 0.9) 50%, rgba(120, 200, 255, 0) 100%);
+        box-shadow: 0 0 40px 10px rgba(120, 200, 255, 0.35);
+        opacity: 0;
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: #fff4e6;
+        opacity: 0;
+      }
+      .bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: #000;
+      }
+      .bar.top {
+        top: 0;
+      }
+      .bar.bottom {
+        bottom: 0;
+      }
+
+      /* ---------- type ---------- */
+      .center {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+      .t-small {
+        display: block;
+        font-family: "Oswald", sans-serif;
+        font-weight: 400;
+        font-size: 30px;
+        letter-spacing: 0.5em;
+        color: var(--muted);
+      }
+      .t-big {
+        display: block;
+        font-weight: 900;
+        font-size: 120px;
+        line-height: 1.08;
+        letter-spacing: 0.04em;
+        color: var(--fg);
+        text-shadow: 0 0 40px rgba(255, 154, 60, 0.35);
+      }
+      .t-mid {
+        display: block;
+        font-weight: 700;
+        font-size: 84px;
+        line-height: 1.1;
+        letter-spacing: 0.06em;
+        color: var(--fg);
+      }
+      .amber {
+        color: var(--amber-text);
+      }
+      .subtitle {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 1500px;
+        text-align: center;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 58px;
+        line-height: 1.3;
+        color: var(--fg);
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
+      }
+
+      /* ---------- props ---------- */
+      .hero {
+        position: absolute;
+        display: block;
+      }
+      .hero img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .graded {
+        filter: brightness(1) contrast(1.12) saturate(0.92) sepia(0.12) drop-shadow(0 0 26px rgba(255, 140, 60, 0.45));
+      }
+      .gelato {
+        position: absolute;
+      }
+      .gelato svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .drip {
+        position: absolute;
+        width: 26px;
+        border-radius: 0 0 13px 13px;
+        background: var(--strawberry);
+        transform-origin: 50% 0%;
+      }
+      .ring {
+        position: absolute;
+        left: 140px;
+        top: 560px;
+        width: 800px;
+        height: 800px;
+        border-radius: 50%;
+        border: 6px solid rgba(255, 176, 102, 0.8);
+        opacity: 0;
+      }
+      .scrim {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 150px;
+        height: 620px;
+        background: linear-gradient(0deg, rgba(6, 17, 19, 0.92) 0%, rgba(6, 17, 19, 0.7) 45%, rgba(6, 17, 19, 0) 100%);
+      }
+      .billing {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 1500px;
+        font-family: "Oswald", sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1.35;
+        letter-spacing: 0.08em;
+        text-align: center;
+        color: var(--muted);
+      }
+      .tagline {
+        display: block;
+        font-family: "Oswald", sans-serif;
+        font-weight: 600;
+        font-size: 40px;
+        letter-spacing: 0.32em;
+        color: var(--amber-text);
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <pattern id="waffle" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <path d="M0,0 H34 M0,0 V34" stroke="#9c6430" stroke-width="5" />
+        </pattern>
+        <symbol id="sym-cone" viewBox="0 0 200 300">
+          <path d="M8,0 L192,0 L100,300 Z" fill="#d79a52" />
+          <path d="M8,0 L192,0 L100,300 Z" fill="url(#waffle)" />
+          <path d="M8,0 L192,0 L186,18 L14,18 Z" fill="#b97a3a" />
+        </symbol>
+        <symbol id="sym-scoop" viewBox="0 0 200 170">
+          <path fill="currentColor" d="M10,118 C0,58 50,8 100,8 C150,8 200,58 190,118 C186,138 170,138 166,150 C160,166 144,166 140,150 C136,138 120,140 112,152 C104,164 90,162 86,148 C80,136 60,140 52,154 C46,166 30,162 30,146 C28,134 14,138 10,118 Z" />
+          <ellipse cx="70" cy="48" rx="34" ry="18" fill="#fff" opacity="0.35" transform="rotate(-24 70 48)" />
+          <path d="M28,104 C60,120 140,120 172,104" stroke="#000" stroke-opacity="0.12" stroke-width="8" fill="none" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+      <!-- atmosphere -->
+      <div id="bg" class="clip" data-start="0" data-duration="30" data-track-index="0">
+        <div class="cool" id="bg-cool"></div>
+        <div class="sun" id="bg-sun"></div>
+        <div class="dust" id="bg-dust">
+          <i style="left: 120px; top: 1500px"></i><i style="left: 300px; top: 1650px"></i><i style="left: 520px; top: 1580px"></i><i style="left: 760px; top: 1700px"></i><i style="left: 900px; top: 1450px"></i><i style="left: 210px; top: 1260px"></i><i style="left: 640px; top: 1350px"></i><i style="left: 980px; top: 1600px"></i>
+        </div>
+      </div>
+
+      <!-- 0–2.5 production card -->
+      <section id="s-open" class="clip" data-start="0" data-duration="2.5" data-track-index="1">
+        <div class="center" style="top: 900px">
+          <span class="t-small" id="open-a">A COLD SUMMER</span>
+          <span class="t-small" id="open-b">PRODUCTION</span>
+        </div>
+      </section>
+
+      <!-- 2.5–6 in a world -->
+      <section id="s-world" class="clip" data-start="2.5" data-duration="3.5" data-track-index="1">
+        <div class="center" style="top: 700px">
+          <span class="t-mid" id="world-a">IN A WORLD</span>
+          <span class="t-big amber" id="world-b">WHERE SUMMER</span>
+          <span class="t-big" id="world-c">NEVER ENDS</span>
+        </div>
+      </section>
+
+      <!-- 6–9.5 the city is melting -->
+      <section id="s-melt" class="clip" data-start="6" data-duration="3.5" data-track-index="1">
+        <div class="center" style="top: 720px">
+          <span class="t-mid" id="melt-a">AND THE CITY</span>
+          <span class="t-big amber" id="melt-b">IS MELTING</span>
+        </div>
+        <div class="drip" id="drip-1" style="left: 300px; top: 1010px; height: 160px"></div>
+        <div class="drip" id="drip-2" style="left: 470px; top: 1010px; height: 240px"></div>
+        <div class="drip" id="drip-3" style="left: 640px; top: 1010px; height: 120px"></div>
+        <div class="drip" id="drip-4" style="left: 780px; top: 1010px; height: 200px"></div>
+      </section>
+
+      <!-- 9.5–13 hero reveal -->
+      <section id="s-hero" class="clip" data-start="9.5" data-duration="3.5" data-track-index="1">
+        <div class="hero" id="hero-a" style="left: 300px; top: 370px; width: 480px; height: 1400px">
+          <img id="hero-a-img" src="assets/img/hero-cutout.png" alt="" />
+        </div>
+        <div class="center" style="top: 190px">
+          <span class="t-big" id="hero-title">ONE MAN</span>
+        </div>
+      </section>
+
+      <!-- 13–16.5 one mission: the gelato builds -->
+      <section id="s-mission" class="clip" data-start="13" data-duration="3.5" data-track-index="1">
+        <div class="center" style="top: 230px">
+          <span class="t-mid" id="mi-a">HAS ONE</span>
+          <span class="t-big amber" id="mi-b">MISSION</span>
+        </div>
+        <div class="gelato" id="mi-cone" style="left: 410px; top: 1220px; width: 260px; height: 390px"><svg><use href="#sym-cone" /></svg></div>
+        <div class="gelato" id="mi-s1" style="left: 395px; top: 1050px; width: 290px; height: 246px; color: #6b3b2a"><svg><use href="#sym-scoop" /></svg></div>
+        <div class="gelato" id="mi-s2" style="left: 400px; top: 880px; width: 280px; height: 238px; color: #f2879c"><svg><use href="#sym-scoop" /></svg></div>
+        <div class="gelato" id="mi-s3" style="left: 410px; top: 718px; width: 260px; height: 221px; color: #a8c96a"><svg><use href="#sym-scoop" /></svg></div>
+      </section>
+
+      <!-- 16.5–20 montage: four hard cuts -->
+      <section id="s-m1" class="clip" data-start="16.5" data-duration="0.9" data-track-index="1">
+        <div class="gelato" id="m1-scoop" style="left: -60px; top: 520px; width: 1200px; height: 1020px; color: #a8c96a"><svg><use href="#sym-scoop" /></svg></div>
+        <div class="center" style="top: 1560px"><span class="t-big" id="m1-word">COLD.</span></div>
+      </section>
+      <section id="s-m2" class="clip" data-start="17.4" data-duration="0.9" data-track-index="1">
+        <div class="hero" id="m2-hero" style="left: 60px; top: 160px; width: 960px; height: 2803px">
+          <img class="graded" src="assets/img/hero-cutout.png" alt="" />
+        </div>
+        <div class="scrim"></div>
+        <div class="center" style="top: 1560px"><span class="t-big amber" id="m2-word">CREAMY.</span></div>
+      </section>
+      <section id="s-m3" class="clip" data-start="18.3" data-duration="0.9" data-track-index="1">
+        <div class="gelato" id="m3-scoop" style="left: -40px; top: 360px; width: 1160px; height: 986px; color: #f2879c"><svg><use href="#sym-scoop" /></svg></div>
+        <div class="center" style="top: 1560px"><span class="t-big" id="m3-word">LEGENDARY.</span></div>
+      </section>
+      <section id="s-m4" class="clip" data-start="19.2" data-duration="0.8" data-track-index="1">
+        <div class="hero" id="m4-hero" style="left: 330px; top: 200px; width: 420px; height: 1226px">
+          <img class="graded" src="assets/img/hero-cutout.png" alt="" />
+        </div>
+        <div class="scrim"></div>
+        <div class="center" style="top: 1500px"><span class="t-big amber" id="m4-word">UNSTOPPABLE.</span></div>
+      </section>
+
+      <!-- 20–23.9 hero with the cone -->
+      <section id="s-pose" class="clip" data-start="20" data-duration="3.9" data-track-index="1">
+        <div class="hero" id="pose-rig" style="left: 0; top: 0; width: 1080px; height: 1920px">
+          <div class="hero" style="left: 60px; top: 270px; width: 514px; height: 1500px">
+            <img class="graded" src="assets/img/hero-cutout.png" alt="" />
+          </div>
+          <div class="gelato" id="pose-cone" style="left: 330px; top: 470px; width: 150px; height: 360px">
+            <div class="gelato" style="left: 18px; top: 150px; width: 114px; height: 171px"><svg><use href="#sym-cone" /></svg></div>
+            <div class="gelato" style="left: 6px; top: 90px; width: 138px; height: 117px; color: #6b3b2a"><svg><use href="#sym-scoop" /></svg></div>
+            <div class="gelato" style="left: 10px; top: 20px; width: 130px; height: 110px; color: #a8c96a"><svg><use href="#sym-scoop" /></svg></div>
+          </div>
+        </div>
+        <div class="scrim"></div>
+        <div class="subtitle" id="pose-q1">“This summer…</div>
+        <div class="subtitle" id="pose-q2" style="top: 1580px">…it’s personal.”</div>
+      </section>
+
+      <!-- 24–27 title -->
+      <section id="s-title" class="clip" data-start="24" data-duration="3" data-track-index="1">
+        <div class="ring" id="title-ring"></div>
+        <div class="center" style="top: 760px">
+          <span class="t-small" id="title-a">THE LAST</span>
+          <span class="t-big" id="title-b" style="font-size: 190px; letter-spacing: 0.08em">SCOOP</span>
+        </div>
+      </section>
+
+      <!-- 27–30 end card -->
+      <section id="s-end" class="clip" data-start="27" data-duration="3" data-track-index="1">
+        <div class="gelato" id="end-cone" style="left: 470px; top: 330px; width: 140px; height: 330px">
+          <div class="gelato" style="left: 16px; top: 140px; width: 108px; height: 162px"><svg><use href="#sym-cone" /></svg></div>
+          <div class="gelato" style="left: 4px; top: 82px; width: 132px; height: 112px; color: #f2879c"><svg><use href="#sym-scoop" /></svg></div>
+          <div class="gelato" style="left: 8px; top: 14px; width: 124px; height: 105px; color: #a8c96a"><svg><use href="#sym-scoop" /></svg></div>
+        </div>
+        <div class="center" style="top: 740px">
+          <span class="t-small">THE LAST</span>
+          <span class="t-big" id="end-title" style="font-size: 150px; letter-spacing: 0.08em">SCOOP</span>
+          <span class="tagline" id="end-tag">HANDCRAFTED GELATO</span>
+          <span class="t-mid amber" id="end-now" style="font-size: 64px; margin-top: 30px">NOW SERVING</span>
+        </div>
+        <div class="billing" id="end-billing">
+          <p>A COLD SUMMER PRODUCTION · STARRING THE SCOOP MASTER · PISTACHIO · STRAWBERRY · DARK CHOCOLATE · CONE DESIGN BY WAFFLE · MUSIC BY THE FREEZER · NO SCOOPS WERE HARMED IN THE MAKING OF THIS FILM</p>
+          <p style="margin-top: 18px; color: #f6ecdf; letter-spacing: 0.3em">COMING TO A COUNTER NEAR YOU</p>
+        </div>
+      </section>
+
+      <!-- lens + film overlays -->
+      <div id="fx" class="clip" data-start="0" data-duration="30" data-track-index="2">
+        <div class="streak" id="fx-streak" data-layout-allow-overflow></div>
+        <div class="vignette" data-layout-allow-occlusion></div>
+        <div class="grain" data-layout-allow-occlusion></div>
+        <div class="flash" id="fx-flash"></div>
+      </div>
+
+      <div id="bars" class="clip" data-start="0" data-duration="30" data-track-index="3">
+        <div class="bar top"></div>
+        <div class="bar bottom"></div>
+      </div>
+
+      <audio id="score" src="assets/audio/trailer-score.m4a" data-start="0" data-duration="30" data-track-index="4" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      const flash = (t, peak = 0.7) => tl.fromTo("#fx-flash", { opacity: peak }, { opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, t);
+      const streak = (t, y) => {
+        tl.set("#fx-streak", { y: y - 900 }, t);
+        tl.fromTo("#fx-streak", { x: -600, opacity: 0 }, { x: 600, opacity: 1, duration: 0.5, ease: "power2.out", immediateRender: false }, t);
+        tl.to("#fx-streak", { opacity: 0, duration: 0.5, ease: "power1.in" }, t + 0.5);
+      };
+      // trailer-card settle: oversized and faint, easing down to rest
+      const trackIn = (sel, t, d = 1.2, from = 1.25) => tl.fromTo(sel, { scale: from, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "power3.out" }, t);
+      const fadeUp = (sel, t, d = 0.8) => tl.fromTo(sel, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: d, ease: "power2.out" }, t);
+      const slam = (sel, t, from = 1.6) => tl.fromTo(sel, { scale: from, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "expo.out" }, t);
+
+      // ---------- atmosphere ----------
+      tl.fromTo("#bg-sun", { y: 300, scale: 0.8, opacity: 0.4 }, { y: -80, scale: 1.25, opacity: 1, duration: 9.5, ease: "power1.inOut" }, 0);
+      tl.to("#bg-sun", { y: 0, scale: 1.0, opacity: 0.55, duration: 20.5, ease: "sine.inOut" }, 9.5);
+      tl.fromTo("#bg-cool", { scale: 1, x: 0 }, { scale: 1.15, x: 160, duration: 15, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+      document.querySelectorAll("#bg-dust i").forEach((el, i) => {
+        tl.fromTo(el, { y: 0, opacity: 0 }, { y: -900 - i * 60, opacity: 0.9, duration: 30, ease: "none" }, 0);
+      });
+
+      // ---------- 0–2.5 production card ----------
+      tl.fromTo("#open-a", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 1.6, ease: "power2.out" }, 0.2);
+      tl.fromTo("#open-b", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: "power1.out" }, 0.7);
+      tl.to(["#open-a", "#open-b"], { opacity: 0, duration: 0.4, ease: "power1.in" }, 2.05);
+
+      // ---------- 2.5–6 in a world ----------
+      flash(2.5, 0.35);
+      trackIn("#world-a", 2.55, 1.0);
+      trackIn("#world-b", 3.3, 1.1);
+      trackIn("#world-c", 3.9, 1.1);
+      tl.fromTo("#s-world .center", { scale: 1 }, { scale: 1.06, duration: 3.5, ease: "none" }, 2.5);
+      tl.to("#s-world .center", { opacity: 0, duration: 0.35 }, 5.65);
+
+      // ---------- 6–9.5 melting ----------
+      fadeUp("#melt-a", 6.05, 0.7);
+      slam("#melt-b", 6.5, 1.3);
+      ["#drip-1", "#drip-2", "#drip-3", "#drip-4"].forEach((d, i) => {
+        tl.fromTo(d, { scaleY: 0 }, { scaleY: 1, duration: 2.2 - i * 0.2, ease: "power2.in" }, 6.6 + i * 0.25);
+      });
+      tl.fromTo("#melt-b", { y: 0 }, { y: 14, duration: 2.5, ease: "power1.in" }, 6.9);
+      tl.to("#s-melt .center", { opacity: 0, duration: 0.3 }, 9.2);
+
+      // ---------- 9.5–13 hero reveal: silhouette, then light ----------
+      flash(9.5, 0.5);
+      tl.fromTo("#hero-a-img", { filter: "brightness(0) contrast(1.12) saturate(0.92) sepia(0.12) drop-shadow(0 0 30px rgba(255, 140, 60, 0.95))" }, { filter: "brightness(1) contrast(1.12) saturate(0.92) sepia(0.12) drop-shadow(0 0 26px rgba(255, 140, 60, 0.45))", duration: 1.4, ease: "power2.inOut" }, 10.5);
+      tl.fromTo("#hero-a", { scale: 1.0, y: 60 }, { scale: 1.08, y: 0, duration: 3.5, ease: "power1.out" }, 9.5);
+      trackIn("#hero-title", 9.7, 1.3, 1.4);
+      streak(10.6, 760);
+
+      // ---------- 13–16.5 one mission ----------
+      fadeUp("#mi-a", 13.05, 0.6);
+      slam("#mi-b", 13.35, 1.5);
+      tl.fromTo("#mi-cone", { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 13.1);
+      [["#mi-s1", 13.6], ["#mi-s2", 14.3], ["#mi-s3", 15.0]].forEach(([sel, t]) => {
+        tl.fromTo(sel, { y: -1100, opacity: 1 }, { y: 0, duration: 0.32, ease: "power3.in" }, t - 0.32);
+        tl.fromTo(sel, { scaleY: 0.78, scaleX: 1.14 }, { scaleY: 1, scaleX: 1, duration: 0.35, ease: "back.out(3)" }, t);
+      });
+      streak(15.05, 820);
+
+      // ---------- 16.5–20 montage ----------
+      flash(16.5, 0.5);
+      tl.fromTo("#m1-scoop", { scale: 1.0, rotation: -6 }, { scale: 1.12, rotation: 2, duration: 0.9, ease: "none" }, 16.5);
+      slam("#m1-word", 16.5, 1.4);
+      flash(17.4, 0.4);
+      tl.fromTo("#m2-hero", { scale: 1.0, y: 0 }, { scale: 1.06, y: -30, duration: 0.9, ease: "none" }, 17.4);
+      slam("#m2-word", 17.4, 1.4);
+      flash(18.3, 0.4);
+      tl.fromTo("#m3-scoop", { scale: 1.1, rotation: 8 }, { scale: 1.0, rotation: 0, duration: 0.9, ease: "none" }, 18.3);
+      slam("#m3-word", 18.3, 1.4);
+      flash(19.2, 0.5);
+      tl.fromTo("#m4-hero", { scale: 1.12 }, { scale: 1.0, duration: 0.8, ease: "power2.out" }, 19.2);
+      slam("#m4-word", 19.2, 1.4);
+
+      // ---------- 20–23.9 hero with cone ----------
+      tl.fromTo("#pose-rig", { scale: 1.0, x: 0, y: 0 }, { scale: 1.35, x: 160, y: 120, duration: 3.9, ease: "power1.in" }, 20);
+      tl.fromTo("#pose-cone", { rotation: 14, y: 30 }, { rotation: 8, y: 0, duration: 1.2, ease: "power2.out" }, 20);
+      fadeUp("#pose-q1", 20.4, 0.6);
+      tl.to("#pose-q1", { opacity: 0, duration: 0.3 }, 21.6);
+      fadeUp("#pose-q2", 21.8, 0.6);
+      streak(22.6, 980);
+
+      // ---------- 24–27 title slam ----------
+      flash(24.0, 0.9);
+      slam("#title-b", 24.0, 1.8);
+      tl.fromTo("#title-a", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 24.2);
+      tl.fromTo("#title-ring", { scale: 0.2, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 1.2, ease: "power2.out" }, 24.0);
+      tl.fromTo("#s-title .center", { scale: 1 }, { scale: 1.08, duration: 3, ease: "none" }, 24);
+      streak(24.1, 900);
+
+      // ---------- 27–30 end card ----------
+      tl.fromTo("#end-cone", { y: 60, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.6)" }, 27.0);
+      fadeUp("#end-title", 27.1, 0.6);
+      trackIn("#end-tag", 27.4, 0.9, 1.3);
+      slam("#end-now", 27.9, 1.3);
+      tl.fromTo("#end-billing", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 28.2);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
