@@ -38,3 +38,16 @@ Notice!", two recordings, 10.7 s and 7.8 s). Same visual system as Format B, wit
 Thai version: the same 20 s, 3 mistakes. Each mistake needs **two shots** (before/after) so the viewer can
 see the change; the arrow points at the detail in both. Only use mistakes listed by at least one goofs source
 (IMDb goofs, MovieMistakes.com, Looper) — fan claims without a source are left out.
+
+## User rule: one fact per clip
+
+Don't list 3 facts in one clip. Each easter egg or mistake gets its **own ~20 s clip** written in the usual
+ฮุก → บริบท → แต่ → เฉลย structure. Formats B/C only lend the **look** (full-frame footage, torn-paper edges,
+red arrow on the detail, 1–2 word captions) and the **topic ideas**:
+
+| Part | Easter egg | Mistake |
+| --- | --- | --- |
+| ฮุก | "เพื่อนๆ รู้มั้ยว่า ในหนัง X มี … ซ่อนอยู่" | "เพื่อนๆ รู้มั้ยว่า ในหนัง X มีจุดผิดพลาดที่ไม่มีใครสังเกต" |
+| บริบท | the scene and what happens in it | the "before" shot (the detail as it should be) |
+| แต่ | "แต่ถ้าดูดีๆ …", where the arrow appears | "แต่ช็อตต่อมา …", the "after" shot, arrow on the change |
+| เฉลย | who it is or where it comes from, and why the animators hid it | why it happened, or a funny closing line |
