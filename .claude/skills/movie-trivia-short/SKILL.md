@@ -16,6 +16,8 @@ an actor nearly died or was hurt for real, an accident or improvisation that bec
 an on-set romance **only if the people involved confirmed it publicly**. Never spread rumours about
 real people. Mark one ⭐ recommended, and for each give the **safety risk** (section 4) up front.
 
+Second format available: the easter-egg list, see `formats/easter-egg.md`.
+
 ## 2. Verify before writing
 
 Search the web for the chosen story. Prefer the person's own account (memoir, interview) plus a
