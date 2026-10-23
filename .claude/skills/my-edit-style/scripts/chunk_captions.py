@@ -122,7 +122,14 @@ def main():
     ap.add_argument("words")
     ap.add_argument("out")
     ap.add_argument("--fix")
+    ap.add_argument("--max-base", type=int, help="max base Thai chars per card (default 13; ~6 for 1-2 word cards)")
+    ap.add_argument("--target", type=float, help="target seconds per card (default 0.74; ~0.4 for 1-2 word cards)")
     a = ap.parse_args()
+    global MAX_BASE, MAX_LATIN, TARGET, MIN_DUR, MAX_DUR
+    if a.max_base:
+        MAX_BASE = MAX_LATIN = a.max_base
+    if a.target:
+        TARGET, MIN_DUR, MAX_DUR = a.target, a.target * 0.5, a.target * 2.2
     words = [w for w in json.load(open(a.words)) if w["word"].strip()]
     if a.fix:
         fixes = json.load(open(a.fix))

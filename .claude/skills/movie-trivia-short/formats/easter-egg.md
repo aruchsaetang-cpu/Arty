@@ -51,3 +51,11 @@ red arrow on the detail, 1–2 word captions) and the **topic ideas**:
 | บริบท | the scene and what happens in it | the "before" shot (the detail as it should be) |
 | แต่ | "แต่ถ้าดูดีๆ …", where the arrow appears | "แต่ช็อตต่อมา …", the "after" shot, arrow on the change |
 | เฉลย | who it is or where it comes from, and why the animators hid it | why it happened, or a funny closing line |
+
+## Build
+
+`scripts/build_easteregg.py edit.json out/` makes the Format B/C composition: footage window y 70–1650 between
+torn-paper edges, film title at y≈190, 1–2 word captions (Kanit Black Italic, white with an 8 px outline) centred
+at y≈870 with a 4-frame pop, and red arrows (`arrows`: tip x/y, angle) that pop in and bob. Captions:
+`chunk_captions.py words.json caps.json --max-base 6 --target 0.4`. Crop film footage tightly
+(`cropdetect=limit=0.12`) so letterbox bars don't show inside the window.
