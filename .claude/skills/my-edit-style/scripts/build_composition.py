@@ -3,6 +3,10 @@
 
 usage: build_composition.py edit.json PROJECT_DIR [--cam-pos "50% 40%"]
 
+Optional "arrows" in edit.json: [{"start", "end", "x", "y", "angle", "x2", "y2"}] — red pointer whose TIP is at
+x/y on the 1080x1920 canvas (the sharp band is y 545-1371), angle 0 = pointing down, x2/y2 to follow a moving
+subject. Use it on the "แต่" line when the detail needs pointing out.
+
 Layout (style-guide.md §4, 1080x1920):
   blurred B-roll fill (whole frame) -> sharp B-roll band y=545..1371 ->
   presenter circle d=350 centred (210,1349) -> caption centred y=300, 5-frame pop.
@@ -54,6 +58,10 @@ TEMPLATE = """<!doctype html>
       /* sharp band: full width, y 545-1371 */
       .band { left: 0; top: 545px; width: 1080px; height: 826px; object-fit: cover; z-index: 1; }
       /* presenter circle: d=350, centre (210,1349), no border */
+      /* optional red pointer arrows (edit.json "arrows"): tip at x/y, pops in and bobs */
+      .arrow { position: absolute; width: 200px; height: 230px; z-index: 4; }
+      .arrow .m, .arrow .a { position: absolute; inset: 0; }
+      .arrow .a { transform-origin: 50% 100%; }
       #cam { position: absolute; left: 35px; top: 1175px; width: 350px; height: 350px; border-radius: 50%; overflow: hidden; z-index: 2; }
       #cam video { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: __CAMPOS__; }
       /* caption card: centred x, centre y=300 */
@@ -71,6 +79,7 @@ TEMPLATE = """<!doctype html>
 __SHOTS__
 __CAMDIV__
 __CAPS__
+__ARROWS__
 __CREDIT__
       <audio id="voice" src="__VOICE__" data-start="0" data-duration="__DUR__" data-track-index="5" data-volume="1"></audio>
 __MUSIC__
@@ -90,6 +99,15 @@ __MUSIC__
           const el = cap.querySelector(".t");
           tl.fromTo(el, { scale: 0.3 }, { scale: 1.055, duration: 4 * f, ease: "none", immediateRender: false }, t);
           tl.to(el, { scale: 1, duration: f, ease: "none" }, t + 4 * f);
+        });
+        document.querySelectorAll(".arrow").forEach((ar) => {
+          const t = parseFloat(ar.dataset.start), d = parseFloat(ar.dataset.duration), el = ar.querySelector(".a");
+          const dx = parseFloat(ar.dataset.dx || 0), dy = parseFloat(ar.dataset.dy || 0);
+          if (dx || dy) tl.fromTo(ar.querySelector(".m"), { x: 0, y: 0 }, { x: dx, y: dy, duration: d, ease: "none", immediateRender: false }, t);
+          tl.fromTo(el, { scale: 0, y: -40 }, { scale: 1.12, y: 0, duration: 5 * f, ease: "power2.out", immediateRender: false }, t);
+          tl.to(el, { scale: 1, duration: 2 * f }, t + 5 * f);
+          const n = Math.max(1, Math.floor((d - 7 * f) / 0.36));
+          tl.fromTo(el, { y: 0 }, { y: -18, duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: n * 2 - 1, immediateRender: false }, t + 7 * f);
         });
         tl.set({}, {}, __DUR__);
         window.__timelines["main"] = tl;
@@ -155,7 +173,22 @@ def main():
         src = copy_asset(path(s["src"]), proj, "broll", cache)
         attrs = f'data-start="{s["start"]}" data-duration="{s["dur"]}" data-media-start="{s["media_start"]}"'
         shots.append(f'      <video id="fill-{i}" class="clip fill" src="{src}" {attrs} data-track-index="0" muted playsinline></video>')
-        shots.append(f'      <video id="band-{i}" class="clip band" src="{src}" {attrs} data-track-index="1" muted playsinline></video>')
+        # optional "pos": which part of the source the sharp band shows (object-position, e.g. "0% 50%" = left side)
+        pos = f' style="object-position:{s["pos"]}"' if s.get("pos") else ""
+        shots.append(f'      <video id="band-{i}" class="clip band" src="{src}" {attrs} data-track-index="1" muted playsinline{pos}></video>')
+
+    arrow_svg = ('<svg viewBox="0 0 200 230" width="200" height="230"><path d="M70,10 L130,10 L130,120 L185,120 L100,220 '
+                 'L15,120 L70,120 Z" fill="#e3161c" stroke="#ffffff" stroke-width="12" stroke-linejoin="round"/></svg>')
+    arrows = []
+    for i, ar in enumerate(edit.get("arrows", [])):
+        d = round(ar["end"] - ar["start"], 3)
+        arrows.append(
+            f'      <div id="arrow-{i}" class="clip arrow" data-start="{ar["start"]}" data-duration="{d}" data-track-index="5" '
+            f'data-dx="{ar.get("x2", ar["x"]) - ar["x"]}" data-dy="{ar.get("y2", ar["y"]) - ar["y"]}" '
+            f'style="left:{ar["x"] - 100}px;top:{ar["y"] - 230}px"><div class="m">'
+            f'<div style="position:absolute;inset:0;transform:rotate({ar.get("angle", 0)}deg);transform-origin:100px 230px">'
+            f'<div class="a">{arrow_svg}</div></div></div></div>'
+        )
 
     caps = []
     for i, c in enumerate(edit["captions"]):
@@ -178,7 +211,7 @@ def main():
         music = (f'      <audio id="music" src="{m}" data-start="0" data-duration="{dur}" data-track-index="6" '
                  f'data-volume="{edit.get("music_volume", 0.12)}"></audio>')
 
-    out = (TEMPLATE.replace("__SHOTS__", "\n".join(shots)).replace("__CAPS__", "\n".join(caps))
+    out = (TEMPLATE.replace("__SHOTS__", "\n".join(shots)).replace("__CAPS__", "\n".join(caps)).replace("__ARROWS__", "\n".join(arrows))
            .replace("__MUSIC__", music).replace("__CAMDIV__", cam_div).replace("__CREDIT__", credit).replace("__RING2__", RING2).replace("__VOICE__", voice_rel)
            .replace("__CAMPOS__", a.cam_pos).replace("__RING__", RING).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS)))
     open(os.path.join(proj, "index.html"), "w").write(out)

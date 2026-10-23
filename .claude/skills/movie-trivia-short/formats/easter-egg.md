@@ -1,5 +1,8 @@
 # Format B: "จุดที่คุณไม่เคยสังเกต" (Easter-egg list)
 
+> The channel's main look is still the blur layout (SKILL.md 5c). Use these topic ideas with the blur layout + arrows;
+> use the torn-paper template below only on request.
+
 From the reference the user sent on 2026-10-23: TikTok @OFFSCRIPTYTS "Did You Notice These Things in Animated
 Movies" (iPhone screen recording, 10.7 s captured, loudness about −14.5 LUFS, trending sound "Cantina Afternoon").
 Measured from the recording; values are approximate [ไม่แน่ใจ ±5%].

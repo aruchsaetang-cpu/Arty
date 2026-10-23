@@ -93,6 +93,14 @@ Match the bed to the film's mood: `viral_beat.py` (phonk) for action/edgy topics
 waltz + sparkle on the reveal) for animated / fairy-tale topics, the BTTF-style tension bed for near-death stories.
 No title that stays on screen the whole clip (user preference): leave `title` out of edit.json, or only show it in the hook.
 
+## 5c. Channel look (user rule): the blur style is the main style
+
+Every clip uses the **my-edit-style blur layout** (blurred fill, sharp band y 545–1371, captions at the top),
+as in the Back to the Future clip, built with `my-edit-style/scripts/build_composition.py`. Extras go on top of it
+only when the story needs them: red arrows (`arrows` in edit.json, on the "แต่" line), slow motion or a freeze
+frame of the detail, and `pos` per shot to frame the subject inside the band. The torn-paper full-frame
+template (`build_easteregg.py`, formats/easter-egg.md) is only for when the user asks for it.
+
 ## 6. Edit
 
 Run the `my-edit-style` skill (voice-only mode when there is no talking-head clip). Deliver with and
