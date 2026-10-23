@@ -33,6 +33,7 @@ record the voice **as one file** (or number the files) — recording order mix-u
 
 ## 3b. Keep it tight (user preference: don't waste the viewer's time)
 
+- **The แต่ part always starts with the word "แต่"**, even in the shortest version (user rule).
 - **Script:** cut every filler word ("ก็", "นั้น", "ที่ว่า", "จริงๆ แล้ว"). Each sentence carries one new piece of
   information. Aim for **15–20 s**; if the story fits in 15 s, stop at 15.
 - **Hook starts on frame 1:** no intro, no logo, no "สวัสดีครับ". The first words are the hook.
