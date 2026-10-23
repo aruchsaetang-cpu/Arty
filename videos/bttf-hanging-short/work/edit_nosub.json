@@ -1,0 +1,143 @@
+{
+ "duration": 30.185,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/bttf-hanging-short/work/voice_tight.wav",
+ "music": null,
+ "music_volume": 0.12,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 0.0,
+   "dur": 0.66,
+   "media_start": 15.13
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 0.66,
+   "dur": 1.08,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 1.74,
+   "dur": 1.35,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 3.09,
+   "dur": 1.4,
+   "media_start": 13.85
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 4.49,
+   "dur": 1.07,
+   "media_start": 0.87
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 5.56,
+   "dur": 1.2,
+   "media_start": 3.42
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 6.76,
+   "dur": 2.15,
+   "media_start": 9.15
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 8.91,
+   "dur": 1.04,
+   "media_start": 12.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 9.95,
+   "dur": 0.97,
+   "media_start": 6.3
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 10.92,
+   "dur": 1.26,
+   "media_start": 15.4
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 12.18,
+   "dur": 1.3,
+   "media_start": 7.93
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 13.48,
+   "dur": 0.47,
+   "media_start": 4.7
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 13.95,
+   "dur": 0.89,
+   "media_start": 10.82
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m03.mp4",
+   "start": 14.84,
+   "dur": 1.58,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m03.mp4",
+   "start": 16.42,
+   "dur": 1.29,
+   "media_start": 1.15
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m03.mp4",
+   "start": 17.71,
+   "dur": 1.27,
+   "media_start": 2.4
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
+   "start": 18.98,
+   "dur": 1.1,
+   "media_start": 13.85
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m03.mp4",
+   "start": 20.08,
+   "dur": 1.79,
+   "media_start": 8.7
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m03.mp4",
+   "start": 21.87,
+   "dur": 1.66,
+   "media_start": 13.72
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m03.mp4",
+   "start": 23.53,
+   "dur": 1.07,
+   "media_start": 5.55
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m02.mp4",
+   "start": 24.6,
+   "dur": 1.94,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m02.mp4",
+   "start": 26.54,
+   "dur": 3.645,
+   "media_start": 1.81
+  }
+ ],
+ "captions": [],
+ "credit": "ที่มาคลิป: YouTube @MOVIECLIPS"
+}

@@ -1,8 +1,12 @@
 # Reference clips and test renders: third-party content, local analysis only
 references/
-# Movie footage, voice takes and renders: copyrighted / large, kept local only
-videos/bttf-hanging-short/*
-!videos/bttf-hanging-short/work/
-videos/bttf-hanging-short/work/*
-!videos/bttf-hanging-short/work/script.txt
-!videos/bttf-hanging-short/work/captions.json
+# BTTF short: renders, iPad recordings and scratch stay local; cropped B-roll, voice takes and edit data are tracked
+videos/bttf-hanging-short/out/
+videos/bttf-hanging-short/out_nosub/
+videos/bttf-hanging-short/src/f01.mp4
+videos/bttf-hanging-short/src/f02.mp4
+videos/bttf-hanging-short/src/f03.mp4
+videos/bttf-hanging-short/src/f05.mp4
+videos/bttf-hanging-short/work/*.png
+videos/bttf-hanging-short/work/vo/
+videos/bttf-hanging-short/work/captions_v1.json
