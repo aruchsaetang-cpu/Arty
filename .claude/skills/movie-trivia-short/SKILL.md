@@ -88,6 +88,7 @@ Trending songs are copyrighted, so never put one into the rendered file. Instead
 3. Suggest 2–3 kinds of trending sounds that fit the story's mood (tension, comedy, epic), without
    claiming a specific song is trending unless a web search this week confirms it.
 
+Default for these Shorts (closest to the user's reference sounds): `swing_beat.py`, a bouncy lo-fi swing with plucked guitar, mixed ~10–12 dB under the voice. If the user wants the exact trending sound from a reference, tell them to tap the sound on that post in TikTok and "ใช้เสียงนี้" on the no-music cut.
 Match the bed to the film's mood: `viral_beat.py` (phonk) for action/edgy topics, `magic_bed.py` (music-box
 waltz + sparkle on the reveal) for animated / fairy-tale topics, the BTTF-style tension bed for near-death stories.
 No title that stays on screen the whole clip (user preference): leave `title` out of edit.json, or only show it in the hook.
