@@ -25,3 +25,4 @@ __pycache__/
 # Spider-Verse draft: low-res scan B-roll and renders stay local
 videos/spiderverse-ai-short/broll/
 videos/spiderverse-ai-short/out*/
+videos/spiderverse-ai-short/*.log
