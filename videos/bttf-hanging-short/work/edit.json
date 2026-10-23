@@ -2,8 +2,8 @@
  "duration": 30.185,
  "facecam": null,
  "voice": "/home/user/Arty/videos/bttf-hanging-short/work/voice_tight.wav",
- "music": null,
- "music_volume": 0.12,
+ "music": "/home/user/Arty/videos/bttf-hanging-short/work/music.wav",
+ "music_volume": 0.11,
  "shots": [
   {
    "src": "/home/user/Arty/videos/bttf-hanging-short/broll/m01.mp4",
