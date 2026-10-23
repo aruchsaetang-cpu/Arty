@@ -1,0 +1,141 @@
+{
+ "duration": 18.72,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/spiderverse-ai-short/work/voice_ai.wav",
+ "music": "/home/user/Arty/videos/spiderverse-ai-short/work/energy_ai.wav",
+ "music_volume": 0.24,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s1.mp4",
+   "start": 0,
+   "dur": 3.59,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s2.mp4",
+   "start": 3.59,
+   "dur": 2.38,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s3.mp4",
+   "start": 5.97,
+   "dur": 1.79,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s4.mp4",
+   "start": 7.76,
+   "dur": 1.99,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s5.mp4",
+   "start": 9.75,
+   "dur": 4.33,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s7.mp4",
+   "start": 14.08,
+   "dur": 4.64,
+   "media_start": 0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "end": 0.99,
+   "text": "เพื่อนๆ รู้มั้ยว่า"
+  },
+  {
+   "start": 0.99,
+   "end": 1.73,
+   "text": "Spider-Verse"
+  },
+  {
+   "start": 1.73,
+   "end": 3.59,
+   "text": "ใช้ AI ทำจริงไหม?"
+  },
+  {
+   "start": 3.59,
+   "end": 4.42,
+   "text": "หลายคนคิดว่า"
+  },
+  {
+   "start": 4.42,
+   "end": 5.97,
+   "text": "AI วาดทั้งเรื่อง"
+  },
+  {
+   "start": 5.97,
+   "end": 7.0,
+   "text": "แต่ความจริงคือ…"
+  },
+  {
+   "start": 7.0,
+   "end": 7.76,
+   "text": "AI ช่วยแค่"
+  },
+  {
+   "start": 7.76,
+   "end": 8.49,
+   "text": "เดาเส้นหมึก"
+  },
+  {
+   "start": 8.49,
+   "end": 9.93,
+   "text": "บนหน้าตัวละคร"
+  },
+  {
+   "start": 9.93,
+   "end": 10.86,
+   "text": "แล้วศิลปิน"
+  },
+  {
+   "start": 10.86,
+   "end": 11.98,
+   "text": "ต้องมาแก้ต่ออีกที"
+  },
+  {
+   "start": 11.98,
+   "end": 12.98,
+   "text": "ที่เหลือวาดด้วยมือ"
+  },
+  {
+   "start": 12.98,
+   "end": 14.08,
+   "text": "ทีละเฟรม"
+  },
+  {
+   "start": 14.08,
+   "end": 15.08,
+   "text": "และภาคต่อไป"
+  },
+  {
+   "start": 15.08,
+   "end": 16.36,
+   "text": "ผู้สร้างยืนยันว่า"
+  },
+  {
+   "start": 16.36,
+   "end": 17.45,
+   "text": "จะไม่ใช้ AI"
+  },
+  {
+   "start": 17.45,
+   "end": 18.72,
+   "text": "สร้างภาพเลย!"
+  }
+ ],
+ "arrows": [
+  {
+   "start": 7.86,
+   "end": 9.83,
+   "x": 330,
+   "y": 880,
+   "angle": 0
+  }
+ ]
+}
