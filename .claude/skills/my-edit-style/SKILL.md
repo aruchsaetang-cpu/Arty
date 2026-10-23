@@ -15,6 +15,28 @@ Whenever you list the B-roll a script needs, give a **YouTube link to each scene
 @MOVIECLIPS upload, add `&t=<seconds>s` when you know where the moment is), found with a web search.
 Say when a link or timestamp is unconfirmed. The user screen-records the scenes from those links.
 
+## Platform safety check (every clip, user preference)
+
+TikTok masked the BTTF clip as "เนื้อหาที่ละเอียดอ่อน" because of the hanging shots, even though they came from a PG
+film. Check every script and shot list **before** cutting, and tell the user the risk in Thai:
+
+| Risk on TikTok (masked / reach cut) | Risk on YouTube Shorts |
+| --- | --- |
+| Hanging, noose, rope or hands at the neck, strangling, choking faces | Usually fine for fictional film scenes; worst case age-restriction |
+| Blood, wounds, gore, realistic injury make-up | Same, if it is graphic and close-up |
+| Gun or blade pointed at a person/camera in close-up, someone being shot on screen | Usually fine in film context |
+| Self-harm or suicide imagery or words, drugs | Can be removed or limited |
+| Long, unchanged movie footage, the film's own music | Content ID claim from the studio (revenue goes to them, or the clip is blocked in some countries) |
+
+Rules:
+1. The **first shot** (the thumbnail) must never be a risky image. Use a face, a wide shot or the villain instead.
+2. If the story needs risky images, make two cuts: `edit.json` (YouTube) and `edit_tiktok.json`, where every
+   risky shot is swapped for a safe one from the same scene. Keep the voice, captions and music the same.
+3. Keep risky images short (under 1 s) and never as close-ups on TikTok.
+4. When proposing a topic, say up front whether it is likely to be masked on TikTok.
+5. Copyright: keep shots short (1–3 s) and always talk over them. Don't use the film's soundtrack (use the
+   synthesised bed instead).
+
 ## What you need from the user
 
 1. **Talking-head clip** (`talk.mp4`): the presenter speaking Thai. Any orientation; the face is
