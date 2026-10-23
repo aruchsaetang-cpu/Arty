@@ -77,12 +77,6 @@ For every scene the script needs, give a **YouTube link** (prefer the official @
 Say when a link's channel or timestamp is unconfirmed. The user screen-records the scenes on iPad;
 crop the picture out with `cropdetect` before editing (see `my-edit-style`).
 
-**Footage hand-off to Gemini (user rule):** the user lets Gemini fetch the footage. For every clip, give
-(1) the YouTube links with timestamps and (2) one copy-paste prompt (in a code block) for Gemini that lists
-each shot: number, link + start–end time, what must be on screen, which script line it covers, and
-"no subtitles/watermark overlays, highest resolution, keep original audio off". Ask Gemini to return the
-clips named `s1.mp4`, `s2.mp4`… so they drop straight into `broll/`.
-
 ## 5b. Music (user preference: viral / trending sound)
 
 Trending songs are copyrighted, so never put one into the rendered file. Instead:
