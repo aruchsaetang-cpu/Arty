@@ -21,3 +21,4 @@ videos/frozen-rapunzel-short/src/
 videos/frozen-rapunzel-short/img/
 videos/frozen-rapunzel-short/out*/
 videos/frozen-rapunzel-short/work/*.png
+__pycache__/
