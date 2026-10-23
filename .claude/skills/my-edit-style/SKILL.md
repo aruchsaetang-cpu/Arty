@@ -17,6 +17,9 @@ Say when a link or timestamp is unconfirmed. The user screen-records the scenes 
 
 ## Platform safety check (every clip, user preference)
 
+The full movie-Short workflow (topic, fact check, links, safety, description) is the `movie-trivia-short` skill;
+its `scripts/safety_sheet.py` makes the frame sheet for this check.
+
 TikTok masked the BTTF clip as "เนื้อหาที่ละเอียดอ่อน" because of the hanging shots, even though they came from a PG
 film. Check every script and shot list **before** cutting, and tell the user the risk in Thai:
 
