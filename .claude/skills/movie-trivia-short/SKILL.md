@@ -31,6 +31,17 @@ Follow `my-edit-style/script-structure.md`, but **keep it to about 20 s** (user 
 (~3 s), บริบท 2 short sentences, แต่ 1, เฉลย 2 — roughly 90–100 Thai syllables at the user's ~5–6 syllables/s. End on the source ("…เล่าเองในหนังสือ…") or the real person. Ask the user to
 record the voice **as one file** (or number the files) — recording order mix-ups broke the captions once.
 
+## 3b. Keep it tight (user preference: don't waste the viewer's time)
+
+- **Script:** cut every filler word ("ก็", "นั้น", "ที่ว่า", "จริงๆ แล้ว"). Each sentence carries one new piece of
+  information. Aim for **15–20 s**; if the story fits in 15 s, stop at 15.
+- **Hook starts on frame 1:** no intro, no logo, no "สวัสดีครับ". The first words are the hook.
+- **Voice:** `tighten.py --min-gap 0.08 --pad 0.02` (no breath gaps). If it still drags, speed the voice up
+  1.05–1.1× with `ffmpeg -af atempo=1.08` before building (pitch is kept).
+- **Shots:** 0.8–1.5 s each (faster than the 1.7 s reference), so every phrase gets a new image. Hold a shot longer
+  only while the arrow points at the detail.
+- **Ending:** finish on the punchline. Cut within 0.3 s of the last word, with no outro and no fade-out longer than 0.3 s.
+
 ## 4. Platform safety (check every clip)
 
 TikTok masked the Back to the Future clip as "เนื้อหาที่ละเอียดอ่อน" because of hanging shots from a PG
