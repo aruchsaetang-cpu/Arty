@@ -7,12 +7,12 @@
  },
  {
   "start": 0.34,
-  "end": 0.38,
+  "end": 0.47,
   "word": "รู้",
   "brk": false
  },
  {
-  "start": 0.38,
+  "start": 0.47,
   "end": 0.62,
   "word": "มั้ย",
   "brk": false
@@ -25,715 +25,703 @@
  },
  {
   "start": 0.66,
-  "end": 0.76,
+  "end": 0.88,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 0.76,
-  "end": 0.87,
+  "start": 0.88,
+  "end": 1.01,
   "word": "หนัง",
   "brk": true
  },
  {
-  "start": 0.87,
-  "end": 1.74,
+  "start": 1.01,
+  "end": 1.98,
   "word": "Back to the Future",
   "brk": true
  },
  {
-  "start": 1.74,
-  "end": 1.98,
+  "start": 1.98,
+  "end": 2.46,
   "word": "ภาค 3",
   "brk": true
  },
  {
-  "start": 1.98,
-  "end": 2.23,
+  "start": 2.46,
+  "end": 2.9,
   "word": "พระเอก",
   "brk": false
  },
  {
-  "start": 2.23,
-  "end": 2.49,
+  "start": 2.9,
+  "end": 3.09,
   "word": "เกือบ",
   "brk": false
  },
  {
-  "start": 2.49,
-  "end": 2.73,
+  "start": 3.09,
+  "end": 3.25,
   "word": "ตาย",
   "brk": false
  },
  {
-  "start": 2.73,
-  "end": 3.09,
-  "word": "จริงๆ",
-  "brk": true
- },
- {
-  "start": 3.09,
-  "end": 3.25,
-  "word": "ใน",
-  "brk": false
- },
- {
   "start": 3.25,
-  "end": 3.29,
-  "word": "ฉาก",
-  "brk": false
- },
- {
-  "start": 3.29,
   "end": 3.52,
-  "word": "นี้",
+  "word": "จริงๆ",
   "brk": true
  },
  {
   "start": 3.52,
-  "end": 3.73,
+  "end": 3.65,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 3.73,
-  "end": 3.77,
+  "start": 3.65,
+  "end": 3.89,
   "word": "ฉาก",
   "brk": false
  },
  {
-  "start": 3.77,
-  "end": 3.94,
+  "start": 3.89,
+  "end": 4.12,
   "word": "นี้",
   "brk": true
  },
  {
-  "start": 3.94,
-  "end": 4.32,
+  "start": 4.12,
+  "end": 4.56,
   "word": "มาร์ตี้",
   "brk": false
  },
  {
-  "start": 4.32,
-  "end": 4.49,
+  "start": 4.56,
+  "end": 4.91,
   "word": "ถูก",
   "brk": false
  },
  {
-  "start": 4.49,
-  "end": 4.65,
+  "start": 4.91,
+  "end": 5.09,
   "word": "พวก",
   "brk": false
  },
  {
-  "start": 4.65,
-  "end": 4.96,
+  "start": 5.09,
+  "end": 5.45,
   "word": "คาวบอย",
   "brk": true
  },
  {
-  "start": 4.96,
-  "end": 5.09,
+  "start": 5.45,
+  "end": 5.84,
   "word": "จับ",
   "brk": false
  },
  {
-  "start": 5.09,
-  "end": 5.56,
+  "start": 5.84,
+  "end": 6.41,
   "word": "แขวนคอ",
   "brk": true
  },
  {
-  "start": 5.56,
-  "end": 5.7,
+  "start": 6.41,
+  "end": 6.6,
   "word": "ตอน",
   "brk": false
  },
  {
-  "start": 5.7,
-  "end": 5.86,
+  "start": 6.6,
+  "end": 6.78,
   "word": "แรก",
   "brk": true
  },
  {
-  "start": 5.86,
-  "end": 6.22,
+  "start": 6.78,
+  "end": 7.39,
   "word": "ไมเคิล",
   "brk": false
  },
  {
-  "start": 6.22,
-  "end": 6.37,
+  "start": 7.39,
+  "end": 7.51,
   "word": "มี",
   "brk": false
  },
  {
-  "start": 6.37,
-  "end": 6.58,
+  "start": 7.51,
+  "end": 7.84,
   "word": "กล่อง",
   "brk": false
  },
  {
-  "start": 6.58,
-  "end": 6.62,
+  "start": 7.84,
+  "end": 7.88,
   "word": "ให้",
   "brk": false
  },
  {
-  "start": 6.62,
-  "end": 6.76,
+  "start": 7.88,
+  "end": 8.22,
   "word": "ยืน",
   "brk": true
  },
  {
-  "start": 6.76,
-  "end": 6.99,
+  "start": 8.22,
+  "end": 8.43,
   "word": "แต่",
   "brk": false
  },
  {
-  "start": 6.99,
-  "end": 7.43,
+  "start": 8.43,
+  "end": 9.08,
   "word": "ผู้กำกับ",
   "brk": true
  },
  {
-  "start": 7.43,
-  "end": 7.62,
+  "start": 9.08,
+  "end": 9.23,
   "word": "อยาก",
   "brk": false
  },
  {
-  "start": 7.62,
-  "end": 7.87,
+  "start": 9.23,
+  "end": 9.44,
   "word": "ให้",
   "brk": false
  },
  {
-  "start": 7.87,
-  "end": 8.06,
+  "start": 9.44,
+  "end": 9.62,
   "word": "ภาพ",
   "brk": false
  },
  {
-  "start": 8.06,
-  "end": 8.1,
+  "start": 9.62,
+  "end": 9.66,
   "word": "ดู",
   "brk": false
  },
  {
-  "start": 8.1,
-  "end": 8.44,
+  "start": 9.66,
+  "end": 10.1,
   "word": "สมจริง",
   "brk": false
  },
  {
-  "start": 8.44,
-  "end": 8.56,
+  "start": 10.1,
+  "end": 10.28,
   "word": "กว่า",
   "brk": false
  },
  {
-  "start": 8.56,
-  "end": 8.91,
+  "start": 10.28,
+  "end": 10.58,
   "word": "นี้",
   "brk": true
  },
  {
-  "start": 8.91,
-  "end": 9.1,
+  "start": 10.58,
+  "end": 10.73,
   "word": "เลย",
   "brk": false
  },
  {
-  "start": 9.1,
-  "end": 9.14,
+  "start": 10.73,
+  "end": 10.92,
   "word": "เอา",
   "brk": false
  },
  {
-  "start": 9.14,
-  "end": 9.26,
+  "start": 10.92,
+  "end": 11.16,
   "word": "กล่อง",
   "brk": false
  },
  {
-  "start": 9.26,
-  "end": 9.39,
+  "start": 11.16,
+  "end": 11.58,
   "word": "ออก",
   "brk": true
  },
  {
-  "start": 9.39,
-  "end": 9.72,
-  "word": "ไมเคิล",
-  "brk": false
- },
- {
-  "start": 9.72,
-  "end": 9.95,
-  "word": "เลย",
-  "brk": false
- },
- {
-  "start": 9.95,
-  "end": 9.99,
-  "word": "ต้อง",
-  "brk": false
- },
- {
-  "start": 9.99,
-  "end": 10.13,
-  "word": "เอา",
-  "brk": false
- },
- {
-  "start": 10.13,
-  "end": 10.26,
-  "word": "มือ",
-  "brk": true
- },
- {
-  "start": 10.26,
-  "end": 10.5,
-  "word": "สอด",
-  "brk": false
- },
- {
-  "start": 10.5,
-  "end": 10.54,
-  "word": "ไว้",
-  "brk": false
- },
- {
-  "start": 10.54,
-  "end": 10.92,
-  "word": "ระหว่าง",
-  "brk": true
- },
- {
-  "start": 10.92,
-  "end": 11.04,
-  "word": "เชือก",
-  "brk": false
- },
- {
-  "start": 11.04,
-  "end": 11.27,
-  "word": "กับ",
-  "brk": false
- },
- {
-  "start": 11.27,
-  "end": 11.46,
-  "word": "คอ",
-  "brk": true
- },
- {
-  "start": 11.46,
-  "end": 11.59,
-  "word": "กัน",
-  "brk": false
- },
- {
-  "start": 11.59,
-  "end": 11.76,
-  "word": "ไม่",
-  "brk": false
- },
- {
-  "start": 11.76,
-  "end": 11.88,
-  "word": "ให้",
-  "brk": false
- },
- {
-  "start": 11.88,
+  "start": 11.58,
   "end": 11.92,
-  "word": "เชือก",
+  "word": "ไมเคิล",
   "brk": false
  },
  {
   "start": 11.92,
-  "end": 12.18,
-  "word": "รัด",
-  "brk": true
- },
- {
-  "start": 12.18,
-  "end": 12.35,
-  "word": "แต่",
-  "brk": false
- },
- {
-  "start": 12.35,
-  "end": 12.53,
-  "word": "มี",
-  "brk": false
- },
- {
-  "start": 12.53,
-  "end": 12.71,
-  "word": "เทค",
-  "brk": false
- },
- {
-  "start": 12.71,
-  "end": 12.86,
-  "word": "หนึ่ง",
-  "brk": true
- },
- {
-  "start": 12.86,
-  "end": 13.0,
-  "word": "ที่",
-  "brk": false
- },
- {
-  "start": 13.0,
-  "end": 13.38,
-  "word": "มือ",
-  "brk": false
- },
- {
-  "start": 13.38,
-  "end": 13.48,
-  "word": "เขา",
-  "brk": true
- },
- {
-  "start": 13.48,
-  "end": 13.52,
-  "word": "วาง",
-  "brk": false
- },
- {
-  "start": 13.52,
-  "end": 13.74,
-  "word": "ผิด",
-  "brk": false
- },
- {
-  "start": 13.74,
-  "end": 13.95,
-  "word": "ตำแหน่ง",
-  "brk": true
- },
- {
-  "start": 13.95,
-  "end": 14.3,
-  "word": "เชือก",
-  "brk": false
- },
- {
-  "start": 14.3,
-  "end": 14.48,
+  "end": 12.08,
   "word": "เลย",
   "brk": false
  },
  {
-  "start": 14.48,
-  "end": 14.65,
-  "word": "รัด",
+  "start": 12.08,
+  "end": 12.21,
+  "word": "ต้อง",
   "brk": false
  },
  {
-  "start": 14.65,
-  "end": 14.84,
+  "start": 12.21,
+  "end": 12.53,
+  "word": "เอา",
+  "brk": false
+ },
+ {
+  "start": 12.53,
+  "end": 12.77,
+  "word": "มือ",
+  "brk": true
+ },
+ {
+  "start": 12.77,
+  "end": 12.94,
+  "word": "สอด",
+  "brk": false
+ },
+ {
+  "start": 12.94,
+  "end": 12.98,
+  "word": "ไว้",
+  "brk": false
+ },
+ {
+  "start": 12.98,
+  "end": 13.32,
+  "word": "ระหว่าง",
+  "brk": true
+ },
+ {
+  "start": 13.32,
+  "end": 13.49,
+  "word": "เชือก",
+  "brk": false
+ },
+ {
+  "start": 13.49,
+  "end": 13.85,
+  "word": "กับ",
+  "brk": false
+ },
+ {
+  "start": 13.85,
+  "end": 14.15,
   "word": "คอ",
   "brk": true
  },
  {
-  "start": 14.84,
-  "end": 14.88,
-  "word": "จน",
+  "start": 14.15,
+  "end": 14.41,
+  "word": "กัน",
   "brk": false
  },
  {
-  "start": 14.88,
-  "end": 15.45,
-  "word": "หมดสติ",
-  "brk": true
- },
- {
-  "start": 15.45,
-  "end": 15.6,
-  "word": "ไป",
+  "start": 14.41,
+  "end": 14.45,
+  "word": "ไม่",
   "brk": false
  },
  {
-  "start": 15.6,
-  "end": 16.42,
-  "word": "จริงๆ",
+  "start": 14.45,
+  "end": 14.58,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 14.58,
+  "end": 14.7,
+  "word": "เชือก",
+  "brk": false
+ },
+ {
+  "start": 14.7,
+  "end": 15.07,
+  "word": "รัด",
   "brk": true
  },
  {
-  "start": 16.42,
-  "end": 16.64,
+  "start": 15.07,
+  "end": 15.35,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 15.35,
+  "end": 15.53,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 15.53,
+  "end": 15.67,
+  "word": "เทค",
+  "brk": false
+ },
+ {
+  "start": 15.67,
+  "end": 15.97,
+  "word": "หนึ่ง",
+  "brk": true
+ },
+ {
+  "start": 15.97,
+  "end": 16.2,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 16.64,
-  "end": 17.02,
-  "word": "น่ากลัว",
+  "start": 16.2,
+  "end": 16.24,
+  "word": "มือ",
   "brk": false
  },
  {
-  "start": 17.02,
+  "start": 16.24,
+  "end": 16.38,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 16.38,
+  "end": 16.56,
+  "word": "วาง",
+  "brk": false
+ },
+ {
+  "start": 16.56,
+  "end": 16.77,
+  "word": "ผิด",
+  "brk": false
+ },
+ {
+  "start": 16.77,
   "end": 17.17,
-  "word": "คือ",
+  "word": "ตำแหน่ง",
   "brk": true
  },
  {
   "start": 17.17,
-  "end": 17.44,
-  "word": "ทุกคน",
+  "end": 17.3,
+  "word": "เชือก",
   "brk": false
  },
  {
-  "start": 17.44,
-  "end": 17.67,
-  "word": "ใน",
+  "start": 17.3,
+  "end": 17.46,
+  "word": "เลย",
   "brk": false
  },
  {
-  "start": 17.67,
-  "end": 17.71,
-  "word": "กอง",
+  "start": 17.46,
+  "end": 17.66,
+  "word": "รัด",
+  "brk": false
+ },
+ {
+  "start": 17.66,
+  "end": 17.7,
+  "word": "คอ",
   "brk": true
  },
  {
-  "start": 17.71,
-  "end": 17.98,
-  "word": "นึก",
+  "start": 17.7,
+  "end": 17.88,
+  "word": "จน",
   "brk": false
  },
  {
-  "start": 17.98,
-  "end": 18.02,
-  "word": "ว่า",
-  "brk": false
- },
- {
-  "start": 18.02,
-  "end": 18.15,
-  "word": "เขา",
-  "brk": false
- },
- {
-  "start": 18.15,
-  "end": 18.56,
-  "word": "แสดง",
+  "start": 17.88,
+  "end": 18.26,
+  "word": "หมดสติ",
   "brk": true
  },
  {
-  "start": 18.56,
-  "end": 18.73,
-  "word": "สมจริง",
+  "start": 18.26,
+  "end": 18.57,
+  "word": "ไป",
   "brk": false
  },
  {
-  "start": 18.73,
-  "end": 18.98,
-  "word": "มาก",
+  "start": 18.57,
+  "end": 19.31,
+  "word": "จริงๆ",
   "brk": true
  },
  {
-  "start": 18.98,
-  "end": 19.16,
-  "word": "เขา",
-  "brk": false
- },
- {
-  "start": 19.16,
-  "end": 19.2,
-  "word": "ห้อย",
-  "brk": false
- },
- {
-  "start": 19.2,
-  "end": 19.4,
-  "word": "อยู่",
-  "brk": true
- },
- {
-  "start": 19.4,
-  "end": 19.44,
-  "word": "หลาย",
-  "brk": false
- },
- {
-  "start": 19.44,
-  "end": 20.08,
-  "word": "วินาที",
-  "brk": true
- },
- {
-  "start": 20.08,
-  "end": 20.12,
-  "word": "กว่า",
-  "brk": false
- },
- {
-  "start": 20.12,
-  "end": 20.6,
-  "word": "ผู้กำกับ",
-  "brk": true
- },
- {
-  "start": 20.6,
-  "end": 20.76,
-  "word": "จะ",
-  "brk": false
- },
- {
-  "start": 20.76,
-  "end": 20.8,
-  "word": "รู้",
-  "brk": false
- },
- {
-  "start": 20.8,
-  "end": 20.96,
-  "word": "ว่า",
-  "brk": true
- },
- {
-  "start": 20.96,
-  "end": 21.35,
-  "word": "ไม่ใช่",
-  "brk": false
- },
- {
-  "start": 21.35,
-  "end": 21.39,
-  "word": "การ",
-  "brk": false
- },
- {
-  "start": 21.39,
-  "end": 21.87,
-  "word": "แสดง",
-  "brk": true
- },
- {
-  "start": 21.87,
-  "end": 22.4,
-  "word": "โชคดี",
-  "brk": true
- },
- {
-  "start": 22.4,
-  "end": 22.5,
+  "start": 19.31,
+  "end": 19.41,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 22.5,
-  "end": 22.67,
-  "word": "ช่วย",
+  "start": 19.41,
+  "end": 19.83,
+  "word": "น่ากลัว",
   "brk": false
  },
  {
-  "start": 22.67,
-  "end": 22.81,
-  "word": "ลง",
-  "brk": false
- },
- {
-  "start": 22.81,
-  "end": 23.07,
-  "word": "มา",
-  "brk": false
- },
- {
-  "start": 23.07,
-  "end": 23.35,
-  "word": "ได้",
-  "brk": false
- },
- {
-  "start": 23.35,
-  "end": 23.53,
-  "word": "ทัน",
+  "start": 19.83,
+  "end": 19.95,
+  "word": "คือ",
   "brk": true
  },
  {
-  "start": 23.53,
-  "end": 23.66,
-  "word": "และ",
+  "start": 19.95,
+  "end": 20.21,
+  "word": "ทุกคน",
   "brk": false
  },
  {
-  "start": 23.66,
-  "end": 24.0,
-  "word": "ไมเคิล",
-  "brk": true
- },
- {
-  "start": 24.0,
-  "end": 24.22,
-  "word": "เป็น",
-  "brk": false
- },
- {
-  "start": 24.22,
-  "end": 24.36,
-  "word": "คน",
-  "brk": false
- },
- {
-  "start": 24.36,
-  "end": 24.6,
-  "word": "เล่า",
-  "brk": true
- },
- {
-  "start": 24.6,
-  "end": 24.71,
-  "word": "เรื่อง",
-  "brk": false
- },
- {
-  "start": 24.71,
-  "end": 24.9,
-  "word": "นี้",
-  "brk": false
- },
- {
-  "start": 24.9,
-  "end": 25.07,
-  "word": "เอง",
-  "brk": true
- },
- {
-  "start": 25.07,
-  "end": 25.23,
+  "start": 20.21,
+  "end": 20.45,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 25.23,
-  "end": 25.95,
+  "start": 20.45,
+  "end": 20.57,
+  "word": "กอง",
+  "brk": true
+ },
+ {
+  "start": 20.57,
+  "end": 20.76,
+  "word": "นึก",
+  "brk": false
+ },
+ {
+  "start": 20.76,
+  "end": 20.93,
+  "word": "ว่า",
+  "brk": false
+ },
+ {
+  "start": 20.93,
+  "end": 20.97,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 20.97,
+  "end": 21.34,
+  "word": "แสดง",
+  "brk": true
+ },
+ {
+  "start": 21.34,
+  "end": 21.67,
+  "word": "สมจริง",
+  "brk": false
+ },
+ {
+  "start": 21.67,
+  "end": 21.87,
+  "word": "มาก",
+  "brk": true
+ },
+ {
+  "start": 21.87,
+  "end": 22.01,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 22.01,
+  "end": 22.23,
+  "word": "ห้อย",
+  "brk": false
+ },
+ {
+  "start": 22.23,
+  "end": 22.33,
+  "word": "อยู่",
+  "brk": true
+ },
+ {
+  "start": 22.33,
+  "end": 22.64,
+  "word": "หลาย",
+  "brk": false
+ },
+ {
+  "start": 22.64,
+  "end": 23.26,
+  "word": "วินาที",
+  "brk": true
+ },
+ {
+  "start": 23.26,
+  "end": 23.36,
+  "word": "กว่า",
+  "brk": false
+ },
+ {
+  "start": 23.36,
+  "end": 23.83,
+  "word": "ผู้กำกับ",
+  "brk": true
+ },
+ {
+  "start": 23.83,
+  "end": 24.05,
+  "word": "จะ",
+  "brk": false
+ },
+ {
+  "start": 24.05,
+  "end": 24.09,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 24.09,
+  "end": 24.19,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 24.19,
+  "end": 24.43,
+  "word": "นี่",
+  "brk": false
+ },
+ {
+  "start": 24.43,
+  "end": 24.73,
+  "word": "ไม่ใช่",
+  "brk": false
+ },
+ {
+  "start": 24.73,
+  "end": 24.86,
+  "word": "การ",
+  "brk": false
+ },
+ {
+  "start": 24.86,
+  "end": 25.28,
+  "word": "แสดง",
+  "brk": true
+ },
+ {
+  "start": 25.28,
+  "end": 25.78,
+  "word": "โชคดี",
+  "brk": true
+ },
+ {
+  "start": 25.78,
+  "end": 25.93,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 25.93,
+  "end": 26.16,
+  "word": "ช่วย",
+  "brk": false
+ },
+ {
+  "start": 26.16,
+  "end": 26.2,
+  "word": "ลง",
+  "brk": false
+ },
+ {
+  "start": 26.2,
+  "end": 26.37,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 26.37,
+  "end": 26.6,
+  "word": "ได้",
+  "brk": false
+ },
+ {
+  "start": 26.6,
+  "end": 26.88,
+  "word": "ทัน",
+  "brk": true
+ },
+ {
+  "start": 26.88,
+  "end": 26.96,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 26.96,
+  "end": 27.36,
+  "word": "ไมเคิล",
+  "brk": true
+ },
+ {
+  "start": 27.36,
+  "end": 27.47,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 27.47,
+  "end": 27.67,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 27.67,
+  "end": 27.71,
+  "word": "เล่า",
+  "brk": true
+ },
+ {
+  "start": 27.71,
+  "end": 27.95,
+  "word": "เรื่อง",
+  "brk": false
+ },
+ {
+  "start": 27.95,
+  "end": 28.14,
+  "word": "นี้",
+  "brk": false
+ },
+ {
+  "start": 28.14,
+  "end": 28.29,
+  "word": "เอง",
+  "brk": true
+ },
+ {
+  "start": 28.29,
+  "end": 28.45,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 28.45,
+  "end": 28.78,
   "word": "หนังสือ",
   "brk": true
  },
  {
-  "start": 25.95,
-  "end": 26.54,
+  "start": 28.78,
+  "end": 29.59,
   "word": "ชีวประวัติ",
   "brk": true
  },
  {
-  "start": 26.54,
-  "end": 26.68,
+  "start": 29.59,
+  "end": 29.76,
   "word": "ของ",
   "brk": false
  },
  {
-  "start": 26.68,
-  "end": 26.83,
+  "start": 29.76,
+  "end": 30.04,
   "word": "เขา",
   "brk": true
  }
