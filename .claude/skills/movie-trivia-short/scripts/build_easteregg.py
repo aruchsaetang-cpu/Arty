@@ -10,7 +10,10 @@ edit.json:
    "shots":    [{"src": "broll/m01.mp4", "start": 0, "dur": 2.1, "media_start": 3.0,
                  "zoom": [1.0, 1.08], "pos": "50% 50%"}],
    "captions": [{"start": 0.0, "end": 0.4, "text": "เพื่อนๆ"}],
-   "arrows":   [{"start": 9.2, "end": 12.0, "x": 300, "y": 900, "angle": 0}]}
+   "arrows":   [{"start": 9.2, "end": 12.0, "x": 300, "y": 900, "angle": 0, "x2": 420, "y2": 900}],
+   "caption_y": 870}
+x2/y2 (optional): where the tip is at the arrow's end time, to follow a moving character.
+caption_y: centre of the caption line (default 870); move it up (e.g. 480) when the detail sits mid-frame.
 x/y = where the arrow TIP points, on the 1080x1920 canvas; angle in degrees (0 = pointing down,
 positive turns it clockwise, e.g. -30 comes in from the upper right).
 Make the 1–2 word cards with my-edit-style/scripts/chunk_captions.py --max-base 6 --target 0.4.
@@ -72,11 +75,12 @@ TEMPLATE = """<!doctype html>
       #title { position: absolute; left: 0; top: 190px; width: 1080px; display: flex; justify-content: center; z-index: 3; }
       #title span { display: block; font-size: 72px; line-height: 1.25; color: #fff; text-transform: uppercase;
         text-shadow: __RING5__; padding: 0 20px; white-space: nowrap; }
-      .cap { left: 0; top: 760px; width: 1080px; height: 220px; display: flex; align-items: center; justify-content: center; z-index: 4; position: absolute; }
+      .cap { left: 0; top: __CAPTOP__px; width: 1080px; height: 220px; display: flex; align-items: center; justify-content: center; z-index: 4; position: absolute; }
       .cap .t { display: block; font-size: 128px; line-height: 1.3; color: #fff; text-transform: uppercase; white-space: nowrap;
         text-shadow: __RING8__, 0 6px 14px rgba(0,0,0,.6); padding: 0 24px; }
       .arrow { position: absolute; width: 200px; height: 230px; z-index: 5; }
-      .arrow .a { position: absolute; inset: 0; transform-origin: 50% 100%; }
+      .arrow .m, .arrow .a { position: absolute; inset: 0; }
+      .arrow .a { transform-origin: 50% 100%; }
     </style>
   </head>
   <body>
@@ -114,6 +118,8 @@ __MUSIC__
         // arrow: pop in, then bob toward the target until it leaves
         document.querySelectorAll(".arrow").forEach((ar) => {
           const t = parseFloat(ar.dataset.start), d = parseFloat(ar.dataset.duration), el = ar.querySelector(".a");
+          const dx = parseFloat(ar.dataset.dx || 0), dy = parseFloat(ar.dataset.dy || 0);
+          if (dx || dy) tl.fromTo(ar.querySelector(".m"), { x: 0, y: 0 }, { x: dx, y: dy, duration: d, ease: "none", immediateRender: false }, t);
           tl.fromTo(el, { scale: 0, y: -40 }, { scale: 1.12, y: 0, duration: 5 * f, ease: "power2.out", immediateRender: false }, t);
           tl.to(el, { scale: 1, duration: 2 * f }, t + 5 * f);
           const n = Math.max(1, Math.floor((d - 7 * f) / 0.36));
@@ -182,8 +188,10 @@ def main():
         left, top = ar["x"] - 100, ar["y"] - 230  # tip of the arrow sits at (x, y)
         arrows.append(
             f'      <div id="arrow-{i}" class="clip arrow" data-start="{ar["start"]}" data-duration="{d}" data-track-index="5" '
-            f'style="left:{left}px;top:{top}px;transform:rotate({ar.get("angle", 0)}deg);transform-origin:100px 230px">'
-            f'<div class="a">{ARROW_SVG}</div></div>'
+            f'data-dx="{ar.get("x2", ar["x"]) - ar["x"]}" data-dy="{ar.get("y2", ar["y"]) - ar["y"]}" '
+            f'style="left:{left}px;top:{top}px"><div class="m">'
+            f'<div style="position:absolute;inset:0;transform:rotate({ar.get("angle", 0)}deg);transform-origin:100px 230px">'
+            f'<div class="a">{ARROW_SVG}</div></div></div></div>'
         )
 
     title = ""
@@ -202,7 +210,7 @@ def main():
     out = (TEMPLATE.replace("__SHOTS__", "\n".join(shots)).replace("__CAPS__", "\n".join(caps))
            .replace("__ARROWS__", "\n".join(arrows)).replace("__TITLE__", title).replace("__MUSIC__", music)
            .replace("__VOICE__", voice).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS))
-           .replace("__TOP__", str(TOP_EDGE)).replace("__H__", str(BOTTOM_EDGE - TOP_EDGE))
+           .replace("__TOP__", str(TOP_EDGE)).replace("__CAPTOP__", str(int(e.get("caption_y", 870)) - 110)).replace("__H__", str(BOTTOM_EDGE - TOP_EDGE))
            .replace("__RING5__", ring(5)).replace("__RING8__", ring(8))
            .replace("__TOPFILL__", f"M0,0 L1080,0 L1080,{TOP_EDGE - 14} L0,{TOP_EDGE - 14} Z")
            .replace("__BOTFILL__", f"M0,{BOTTOM_EDGE + 14} L1080,{BOTTOM_EDGE + 14} L1080,1920 L0,1920 Z")

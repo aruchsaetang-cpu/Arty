@@ -1,0 +1,440 @@
+[
+ {
+  "start": 0.02,
+  "end": 0.33,
+  "word": "เพื่อนๆ",
+  "brk": true
+ },
+ {
+  "start": 0.33,
+  "end": 0.75,
+  "word": "รู้มั้ยว่า",
+  "brk": true
+ },
+ {
+  "start": 0.75,
+  "end": 0.86,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 0.86,
+  "end": 1.06,
+  "word": "หนัง",
+  "brk": true
+ },
+ {
+  "start": 1.06,
+  "end": 1.58,
+  "word": "Frozen",
+  "brk": true
+ },
+ {
+  "start": 1.58,
+  "end": 1.62,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 1.62,
+  "end": 2.02,
+  "word": "เจ้าหญิง",
+  "brk": true
+ },
+ {
+  "start": 2.02,
+  "end": 2.51,
+  "word": "ดิสนีย์",
+  "brk": true
+ },
+ {
+  "start": 2.51,
+  "end": 2.7,
+  "word": "อีก",
+  "brk": false
+ },
+ {
+  "start": 2.7,
+  "end": 2.97,
+  "word": "คน",
+  "brk": true
+ },
+ {
+  "start": 2.97,
+  "end": 3.01,
+  "word": "แอบ",
+  "brk": false
+ },
+ {
+  "start": 3.01,
+  "end": 3.16,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 3.16,
+  "end": 3.35,
+  "word": "ร่วมงาน",
+  "brk": false
+ },
+ {
+  "start": 3.35,
+  "end": 3.89,
+  "word": "ด้วย",
+  "brk": true
+ },
+ {
+  "start": 3.89,
+  "end": 4.09,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 4.09,
+  "end": 4.35,
+  "word": "ฉาก",
+  "brk": false
+ },
+ {
+  "start": 4.35,
+  "end": 4.39,
+  "word": "ที่",
+  "brk": true
+ },
+ {
+  "start": 4.39,
+  "end": 4.78,
+  "word": "แอนนา",
+  "brk": true
+ },
+ {
+  "start": 4.78,
+  "end": 4.95,
+  "word": "วิ่ง",
+  "brk": false
+ },
+ {
+  "start": 4.95,
+  "end": 5.32,
+  "word": "ออกไป",
+  "brk": true
+ },
+ {
+  "start": 5.32,
+  "end": 5.61,
+  "word": "ต้อนรับ",
+  "brk": false
+ },
+ {
+  "start": 5.61,
+  "end": 5.95,
+  "word": "แขก",
+  "brk": true
+ },
+ {
+  "start": 5.95,
+  "end": 6.15,
+  "word": "ก่อน",
+  "brk": false
+ },
+ {
+  "start": 6.15,
+  "end": 6.48,
+  "word": "พิธี",
+  "brk": true
+ },
+ {
+  "start": 6.48,
+  "end": 7.25,
+  "word": "ราชาภิเษก",
+  "brk": true
+ },
+ {
+  "start": 7.25,
+  "end": 7.45,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 7.45,
+  "end": 8.1,
+  "word": "เอลซ่า",
+  "brk": true
+ },
+ {
+  "start": 8.1,
+  "end": 8.21,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 8.21,
+  "end": 8.34,
+  "word": "ถ้า",
+  "brk": false
+ },
+ {
+  "start": 8.34,
+  "end": 8.53,
+  "word": "ดู",
+  "brk": true
+ },
+ {
+  "start": 8.53,
+  "end": 8.87,
+  "word": "ทาง",
+  "brk": false
+ },
+ {
+  "start": 8.87,
+  "end": 9.01,
+  "word": "ซ้าย",
+  "brk": true
+ },
+ {
+  "start": 9.01,
+  "end": 9.2,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 9.2,
+  "end": 9.33,
+  "word": "ภาพ",
+  "brk": true
+ },
+ {
+  "start": 9.33,
+  "end": 9.69,
+  "word": "ดีๆ",
+  "brk": true
+ },
+ {
+  "start": 9.69,
+  "end": 9.92,
+  "word": "จะ",
+  "brk": false
+ },
+ {
+  "start": 9.92,
+  "end": 10.15,
+  "word": "เห็น",
+  "brk": true
+ },
+ {
+  "start": 10.15,
+  "end": 10.41,
+  "word": "คู่รัก",
+  "brk": true
+ },
+ {
+  "start": 10.41,
+  "end": 10.68,
+  "word": "คู่",
+  "brk": false
+ },
+ {
+  "start": 10.68,
+  "end": 10.92,
+  "word": "หนึ่ง",
+  "brk": true
+ },
+ {
+  "start": 10.92,
+  "end": 10.96,
+  "word": "เดิน",
+  "brk": false
+ },
+ {
+  "start": 10.96,
+  "end": 11.12,
+  "word": "ผ่าน",
+  "brk": false
+ },
+ {
+  "start": 11.12,
+  "end": 11.68,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 11.68,
+  "end": 11.87,
+  "word": "นั่น",
+  "brk": false
+ },
+ {
+  "start": 11.87,
+  "end": 12.12,
+  "word": "คือ",
+  "brk": true
+ },
+ {
+  "start": 12.12,
+  "end": 12.49,
+  "word": "ราพันเซล",
+  "brk": true
+ },
+ {
+  "start": 12.49,
+  "end": 12.92,
+  "word": "กับ",
+  "brk": false
+ },
+ {
+  "start": 12.92,
+  "end": 13.07,
+  "word": "ฟลินน์",
+  "brk": true
+ },
+ {
+  "start": 13.07,
+  "end": 13.26,
+  "word": "จาก",
+  "brk": false
+ },
+ {
+  "start": 13.26,
+  "end": 13.49,
+  "word": "เรื่อง",
+  "brk": true
+ },
+ {
+  "start": 13.49,
+  "end": 13.95,
+  "word": "Tangled",
+  "brk": true
+ },
+ {
+  "start": 13.95,
+  "end": 14.24,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 14.24,
+  "end": 14.28,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 14.28,
+  "end": 14.45,
+  "word": "ลุค",
+  "brk": true
+ },
+ {
+  "start": 14.45,
+  "end": 14.82,
+  "word": "ผม",
+  "brk": false
+ },
+ {
+  "start": 14.82,
+  "end": 14.98,
+  "word": "สั้น",
+  "brk": true
+ },
+ {
+  "start": 14.98,
+  "end": 15.21,
+  "word": "สี",
+  "brk": false
+ },
+ {
+  "start": 15.21,
+  "end": 15.44,
+  "word": "น้ำตาล",
+  "brk": true
+ },
+ {
+  "start": 15.44,
+  "end": 15.9,
+  "word": "เหมือน",
+  "brk": true
+ },
+ {
+  "start": 15.9,
+  "end": 16.02,
+  "word": "ตอน",
+  "brk": false
+ },
+ {
+  "start": 16.02,
+  "end": 16.2,
+  "word": "จบ",
+  "brk": false
+ },
+ {
+  "start": 16.2,
+  "end": 16.48,
+  "word": "เรื่อง",
+  "brk": true
+ },
+ {
+  "start": 16.48,
+  "end": 16.69,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 16.69,
+  "end": 16.91,
+  "word": "โผล่",
+  "brk": false
+ },
+ {
+  "start": 16.91,
+  "end": 17.1,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 17.1,
+  "end": 17.24,
+  "word": "แค่",
+  "brk": false
+ },
+ {
+  "start": 17.24,
+  "end": 17.37,
+  "word": "แวบ",
+  "brk": false
+ },
+ {
+  "start": 17.37,
+  "end": 17.57,
+  "word": "เดียว",
+  "brk": true
+ },
+ {
+  "start": 17.57,
+  "end": 17.78,
+  "word": "จน",
+  "brk": false
+ },
+ {
+  "start": 17.78,
+  "end": 17.98,
+  "word": "แทบ",
+  "brk": true
+ },
+ {
+  "start": 17.98,
+  "end": 18.12,
+  "word": "ไม่มี",
+  "brk": false
+ },
+ {
+  "start": 18.12,
+  "end": 18.3,
+  "word": "ใคร",
+  "brk": false
+ },
+ {
+  "start": 18.3,
+  "end": 18.56,
+  "word": "เห็น",
+  "brk": true
+ }
+]

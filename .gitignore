@@ -16,3 +16,8 @@ videos/raiders-sword-short/out*/
 videos/raiders-sword-short/work/*.png
 videos/bttf-hanging-short/out_tt/
 videos/bttf-hanging-short/out_tt_nosub/
+# Frozen short: raw recordings, images and renders stay local; cropped B-roll and edit data are tracked
+videos/frozen-rapunzel-short/src/
+videos/frozen-rapunzel-short/img/
+videos/frozen-rapunzel-short/out*/
+videos/frozen-rapunzel-short/work/*.png
