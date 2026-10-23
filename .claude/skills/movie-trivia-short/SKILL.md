@@ -25,8 +25,8 @@ detail is from memory and not yet checked.
 
 ## 3. Script: ฮุก → บริบท → แต่ → เฉลย
 
-Follow `my-edit-style/script-structure.md`: ฮุก 1 sentence (3–5 s), บริบท 3–4, แต่ 1, เฉลย 3–4 sentences,
-about 25–30 s spoken. End on the source ("…เล่าเองในหนังสือ…") or the real person. Ask the user to
+Follow `my-edit-style/script-structure.md`, but **keep it to about 20 s** (user preference): ฮุก 1 sentence
+(~3 s), บริบท 2 short sentences, แต่ 1, เฉลย 2 — roughly 90–100 Thai syllables at the user's ~5–6 syllables/s. End on the source ("…เล่าเองในหนังสือ…") or the real person. Ask the user to
 record the voice **as one file** (or number the files) — recording order mix-ups broke the captions once.
 
 ## 4. Platform safety (check every clip)
@@ -62,6 +62,17 @@ For every scene the script needs, give a **YouTube link** (prefer the official @
 `&t=<s>s` when the moment is known), found with a web search, plus which script part it covers.
 Say when a link's channel or timestamp is unconfirmed. The user screen-records the scenes on iPad;
 crop the picture out with `cropdetect` before editing (see `my-edit-style`).
+
+## 5b. Music (user preference: viral / trending sound)
+
+Trending songs are copyrighted, so never put one into the rendered file. Instead:
+1. Deliver a cut **with no music** (voice only) — the user adds the trending sound inside TikTok
+   ("เพิ่มเสียง" → pick a trending track, set it to ~10–15% volume under the voice) or in YouTube Shorts
+   ("เพิ่มเสียง" from the Shorts audio library). Platform-licensed sounds don't trigger claims.
+2. Also offer a version with a synthesised beat in a viral style (phonk / trap / upbeat), made with
+   `scripts/viral_beat.py`, for when the user doesn't want to pick a sound in-app.
+3. Suggest 2–3 kinds of trending sounds that fit the story's mood (tension, comedy, epic), without
+   claiming a specific song is trending unless a web search this week confirms it.
 
 ## 6. Edit
 
