@@ -1,0 +1,345 @@
+{
+ "duration": 18.77,
+ "voice": "/home/user/Arty/videos/frozen-rapunzel-short/work/voice_tight.wav",
+ "music": "/home/user/Arty/videos/frozen-rapunzel-short/work/magic.wav",
+ "caption_y": 480,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 0.0,
+   "dur": 1.06,
+   "media_start": 11.9,
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 1.06,
+   "dur": 0.52,
+   "media_start": 9.6,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 1.58,
+   "dur": 1.58,
+   "media_start": 1.05,
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 3.16,
+   "dur": 0.73,
+   "media_start": 12.0,
+   "zoom": [
+    1.05,
+    1.1
+   ],
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 3.89,
+   "dur": 2.06,
+   "media_start": 6.0,
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "pos": "60% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 5.95,
+   "dur": 1.3,
+   "media_start": 4.45,
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "pos": "55% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 7.25,
+   "dur": 0.85,
+   "media_start": 10.2,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/slow.mp4",
+   "start": 8.1,
+   "dur": 3.5,
+   "media_start": 0.0,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pos": "0% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/tangled.mp4",
+   "start": 11.6,
+   "dur": 2.35,
+   "media_start": 0.0,
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "pos": "50% 40%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/freeze.mp4",
+   "start": 13.95,
+   "dur": 2.53,
+   "media_start": 0.0,
+   "zoom": [
+    1.0,
+    1.1
+   ],
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/frozen-rapunzel-short/broll/f01.mp4",
+   "start": 16.48,
+   "dur": 2.29,
+   "media_start": 2.6,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "pos": "0% 50%"
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.02,
+   "end": 0.33,
+   "text": "เพื่อนๆ"
+  },
+  {
+   "start": 0.33,
+   "end": 0.75,
+   "text": "รู้มั้ยว่า"
+  },
+  {
+   "start": 0.75,
+   "end": 1.06,
+   "text": "ในหนัง"
+  },
+  {
+   "start": 1.06,
+   "end": 1.58,
+   "text": "Frozen"
+  },
+  {
+   "start": 1.58,
+   "end": 2.02,
+   "text": "มีเจ้าหญิง"
+  },
+  {
+   "start": 2.02,
+   "end": 2.51,
+   "text": "ดิสนีย์"
+  },
+  {
+   "start": 2.51,
+   "end": 3.35,
+   "text": "อีกคนแอบมาร่วมงาน"
+  },
+  {
+   "start": 3.35,
+   "end": 3.89,
+   "text": "ด้วย"
+  },
+  {
+   "start": 3.89,
+   "end": 4.39,
+   "text": "ในฉากที่"
+  },
+  {
+   "start": 4.39,
+   "end": 4.78,
+   "text": "แอนนา"
+  },
+  {
+   "start": 4.78,
+   "end": 5.32,
+   "text": "วิ่งออกไป"
+  },
+  {
+   "start": 5.32,
+   "end": 5.95,
+   "text": "ต้อนรับแขก"
+  },
+  {
+   "start": 5.95,
+   "end": 6.48,
+   "text": "ก่อนพิธี"
+  },
+  {
+   "start": 6.48,
+   "end": 7.25,
+   "text": "ราชาภิเษก"
+  },
+  {
+   "start": 7.25,
+   "end": 8.1,
+   "text": "ของเอลซ่า"
+  },
+  {
+   "start": 8.1,
+   "end": 8.53,
+   "text": "แต่ถ้าดู"
+  },
+  {
+   "start": 8.53,
+   "end": 9.01,
+   "text": "ทางซ้าย"
+  },
+  {
+   "start": 9.01,
+   "end": 9.33,
+   "text": "ของภาพ"
+  },
+  {
+   "start": 9.33,
+   "end": 9.69,
+   "text": "ดีๆ"
+  },
+  {
+   "start": 9.69,
+   "end": 10.15,
+   "text": "จะเห็น"
+  },
+  {
+   "start": 10.15,
+   "end": 10.41,
+   "text": "คู่รัก"
+  },
+  {
+   "start": 10.41,
+   "end": 10.92,
+   "text": "คู่หนึ่ง"
+  },
+  {
+   "start": 10.92,
+   "end": 11.68,
+   "text": "เดินผ่านมา"
+  },
+  {
+   "start": 11.68,
+   "end": 12.12,
+   "text": "นั่นคือ"
+  },
+  {
+   "start": 12.12,
+   "end": 12.49,
+   "text": "ราพันเซล"
+  },
+  {
+   "start": 12.49,
+   "end": 13.07,
+   "text": "กับฟลินน์"
+  },
+  {
+   "start": 13.07,
+   "end": 13.49,
+   "text": "จากเรื่อง"
+  },
+  {
+   "start": 13.49,
+   "end": 13.95,
+   "text": "Tangled"
+  },
+  {
+   "start": 13.95,
+   "end": 14.45,
+   "text": "มาในลุค"
+  },
+  {
+   "start": 14.45,
+   "end": 14.98,
+   "text": "ผมสั้น"
+  },
+  {
+   "start": 14.98,
+   "end": 15.44,
+   "text": "สีน้ำตาล"
+  },
+  {
+   "start": 15.44,
+   "end": 15.9,
+   "text": "เหมือน"
+  },
+  {
+   "start": 15.9,
+   "end": 16.2,
+   "text": "ตอนจบ"
+  },
+  {
+   "start": 16.2,
+   "end": 16.48,
+   "text": "เรื่อง"
+  },
+  {
+   "start": 16.48,
+   "end": 17.1,
+   "text": "และโผล่มา"
+  },
+  {
+   "start": 17.1,
+   "end": 17.57,
+   "text": "แค่แวบเดียว"
+  },
+  {
+   "start": 17.57,
+   "end": 17.98,
+   "text": "จนแทบ"
+  },
+  {
+   "start": 17.98,
+   "end": 18.3,
+   "text": "ไม่มีใคร"
+  },
+  {
+   "start": 18.3,
+   "end": 18.56,
+   "text": "เห็น"
+  }
+ ],
+ "arrows": [
+  {
+   "start": 9.1,
+   "end": 11.5,
+   "x": 130,
+   "y": 840,
+   "x2": 749,
+   "y2": 838,
+   "angle": 0
+  },
+  {
+   "start": 14.1,
+   "end": 16.4,
+   "x": 500,
+   "y": 740,
+   "angle": 90
+  }
+ ],
+ "music_volume": 0.15
+}

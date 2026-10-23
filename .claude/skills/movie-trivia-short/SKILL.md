@@ -88,6 +88,10 @@ Trending songs are copyrighted, so never put one into the rendered file. Instead
 3. Suggest 2–3 kinds of trending sounds that fit the story's mood (tension, comedy, epic), without
    claiming a specific song is trending unless a web search this week confirms it.
 
+Match the bed to the film's mood: `viral_beat.py` (phonk) for action/edgy topics, `magic_bed.py` (music-box
+waltz + sparkle on the reveal) for animated / fairy-tale topics, the BTTF-style tension bed for near-death stories.
+No title that stays on screen the whole clip (user preference): leave `title` out of edit.json, or only show it in the hook.
+
 ## 6. Edit
 
 Run the `my-edit-style` skill (voice-only mode when there is no talking-head clip). Deliver with and
