@@ -1,2 +1,8 @@
 # Reference clips and test renders: third-party content, local analysis only
 references/
+# Movie footage, voice takes and renders: copyrighted / large, kept local only
+videos/bttf-hanging-short/*
+!videos/bttf-hanging-short/work/
+videos/bttf-hanging-short/work/*
+!videos/bttf-hanging-short/work/script.txt
+!videos/bttf-hanging-short/work/captions.json
