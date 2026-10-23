@@ -22,6 +22,10 @@ FPS = 30
 RING = ", ".join(
     f"{7 * math.cos(math.radians(a)):.1f}px {7 * math.sin(math.radians(a)):.1f}px 0 #111311" for a in range(0, 360, 15)
 )
+# 3px outline for the small credit line
+RING2 = ", ".join(
+    f"{3 * math.cos(math.radians(a)):.1f}px {3 * math.sin(math.radians(a)):.1f}px 0 #111311" for a in range(0, 360, 30)
+)
 
 TEMPLATE = """<!doctype html>
 <html lang="th">
@@ -54,6 +58,9 @@ TEMPLATE = """<!doctype html>
       #cam video { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: __CAMPOS__; }
       /* caption card: centred x, centre y=300 */
       .cap { left: 0; top: 0; width: 1080px; height: 600px; display: flex; align-items: center; justify-content: center; z-index: 3; }
+      /* source credit (edit.json "credit"): small, under the sharp band, right-aligned; not in the reference */
+      #credit { position: absolute; right: 36px; top: 1392px; z-index: 3; font-size: 34px; line-height: 1.2; color: #ffffff;
+        opacity: 0.85; text-shadow: __RING2__, 0 2px 6px rgba(0, 0, 0, 0.5); white-space: nowrap; }
       .cap .t { display: block; white-space: nowrap; font-size: 120px; line-height: 1.3; letter-spacing: 1px; color: #ffffff;
         /* 7px #111311 outline as a ring of hard shadows (text-stroke does not render in the capture browser), then the soft drop shadow */
         text-shadow: __RING__, 0 4px 12px rgba(0, 0, 0, 0.55); padding: 0 12px; }
@@ -64,6 +71,7 @@ TEMPLATE = """<!doctype html>
 __SHOTS__
 __CAMDIV__
 __CAPS__
+__CREDIT__
       <audio id="voice" src="__VOICE__" data-start="0" data-duration="__DUR__" data-track-index="5" data-volume="1"></audio>
 __MUSIC__
     </div>
@@ -160,6 +168,10 @@ def main():
             f'<span class="t">{html.escape(c["text"])}</span></div>'
         )
 
+    credit = ""
+    if edit.get("credit"):
+        credit = (f'      <div id="credit" class="clip" data-start="0" data-duration="{dur}" data-track-index="4">'
+                  f'{html.escape(edit["credit"])}</div>')
     music = ""
     if edit.get("music"):
         m = copy_asset(path(edit["music"]), proj, "audio", cache)
@@ -167,7 +179,7 @@ def main():
                  f'data-volume="{edit.get("music_volume", 0.12)}"></audio>')
 
     out = (TEMPLATE.replace("__SHOTS__", "\n".join(shots)).replace("__CAPS__", "\n".join(caps))
-           .replace("__MUSIC__", music).replace("__CAMDIV__", cam_div).replace("__VOICE__", voice_rel)
+           .replace("__MUSIC__", music).replace("__CAMDIV__", cam_div).replace("__CREDIT__", credit).replace("__RING2__", RING2).replace("__VOICE__", voice_rel)
            .replace("__CAMPOS__", a.cam_pos).replace("__RING__", RING).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS)))
     open(os.path.join(proj, "index.html"), "w").write(out)
     if not os.path.exists(os.path.join(proj, "hyperframes.json")):

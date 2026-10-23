@@ -94,6 +94,8 @@ python3 ../$S/measure_style.py renders/final.mp4 --json renders/style-report.jso
   matching noun is spoken (a person's name → that person, a thing → that thing), and change the
   footage every time the script moves to a new part.
 - **Ending:** close on a longer shot (about 3–4 s) of the real person or thing being discussed.
+- **Footage credit:** when B-roll comes from someone else's channel, put `"credit": "ที่มาคลิป: YouTube @<channel>"` in
+  `edit.json`. It shows as a small line under the sharp band, on the right, for the whole clip. The reference doesn't have one; add it at the user's request.
 - **Don't add** transitions, zooms, stickers, emoji, arrows, colour highlights or caption boxes.
   The reference has none. Hard cuts only. A whip-blur can be used at most once, to change place or person.
 - Captions are **plain white with a black outline**. The colour never changes, there is never more
