@@ -57,7 +57,8 @@ def main():
     ap.add_argument("captions")
     ap.add_argument("broll")
     ap.add_argument("out")
-    ap.add_argument("--facecam", required=True, help="tightened talking-head clip (its audio is the voice)")
+    ap.add_argument("--facecam", help="tightened talking-head clip (its audio is the voice)")
+    ap.add_argument("--voice", help="tightened voice-only recording, when there is no talking-head clip")
     ap.add_argument("--music")
     ap.add_argument("--music-volume", type=float, default=0.12)
     a = ap.parse_args()
@@ -70,7 +71,9 @@ def main():
         c.setdefault("out", duration(c["src"]))
         c["pos"] = c["in"]
         c["keywords"] = [k.lower() for k in c.get("keywords", [])]
-    total = round(duration(a.facecam), 3)
+    if not (a.facecam or a.voice):
+        raise SystemExit("give --facecam or --voice")
+    total = round(duration(a.facecam or a.voice), 3)
     cuts = cut_points(caps, total)
 
     shots, order = [], 0
@@ -96,7 +99,8 @@ def main():
 
     edit = {
         "duration": total,
-        "facecam": os.path.abspath(a.facecam),
+        "facecam": os.path.abspath(a.facecam) if a.facecam else None,
+        "voice": os.path.abspath(a.voice) if a.voice else None,
         "music": os.path.abspath(a.music) if a.music else None,
         "music_volume": a.music_volume,
         "shots": shots,

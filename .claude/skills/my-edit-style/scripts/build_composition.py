@@ -62,9 +62,7 @@ TEMPLATE = """<!doctype html>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="__DUR__" data-width="1080" data-height="1920" data-fps="30">
 __SHOTS__
-      <div id="cam">
-        <video id="v-cam" class="clip" src="__CAM__" data-start="0" data-duration="__DUR__" data-track-index="2" muted playsinline></video>
-      </div>
+__CAMDIV__
 __CAPS__
       <audio id="voice" src="__VOICE__" data-start="0" data-duration="__DUR__" data-track-index="5" data-volume="1"></audio>
 __MUSIC__
@@ -129,13 +127,20 @@ def main():
 
     cache = {}
     dur = edit["duration"]
-    cam = copy_asset(path(edit["facecam"]), proj, "talk", cache)
+    # voice comes from the talking-head clip, or from a separate voice-only recording
     voice_rel = "assets/talk/voice.m4a"
+    os.makedirs(os.path.join(proj, "assets", "talk"), exist_ok=True)
+    voice_src = edit.get("voice") or edit["facecam"]
     subprocess.run(
-        ["ffmpeg", "-v", "error", "-y", "-i", path(edit["facecam"]), "-vn", "-c:a", "aac", "-b:a", "192k",
+        ["ffmpeg", "-v", "error", "-y", "-i", path(voice_src), "-vn", "-c:a", "aac", "-b:a", "192k",
          os.path.join(proj, voice_rel)],
         check=True,
     )
+    cam_div = ""
+    if edit.get("facecam"):
+        cam = copy_asset(path(edit["facecam"]), proj, "talk", cache)
+        cam_div = (f'      <div id="cam">\n        <video id="v-cam" class="clip" src="{cam}" data-start="0" '
+                   f'data-duration="{dur}" data-track-index="2" muted playsinline></video>\n      </div>')
 
     shots = []
     for i, s in enumerate(edit["shots"]):
@@ -162,7 +167,7 @@ def main():
                  f'data-volume="{edit.get("music_volume", 0.12)}"></audio>')
 
     out = (TEMPLATE.replace("__SHOTS__", "\n".join(shots)).replace("__CAPS__", "\n".join(caps))
-           .replace("__MUSIC__", music).replace("__CAM__", cam).replace("__VOICE__", voice_rel)
+           .replace("__MUSIC__", music).replace("__CAMDIV__", cam_div).replace("__VOICE__", voice_rel)
            .replace("__CAMPOS__", a.cam_pos).replace("__RING__", RING).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS)))
     open(os.path.join(proj, "index.html"), "w").write(out)
     if not os.path.exists(os.path.join(proj, "hyperframes.json")):

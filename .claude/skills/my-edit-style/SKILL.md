@@ -73,6 +73,17 @@ bash ../$S/finish.sh renders/draft.mp4 renders/final.mp4
 python3 ../$S/measure_style.py renders/final.mp4 --json renders/style-report.json
 ```
 
+## No talking-head clip / Whisper can't run
+
+- **Voice only (e.g. Voice Memos):** extract the audio from each take, concatenate them in order, then run
+  `tighten.py raw.wav voice_tight.wav` (supports audio-only files). In `plan_broll.py`, use `--voice voice_tight.wav`
+  instead of `--facecam`. `build_composition.py` leaves out the presenter circle, and
+  `measure_style.py --no-cam` skips the circle checks.
+- **No Whisper:** write `script.txt` with one line per take, words separated by `|` and caption-card breaks marked
+  with `/`, then run
+  `align_script.py script.txt words.json --anchors <start of each take> --end <end>`. Use the
+  `--cuts` output from `tighten.py` to find where each take starts. The timing is an estimate, so always check it in preview.
+
 ## Style rules the scripts don't cover (do these yourself)
 
 - **Script structure ฮุก → บริบท → แต่ → เฉลย** (1 / 3–4 / 1 / 3–4 sentences): see
@@ -105,6 +116,7 @@ After rendering, tell the user:
 | `test-report.md` | Results of the test run on a 21 s clip (99% match) and what still differs |
 | `scripts/tighten.py` | Cuts pauses (silencedetect + select/aselect) |
 | `scripts/transcribe.py` | Whisper → `words.json` |
+| `scripts/align_script.py` | Fallback without Whisper: known script + start time of each take → `words.json` |
 | `scripts/chunk_captions.py` | Words → caption cards like the reference |
 | `scripts/plan_broll.py` | Places B-roll cuts on caption boundaries → `edit.json` |
 | `scripts/build_composition.py` | `edit.json` → HyperFrames `index.html` (blurred fill, sharp band, cam circle, pop captions) |

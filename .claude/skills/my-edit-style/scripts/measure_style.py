@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Measure a rendered video against the reference style and print a match score.
 
-usage: measure_style.py OUT.mp4 [--json report.json]
+usage: measure_style.py OUT.mp4 [--json report.json] [--no-cam]
 
 Each check compares a measured number with the reference value from style-guide.md
 and scores 0-1 (1 = within tolerance, falling linearly to 0 at 3x tolerance).
@@ -162,6 +162,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
     ap.add_argument("--json")
+    ap.add_argument("--no-cam", action="store_true", help="voice-only edit: skip the presenter-circle checks")
     a = ap.parse_args()
     w, h, dur = probe(a.video)
     with tempfile.TemporaryDirectory() as tmp:
@@ -195,6 +196,8 @@ def main():
         ("4 วงกลมหน้า ขอบซ้าย@y1450 (x)", cam_l, REF["cam_edge_x_at_1450"], score(cam_l, REF["cam_edge_x_at_1450"], 6), 1),
         ("4 วงกลมหน้า ขอบล่าง (y)", cam_b, REF["cam_bottom"], score(cam_b, REF["cam_bottom"], 8), 1),
     ]
+    if a.no_cam:
+        checks = [c for c in checks if "วงกลมหน้า" not in c[0]]
     lufs = loudness(a.video)
     total_w = sum(c[4] for c in checks)
     pct = 100 * sum(c[3] * c[4] for c in checks) / total_w

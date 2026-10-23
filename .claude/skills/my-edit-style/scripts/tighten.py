@@ -11,6 +11,7 @@ import json
 import re
 import subprocess
 import sys
+import sys
 
 
 def duration(path):
@@ -19,6 +20,14 @@ def duration(path):
         capture_output=True, text=True, check=True,
     ).stdout
     return float(out.strip())
+
+
+def has_video(path):
+    out = subprocess.run(
+        ["ffprobe", "-v", "error", "-select_streams", "v", "-show_entries", "stream=index", "-of", "csv=p=0", path],
+        capture_output=True, text=True,
+    ).stdout
+    return bool(out.strip())
 
 
 def silences(path, db, min_gap):
@@ -63,11 +72,11 @@ def main():
     expr = "+".join(f"between(t,{s:.3f},{e:.3f})" for s, e in keep)
     vf = f"select='{expr}',setpts=N/FRAME_RATE/TB"
     af = f"aselect='{expr}',asetpts=N/SR/TB"
-    subprocess.run(
-        ["ffmpeg", "-v", "error", "-y", "-i", a.src, "-vf", vf, "-af", af,
-         "-c:v", "libx264", "-crf", "16", "-preset", "fast", "-c:a", "aac", "-b:a", "192k", a.out],
-        check=True,
-    )
+    if has_video(a.src):
+        cmd = ["-vf", vf, "-af", af, "-c:v", "libx264", "-crf", "16", "-preset", "fast", "-c:a", "aac", "-b:a", "192k"]
+    else:  # voice-only recording (no talking-head video)
+        cmd = ["-vn", "-af", af] + (["-c:a", "aac", "-b:a", "192k"] if not a.out.endswith(".wav") else [])
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", a.src] + cmd + [a.out], check=True)
     kept = sum(e - s for s, e in keep)
     print(f"kept {len(keep)} ranges, {kept:.2f}s of {total:.2f}s (removed {total - kept:.2f}s)")
     if a.cuts:

@@ -51,6 +51,8 @@ def join(a, b):
 
 def card_cost(words, i, j):
     """cost of one card made of words[i:j]"""
+    if any(w.get("brk") for w in words[i : j - 1]):
+        return None  # a marked break (align_script.py "/" or line end) falls inside this card
     text = ""
     for w in words[i:j]:
         text = join(text, w["word"])
@@ -65,7 +67,9 @@ def card_cost(words, i, j):
     last, first = words[j - 1]["word"], words[i]["word"]
     if last in OPENERS and j - i > 1:
         c += 6  # never end on an opener ("...ใน")
-    if j < len(words):
+    if words[j - 1].get("brk"):
+        c -= 3  # ending on a marked break is what the author asked for
+    elif j < len(words):
         nxt = words[j]["word"]
         if nxt in OPENERS:
             c -= 1.5
@@ -104,10 +108,12 @@ def chunk(words):
         for w in words[i:j]:
             text = join(text, w["word"])
         cards.append({"start": words[i]["start"], "end": words[j - 1]["end"], "text": text})
+    # cards butt against each other; only the last card is held to the minimum length
     for a, b in zip(cards, cards[1:]):
         a["end"] = b["start"]
+    cards[-1]["end"] = max(cards[-1]["end"], cards[-1]["start"] + MIN_DUR)
     for c in cards:
-        c["start"], c["end"] = round(c["start"], 3), round(max(c["end"], c["start"] + MIN_DUR), 3)
+        c["start"], c["end"] = round(c["start"], 3), round(c["end"], 3)
     return cards
 
 
