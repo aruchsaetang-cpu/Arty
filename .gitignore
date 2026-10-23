@@ -10,3 +10,7 @@ videos/bttf-hanging-short/src/f05.mp4
 videos/bttf-hanging-short/work/*.png
 videos/bttf-hanging-short/work/vo/
 videos/bttf-hanging-short/work/captions_v1.json
+# Raiders short: iPad recordings, renders and scratch stay local; cropped B-roll and edit data are tracked
+videos/raiders-sword-short/src/
+videos/raiders-sword-short/out*/
+videos/raiders-sword-short/work/*.png
