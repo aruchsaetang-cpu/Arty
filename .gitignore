@@ -22,3 +22,6 @@ videos/frozen-rapunzel-short/img/
 videos/frozen-rapunzel-short/out*/
 videos/frozen-rapunzel-short/work/*.png
 __pycache__/
+# Spider-Verse draft: low-res scan B-roll and renders stay local
+videos/spiderverse-ai-short/broll/
+videos/spiderverse-ai-short/out*/

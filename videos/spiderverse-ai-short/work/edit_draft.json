@@ -1,0 +1,116 @@
+{
+ "duration": 20.0,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/spiderverse-ai-short/work/silence.wav",
+ "music": "/home/user/Arty/videos/spiderverse-ai-short/work/energy.wav",
+ "music_volume": 0.6,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s1.mp4",
+   "start": 0.0,
+   "dur": 3.2,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s2.mp4",
+   "start": 3.2,
+   "dur": 3.4,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s3.mp4",
+   "start": 6.6,
+   "dur": 3.0,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s4.mp4",
+   "start": 9.6,
+   "dur": 1.8,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s5.mp4",
+   "start": 11.4,
+   "dur": 4.6,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/spiderverse-ai-short/broll/s7.mp4",
+   "start": 16.0,
+   "dur": 4.0,
+   "media_start": 0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "end": 1.6,
+   "text": "Spider-Verse"
+  },
+  {
+   "start": 1.6,
+   "end": 3.2,
+   "text": "ใช้ AI ทำจริงไหม?"
+  },
+  {
+   "start": 3.2,
+   "end": 4.8,
+   "text": "หลายคนคิดว่า"
+  },
+  {
+   "start": 4.8,
+   "end": 6.6,
+   "text": "AI วาดทั้งเรื่อง"
+  },
+  {
+   "start": 6.6,
+   "end": 8.0,
+   "text": "แต่ความจริงคือ…"
+  },
+  {
+   "start": 8.0,
+   "end": 9.6,
+   "text": "AI ช่วยแค่"
+  },
+  {
+   "start": 9.6,
+   "end": 11.4,
+   "text": "เดาเส้นหมึกบนหน้า"
+  },
+  {
+   "start": 11.4,
+   "end": 12.8,
+   "text": "ที่เหลือ"
+  },
+  {
+   "start": 12.8,
+   "end": 14.4,
+   "text": "ศิลปินวาดเอง"
+  },
+  {
+   "start": 14.4,
+   "end": 16.0,
+   "text": "ทีละเฟรม"
+  },
+  {
+   "start": 16.0,
+   "end": 17.6,
+   "text": "และภาคต่อไป"
+  },
+  {
+   "start": 17.6,
+   "end": 20.0,
+   "text": "จะไม่ใช้ AI สร้างภาพ"
+  }
+ ],
+ "arrows": [
+  {
+   "start": 9.75,
+   "end": 11.3,
+   "x": 330,
+   "y": 880,
+   "angle": 0
+  }
+ ]
+}
