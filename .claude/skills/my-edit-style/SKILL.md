@@ -9,6 +9,12 @@ Turns the user's footage into a Short that looks like the reference. Every numbe
 [`style-guide.md`](style-guide.md); read it before changing anything. Don't guess values that
 aren't in it.
 
+## When proposing a script (user preference)
+
+Whenever you list the B-roll a script needs, give a **YouTube link to each scene** (prefer the official
+@MOVIECLIPS upload, add `&t=<seconds>s` when you know where the moment is), found with a web search.
+Say when a link or timestamp is unconfirmed. The user screen-records the scenes from those links.
+
 ## What you need from the user
 
 1. **Talking-head clip** (`talk.mp4`): the presenter speaking Thai. Any orientation; the face is
