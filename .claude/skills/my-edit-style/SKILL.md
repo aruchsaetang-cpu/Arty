@@ -75,10 +75,13 @@ python3 ../$S/measure_style.py renders/final.mp4 --json renders/style-report.jso
 
 ## Style rules the scripts don't cover (do these yourself)
 
-- **Hook:** the first 3 s are a question: "เพื่อนๆ รู้มั้ยว่า + [หัวข้อ] + ถ้า [เหตุการณ์]…". If the
-  user's script doesn't open like this, suggest it. Don't rewrite their words without asking.
+- **Script structure ฮุก → บริบท → แต่ → เฉลย** (1 / 3–4 / 1 / 3–4 sentences): see
+  [`script-structure.md`](script-structure.md). After step 3, label each part of the transcript. If a part is
+  missing or too long, tell the user and suggest a fix. Don't rewrite their words without asking.
+- **Hook:** "เพื่อนๆ รู้มั้ยว่า + ในหนัง [ชื่อเรื่อง] + [เหตุการณ์ที่น่าสงสัย]", about 3–5 s long (reference 4.5 s).
 - **B-roll shows what's being said:** use `keywords` in `broll.json` so the shot changes when the
-  matching noun is spoken (a person's name → that person, a thing → that thing).
+  matching noun is spoken (a person's name → that person, a thing → that thing), and change the
+  footage every time the script moves to a new part.
 - **Ending:** close on a longer shot (about 3–4 s) of the real person or thing being discussed.
 - **Don't add** transitions, zooms, stickers, emoji, arrows, colour highlights or caption boxes.
   The reference has none. Hard cuts only. A whip-blur can be used at most once, to change place or person.
@@ -98,6 +101,7 @@ After rendering, tell the user:
 | File | What it does |
 | --- | --- |
 | `style-guide.md` | The 10-part analysis, with numbers and hex codes, of the reference |
+| `script-structure.md` | Script structure ฮุก/บริบท/แต่/เฉลย from the creator's slides, mapped onto the reference |
 | `test-report.md` | Results of the test run on a 21 s clip (99% match) and what still differs |
 | `scripts/tighten.py` | Cuts pauses (silencedetect + select/aselect) |
 | `scripts/transcribe.py` | Whisper → `words.json` |

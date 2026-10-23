@@ -154,6 +154,8 @@ Main tones taken from 13 frames (8-colour quantise, 16-step rounding) [วัด
 ## 9. Signature techniques
 
 1. **Hook as a question:** "เพื่อนๆ รู้มั้ยว่า + ในหนัง [X] + ถ้า [เหตุการณ์]…" and repeat "เพื่อนๆ รู้มั้ยว่า" again inside the first 3 s.
+   The script follows **ฮุก (1) → บริบท (3–4) → แต่ (1) → เฉลย (3–4 sentences)**, from the creator's own slides. In this clip: ฮุก 0–4.47 s,
+   บริบท 4.47–10.77 s, turn with "จึง" 10.77–13.77 s, เฉลย from 13.77 s. Details in `script-structure.md`.
 2. **B-roll shows exactly the noun just spoken:** "ผู้กำกับ / James cameron" → James Cameron. "ระหว่างถ่ายทำ" → the shooting rig. "ปืนยิงตะปู" → the action scene.
 3. **The first shot is the strongest image in the topic** (a close-up of the main character), cut at 0.67 s.
 4. **Commentator format:** a small presenter circle in the bottom left, with footage carrying the visuals the whole time.
