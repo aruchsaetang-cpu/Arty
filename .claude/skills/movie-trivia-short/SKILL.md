@@ -135,3 +135,4 @@ Add 2–3 title options. Remind once that a credit is good manners, not permissi
 | --- | --- | --- |
 | Back to the Future III — Michael J. Fox passed out in the hanging scene | `videos/bttf-hanging-short/` | YouTube cut + TikTok-safe cut (masked on TikTok before) |
 | Raiders of the Lost Ark — "shoot the swordsman" came from Ford's dysentery | `videos/raiders-sword-short/` | B-roll ready, waiting for the voiceover |
+| Spider-Verse — AI only predicted ink lines on faces; next film won't use generative AI | `videos/spiderverse-ai-short/` | Final = `work/edit_hd.json`, AI voice (vidIQ), **no music** (user picks the sound in-app) |
