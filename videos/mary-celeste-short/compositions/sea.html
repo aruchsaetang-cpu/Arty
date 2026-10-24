@@ -1,0 +1,208 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #04070c;
+    }
+    #sea-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      transform-origin: 540px 960px;
+    }
+    #sea-scrim {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 760px;
+      background: linear-gradient(rgba(2, 4, 8, 0.72), rgba(2, 4, 8, 0));
+    }
+    #sea-world svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+  </style>
+  <div id="root" data-composition-id="sea" data-width="1080" data-height="1920">
+    <div id="sea-world" data-layout-allow-overflow data-layout-ignore>
+      <svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sea-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#03050a" />
+            <stop offset="1" stop-color="#132029" />
+          </linearGradient>
+          <linearGradient id="sea-water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#16272f" />
+            <stop offset="1" stop-color="#050b0f" />
+          </linearGradient>
+          <radialGradient id="sea-halo">
+            <stop offset="0" stop-color="#e6e2d3" stop-opacity="0.14" />
+            <stop offset="1" stop-color="#e6e2d3" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="sea-lamp" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#6a4826" />
+            <stop offset="1" stop-color="#2c1d10" />
+          </linearGradient>
+        </defs>
+        <rect x="-3000" y="-3000" width="7080" height="4070" fill="url(#sea-sky)" />
+        <circle cx="850" cy="420" r="220" fill="url(#sea-halo)" />
+        <circle cx="850" cy="420" r="58" fill="#e3dfcf" />
+        <circle cx="868" cy="408" r="12" fill="#cfcab8" />
+        <circle cx="832" cy="440" r="8" fill="#cfcab8" />
+        <rect x="-3000" y="1060" width="7080" height="3000" fill="url(#sea-water)" />
+        <g id="sea-glints" stroke="#d9d6c6" stroke-linecap="round"></g>
+        <g id="sea-swells" fill="none" stroke="#2c4954" stroke-width="3"></g>
+
+        <!-- The Mary Celeste: a brigantine, sails half set, nobody at the helm -->
+        <g id="sea-ship">
+          <g stroke="#5d5a52" stroke-width="2" fill="none">
+            <path d="M -170 -620 L -560 -170" />
+            <path d="M -170 -620 L 120 -660" />
+            <path d="M 120 -660 L 370 -100" />
+            <path d="M -170 -620 L -400 -100" />
+            <path d="M 120 -660 L -100 -100" />
+          </g>
+          <polygon points="-175,-560 -540,-168 -205,-160" fill="#666257" opacity="0.85" />
+          <rect x="-178" y="-640" width="14" height="560" fill="#2a2620" />
+          <rect x="113" y="-680" width="14" height="600" fill="#2a2620" />
+          <path d="M -410 -100 L -580 -175" stroke="#2a2620" stroke-width="10" />
+          <polygon points="-280,-585 -60,-585 -50,-485 -290,-485" fill="#7a766b" opacity="0.9" />
+          <polygon points="-295,-470 -45,-470 -35,-360 -305,-360" fill="#726e63" opacity="0.9" />
+          <polygon points="-300,-345 -40,-345 -70,-300 -150,-250 -230,-290" fill="#6b675d" opacity="0.88" />
+          <polygon points="130,-620 300,-575 335,-160 130,-145" fill="#77736a" opacity="0.88" />
+          <path d="M 180 -400 L 230 -330 L 200 -250" stroke="#04070c" stroke-width="5" fill="none" opacity="0.7" />
+          <!-- hull -->
+          <path d="M -425 -100 C -385 -60 -345 -15 -305 22 L 335 22 C 362 0 376 -45 382 -100 Z" fill="#1a1d22" />
+          <path d="M -425 -100 L 382 -100" stroke="#3b3a35" stroke-width="8" />
+          <path d="M -395 -74 L 378 -74" stroke="#5b4630" stroke-width="5" opacity="0.7" />
+          <rect x="140" y="-140" width="120" height="40" fill="#24262b" />
+          <rect x="160" y="-130" width="22" height="16" fill="#3a2a18" />
+          <!-- the captain's cabin, seen in cutaway -->
+          <g id="sea-cabin">
+            <rect x="190" y="-92" width="165" height="96" fill="url(#sea-lamp)" />
+            <rect x="215" y="-38" width="110" height="9" fill="#2b1c0f" />
+            <rect x="222" y="-29" width="7" height="30" fill="#2b1c0f" />
+            <rect x="311" y="-29" width="7" height="30" fill="#2b1c0f" />
+            <ellipse cx="240" cy="-41" rx="13" ry="4" fill="#d8d0bb" />
+            <ellipse cx="275" cy="-41" rx="13" ry="4" fill="#d8d0bb" />
+            <rect x="296" y="-58" width="9" height="18" rx="2" fill="#2f4a32" />
+            <rect x="250" y="-50" width="7" height="9" fill="#cdbf9f" />
+            <path d="M 300 -86 L 300 -72" stroke="#1c120a" stroke-width="2" />
+            <circle cx="300" cy="-66" r="7" fill="#e9bd66" />
+            <rect x="205" y="-80" width="30" height="22" fill="#20160c" />
+          </g>
+          <g id="sea-panel">
+            <rect x="190" y="-92" width="165" height="96" fill="#1a1d22" />
+            <path d="M 190 -74 L 355 -74" stroke="#5b4630" stroke-width="5" opacity="0.7" />
+          </g>
+          <!-- empty davits at the stern -->
+          <g stroke="#3e3b35" stroke-width="7" fill="none" stroke-linecap="round">
+            <path d="M 300 -100 L 300 -175 Q 300 -196 330 -196" />
+            <path d="M 362 -100 L 362 -175 Q 362 -196 392 -196" />
+          </g>
+          <g id="sea-falls" stroke="#8a8170" stroke-width="3" fill="none">
+            <path id="sea-fall-a" d="M 330 -196 L 330 -128" />
+            <path id="sea-fall-b" d="M 392 -196 L 392 -128" />
+          </g>
+        </g>
+        <path id="sea-front" fill="#081217" d="" />
+      </svg>
+    </div>
+    <div id="sea-scrim" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 1872;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const swells = document.querySelector("#sea-swells");
+      const rows = [];
+      for (let i = 0; i < 14; i++) {
+        const p = document.createElementNS(NS, "path");
+        const y = 1090 + i * i * 9 + i * 18;
+        p.setAttribute("stroke-opacity", (0.25 + i * 0.04).toFixed(2));
+        swells.appendChild(p);
+        rows.push({ el: p, y, amp: 3 + i * 1.6, len: 160 + i * 30, ph: rnd() * 6.28, v: 0.4 + i * 0.05 });
+      }
+      const glints = document.querySelector("#sea-glints");
+      const gl = [];
+      for (let i = 0; i < 36; i++) {
+        const l = document.createElementNS(NS, "line");
+        const y = 1075 + rnd() * 700;
+        const w = 10 + (y - 1060) * 0.12 * rnd();
+        l.setAttribute("stroke-width", 2 + (y - 1060) * 0.006);
+        glints.appendChild(l);
+        gl.push({ el: l, x: 850 + (rnd() - 0.5) * (60 + (y - 1060) * 0.35), y, w, ph: rnd() * 6.28 });
+      }
+      const ship = document.querySelector("#sea-ship");
+      const front = document.querySelector("#sea-front");
+      const fallA = document.querySelector("#sea-fall-a");
+      const fallB = document.querySelector("#sea-fall-b");
+      window.__seaAt = (t) => {
+        for (const r of rows) {
+          let d = `M -3000 ${r.y}`;
+          for (let x = -3000; x <= 4080; x += 60) {
+            const y = r.y + r.amp * Math.sin((x / r.len) * 6.283 + r.ph + t * r.v * 2);
+            d += ` L ${x} ${y.toFixed(1)}`;
+          }
+          r.el.setAttribute("d", d);
+        }
+        for (const g of gl) {
+          const o = 0.15 + 0.5 * Math.max(0, Math.sin(g.ph + t * 2.1));
+          g.el.setAttribute("x1", g.x - g.w / 2); g.el.setAttribute("x2", g.x + g.w / 2);
+          g.el.setAttribute("y1", g.y); g.el.setAttribute("y2", g.y);
+          g.el.setAttribute("stroke-opacity", o.toFixed(2));
+        }
+        // The ship rolls and drifts with no one steering.
+        const rot = 1.8 * Math.sin((t / 5.5) * 6.283);
+        const bob = 6 * Math.sin((t / 5.5) * 6.283 + 1.1);
+        const drift = -2.2 * t;
+        ship.setAttribute("transform", `translate(${(540 + drift).toFixed(1)} ${(1100 + bob).toFixed(1)}) rotate(${rot.toFixed(2)})`);
+        // Empty falls swing from the davits.
+        const sw = 9 * Math.sin((t / 5.5) * 6.283 + 0.6);
+        fallA.setAttribute("d", `M 330 -196 Q ${330 + sw * 0.4} -160 ${330 + sw} -128`);
+        fallB.setAttribute("d", `M 392 -196 Q ${392 + sw * 0.4} -160 ${392 + sw} -128`);
+        // Foreground swell hides the hull's waterline.
+        let f = `M -3000 3000 L -3000 1112`;
+        for (let x = -3000; x <= 4080; x += 40) {
+          const y = 1112 + 10 * Math.sin((x / 240) * 6.283 + t * 1.4) + 5 * Math.sin((x / 90) * 6.283 - t * 2.2);
+          f += ` L ${x} ${y.toFixed(1)}`;
+        }
+        front.setAttribute("d", f + " L 4080 3000 Z");
+      };
+      window.__seaAt(0);
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+    const clock = { t: 0 };
+    tl.fromTo(clock, { t: 0 }, { t: 20, duration: 20, ease: "none", onUpdate: () => window.__seaAt(clock.t) }, 0);
+
+    // The hull panel lifts away to show the cabin, table still laid.
+    tl.fromTo("#sea-panel", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.6);
+
+    // Camera: the ship in the fog → the empty deck → the cabin → the davits → empty sea → the ship drifting on.
+    tl.fromTo("#sea-world", cam(540, 760, 1.0), { ...cam(540, 780, 1.08), duration: 4.15, ease: "none" }, 0);
+    tl.to("#sea-world", { ...cam(520, 900, 1.8), duration: 0.7, ease: "power3.inOut" }, 4.15);
+    tl.to("#sea-world", { ...cam(500, 900, 1.88), duration: 2.5, ease: "none" }, 4.85);
+    tl.to("#sea-world", { ...cam(800, 1050, 3.0), duration: 0.7, ease: "power3.inOut" }, 7.35);
+    tl.to("#sea-world", { ...cam(795, 1050, 3.15), duration: 3.05, ease: "none" }, 8.05);
+    tl.to("#sea-world", { ...cam(880, 960, 2.4), duration: 0.6, ease: "power3.inOut" }, 11.1);
+    tl.to("#sea-world", { ...cam(875, 962, 2.5), duration: 1.25, ease: "none" }, 11.7);
+    tl.to("#sea-world", { ...cam(120, 880, 0.7), duration: 0.8, ease: "power3.inOut" }, 12.95);
+    tl.to("#sea-world", { ...cam(100, 880, 0.7), duration: 0.9, ease: "none" }, 13.75);
+    tl.to("#sea-world", { ...cam(520, 800, 0.85), duration: 0.9, ease: "power3.inOut" }, 14.65);
+    tl.to("#sea-world", { ...cam(510, 800, 0.8), duration: 4.45, ease: "none" }, 15.55);
+
+    window.__timelines["sea"] = tl;
+  </script>
+</template>

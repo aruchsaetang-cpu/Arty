@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    .t-stamp-in {
+      background: var(--accent, #e0352b);
+      color: #ffffff;
+      padding: 6px 22px 10px;
+    }
+  </style>
+  <div id="root" data-composition-id="boat" data-width="1080" data-height="1920">
+    <div id="boat-stamp" class="t-body clip" data-start="0.4" data-duration="1.45" style="top: 300px; font-size: 96px; font-family: var(--font-display, 'League Gothic'), sans-serif; font-weight: 400; letter-spacing: 0.04em;">
+      <span id="boat-stamp-in"><span class="t-stamp-in">LIFEBOAT: GONE</span></span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    tl.fromTo("#boat-stamp-in", { opacity: 0, scale: 1.7, rotation: -6 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.14, ease: "power4.out" }, 0.42);
+    window.__timelines["boat"] = tl;
+  </script>
+</template>
