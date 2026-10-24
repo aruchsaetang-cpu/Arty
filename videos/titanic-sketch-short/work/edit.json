@@ -1,0 +1,102 @@
+{
+ "duration": 17.0,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/titanic-sketch-short/work/silence.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/titanic-sketch-short/broll/gfx.mp4",
+   "start": 0,
+   "dur": 12.2,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/titanic-sketch-short/broll/colbert.mp4",
+   "start": 12.2,
+   "dur": 4.8,
+   "media_start": 0.6,
+   "pos": "45% 50%"
+  }
+ ],
+ "captions": [
+  {
+   "start": 0,
+   "end": 1.2,
+   "text": "เพื่อนๆ รู้มั้ยว่า"
+  },
+  {
+   "start": 1.2,
+   "end": 2.3,
+   "text": "มือที่วาดรูปโรส"
+  },
+  {
+   "start": 2.3,
+   "end": 3.0,
+   "text": "ในไททานิค"
+  },
+  {
+   "start": 3.0,
+   "end": 3.6,
+   "text": "ไม่ใช่มือแจ็ค!"
+  },
+  {
+   "start": 3.6,
+   "end": 4.6,
+   "text": "ในหนัง แจ็คเป็น"
+  },
+  {
+   "start": 4.6,
+   "end": 5.6,
+   "text": "ศิลปินไส้แห้ง"
+  },
+  {
+   "start": 5.6,
+   "end": 6.8,
+   "text": "สมุดสเก็ตช์ของเขา"
+  },
+  {
+   "start": 6.8,
+   "end": 8.0,
+   "text": "ทำให้โรสทึ่งมาก"
+  },
+  {
+   "start": 8.0,
+   "end": 9.2,
+   "text": "แต่มือที่เห็นวาดรูป"
+  },
+  {
+   "start": 9.2,
+   "end": 9.9,
+   "text": "ในฉากดัง"
+  },
+  {
+   "start": 9.9,
+   "end": 11.1,
+   "text": "เป็นมือของผู้กำกับ"
+  },
+  {
+   "start": 11.1,
+   "end": 12.2,
+   "text": "เจมส์ คาเมรอน"
+  },
+  {
+   "start": 12.2,
+   "end": 13.2,
+   "text": "เคต วินสเล็ต"
+  },
+  {
+   "start": 13.2,
+   "end": 14.0,
+   "text": "เล่าเองว่า"
+  },
+  {
+   "start": 14.0,
+   "end": 15.4,
+   "text": "คาเมรอนเป็นคนวาด"
+  },
+  {
+   "start": 15.4,
+   "end": 17.0,
+   "text": "รูปนี้ทั้งหมด!"
+  }
+ ]
+}

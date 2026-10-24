@@ -33,3 +33,8 @@ videos/darkknight-clap-short/*.log
 videos/toystory-woody-short/broll/
 videos/toystory-woody-short/out*/
 videos/toystory-woody-short/*.log
+videos/titanic-sketch-short/broll/
+videos/titanic-sketch-short/out*/
+videos/titanic-sketch-short/gfx/renders/
+videos/titanic-sketch-short/gfx/.hyperframes/
+videos/titanic-sketch-short/*.log
