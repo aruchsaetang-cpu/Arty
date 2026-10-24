@@ -1,230 +1,220 @@
 [
  {
   "start": 0.01,
-  "text": "Okay,",
-  "end": 0.31
+  "text": "That scene",
+  "end": 0.32
  },
  {
-  "start": 0.31,
-  "text": "so that",
-  "end": 0.61
+  "start": 0.32,
+  "text": "where Indy",
+  "end": 0.78
  },
  {
-  "start": 0.61,
-  "text": "scene where",
-  "end": 0.91
- },
- {
-  "start": 0.91,
-  "text": "Indy",
-  "end": 1.22
- },
- {
-  "start": 1.22,
+  "start": 0.78,
   "text": "just",
-  "end": 1.37
+  "end": 0.93
  },
  {
-  "start": 1.37,
+  "start": 0.93,
   "text": "shoots",
   "color": "#FFD400",
-  "end": 1.52
+  "end": 1.09
  },
  {
-  "start": 1.52,
+  "start": 1.09,
   "text": "the swordsman?",
-  "end": 2.28
+  "end": 1.86
  },
  {
-  "start": 2.28,
+  "start": 1.86,
   "text": "It was",
-  "end": 2.53
+  "end": 2.11
  },
  {
-  "start": 2.53,
+  "start": 2.11,
   "text": "never",
   "color": "#FFD400",
-  "end": 2.78
+  "end": 2.36
  },
  {
-  "start": 2.78,
+  "start": 2.36,
   "text": "in the",
-  "end": 3.03
+  "end": 2.61
  },
  {
-  "start": 3.03,
+  "start": 2.61,
   "text": "script.",
-  "end": 3.24
+  "end": 2.82
  },
  {
-  "start": 3.24,
+  "start": 2.82,
   "text": "Originally,",
-  "end": 3.9
+  "end": 3.48
  },
  {
-  "start": 3.9,
+  "start": 3.48,
   "text": "they were",
-  "end": 4.16
+  "end": 3.75
  },
  {
-  "start": 4.16,
+  "start": 3.75,
   "text": "supposed",
-  "end": 4.56
+  "end": 4.15
  },
  {
-  "start": 4.56,
+  "start": 4.15,
   "text": "to have",
-  "end": 4.83
+  "end": 4.41
  },
  {
-  "start": 4.83,
+  "start": 4.41,
   "text": "this huge,",
-  "end": 5.09
+  "end": 4.68
  },
  {
-  "start": 5.09,
+  "start": 4.68,
   "text": "long",
-  "end": 5.22
+  "end": 4.81
  },
  {
-  "start": 5.22,
+  "start": 4.81,
   "text": "whip",
   "color": "#FFD400",
-  "end": 5.36
+  "end": 4.94
  },
  {
-  "start": 5.36,
+  "start": 4.94,
   "text": "fight.",
-  "end": 5.61
+  "end": 5.19
  },
  {
-  "start": 5.61,
+  "start": 5.19,
   "text": "But",
-  "end": 5.72
+  "end": 5.3
  },
  {
-  "start": 5.72,
+  "start": 5.3,
   "text": "Harrison Ford",
   "color": "#FFD400",
-  "end": 6.17
+  "end": 5.75
  },
  {
-  "start": 6.17,
+  "start": 5.75,
   "text": "had",
-  "end": 6.28
+  "end": 5.86
  },
  {
-  "start": 6.28,
+  "start": 5.86,
   "text": "dysentery",
   "color": "#FFD400",
-  "end": 6.72
+  "end": 6.31
  },
  {
-  "start": 6.72,
+  "start": 6.31,
   "text": "that day,",
-  "end": 7.21
+  "end": 6.79
  },
  {
-  "start": 7.21,
+  "start": 6.79,
   "text": "and he",
-  "end": 7.45
+  "end": 7.03
  },
  {
-  "start": 7.45,
+  "start": 7.03,
   "text": "could barely",
-  "end": 7.93
+  "end": 7.52
  },
  {
-  "start": 7.93,
+  "start": 7.52,
   "text": "even",
-  "end": 8.18
+  "end": 7.76
  },
  {
-  "start": 8.18,
+  "start": 7.76,
   "text": "stand.",
-  "end": 8.38
+  "end": 7.96
  },
  {
-  "start": 8.38,
+  "start": 7.96,
   "text": "So he",
-  "end": 8.67
+  "end": 8.26
  },
  {
-  "start": 8.67,
+  "start": 8.26,
   "text": "goes to",
-  "end": 8.97
+  "end": 8.55
  },
  {
-  "start": 8.97,
+  "start": 8.55,
   "text": "Spielberg,",
   "color": "#FFD400",
-  "end": 9.49
+  "end": 9.07
  },
  {
-  "start": 9.49,
+  "start": 9.07,
   "text": "why don't",
-  "end": 9.79
+  "end": 9.37
  },
  {
-  "start": 9.79,
+  "start": 9.37,
   "text": "I just",
-  "end": 10.08
+  "end": 9.67
  },
  {
-  "start": 10.08,
+  "start": 9.67,
   "text": "shoot",
   "color": "#FFD400",
-  "end": 10.23
+  "end": 9.82
  },
  {
-  "start": 10.23,
+  "start": 9.82,
   "text": "the guy?",
-  "end": 10.62
+  "end": 10.2
  },
  {
-  "start": 10.62,
+  "start": 10.2,
   "text": "And honestly?",
-  "end": 11.46
+  "end": 11.04
  },
  {
-  "start": 11.46,
+  "start": 11.04,
   "text": "It ended",
-  "end": 11.83
+  "end": 11.42
  },
  {
-  "start": 11.83,
+  "start": 11.42,
   "text": "up being",
-  "end": 12.09
+  "end": 11.67
  },
  {
-  "start": 12.09,
+  "start": 11.67,
   "text": "one of",
-  "end": 12.34
+  "end": 11.92
  },
  {
-  "start": 12.34,
+  "start": 11.92,
   "text": "the",
-  "end": 12.47
+  "end": 12.05
  },
  {
-  "start": 12.47,
+  "start": 12.05,
   "text": "funniest",
   "color": "#FFD400",
-  "end": 12.72
+  "end": 12.3
  },
  {
-  "start": 12.72,
+  "start": 12.3,
   "text": "scenes",
-  "end": 12.97
+  "end": 12.55
  },
  {
-  "start": 12.97,
+  "start": 12.55,
   "text": "in the",
-  "end": 13.22
+  "end": 12.81
  },
  {
-  "start": 13.22,
+  "start": 12.81,
   "text": "whole movie.",
-  "end": 13.55
+  "end": 13.14
  }
 ]
