@@ -77,6 +77,8 @@ For every scene the script needs, give a **YouTube link** (prefer the official @
 Say when a link's channel or timestamp is unconfirmed. The user screen-records the scenes on iPad;
 crop the picture out with `cropdetect` before editing (see `my-edit-style`).
 
+**Footage pitfalls:** many TikTok/Reels "behind the scenes" clips are AI-generated (look for an "AI" badge, wrong faces) — never use them as real footage. Screen-recording Netflix/Disney+ gives a black picture; use YouTube uploads of the real film. Skip topics whose key scene contains nudity.
+
 ## 5b. Music (user preference: viral / trending sound)
 
 Trending songs are copyrighted, so never put one into the rendered file. Instead:
@@ -139,3 +141,4 @@ Add 2–3 title options. Remind once that a credit is good manners, not permissi
 | Spider-Verse — AI only predicted ink lines on faces; next film won't use generative AI | `videos/spiderverse-ai-short/` | Final = `work/edit_hd.json`, AI voice (vidIQ), **no music** (user picks the sound in-app) |
 | The Dark Knight — Ledger improvised the Joker's slow clap | `videos/darkknight-clap-short/` | Kept as rendered: AI voice, no music (`work/edit.json`); can be re-cut with the user's voice later |
 | Toy Story — early 'Black Friday' Woody was so mean Disney halted production | `videos/toystory-woody-short/` | Parked: B-roll t1–t7 cropped (local), script ready; waiting for the user's voiceover |
+| Titanic — Cameron's hands drew Rose's portrait | `videos/titanic-sketch-short/` | **Dropped** by the user (footage too hard: nude scene, AI-fake BTS clips, streaming apps record black) |
