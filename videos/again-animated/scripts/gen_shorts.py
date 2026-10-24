@@ -40,11 +40,11 @@ for i, (start, h1, h2) in enumerate(EPISODES, 1):
       .glow {{ position: absolute; left: -200px; top: -300px; width: 1480px; height: 1000px; border-radius: 50%;
                background: radial-gradient(circle, rgba(255, 210, 122, 0.16) 0%, rgba(255, 210, 122, 0) 65%); }}
       .frame {{ position: absolute; left: 0; top: 440px; width: 1080px; height: 1080px; overflow: hidden; }}
-      .frame video {{ position: absolute; left: -420px; top: 0; width: 1920px; height: 1080px; inset: auto; }}
+      .frame video {{ position: absolute; inset: auto; left: -420px; top: 0; width: 1920px; height: 1080px; }}
       .chip {{ position: absolute; left: 70px; top: 120px; display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 32px; letter-spacing: 0.14em; color: #d8d2c6; }}
       .chip b {{ display: block; padding: 6px 18px; border-radius: 10px; background: #ffd27a; color: #07080d; font-weight: 900; letter-spacing: 0.08em; }}
       .hook {{ position: absolute; left: 70px; right: 70px; top: 190px; display: flex; flex-direction: column; gap: 0; }}
-      .hook span {{ display: block; font-weight: 900; font-size: 84px; line-height: 1.15; white-space: nowrap; }}
+      .hook span {{ display: block; font-weight: 900; font-size: 72px; line-height: 1.18; white-space: nowrap; }}
       .hook .acc {{ color: #ffd27a; }}
       .foot {{ position: absolute; left: 70px; right: 70px; top: 1580px; display: flex; flex-direction: column; gap: 22px; }}
       .foot-row {{ display: flex; justify-content: space-between; font-weight: 700; font-size: 36px; color: #d8d2c6; }}
