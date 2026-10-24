@@ -138,3 +138,4 @@ Add 2–3 title options. Remind once that a credit is good manners, not permissi
 | Raiders of the Lost Ark — "shoot the swordsman" came from Ford's dysentery | `videos/raiders-sword-short/` | B-roll ready, waiting for the voiceover |
 | Spider-Verse — AI only predicted ink lines on faces; next film won't use generative AI | `videos/spiderverse-ai-short/` | Final = `work/edit_hd.json`, AI voice (vidIQ), **no music** (user picks the sound in-app) |
 | The Dark Knight — Ledger improvised the Joker's slow clap | `videos/darkknight-clap-short/` | Kept as rendered: AI voice, no music (`work/edit.json`); can be re-cut with the user's voice later |
+| Toy Story — early 'Black Friday' Woody was so mean Disney halted production | `videos/toystory-woody-short/` | Parked: B-roll t1–t7 cropped (local), script ready; waiting for the user's voiceover |
