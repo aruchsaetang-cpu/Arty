@@ -1,0 +1,102 @@
+{
+ "voice": "am_michael",
+ "speed": 1.1,
+ "gap": 0.04,
+ "phrases": [
+  [
+   "Did you know",
+   "Did you know",
+   0
+  ],
+  [
+   "the first Woody",
+   "the first Woody",
+   0
+  ],
+  [
+   "almost killed",
+   "almost killed",
+   0
+  ],
+  [
+   "Toy Story?",
+   "Toy Story?",
+   0.25
+  ],
+  [
+   "In 1993,",
+   "In 1993,",
+   0
+  ],
+  [
+   "Pixar showed Disney",
+   "Pixar showed Disney",
+   0
+  ],
+  [
+   "an early cut.",
+   "an early cut.",
+   0.12
+  ],
+  [
+   "Back then, Woody",
+   "Back then, Woody",
+   0
+  ],
+  [
+   "was selfish",
+   "was selfish",
+   0
+  ],
+  [
+   "and yelled",
+   "and yelled",
+   0
+  ],
+  [
+   "at his friends.",
+   "at his friends.",
+   0.25
+  ],
+  [
+   "But the bosses",
+   "But the bosses",
+   0
+  ],
+  [
+   "hated it,",
+   "hated it,",
+   0
+  ],
+  [
+   "and Disney",
+   "and Disney",
+   0
+  ],
+  [
+   "shut it down!",
+   "shut it down!",
+   0.25
+  ],
+  [
+   "So Pixar",
+   "So Pixar",
+   0
+  ],
+  [
+   "rewrote the story",
+   "rewrote the story",
+   0
+  ],
+  [
+   "into the kind Woody",
+   "into the kind Woody",
+   0
+  ],
+  [
+   "we love today.",
+   "we love today.",
+   0
+  ]
+ ]
+}

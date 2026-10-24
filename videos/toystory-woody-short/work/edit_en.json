@@ -1,0 +1,152 @@
+{
+ "duration": 19.3,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/toystory-woody-short/work/voice_en.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t1.mp4",
+   "start": 0,
+   "dur": 1.69,
+   "media_start": 1.1
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 1.69,
+   "dur": 0.93,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t4.mp4",
+   "start": 2.62,
+   "dur": 1.08,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t3.mp4",
+   "start": 3.7,
+   "dur": 4.0,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t5.mp4",
+   "start": 7.7,
+   "dur": 3.64,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t6.mp4",
+   "start": 11.34,
+   "dur": 2.18,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 13.52,
+   "dur": 1.33,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t7.mp4",
+   "start": 14.85,
+   "dur": 4.45,
+   "media_start": 0.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "Did you know",
+   "end": 0.71
+  },
+  {
+   "start": 0.71,
+   "text": "the first Woody",
+   "end": 1.69
+  },
+  {
+   "start": 1.69,
+   "text": "almost killed",
+   "end": 2.62
+  },
+  {
+   "start": 2.62,
+   "text": "Toy Story?",
+   "end": 3.7
+  },
+  {
+   "start": 3.7,
+   "text": "In 1993,",
+   "end": 5.45
+  },
+  {
+   "start": 5.45,
+   "text": "Pixar showed Disney",
+   "end": 6.68
+  },
+  {
+   "start": 6.68,
+   "text": "an early cut.",
+   "end": 7.75
+  },
+  {
+   "start": 7.75,
+   "text": "Back then, Woody",
+   "end": 8.66
+  },
+  {
+   "start": 8.66,
+   "text": "was selfish",
+   "end": 9.51
+  },
+  {
+   "start": 9.51,
+   "text": "and yelled",
+   "end": 10.15
+  },
+  {
+   "start": 10.15,
+   "text": "at his friends.",
+   "end": 11.34
+  },
+  {
+   "start": 11.34,
+   "text": "But the bosses",
+   "end": 12.3
+  },
+  {
+   "start": 12.3,
+   "text": "hated it,",
+   "end": 12.97
+  },
+  {
+   "start": 12.97,
+   "text": "and Disney",
+   "end": 13.69
+  },
+  {
+   "start": 13.69,
+   "text": "shut it down!",
+   "end": 14.85
+  },
+  {
+   "start": 14.85,
+   "text": "So Pixar",
+   "end": 15.74
+  },
+  {
+   "start": 15.74,
+   "text": "rewrote the story",
+   "end": 16.81
+  },
+  {
+   "start": 16.81,
+   "text": "into the kind Woody",
+   "end": 18.0
+  },
+  {
+   "start": 18.0,
+   "text": "we love today.",
+   "end": 19.3
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+{
+ "duration": 19.5,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/raiders-sword-short/work/voice_en.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 0,
+   "dur": 2.43,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 2.43,
+   "dur": 1.4,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 3.83,
+   "dur": 2.6,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 6.43,
+   "dur": 1.81,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 8.24,
+   "dur": 1.86,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 10.1,
+   "dur": 1.15,
+   "media_start": 8.3
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 11.25,
+   "dur": 1.59,
+   "media_start": 12.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m03.mp4",
+   "start": 12.84,
+   "dur": 1.26,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 14.1,
+   "dur": 2.01,
+   "media_start": 9.6
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 16.11,
+   "dur": 1.47,
+   "media_start": 11.6
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 17.58,
+   "dur": 1.92,
+   "media_start": 12.5
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "Did you know",
+   "end": 0.71
+  },
+  {
+   "start": 0.71,
+   "text": "Indy shooting",
+   "end": 1.54
+  },
+  {
+   "start": 1.54,
+   "text": "the swordsman",
+   "end": 2.43
+  },
+  {
+   "start": 2.43,
+   "text": "wasn't in the script?",
+   "end": 3.83
+  },
+  {
+   "start": 3.83,
+   "text": "Originally,",
+   "end": 4.66
+  },
+  {
+   "start": 4.66,
+   "text": "Indy fought him",
+   "end": 5.6
+  },
+  {
+   "start": 5.6,
+   "text": "with his whip,",
+   "end": 6.43
+  },
+  {
+   "start": 6.43,
+   "text": "a long, multi-page fight.",
+   "end": 8.24
+  },
+  {
+   "start": 8.24,
+   "text": "But on the day,",
+   "end": 9.08
+  },
+  {
+   "start": 9.08,
+   "text": "Harrison Ford",
+   "end": 10.1
+  },
+  {
+   "start": 10.1,
+   "text": "had bad dysentery",
+   "end": 11.25
+  },
+  {
+   "start": 11.25,
+   "text": "and could barely stand.",
+   "end": 12.84
+  },
+  {
+   "start": 12.84,
+   "text": "So he asked Spielberg,",
+   "end": 14.1
+  },
+  {
+   "start": 14.1,
+   "text": "why don't I just",
+   "end": 15.14
+  },
+  {
+   "start": 15.14,
+   "text": "shoot him?",
+   "end": 16.11
+  },
+  {
+   "start": 16.11,
+   "text": "And it became",
+   "end": 16.98
+  },
+  {
+   "start": 16.98,
+   "text": "one of the funniest",
+   "end": 18.05
+  },
+  {
+   "start": 18.05,
+   "text": "scenes in the film.",
+   "end": 19.5
+  }
+ ]
+}
