@@ -97,8 +97,8 @@ __MUSIC__
         document.querySelectorAll(".cap").forEach((cap) => {
           const t = parseFloat(cap.dataset.start);
           const el = cap.querySelector(".t");
-          tl.fromTo(el, { scale: 0.3 }, { scale: 1.055, duration: 4 * f, ease: "none", immediateRender: false }, t);
-          tl.to(el, { scale: 1, duration: f, ease: "none" }, t + 4 * f);
+          tl.fromTo(el, { scale: __POP_FROM__ }, { scale: 1.055, duration: __POP_N__ * f, ease: "none", immediateRender: false }, t);
+          tl.to(el, { scale: 1, duration: f, ease: "none" }, t + __POP_N__ * f);
         });
         document.querySelectorAll(".arrow").forEach((ar) => {
           const t = parseFloat(ar.dataset.start), d = parseFloat(ar.dataset.duration), el = ar.querySelector(".a");
@@ -198,7 +198,7 @@ def main():
         d = min(d, round(dur - c["start"], 3))
         caps.append(
             f'      <div id="cap-{i}" class="clip cap" data-start="{c["start"]}" data-duration="{d}" data-track-index="3">'
-            f'<span class="t">{html.escape(c["text"])}</span></div>'
+            f'<span class="t"{(" style=\"color: " + html.escape(c["color"]) + "\"") if c.get("color") else ""}>{html.escape(c["text"])}</span></div>'
         )
 
     credit = ""
@@ -213,7 +213,8 @@ def main():
 
     out = (TEMPLATE.replace("__SHOTS__", "\n".join(shots)).replace("__CAPS__", "\n".join(caps)).replace("__ARROWS__", "\n".join(arrows))
            .replace("__MUSIC__", music).replace("__CAMDIV__", cam_div).replace("__CREDIT__", credit).replace("__RING2__", RING2).replace("__VOICE__", voice_rel)
-           .replace("__CAMPOS__", a.cam_pos).replace("__RING__", RING).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS)))
+           .replace("__CAMPOS__", a.cam_pos).replace("__RING__", RING).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS))
+           .replace("__POP_N__", str(edit.get("pop_frames", 4))).replace("__POP_FROM__", str(edit.get("pop_from", 0.3))))
     open(os.path.join(proj, "index.html"), "w").write(out)
     if not os.path.exists(os.path.join(proj, "hyperframes.json")):
         json.dump({"$schema": "https://hyperframes.heygen.com/schema/hyperframes.json",

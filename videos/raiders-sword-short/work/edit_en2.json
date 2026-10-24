@@ -1,0 +1,282 @@
+{
+ "duration": 13.4,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/raiders-sword-short/work/voice_en2.wav",
+ "pop_frames": 2,
+ "pop_from": 0.75,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 0,
+   "dur": 1.38,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 1.38,
+   "dur": 0.88,
+   "media_start": 1.5
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 2.26,
+   "dur": 3.55,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 5.81,
+   "dur": 1.49,
+   "media_start": 7.9
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 7.3,
+   "dur": 2.01,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m03.mp4",
+   "start": 9.31,
+   "dur": 1.03,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 10.34,
+   "dur": 0.91,
+   "media_start": 9.8
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 11.25,
+   "dur": 2.15,
+   "media_start": 11.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "Did you",
+   "end": 0.28
+  },
+  {
+   "start": 0.28,
+   "text": "know Indy",
+   "end": 0.69
+  },
+  {
+   "start": 0.69,
+   "text": "shooting",
+   "end": 0.97
+  },
+  {
+   "start": 0.97,
+   "text": "the",
+   "end": 1.1
+  },
+  {
+   "start": 1.1,
+   "text": "swordsman",
+   "color": "#FFD400",
+   "end": 1.38
+  },
+  {
+   "start": 1.38,
+   "text": "was",
+   "end": 1.52
+  },
+  {
+   "start": 1.52,
+   "text": "never",
+   "color": "#FFD400",
+   "end": 1.79
+  },
+  {
+   "start": 1.79,
+   "text": "in the",
+   "end": 2.07
+  },
+  {
+   "start": 2.07,
+   "text": "script?",
+   "end": 2.26
+  },
+  {
+   "start": 2.26,
+   "text": "Originally,",
+   "end": 2.99
+  },
+  {
+   "start": 2.99,
+   "text": "Indy",
+   "end": 3.28
+  },
+  {
+   "start": 3.28,
+   "text": "was supposed",
+   "end": 3.86
+  },
+  {
+   "start": 3.86,
+   "text": "to fight",
+   "end": 4.15
+  },
+  {
+   "start": 4.15,
+   "text": "him with",
+   "end": 4.44
+  },
+  {
+   "start": 4.44,
+   "text": "his",
+   "end": 4.59
+  },
+  {
+   "start": 4.59,
+   "text": "whip,",
+   "color": "#FFD400",
+   "end": 4.73
+  },
+  {
+   "start": 4.73,
+   "text": "in a",
+   "end": 5.03
+  },
+  {
+   "start": 5.03,
+   "text": "long, multi-page",
+   "end": 5.61
+  },
+  {
+   "start": 5.61,
+   "text": "fight.",
+   "end": 5.81
+  },
+  {
+   "start": 5.81,
+   "text": "But on",
+   "end": 6.03
+  },
+  {
+   "start": 6.03,
+   "text": "the day",
+   "end": 6.24
+  },
+  {
+   "start": 6.24,
+   "text": "of filming,",
+   "end": 6.79
+  },
+  {
+   "start": 6.79,
+   "text": "Harrison Ford",
+   "color": "#FFD400",
+   "end": 7.3
+  },
+  {
+   "start": 7.3,
+   "text": "had terrible",
+   "end": 7.69
+  },
+  {
+   "start": 7.69,
+   "text": "dysentery,",
+   "color": "#FFD400",
+   "end": 8.43
+  },
+  {
+   "start": 8.43,
+   "text": "and could",
+   "end": 8.7
+  },
+  {
+   "start": 8.7,
+   "text": "barely",
+   "end": 9.09
+  },
+  {
+   "start": 9.09,
+   "text": "stand.",
+   "end": 9.31
+  },
+  {
+   "start": 9.31,
+   "text": "So he",
+   "end": 9.59
+  },
+  {
+   "start": 9.59,
+   "text": "asked",
+   "end": 9.88
+  },
+  {
+   "start": 9.88,
+   "text": "Spielberg,",
+   "color": "#FFD400",
+   "end": 10.34
+  },
+  {
+   "start": 10.34,
+   "text": "why don't",
+   "end": 10.6
+  },
+  {
+   "start": 10.6,
+   "text": "I just",
+   "end": 10.87
+  },
+  {
+   "start": 10.87,
+   "text": "shoot",
+   "color": "#FFD400",
+   "end": 11.0
+  },
+  {
+   "start": 11.0,
+   "text": "him?",
+   "end": 11.25
+  },
+  {
+   "start": 11.25,
+   "text": "And it",
+   "end": 11.47
+  },
+  {
+   "start": 11.47,
+   "text": "became",
+   "end": 11.69
+  },
+  {
+   "start": 11.69,
+   "text": "one of",
+   "end": 11.91
+  },
+  {
+   "start": 11.91,
+   "text": "the",
+   "end": 12.02
+  },
+  {
+   "start": 12.02,
+   "text": "funniest",
+   "color": "#FFD400",
+   "end": 12.24
+  },
+  {
+   "start": 12.24,
+   "text": "scenes",
+   "end": 12.47
+  },
+  {
+   "start": 12.47,
+   "text": "in movie",
+   "end": 12.69
+  },
+  {
+   "start": 12.69,
+   "text": "history.",
+   "end": 13.4
+  }
+ ]
+}

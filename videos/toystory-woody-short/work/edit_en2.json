@@ -1,0 +1,316 @@
+{
+ "duration": 14.3,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/toystory-woody-short/work/voice_en2.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t1.mp4",
+   "start": 0,
+   "dur": 0.91,
+   "media_start": 1.1
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 0.91,
+   "dur": 0.99,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t3.mp4",
+   "start": 1.9,
+   "dur": 3.09,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t4.mp4",
+   "start": 4.99,
+   "dur": 1.52,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t5.mp4",
+   "start": 6.51,
+   "dur": 1.76,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t6.mp4",
+   "start": 8.27,
+   "dur": 1.93,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 10.2,
+   "dur": 0.67,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t7.mp4",
+   "start": 10.87,
+   "dur": 3.43,
+   "media_start": 0.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.01,
+   "text": "Did you",
+   "end": 0.27
+  },
+  {
+   "start": 0.27,
+   "text": "know the",
+   "end": 0.52
+  },
+  {
+   "start": 0.52,
+   "text": "first Woody",
+   "color": "#FFD400",
+   "end": 0.91
+  },
+  {
+   "start": 0.91,
+   "text": "almost",
+   "end": 1.17
+  },
+  {
+   "start": 1.17,
+   "text": "killed",
+   "end": 1.42
+  },
+  {
+   "start": 1.42,
+   "text": "Toy Story?",
+   "color": "#FFD400",
+   "end": 1.9
+  },
+  {
+   "start": 1.9,
+   "text": "In",
+   "end": 2.03
+  },
+  {
+   "start": 2.03,
+   "text": "1993,",
+   "color": "#FFD400",
+   "end": 3.16
+  },
+  {
+   "start": 3.16,
+   "text": "Pixar",
+   "end": 3.43
+  },
+  {
+   "start": 3.43,
+   "text": "showed",
+   "end": 3.7
+  },
+  {
+   "start": 3.7,
+   "text": "Disney",
+   "end": 3.96
+  },
+  {
+   "start": 3.96,
+   "text": "an early",
+   "end": 4.37
+  },
+  {
+   "start": 4.37,
+   "text": "cut of",
+   "end": 4.64
+  },
+  {
+   "start": 4.64,
+   "text": "the movie.",
+   "end": 4.99
+  },
+  {
+   "start": 4.99,
+   "text": "And",
+   "end": 5.15
+  },
+  {
+   "start": 5.15,
+   "text": "that",
+   "end": 5.32
+  },
+  {
+   "start": 5.32,
+   "text": "Woody",
+   "end": 5.66
+  },
+  {
+   "start": 5.66,
+   "text": "was",
+   "end": 5.83
+  },
+  {
+   "start": 5.83,
+   "text": "a",
+   "end": 6.0
+  },
+  {
+   "start": 6.0,
+   "text": "total",
+   "end": 6.34
+  },
+  {
+   "start": 6.34,
+   "text": "jerk.",
+   "color": "#FFD400",
+   "end": 6.51
+  },
+  {
+   "start": 6.51,
+   "text": "Selfish,",
+   "end": 6.85
+  },
+  {
+   "start": 6.85,
+   "text": "mean,",
+   "end": 7.02
+  },
+  {
+   "start": 7.02,
+   "text": "and",
+   "end": 7.19
+  },
+  {
+   "start": 7.19,
+   "text": "yelling",
+   "end": 7.53
+  },
+  {
+   "start": 7.53,
+   "text": "at",
+   "end": 7.7
+  },
+  {
+   "start": 7.7,
+   "text": "all",
+   "end": 7.87
+  },
+  {
+   "start": 7.87,
+   "text": "his",
+   "end": 8.04
+  },
+  {
+   "start": 8.04,
+   "text": "friends.",
+   "end": 8.27
+  },
+  {
+   "start": 8.27,
+   "text": "But the",
+   "end": 8.51
+  },
+  {
+   "start": 8.51,
+   "text": "Disney",
+   "end": 8.74
+  },
+  {
+   "start": 8.74,
+   "text": "bosses",
+   "end": 8.98
+  },
+  {
+   "start": 8.98,
+   "text": "hated",
+   "color": "#FFD400",
+   "end": 9.22
+  },
+  {
+   "start": 9.22,
+   "text": "it,",
+   "end": 9.62
+  },
+  {
+   "start": 9.62,
+   "text": "and",
+   "end": 9.78
+  },
+  {
+   "start": 9.78,
+   "text": "they",
+   "end": 9.95
+  },
+  {
+   "start": 9.95,
+   "text": "shut",
+   "color": "#FFD400",
+   "end": 10.12
+  },
+  {
+   "start": 10.12,
+   "text": "the",
+   "end": 10.29
+  },
+  {
+   "start": 10.29,
+   "text": "whole",
+   "end": 10.45
+  },
+  {
+   "start": 10.45,
+   "text": "movie",
+   "end": 10.62
+  },
+  {
+   "start": 10.62,
+   "text": "down.",
+   "end": 10.87
+  },
+  {
+   "start": 10.87,
+   "text": "So Pixar",
+   "end": 11.26
+  },
+  {
+   "start": 11.26,
+   "text": "rewrote",
+   "end": 11.52
+  },
+  {
+   "start": 11.52,
+   "text": "the story,",
+   "end": 12.19
+  },
+  {
+   "start": 12.19,
+   "text": "and turned",
+   "end": 12.57
+  },
+  {
+   "start": 12.57,
+   "text": "him into",
+   "end": 12.94
+  },
+  {
+   "start": 12.94,
+   "text": "the",
+   "end": 13.06
+  },
+  {
+   "start": 13.06,
+   "text": "kind Woody",
+   "color": "#FFD400",
+   "end": 13.44
+  },
+  {
+   "start": 13.44,
+   "text": "we love",
+   "end": 13.69
+  },
+  {
+   "start": 13.69,
+   "text": "today.",
+   "end": 14.3
+  }
+ ],
+ "pop_frames": 2,
+ "pop_from": 0.75
+}
