@@ -28,6 +28,13 @@ to the viewer ("Would you go?") to get comments.
 - Voice pitched down 7% with a short reverb tail. The bed drops to E1 and adds a
   high tone a half-step apart.
 
+- Real footage replaces the drawn chart for 0–17.3s: five screen recordings the
+  user made of the Air India AI549 flight over North Sentinel (YouTube, Jerin G,
+  https://youtu.be/R1VbbpjYkc4). They're cropped to 9:16 clear of YouTube's cards
+  and graded dark and cold (exposure -0.45, saturation -0.45). The drawn chart stays
+  for the "?" ending. The drawn helicopter and canoe were removed, since drawings
+  over real footage would read as fake.
+
 ## Script (voiceover)
 
 1. There's an island where just visiting is a crime.
@@ -45,8 +52,10 @@ to the viewer ("Would you go?") to get comments.
 
 ## Notes
 
-- Map tiles and satellite imagery were blocked in this sandbox, so the island and
-  the Andaman chain are drawn as a nautical chart. The chain is schematic, not to scale.
+- Footage rights: the uploader licenses this footage (the contact email is in the
+  video description). Clear it before monetizing.
+- assets/footage/shoreline-high.mp4 is a tighter crop (511px wide, scaled up 2.1x)
+  to avoid two YouTube cards, so it's softer than the others.
 - No Whisper model was available offline. Caption timings come from where each
   phrase is placed plus the pauses silencedetect found inside it.
 - GSAP is vendored under assets/vendor because the CDN is blocked.

@@ -1,16 +1,12 @@
-<!doctype html>
-<html
-  lang="en"
-  data-resolution="portrait"
-  data-composition-variables='[
-    {"id":"ocean","type":"color","label":"Ocean","default":"#0e2328"},
-    {"id":"accent","type":"color","label":"Accent (no-go red)","default":"#c8231d"},
-    {"id":"sand","type":"color","label":"Sand / title ink","default":"#ddd3b4"}
-  ]'
->
+<!DOCTYPE html>
+<html lang="en" data-resolution="portrait" data-composition-variables="[
+    {&quot;id&quot;:&quot;ocean&quot;,&quot;type&quot;:&quot;color&quot;,&quot;label&quot;:&quot;Ocean&quot;,&quot;default&quot;:&quot;#0e2328&quot;},
+    {&quot;id&quot;:&quot;accent&quot;,&quot;type&quot;:&quot;color&quot;,&quot;label&quot;:&quot;Accent (no-go red)&quot;,&quot;default&quot;:&quot;#c8231d&quot;},
+    {&quot;id&quot;:&quot;sand&quot;,&quot;type&quot;:&quot;color&quot;,&quot;label&quot;:&quot;Sand / title ink&quot;,&quot;default&quot;:&quot;#ddd3b4&quot;}
+  ]">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
     <script src="assets/vendor/gsap.min.js"></script>
     <style>
       :root {
@@ -44,148 +40,33 @@
     </style>
   </head>
   <body>
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="20"
-      data-width="1080"
-      data-height="1920"
-    >
+    <div data-hf-id="hf-wtrm" id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
       <!-- The chart: one world the camera travels through for the whole film -->
-      <div
-        id="chart"
-        data-composition-id="chart"
-        data-composition-src="compositions/chart.html"
-        data-start="0"
-        data-duration="20"
-        data-track-index="1"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 1"
-      ></div>
+      <div data-hf-id="hf-uyax" id="chart" data-composition-id="chart" data-composition-src="compositions/chart.html" data-start="0" data-duration="20" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 1"></div>
 
       <!-- Beat titles, one scene per voiceover line -->
-      <div
-        id="hook"
-        data-composition-id="hook"
-        data-composition-src="compositions/hook.html"
-        data-start="0"
-        data-duration="3"
-        data-track-index="2"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 3"
-      ></div>
-      <div
-        id="where"
-        data-composition-id="where"
-        data-composition-src="compositions/where.html"
-        data-start="3"
-        data-duration="2.45"
-        data-track-index="2"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 3"
-      ></div>
-      <div
-        id="years"
-        data-composition-id="years"
-        data-composition-src="compositions/years.html"
-        data-start="5.45"
-        data-duration="4.45"
-        data-track-index="2"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 3"
-      ></div>
-      <div
-        id="y2004"
-        data-composition-id="y2004"
-        data-composition-src="compositions/y2004.html"
-        data-start="9.9"
-        data-duration="3.6"
-        data-track-index="2"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 3"
-      ></div>
-      <div
-        id="y2018"
-        data-composition-id="y2018"
-        data-composition-src="compositions/y2018.html"
-        data-start="13.5"
-        data-duration="3.8"
-        data-track-index="2"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 3"
-      ></div>
-      <div
-        id="unknown"
-        data-composition-id="unknown"
-        data-composition-src="compositions/unknown.html"
-        data-start="17.3"
-        data-duration="2.7"
-        data-track-index="2"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 3"
-      ></div>
+      <div data-hf-id="hf-sw64" id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="3" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div data-hf-id="hf-4ni1" id="where" data-composition-id="where" data-composition-src="compositions/where.html" data-start="3" data-duration="2.45" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div data-hf-id="hf-1mpr" id="years" data-composition-id="years" data-composition-src="compositions/years.html" data-start="5.45" data-duration="4.45" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div data-hf-id="hf-vcv6" id="y2004" data-composition-id="y2004" data-composition-src="compositions/y2004.html" data-start="9.9" data-duration="3.6" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div data-hf-id="hf-8bbi" id="y2018" data-composition-id="y2018" data-composition-src="compositions/y2018.html" data-start="13.5" data-duration="3.8" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div data-hf-id="hf-iq2s" id="unknown" data-composition-id="unknown" data-composition-src="compositions/unknown.html" data-start="17.3" data-duration="2.7" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+
+      <!-- Real footage: Air India AI549 over North Sentinel (screen recordings by the channel) -->
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.45,&quot;contrast&quot;:0.22,&quot;highlights&quot;:-0.3,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:-0.15,&quot;temperature&quot;:-0.18,&quot;tint&quot;:0.03,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.45},&quot;details&quot;:{&quot;vignette&quot;:0.3,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.08,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-lgw9" id="v-hook" class="clip" src="assets/footage/window-engine.mp4" data-start="0" data-duration="3.0" data-media-start="0.4" data-track-index="7" muted playsinline style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 1"></video>
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.45,&quot;contrast&quot;:0.22,&quot;highlights&quot;:-0.3,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:-0.15,&quot;temperature&quot;:-0.18,&quot;tint&quot;:0.03,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.45},&quot;details&quot;:{&quot;vignette&quot;:0.3,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.08,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-tqnt" id="v-where" class="clip" src="assets/footage/island-clouds.mp4" data-start="3.0" data-duration="2.45" data-media-start="0.2" data-track-index="7" muted playsinline style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 1"></video>
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.45,&quot;contrast&quot;:0.22,&quot;highlights&quot;:-0.3,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:-0.15,&quot;temperature&quot;:-0.18,&quot;tint&quot;:0.03,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.45},&quot;details&quot;:{&quot;vignette&quot;:0.3,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.08,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-9ovn" id="v-years" class="clip" src="assets/footage/reef-coast.mp4" data-start="5.45" data-duration="4.45" data-media-start="1.0" data-track-index="7" muted playsinline style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 1"></video>
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.45,&quot;contrast&quot;:0.22,&quot;highlights&quot;:-0.3,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:-0.15,&quot;temperature&quot;:-0.18,&quot;tint&quot;:0.03,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.45},&quot;details&quot;:{&quot;vignette&quot;:0.3,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.08,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-msvp" id="v-2004" class="clip" src="assets/footage/shoreline-high.mp4" data-start="9.9" data-duration="3.6" data-media-start="0.0" data-track-index="7" muted playsinline style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 1"></video>
+      <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.45,&quot;contrast&quot;:0.22,&quot;highlights&quot;:-0.3,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:-0.15,&quot;temperature&quot;:-0.18,&quot;tint&quot;:0.03,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.45},&quot;details&quot;:{&quot;vignette&quot;:0.3,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.08,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-j9o2" id="v-2018" class="clip" src="assets/footage/beach-close.mp4" data-start="13.5" data-duration="3.8" data-media-start="0.9" data-track-index="7" muted playsinline style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; z-index: 1"></video>
 
       <!-- Night mood: fog, vignette, grain, exposure flicker -->
-      <div
-        id="mood"
-        data-composition-id="mood"
-        data-composition-src="compositions/mood.html"
-        data-start="0"
-        data-duration="20"
-        data-track-index="6"
-        data-track-kind="graphics"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 2"
-      ></div>
+      <div data-hf-id="hf-zrvw" id="mood" data-composition-id="mood" data-composition-src="compositions/mood.html" data-start="0" data-duration="20" data-track-index="6" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
 
       <!-- Burned-in captions for muted viewers -->
-      <div
-        id="captions"
-        data-composition-id="captions"
-        data-composition-src="compositions/captions.html"
-        data-start="0"
-        data-duration="20"
-        data-track-index="3"
-        data-track-kind="captions"
-        data-width="1080"
-        data-height="1920"
-        style="z-index: 4"
-      ></div>
+      <div data-hf-id="hf-rbqh" id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="20" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 4"></div>
 
-      <audio
-        id="voiceover"
-        class="clip"
-        src="assets/audio/voiceover.m4a"
-        data-start="0"
-        data-duration="20"
-        data-track-index="4"
-        data-volume="1"
-      ></audio>
-      <audio
-        id="bed"
-        class="clip"
-        src="assets/audio/bed.m4a"
-        data-start="0"
-        data-duration="20"
-        data-track-index="5"
-        data-volume="1"
-      ></audio>
+      <audio data-hf-id="hf-mkxk" id="voiceover" class="clip" src="assets/audio/voiceover.m4a" data-start="0" data-duration="20" data-track-index="4" data-volume="1"></audio>
+      <audio data-hf-id="hf-upaj" id="bed" class="clip" src="assets/audio/bed.m4a" data-start="0" data-duration="20" data-track-index="5" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};

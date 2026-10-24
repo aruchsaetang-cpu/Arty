@@ -27,21 +27,6 @@
       letter-spacing: 0.12em;
       color: #ffffff;
     }
-    #y2004-heli {
-      position: absolute;
-      left: 0;
-      top: 540px;
-      width: 260px;
-      height: 130px;
-    }
-    #y2004-arrow {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 1080px;
-      height: 1920px;
-      overflow: visible;
-    }
     #y2004-year-in {
       opacity: 0;
     }
@@ -53,25 +38,6 @@
     <div id="y2004-sub" class="clip" data-start="0" data-duration="3.6">
       <span id="y2004-sub-in">AFTER THE TSUNAMI</span>
     </div>
-    <svg id="y2004-arrow" class="clip" data-start="0" data-duration="3.6" data-layout-ignore viewBox="0 0 1080 1920">
-      <line id="y2004-shot" x1="520" y1="787" x2="610" y2="642" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
-      <circle id="y2004-archer" cx="520" cy="787" r="11" fill="var(--accent, #c8231d)" />
-    </svg>
-    <div id="y2004-heli" class="clip" data-start="0" data-duration="3.6" data-layout-ignore>
-      <svg id="y2004-heli-in" width="260" height="130" viewBox="0 0 260 130">
-        <g fill="#0c2a31">
-          <ellipse cx="150" cy="70" rx="62" ry="30" />
-          <path d="M 95 64 L 18 58 L 18 70 L 95 80 Z" />
-          <rect x="10" y="44" width="8" height="34" rx="3" />
-          <rect x="146" y="30" width="10" height="14" />
-          <rect x="112" y="106" width="96" height="6" rx="3" />
-          <rect x="128" y="96" width="5" height="12" />
-          <rect x="182" y="96" width="5" height="12" />
-        </g>
-        <path d="M 172 52 C 196 52 208 62 210 74 L 176 74 Z" fill="#8fc7c9" />
-        <rect id="y2004-rotor" x="40" y="24" width="220" height="7" rx="3" fill="#0c2a31" />
-      </svg>
-    </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
@@ -80,14 +46,7 @@
     };
     flick("#y2004-year-in", 0.08);
     tl.fromTo("#y2004-sub-in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.4);
-    // Rescue helicopter crosses the north beach.
-    tl.fromTo("#y2004-heli-in", { x: -300, rotation: 4 }, { x: 1180, rotation: 4, duration: 3.1, ease: "none" }, 0.4);
-    tl.fromTo("#y2004-rotor", { scaleX: 1, transformOrigin: "50% 50%" }, { scaleX: 0.15, duration: 0.07, ease: "none", yoyo: true, repeat: 41 }, 0.4);
-    // On "bow": one figure on the beach, one line drawn up at the helicopter.
-    const shotLen = Math.hypot(90, 145);
-    tl.fromTo("#y2004-archer", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 1.55);
-    tl.fromTo("#y2004-shot", { strokeDasharray: shotLen, strokeDashoffset: shotLen, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.22, ease: "power3.out" }, 1.95);
-    tl.to(["#y2004-year-in", "#y2004-sub-in", "#y2004-shot", "#y2004-archer"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 3.3);
+    tl.to(["#y2004-year-in", "#y2004-sub-in"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 3.3);
     window.__timelines["y2004"] = tl;
   </script>
 </template>
