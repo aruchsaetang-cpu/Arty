@@ -1,0 +1,299 @@
+{
+ "duration": 13.85,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/raiders-sword-short/work/voice_en3.wav",
+ "pop_frames": 2,
+ "pop_from": 0.75,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 0,
+   "dur": 1.37,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 1.37,
+   "dur": 0.91,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 2.28,
+   "dur": 0.96,
+   "media_start": 1.5
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 3.24,
+   "dur": 2.37,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m03.mp4",
+   "start": 5.61,
+   "dur": 1.27,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 6.88,
+   "dur": 1.5,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m03.mp4",
+   "start": 8.38,
+   "dur": 1.11,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 9.49,
+   "dur": 1.13,
+   "media_start": 9.8
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m01.mp4",
+   "start": 10.62,
+   "dur": 2.07,
+   "media_start": 11.0
+  },
+  {
+   "src": "/home/user/Arty/videos/raiders-sword-short/broll/m02.mp4",
+   "start": 12.69,
+   "dur": 1.16,
+   "media_start": 12.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.01,
+   "text": "Okay,",
+   "end": 0.31
+  },
+  {
+   "start": 0.31,
+   "text": "so that",
+   "end": 0.61
+  },
+  {
+   "start": 0.61,
+   "text": "scene where",
+   "end": 0.91
+  },
+  {
+   "start": 0.91,
+   "text": "Indy",
+   "end": 1.22
+  },
+  {
+   "start": 1.22,
+   "text": "just",
+   "end": 1.37
+  },
+  {
+   "start": 1.37,
+   "text": "shoots",
+   "color": "#FFD400",
+   "end": 1.52
+  },
+  {
+   "start": 1.52,
+   "text": "the swordsman?",
+   "end": 2.28
+  },
+  {
+   "start": 2.28,
+   "text": "It was",
+   "end": 2.53
+  },
+  {
+   "start": 2.53,
+   "text": "never",
+   "color": "#FFD400",
+   "end": 2.78
+  },
+  {
+   "start": 2.78,
+   "text": "in the",
+   "end": 3.03
+  },
+  {
+   "start": 3.03,
+   "text": "script.",
+   "end": 3.24
+  },
+  {
+   "start": 3.24,
+   "text": "Originally,",
+   "end": 3.9
+  },
+  {
+   "start": 3.9,
+   "text": "they were",
+   "end": 4.16
+  },
+  {
+   "start": 4.16,
+   "text": "supposed",
+   "end": 4.56
+  },
+  {
+   "start": 4.56,
+   "text": "to have",
+   "end": 4.83
+  },
+  {
+   "start": 4.83,
+   "text": "this huge,",
+   "end": 5.09
+  },
+  {
+   "start": 5.09,
+   "text": "long",
+   "end": 5.22
+  },
+  {
+   "start": 5.22,
+   "text": "whip",
+   "color": "#FFD400",
+   "end": 5.36
+  },
+  {
+   "start": 5.36,
+   "text": "fight.",
+   "end": 5.61
+  },
+  {
+   "start": 5.61,
+   "text": "But",
+   "end": 5.72
+  },
+  {
+   "start": 5.72,
+   "text": "Harrison Ford",
+   "color": "#FFD400",
+   "end": 6.17
+  },
+  {
+   "start": 6.17,
+   "text": "had",
+   "end": 6.28
+  },
+  {
+   "start": 6.28,
+   "text": "dysentery",
+   "color": "#FFD400",
+   "end": 6.72
+  },
+  {
+   "start": 6.72,
+   "text": "that day,",
+   "end": 7.21
+  },
+  {
+   "start": 7.21,
+   "text": "and he",
+   "end": 7.45
+  },
+  {
+   "start": 7.45,
+   "text": "could barely",
+   "end": 7.93
+  },
+  {
+   "start": 7.93,
+   "text": "even",
+   "end": 8.18
+  },
+  {
+   "start": 8.18,
+   "text": "stand.",
+   "end": 8.38
+  },
+  {
+   "start": 8.38,
+   "text": "So he",
+   "end": 8.67
+  },
+  {
+   "start": 8.67,
+   "text": "goes to",
+   "end": 8.97
+  },
+  {
+   "start": 8.97,
+   "text": "Spielberg,",
+   "color": "#FFD400",
+   "end": 9.49
+  },
+  {
+   "start": 9.49,
+   "text": "why don't",
+   "end": 9.79
+  },
+  {
+   "start": 9.79,
+   "text": "I just",
+   "end": 10.08
+  },
+  {
+   "start": 10.08,
+   "text": "shoot",
+   "color": "#FFD400",
+   "end": 10.23
+  },
+  {
+   "start": 10.23,
+   "text": "the guy?",
+   "end": 10.62
+  },
+  {
+   "start": 10.62,
+   "text": "And honestly?",
+   "end": 11.46
+  },
+  {
+   "start": 11.46,
+   "text": "It ended",
+   "end": 11.83
+  },
+  {
+   "start": 11.83,
+   "text": "up being",
+   "end": 12.09
+  },
+  {
+   "start": 12.09,
+   "text": "one of",
+   "end": 12.34
+  },
+  {
+   "start": 12.34,
+   "text": "the",
+   "end": 12.47
+  },
+  {
+   "start": 12.47,
+   "text": "funniest",
+   "color": "#FFD400",
+   "end": 12.72
+  },
+  {
+   "start": 12.72,
+   "text": "scenes",
+   "end": 12.97
+  },
+  {
+   "start": 12.97,
+   "text": "in the",
+   "end": 13.22
+  },
+  {
+   "start": 13.22,
+   "text": "whole movie.",
+   "end": 13.85
+  }
+ ]
+}

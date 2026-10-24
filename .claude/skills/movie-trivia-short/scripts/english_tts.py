@@ -62,7 +62,53 @@ def speech_runs(x, sr, thr=0.012, min_gap=0.09):
             last = i
     if s is not None:
         runs.append((s * 0.01, (last + 1) * 0.01))
-    return runs
+    merged = []  # blips under 80 ms are breaths/clicks: fold them into the previous run
+    for r in runs:
+        if merged and r[1] - r[0] < 0.08:
+            merged[-1] = (merged[-1][0], r[1])
+        else:
+            merged.append(r)
+    return merged
+
+
+def csyl(cl):
+    return sum(syllables(p) for tk in cl for p in tk[0].split())
+
+
+def partition(items, k, weight, target):
+    """split items into k consecutive groups whose weight shares best match target shares (DP)"""
+    n = len(items)
+    tot = sum(weight(i) for i in items) or 1
+    pre = [0]
+    for i in items:
+        pre.append(pre[-1] + weight(i) / tot)
+    INF = float("inf")
+    best = [[INF] * (n + 1) for _ in range(k + 1)]
+    back = [[0] * (n + 1) for _ in range(k + 1)]
+    best[0][0] = 0
+    for g in range(1, k + 1):
+        for j in range(g, n - (k - g) + 1):
+            for i in range(g - 1, j):
+                c = best[g - 1][i] + abs((pre[j] - pre[i]) - target[g - 1])
+                if c < best[g][j]:
+                    best[g][j], back[g][j] = c, i
+    cuts, j = [], n
+    for g in range(k, 0, -1):
+        i = back[g][j]
+        cuts.append((i, j))
+        j = i
+    return [items[i:j] for i, j in reversed(cuts)]
+
+
+def align(runs, clauses):
+    """pair voiced runs with clauses; returns [((start, end), clause_tokens)]"""
+    if len(runs) >= len(clauses):
+        tot = sum(csyl(c) for c in clauses)
+        groups = partition(runs, len(clauses), lambda r: r[1] - r[0], [csyl(c) / tot for c in clauses])
+        return [((g[0][0], g[-1][1]), c) for g, c in zip(groups, clauses)]
+    tot = sum(r[1] - r[0] for r in runs)
+    groups = partition(clauses, len(runs), csyl, [(r[1] - r[0]) / tot for r in runs])
+    return [(r, [tk for c in g for tk in c]) for r, g in zip(runs, groups)]
 
 
 spec = json.load(open(sys.argv[1]))
@@ -86,10 +132,8 @@ for sent in spec["sentences"]:
     if cur:
         clauses.append(cur)
     runs = speech_runs(x, sr)
-    if len(runs) != len(clauses):
-        runs = [(0.0, dur)]
-        clauses = [toks]
-    for (a, b), cl in zip(runs, clauses):
+    segs = align(runs, clauses)
+    for (a, b), cl in segs:
         w = [sum(syllables(p) for p in tk[0].split()) for tk in cl]
         pos = a
         for (txt, key), wi in zip(cl, w):

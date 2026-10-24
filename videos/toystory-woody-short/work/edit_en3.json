@@ -1,0 +1,296 @@
+{
+ "duration": 15.05,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/toystory-woody-short/work/voice_en3.wav",
+ "pop_frames": 2,
+ "pop_from": 0.75,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t1.mp4",
+   "start": 0,
+   "dur": 0.78,
+   "media_start": 1.1
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 0.78,
+   "dur": 1.34,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t3.mp4",
+   "start": 2.12,
+   "dur": 3.54,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t4.mp4",
+   "start": 5.66,
+   "dur": 1.34,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t5.mp4",
+   "start": 7.0,
+   "dur": 1.9,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t6.mp4",
+   "start": 8.9,
+   "dur": 1.7,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 10.6,
+   "dur": 0.81,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t7.mp4",
+   "start": 11.41,
+   "dur": 3.64,
+   "media_start": 0.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.01,
+   "text": "Wait,",
+   "end": 0.29
+  },
+  {
+   "start": 0.29,
+   "text": "did you",
+   "end": 0.53
+  },
+  {
+   "start": 0.53,
+   "text": "know the",
+   "end": 0.78
+  },
+  {
+   "start": 0.78,
+   "text": "first Woody",
+   "color": "#FFD400",
+   "end": 1.15
+  },
+  {
+   "start": 1.15,
+   "text": "almost",
+   "end": 1.39
+  },
+  {
+   "start": 1.39,
+   "text": "killed",
+   "end": 1.63
+  },
+  {
+   "start": 1.63,
+   "text": "Toy Story?",
+   "color": "#FFD400",
+   "end": 2.12
+  },
+  {
+   "start": 2.12,
+   "text": "Back in",
+   "end": 2.41
+  },
+  {
+   "start": 2.41,
+   "text": "1993,",
+   "color": "#FFD400",
+   "end": 3.62
+  },
+  {
+   "start": 3.62,
+   "text": "Pixar",
+   "end": 3.9
+  },
+  {
+   "start": 3.9,
+   "text": "showed",
+   "end": 4.18
+  },
+  {
+   "start": 4.18,
+   "text": "Disney",
+   "end": 4.46
+  },
+  {
+   "start": 4.46,
+   "text": "an early",
+   "end": 4.88
+  },
+  {
+   "start": 4.88,
+   "text": "version",
+   "end": 5.16
+  },
+  {
+   "start": 5.16,
+   "text": "of the",
+   "end": 5.44
+  },
+  {
+   "start": 5.44,
+   "text": "movie.",
+   "end": 5.66
+  },
+  {
+   "start": 5.66,
+   "text": "And Woody?",
+   "end": 6.0
+  },
+  {
+   "start": 6.0,
+   "text": "He was",
+   "end": 6.22
+  },
+  {
+   "start": 6.22,
+   "text": "a total",
+   "end": 6.55
+  },
+  {
+   "start": 6.55,
+   "text": "jerk.",
+   "color": "#FFD400",
+   "end": 7.0
+  },
+  {
+   "start": 7.0,
+   "text": "Like,",
+   "end": 7.19
+  },
+  {
+   "start": 7.19,
+   "text": "mean,",
+   "end": 7.37
+  },
+  {
+   "start": 7.37,
+   "text": "selfish,",
+   "end": 7.73
+  },
+  {
+   "start": 7.73,
+   "text": "yelling",
+   "end": 8.09
+  },
+  {
+   "start": 8.09,
+   "text": "at",
+   "end": 8.27
+  },
+  {
+   "start": 8.27,
+   "text": "all",
+   "end": 8.45
+  },
+  {
+   "start": 8.45,
+   "text": "his",
+   "end": 8.63
+  },
+  {
+   "start": 8.63,
+   "text": "friends.",
+   "end": 8.9
+  },
+  {
+   "start": 8.9,
+   "text": "But Disney",
+   "end": 9.22
+  },
+  {
+   "start": 9.22,
+   "text": "hated",
+   "color": "#FFD400",
+   "end": 9.44
+  },
+  {
+   "start": 9.44,
+   "text": "it,",
+   "end": 9.77
+  },
+  {
+   "start": 9.77,
+   "text": "so they",
+   "end": 10.05
+  },
+  {
+   "start": 10.05,
+   "text": "literally",
+   "end": 10.6
+  },
+  {
+   "start": 10.6,
+   "text": "shut",
+   "color": "#FFD400",
+   "end": 10.74
+  },
+  {
+   "start": 10.74,
+   "text": "the whole",
+   "end": 11.01
+  },
+  {
+   "start": 11.01,
+   "text": "movie down.",
+   "end": 11.41
+  },
+  {
+   "start": 11.41,
+   "text": "So Pixar",
+   "end": 11.84
+  },
+  {
+   "start": 11.84,
+   "text": "went back,",
+   "end": 12.44
+  },
+  {
+   "start": 12.44,
+   "text": "rewrote",
+   "end": 12.63
+  },
+  {
+   "start": 12.63,
+   "text": "everything,",
+   "end": 13.2
+  },
+  {
+   "start": 13.2,
+   "text": "and that's",
+   "end": 13.45
+  },
+  {
+   "start": 13.45,
+   "text": "how we",
+   "end": 13.7
+  },
+  {
+   "start": 13.7,
+   "text": "got the",
+   "end": 13.95
+  },
+  {
+   "start": 13.95,
+   "text": "Woody",
+   "color": "#FFD400",
+   "end": 14.19
+  },
+  {
+   "start": 14.19,
+   "text": "we love",
+   "end": 14.44
+  },
+  {
+   "start": 14.44,
+   "text": "today.",
+   "end": 15.05
+  }
+ ]
+}
