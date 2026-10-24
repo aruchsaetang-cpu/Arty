@@ -1,0 +1,85 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    #years-kicker {
+      position: absolute;
+      left: 0;
+      top: 210px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      font-size: 50px;
+      letter-spacing: 0.2em;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(8, 30, 36, 0.6);
+    }
+    #years-num {
+      position: absolute;
+      left: 0;
+      top: 290px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      font-size: 300px;
+      line-height: 1;
+      color: var(--sand, #f1e3b8);
+      text-shadow: 0 8px 0 rgba(8, 30, 36, 0.6);
+      font-variant-numeric: tabular-nums;
+    }
+    #years-unit {
+      position: absolute;
+      left: 0;
+      top: 600px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      font-size: 110px;
+      line-height: 1;
+      color: #ffffff;
+      text-shadow: 0 6px 0 rgba(8, 30, 36, 0.6);
+    }
+  </style>
+  <div id="root" data-composition-id="years" data-width="1080" data-height="1920">
+    <div id="years-kicker" class="clip" data-start="0" data-duration="4.45">
+      <span id="years-kicker-in">NO OUTSIDE CONTACT</span>
+    </div>
+    <div id="years-num" class="clip" data-start="0" data-duration="4.45">
+      <span id="years-num-in">0</span>
+    </div>
+    <div id="years-unit" class="clip" data-start="0" data-duration="4.45">
+      <span id="years-unit-in">YEARS?</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // "refused contact" → kicker; count lands on "sixty thousand".
+    tl.fromTo("#years-kicker-in", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, 0.75);
+    tl.fromTo("#years-num-in", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" }, 1.4);
+    const counter = { v: 0 };
+    const num = document.querySelector("#years-num-in");
+    tl.fromTo(
+      counter,
+      { v: 0 },
+      {
+        v: 60000,
+        duration: 1.5,
+        ease: "power3.out",
+        onUpdate: () => {
+          num.textContent = (Math.round(counter.v / 100) * 100).toLocaleString("en-US");
+        },
+      },
+      1.42
+    );
+    tl.to("#years-num-in", { scale: 1.08, duration: 0.08, ease: "power2.out", yoyo: true, repeat: 1 }, 2.92);
+    tl.fromTo("#years-unit-in", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 2.95);
+    tl.to(["#years-kicker-in", "#years-num-in", "#years-unit-in"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 4.1);
+    window.__timelines["years"] = tl;
+  </script>
+</template>

@@ -1,0 +1,88 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    #where-title {
+      position: absolute;
+      left: 0;
+      top: 220px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      font-size: 128px;
+      line-height: 1;
+      color: var(--sand, #f1e3b8);
+      text-shadow: 0 6px 0 rgba(8, 30, 36, 0.55);
+    }
+    #where-ocean {
+      position: absolute;
+      left: 0;
+      top: 392px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 400;
+      font-size: 52px;
+      letter-spacing: 0.32em;
+      color: #ffffff;
+    }
+    #where-pin {
+      position: absolute;
+      left: 120px;
+      top: 1000px;
+      width: 280px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      font-size: 34px;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+    }
+    #where-chain {
+      position: absolute;
+      left: 470px;
+      top: 660px;
+      width: 290px;
+      text-align: right;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+      color: var(--sand, #f1e3b8);
+    }
+  </style>
+  <div id="root" data-composition-id="where" data-width="1080" data-height="1920">
+    <div id="where-title" class="clip" data-start="0" data-duration="2.45">
+      <span id="where-title-in">NORTH SENTINEL</span>
+    </div>
+    <div id="where-ocean" class="clip" data-start="0" data-duration="2.45">
+      <span id="where-ocean-in">INDIAN OCEAN</span>
+    </div>
+    <div id="where-pin" class="clip" data-start="0" data-duration="2.45">
+      <span id="where-pin-in">11°33′N 92°14′E</span>
+    </div>
+    <div id="where-chain" class="clip" data-start="0" data-duration="2.45">
+      <span id="where-chain-in">ANDAMAN<br />ISLANDS →</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(
+      "#where-title-in",
+      { opacity: 0, scale: 0.86, filter: "blur(8px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
+      0.12
+    );
+    tl.fromTo("#where-pin-in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.5);
+    tl.fromTo("#where-ocean-in", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 1.05);
+    tl.fromTo("#where-chain-in", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power4.out" }, 1.45);
+    tl.to(["#where-title-in", "#where-ocean-in", "#where-pin-in", "#where-chain-in"], { opacity: 0, duration: 0.18, ease: "power2.in" }, 2.2);
+    window.__timelines["where"] = tl;
+  </script>
+</template>

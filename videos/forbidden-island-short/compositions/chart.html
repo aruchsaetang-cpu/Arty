@@ -1,0 +1,157 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--ocean, #1c5866);
+    }
+    #chart-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      transform-origin: 540px 820px;
+    }
+    #chart-svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: visible;
+    }
+  </style>
+  <div id="root" data-composition-id="chart" data-width="1080" data-height="1920">
+    <div id="chart-cam" data-layout-allow-overflow data-layout-ignore>
+      <svg id="chart-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path
+            id="isle"
+            d="M -40 -255 C 60 -268 170 -235 225 -160 C 270 -100 262 -20 248 50 C 236 120 255 175 205 222 C 150 270 60 262 -10 255 C -90 248 -170 262 -222 205 C -268 150 -255 70 -250 0 C -246 -80 -270 -150 -215 -205 C -165 -250 -110 -248 -40 -255 Z"
+          />
+          <clipPath id="jungle-clip">
+            <use href="#isle" transform="scale(0.9)" />
+          </clipPath>
+        </defs>
+
+        <!-- open water -->
+        <rect x="-9000" y="-9000" width="20000" height="20000" fill="var(--ocean, #1c5866)" />
+        <g id="chart-grid" stroke="#ffffff" stroke-opacity="0.08" fill="none"></g>
+
+        <!-- the Andaman chain to the east (schematic, not to scale) -->
+        <g id="chart-chain" fill="#d9c995" stroke="#7fc3be" stroke-width="18" stroke-opacity="0.5">
+          <path d="M 3330 -7000 C 3520 -6400 3700 -5200 3640 -4100 C 3600 -3000 3760 -1900 3700 -900 C 3660 -200 3560 300 3420 420 C 3300 260 3330 -400 3380 -1200 C 3420 -2300 3260 -3600 3240 -4800 C 3220 -5900 3180 -6600 3330 -7000 Z" />
+          <path d="M 3300 640 C 3520 700 3700 1100 3660 1700 C 3630 2300 3560 2900 3380 3320 C 3240 3000 3200 2400 3230 1800 C 3250 1300 3160 900 3300 640 Z" />
+          <path d="M 4020 900 C 4120 960 4140 1120 4060 1200 C 3980 1150 3960 1000 4020 900 Z" />
+          <path d="M 4180 1400 C 4290 1460 4300 1640 4210 1700 C 4130 1640 4110 1480 4180 1400 Z" />
+          <path d="M 3900 1950 C 3990 2000 4000 2130 3930 2180 C 3860 2140 3850 2010 3900 1950 Z" />
+          <path d="M 3000 5600 C 3260 5640 3420 5980 3360 6400 C 3300 6800 3060 6900 2920 6600 C 2800 6300 2820 5800 3000 5600 Z" />
+        </g>
+
+        <!-- North Sentinel: bathymetry, reef, beach, jungle -->
+        <g id="chart-isle" transform="translate(540 820)">
+          <g fill="none" stroke="#9fd6d0" stroke-width="3">
+            <use href="#isle" transform="scale(3.3)" stroke-opacity="0.12" />
+            <use href="#isle" transform="scale(2.6)" stroke-opacity="0.16" />
+            <use href="#isle" transform="scale(2.05)" stroke-opacity="0.2" />
+            <use href="#isle" transform="scale(1.62)" stroke-opacity="0.26" />
+          </g>
+          <use href="#isle" transform="scale(1.3)" fill="#26707a" />
+          <use href="#isle" transform="scale(1.16)" fill="#3f9396" />
+          <use
+            id="chart-reef"
+            href="#isle"
+            transform="scale(1.1)"
+            fill="none"
+            stroke="#d6f2ec"
+            stroke-width="7"
+            stroke-opacity="0.75"
+            stroke-dasharray="26 18"
+          />
+          <use href="#isle" fill="#ead9a8" />
+          <use href="#isle" transform="scale(0.9)" fill="#2c5a34" />
+          <g id="chart-canopy" clip-path="url(#jungle-clip)"></g>
+        </g>
+
+        <!-- the no-go ring -->
+        <circle
+          id="chart-ring"
+          cx="540"
+          cy="820"
+          r="420"
+          fill="none"
+          stroke="var(--accent, #e3342b)"
+          stroke-width="8"
+          transform="rotate(-90 540 820)"
+        />
+      </svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      // Chart grid: decorative, deterministic.
+      const grid = document.querySelector("#chart-grid");
+      for (let v = -6000; v <= 8000; v += 360) {
+        const a = document.createElementNS(NS, "line");
+        a.setAttribute("x1", v); a.setAttribute("x2", v);
+        a.setAttribute("y1", -8000); a.setAttribute("y2", 8000);
+        a.setAttribute("vector-effect", "non-scaling-stroke");
+        grid.appendChild(a);
+        const b = document.createElementNS(NS, "line");
+        b.setAttribute("y1", v); b.setAttribute("y2", v);
+        b.setAttribute("x1", -8000); b.setAttribute("x2", 8000);
+        b.setAttribute("vector-effect", "non-scaling-stroke");
+        grid.appendChild(b);
+      }
+      // Jungle canopy: seeded so every render is identical.
+      let seed = 20181117;
+      const rnd = () => {
+        seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+        let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+      const greens = ["#24502c", "#2f6338", "#3a7442", "#1d4425", "#457f49"];
+      const canopy = document.querySelector("#chart-canopy");
+      for (let i = 0; i < 260; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", (rnd() - 0.5) * 520);
+        c.setAttribute("cy", (rnd() - 0.5) * 520);
+        c.setAttribute("r", 10 + rnd() * 22);
+        c.setAttribute("fill", greens[Math.floor(rnd() * greens.length)]);
+        canopy.appendChild(c);
+      }
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const ringLen = 2 * Math.PI * 420;
+
+    // Surf works along the reef the whole film.
+    tl.fromTo("#chart-reef", { strokeDashoffset: 0 }, { strokeDashoffset: -440, duration: 20, ease: "none" }, 0);
+
+    // The no-go ring closes on "visiting".
+    tl.fromTo(
+      "#chart-ring",
+      { strokeDasharray: ringLen, strokeDashoffset: ringLen },
+      { strokeDashoffset: 0, duration: 0.55, ease: "power3.inOut" },
+      0.88
+    );
+
+    // Camera: hook push → pull out to the chain → dive into the jungle →
+    // north beach (2004) → east beach (2018) → back out to the ring.
+    tl.fromTo("#chart-cam", { scale: 1, x: 0, y: 80 }, { scale: 1.06, duration: 2.9, ease: "none" }, 0);
+    tl.to("#chart-cam", { scale: 0.2, x: -280, y: 60, duration: 0.7, ease: "power3.inOut" }, 2.9);
+    tl.to("#chart-cam", { scale: 0.215, duration: 1.7, ease: "none" }, 3.6);
+    tl.to("#chart-cam", { scale: 1.6, x: 0, y: 40, duration: 0.7, ease: "power3.inOut" }, 5.3);
+    tl.to("#chart-cam", { scale: 1.7, duration: 3.6, ease: "none" }, 6.0);
+    tl.to("#chart-cam", { scale: 1.15, x: 0, y: 260, duration: 0.6, ease: "power3.inOut" }, 9.6);
+    tl.to("#chart-cam", { scale: 1.15, x: -160, y: 220, duration: 0.6, ease: "power3.inOut" }, 13.3);
+    tl.to("#chart-cam", { scale: 0.85, x: 0, y: 80, duration: 0.7, ease: "power3.inOut" }, 17.1);
+    tl.to("#chart-cam", { scale: 0.8, duration: 2.2, ease: "none" }, 17.8);
+
+    window.__timelines["chart"] = tl;
+  </script>
+</template>

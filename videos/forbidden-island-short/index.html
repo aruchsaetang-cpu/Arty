@@ -1,0 +1,181 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"ocean","type":"color","label":"Ocean","default":"#1c5866"},
+    {"id":"accent","type":"color","label":"Accent (no-go red)","default":"#e3342b"},
+    {"id":"sand","type":"color","label":"Sand / title ink","default":"#f1e3b8"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      :root {
+        --ocean: #1c5866;
+        --accent: #e3342b;
+        --sand: #f1e3b8;
+        --ink: #ffffff;
+        --font-display: "League Gothic", sans-serif;
+        --font-body: "Oswald", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--ocean);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--ocean);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="20"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- The chart: one world the camera travels through for the whole film -->
+      <div
+        id="chart"
+        data-composition-id="chart"
+        data-composition-src="compositions/chart.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 1"
+      ></div>
+
+      <!-- Beat titles, one scene per voiceover line -->
+      <div
+        id="hook"
+        data-composition-id="hook"
+        data-composition-src="compositions/hook.html"
+        data-start="0"
+        data-duration="3"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="where"
+        data-composition-id="where"
+        data-composition-src="compositions/where.html"
+        data-start="3"
+        data-duration="2.45"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="years"
+        data-composition-id="years"
+        data-composition-src="compositions/years.html"
+        data-start="5.45"
+        data-duration="4.45"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="y2004"
+        data-composition-id="y2004"
+        data-composition-src="compositions/y2004.html"
+        data-start="9.9"
+        data-duration="3.6"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="y2018"
+        data-composition-id="y2018"
+        data-composition-src="compositions/y2018.html"
+        data-start="13.5"
+        data-duration="3.8"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="unknown"
+        data-composition-id="unknown"
+        data-composition-src="compositions/unknown.html"
+        data-start="17.3"
+        data-duration="2.7"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+
+      <!-- Burned-in captions for muted viewers -->
+      <div
+        id="captions"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="3"
+        data-track-kind="captions"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+
+      <audio
+        id="voiceover"
+        class="clip"
+        src="assets/audio/voiceover.m4a"
+        data-start="0"
+        data-duration="20"
+        data-track-index="4"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="bed"
+        class="clip"
+        src="assets/audio/bed.m4a"
+        data-start="0"
+        data-duration="20"
+        data-track-index="5"
+        data-volume="1"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    #unknown-label {
+      position: absolute;
+      left: 0;
+      top: 220px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      font-size: 52px;
+      letter-spacing: 0.22em;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(8, 30, 36, 0.6);
+    }
+    #unknown-q {
+      position: absolute;
+      left: 0;
+      top: 640px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      font-size: 460px;
+      line-height: 1;
+      color: var(--sand, #f1e3b8);
+      text-shadow: 0 10px 0 rgba(8, 30, 36, 0.6);
+    }
+    #unknown-ask {
+      position: absolute;
+      left: 0;
+      top: 330px;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      font-size: 130px;
+      line-height: 1;
+      color: #ffffff;
+    }
+    #unknown-ask-in {
+      background: var(--accent, #e3342b);
+      padding: 10px 34px 14px;
+    }
+  </style>
+  <div id="root" data-composition-id="unknown" data-width="1080" data-height="1920">
+    <div id="unknown-label" class="clip" data-start="0" data-duration="2.7">
+      <span id="unknown-label-in">POPULATION: UNKNOWN</span>
+    </div>
+    <div id="unknown-q" class="clip" data-start="0" data-duration="2.7" data-layout-allow-overflow>
+      <span id="unknown-q-in">?</span>
+    </div>
+    <div id="unknown-ask" class="clip" data-start="0.6" data-duration="2.1">
+      <span id="unknown-ask-in">WOULD YOU GO?</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#unknown-label-in", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.1);
+    tl.fromTo("#unknown-q-in", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0.2);
+    // Last impact: the question to the viewer slams in and holds.
+    tl.fromTo("#unknown-ask-in", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 0.62);
+    window.__timelines["unknown"] = tl;
+  </script>
+</template>
