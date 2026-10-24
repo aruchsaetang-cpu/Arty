@@ -1,0 +1,206 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #05080f;
+    }
+    #slope-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 3600px;
+      transform-origin: 540px 960px;
+    }
+    #slope-world svg,
+    #slope-snow {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    #slope-torch {
+      position: absolute;
+      left: -1080px;
+      top: -1920px;
+      width: 3240px;
+      height: 5760px;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(2, 5, 10, 0) 0px,
+        rgba(2, 5, 10, 0.15) 170px,
+        rgba(2, 5, 10, 0.7) 360px,
+        rgba(2, 5, 10, 0.93) 520px
+      );
+    }
+  </style>
+  <div id="root" data-composition-id="slope" data-width="1080" data-height="1920">
+    <div id="slope-world" data-layout-allow-overflow data-layout-ignore>
+      <svg width="1080" height="3600" viewBox="0 0 1080 3600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="slope-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#03060c" />
+            <stop offset="1" stop-color="#101b2b" />
+          </linearGradient>
+          <linearGradient id="slope-snowfield" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a7b6c6" />
+            <stop offset="0.5" stop-color="#8496aa" />
+            <stop offset="1" stop-color="#55667a" />
+          </linearGradient>
+        </defs>
+        <rect x="-3000" y="-3000" width="7080" height="3900" fill="url(#slope-sky)" />
+        <g id="slope-stars" fill="#c9d6e6"></g>
+        <!-- Kholat Syakhl: a low, rounded dome -->
+        <path d="M -900 920 C -300 860 120 520 560 330 C 900 470 1200 760 2000 920 Z" fill="#26323f" />
+        <path d="M 330 450 C 420 390 500 345 560 330 C 640 370 720 420 800 480 C 700 450 640 440 560 430 C 480 430 400 440 330 450 Z" fill="#7d8ea1" opacity="0.6" />
+        <!-- the snowfield the hikers crossed -->
+        <rect x="-3000" y="880" width="7080" height="5000" fill="url(#slope-snowfield)" />
+        <g fill="none" stroke="#e3ecf5" stroke-width="10" stroke-opacity="0.25">
+          <path d="M -200 1500 C 200 1440 600 1560 1300 1480" />
+          <path d="M -200 2050 C 300 1990 700 2120 1300 2040" />
+          <path d="M -200 2600 C 250 2560 650 2680 1300 2590" />
+        </g>
+        <!-- the tent, half buried, cut open from the inside -->
+        <g id="slope-tent">
+          <polygon points="150,1310 220,1196 540,1190 580,1310" fill="#cbc3ad" />
+          <polygon points="150,1310 220,1196 260,1310" fill="#a39b86" />
+          <path d="M 160 1312 C 300 1290 440 1300 590 1312 L 590 1340 L 150 1340 Z" fill="#dfe8f1" />
+          <path d="M 230 1196 L 535 1190" stroke="#efe9da" stroke-width="5" />
+          <path id="slope-cut-a" d="M 318 1214 L 352 1300" stroke="#03060c" stroke-width="9" stroke-linecap="round" fill="none" />
+          <path id="slope-cut-b" d="M 430 1208 L 452 1304" stroke="#03060c" stroke-width="9" stroke-linecap="round" fill="none" />
+        </g>
+        <g id="slope-prints" fill="#34445a"></g>
+        <!-- the cedar and the forest edge, a mile down the slope -->
+        <g id="slope-trees"></g>
+        <path d="M 120 3330 C 320 3270 560 3290 780 3360 L 780 3440 C 560 3390 320 3380 120 3430 Z" fill="#2b394a" />
+      </svg>
+    </div>
+    <svg id="slope-snow" width="1080" height="1920" viewBox="0 0 1080 1920" data-layout-ignore></svg>
+    <div id="slope-torch" data-layout-allow-overflow data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 19590202;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const stars = document.querySelector("#slope-stars");
+      for (let i = 0; i < 70; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", -600 + rnd() * 2300);
+        c.setAttribute("cy", -800 + rnd() * 1300);
+        c.setAttribute("r", 1 + rnd() * 2);
+        c.setAttribute("opacity", 0.3 + rnd() * 0.5);
+        stars.appendChild(c);
+      }
+      // Footprints along the trail from the tent to the forest.
+      const prints = document.querySelector("#slope-prints");
+      const P0 = [440, 1330], P1 = [380, 1900], P2 = [900, 2300], P3 = [760, 2880];
+      const bez = (t, i) =>
+        (1 - t) ** 3 * P0[i] + 3 * (1 - t) ** 2 * t * P1[i] + 3 * (1 - t) * t * t * P2[i] + t ** 3 * P3[i];
+      for (let k = 0; k < 44; k++) {
+        const t = k / 43;
+        const x = bez(t, 0), y = bez(t, 1);
+        const ta = Math.min(t, 0.99), dx = bez(ta + 0.01, 0) - bez(ta, 0), dy = bez(ta + 0.01, 1) - bez(ta, 1);
+        const ang = (Math.atan2(dy, dx) * 180) / Math.PI - 90;
+        const side = k % 2 ? 1 : -1;
+        const nx = (-dy / Math.hypot(dx, dy)) * 11 * side, ny = (dx / Math.hypot(dx, dy)) * 11 * side;
+        const e = document.createElementNS(NS, "ellipse");
+        e.setAttribute("class", "slope-fp");
+        e.setAttribute("cx", 0); e.setAttribute("cy", 0);
+        e.setAttribute("rx", 7); e.setAttribute("ry", 13);
+        e.setAttribute("transform", `translate(${x + nx} ${y + ny}) rotate(${ang})`);
+        e.setAttribute("opacity", 0);
+        prints.appendChild(e);
+      }
+      // Firs along the forest edge, the tall cedar among them.
+      const trees = document.querySelector("#slope-trees");
+      const fir = (x, y, h, fill) => {
+        const g = document.createElementNS(NS, "g");
+        for (let j = 0; j < 4; j++) {
+          const w = h * (0.42 - j * 0.08), top = y - h + j * h * 0.2, base = top + h * 0.38;
+          const p = document.createElementNS(NS, "polygon");
+          p.setAttribute("points", `${x},${top} ${x - w},${base} ${x + w},${base}`);
+          p.setAttribute("fill", fill);
+          g.appendChild(p);
+          const s = document.createElementNS(NS, "path");
+          s.setAttribute("d", `M ${x - w * 0.8} ${base - 4} L ${x + w * 0.8} ${base - 4}`);
+          s.setAttribute("stroke", "#dfe8f1"); s.setAttribute("stroke-width", 4); s.setAttribute("stroke-opacity", 0.5);
+          g.appendChild(s);
+        }
+        const trunk = document.createElementNS(NS, "rect");
+        trunk.setAttribute("x", x - h * 0.03); trunk.setAttribute("y", y - h * 0.15);
+        trunk.setAttribute("width", h * 0.06); trunk.setAttribute("height", h * 0.17);
+        trunk.setAttribute("fill", "#0d1410");
+        g.appendChild(trunk);
+        trees.appendChild(g);
+      };
+      for (let i = 0; i < 22; i++) {
+        const x = 560 + rnd() * 620, y = 2780 + rnd() * 700;
+        fir(x, y, 220 + rnd() * 160, i % 2 ? "#14211a" : "#1a2a20");
+      }
+      fir(820, 3040, 520, "#101b15");
+      // Snowfall: one deterministic function of time.
+      const snow = document.querySelector("#slope-snow");
+      const flakes = [];
+      for (let i = 0; i < 110; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("r", 1.5 + rnd() * 3.5);
+        c.setAttribute("fill", "#eef4fa");
+        c.setAttribute("opacity", 0.35 + rnd() * 0.5);
+        snow.appendChild(c);
+        flakes.push({ el: c, x: rnd() * 1300, y: rnd() * 2000, v: 160 + rnd() * 260, w: 60 + rnd() * 80, ph: rnd() * 6.28 });
+      }
+      window.__slopeSnow = (t) => {
+        for (const f of flakes) {
+          const y = (((f.y + f.v * t) % 2000) + 2000) % 2000 - 40;
+          const x = ((((f.x - f.w * t + 18 * Math.sin(f.ph + t * 1.3)) % 1300) + 1300) % 1300) - 110;
+          f.el.setAttribute("cx", x.toFixed(1));
+          f.el.setAttribute("cy", y.toFixed(1));
+        }
+      };
+      window.__slopeSnow(0);
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    // Camera helper: put world point (px, py) at the frame centre at scale s.
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+    // Torch helper: beam centre at frame point (cx, cy).
+    const beam = (cx, cy, s = 1) => ({ x: cx - 540, y: cy - 960, scale: s });
+
+    const clock = { t: 0 };
+    tl.fromTo(clock, { t: 0 }, { t: 20, duration: 20, ease: "none", onUpdate: () => window.__slopeSnow(clock.t) }, 0);
+
+    // The tent, cut from the inside on "From the inside".
+    ["#slope-cut-a", "#slope-cut-b"].forEach((sel, i) => {
+      const len = 95;
+      tl.fromTo(sel, { strokeDasharray: len, strokeDashoffset: len, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.18, ease: "power4.out" }, 3.92 + i * 0.2);
+    });
+    // Footprints appear down the slope as they run.
+    tl.fromTo(".slope-fp", { opacity: 0 }, { opacity: 0.9, duration: 0.06, ease: "none", stagger: 0.082 }, 5.0);
+
+    // Camera: tent → down the trail → the cedar → the ravine → pull back to the mountain.
+    tl.fromTo("#slope-world", cam(360, 1297, 1.6), { ...cam(370, 1290, 1.72), duration: 4.8, ease: "none" }, 0);
+    tl.to("#slope-world", { ...cam(720, 2650, 1.15), duration: 3.8, ease: "power1.inOut" }, 4.8);
+    tl.to("#slope-world", { ...cam(800, 2980, 1.35), duration: 0.6, ease: "power3.inOut" }, 8.6);
+    tl.to("#slope-world", { ...cam(800, 2990, 1.42), duration: 2.9, ease: "none" }, 9.2);
+    tl.to("#slope-world", { ...cam(560, 3250, 1.5), duration: 0.6, ease: "power3.inOut" }, 12.1);
+    tl.to("#slope-world", { ...cam(560, 3255, 1.56), duration: 3.2, ease: "none" }, 12.7);
+    tl.to("#slope-world", { ...cam(540, 1000, 0.85), duration: 1.0, ease: "power3.inOut" }, 15.95);
+    tl.to("#slope-world", { ...cam(540, 1000, 0.8), duration: 3.05, ease: "none" }, 16.95);
+
+    // Torch: on the tent, then searching down the trail, then opening wide on the mountain.
+    tl.fromTo("#slope-torch", beam(540, 900), { ...beam(560, 910), duration: 4.8, ease: "sine.inOut" }, 0);
+    tl.to("#slope-torch", { ...beam(600, 1150), duration: 3.8, ease: "power1.inOut" }, 4.8);
+    tl.to("#slope-torch", { ...beam(560, 1000), duration: 0.6, ease: "power3.inOut" }, 8.6);
+    tl.to("#slope-torch", { ...beam(520, 1040), duration: 3.4, ease: "sine.inOut" }, 9.2);
+    tl.to("#slope-torch", { ...beam(540, 980), duration: 3.3, ease: "sine.inOut" }, 12.6);
+    tl.to("#slope-torch", { ...beam(540, 1250, 2.2), duration: 1.0, ease: "power3.inOut" }, 15.95);
+
+    window.__timelines["slope"] = tl;
+  </script>
+</template>

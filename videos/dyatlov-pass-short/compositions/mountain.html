@@ -1,0 +1,82 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    .t-stamp-in {
+      background: var(--accent, #c8231d);
+      color: #ffffff;
+      padding: 6px 22px 10px;
+    }
+    #mtn-name-in { opacity: 0; }
+    #mtn-strike {
+      position: absolute;
+      left: 250px;
+      top: 290px;
+      width: 580px;
+      height: 10px;
+    }
+    #mtn-strike-in {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: var(--accent, #c8231d);
+    }
+  </style>
+  <div id="root" data-composition-id="mountain" data-width="1080" data-height="1920">
+    <div id="mtn-name" class="t-display clip" data-start="0" data-duration="4.0" style="top: 230px; font-size: 120px; color: #9aa7b5;">
+      <span id="mtn-name-in">KHOLAT SYAKHL</span>
+    </div>
+    <div id="mtn-strike" class="clip" data-start="0" data-duration="4.0" data-layout-ignore><span id="mtn-strike-in"></span></div>
+    <div id="mtn-dead" class="t-display clip" data-start="1.5" data-duration="2.5" style="top: 370px; font-size: 150px; color: var(--accent, #c8231d);">
+      <span id="mtn-dead-in">“DEAD MOUNTAIN”</span>
+    </div>
+    <div id="mtn-ask" class="t-display clip" data-start="1.7" data-duration="2.3" style="top: 560px; font-size: 130px;">
+      <span id="mtn-ask-in">WHAT HAPPENED?</span>
+    </div>
+    <div id="mtn-mark" class="t-body clip" data-start="1.7" data-duration="2.3" style="top: 710px; font-size: 40px; letter-spacing: 0.5em; color: #ddd3b4;">
+      <span id="mtn-mark-in">HOLLOW TRUTH</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    // The Mansi name types in, then is struck through and translated.
+    const nm = document.querySelector("#mtn-name-in");
+    const word = nm.textContent;
+    const typed = { n: 0 };
+    tl.set("#mtn-name-in", { opacity: 1 }, 0.15);
+    tl.fromTo(typed, { n: 0 }, { n: word.length, duration: 0.6, ease: "none", onUpdate: () => { nm.textContent = word.slice(0, Math.round(typed.n)); } }, 0.15);
+    tl.fromTo("#mtn-strike-in", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.25, ease: "power3.inOut" }, 1.3);
+    tl.fromTo("#mtn-dead-in", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.16, ease: "power4.out" }, 1.52);
+    flick("#mtn-ask-in", 1.72);
+    tl.fromTo("#mtn-mark-in", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.72);
+    window.__timelines["mountain"] = tl;
+  </script>
+</template>

@@ -1,0 +1,72 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    .t-stamp-in {
+      background: var(--accent, #c8231d);
+      color: #ffffff;
+      padding: 6px 22px 10px;
+    }
+    #rad-icon {
+      position: absolute;
+      left: 390px;
+      top: 220px;
+      width: 300px;
+      height: 300px;
+    }
+    #rad-icon-in { opacity: 0; }
+    #rad-l1-in { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="radiation" data-width="1080" data-height="1920">
+    <div id="rad-icon" class="clip" data-start="0" data-duration="2.25" data-layout-ignore>
+      <svg id="rad-icon-in" width="300" height="300" viewBox="-50 -50 100 100">
+        <circle r="48" fill="#e7c42b" />
+        <circle r="7" fill="#0b0b0b" />
+        <g fill="#0b0b0b">
+          <path d="M 0 -11 L -21 -38 A 42 42 0 0 1 21 -38 Z" transform="rotate(0)" />
+          <path d="M 0 -11 L -21 -38 A 42 42 0 0 1 21 -38 Z" transform="rotate(120)" />
+          <path d="M 0 -11 L -21 -38 A 42 42 0 0 1 21 -38 Z" transform="rotate(240)" />
+        </g>
+      </svg>
+    </div>
+    <div id="rad-l1" class="t-display clip" data-start="0" data-duration="2.25" style="top: 560px; font-size: 120px;">
+      <span id="rad-l1-in">RADIOACTIVE CLOTHES</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#rad-icon-in", 0.12);
+    tl.fromTo("#rad-icon-in", { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.06, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 7 }, 0.4);
+    flick("#rad-l1-in", 1.15);
+    tl.to(["#rad-icon-in", "#rad-l1-in"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 2.0);
+    window.__timelines["radiation"] = tl;
+  </script>
+</template>
