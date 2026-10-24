@@ -1,0 +1,102 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #120d08;
+    }
+    #board-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 3600px;
+      transform-origin: 540px 960px;
+    }
+    #board-world svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    #board-torch {
+      position: absolute;
+      left: -1080px;
+      top: -1920px;
+      width: 3240px;
+      height: 5760px;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(4, 3, 2, 0) 0px,
+        rgba(4, 3, 2, 0.12) 220px,
+        rgba(4, 3, 2, 0.66) 430px,
+        rgba(4, 3, 2, 0.9) 600px
+      );
+    }
+  </style>
+  <div id="root" data-composition-id="board" data-width="1080" data-height="1920">
+    <div id="board-world" data-layout-allow-overflow data-layout-ignore>
+      <svg width="1080" height="3600" viewBox="0 0 1080 3600" xmlns="http://www.w3.org/2000/svg">
+        <rect x="-3000" y="-3000" width="7080" height="9600" fill="#3a2a1a"/>
+        <g id="board-cork"></g>
+          <line id="board-string-0" x1="400" y1="376.0" x2="680" y2="1036.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-1" x1="680" y1="1036.0" x2="400" y2="1656.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-2" x1="400" y1="1656.0" x2="680" y2="2276.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-3" x1="680" y1="2276.0" x2="400" y2="2896.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <g id="board-item-0" transform="translate(400 560) rotate(-2.5)"><rect x="-250.0" y="-198.0" width="520" height="420" fill="#000" opacity="0.45"/><rect x="-260" y="-210" width="520" height="420" fill="#d6cdb2"/><path d="M -240 -150 C -120 -158 0 -142 240 -150" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 -122 C -120 -130 0 -114 240 -122" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 -94 C -120 -102 0 -86 240 -94" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 -66 C -120 -74 0 -58 240 -66" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 -38 C -120 -46 0 -30 240 -38" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 -10 C -120 -18 0 -2 240 -10" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 18 C -120 10 0 26 240 18" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 46 C -120 38 0 54 240 46" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 74 C -120 66 0 82 240 74" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 102 C -120 94 0 110 240 102" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -240 130 C -120 122 0 138 240 130" stroke="#b9c3be" stroke-width="2" fill="none"/><path d="M -150 -90 C -60 -150 60 -120 120 -60 C 170 -10 150 70 70 100 C -10 130 -110 110 -150 40 C -180 -10 -190 -60 -150 -90 Z" fill="#b9ab86" stroke="#6b5d41" stroke-width="4"/><path d="M 10 -20 L 60 30 M 60 -20 L 10 30" stroke="#c0281f" stroke-width="10" stroke-linecap="round"/><text x="-232" y="-166" font-family="IBM Plex Mono, monospace" font-size="24" fill="#5d5442">1795</text><text x="0" y="180" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="38" fill="#2a261f">OAK ISLAND, NOVA SCOTIA</text><circle cx="3" cy="-180.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-184.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-188.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-1" transform="translate(680 1180) rotate(2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 017</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="101" fill="#1d1a14">EVERY 10 FT</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">wooden platforms</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-2" transform="translate(400 1800) rotate(-1.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 017</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="140" fill="#1d1a14">FLOODED</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">seawater</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-3" transform="translate(680 2420) rotate(2.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 017</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="140" fill="#1d1a14">6 DEAD</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">200+ years of digging</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-4" transform="translate(400 3040) rotate(-2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 017</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="101" fill="#1d1a14">TREASURE: 0</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">still digging</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+      </svg>
+    </div>
+    <div id="board-torch" data-layout-allow-overflow data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 134623;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const cork = document.querySelector("#board-cork");
+      const tones = ["#2c1f13", "#4a3622", "#53402a", "#24190f"];
+      for (let i = 0; i < 1400; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", (-700 + rnd() * 2480).toFixed(0));
+        c.setAttribute("cy", (-900 + rnd() * 5400).toFixed(0));
+        c.setAttribute("r", (1 + rnd() * 4).toFixed(1));
+        c.setAttribute("fill", tones[Math.floor(rnd() * tones.length)]);
+        cork.appendChild(c);
+      }
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+    tl.fromTo("#board-torch", { x: 0, y: -60, scale: 1 }, { x: 12, y: -50, scale: 1.02, duration: 5.44, ease: "sine.inOut" }, 0);
+    // Camera: from one piece of evidence to the next along the red string, then the whole case.
+    tl.fromTo("#board-world", cam(400, 621, 1.15), { ...cam(400, 619, 1.19), duration: 5.44, ease: "none" }, 0);
+    tl.to("#board-world", { ...cam(680, 1229, 1.22), duration: 0.6, ease: "power3.inOut" }, 5.44);
+    tl.to("#board-world", { ...cam(680, 1228, 1.26), duration: 3.14, ease: "none" }, 6.04);
+    tl.to("#board-world", { ...cam(400, 1849, 1.22), duration: 0.6, ease: "power3.inOut" }, 9.18);
+    tl.to("#board-world", { ...cam(400, 1848, 1.26), duration: 1.14, ease: "none" }, 9.78);
+    tl.to("#board-world", { ...cam(680, 2469, 1.22), duration: 0.6, ease: "power3.inOut" }, 10.92);
+    tl.to("#board-world", { ...cam(680, 2468, 1.26), duration: 3.72, ease: "none" }, 11.52);
+    tl.to("#board-world", { ...cam(400, 3089, 1.22), duration: 0.6, ease: "power3.inOut" }, 15.24);
+    tl.to("#board-world", { ...cam(400, 3088, 1.26), duration: 1.52, ease: "none" }, 15.84);
+    tl.to("#board-world", { ...cam(540, 1127, 0.416), duration: 0.9, ease: "power3.inOut" }, 17.36);
+    tl.to("#board-world", { ...cam(540, 1127, 0.404), duration: 1.74, ease: "none" }, 18.26);
+    tl.fromTo("#board-string-0", { strokeDasharray: 717, strokeDashoffset: 717, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 5.44);
+    tl.fromTo("#board-string-1", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 9.18);
+    tl.fromTo("#board-string-2", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 10.92);
+    tl.fromTo("#board-string-3", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 15.24);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 5.44);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 9.18);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 10.92);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 15.24);
+    tl.to("#board-torch", { x: 0, y: 200, scale: 2.4, duration: 0.9, ease: "power3.inOut" }, 17.36);
+    window.__timelines["board"] = tl;
+  </script>
+</template>

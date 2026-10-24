@@ -1,0 +1,111 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #120d08;
+    }
+    #board-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 3600px;
+      transform-origin: 540px 960px;
+    }
+    #board-world svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    #board-torch {
+      position: absolute;
+      left: -1080px;
+      top: -1920px;
+      width: 3240px;
+      height: 5760px;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(4, 3, 2, 0) 0px,
+        rgba(4, 3, 2, 0.12) 220px,
+        rgba(4, 3, 2, 0.66) 430px,
+        rgba(4, 3, 2, 0.9) 600px
+      );
+    }
+  </style>
+  <div id="root" data-composition-id="board" data-width="1080" data-height="1920">
+    <div id="board-world" data-layout-allow-overflow data-layout-ignore>
+      <svg width="1080" height="3600" viewBox="0 0 1080 3600" xmlns="http://www.w3.org/2000/svg">
+        <rect x="-3000" y="-3000" width="7080" height="9600" fill="#3a2a1a"/>
+        <g id="board-cork"></g>
+          <line id="board-string-0" x1="400" y1="306.0" x2="680" y2="1036.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-1" x1="680" y1="1036.0" x2="400" y2="1656.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-2" x1="400" y1="1656.0" x2="680" y2="2276.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-3" x1="680" y1="2276.0" x2="400" y2="2896.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <g id="board-item-0" transform="translate(400 560) rotate(-2.5)"><rect x="-230.0" y="-268.0" width="480" height="560" fill="#000" opacity="0.45"/><rect x="-240" y="-280" width="480" height="560" fill="#e7e1d1"/><rect x="-220" y="-260" width="440" height="420" fill="#1b1f24"/><g transform="translate(-220 -260)">
+      <path d="M 0 360 C 80 330 140 345 220 330 C 300 318 360 340 440 330 L 440 420 L 0 420 Z" fill="#2b3036"/>
+      <polygon points="190,140 250,140 268,335 172,335" fill="#cfc8b4"/>
+      <rect x="183" y="190" width="74" height="18" fill="#8d8775"/>
+      <rect x="179" y="260" width="82" height="18" fill="#8d8775"/>
+      <rect x="182" y="96" width="76" height="46" fill="#1b1f24" stroke="#cfc8b4" stroke-width="5"/>
+      <polygon points="176,96 264,96 220,62" fill="#cfc8b4"/>
+      <rect x="164" y="138" width="112" height="8" fill="#cfc8b4"/>
+      <rect x="290" y="300" width="70" height="40" fill="#8d8775"/>
+      <polygon points="285,300 365,300 325,278" fill="#cfc8b4"/></g><text x="0" y="228" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="34" fill="#2a261f" letter-spacing="1">FLANNAN ISLES, 1900</text><circle cx="3" cy="-250.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-254.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-258.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-1" transform="translate(680 1180) rotate(2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 005</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="111" fill="#1d1a14">LIGHT: OUT</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">door and gate closed</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-2" transform="translate(400 1800) rotate(-1.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 005</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="69" fill="#1d1a14">OILSKINS: 2 OF 3</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">one left behind</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-3" transform="translate(680 2420) rotate(2.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 005</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="140" fill="#1d1a14">NO COAT</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">out into the storm</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-4" transform="translate(400 3040) rotate(-2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 005</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="58" fill="#1d1a14">3 KEEPERS · 0 FOUND</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">case open</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+      </svg>
+    </div>
+    <div id="board-torch" data-layout-allow-overflow data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 39595;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const cork = document.querySelector("#board-cork");
+      const tones = ["#2c1f13", "#4a3622", "#53402a", "#24190f"];
+      for (let i = 0; i < 1400; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", (-700 + rnd() * 2480).toFixed(0));
+        c.setAttribute("cy", (-900 + rnd() * 5400).toFixed(0));
+        c.setAttribute("r", (1 + rnd() * 4).toFixed(1));
+        c.setAttribute("fill", tones[Math.floor(rnd() * tones.length)]);
+        cork.appendChild(c);
+      }
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+    tl.fromTo("#board-torch", { x: 0, y: -60, scale: 1 }, { x: 12, y: -50, scale: 1.02, duration: 5.22, ease: "sine.inOut" }, 0);
+    // Camera: from one piece of evidence to the next along the red string, then the whole case.
+    tl.fromTo("#board-world", cam(400, 651, 1.10), { ...cam(400, 648, 1.14), duration: 5.22, ease: "none" }, 0);
+    tl.to("#board-world", { ...cam(680, 1229, 1.22), duration: 0.6, ease: "power3.inOut" }, 5.22);
+    tl.to("#board-world", { ...cam(680, 1228, 1.26), duration: 2.57, ease: "none" }, 5.82);
+    tl.to("#board-world", { ...cam(400, 1849, 1.22), duration: 0.6, ease: "power3.inOut" }, 8.39);
+    tl.to("#board-world", { ...cam(400, 1848, 1.26), duration: 3.27, ease: "none" }, 8.99);
+    tl.to("#board-world", { ...cam(680, 2469, 1.22), duration: 0.6, ease: "power3.inOut" }, 12.26);
+    tl.to("#board-world", { ...cam(680, 2468, 1.26), duration: 2.35, ease: "none" }, 12.86);
+    tl.to("#board-world", { ...cam(400, 3089, 1.22), duration: 0.6, ease: "power3.inOut" }, 15.21);
+    tl.to("#board-world", { ...cam(400, 3088, 1.26), duration: 1.44, ease: "none" }, 15.81);
+    tl.to("#board-world", { ...cam(540, 1127, 0.416), duration: 0.9, ease: "power3.inOut" }, 17.25);
+    tl.to("#board-world", { ...cam(540, 1127, 0.404), duration: 1.85, ease: "none" }, 18.15);
+    tl.fromTo("#board-string-0", { strokeDasharray: 782, strokeDashoffset: 782, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 5.22);
+    tl.fromTo("#board-string-1", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 8.39);
+    tl.fromTo("#board-string-2", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 12.26);
+    tl.fromTo("#board-string-3", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 15.21);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 5.22);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 8.39);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 12.26);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 15.21);
+    tl.to("#board-torch", { x: 0, y: 200, scale: 2.4, duration: 0.9, ease: "power3.inOut" }, 17.25);
+    window.__timelines["board"] = tl;
+  </script>
+</template>

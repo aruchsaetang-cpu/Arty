@@ -1,0 +1,102 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #120d08;
+    }
+    #board-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 3600px;
+      transform-origin: 540px 960px;
+    }
+    #board-world svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    #board-torch {
+      position: absolute;
+      left: -1080px;
+      top: -1920px;
+      width: 3240px;
+      height: 5760px;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(4, 3, 2, 0) 0px,
+        rgba(4, 3, 2, 0.12) 220px,
+        rgba(4, 3, 2, 0.66) 430px,
+        rgba(4, 3, 2, 0.9) 600px
+      );
+    }
+  </style>
+  <div id="root" data-composition-id="board" data-width="1080" data-height="1920">
+    <div id="board-world" data-layout-allow-overflow data-layout-ignore>
+      <svg width="1080" height="3600" viewBox="0 0 1080 3600" xmlns="http://www.w3.org/2000/svg">
+        <rect x="-3000" y="-3000" width="7080" height="9600" fill="#3a2a1a"/>
+        <g id="board-cork"></g>
+          <line id="board-string-0" x1="400" y1="306.0" x2="680" y2="1036.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-1" x1="680" y1="1036.0" x2="400" y2="1656.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-2" x1="400" y1="1656.0" x2="680" y2="2276.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-3" x1="680" y1="2276.0" x2="400" y2="2896.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <g id="board-item-0" transform="translate(400 560) rotate(-2.5)"><rect x="-230.0" y="-268.0" width="480" height="560" fill="#000" opacity="0.45"/><rect x="-240" y="-280" width="480" height="560" fill="#e7e1d1"/><rect x="-220" y="-260" width="440" height="420" fill="#1b1f24"/><g transform="translate(-220 -260)"><circle cx="220" cy="210" r="175" fill="#b49a6c"/><circle cx="220" cy="210" r="175" fill="none" stroke="#7a6542" stroke-width="5"/><path d="M 220 210 L 228.0 210.0 L 228.7 210.7 L 229.3 211.4 L 229.9 212.3 L 230.4 213.2 L 230.8 214.2 L 231.1 215.3 L 231.2 216.5 L 231.3 217.7 L 231.3 219.0 L 231.1 220.3 L 230.7 221.6 L 230.3 223.0 L 229.7 224.3 L 228.9 225.6 L 228.1 226.9 L 227.0 228.1 L 225.9 229.2 L 224.6 230.3 L 223.1 231.3 L 221.6 232.2 L 219.9 233.0 L 218.1 233.6 L 216.3 234.1 L 214.3 234.4 L 212.3 234.6 L 210.2 234.6 L 208.0 234.5 L 205.9 234.1 L 203.7 233.6 L 201.5 232.9 L 199.4 231.9 L 197.3 230.8 L 195.2 229.5 L 193.3 228.0 L 191.4 226.3 L 189.6 224.4 L 187.9 222.3 L 186.4 220.1 L 185.0 217.7 L 183.9 215.2 L 182.9 212.5 L 182.1 209.7 L 181.5 206.8 L 181.1 203.8 L 181.0 200.7 L 181.1 197.6 L 181.5 194.5 L 182.2 191.3 L 183.0 188.2 L 184.2 185.1 L 185.6 182.0 L 187.3 179.0 L 189.2 176.1 L 191.4 173.4 L 193.8 170.7 L 196.5 168.3 L 199.4 166.0 L 202.5 163.9 L 205.8 162.0 L 209.3 160.4 L 213.0 159.0 L 216.7 157.9 L 220.7 157.1 L 224.7 156.6 L 228.8 156.4 L 233.0 156.5 L 237.1 157.0 L 241.3 157.7 L 245.5 158.8 L 249.6 160.3 L 253.7 162.1 L 257.6 164.2 L 261.5 166.6 L 265.1 169.4 L 268.6 172.4 L 271.9 175.8 L 274.9 179.4 L 277.7 183.3 L 280.2 187.5 L 282.4 191.8 L 284.3 196.4 L 285.8 201.2 L 287.0 206.1 L 287.8 211.1 L 288.3 216.3 L 288.3 221.5 L 288.0 226.8 L 287.2 232.0 L 286.0 237.3 L 284.4 242.5 L 282.4 247.6 L 280.0 252.5 L 277.2 257.4 L 274.0 262.0 L 270.4 266.5 L 266.5 270.6 L 262.2 274.5 L 257.6 278.1 L 252.7 281.4 L 247.5 284.3 L 242.0 286.9 L 236.3 289.0 L 230.5 290.7 L 224.4 292.0 L 218.3 292.8 L 212.0 293.1 L 205.7 293.0 L 199.3 292.4 L 193.0 291.3 L 186.7 289.7 L 180.5 287.6 L 174.4 285.0 L 168.5 282.0 L 162.8 278.5 L 157.3 274.5 L 152.1 270.1 L 147.3 265.3 L 142.7 260.1 L 138.6 254.5 L 134.8 248.5 L 131.5 242.3 L 128.6 235.8 L 126.3 229.0 L 124.4 222.0 L 123.1 214.8 L 122.3 207.5 L 122.0 200.1 L 122.3 192.7 L 123.2 185.3 L 124.6 177.8 L 126.7 170.5 L 129.3 163.3 L 132.4 156.3 L 136.1 149.4 L 140.3 142.9 L 145.1 136.6 L 150.3 130.6 L 156.0 125.1 L 162.2 119.9 L 168.8 115.2 L 175.7 111.0 L 183.0 107.3 L 190.6 104.1 L 198.5 101.5 L 206.6 99.5 L 214.9 98.1 L 223.3 97.3 L 231.8 97.2 L 240.4 97.7 L 248.9 98.8 L 257.4 100.6 L 265.8 103.1 L 274.0 106.2 L 282.0 109.9 L 289.7 114.3 L 297.2 119.2 L 304.2 124.7 L 310.9 130.8 L 317.2 137.4 L 323.0 144.5 L 328.2 152.1 L 332.9 160.1 L 337.0 168.4 L 340.4 177.1 L 343.3 186.1 L 345.4 195.3 L 346.9 204.7 L 347.6 214.3 L 347.7 223.9 L 347.0 233.6 L 345.5 243.2 L 343.4 252.8 L 340.5 262.2 L 336.8 271.4 L 332.5 280.3 L 327.5 289.0 L 321.8 297.3 L 315.5 305.2 L 308.6 312.6 L 301.1 319.5 L 293.0 325.9 L 284.4 331.7 L 275.4 336.8 L 266.0 341.3 L 256.2 345.0 L 246.1 348.1 L 235.8 350.3 L 225.3 351.9 L 214.6 352.6 L 203.9 352.5 L 193.1 351.6 L 182.4 349.8 L 171.8 347.3 L 161.3 343.9 L 151.1 339.8 L 141.2 334.9 L 131.7 329.2 L 122.5 322.8 L 113.8 315.7 L 105.7 307.9 L 98.1 299.4 L 91.1 290.4 L 84.8 280.9 L 79.2 270.8 L 74.4 260.4 L 70.3 249.5 L 67.1 238.3 L 64.7 226.8 L 63.2 215.2 L 62.5 203.4 L 62.7 191.5 L 63.9 179.6 L 65.9 167.8 L 68.8 156.2 L 72.6 144.7 L 77.3 133.5 L 82.8 122.7 L 89.2 112.2 L 96.4 102.2 L 104.3 92.7 L 112.9 83.8 L 122.3 75.6 L 132.2 68.1 L 142.8 61.2" fill="none" stroke="#5e4c31" stroke-width="3"/><rect x="225.9" y="208.3" width="8" height="8" fill="#5e4c31" transform="rotate(0 229.9 212.3)"/><rect x="227.3" y="215.0" width="8" height="8" fill="#5e4c31" transform="rotate(42 231.3 219.0)"/><rect x="224.1" y="222.9" width="8" height="8" fill="#5e4c31" transform="rotate(84 228.1 226.9)"/><rect x="215.9" y="229.0" width="8" height="8" fill="#5e4c31" transform="rotate(126 219.9 233.0)"/><rect x="204.0" y="230.5" width="8" height="8" fill="#5e4c31" transform="rotate(168 208.0 234.5)"/><rect x="191.2" y="225.5" width="8" height="8" fill="#5e4c31" transform="rotate(210 195.2 229.5)"/><rect x="181.0" y="213.7" width="8" height="8" fill="#5e4c31" transform="rotate(252 185.0 217.7)"/><rect x="177.0" y="196.7" width="8" height="8" fill="#5e4c31" transform="rotate(294 181.0 200.7)"/><rect x="181.6" y="178.0" width="8" height="8" fill="#5e4c31" transform="rotate(336 185.6 182.0)"/><rect x="195.4" y="162.0" width="8" height="8" fill="#5e4c31" transform="rotate(378 199.4 166.0)"/><rect x="216.7" y="153.1" width="8" height="8" fill="#5e4c31" transform="rotate(420 220.7 157.1)"/><rect x="241.5" y="154.8" width="8" height="8" fill="#5e4c31" transform="rotate(462 245.5 158.8)"/><rect x="264.6" y="168.4" width="8" height="8" fill="#5e4c31" transform="rotate(504 268.6 172.4)"/><rect x="280.3" y="192.4" width="8" height="8" fill="#5e4c31" transform="rotate(546 284.3 196.4)"/><rect x="284.0" y="222.8" width="8" height="8" fill="#5e4c31" transform="rotate(588 288.0 226.8)"/><rect x="273.2" y="253.4" width="8" height="8" fill="#5e4c31" transform="rotate(630 277.2 257.4)"/><rect x="248.7" y="277.4" width="8" height="8" fill="#5e4c31" transform="rotate(672 252.7 281.4)"/><rect x="214.3" y="288.8" width="8" height="8" fill="#5e4c31" transform="rotate(714 218.3 292.8)"/><rect x="176.5" y="283.6" width="8" height="8" fill="#5e4c31" transform="rotate(756 180.5 287.6)"/><rect x="143.3" y="261.3" width="8" height="8" fill="#5e4c31" transform="rotate(798 147.3 265.3)"/><rect x="122.3" y="225.0" width="8" height="8" fill="#5e4c31" transform="rotate(840 126.3 229.0)"/><rect x="119.2" y="181.3" width="8" height="8" fill="#5e4c31" transform="rotate(882 123.2 185.3)"/><rect x="136.3" y="138.9" width="8" height="8" fill="#5e4c31" transform="rotate(924 140.3 142.9)"/><rect x="171.7" y="107.0" width="8" height="8" fill="#5e4c31" transform="rotate(966 175.7 111.0)"/><rect x="219.3" y="93.3" width="8" height="8" fill="#5e4c31" transform="rotate(1008 223.3 97.3)"/><rect x="270.0" y="102.2" width="8" height="8" fill="#5e4c31" transform="rotate(1050 274.0 106.2)"/><rect x="313.2" y="133.4" width="8" height="8" fill="#5e4c31" transform="rotate(1092 317.2 137.4)"/><rect x="339.3" y="182.1" width="8" height="8" fill="#5e4c31" transform="rotate(1134 343.3 186.1)"/><rect x="341.5" y="239.2" width="8" height="8" fill="#5e4c31" transform="rotate(1176 345.5 243.2)"/><rect x="317.8" y="293.3" width="8" height="8" fill="#5e4c31" transform="rotate(1218 321.8 297.3)"/><rect x="271.4" y="332.8" width="8" height="8" fill="#5e4c31" transform="rotate(1260 275.4 336.8)"/><rect x="210.6" y="348.6" width="8" height="8" fill="#5e4c31" transform="rotate(1302 214.6 352.6)"/><rect x="147.1" y="335.8" width="8" height="8" fill="#5e4c31" transform="rotate(1344 151.1 339.8)"/><rect x="94.1" y="295.4" width="8" height="8" fill="#5e4c31" transform="rotate(1386 98.1 299.4)"/><rect x="63.1" y="234.3" width="8" height="8" fill="#5e4c31" transform="rotate(1428 67.1 238.3)"/><rect x="61.9" y="163.8" width="8" height="8" fill="#5e4c31" transform="rotate(1470 65.9 167.8)"/><rect x="92.4" y="98.2" width="8" height="8" fill="#5e4c31" transform="rotate(1512 96.4 102.2)"/></g><text x="0" y="228" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="34" fill="#2a261f" letter-spacing="1">PHAISTOS, CRETE</text><circle cx="3" cy="-250.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-254.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-258.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-1" transform="translate(680 1180) rotate(2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 023</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="93" fill="#1d1a14">~3,700 YEARS</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">minoan crete</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-2" transform="translate(400 1800) rotate(-1.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 023</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="140" fill="#1d1a14">STAMPED</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">not carved</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-3" transform="translate(680 2420) rotate(2.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 023</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="124" fill="#1d1a14">242 SIGNS</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">45 different</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-4" transform="translate(400 3040) rotate(-2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 023</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="79" fill="#1d1a14">DECIPHERED: NO</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">case open</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+      </svg>
+    </div>
+    <div id="board-torch" data-layout-allow-overflow data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 182137;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const cork = document.querySelector("#board-cork");
+      const tones = ["#2c1f13", "#4a3622", "#53402a", "#24190f"];
+      for (let i = 0; i < 1400; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", (-700 + rnd() * 2480).toFixed(0));
+        c.setAttribute("cy", (-900 + rnd() * 5400).toFixed(0));
+        c.setAttribute("r", (1 + rnd() * 4).toFixed(1));
+        c.setAttribute("fill", tones[Math.floor(rnd() * tones.length)]);
+        cork.appendChild(c);
+      }
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+    tl.fromTo("#board-torch", { x: 0, y: -60, scale: 1 }, { x: 12, y: -50, scale: 1.02, duration: 5.01, ease: "sine.inOut" }, 0);
+    // Camera: from one piece of evidence to the next along the red string, then the whole case.
+    tl.fromTo("#board-world", cam(400, 651, 1.10), { ...cam(400, 648, 1.14), duration: 5.01, ease: "none" }, 0);
+    tl.to("#board-world", { ...cam(680, 1229, 1.22), duration: 0.6, ease: "power3.inOut" }, 5.01);
+    tl.to("#board-world", { ...cam(680, 1228, 1.26), duration: 1.89, ease: "none" }, 5.61);
+    tl.to("#board-world", { ...cam(400, 1849, 1.22), duration: 0.6, ease: "power3.inOut" }, 7.50);
+    tl.to("#board-world", { ...cam(400, 1848, 1.26), duration: 3.32, ease: "none" }, 8.10);
+    tl.to("#board-world", { ...cam(680, 2469, 1.22), duration: 0.6, ease: "power3.inOut" }, 11.42);
+    tl.to("#board-world", { ...cam(680, 2468, 1.26), duration: 3.12, ease: "none" }, 12.02);
+    tl.to("#board-world", { ...cam(400, 3089, 1.22), duration: 0.6, ease: "power3.inOut" }, 15.14);
+    tl.to("#board-world", { ...cam(400, 3088, 1.26), duration: 1.64, ease: "none" }, 15.74);
+    tl.to("#board-world", { ...cam(540, 1127, 0.416), duration: 0.9, ease: "power3.inOut" }, 17.38);
+    tl.to("#board-world", { ...cam(540, 1127, 0.404), duration: 1.72, ease: "none" }, 18.28);
+    tl.fromTo("#board-string-0", { strokeDasharray: 782, strokeDashoffset: 782, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 5.01);
+    tl.fromTo("#board-string-1", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 7.50);
+    tl.fromTo("#board-string-2", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 11.42);
+    tl.fromTo("#board-string-3", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 15.14);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 5.01);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 7.50);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 11.42);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 15.14);
+    tl.to("#board-torch", { x: 0, y: 200, scale: 2.4, duration: 0.9, ease: "power3.inOut" }, 17.38);
+    window.__timelines["board"] = tl;
+  </script>
+</template>

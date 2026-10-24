@@ -1,0 +1,102 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #120d08;
+    }
+    #board-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 3600px;
+      transform-origin: 540px 960px;
+    }
+    #board-world svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    #board-torch {
+      position: absolute;
+      left: -1080px;
+      top: -1920px;
+      width: 3240px;
+      height: 5760px;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(4, 3, 2, 0) 0px,
+        rgba(4, 3, 2, 0.12) 220px,
+        rgba(4, 3, 2, 0.66) 430px,
+        rgba(4, 3, 2, 0.9) 600px
+      );
+    }
+  </style>
+  <div id="root" data-composition-id="board" data-width="1080" data-height="1920">
+    <div id="board-world" data-layout-allow-overflow data-layout-ignore>
+      <svg width="1080" height="3600" viewBox="0 0 1080 3600" xmlns="http://www.w3.org/2000/svg">
+        <rect x="-3000" y="-3000" width="7080" height="9600" fill="#3a2a1a"/>
+        <g id="board-cork"></g>
+          <line id="board-string-0" x1="400" y1="306.0" x2="680" y2="1036.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-1" x1="680" y1="1036.0" x2="400" y2="1656.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-2" x1="400" y1="1656.0" x2="680" y2="2276.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <line id="board-string-3" x1="680" y1="2276.0" x2="400" y2="2896.0" stroke="#b3241c" stroke-width="5" stroke-linecap="round"/>
+          <g id="board-item-0" transform="translate(400 560) rotate(-2.5)"><rect x="-230.0" y="-268.0" width="480" height="560" fill="#000" opacity="0.45"/><rect x="-240" y="-280" width="480" height="560" fill="#e7e1d1"/><rect x="-220" y="-260" width="440" height="420" fill="#1b1f24"/><g transform="translate(-220 -260)"><polygon points="240.0,180.0 239.7,187.8 222.7,192.8 221.3,199.1 234.6,210.8 231.6,218.0 213.9,216.9 210.5,222.3 218.9,237.9 213.6,243.6 197.4,236.5 192.3,240.5 195.0,257.9 188.0,261.6 175.2,249.3 169.1,251.3 165.6,268.6 157.8,269.7 150.0,253.8 143.6,253.5 134.4,268.6 126.7,266.9 124.8,249.3 118.8,246.9 105.0,257.9 98.4,253.7 102.6,236.5 97.8,232.2 81.1,237.9 76.3,231.6 86.1,216.9 83.1,211.2 65.4,210.8 63.1,203.3 77.3,192.8 76.5,186.4 60.0,180.0 60.3,172.2 77.3,167.2 78.7,160.9 65.4,149.2 68.4,142.0 86.1,143.1 89.5,137.7 81.1,122.1 86.4,116.4 102.6,123.5 107.7,119.5 105.0,102.1 112.0,98.4 124.8,110.7 130.9,108.7 134.4,91.4 142.2,90.3 150.0,106.2 156.4,106.5 165.6,91.4 173.3,93.1 175.2,110.7 181.2,113.1 195.0,102.1 201.6,106.3 197.4,123.5 202.2,127.8 218.9,122.1 223.7,128.4 213.9,143.1 216.9,148.8 234.6,149.2 236.9,156.7 222.7,167.2 223.5,173.6" fill="#8f7a4a"/><circle cx="150" cy="180" r="49.5" fill="#1b1f24"/><circle cx="150" cy="180" r="16.2" fill="#8f7a4a"/><polygon points="354.0,230.0 353.5,237.7 341.0,242.6 339.1,248.6 346.7,259.7 342.7,266.4 329.3,264.8 324.8,269.3 326.4,282.7 319.7,286.7 308.6,279.1 302.6,281.0 297.7,293.5 290.0,294.0 283.7,282.1 277.4,281.0 267.3,289.8 260.3,286.7 260.2,273.2 255.2,269.3 242.1,272.4 237.3,266.4 243.5,254.4 240.9,248.6 227.9,245.3 226.5,237.7 237.5,230.0 237.9,223.7 227.9,214.7 230.2,207.3 243.5,205.6 246.8,200.2 242.1,187.6 247.6,182.1 260.2,186.8 265.6,183.5 267.3,170.2 274.7,167.9 283.7,177.9 290.0,177.5 297.7,166.5 305.3,167.9 308.6,180.9 314.4,183.5 326.4,177.3 332.4,182.1 329.3,195.2 333.2,200.2 346.7,200.3 349.8,207.3 341.0,217.4 342.1,223.7" fill="#a08a58"/><circle cx="290" cy="230" r="35.2" fill="#1b1f24"/><circle cx="290" cy="230" r="11.5" fill="#a08a58"/><polygon points="290.0,90.0 289.4,96.9 280.8,101.2 278.4,106.4 280.6,115.7 275.7,120.6 266.4,118.4 261.2,120.8 256.9,129.4 250.0,130.0 244.3,122.3 238.8,120.8 230.0,124.6 224.3,120.6 224.9,111.1 221.6,106.4 212.4,103.7 210.6,96.9 217.2,90.0 217.7,84.3 212.4,76.3 215.4,70.0 224.9,68.9 228.9,64.9 230.0,55.4 236.3,52.4 244.3,57.7 250.0,57.2 256.9,50.6 263.7,52.4 266.4,61.6 271.1,64.9 280.6,64.3 284.6,70.0 280.8,78.8 282.3,84.3" fill="#7c6a40"/><circle cx="250" cy="90" r="22.0" fill="#1b1f24"/><circle cx="250" cy="90" r="7.2" fill="#7c6a40"/></g><text x="0" y="228" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="34" fill="#2a261f" letter-spacing="1">ANTIKYTHERA WRECK</text><circle cx="3" cy="-250.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-254.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-258.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-1" transform="translate(680 1180) rotate(2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 015</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="139" fill="#1d1a14">30 GEARS</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">still survive</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-2" transform="translate(400 1800) rotate(-1.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 015</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="62" fill="#1d1a14">PREDICTED ECLIPSES</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">sun, moon, calendar</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-3" transform="translate(680 2420) rotate(2.5)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 015</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="69" fill="#1d1a14">~2,000 YEARS OLD</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">ancient Greece</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+          <g id="board-item-4" transform="translate(400 3040) rotate(-2.0)"><rect x="-250.0" y="-158.0" width="520" height="340" fill="#000" opacity="0.45"/><rect x="-260" y="-170" width="520" height="340" fill="#d9d2bd"/><text x="-232" y="-122" font-family="IBM Plex Mono, monospace" font-size="22" fill="#7a7363">EVIDENCE · 015</text><text x="0" y="30" text-anchor="middle" font-family="League Gothic, sans-serif" font-size="62" fill="#1d1a14">1,000+ YEARS AHEAD</text><text x="0" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="26" fill="#4a4537">of its time</text><circle cx="3" cy="-140.0" r="14" fill="#000" opacity="0.4"/><circle cx="0" cy="-144.0" r="14" fill="#c0281f"/><circle cx="-4" cy="-148.0" r="4" fill="#f08a80"/></g>
+      </svg>
+    </div>
+    <div id="board-torch" data-layout-allow-overflow data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 118785;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const cork = document.querySelector("#board-cork");
+      const tones = ["#2c1f13", "#4a3622", "#53402a", "#24190f"];
+      for (let i = 0; i < 1400; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", (-700 + rnd() * 2480).toFixed(0));
+        c.setAttribute("cy", (-900 + rnd() * 5400).toFixed(0));
+        c.setAttribute("r", (1 + rnd() * 4).toFixed(1));
+        c.setAttribute("fill", tones[Math.floor(rnd() * tones.length)]);
+        cork.appendChild(c);
+      }
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+    tl.fromTo("#board-torch", { x: 0, y: -60, scale: 1 }, { x: 12, y: -50, scale: 1.02, duration: 4.74, ease: "sine.inOut" }, 0);
+    // Camera: from one piece of evidence to the next along the red string, then the whole case.
+    tl.fromTo("#board-world", cam(400, 651, 1.10), { ...cam(400, 648, 1.14), duration: 4.74, ease: "none" }, 0);
+    tl.to("#board-world", { ...cam(680, 1229, 1.22), duration: 0.6, ease: "power3.inOut" }, 4.74);
+    tl.to("#board-world", { ...cam(680, 1228, 1.26), duration: 2.22, ease: "none" }, 5.34);
+    tl.to("#board-world", { ...cam(400, 1849, 1.22), duration: 0.6, ease: "power3.inOut" }, 7.56);
+    tl.to("#board-world", { ...cam(400, 1848, 1.26), duration: 2.64, ease: "none" }, 8.16);
+    tl.to("#board-world", { ...cam(680, 2469, 1.22), duration: 0.6, ease: "power3.inOut" }, 10.80);
+    tl.to("#board-world", { ...cam(680, 2468, 1.26), duration: 1.34, ease: "none" }, 11.40);
+    tl.to("#board-world", { ...cam(400, 3089, 1.22), duration: 0.6, ease: "power3.inOut" }, 12.74);
+    tl.to("#board-world", { ...cam(400, 3088, 1.26), duration: 3.63, ease: "none" }, 13.34);
+    tl.to("#board-world", { ...cam(540, 1127, 0.416), duration: 0.9, ease: "power3.inOut" }, 16.97);
+    tl.to("#board-world", { ...cam(540, 1127, 0.404), duration: 2.13, ease: "none" }, 17.87);
+    tl.fromTo("#board-string-0", { strokeDasharray: 782, strokeDashoffset: 782, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 4.74);
+    tl.fromTo("#board-string-1", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 7.56);
+    tl.fromTo("#board-string-2", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 10.80);
+    tl.fromTo("#board-string-3", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power2.inOut" }, 12.74);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 4.74);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 7.56);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 10.80);
+    tl.to("#board-torch", { x: 0, y: -60, scale: 1, duration: 0.6, ease: "power3.inOut" }, 12.74);
+    tl.to("#board-torch", { x: 0, y: 200, scale: 2.4, duration: 0.9, ease: "power3.inOut" }, 16.97);
+    window.__timelines["board"] = tl;
+  </script>
+</template>
