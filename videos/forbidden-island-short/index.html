@@ -3,9 +3,9 @@
   lang="en"
   data-resolution="portrait"
   data-composition-variables='[
-    {"id":"ocean","type":"color","label":"Ocean","default":"#1c5866"},
-    {"id":"accent","type":"color","label":"Accent (no-go red)","default":"#e3342b"},
-    {"id":"sand","type":"color","label":"Sand / title ink","default":"#f1e3b8"}
+    {"id":"ocean","type":"color","label":"Ocean","default":"#0e2328"},
+    {"id":"accent","type":"color","label":"Accent (no-go red)","default":"#c8231d"},
+    {"id":"sand","type":"color","label":"Sand / title ink","default":"#ddd3b4"}
   ]'
 >
   <head>
@@ -14,9 +14,9 @@
     <script src="assets/vendor/gsap.min.js"></script>
     <style>
       :root {
-        --ocean: #1c5866;
-        --accent: #e3342b;
-        --sand: #f1e3b8;
+        --ocean: #0e2328;
+        --accent: #c8231d;
+        --sand: #ddd3b4;
         --ink: #ffffff;
         --font-display: "League Gothic", sans-serif;
         --font-body: "Oswald", sans-serif;
@@ -77,7 +77,7 @@
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
-        style="z-index: 2"
+        style="z-index: 3"
       ></div>
       <div
         id="where"
@@ -89,7 +89,7 @@
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
-        style="z-index: 2"
+        style="z-index: 3"
       ></div>
       <div
         id="years"
@@ -101,7 +101,7 @@
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
-        style="z-index: 2"
+        style="z-index: 3"
       ></div>
       <div
         id="y2004"
@@ -113,7 +113,7 @@
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
-        style="z-index: 2"
+        style="z-index: 3"
       ></div>
       <div
         id="y2018"
@@ -125,7 +125,7 @@
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
-        style="z-index: 2"
+        style="z-index: 3"
       ></div>
       <div
         id="unknown"
@@ -134,6 +134,20 @@
         data-start="17.3"
         data-duration="2.7"
         data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+
+      <!-- Night mood: fog, vignette, grain, exposure flicker -->
+      <div
+        id="mood"
+        data-composition-id="mood"
+        data-composition-src="compositions/mood.html"
+        data-start="0"
+        data-duration="20"
+        data-track-index="6"
         data-track-kind="graphics"
         data-width="1080"
         data-height="1920"
@@ -151,7 +165,7 @@
         data-track-kind="captions"
         data-width="1080"
         data-height="1920"
-        style="z-index: 3"
+        style="z-index: 4"
       ></div>
 
       <audio

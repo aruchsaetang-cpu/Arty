@@ -14,8 +14,8 @@
       font-family: var(--font-display, "League Gothic"), sans-serif;
       font-size: 240px;
       line-height: 1;
-      color: var(--sand, #f1e3b8);
-      text-shadow: 0 8px 0 rgba(8, 30, 36, 0.55);
+      color: var(--sand, #ddd3b4);
+      text-shadow: 0 8px 0 rgba(0, 0, 0, 0.55);
     }
     #y2018-sub {
       position: absolute;
@@ -35,7 +35,7 @@
       font-size: 120px;
       line-height: 1;
       color: #ffffff;
-      text-shadow: 0 6px 0 rgba(8, 30, 36, 0.6);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
     }
     #y2018-route {
       position: absolute;
@@ -45,6 +45,9 @@
       height: 1920px;
       overflow: visible;
     }
+    #y2018-year-in {
+      opacity: 0;
+    }
   </style>
   <div id="root" data-composition-id="y2018" data-width="1080" data-height="1920">
     <div id="y2018-year" class="clip" data-start="0" data-duration="3.8">
@@ -53,7 +56,7 @@
     <div id="y2018-sub" class="clip" data-start="0" data-duration="3.8">
       <span id="y2018-sub-in">JOHN ALLEN CHAU, 26</span>
     </div>
-    <div id="y2018-never" class="clip" data-start="2.6" data-duration="1.2">
+    <div id="y2018-never" class="clip" data-start="2.42" data-duration="1.38">
       <span id="y2018-never-in">NEVER CAME BACK</span>
     </div>
     <svg id="y2018-route" class="clip" data-start="0" data-duration="3.8" data-layout-ignore viewBox="0 0 1080 1920">
@@ -67,7 +70,10 @@
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#y2018-year-in", { opacity: 0, x: -40, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.08);
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#y2018-year-in", 0.08);
     tl.fromTo("#y2018-sub-in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.9);
     // A dashed wake from open water to the beach; the canoe rides its head.
     const path = document.querySelector("#y2018-path");
@@ -86,7 +92,7 @@
     tl.fromTo("#y2018-canoe", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "none" }, 0.9);
     // "He never came back": the wake fades, the canoe stays on the sand.
     tl.to("#y2018-path", { opacity: 0.25, duration: 0.5, ease: "power2.inOut" }, 2.6);
-    tl.fromTo("#y2018-never-in", { opacity: 0, scale: 1.25, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 2.62);
+    tl.fromTo("#y2018-never-in", { opacity: 0, scale: 1.25, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power2.out" }, 2.44);
     tl.to(["#y2018-year-in", "#y2018-sub-in", "#y2018-never-in", "#y2018-route"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 3.55);
     window.__timelines["y2018"] = tl;
   </script>

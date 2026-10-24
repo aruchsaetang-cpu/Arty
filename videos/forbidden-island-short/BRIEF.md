@@ -9,6 +9,7 @@ language: en
 audience: US
 length: 20s
 angle: mystery / unexplained short (movie-trivia-short format)
+channel: Hollow Truth
 ---
 
 ## Intent
@@ -17,6 +18,15 @@ A 20-second narrated vertical short for a US audience in the mystery and
 unexplained stories niche: "The Island Where Nobody Is Allowed to Visit."
 It opens on the hook title, then gives four facts and ends on a question
 to the viewer ("Would you go?") to get comments.
+
+## Customizations
+
+- Branded for the Hollow Truth channel: "HOLLOW TRUTH · FILE 001" over the hook,
+  the channel name typed in under "WOULD YOU GO?" at the end.
+- Darker look for the channel: night chart, fog, vignette, film grain, titles that
+  flicker like a failing light, the picture dipping dark at each cut, the no-go ring pulsing.
+- Voice pitched down 7% with a short reverb tail. The bed drops to E1 and adds a
+  high tone a half-step apart.
 
 ## Script (voiceover)
 
@@ -30,8 +40,8 @@ to the viewer ("Would you go?") to get comments.
 ## Assets
 
 - assets/audio/voiceover.m4a: local Kokoro TTS (am_michael, 1.08x), one phrase
-  per line with the silences trimmed, -16 LUFS.
-- assets/audio/bed.m4a: drone, surf, rotor and hits made by scripts/score.py, -24 LUFS.
+  per line with the silences trimmed, pitched down, -16 LUFS.
+- assets/audio/bed.m4a: drone, surf, rotor and hits made by scripts/score.py, -23 LUFS.
 
 ## Notes
 

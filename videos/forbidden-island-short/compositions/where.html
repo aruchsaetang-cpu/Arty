@@ -16,8 +16,8 @@
       font-family: var(--font-display, "League Gothic"), sans-serif;
       font-size: 128px;
       line-height: 1;
-      color: var(--sand, #f1e3b8);
-      text-shadow: 0 6px 0 rgba(8, 30, 36, 0.55);
+      color: var(--sand, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.55);
     }
     #where-ocean {
       position: absolute;
@@ -54,7 +54,10 @@
       font-size: 38px;
       line-height: 1.1;
       letter-spacing: 0.08em;
-      color: var(--sand, #f1e3b8);
+      color: var(--sand, #ddd3b4);
+    }
+    #where-title-in {
+      opacity: 0;
     }
   </style>
   <div id="root" data-composition-id="where" data-width="1080" data-height="1920">
@@ -73,12 +76,10 @@
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo(
-      "#where-title-in",
-      { opacity: 0, scale: 0.86, filter: "blur(8px)" },
-      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
-      0.12
-    );
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#where-title-in", 0.12);
     tl.fromTo("#where-pin-in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.5);
     tl.fromTo("#where-ocean-in", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 1.05);
     tl.fromTo("#where-chain-in", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power4.out" }, 1.45);

@@ -1,4 +1,4 @@
-"""Synthesise the 20s bed: low drone, surf, helicopter rotor and a few hits."""
+"""Synthesise the 20s Hollow Truth bed: dark drone, eerie shimmer, surf, rotor and hits."""
 import sys, wave
 import numpy as np
 
@@ -36,10 +36,13 @@ def fade(x, fin, fout):
 
 # Drone: A1 + E2 with a slow beat, plus a mid pad so phones hear it.
 lfo = 0.75 + 0.25 * np.sin(2 * np.pi * 0.11 * t)
-drone = (np.sin(2 * np.pi * 55 * t) + 0.6 * np.sin(2 * np.pi * 82.6 * t)
-         + 0.35 * np.sin(2 * np.pi * 110.4 * t)) * lfo
+drone = (np.sin(2 * np.pi * 41.2 * t) + 0.6 * np.sin(2 * np.pi * 61.9 * t)
+         + 0.4 * np.sin(2 * np.pi * 87.3 * t) + 0.3 * np.sin(2 * np.pi * 82.4 * t)) * lfo
 pad = onepole(rng.standard_normal(N), 700) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.07 * t))
-pad += 0.25 * np.sin(2 * np.pi * 220 * t + 0.3 * np.sin(2 * np.pi * 0.3 * t))
+pad += 0.25 * np.sin(2 * np.pi * 174.6 * t + 0.3 * np.sin(2 * np.pi * 0.3 * t))
+# Eerie high pair a minor second apart, beating slowly, swelling in and out.
+shimmer = (np.sin(2 * np.pi * 932.3 * t) + np.sin(2 * np.pi * 987.8 * t)) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.09 * t - 1.2)) ** 2
+pad += 0.06 * shimmer
 bed = 0.22 * drone + 0.5 * pad
 # Drop out under "He never came back", back in on "No one knows".
 gate = np.ones(N)

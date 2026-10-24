@@ -14,8 +14,8 @@
       font-family: var(--font-display, "League Gothic"), sans-serif;
       font-size: 240px;
       line-height: 1;
-      color: var(--sand, #f1e3b8);
-      text-shadow: 0 8px 0 rgba(8, 30, 36, 0.55);
+      color: var(--sand, #ddd3b4);
+      text-shadow: 0 8px 0 rgba(0, 0, 0, 0.55);
     }
     #y2004-sub {
       position: absolute;
@@ -42,6 +42,9 @@
       height: 1920px;
       overflow: visible;
     }
+    #y2004-year-in {
+      opacity: 0;
+    }
   </style>
   <div id="root" data-composition-id="y2004" data-width="1080" data-height="1920">
     <div id="y2004-year" class="clip" data-start="0" data-duration="3.6">
@@ -52,7 +55,7 @@
     </div>
     <svg id="y2004-arrow" class="clip" data-start="0" data-duration="3.6" data-layout-ignore viewBox="0 0 1080 1920">
       <line id="y2004-shot" x1="520" y1="787" x2="610" y2="642" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
-      <circle id="y2004-archer" cx="520" cy="787" r="11" fill="var(--accent, #e3342b)" />
+      <circle id="y2004-archer" cx="520" cy="787" r="11" fill="var(--accent, #c8231d)" />
     </svg>
     <div id="y2004-heli" class="clip" data-start="0" data-duration="3.6" data-layout-ignore>
       <svg id="y2004-heli-in" width="260" height="130" viewBox="0 0 260 130">
@@ -72,7 +75,10 @@
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#y2004-year-in", { opacity: 0, x: -40, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.08);
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#y2004-year-in", 0.08);
     tl.fromTo("#y2004-sub-in", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.4);
     // Rescue helicopter crosses the north beach.
     tl.fromTo("#y2004-heli-in", { x: -300, rotation: 4 }, { x: 1180, rotation: 4, duration: 3.1, ease: "none" }, 0.4);
