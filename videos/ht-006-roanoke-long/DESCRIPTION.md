@@ -6,6 +6,11 @@ When he returned in August 1590, on his granddaughter's third birthday, everyone
 
 In this Hollow Truth case file: what happened, the clues, and the theories.
 
+00:00 The case
+00:40 The Long Wait
+01:07 What He Found
+01:49 The Theories
+
 Where do you think they went? 👇
 
 📖 Learn more: https://en.wikipedia.org/wiki/Roanoke_Colony

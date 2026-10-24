@@ -6,6 +6,11 @@ In 1980, a boy found $5,800 of the ransom by the Columbia River. The man himself
 
 In this Hollow Truth case file: what happened, the clues, and the theories.
 
+00:00 The case
+00:42 The Demands
+01:12 The Jump
+01:48 The Theories
+
 Who do you think D.B. Cooper was? 👇
 
 📖 Learn more: https://en.wikipedia.org/wiki/D._B._Cooper

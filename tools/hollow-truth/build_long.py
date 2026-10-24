@@ -466,7 +466,8 @@ def stamp(t):
 def docs(topic, long, proj, cards, speed):
     chapters = ["00:00 The case"] + [f"{stamp(t)} {name.title()}" for t, name in cards]
     body = "\n".join(ln for ln in long["yt_body"].split("\n") if not re.match(r"^\d\d:\d\d ", ln))
-    body = re.sub(r"\n{3,}", "\n\n", body.replace("\n\nWhat", "\n\n" + "\n".join(chapters) + "\n\nWhat", 1))
+    paras = [x for x in body.split("\n\n") if x.strip()]
+    body = "\n\n".join(paras[:-1] + ["\n".join(chapters), paras[-1]])  # chapters sit above the closing question
     desc = (f"**Title:** {long['yt_title']}\n\n{body}\n\n"
             f"📖 Learn more: {topic['wiki']}\n"
             f"🔔 Subscribe to Hollow Truth for more strange events, unsolved mysteries and places you were never meant to see.\n\n"
