@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Movie Trivia — 5 เรื่องจริงหลังกองถ่าย</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-thai-900-normal.woff2") format("woff2");
+        font-weight: 900;
+        unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+        unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122;
+      }
+
+      :root {
+        --bg: #0b0d14;
+        --bg-2: #161a26;
+        --fg: #f4f1ea;
+        --muted: #a4a8b8;
+        --gold: #ffc93c;
+        --red: #ff5a4f;
+        --line: rgba(244, 241, 234, 0.16);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Kanit", sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      #bg {
+        z-index: 0;
+      }
+      section.clip {
+        z-index: 2;
+      }
+      #hud {
+        z-index: 3;
+      }
+      #flash {
+        z-index: 4;
+      }
+
+      /* ---------- background ---------- */
+      .spot {
+        position: absolute;
+        left: -300px;
+        top: 300px;
+        width: 1680px;
+        height: 1680px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 201, 60, 0.16) 0%, rgba(255, 201, 60, 0.04) 40%, rgba(11, 13, 20, 0) 68%);
+      }
+      .strip {
+        position: absolute;
+        top: -200px;
+        width: 44px;
+        height: 2400px;
+        background-image: repeating-linear-gradient(180deg, rgba(244, 241, 234, 0.1) 0 40px, transparent 40px 80px);
+        border-radius: 8px;
+      }
+      .strip.l {
+        left: 14px;
+      }
+      .strip.r {
+        right: 14px;
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.12;
+        background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
+      }
+
+      /* ---------- HUD ---------- */
+      .topbar {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 96px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+      .topbar .tag {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: var(--fg);
+      }
+      .dot {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+      .pips {
+        display: flex;
+        gap: 12px;
+      }
+      .pip {
+        display: block;
+        width: 46px;
+        height: 10px;
+        border-radius: 5px;
+        background: var(--line);
+        overflow: hidden;
+      }
+      .pip-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--gold);
+        transform-origin: left center;
+      }
+
+      /* ---------- type ---------- */
+      .head {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 200px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .num {
+        display: block;
+        font-weight: 900;
+        font-size: 150px;
+        line-height: 1.1;
+        color: var(--gold);
+        transform-origin: left center;
+      }
+      .chip {
+        display: block;
+        padding: 12px 26px;
+        border: 3px solid var(--gold);
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.1em;
+        color: var(--fg);
+        background: rgba(11, 13, 20, 0.8);
+        white-space: nowrap;
+      }
+      .copy {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 420px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .line {
+        display: block;
+        font-weight: 900;
+        font-size: 84px;
+        line-height: 1.22;
+        white-space: nowrap;
+        transform-origin: left center;
+      }
+      .line.sm {
+        font-size: 60px;
+        font-weight: 700;
+      }
+      .gold {
+        color: var(--gold);
+      }
+      .red {
+        color: var(--red);
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .kicker {
+        display: block;
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: 0.16em;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+
+      /* ---------- prop stage ---------- */
+      .stage {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 700px;
+        height: 560px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .stage svg {
+        display: block;
+        width: 900px;
+        height: 560px;
+        overflow: visible;
+      }
+
+      /* ---------- reveal card ---------- */
+      .reveal {
+        position: absolute;
+        left: 70px;
+        right: 70px;
+        top: 1290px;
+        padding: 40px 50px 44px;
+        border: 4px solid var(--gold);
+        border-radius: 32px;
+        background: var(--bg-2);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .reveal .tag {
+        position: absolute;
+        left: 46px;
+        top: -30px;
+        padding: 6px 22px;
+        border-radius: 10px;
+        background: var(--gold);
+        color: var(--bg);
+        font-weight: 900;
+        font-size: 32px;
+        letter-spacing: 0.12em;
+      }
+      .ans {
+        display: block;
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 1.3;
+        white-space: nowrap;
+      }
+      .ans.big {
+        font-weight: 900;
+        font-size: 64px;
+      }
+      .foot {
+        display: block;
+        font-weight: 400;
+        font-size: 30px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .tiles {
+        display: flex;
+        gap: 30px;
+        margin: 4px 0 8px;
+      }
+      .tile {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 22px 28px;
+        border: 3px solid var(--line);
+        border-radius: 22px;
+        background: var(--bg);
+      }
+      .tile-label {
+        display: block;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .tile-value {
+        display: block;
+        font-weight: 900;
+        font-size: 88px;
+        line-height: 1.1;
+      }
+      .tile-value.name {
+        font-size: 50px;
+        line-height: 1.25;
+        white-space: nowrap;
+      }
+      .burst {
+        position: absolute;
+        left: 50%;
+        top: 1290px;
+        width: 1200px;
+        height: 1200px;
+        margin-left: -600px;
+        margin-top: -380px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 201, 60, 0.35) 0%, rgba(255, 201, 60, 0) 60%);
+        opacity: 0;
+      }
+
+      /* ---------- terminal (Toy Story 2) ---------- */
+      .term {
+        width: 900px;
+        height: 500px;
+        border: 3px solid var(--line);
+        border-radius: 24px;
+        background: #07080c;
+        overflow: hidden;
+      }
+      .term-bar {
+        display: flex;
+        gap: 12px;
+        padding: 20px 24px;
+        background: var(--bg-2);
+      }
+      .term-bar span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--line);
+      }
+      .term-body {
+        padding: 30px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        font-family: "Kanit", monospace;
+        font-size: 44px;
+        font-weight: 700;
+      }
+      .cmd {
+        display: block;
+        color: var(--red);
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+      }
+      .files {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 34px;
+      }
+      .bar {
+        display: block;
+        width: 100%;
+        height: 34px;
+        border-radius: 17px;
+        background: var(--line);
+        overflow: hidden;
+      }
+      .bar-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--gold);
+        transform-origin: left center;
+      }
+      .ok {
+        display: block;
+        color: #6fdc8c;
+        opacity: 0;
+      }
+
+      /* ---------- outro ---------- */
+      .outro {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 640px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+      }
+      .outro .line {
+        transform-origin: center center;
+      }
+      .mega {
+        display: block;
+        font-weight: 900;
+        font-size: 210px;
+        line-height: 1.15;
+        color: var(--gold);
+        white-space: nowrap;
+      }
+      .arrow {
+        display: block;
+        width: 120px;
+        height: 140px;
+        margin-top: 30px;
+      }
+      .flash {
+        position: absolute;
+        inset: 0;
+        background: var(--fg);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+      <!-- persistent background: spotlight + film-strip edges -->
+      <div id="bg" class="clip" data-start="0" data-duration="30" data-track-index="0">
+        <div class="spot" id="bg-spot"></div>
+        <div class="strip l" id="strip-l"></div>
+        <div class="strip r" id="strip-r"></div>
+        <div class="grain"></div>
+      </div>
+
+      <!-- 0–3 hook -->
+      <section id="s-hook" class="clip" data-start="0" data-duration="3" data-track-index="1">
+        <div class="copy" style="top: 260px">
+          <span class="kicker" id="hook-kicker">DID YOU KNOW?</span>
+          <span class="line" id="hook-l1" style="font-size: 150px">5 เรื่องจริง</span>
+          <span class="line" id="hook-l2">หลังกองถ่ายหนังดัง</span>
+          <span class="line gold" id="hook-l3">ที่คุณอาจไม่เคยรู้</span>
+        </div>
+        <div class="stage" style="top: 960px">
+          <svg viewBox="0 0 900 560" aria-hidden="true">
+            <g transform="translate(250 90)">
+              <rect x="0" y="130" width="400" height="300" rx="18" fill="#161a26" stroke="#f4f1ea" stroke-width="8" />
+              <path d="M30 210 H370 M30 290 H370 M30 370 H250" stroke="rgba(244,241,234,0.35)" stroke-width="8" stroke-linecap="round" />
+              <rect x="0" y="80" width="400" height="56" rx="10" fill="#f4f1ea" />
+              <path d="M40 80 L90 136 M130 80 L180 136 M220 80 L270 136 M310 80 L360 136" stroke="#0b0d14" stroke-width="26" />
+              <g id="clap-arm" transform="translate(0 72)">
+                <g id="clap-arm-in">
+                  <rect x="0" y="-56" width="400" height="56" rx="10" fill="#ffc93c" />
+                  <path d="M40 -56 L90 0 M130 -56 L180 0 M220 -56 L270 0 M310 -56 L360 0" stroke="#0b0d14" stroke-width="26" />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 3–8 #1 Jaws -->
+      <section id="s-f1" class="clip" data-start="3" data-duration="5" data-track-index="1">
+        <div class="head"><span class="num" id="f1-num">#1</span><span class="chip" id="f1-chip">JAWS · 1975</span></div>
+        <div class="copy">
+          <span class="line" id="f1-l1">ฉลามยักษ์ในเรื่อง</span>
+          <span class="line sm muted" id="f1-l2">คือหุ่นกลชื่อเล่นว่า <span class="gold">“Bruce”</span></span>
+        </div>
+        <div class="stage">
+          <svg viewBox="0 0 900 560" aria-hidden="true">
+            <g id="f1-fin">
+              <g id="f1-fin-in">
+                <path d="M360 400 C400 300 440 200 520 130 C510 230 540 330 600 400 Z" fill="#7d8597" />
+                <path d="M520 130 C510 230 540 330 600 400 L560 400 C520 320 505 230 520 130 Z" fill="#5b6273" />
+              </g>
+            </g>
+            <g id="f1-err" opacity="0">
+              <circle cx="640" cy="150" r="62" fill="#ff5a4f" />
+              <path d="M640 112 V162" stroke="#0b0d14" stroke-width="16" stroke-linecap="round" />
+              <circle cx="640" cy="190" r="10" fill="#0b0d14" />
+            </g>
+            <g id="f1-waves">
+              <path d="M-60 410 Q0 380 60 410 T180 410 T300 410 T420 410 T540 410 T660 410 T780 410 T900 410 T1020 410 V560 H-60 Z" fill="#1d3a5c" />
+              <path d="M-60 460 Q0 430 60 460 T180 460 T300 460 T420 460 T540 460 T660 460 T780 460 T900 460 T1020 460 V560 H-60 Z" fill="#162b45" />
+            </g>
+          </svg>
+        </div>
+        <div class="burst" id="f1-burst"></div>
+        <div class="reveal" id="f1-card">
+          <span class="tag">เฉลย</span>
+          <span class="ans" id="f1-a1">มัน <span class="red">พังแทบทุกวัน</span> ระหว่างถ่าย</span>
+          <span class="ans" id="f1-a2">สปีลเบิร์กเลยโชว์ฉลามให้น้อยลง</span>
+          <span class="ans big gold" id="f1-a3">หนังเลยยิ่งน่ากลัว</span>
+        </div>
+      </section>
+
+      <!-- 8–13 #2 Titanic -->
+      <section id="s-f2" class="clip" data-start="8" data-duration="5" data-track-index="1">
+        <div class="head"><span class="num" id="f2-num">#2</span><span class="chip" id="f2-chip">TITANIC · 1997</span></div>
+        <div class="copy">
+          <span class="line" id="f2-l1">สร้างหนังไททานิค</span>
+          <span class="line sm muted" id="f2-l2">แพงกว่า <span class="gold">สร้างเรือจริง</span> อีก?</span>
+        </div>
+        <div class="stage">
+          <svg viewBox="0 0 900 560" aria-hidden="true">
+            <g id="f2-ship">
+              <g id="f2-ship-in">
+                <rect x="300" y="170" width="56" height="130" fill="#ffc93c" /><rect x="300" y="170" width="56" height="26" fill="#0b0d14" />
+                <rect x="400" y="170" width="56" height="130" fill="#ffc93c" /><rect x="400" y="170" width="56" height="26" fill="#0b0d14" />
+                <rect x="500" y="170" width="56" height="130" fill="#ffc93c" /><rect x="500" y="170" width="56" height="26" fill="#0b0d14" />
+                <rect x="600" y="170" width="56" height="130" fill="#ffc93c" /><rect x="600" y="170" width="56" height="26" fill="#0b0d14" />
+                <rect x="210" y="290" width="540" height="40" fill="#f4f1ea" />
+                <path d="M120 330 H820 L760 440 H190 Z" fill="#161a26" stroke="#f4f1ea" stroke-width="6" />
+                <path d="M150 380 H795" stroke="#ff5a4f" stroke-width="10" />
+                <g fill="#ffc93c"><circle cx="260" cy="360" r="7" /><circle cx="320" cy="360" r="7" /><circle cx="380" cy="360" r="7" /><circle cx="440" cy="360" r="7" /><circle cx="500" cy="360" r="7" /><circle cx="560" cy="360" r="7" /><circle cx="620" cy="360" r="7" /><circle cx="680" cy="360" r="7" /></g>
+              </g>
+            </g>
+            <path d="M-60 440 Q0 420 60 440 T180 440 T300 440 T420 440 T540 440 T660 440 T780 440 T900 440 T1020 440 V560 H-60 Z" fill="#1d3a5c" />
+          </svg>
+        </div>
+        <div class="burst" id="f2-burst"></div>
+        <div class="reveal" id="f2-card">
+          <span class="tag">เฉลย</span>
+          <div class="tiles">
+            <div class="tile" id="f2-t1"><span class="tile-label">หนัง (1997)</span><span class="tile-value gold" id="f2-v1">$200M</span></div>
+            <div class="tile" id="f2-t2"><span class="tile-label">เรือจริง (1912)</span><span class="tile-value" id="f2-v2">$7.5M</span></div>
+          </div>
+          <span class="ans" id="f2-a1">ใช่! งบหนัง <span class="gold">แพงกว่าราคาเรือ</span></span>
+          <span class="foot" id="f2-foot">ตัวเลขโดยประมาณ ยังไม่ปรับค่าเงินเฟ้อ</span>
+        </div>
+      </section>
+
+      <!-- 13–18 #3 The Two Towers -->
+      <section id="s-f3" class="clip" data-start="13" data-duration="5" data-track-index="1">
+        <div class="head"><span class="num" id="f3-num">#3</span><span class="chip" id="f3-chip">THE TWO TOWERS · 2002</span></div>
+        <div class="copy">
+          <span class="line" id="f3-l1">ฉากอารากอร์น</span>
+          <span class="line sm muted" id="f3-l2">เตะหมวกเหล็ก แล้ว <span class="gold">ร้องสุดเสียง</span></span>
+        </div>
+        <div class="stage">
+          <svg viewBox="0 0 900 560" aria-hidden="true">
+            <g id="f3-helm">
+              <g id="f3-helm-in">
+                <path d="M300 380 C300 220 360 140 450 140 C540 140 600 220 600 380 Z" fill="#7d8597" stroke="#f4f1ea" stroke-width="6" />
+                <path d="M300 380 H600" stroke="#f4f1ea" stroke-width="14" stroke-linecap="round" />
+                <path d="M440 220 H460 V380 H440 Z" fill="#5b6273" />
+                <path d="M330 300 H420 M480 300 H570" stroke="#0b0d14" stroke-width="18" stroke-linecap="round" />
+                <path id="f3-crack" d="M470 150 L440 200 L475 230 L445 280" fill="none" stroke="#ff5a4f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="200" stroke-dashoffset="200" />
+              </g>
+            </g>
+            <g id="f3-boot">
+              <path d="M40 300 H150 V400 H230 C260 400 270 430 260 450 H40 Z" fill="#3a2f28" stroke="#f4f1ea" stroke-width="6" />
+            </g>
+            <g id="f3-ouch" opacity="0">
+              <text x="700" y="200" font-family="Kanit" font-weight="900" font-size="110" fill="#ff5a4f">โอ๊ย!</text>
+            </g>
+            <path d="M120 470 H780" stroke="rgba(244,241,234,0.25)" stroke-width="6" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="burst" id="f3-burst"></div>
+        <div class="reveal" id="f3-card">
+          <span class="tag">เฉลย</span>
+          <span class="ans" id="f3-a1">วิกโก มอร์เทนเซน <span class="red">นิ้วเท้าหักจริง</span></span>
+          <span class="ans" id="f3-a2">แต่เล่นต่อจนจบเทค</span>
+          <span class="ans big gold" id="f3-a3">เสียงร้องนั้น คือเจ็บจริง!</span>
+        </div>
+      </section>
+
+      <!-- 18–23 #4 Star Wars -->
+      <section id="s-f4" class="clip" data-start="18" data-duration="5" data-track-index="1">
+        <div class="head"><span class="num" id="f4-num">#4</span><span class="chip" id="f4-chip">STAR WARS · 1977</span></div>
+        <div class="copy">
+          <span class="line" id="f4-l1">ดาร์ธ เวเดอร์</span>
+          <span class="line sm muted" id="f4-l2">จริง ๆ แล้วคือ <span class="gold">คนสองคน</span></span>
+        </div>
+        <div class="stage">
+          <svg viewBox="0 0 900 560" aria-hidden="true">
+            <g id="f4-body">
+              <circle cx="270" cy="170" r="70" fill="#7d8597" />
+              <path d="M150 470 C150 320 200 270 270 270 C340 270 390 320 390 470 Z" fill="#7d8597" />
+            </g>
+            <g id="f4-plus"><path d="M430 300 H470 M450 280 V320" stroke="#ffc93c" stroke-width="12" stroke-linecap="round" /></g>
+            <g id="f4-mic">
+              <rect x="580" y="110" width="120" height="200" rx="60" fill="#7d8597" />
+              <path d="M550 250 C550 340 730 340 730 250" fill="none" stroke="#7d8597" stroke-width="16" stroke-linecap="round" />
+              <path d="M640 330 V420 M590 430 H690" stroke="#7d8597" stroke-width="16" stroke-linecap="round" />
+              <g id="f4-waves" fill="none" stroke="#ffc93c" stroke-width="10" stroke-linecap="round">
+                <path d="M760 160 C790 190 790 240 760 270" /><path d="M800 130 C850 180 850 250 800 300" />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="burst" id="f4-burst"></div>
+        <div class="reveal" id="f4-card">
+          <span class="tag">เฉลย</span>
+          <div class="tiles">
+            <div class="tile" id="f4-t1"><span class="tile-label">ร่างกาย</span><span class="tile-value name">เดวิด พราวส์</span></div>
+          </div>
+          <div class="tiles">
+            <div class="tile" id="f4-t2"><span class="tile-label">เสียง</span><span class="tile-value name gold">เจมส์ เอิร์ล โจนส์</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 23–28 #5 Toy Story 2 -->
+      <section id="s-f5" class="clip" data-start="23" data-duration="5" data-track-index="1">
+        <div class="head"><span class="num" id="f5-num">#5</span><span class="chip" id="f5-chip">TOY STORY 2 · 1999</span></div>
+        <div class="copy">
+          <span class="line" id="f5-l1">คำสั่งเดียว</span>
+          <span class="line sm muted" id="f5-l2">ลบไฟล์หนัง <span class="red">ไปเกือบหมด</span></span>
+        </div>
+        <div class="stage">
+          <div class="term" id="f5-term">
+            <div class="term-bar"><span></span><span></span><span></span></div>
+            <div class="term-body">
+              <span class="cmd" id="f5-cmd">$ rm -rf *</span>
+              <div class="files"><span>ไฟล์หนัง</span><span id="f5-pct">100%</span></div>
+              <span class="bar"><span class="bar-fill" id="f5-fill"></span></span>
+              <span class="ok" id="f5-ok">✓ BACKUP RESTORED</span>
+            </div>
+          </div>
+        </div>
+        <div class="burst" id="f5-burst"></div>
+        <div class="reveal" id="f5-card">
+          <span class="tag">เฉลย</span>
+          <span class="ans" id="f5-a1">รอดเพราะทีมงานคนหนึ่ง</span>
+          <span class="ans" id="f5-a2">ที่ทำงานจากบ้านช่วงนั้น</span>
+          <span class="ans big gold" id="f5-a3">มีไฟล์สำรองไว้ทั้งเรื่อง</span>
+        </div>
+      </section>
+
+      <!-- 28–30 outro -->
+      <section id="s-end" class="clip" data-start="28" data-duration="2" data-track-index="1">
+        <div class="outro">
+          <span class="line sm muted" id="end-l1">ทั้งหมด 5 ข้อ</span>
+          <span class="mega" id="end-mega">รู้กี่ข้อ?</span>
+          <span class="line" id="end-l2">คอมเมนต์บอกหน่อย</span>
+          <svg class="arrow" id="end-arrow" viewBox="0 0 120 140" aria-hidden="true">
+            <path d="M60 10 V120 M20 80 L60 122 L100 80" fill="none" stroke="#ffc93c" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- persistent HUD -->
+      <div id="hud" class="clip" data-start="0" data-duration="30" data-track-index="2">
+        <div class="topbar">
+          <span class="tag"><span class="dot"></span>MOVIE TRIVIA</span>
+          <span class="pips">
+            <span class="pip"><span class="pip-fill" id="pip-1"></span></span>
+            <span class="pip"><span class="pip-fill" id="pip-2"></span></span>
+            <span class="pip"><span class="pip-fill" id="pip-3"></span></span>
+            <span class="pip"><span class="pip-fill" id="pip-4"></span></span>
+            <span class="pip"><span class="pip-fill" id="pip-5"></span></span>
+          </span>
+        </div>
+      </div>
+
+      <div id="flash" class="clip" data-start="0" data-duration="30" data-track-index="3">
+        <div class="flash" id="flash-a"></div>
+      </div>
+
+      <!-- synthesised quiz score (scripts/score.py) -->
+      <audio id="score" src="assets/audio/quiz-score.m4a" data-start="0" data-duration="30" data-track-index="4" data-volume="0.8"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      const rise = (sel, t, d = 0.45, ease = "power3.out") => tl.fromTo(sel, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: d, ease }, t);
+      const slide = (sel, t, d = 0.45) => tl.fromTo(sel, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: d, ease: "expo.out" }, t);
+      const pop = (sel, t, d = 0.4) => tl.fromTo(sel, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(2.2)" }, t);
+      const flash = (t) => tl.fromTo("#flash-a", { opacity: 0.45 }, { opacity: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, t);
+      const shake = (sel, t, amt = 10, n = 5) => tl.fromTo(sel, { x: 0 }, { x: amt, duration: 0.05, yoyo: true, repeat: n, ease: "none" }, t);
+      const counter = (id, from, to, t, d, fmt) => {
+        const o = { v: from };
+        tl.fromTo(o, { v: from }, { v: to, duration: d, ease: "power2.out", onUpdate: () => { document.getElementById(id).textContent = fmt(o.v); } }, t);
+      };
+
+      // shared beat for every fact: header, teaser, prop, then the reveal card on the ding (+2.4s)
+      const REVEAL = 2.4;
+      const fact = (n, s) => {
+        flash(s);
+        tl.fromTo(`#pip-${n}`, { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power2.out", immediateRender: false }, s);
+        pop(`#f${n}-num`, s + 0.05, 0.4);
+        slide(`#f${n}-chip`, s + 0.2);
+        rise(`#f${n}-l1`, s + 0.35);
+        rise(`#f${n}-l2`, s + 0.85);
+        const r = s + REVEAL;
+        tl.fromTo(`#f${n}-burst`, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.1, duration: 0.3, ease: "power2.out" }, r);
+        tl.to(`#f${n}-burst`, { opacity: 0, duration: 0.8, ease: "power1.in" }, r + 0.3);
+        tl.fromTo(`#f${n}-card`, { y: 140, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, r);
+        return r;
+      };
+
+      // ---------- persistent ----------
+      tl.fromTo("#bg-spot", { x: 0, y: 0 }, { x: 160, y: -220, duration: 15, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+      tl.fromTo("#strip-l", { y: 0 }, { y: 400, duration: 30, ease: "none" }, 0);
+      tl.fromTo("#strip-r", { y: 400 }, { y: 0, duration: 30, ease: "none" }, 0);
+      [1, 2, 3, 4, 5].forEach((n) => tl.set(`#pip-${n}`, { scaleX: 0 }, 0));
+
+      // ---------- 0–3 hook ----------
+      slide("#hook-kicker", 0.05, 0.4);
+      tl.fromTo("#hook-l1", { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.25);
+      rise("#hook-l2", 0.8);
+      tl.fromTo("#hook-l3", { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power4.out" }, 1.4);
+      tl.fromTo("#clap-arm-in", { rotation: -28, svgOrigin: "0 0" }, { rotation: 0, svgOrigin: "0 0", duration: 0.18, ease: "power4.in" }, 1.85);
+      shake("#hook-l3", 2.05, 8, 3);
+
+      // ---------- 3–8 #1 Jaws ----------
+      let r = fact(1, 3);
+      tl.fromTo("#f1-fin", { x: -320 }, { x: 60, duration: 2.2, ease: "sine.inOut" }, 3.1);
+      tl.fromTo("#f1-waves", { x: 0 }, { x: -120, duration: 5, ease: "none" }, 3);
+      // the shark breaks down: it lurches and sinks
+      tl.fromTo("#f1-fin-in", { rotation: 0, y: 0, svgOrigin: "480 400" }, { rotation: 18, y: 70, svgOrigin: "480 400", duration: 0.7, ease: "back.in(1.5)" }, r);
+      pop("#f1-err", r + 0.2, 0.35);
+      rise("#f1-a1", r + 0.1, 0.35);
+      rise("#f1-a2", r + 0.65, 0.35);
+      tl.fromTo("#f1-a3", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, r + 1.25);
+
+      // ---------- 8–13 #2 Titanic ----------
+      r = fact(2, 8);
+      tl.fromTo("#f2-ship", { x: 260 }, { x: -40, duration: 5, ease: "none" }, 8);
+      tl.fromTo("#f2-ship-in", { y: 0 }, { y: 10, duration: 0.8, ease: "sine.inOut", yoyo: true, repeat: 5 }, 8);
+      counter("f2-v1", 0, 200, r + 0.1, 0.8, (v) => "$" + Math.round(v) + "M");
+      counter("f2-v2", 0, 7.5, r + 0.1, 0.8, (v) => "$" + v.toFixed(1) + "M");
+      rise("#f2-a1", r + 1.0, 0.35);
+      tl.fromTo("#f2-foot", { opacity: 0 }, { opacity: 1, duration: 0.3 }, r + 1.3);
+
+      // ---------- 13–18 #3 The Two Towers ----------
+      r = fact(3, 13);
+      tl.fromTo("#f3-boot", { x: -60 }, { x: 80, duration: 0.5, ease: "power3.in" }, 13 + 1.9);
+      tl.to("#f3-boot", { x: 0, duration: 0.4, ease: "power2.out" }, 13 + 2.4);
+      tl.fromTo("#f3-helm-in", { x: 0, rotation: 0, svgOrigin: "450 380" }, { x: 60, rotation: 10, svgOrigin: "450 380", duration: 0.25, ease: "power2.out" }, r);
+      tl.to("#f3-crack", { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, r + 0.05);
+      pop("#f3-ouch", r + 0.1, 0.3);
+      shake("#f3-ouch", r + 0.4, 10, 5);
+      rise("#f3-a1", r + 0.1, 0.35);
+      rise("#f3-a2", r + 0.65, 0.35);
+      tl.fromTo("#f3-a3", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, r + 1.25);
+
+      // ---------- 18–23 #4 Star Wars ----------
+      r = fact(4, 18);
+      rise("#f4-body", 18.4, 0.5);
+      pop("#f4-plus", 18.8, 0.35);
+      rise("#f4-mic", 19.1, 0.5);
+      tl.fromTo("#f4-waves", { opacity: 0.2 }, { opacity: 1, duration: 0.25, yoyo: true, repeat: 7, ease: "sine.inOut" }, 19.4);
+      slide("#f4-t1", r + 0.1, 0.4);
+      slide("#f4-t2", r + 0.7, 0.4);
+
+      // ---------- 23–28 #5 Toy Story 2 ----------
+      r = fact(5, 23);
+      rise("#f5-term", 23.2, 0.45);
+      tl.fromTo("#f5-cmd", { width: 0 }, { width: 330, duration: 0.6, ease: "steps(10)" }, 23.6);
+      tl.fromTo("#f5-fill", { scaleX: 1 }, { scaleX: 0.1, duration: 1.0, ease: "power2.in" }, 24.3);
+      counter("f5-pct", 100, 10, 24.3, 1.0, (v) => Math.round(v) + "%");
+      shake("#f5-term", 25.2, 8, 3);
+      tl.fromTo("#f5-fill", { scaleX: 0.1 }, { scaleX: 1, duration: 0.8, ease: "power2.out", immediateRender: false }, r + 0.3);
+      counter("f5-pct", 10, 100, r + 0.3, 0.8, (v) => Math.round(v) + "%");
+      tl.fromTo("#f5-ok", { opacity: 0 }, { opacity: 1, duration: 0.25, immediateRender: false }, r + 1.1);
+      rise("#f5-a1", r + 0.1, 0.35);
+      rise("#f5-a2", r + 0.65, 0.35);
+      tl.fromTo("#f5-a3", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, r + 1.25);
+
+      // ---------- 28–30 outro ----------
+      flash(28);
+      tl.fromTo("#end-l1", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 28.05);
+      tl.fromTo("#end-mega", { scale: 1.8, opacity: 0, rotation: -6 }, { scale: 1, opacity: 1, rotation: -2, duration: 0.35, ease: "expo.out" }, 28.1);
+      rise("#end-l2", 28.5, 0.4);
+      tl.fromTo("#end-arrow", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 28.8);
+      tl.fromTo("#end-arrow", { y: 0 }, { y: 20, duration: 0.3, ease: "sine.inOut", yoyo: true, repeat: 3 }, 28.8);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
