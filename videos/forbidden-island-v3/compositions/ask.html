@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    .t-stamp-in {
+      background: var(--accent, #e0352b);
+      color: #ffffff;
+      padding: 6px 22px 10px;
+    }
+  </style>
+  <div id="root" data-composition-id="ask" data-width="1080" data-height="1920">
+    <div id="ask-l" class="t-display clip" data-start="0" data-duration="1.12" style="top: 300px; font-size: 180px;">
+      <span id="ask-l-in">WOULD YOU <em style="font-style: normal; color: #ffffff; background: var(--accent, #e0352b); padding: 0 14px; text-shadow: none">GO?</em></span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    tl.fromTo("#ask-l-in", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 0.02);
+    window.__timelines["ask"] = tl;
+  </script>
+</template>
