@@ -1,0 +1,180 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"accent","type":"color","label":"Accent (warning red)","default":"#e0352b"},
+    {"id":"bone","type":"color","label":"Title ink","default":"#ddd3b4"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      :root {
+        --accent: #e0352b;
+        --bone: #ddd3b4;
+        --font-display: "League Gothic", sans-serif;
+        --font-body: "Oswald", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #05080a;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #05080a;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15.7"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Real footage, a cut every ~2s, last shot matches the first so it loops -->
+      <div
+        id="footage"
+        data-composition-id="footage"
+        data-composition-src="compositions/footage.html"
+        data-start="0"
+        data-duration="15.7"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 1"
+      ></div>
+
+      <!-- Night mood: fog, vignette, grain, projector dips at each beat -->
+      <div
+        id="mood"
+        data-composition-id="mood"
+        data-composition-src="compositions/mood.html"
+        data-start="0"
+        data-duration="15.7"
+        data-track-index="6"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+
+      <!-- Beat titles, one scene per voiceover line -->
+      <div
+        id="hook"
+        data-composition-id="hook"
+        data-composition-src="compositions/hook.html"
+        data-start="0"
+        data-duration="1.9"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+      <div
+        id="where"
+        data-composition-id="where"
+        data-composition-src="compositions/where.html"
+        data-start="3.7600000000000002"
+        data-duration="2.57"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+      <div
+        id="years"
+        data-composition-id="years"
+        data-composition-src="compositions/years.html"
+        data-start="8.23"
+        data-duration="1.97"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+      <div
+        id="arrows"
+        data-composition-id="arrows"
+        data-composition-src="compositions/arrows.html"
+        data-start="10.2"
+        data-duration="2.25"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+      <div
+        id="ask"
+        data-composition-id="ask"
+        data-composition-src="compositions/ask.html"
+        data-start="14.58"
+        data-duration="1.12"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 3"
+      ></div>
+
+      <!-- Burned-in captions for muted viewers -->
+      <div
+        id="captions"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="15.7"
+        data-track-index="3"
+        data-track-kind="captions"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 4"
+      ></div>
+
+      <audio
+        id="voiceover"
+        class="clip"
+        src="assets/audio/voiceover.m4a"
+        data-start="0"
+        data-duration="15.7"
+        data-track-index="4"
+        data-volume="1"
+      ></audio>
+      <audio
+        id="bed"
+        class="clip"
+        src="assets/audio/bed.m4a"
+        data-start="0"
+        data-duration="15.7"
+        data-track-index="5"
+        data-volume="1"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
