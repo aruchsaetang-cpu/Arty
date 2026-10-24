@@ -20,7 +20,7 @@ This cut is built for the first second:
 
 - Payoff first: the opening line is "an American paddled to this island, and never came back".
 - Real footage from frame 0, already pushing in, with "HE WENT HERE. NEVER CAME BACK." on screen.
-- A cut every ~2s; 2-3 word captions at 84px; the read sped up 12%.
+- A cut every ~2s; 2-3 word captions at 84px; a natural, fast continuous read (~4.7 syllables/s).
 - ~15.7s total; the last shot is the first shot again so the short loops.
 
 ## Assets

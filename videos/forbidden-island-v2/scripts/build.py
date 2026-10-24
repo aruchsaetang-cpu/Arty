@@ -14,8 +14,8 @@ from build import run, captions, SCORE, fit  # noqa: E402
 from htlib import el, write_project  # noqa: E402
 
 WORK = sys.argv[1]
-TEMPO = 1.12  # the whole read sped up 12%, pitch kept
-GAP = 0.12
+TEMPO = 1.05  # natural read, nudged 5% faster (pitch kept)
+GAP = 0.05
 LINES = [
     {"say": "", "cap": "In 2018, an American paddled to this island, and never came back."},
     {"say": "", "cap": "It's North Sentinel. Just visiting is illegal."},
@@ -53,8 +53,8 @@ for i, c in enumerate(clips):
     inputs += ["-i", c["path"]]
     chains.append(f"[{i}]adelay={int(c['start'] * 1000)}:all=1[a{i}]")
 graph = ";".join(chains) + ";" + "".join(f"[a{i}]" for i in range(5)) + \
-    f"amix=inputs=5:normalize=0,asetrate=48000*0.93,aresample=48000,atempo={1.0753 * TEMPO:.4f}," \
-    f"aecho=0.8:0.5:60|140:0.2|0.1,lowpass=f=9000,apad=whole_dur={END},atrim=0:{END},loudnorm=I=-15:TP=-1.5:LRA=11"
+    f"amix=inputs=5:normalize=0,atempo={TEMPO},highpass=f=70,equalizer=f=3000:t=q:w=1:g=2.5," \
+    f"acompressor=threshold=-20dB:ratio=3:attack=5:release=80,apad=whole_dur={END},atrim=0:{END},loudnorm=I=-14:TP=-1.5:LRA=7"
 run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", graph, "-ar", "48000", "-ac", "1", f"{WORK}/vo.wav"])
 run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{WORK}/vo.wav", "-c:a", "aac", "-b:a", "160k", f"{PROJ}/assets/audio/voiceover.m4a"])
 

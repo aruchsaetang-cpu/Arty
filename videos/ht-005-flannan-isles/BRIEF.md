@@ -7,7 +7,7 @@ destination: social-vertical
 aspect: 1080x1920
 language: en
 audience: US
-length: 15.6s
+length: 11.1s
 angle: mystery short, retention cut (v2)
 channel: Hollow Truth
 file: "005"
@@ -29,7 +29,7 @@ shows 2-3 word captions, and returns to the first piece of evidence so it loops.
 
 ## Assets
 
-- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.1x, then sped up 1.12x), pitched down 7%, -15 LUFS.
+- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.4x, then sped up 1.05x), natural voice, light EQ and compression, -14 LUFS.
 - assets/audio/bed.m4a: made by scripts/score.py, -22 LUFS.
 
 ## Notes

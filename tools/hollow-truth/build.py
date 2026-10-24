@@ -45,14 +45,16 @@ def pauses(path):
 
 # ---------------------------------------------------------------- voice
 
-def record(topic, work, speed):
+def record(topic, work, speed, squeeze=False):
+    # squeeze: shorten pauses inside a line to 0.1s for a fast, continuous read.
+    tight = ",silenceremove=stop_periods=-1:stop_duration=0.1:stop_threshold=-40dB" if squeeze else ""
     clips = []
     for i, line in enumerate(topic["lines"]):
         raw, cut = f"{work}/p{i}.wav", f"{work}/t{i}.wav"
         run(CLI + ["tts", line["say"], "-v", VOICE, "-s", str(speed), "-o", raw, "--json"])
         run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-af",
              "silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
-             "silenceremove=start_periods=1:start_threshold=-45dB,areverse", "-ar", "48000", cut])
+             "silenceremove=start_periods=1:start_threshold=-45dB,areverse" + tight, "-ar", "48000", cut])
         d = duration(cut)
         clips.append({"path": cut, "dur": d, "pauses": [p for p in pauses(cut) if p[1] < d - 0.05]})
     return clips

@@ -46,7 +46,7 @@
   </style>
   <div id="root" data-composition-id="overlays" data-width="1080" data-height="1920">
     <!-- s1 (0-1.9s): the kayak route drawn onto the real beach -->
-    <div id="ov-route" class="ov clip" data-start="0" data-duration="1.9" data-layout-ignore>
+    <div id="ov-route" class="ov clip" data-start="0.00" data-duration="1.90" data-layout-ignore>
       <svg width="1080" height="1920" viewBox="0 0 1080 1920">
         <defs>
           <mask id="ov-route-reveal" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
@@ -64,12 +64,12 @@
     </div>
 
     <!-- s2 (1.9-3.76s): who it was -->
-    <div id="ov-tag" class="ov clip" data-start="1.9" data-duration="1.86">
+    <div id="ov-tag" class="ov clip" data-start="1.90" data-duration="0.63">
       <div id="ov-tag-in"><div id="ov-tag-bar"></div><div id="ov-tag-text">JOHN ALLEN CHAU<small>AMERICAN · 26 · 2018</small></div></div>
     </div>
 
     <!-- s3 (3.76-6.33s): where it is, as a map inset -->
-    <div id="ov-map" class="ov clip" data-start="3.76" data-duration="2.57" data-layout-ignore>
+    <div id="ov-map" class="ov clip" data-start="2.53" data-duration="1.79" data-layout-ignore>
       <svg width="1080" height="1920" viewBox="0 0 1080 1920">
         <g transform="translate(540 870)"><g id="ov-map-card">
           <rect x="-292" y="-206" width="600" height="420" fill="#000" opacity="0.45" />
@@ -94,7 +94,7 @@
     </div>
 
     <!-- s4 (6.33-8.23s): the no-go ring around the island -->
-    <div id="ov-ring" class="ov clip" data-start="6.33" data-duration="1.9" data-layout-ignore>
+    <div id="ov-ring" class="ov clip" data-start="4.32" data-duration="1.90" data-layout-ignore>
       <svg width="1080" height="1920" viewBox="0 0 1080 1920">
         <circle id="ov-ring-c" cx="560" cy="930" r="250" fill="none" stroke="#e0352b" stroke-width="8" stroke-dasharray="40 22" />
         <circle id="ov-ring-pulse" cx="560" cy="930" r="250" fill="none" stroke="#e0352b" stroke-width="4" />
@@ -106,7 +106,7 @@
     </div>
 
     <!-- s6 (10.2-12.45s): a helicopter crosses; one arrow line from the shore -->
-    <div id="ov-heli" class="ov clip" data-start="10.2" data-duration="2.25" data-layout-ignore>
+    <div id="ov-heli" class="ov clip" data-start="6.90" data-duration="2.25" data-layout-ignore>
       <svg width="1080" height="1920" viewBox="0 0 1080 1920">
         <line id="ov-shot" x1="560" y1="1040" x2="492" y2="842" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
         <circle id="ov-archer" cx="560" cy="1040" r="12" fill="#e0352b" />
@@ -127,7 +127,7 @@
     </div>
 
     <!-- s7 (12.45-14.58s): the evidence card -->
-    <div id="ov-card" class="ov clip" data-start="12.45" data-duration="2.13" data-layout-ignore>
+    <div id="ov-card" class="ov clip" data-start="9.15" data-duration="0.71" data-layout-ignore>
       <svg width="1080" height="1920" viewBox="0 0 1080 1920">
         <g transform="translate(580 860)"><g id="ov-card-g">
           <rect x="-200" y="-232" width="420" height="480" fill="#000" opacity="0.45" />
@@ -171,29 +171,29 @@
     tl.fromTo("#ov-route-end", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }, 1.45);
 
     // s2: the lower-third slides in.
-    tl.fromTo("#ov-tag-in", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.3, ease: "power4.out" }, 2.05);
+    tl.fromTo("#ov-tag-in", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.102, ease: "power4.out" }, 1.951);
 
     // s3: the map card flips up, the pin drops on "North Sentinel".
-    tl.fromTo("#ov-map-card", { opacity: 0, y: 80, rotation: -6, svgOrigin: "0 0" }, { opacity: 1, y: 0, rotation: -2, duration: 0.4, ease: "power4.out" }, 3.8);
-    tl.fromTo("#ov-map-pin", { scale: 0, svgOrigin: "128 40" }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, 4.3);
-    tl.fromTo("#ov-map-ring", { scale: 0.4, opacity: 1, svgOrigin: "128 40" }, { scale: 1.6, opacity: 0, duration: 0.8, ease: "power2.out", repeat: 2 }, 4.4);
-    tl.fromTo("#ov-map-label", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "none" }, 4.45);
+    tl.fromTo("#ov-map-card", { opacity: 0, y: 80, rotation: -6, svgOrigin: "0 0" }, { opacity: 1, y: 0, rotation: -2, duration: 0.279, ease: "power4.out" }, 2.558);
+    tl.fromTo("#ov-map-pin", { scale: 0, svgOrigin: "128 40" }, { scale: 1, duration: 0.174, ease: "back.out(3)" }, 2.906);
+    tl.fromTo("#ov-map-ring", { scale: 0.4, opacity: 1, svgOrigin: "128 40" }, { scale: 1.6, opacity: 0, duration: 0.557, ease: "power2.out", repeat: 2 }, 2.976);
+    tl.fromTo("#ov-map-label", { opacity: 0 }, { opacity: 1, duration: 0.139, ease: "none" }, 3.011);
 
     // s4: the ring closes around the island and keeps turning; it pulses outward.
     const ringLen = 2 * Math.PI * 250;
-    tl.fromTo("#ov-ring-c", { strokeDashoffset: ringLen, rotation: 0, svgOrigin: "560 930" }, { strokeDashoffset: 0, rotation: 40, duration: 1.9, ease: "power2.out" }, 6.33);
-    tl.fromTo("#ov-ring-pulse", { scale: 1, opacity: 0.8, svgOrigin: "560 930" }, { scale: 1.25, opacity: 0, duration: 0.7, ease: "power2.out", repeat: 1 }, 6.6);
-    tl.fromTo("#ov-ring-tag", { opacity: 0, scale: 1.5, svgOrigin: "0 0" }, { opacity: 1, scale: 1, duration: 0.15, ease: "power4.out" }, 6.7);
+    tl.fromTo("#ov-ring-c", { strokeDashoffset: ringLen, rotation: 0, svgOrigin: "560 930" }, { strokeDashoffset: 0, rotation: 40, duration: 1.9, ease: "power2.out" }, 4.32);
+    tl.fromTo("#ov-ring-pulse", { scale: 1, opacity: 0.8, svgOrigin: "560 930" }, { scale: 1.25, opacity: 0, duration: 0.7, ease: "power2.out", repeat: 1 }, 4.59);
+    tl.fromTo("#ov-ring-tag", { opacity: 0, scale: 1.5, svgOrigin: "0 0" }, { opacity: 1, scale: 1, duration: 0.15, ease: "power4.out" }, 4.69);
 
     // s6: the helicopter crosses; on "arrows" a line is drawn up at it.
-    tl.fromTo("#ov-copter", { x: -260, y: 700 }, { x: 1150, y: 690, duration: 2.15, ease: "none" }, 10.25);
-    tl.fromTo("#ov-rotor", { scaleX: 1, transformOrigin: "50% 50%" }, { scaleX: 0.15, duration: 0.07, ease: "none", yoyo: true, repeat: 29 }, 10.25);
+    tl.fromTo("#ov-copter", { x: -260, y: 700 }, { x: 1150, y: 690, duration: 2.15, ease: "none" }, 6.95);
+    tl.fromTo("#ov-rotor", { scaleX: 1, transformOrigin: "50% 50%" }, { scaleX: 0.15, duration: 0.07, ease: "none", yoyo: true, repeat: 29 }, 6.95);
     const shot = Math.hypot(68, 198);
-    tl.fromTo("#ov-archer", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }, 10.8);
-    tl.fromTo("#ov-shot", { strokeDasharray: shot, strokeDashoffset: shot, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.2, ease: "power3.out" }, 11.1);
+    tl.fromTo("#ov-archer", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }, 7.5);
+    tl.fromTo("#ov-shot", { strokeDasharray: shot, strokeDashoffset: shot, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.2, ease: "power3.out" }, 7.8);
 
     // s7: the evidence card slides in from the right and settles.
-    tl.fromTo("#ov-card-g", { opacity: 0, x: 420, rotation: 12, svgOrigin: "0 0" }, { opacity: 1, x: 0, rotation: 4, duration: 0.4, ease: "power4.out" }, 12.5);
+    tl.fromTo("#ov-card-g", { opacity: 0, x: 420, rotation: 12, svgOrigin: "0 0" }, { opacity: 1, x: 0, rotation: 4, duration: 0.133, ease: "power4.out" }, 9.167);
 
     window.__timelines["overlays"] = tl;
   </script>

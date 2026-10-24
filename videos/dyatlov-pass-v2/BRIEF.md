@@ -6,7 +6,7 @@ destination: social-vertical
 aspect: 1080x1920
 language: en
 audience: US
-length: 14.8s
+length: 10.8s
 angle: retention recut (v2) of videos/dyatlov-pass-short
 channel: Hollow Truth
 file: "002"
@@ -15,7 +15,7 @@ file: "002"
 ## Intent
 
 Retention recut of Hollow Truth File 002. The original film's picture and sound bed are
-retimed scene by scene to a tighter, payoff-first voiceover (read 12% faster), with a
+retimed scene by scene to a tighter, payoff-first voiceover (natural voice, fast continuous read), with a
 punch-in on frame 0, 2-3 word captions at 84px, and a last frame that matches the first
 so the short loops. Built by tools/hollow-truth/recut_v2.py.
 
@@ -31,4 +31,4 @@ so the short loops. Built by tools/hollow-truth/recut_v2.py.
 ## Notes
 
 - assets/footage/retimed.mp4 is rendered from videos/dyatlov-pass-short; scene map old -> new:
-  0->0.00, 5->4.05, 8.75->5.68, 12.2->8.58, 13.75->9.74, 16->11.53, 20->14.45
+  0->0.00, 5->2.75, 8.75->3.81, 12.2->5.88, 13.75->6.70, 16->8.06, 20->10.45

@@ -2,7 +2,7 @@
 
     python3 tools/hollow-truth/build_v2.py 005 [006 ...]
 
-Payoff-first script read 12% faster (~15s), a slam-in on frame 0, a move every
+Payoff-first script in a natural, fast continuous read (~10s), a slam-in on frame 0, a move every
 ~2-3s, 2-3 word captions at 84px, and a last move back to the first piece of
 evidence so the short loops. Rebuilds videos/ht-<file>-<slug>/ in place.
 """
@@ -18,14 +18,14 @@ from htlib import el, write_project  # noqa: E402
 from topics import TOPICS  # noqa: E402
 from topics_v2 import V2  # noqa: E402
 
-TEMPO = 1.12
-GAP = 0.12
+TEMPO = 1.05  # natural read, nudged 5% faster (pitch kept)
+GAP = 0.05
 VO_LIMIT = 15.6
 
 
 def voice(topic, proj, work):
-    for speed in (1.1, 1.16):
-        clips = build.record(topic, work, speed)
+    for speed in (1.4, 1.45):
+        clips = build.record(topic, work, speed, squeeze=True)
         t = 0.05
         for c in clips:
             c["start"] = round(t, 3)
@@ -39,8 +39,8 @@ def voice(topic, proj, work):
         inputs += ["-i", c["path"]]
         chains.append(f"[{i}]adelay={int(c['start'] * 1000)}:all=1[a{i}]")
     graph = ";".join(chains) + ";" + "".join(f"[a{i}]" for i in range(len(clips))) + \
-        f"amix=inputs={len(clips)}:normalize=0,asetrate=48000*0.93,aresample=48000,atempo={1.0753 * TEMPO:.4f}," \
-        f"aecho=0.8:0.5:60|140:0.2|0.1,lowpass=f=9000,apad=whole_dur={end},atrim=0:{end},loudnorm=I=-15:TP=-1.5:LRA=11"
+        f"amix=inputs={len(clips)}:normalize=0,atempo={TEMPO},highpass=f=70,equalizer=f=3000:t=q:w=1:g=2.5," \
+        f"acompressor=threshold=-20dB:ratio=3:attack=5:release=80,apad=whole_dur={end},atrim=0:{end},loudnorm=I=-14:TP=-1.5:LRA=7"
     run(["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex", graph, "-ar", "48000", "-ac", "1", f"{work}/vo.wav"])
     run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{work}/vo.wav", "-c:a", "aac", "-b:a", "160k", f"{proj}/assets/audio/voiceover.m4a"])
     # Everything downstream runs on the sped-up clock.
@@ -248,7 +248,7 @@ shows 2-3 word captions, and returns to the first piece of evidence so it loops.
 
 ## Assets
 
-- assets/audio/voiceover.m4a: Kokoro TTS ({VOICE}, {speed}x, then sped up {TEMPO}x), pitched down 7%, -15 LUFS.
+- assets/audio/voiceover.m4a: Kokoro TTS ({VOICE}, {speed}x, then sped up {TEMPO}x), natural voice, light EQ and compression, -14 LUFS.
 - assets/audio/bed.m4a: made by scripts/score.py, -22 LUFS.
 
 ## Notes

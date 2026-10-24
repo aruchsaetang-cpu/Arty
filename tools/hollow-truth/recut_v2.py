@@ -3,7 +3,7 @@
     python3 tools/hollow-truth/recut_v2.py 002 [003 004]
 
 1. Renders the original film's picture and sound bed, without its voiceover or captions.
-2. Records a tighter, payoff-first voiceover (read 12% faster).
+2. Records a tighter, payoff-first voiceover (natural voice, fast continuous read).
 3. Retimes the original scene by scene so each scene starts on its new line.
 4. Builds videos/<slug>-v2/: the retimed film with a punch-in on frame 0, the new
    voiceover, 2-3 word captions, and a last frame that matches the first so it loops.
@@ -22,8 +22,8 @@ import build  # noqa: E402
 from build import REPO, run, captions, esc  # noqa: E402
 
 CLI = ["npx", "--yes", "hyperframes@0.8.191"]
-TEMPO = 1.12
-GAP = 0.12
+TEMPO = 1.05  # natural read, nudged 5% faster (pitch kept)
+GAP = 0.05
 
 # anchors: where each original scene began (one per line, then the closing question if it has its own).
 FILMS = {
@@ -97,8 +97,8 @@ def recut(file):
     cfg = FILMS[file]
     work = tempfile.mkdtemp(prefix=f"ht-recut-{file}-")
     lines = [ln if isinstance(ln, dict) else {"say": ln} for ln in cfg["lines"]]
-    # Voice: tight read, then sped up 12% with the channel's dark processing.
-    clips = build.record({"lines": lines}, work, 1.1)
+    # Voice: fast natural read (reference pace ~4.7 syll/s), no pitch or echo effects.
+    clips = build.record({"lines": lines}, work, 1.4, squeeze=True)
     t = 0.05
     for c in clips:
         c["start"] = round(t, 3)
@@ -112,8 +112,8 @@ def recut(file):
         inputs += ["-i", c["path"]]
         chains.append(f"[{i}]adelay={int(c['start'] * 1000)}:all=1[a{i}]")
     graph = ";".join(chains) + ";" + "".join(f"[a{i}]" for i in range(len(clips))) + \
-        f"amix=inputs={len(clips)}:normalize=0,asetrate=48000*0.93,aresample=48000,atempo={1.0753 * TEMPO:.4f}," \
-        f"aecho=0.8:0.5:60|140:0.2|0.1,lowpass=f=9000,apad=whole_dur={end},atrim=0:{end},loudnorm=I=-15:TP=-1.5:LRA=11"
+        f"amix=inputs={len(clips)}:normalize=0,atempo={TEMPO},highpass=f=70,equalizer=f=3000:t=q:w=1:g=2.5," \
+        f"acompressor=threshold=-20dB:ratio=3:attack=5:release=80,apad=whole_dur={end},atrim=0:{end},loudnorm=I=-14:TP=-1.5:LRA=7"
     proj = os.path.join(REPO, "videos", f"{cfg['slug']}-v2")
     if os.path.exists(proj):
         shutil.rmtree(proj)
@@ -277,7 +277,7 @@ file: "{file}"
 ## Intent
 
 Retention recut of Hollow Truth File {file}. The original film's picture and sound bed are
-retimed scene by scene to a tighter, payoff-first voiceover (read 12% faster), with a
+retimed scene by scene to a tighter, payoff-first voiceover (natural voice, fast continuous read), with a
 punch-in on frame 0, 2-3 word captions at 84px, and a last frame that matches the first
 so the short loops. Built by tools/hollow-truth/recut_v2.py.
 

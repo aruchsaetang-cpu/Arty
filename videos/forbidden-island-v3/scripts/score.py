@@ -3,13 +3,13 @@ import sys, wave
 import numpy as np
 
 SR = 48000
-N = int(SR * 15.7)
+N = int(SR * 10.8)
 t = np.arange(N) / SR
 rng = np.random.default_rng(1001)
 L = np.zeros(N); R = np.zeros(N)
-TRAVEL = [1.9, 3.76, 6.33, 8.23, 10.2, 12.45, 14.58]      # camera leaves for the next piece of evidence
-ARRIVE = [0.02, 5.03, 9.18, 10.25]      # camera lands on it
-QUESTION = 14.60   # the closing question slams in
+TRAVEL = [1.9, 2.53, 4.32, 6.22, 6.9, 9.15, 9.86]      # camera leaves for the next piece of evidence
+ARRIVE = [0.02, 3.8, 7.17, 6.95]      # camera lands on it
+QUESTION = 9.88   # the closing question slams in
 
 def at(sec): return int(sec * SR)
 

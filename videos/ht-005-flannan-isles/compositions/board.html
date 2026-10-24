@@ -84,24 +84,24 @@
 
     const tl = gsap.timeline({ paused: true });
     const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
-    tl.fromTo("#board-torch", { x: 0, y: -60, scale: 0.9 }, { x: 0, y: -60, scale: 1.05, duration: 15.60, ease: "none" }, 0);
+    tl.fromTo("#board-torch", { x: 0, y: -60, scale: 0.9 }, { x: 0, y: -60, scale: 1.05, duration: 11.10, ease: "none" }, 0);
     // Camera: slam in, then a fast move to each piece of evidence, then back to the first.
     tl.fromTo("#board-world", cam(400, 643, 1.20), { ...cam(400, 651, 1.10), duration: 0.55, ease: "expo.out" }, 0);
-    tl.to("#board-world", { ...cam(400, 646, 1.16), duration: 3.57, ease: "none" }, 0.55);
-    tl.to("#board-world", { ...cam(680, 1229, 1.22), duration: 0.45, ease: "power3.inOut" }, 4.12);
-    tl.to("#board-world", { ...cam(680, 1227, 1.28), duration: 2.63, ease: "none" }, 4.57);
-    tl.fromTo("#board-string-0", { strokeDasharray: 782, strokeDashoffset: 782, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 4.12);
-    tl.to("#board-world", { ...cam(400, 1849, 1.22), duration: 0.45, ease: "power3.inOut" }, 7.20);
-    tl.to("#board-world", { ...cam(400, 1847, 1.28), duration: 2.00, ease: "none" }, 7.65);
-    tl.fromTo("#board-string-1", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 7.20);
-    tl.to("#board-world", { ...cam(680, 2469, 1.22), duration: 0.45, ease: "power3.inOut" }, 9.65);
-    tl.to("#board-world", { ...cam(680, 2467, 1.28), duration: 2.49, ease: "none" }, 10.10);
-    tl.fromTo("#board-string-2", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 9.65);
-    tl.to("#board-world", { ...cam(400, 3089, 1.22), duration: 0.45, ease: "power3.inOut" }, 12.60);
-    tl.to("#board-world", { ...cam(400, 3087, 1.28), duration: 1.23, ease: "none" }, 13.05);
-    tl.fromTo("#board-string-3", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 12.60);
-    tl.to("#board-world", { ...cam(400, 651, 1.10), duration: 0.7, ease: "power3.inOut" }, 14.27);
-    tl.to("#board-world", { ...cam(400, 646, 1.16), duration: 0.63, ease: "none" }, 14.97);
+    tl.to("#board-world", { ...cam(400, 646, 1.16), duration: 2.22, ease: "none" }, 0.55);
+    tl.to("#board-world", { ...cam(680, 1229, 1.22), duration: 0.45, ease: "power3.inOut" }, 2.77);
+    tl.to("#board-world", { ...cam(680, 1227, 1.28), duration: 1.59, ease: "none" }, 3.22);
+    tl.fromTo("#board-string-0", { strokeDasharray: 782, strokeDashoffset: 782, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 2.77);
+    tl.to("#board-world", { ...cam(400, 1849, 1.22), duration: 0.45, ease: "power3.inOut" }, 4.81);
+    tl.to("#board-world", { ...cam(400, 1847, 1.28), duration: 1.18, ease: "none" }, 5.26);
+    tl.fromTo("#board-string-1", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 4.81);
+    tl.to("#board-world", { ...cam(680, 2469, 1.22), duration: 0.45, ease: "power3.inOut" }, 6.44);
+    tl.to("#board-world", { ...cam(680, 2467, 1.28), duration: 1.51, ease: "none" }, 6.89);
+    tl.fromTo("#board-string-2", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 6.44);
+    tl.to("#board-world", { ...cam(400, 3089, 1.22), duration: 0.45, ease: "power3.inOut" }, 8.40);
+    tl.to("#board-world", { ...cam(400, 3087, 1.28), duration: 0.93, ease: "none" }, 8.85);
+    tl.fromTo("#board-string-3", { strokeDasharray: 680, strokeDashoffset: 680, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, 8.40);
+    tl.to("#board-world", { ...cam(400, 651, 1.10), duration: 0.7, ease: "power3.inOut" }, 9.78);
+    tl.to("#board-world", { ...cam(400, 646, 1.16), duration: 0.62, ease: "none" }, 10.48);
     window.__timelines["board"] = tl;
   </script>
 </template>
