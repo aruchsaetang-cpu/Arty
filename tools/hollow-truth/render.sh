@@ -6,7 +6,7 @@ for proj in "$@"; do
   name=$(basename "$proj")
   file=${name#ht-}; num=${file%%-*}; slug=${file#*-}
   raw=$(mktemp -d)/raw.mp4
-  out="$proj/renders/hollow-truth-$num-$slug-20s.mp4"
+  out="$proj/renders/hollow-truth-$num-$slug-${SUFFIX:-20s}.mp4"
   case "$name" in *-long) out="$proj/renders/hollow-truth-$num-${slug%-long}-2m30s.mp4" ;; esac
   (cd "$proj" && npx --yes hyperframes@0.8.191 render -o "$raw" >/dev/null 2>&1)
   ffmpeg -y -loglevel error -i "$raw" -c:v libx264 -preset slow -crf 25 -pix_fmt yuv420p \

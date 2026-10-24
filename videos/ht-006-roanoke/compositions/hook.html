@@ -32,17 +32,16 @@
       color: #ffffff;
       padding: 6px 22px 10px;
     }
-    #hook-kicker-in { opacity: 0.75; }
   </style>
   <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
-    <div id="hook-kicker" class="t-body clip" data-start="0" data-duration="4.83" style="top: 178px; font-weight: 400; font-size: 32px; letter-spacing: 0.42em; color: #ddd3b4;">
+    <div id="hook-kicker" class="t-body clip" data-start="0" data-duration="3.77" style="top: 178px; font-weight: 400; font-size: 32px; letter-spacing: 0.42em; color: #ddd3b4;">
       <span id="hook-kicker-in">HOLLOW TRUTH · FILE 006</span>
     </div>
-    <div id="hook-l1" class="t-display clip" data-start="0" data-duration="4.83" style="top: 230px; font-size: 150px;">
+    <div id="hook-l1" class="t-display clip" data-start="0" data-duration="3.77" style="top: 230px; font-size: 150px;">
       <span id="hook-l1-in">115 PEOPLE.</span>
     </div>
-    <div id="hook-l2" class="t-display clip" data-start="0" data-duration="4.83" style="top: 385px; font-size: 150px;">
-      <span id="hook-l2-in"><em style="font-style: normal; color: var(--accent, #e0352b)">GONE.</em></span>
+    <div id="hook-l2" class="t-display clip" data-start="0" data-duration="3.77" style="top: 385px; font-size: 150px;">
+      <span id="hook-l2-in"><em style="font-style: normal; color: var(--accent, #e0352b)">1</em> WORD LEFT.</span>
     </div>
   </div>
   <script>
@@ -50,8 +49,8 @@
     const flick = (sel, at) => {
       [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
     };
-    flick(["#hook-l1-in", "#hook-l2-in"], 2.20);
-    tl.to(["#hook-kicker-in", "#hook-l1-in", "#hook-l2-in"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 4.58);
+    tl.fromTo(["#hook-l1-in", "#hook-l2-in"], { scale: 1.08 }, { scale: 1, duration: 0.5, ease: "expo.out" }, 0);
+    tl.to(["#hook-kicker-in", "#hook-l1-in", "#hook-l2-in"], { opacity: 0, duration: 0.12, ease: "power2.in" }, 3.63);
     window.__timelines["hook"] = tl;
   </script>
 </template>

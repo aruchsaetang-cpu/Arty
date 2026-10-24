@@ -7,33 +7,31 @@ destination: social-vertical
 aspect: 1080x1920
 language: en
 audience: US
-length: 20s
-angle: mystery / unexplained short (case-board series)
+length: 14.9s
+angle: mystery short, retention cut (v2)
 channel: Hollow Truth
 file: "006"
 ---
 
 ## Intent
 
-Hollow Truth File 006: The Lost Colony. A torch searches a corkboard in a dark
-room. Each line of the voiceover lands on one piece of evidence; a red string is pulled to
-the next. At the end the camera pulls back to the whole case and asks "WHERE DID THEY GO?"
+Retention cut of Hollow Truth File 006: The Lost Colony. File 001's first upload kept 33.8% of
+viewers past the swipe, so this version opens on the payoff, slams in on frame 0, moves every 2-3s,
+shows 2-3 word captions, and returns to the first piece of evidence so it loops.
 
 ## Script (voiceover)
 
-1. In 1587, more than a hundred English settlers landed on Roanoke Island.
-2. Their governor sailed back to England for supplies.
-3. When he finally returned, three years later, everyone was gone.
-4. The only clue was one word carved into a post. Croatoan.
-5. No one knows what happened to them.
+1. 115 people vanished, and left one word carved into a post.
+2. Croatoan.
+3. Roanoke Island, 1590. Their governor had been gone for three years.
+4. The houses were taken down. No bodies. No sign of a fight.
+5. No one knows where they went.
 
 ## Assets
 
-- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.12x), pitched down 7% with a short reverb tail, -16 LUFS.
-- assets/audio/bed.m4a: made by scripts/score.py (drone, high tone, room tone, pin thunks, string zips, riser, hit), -23 LUFS.
+- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.1x, then sped up 1.12x), pitched down 7%, -15 LUFS.
+- assets/audio/bed.m4a: made by scripts/score.py, -22 LUFS.
 
 ## Notes
 
-- Built by tools/hollow-truth/build.py from tools/hollow-truth/topics.py; change copy there and rebuild.
-- Everything is drawn; the evidence prints are illustrations, not photographs.
-- No Whisper model offline: caption timing comes from phrase placement plus silencedetect.
+- Built by tools/hollow-truth/build_v2.py from tools/hollow-truth/topics_v2.py.

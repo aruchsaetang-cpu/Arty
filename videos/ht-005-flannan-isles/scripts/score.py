@@ -1,15 +1,15 @@
-"""Synthesise the 20s case-board bed: dark drone, eerie shimmer, room tone, pin thunks, string zips, riser and hit."""
+"""Synthesise the 15.6s case-board retention cut: dark drone, eerie shimmer, room tone, pin thunks, string zips, riser and hit."""
 import sys, wave
 import numpy as np
 
 SR = 48000
-N = int(SR * 20.0)
+N = int(SR * 15.6)
 t = np.arange(N) / SR
-rng = np.random.default_rng(5)
+rng = np.random.default_rng(905)
 L = np.zeros(N); R = np.zeros(N)
-TRAVEL = [5.22, 8.39, 12.26, 15.21, 17.25]      # camera leaves for the next piece of evidence
-ARRIVE = [5.82, 8.99, 12.86, 15.81]      # camera lands on it
-QUESTION = 17.55   # the closing question slams in
+TRAVEL = [4.12, 7.2, 9.65, 12.6, 14.27]      # camera leaves for the next piece of evidence
+ARRIVE = [0.02, 4.57, 7.65, 10.1, 13.05]      # camera lands on it
+QUESTION = 14.32   # the closing question slams in
 
 def at(sec): return int(sec * SR)
 

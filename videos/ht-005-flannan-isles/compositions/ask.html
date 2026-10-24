@@ -32,17 +32,10 @@
       color: #ffffff;
       padding: 6px 22px 10px;
     }
-    #end-k-in, #end-ask-in { opacity: 0; }
   </style>
-  <div id="root" data-composition-id="end" data-width="1080" data-height="1920">
-    <div id="end-k" class="t-body clip" data-start="0" data-duration="5.42" style="top: 220px; font-size: 44px; letter-spacing: 0.18em;">
-      <span id="end-k-in">CASE 008 · UNSOLVED</span>
-    </div>
-    <div id="end-ask" class="t-display clip" data-start="0.3" data-duration="5.12" style="top: 300px; font-size: 128px;">
-      <span id="end-ask-in">WHAT DOES IT SAY?</span>
-    </div>
-    <div id="end-mark" class="t-body clip" data-start="0.3" data-duration="5.12" style="top: 470px; font-size: 40px; letter-spacing: 0.5em; color: #ddd3b4;">
-      <span id="end-mark-in">HOLLOW TRUTH</span>
+  <div id="root" data-composition-id="ask" data-width="1080" data-height="1920">
+    <div id="ask-l" class="t-display clip" data-start="0" data-duration="1.28" style="top: 280px; font-size: 124px;">
+      <span id="ask-l-in">WHERE DID THEY GO?</span>
     </div>
   </div>
   <script>
@@ -50,9 +43,7 @@
     const flick = (sel, at) => {
       [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
     };
-    flick("#end-k-in", 0.15);
-    flick("#end-ask-in", 0.32);
-    tl.fromTo("#end-mark-in", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.32);
-    window.__timelines["end"] = tl;
+    tl.fromTo("#ask-l-in", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 0.02);
+    window.__timelines["ask"] = tl;
   </script>
 </template>

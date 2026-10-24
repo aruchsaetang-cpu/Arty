@@ -7,33 +7,31 @@ destination: social-vertical
 aspect: 1080x1920
 language: en
 audience: US
-length: 20s
-angle: mystery / unexplained short (case-board series)
+length: 15.1s
+angle: mystery short, retention cut (v2)
 channel: Hollow Truth
 file: "009"
 ---
 
 ## Intent
 
-Hollow Truth File 009: Flight 19. A torch searches a corkboard in a dark
-room. Each line of the voiceover lands on one piece of evidence; a red string is pulled to
-the next. At the end the camera pulls back to the whole case and asks "WHAT TOOK THEM?"
+Retention cut of Hollow Truth File 009: Flight 19. File 001's first upload kept 33.8% of
+viewers past the swipe, so this version opens on the payoff, slams in on frame 0, moves every 2-3s,
+shows 2-3 word captions, and returns to the first piece of evidence so it loops.
 
 ## Script (voiceover)
 
-1. In 1945, five Navy bombers left Florida on a training flight.
-2. The flight leader radioed that both his compasses had failed.
-3. They were never seen again. Fourteen men, gone.
-4. A rescue plane went looking. It vanished too, with thirteen men.
+1. Five Navy planes vanished, and then the plane sent to find them vanished too.
+2. December 1945, off the coast of Florida.
+3. The leader radioed that both of his compasses had failed.
+4. Twenty seven men. Six aircraft. In one evening.
 5. No wreckage was ever found.
 
 ## Assets
 
-- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.05x), pitched down 7% with a short reverb tail, -16 LUFS.
-- assets/audio/bed.m4a: made by scripts/score.py (drone, high tone, room tone, pin thunks, string zips, riser, hit), -23 LUFS.
+- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.1x, then sped up 1.12x), pitched down 7%, -15 LUFS.
+- assets/audio/bed.m4a: made by scripts/score.py, -22 LUFS.
 
 ## Notes
 
-- Built by tools/hollow-truth/build.py from tools/hollow-truth/topics.py; change copy there and rebuild.
-- Everything is drawn; the evidence prints are illustrations, not photographs.
-- No Whisper model offline: caption timing comes from phrase placement plus silencedetect.
+- Built by tools/hollow-truth/build_v2.py from tools/hollow-truth/topics_v2.py.

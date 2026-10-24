@@ -7,33 +7,31 @@ destination: social-vertical
 aspect: 1080x1920
 language: en
 audience: US
-length: 20s
-angle: mystery / unexplained short (case-board series)
+length: 12.1s
+angle: mystery short, retention cut (v2)
 channel: Hollow Truth
 file: "008"
 ---
 
 ## Intent
 
-Hollow Truth File 008: The Voynich Manuscript. A torch searches a corkboard in a dark
-room. Each line of the voiceover lands on one piece of evidence; a red string is pulled to
-the next. At the end the camera pulls back to the whole case and asks "WHAT DOES IT SAY?"
+Retention cut of Hollow Truth File 008: The Voynich Manuscript. File 001's first upload kept 33.8% of
+viewers past the swipe, so this version opens on the payoff, slams in on frame 0, moves every 2-3s,
+shows 2-3 word captions, and returns to the first piece of evidence so it loops.
 
 ## Script (voiceover)
 
-1. This book is about six hundred years old.
-2. It's full of plants that don't exist, and star charts no one can match.
-3. And it's written in a script that nobody can read.
-4. Codebreakers have tried for over a century.
+1. No one on Earth can read this book.
+2. It's about six hundred years old.
+3. Plants that don't exist. Star charts no one can match.
+4. The world's best codebreakers have tried for a century.
 5. No one has ever proven they can read it.
 
 ## Assets
 
-- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.05x), pitched down 7% with a short reverb tail, -16 LUFS.
-- assets/audio/bed.m4a: made by scripts/score.py (drone, high tone, room tone, pin thunks, string zips, riser, hit), -23 LUFS.
+- assets/audio/voiceover.m4a: Kokoro TTS (am_michael, 1.1x, then sped up 1.12x), pitched down 7%, -15 LUFS.
+- assets/audio/bed.m4a: made by scripts/score.py, -22 LUFS.
 
 ## Notes
 
-- Built by tools/hollow-truth/build.py from tools/hollow-truth/topics.py; change copy there and rebuild.
-- Everything is drawn; the evidence prints are illustrations, not photographs.
-- No Whisper model offline: caption timing comes from phrase placement plus silencedetect.
+- Built by tools/hollow-truth/build_v2.py from tools/hollow-truth/topics_v2.py.
