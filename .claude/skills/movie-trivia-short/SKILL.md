@@ -93,6 +93,7 @@ Trending songs are copyrighted, so never put one into the rendered file. Instead
 Default for these Shorts (user wants energy like the references): `energy_beat.py`, a 150 bpm EDM beat with a four-on-the-floor kick, pumping supersaw chords, a pluck lead and a riser into the drop on "แต่", mixed ~8 dB under the voice (data-volume 0.24). `swing_beat.py` is the calmer lo-fi option. If the user wants the exact trending sound from a reference, tell them to tap the sound on that post in TikTok and "ใช้เสียงนี้" on the no-music cut.
 Match the bed to the film's mood: `viral_beat.py` (phonk) for action/edgy topics, `magic_bed.py` (music-box
 waltz + sparkle on the reveal) for animated / fairy-tale topics, the BTTF-style tension bed for near-death stories.
+**AI voice fallback:** vidIQ `vidiq_voiceover_generate` (voice "Liam", 14 credits/1000 chars) sounds best; when credits run out use `scripts/thai_tts.py spec.json voice.wav caps.json` (offline MMS-TTS, more robotic) — it writes per-phrase captions with exact timing.
 **Current defaults (user, 2026-10):** the user records the voiceover themselves (no AI voice unless asked) and the final cut has **no music / background sound** — they add a sound in-app.
 No title that stays on screen the whole clip (user preference): leave `title` out of edit.json, or only show it in the hook.
 
@@ -137,8 +138,8 @@ Add 2–3 title options. Remind once that a credit is good manners, not permissi
 | Clip | Folder | Notes |
 | --- | --- | --- |
 | Back to the Future III — Michael J. Fox passed out in the hanging scene | `videos/bttf-hanging-short/` | YouTube cut + TikTok-safe cut (masked on TikTok before) |
-| Raiders of the Lost Ark — "shoot the swordsman" came from Ford's dysentery | `videos/raiders-sword-short/` | B-roll ready, waiting for the voiceover |
+| Raiders of the Lost Ark — "shoot the swordsman" came from Ford's dysentery | `videos/raiders-sword-short/` | Done with offline Thai TTS voice (`work/edit_ai.json`), no music |
 | Spider-Verse — AI only predicted ink lines on faces; next film won't use generative AI | `videos/spiderverse-ai-short/` | Final = `work/edit_hd.json`, AI voice (vidIQ), **no music** (user picks the sound in-app) |
 | The Dark Knight — Ledger improvised the Joker's slow clap | `videos/darkknight-clap-short/` | Kept as rendered: AI voice, no music (`work/edit.json`); can be re-cut with the user's voice later |
-| Toy Story — early 'Black Friday' Woody was so mean Disney halted production | `videos/toystory-woody-short/` | Parked: B-roll t1–t7 cropped (local), script ready; waiting for the user's voiceover |
+| Toy Story — early 'Black Friday' Woody was so mean Disney halted production | `videos/toystory-woody-short/` | Done with offline Thai TTS voice (`work/edit_ai.json`), no music |
 | Titanic — Cameron's hands drew Rose's portrait | `videos/titanic-sketch-short/` | **Dropped** by the user (footage too hard: nude scene, AI-fake BTS clips, streaming apps record black) |

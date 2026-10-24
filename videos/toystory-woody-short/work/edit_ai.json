@@ -1,0 +1,137 @@
+{
+ "duration": 21.6,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/toystory-woody-short/work/voice_tts.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t1.mp4",
+   "start": 0,
+   "dur": 2.0,
+   "media_start": 1.1
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 2.0,
+   "dur": 1.43,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t4.mp4",
+   "start": 3.43,
+   "dur": 2.09,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t3.mp4",
+   "start": 5.52,
+   "dur": 3.98,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t5.mp4",
+   "start": 9.5,
+   "dur": 4.1,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t6.mp4",
+   "start": 13.6,
+   "dur": 2.2,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t2.mp4",
+   "start": 15.8,
+   "dur": 1.06,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/toystory-woody-short/broll/t7.mp4",
+   "start": 16.86,
+   "dur": 4.74,
+   "media_start": 0.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "เพื่อนๆ รู้มั้ยว่า",
+   "end": 1.24
+  },
+  {
+   "start": 1.24,
+   "text": "วู้ดดี้เวอร์ชันแรก",
+   "end": 3.43
+  },
+  {
+   "start": 3.43,
+   "end": 4.16,
+   "text": "นิสัยแย่"
+  },
+  {
+   "start": 4.16,
+   "end": 5.52,
+   "text": "จนเกือบไม่ได้ฉาย!"
+  },
+  {
+   "start": 5.52,
+   "text": "ปี 1993",
+   "end": 7.49
+  },
+  {
+   "start": 7.49,
+   "end": 8.83,
+   "text": "พิกซาร์ฉายฉบับร่าง"
+  },
+  {
+   "start": 8.83,
+   "end": 9.72,
+   "text": "ให้ดิสนีย์ดู"
+  },
+  {
+   "start": 9.72,
+   "text": "วู้ดดี้เวอร์ชันนั้น",
+   "end": 11.15
+  },
+  {
+   "start": 11.15,
+   "text": "ทั้งเห็นแก่ตัว",
+   "end": 12.13
+  },
+  {
+   "start": 12.13,
+   "text": "ทั้งตะคอกใส่เพื่อน",
+   "end": 13.6
+  },
+  {
+   "start": 13.6,
+   "text": "แต่ผู้บริหารรับไม่ได้",
+   "end": 14.9
+  },
+  {
+   "start": 14.9,
+   "end": 15.68,
+   "text": "ดิสนีย์สั่ง"
+  },
+  {
+   "start": 15.68,
+   "end": 16.86,
+   "text": "หยุดการสร้าง!"
+  },
+  {
+   "start": 16.86,
+   "text": "พิกซาร์เลยเขียนบทใหม่",
+   "end": 18.44
+  },
+  {
+   "start": 18.44,
+   "text": "กลายเป็นวู้ดดี้ใจดี",
+   "end": 20.1
+  },
+  {
+   "start": 20.1,
+   "text": "ที่เรารักทุกวันนี้",
+   "end": 21.6
+  }
+ ]
+}
