@@ -108,7 +108,7 @@ def chunks(words, size=4):
     return [words[i:i + per] for i in range(0, len(words), per)]
 
 
-def captions(topic, clips):
+def captions(topic, clips, size=4):
     out = []
     for line, c in zip(topic["lines"], clips):
         text = line.get("cap", line["say"])
@@ -124,7 +124,7 @@ def captions(topic, clips):
                 spans.append((c["dur"] * acc / tot, c["dur"] * (acc + w) / tot))
                 acc += w
         for phrase, (a, b) in zip(phrases, spans):
-            groups = chunks(phrase.split())
+            groups = chunks(phrase.split(), size)
             ws = [sum(weight(w) for w in g) for g in groups]
             tot, acc = sum(ws), 0.0
             for g, w in zip(groups, ws):

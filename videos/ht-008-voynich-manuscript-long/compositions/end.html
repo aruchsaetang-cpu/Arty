@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    #end-k-in, #end-q-in, #end-m-in, #end-c-in { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="end" data-width="1920" data-height="1080">
+    <div id="end-k" class="t-body clip" data-start="0" data-duration="13.61" style="left: 0; width: 1920px; text-align: center; top: 110px; font-size: 40px; letter-spacing: 0.22em;">
+      <span id="end-k-in">CASE 008 · UNSOLVED</span>
+    </div>
+    <div id="end-q" class="t-display clip" data-start="0" data-duration="13.61" style="left: 0; width: 1920px; text-align: center; top: 170px; font-size: 170px;">
+      <span id="end-q-in">WHAT DOES IT SAY?</span>
+    </div>
+    <div id="end-m" class="t-body clip" data-start="0" data-duration="13.61" style="left: 0; width: 1920px; text-align: center; top: 360px; font-size: 38px; letter-spacing: 0.5em; color: #ddd3b4;">
+      <span id="end-m-in">HOLLOW TRUTH</span>
+    </div>
+    <div id="end-c" class="t-body clip" data-start="0" data-duration="13.61" style="left: 0; width: 1920px; text-align: center; top: 418px; font-size: 30px; letter-spacing: 0.14em;">
+      <span id="end-c-in">COMMENT YOUR THEORY · SUBSCRIBE FOR MORE CASE FILES</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#end-k-in", 0.3);
+    flick("#end-q-in", 0.8);
+    tl.fromTo("#end-m-in", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.1);
+    flick("#end-c-in", 2.0);
+    window.__timelines["end"] = tl;
+  </script>
+</template>

@@ -1,0 +1,47 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    #chapter1-bg { position: absolute; inset: 0; background: #050403; }
+    #chapter1-k-in, #chapter1-t-in { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="chapter1" data-width="1920" data-height="1080">
+    <div id="chapter1-bg" class="clip" data-start="0" data-duration="2.1"></div>
+    <div id="chapter1-k" class="t-body clip" data-start="0" data-duration="2.1" style="left: 0; width: 1920px; text-align: center; top: 400px; font-size: 40px; letter-spacing: 0.4em; color: #e0352b;">
+      <span id="chapter1-k-in">CHAPTER 1</span>
+    </div>
+    <div id="chapter1-t" class="t-display clip" data-start="0" data-duration="2.1" style="left: 0; width: 1920px; text-align: center; top: 470px; font-size: 170px;">
+      <span id="chapter1-t-in">THE LIGHT GOES OUT</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#chapter1-k-in", 0.15);
+    flick("#chapter1-t-in", 0.35);
+    tl.to("#chapter1-bg", { opacity: 0, duration: 0.25, ease: "power2.in" }, 1.80);
+    tl.to(["#chapter1-k-in", "#chapter1-t-in"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 1.75);
+    window.__timelines["chapter1"] = tl;
+  </script>
+</template>

@@ -1,0 +1,50 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+  </style>
+  <div id="root" data-composition-id="labels" data-width="1920" data-height="1080">
+    <div id="label-0" class="t-body clip" data-start="11.62" data-duration="27.46" style="left: 80px; top: 64px; font-weight: 400; font-size: 28px; letter-spacing: 0.3em; color: #ddd3b4;">
+      <span id="label-0-in">FILE 009 · THE CASE</span>
+    </div>
+    <div id="label-1" class="t-body clip" data-start="41.18" data-duration="37.54" style="left: 80px; top: 64px; font-weight: 400; font-size: 28px; letter-spacing: 0.3em; color: #ddd3b4;">
+      <span id="label-1-in">CHAPTER 1 · LOST</span>
+    </div>
+    <div id="label-2" class="t-body clip" data-start="80.82" data-duration="31.31" style="left: 80px; top: 64px; font-weight: 400; font-size: 28px; letter-spacing: 0.3em; color: #ddd3b4;">
+      <span id="label-2-in">CHAPTER 2 · THE SEARCH</span>
+    </div>
+    <div id="label-3" class="t-body clip" data-start="114.23" data-duration="21.92" style="left: 80px; top: 64px; font-weight: 400; font-size: 28px; letter-spacing: 0.3em; color: #ddd3b4;">
+      <span id="label-3-in">CHAPTER 3 · THE THEORIES</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    tl.fromTo("#label-0-in", { opacity: 0 }, { opacity: 0.8, duration: 0.4, ease: "power2.out" }, 11.72);
+    tl.fromTo("#label-1-in", { opacity: 0 }, { opacity: 0.8, duration: 0.4, ease: "power2.out" }, 41.28);
+    tl.fromTo("#label-2-in", { opacity: 0 }, { opacity: 0.8, duration: 0.4, ease: "power2.out" }, 80.92);
+    tl.fromTo("#label-3-in", { opacity: 0 }, { opacity: 0.8, duration: 0.4, ease: "power2.out" }, 114.33);
+    window.__timelines["labels"] = tl;
+  </script>
+</template>
