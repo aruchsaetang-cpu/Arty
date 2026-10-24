@@ -2,10 +2,10 @@
 workflow: general-video
 flow: automation
 storyboard: no
-message: "ล้มได้ แต่ห้ามล้มเลิก"
+message: "You can fall. Just never quit."
 destination: youtube + shorts
 aspect: 1920x1080 (film), 1080x1920 (shorts)
-language: th
+language: en
 length: 150s film + 8 × 20s shorts
 angle: animated short film about discipline and struggle
 ---
@@ -16,14 +16,21 @@ An original animated short in the genre of the Day One Films channel (reference:
 "DISCIPLINE | An Animated Short Film", 4.8M views, mostly wordless, music-led): a
 simple drawn character, dark moody rooms, sparse on-screen lines, and one emotional arc.
 
-Story: snoozing the 5:00 alarm → phone until 3 a.m., "tomorrow" never comes → he doesn't
-recognise himself in the mirror → writes "วันที่ 1" → rain run and fall, failed push-ups,
-crossing off days → misses days 9–11, the inner voice says "แกทำไม่ได้หรอก" → the music
-drops, 5:00 again, he wakes up anyway: "ทุกคนล้มได้ / แต่ห้ามล้มเลิก" → day 23, 47, 68,
-100 → the mirror again, now familiar → AGAIN. (อีกครั้ง).
+Story: snoozing the 5:00 alarm → phone until 3 a.m., "tomorrow" never comes → a stranger
+stares back from the mirror → writes "DAY 1" → rain run and fall, failed push-ups, crossing
+off days → misses days 9–11, the inner voice says "See? You can't do this." → the music
+drops, 5:00 again, he wakes up anyway: "You can fall. / Just never quit." → day 23, 47, 68,
+100 → the mirror again, "The stranger was gone." → AGAIN.
 
 The character is our own design (egg head, a single curl, thick brows, navy hoodie with
 orange drawstrings), not a copy of the reference channel's character.
+
+## Look
+
+Shaded skin and hoodie with rim light and blush, blinking and breathing, dust drifting in
+light beams, rain splashes, bokeh, rotating sun rays, animated film grain, a warm/cool
+grade, dips to black between story beats, flash cuts in the montage, light leaks on the
+climax, and word-by-word captions. All hand-built in `scripts/gen.py`.
 
 ## Assets
 
@@ -32,7 +39,7 @@ orange drawstrings), not a copy of the reference channel's character.
   montage. `assets/audio/score.m4a`.
 - SFX: synthesised by `scripts/sfx.py` (alarm, snooze click, pen, rain, falls, heartbeat,
   door swell). `assets/audio/sfx.m4a`.
-- All visuals are drawn SVG built by `scripts/gen.py` (writes `index.html`).
+- All visuals are drawn SVG built by `scripts/gen.py` (writes `index.html`). On-screen text is English.
 
 ## Shorts
 

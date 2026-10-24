@@ -1,7 +1,9 @@
 """Generate one vertical 20s short composition per episode, cut from renders/again-2m30s.mp4.
 
-Run:  python3 scripts/gen_shorts.py   (writes short-ep1.html … short-ep8.html)
-Render each:  npx hyperframes render -c short-epN.html -o renders/shorts/again-epN.mp4 .
+Run:  python3 scripts/gen_shorts.py   (writes shorts/ep1.html … shorts/ep8.html)
+Then copy the film in and render each from the shorts/ project:
+  cp renders/again-2m30s.mp4 shorts/assets/film.mp4
+  cd shorts && npx hyperframes render -c epN.html -o renders/again-epN.mp4 .
 """
 import pathlib
 
@@ -10,21 +12,21 @@ LEN = 20
 
 # (start in the film, hook line 1, hook line 2 (accent))
 EPISODES = [
-    (0.0, "กด snooze ไปกี่ครั้ง", "แล้ววันนี้?"),
-    (22.0, "“พรุ่งนี้ค่อยเริ่ม”", "ที่ไม่เคยมาถึง"),
-    (43.0, "วันที่ 1", "เริ่มแบบนี้แหละ"),
-    (56.5, "ไม่มีใครบอก", "ว่ามันจะยากขนาดนี้"),
-    (77.0, "วันที่เขาพลาด", "เสียงในหัวก็ดังขึ้น"),
-    (103.0, "ล้มได้…", "แต่ห้ามล้มเลิก"),
-    (121.0, "100 วันต่อมา", "เกิดอะไรขึ้น?"),
-    (130.0, "คนในกระจก", "เริ่มคุ้นหน้าแล้ว"),
+    (0.0, "How many times did you", "hit snooze today?"),
+    (22.0, "“I'll start tomorrow.”", "Tomorrow never came."),
+    (43.0, "Day 1", "always looks like this."),
+    (56.5, "Nobody tells you", "how hard it gets."),
+    (77.0, "The day he slipped,", "the voice got louder."),
+    (103.0, "You can fall.", "Just never quit."),
+    (121.0, "100 days later…", "watch this."),
+    (130.0, "The stranger", "in the mirror is gone."),
 ]
 
 fonts = (ROOT / "index.html").read_text().split("<style>")[1].split("* {")[0]
 
 for i, (start, h1, h2) in enumerate(EPISODES, 1):
     html = f'''<!doctype html>
-<html lang="th">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
@@ -42,7 +44,7 @@ for i, (start, h1, h2) in enumerate(EPISODES, 1):
       .chip {{ position: absolute; left: 70px; top: 120px; display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 32px; letter-spacing: 0.14em; color: #d8d2c6; }}
       .chip b {{ display: block; padding: 6px 18px; border-radius: 10px; background: #ffd27a; color: #07080d; font-weight: 900; letter-spacing: 0.08em; }}
       .hook {{ position: absolute; left: 70px; right: 70px; top: 190px; display: flex; flex-direction: column; gap: 0; }}
-      .hook span {{ display: block; font-weight: 900; font-size: 92px; line-height: 1.18; white-space: nowrap; }}
+      .hook span {{ display: block; font-weight: 900; font-size: 84px; line-height: 1.15; white-space: nowrap; }}
       .hook .acc {{ color: #ffd27a; }}
       .foot {{ position: absolute; left: 70px; right: 70px; top: 1580px; display: flex; flex-direction: column; gap: 22px; }}
       .foot-row {{ display: flex; justify-content: space-between; font-weight: 700; font-size: 36px; color: #d8d2c6; }}
@@ -58,14 +60,14 @@ for i, (start, h1, h2) in enumerate(EPISODES, 1):
     <div id="root" data-composition-id="main" data-start="0" data-duration="{LEN}" data-width="1080" data-height="1920">
       <div id="bg" class="clip" data-start="0" data-duration="{LEN}" data-track-index="0"><div class="glow"></div></div>
       <div class="frame" id="frame">
-        <video id="film" class="clip" src="renders/again-2m30s.mp4" data-start="0" data-duration="{LEN}" data-media-start="{start}" data-track-index="1" data-has-audio="true" playsinline></video>
+        <video id="film" class="clip" src="assets/film.mp4" data-start="0" data-duration="{LEN}" data-media-start="{start}" data-track-index="1" data-has-audio="true" playsinline></video>
       </div>
       <div id="ui" class="clip" data-start="0" data-duration="{LEN}" data-track-index="2">
         <div class="edge t"></div><div class="edge b"></div>
         <div class="chip" id="chip"><b>AGAIN.</b>EP.{i} / {len(EPISODES)}</div>
         <div class="hook"><span id="h1">{h1}</span><span class="acc" id="h2">{h2}</span></div>
         <div class="foot">
-          <div class="foot-row"><span>ดูเต็มเรื่องได้ที่ช่อง</span><span class="ep">ตอนต่อไป →</span></div>
+          <div class="foot-row"><span>Full film on the channel</span><span class="ep">Next episode →</span></div>
           <span class="bar"><span class="bar-fill" id="fill"></span></span>
         </div>
       </div>
@@ -82,5 +84,5 @@ for i, (start, h1, h2) in enumerate(EPISODES, 1):
   </body>
 </html>
 '''
-    (ROOT / f"short-ep{i}.html").write_text(html)
+    (ROOT / "shorts" / f"ep{i}.html").write_text(html)
 print("wrote", len(EPISODES), "shorts")
