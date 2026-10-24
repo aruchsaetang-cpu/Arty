@@ -1,0 +1,237 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #020308;
+    }
+    .space-layer {
+      position: absolute;
+      inset: 0;
+    }
+    #space-sky-cam,
+    #space-paper-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      transform-origin: 540px 960px;
+    }
+    #space-sky-cam svg,
+    #space-paper-cam svg,
+    #space-chart svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    #space-desk {
+      background: radial-gradient(ellipse 70% 55% at 50% 58%, #2a2418 0%, #0b0907 70%);
+    }
+    .space-mono {
+      font-family: "IBM Plex Mono", monospace;
+    }
+    #space-paper-scrim {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 620px;
+      background: linear-gradient(rgba(8, 7, 5, 0.94) 55%, rgba(8, 7, 5, 0));
+    }
+    #space-sweep {
+      position: absolute;
+      left: -400px;
+      top: 0;
+      width: 360px;
+      height: 1920px;
+      background: linear-gradient(90deg, rgba(160, 200, 255, 0), rgba(160, 200, 255, 0.13), rgba(160, 200, 255, 0));
+    }
+  </style>
+  <div id="root" data-composition-id="space" data-width="1080" data-height="1920">
+    <!-- The sky: the whole film -->
+    <div id="space-sky" class="space-layer" data-layout-ignore>
+      <div id="space-sky-cam" data-layout-allow-overflow>
+        <svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="space-band">
+              <stop offset="0" stop-color="#3a3f5c" stop-opacity="0.35" />
+              <stop offset="1" stop-color="#3a3f5c" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <rect x="-3000" y="-3000" width="7080" height="7920" fill="#020308" />
+          <ellipse cx="600" cy="1100" rx="1300" ry="380" transform="rotate(-58 600 1100)" fill="url(#space-band)" />
+          <g id="space-stars" fill="#dfe6ff"></g>
+          <g id="space-teapot" stroke="#9fb4e0" stroke-width="2.5" stroke-opacity="0.7" fill="none"></g>
+          <g id="space-teapot-stars" fill="#f3f6ff"></g>
+          <circle id="space-source-ring" cx="540" cy="960" r="26" fill="none" stroke="#e0352b" stroke-width="3" />
+          <circle id="space-source" cx="540" cy="960" r="6" fill="#ffffff" />
+        </svg>
+      </div>
+      <div id="space-sweep"></div>
+    </div>
+
+    <!-- The printout on the desk: 5.0–10.6s -->
+    <div id="space-paper" class="space-layer clip" data-start="5.0" data-duration="5.6" data-layout-ignore>
+      <div id="space-desk" class="space-layer"></div>
+      <div id="space-paper-cam" data-layout-allow-overflow>
+        <svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+          <rect x="120" y="180" width="840" height="2900" fill="#dcdfcf" />
+          <g id="space-bars" fill="#c7d5bb"></g>
+          <g id="space-holes" fill="#0b0907"></g>
+          <g id="space-rows" class="space-mono" font-size="30" fill="#33352f"></g>
+          <ellipse id="space-circle" cx="452" cy="1152" rx="46" ry="152" fill="none" stroke="#c0281f" stroke-width="6" />
+          <path
+            id="space-wow"
+            d="M 196 1110 L 214 1196 L 236 1136 L 258 1196 L 278 1110 M 318 1160 C 296 1158 292 1196 312 1198 C 334 1200 340 1162 318 1160 M 350 1150 L 362 1198 L 376 1166 L 390 1198 L 404 1150 M 428 1100 L 424 1172 M 423 1192 L 423 1196"
+            fill="none"
+            stroke="#c0281f"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            transform="translate(-16 -120)"
+          />
+        </svg>
+      </div>
+      <div id="space-paper-scrim"></div>
+    </div>
+
+    <!-- The signal's own intensity values: 10.6–12.8s -->
+    <div id="space-chart" class="space-layer clip" data-start="10.6" data-duration="2.2" data-layout-ignore>
+      <svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="1080" height="1920" fill="#020308" opacity="0.55" />
+        <line x1="190" y1="1060" x2="890" y2="1060" stroke="#8b96b5" stroke-width="3" />
+        <g id="space-chart-bars"></g>
+        <text x="190" y="1110" fill="#8b96b5" font-size="30" font-family="Oswald, sans-serif">0 s</text>
+        <text x="890" y="1110" fill="#8b96b5" font-size="30" font-family="Oswald, sans-serif" text-anchor="end">72 s</text>
+      </svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const NS = "http://www.w3.org/2000/svg";
+      let seed = 19770815;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const stars = document.querySelector("#space-stars");
+      for (let i = 0; i < 520; i++) {
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", (-900 + rnd() * 2900).toFixed(0));
+        c.setAttribute("cy", (-600 + rnd() * 3200).toFixed(0));
+        c.setAttribute("r", (0.6 + rnd() ** 3 * 2.6).toFixed(1));
+        c.setAttribute("opacity", (0.25 + rnd() * 0.7).toFixed(2));
+        stars.appendChild(c);
+      }
+      // Sagittarius' teapot, below and right of where the signal came from (illustrative).
+      const T = { g: [-210, 40], d: [-120, -30], e: [-110, 110], l: [-30, -110], p: [20, -20], s: [120, -50], t: [140, 60], z: [30, 100] };
+      const at = (k) => [560 + T[k][0] * 1.3, 1230 + T[k][1] * 1.3];
+      const pot = document.querySelector("#space-teapot");
+      [["g", "d"], ["g", "e"], ["d", "e"], ["d", "l"], ["l", "p"], ["d", "p"], ["p", "s"], ["s", "t"], ["t", "z"], ["z", "e"], ["p", "z"]].forEach(([a, b]) => {
+        const l = document.createElementNS(NS, "line");
+        const [x1, y1] = at(a), [x2, y2] = at(b);
+        l.setAttribute("x1", x1); l.setAttribute("y1", y1); l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+        l.setAttribute("class", "space-pot-line");
+        pot.appendChild(l);
+      });
+      const potStars = document.querySelector("#space-teapot-stars");
+      Object.keys(T).forEach((k) => {
+        const c = document.createElementNS(NS, "circle");
+        const [x, y] = at(k);
+        c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", 5);
+        potStars.appendChild(c);
+      });
+      // The printout: green-bar paper, tractor holes, columns of intensity characters.
+      const bars = document.querySelector("#space-bars");
+      for (let y = 180; y < 3080; y += 88) {
+        const r = document.createElementNS(NS, "rect");
+        r.setAttribute("x", 160); r.setAttribute("y", y); r.setAttribute("width", 760); r.setAttribute("height", 44);
+        bars.appendChild(r);
+      }
+      const holes = document.querySelector("#space-holes");
+      for (let y = 200; y < 3080; y += 44) {
+        [140, 940].forEach((x) => {
+          const c = document.createElementNS(NS, "circle");
+          c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", 8);
+          holes.appendChild(c);
+        });
+      }
+      const rows = document.querySelector("#space-rows");
+      const seq = { 18: "6", 19: "E", 20: "Q", 21: "U", 22: "J", 23: "5" };
+      for (let r = 0; r < 64; r++) {
+        let line = "";
+        for (let c = 0; c < 12; c++) {
+          if (c === 4 && seq[r]) { line += seq[r]; continue; }
+          const v = rnd();
+          line += v < 0.5 ? "1" : v < 0.7 ? " " : v < 0.85 ? "2" : v < 0.95 ? "3" : "4";
+        }
+        const t = document.createElementNS(NS, "text");
+        t.setAttribute("y", 270 + r * 44);
+        t.setAttribute("xml:space", "preserve");
+        [...line].forEach((ch, c) => {
+          const s = document.createElementNS(NS, "tspan");
+          s.setAttribute("x", 196 + c * 58 + (c === 4 ? 0 : 0));
+          s.textContent = ch;
+          t.appendChild(s);
+        });
+        rows.appendChild(t);
+      }
+      // 6 E Q U J 5 = intensity 6, 14, 26, 30, 19, 5 (times the background noise).
+      const vals = [["6", 6], ["E", 14], ["Q", 26], ["U", 30], ["J", 19], ["5", 5]];
+      const cb = document.querySelector("#space-chart-bars");
+      vals.forEach(([ch, v], i) => {
+        const x = 230 + i * 110;
+        const r = document.createElementNS(NS, "rect");
+        r.setAttribute("x", x); r.setAttribute("y", 1060 - v * 13); r.setAttribute("width", 80); r.setAttribute("height", v * 13);
+        r.setAttribute("fill", ch === "U" ? "#e0352b" : "#c9cfe2");
+        r.setAttribute("class", "space-cbar");
+        cb.appendChild(r);
+        const t = document.createElementNS(NS, "text");
+        t.setAttribute("x", x + 40); t.setAttribute("y", 1040 - v * 13);
+        t.setAttribute("text-anchor", "middle");
+        t.setAttribute("font-family", "IBM Plex Mono, monospace");
+        t.setAttribute("font-size", 44);
+        t.setAttribute("fill", "#ffffff");
+        t.setAttribute("class", "space-cbar");
+        t.textContent = ch;
+        cb.appendChild(t);
+      });
+    })();
+
+    const tl = gsap.timeline({ paused: true });
+    const cam = (px, py, s) => ({ x: -s * (px - 540), y: -s * (py - 960), scale: s });
+
+    // The source pulses, then is gone for good.
+    tl.fromTo("#space-source-ring", { scale: 1, opacity: 0.9, transformOrigin: "50% 50%" }, { scale: 1.6, opacity: 0, duration: 1.1, ease: "power2.out", repeat: 3 }, 0.3);
+    tl.fromTo("#space-source", { opacity: 1 }, { opacity: 0.2, duration: 0.5, ease: "power2.inOut" }, 15.6);
+    tl.set("#space-source-ring", { opacity: 0 }, 15.6);
+
+    // Sky camera: push toward the source, dive into it, return wide for the search.
+    tl.fromTo("#space-sky-cam", cam(540, 960, 1.0), { ...cam(540, 960, 1.35), duration: 4.7, ease: "none" }, 0);
+    tl.to("#space-sky-cam", { ...cam(540, 960, 9), duration: 0.45, ease: "power3.in" }, 4.7);
+    tl.set("#space-sky-cam", cam(540, 1000, 1.0), 10.55);
+    tl.to("#space-sky-cam", { ...cam(540, 1120, 1.12), duration: 0.6, ease: "power3.inOut" }, 12.75);
+    tl.to("#space-sky-cam", { ...cam(540, 1100, 0.95), duration: 6.65, ease: "none" }, 13.35);
+    tl.fromTo(".space-pot-line", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none", stagger: 0.06 }, 12.95);
+    tl.fromTo("#space-sweep", { x: 0 }, { x: 1880, duration: 1.0, ease: "power1.inOut", repeat: 1 }, 13.5);
+
+    // The printout emerges from the point of light.
+    tl.fromTo("#space-paper", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "none" }, 5.0);
+    tl.fromTo("#space-paper-cam", cam(540, 1100, 0.08), { ...cam(540, 1100, 0.62), duration: 0.45, ease: "expo.out" }, 5.0);
+    tl.to("#space-paper-cam", { ...cam(452, 1150, 1.5), duration: 1.2, ease: "power2.inOut" }, 5.5);
+    tl.to("#space-paper-cam", { ...cam(452, 1150, 1.56), duration: 2.6, ease: "none" }, 6.7);
+    tl.to("#space-paper-cam", { ...cam(380, 1100, 1.42), duration: 0.5, ease: "power3.inOut" }, 9.2);
+    // "...circled it" → red pen around 6EQUJ5; "Wow." → written beside it.
+    const ringLen = 2 * Math.PI * Math.sqrt((46 * 46 + 152 * 152) / 2);
+    tl.fromTo("#space-circle", { strokeDasharray: ringLen, strokeDashoffset: ringLen, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.6, ease: "power2.inOut" }, 6.75);
+    tl.fromTo("#space-wow", { strokeDasharray: 900, strokeDashoffset: 900, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 0.55, ease: "power1.inOut" }, 9.45);
+
+    // Bars rise in order, the way the telescope's beam swept across the source.
+    tl.fromTo(".space-cbar", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none", stagger: 0.09 }, 10.75);
+
+    window.__timelines["space"] = tl;
+  </script>
+</template>

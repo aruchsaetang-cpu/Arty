@@ -1,0 +1,81 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .mood-layer {
+      position: absolute;
+      inset: 0;
+    }
+    #mood-fog-a,
+    #mood-fog-b {
+      position: absolute;
+      width: 1400px;
+      height: 900px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(200, 214, 210, 0.16), rgba(200, 214, 210, 0));
+    }
+    #mood-fog-a {
+      left: -500px;
+      top: 300px;
+    }
+    #mood-fog-b {
+      left: 300px;
+      top: 1000px;
+    }
+    #mood-vignette {
+      background: radial-gradient(ellipse 75% 60% at 50% 46%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.72) 100%);
+    }
+    #mood-grain-tex {
+      position: absolute;
+      left: -540px;
+      top: -960px;
+      width: 2160px;
+      height: 3840px;
+      opacity: 0.13;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    #mood-dip-in {
+      background: #000000;
+    }
+  </style>
+  <div id="root" data-composition-id="mood" data-width="1080" data-height="1920">
+    <div id="mood-fog" class="mood-layer clip" data-start="0" data-duration="20" data-layout-ignore data-layout-allow-overflow>
+      <div id="mood-fog-a"></div>
+      <div id="mood-fog-b"></div>
+    </div>
+    <div id="mood-vignette" class="mood-layer clip" data-start="0" data-duration="20" data-layout-ignore></div>
+    <div id="mood-grain" class="mood-layer clip" data-start="0" data-duration="20" data-layout-ignore data-layout-allow-overflow>
+      <div id="mood-grain-tex"></div>
+    </div>
+    <div id="mood-dip" class="mood-layer clip" data-start="0" data-duration="20" data-layout-ignore>
+      <div id="mood-dip-in" class="mood-layer"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Fog drifts across the chart, slow and constant.
+    tl.fromTo("#mood-fog-a", { x: 0, y: 0 }, { x: 900, y: -120, duration: 20, ease: "none" }, 0);
+    tl.fromTo("#mood-fog-b", { x: 0, y: 0 }, { x: -800, y: -200, duration: 20, ease: "none" }, 0);
+    // Grain jumps to a new seeded offset 15 times a second.
+    let seed = 7031;
+    const rnd = () => {
+      seed = (seed * 16807) % 2147483647;
+      return seed / 2147483647;
+    };
+    for (let f = 0; f < 300; f++) {
+      tl.set("#mood-grain-tex", { x: Math.round((rnd() - 0.5) * 400), y: Math.round((rnd() - 0.5) * 600) }, f / 15);
+    }
+    // The picture stutters dark at each cut, like a failing projector.
+    tl.set("#mood-dip-in", { opacity: 0 }, 0);
+    [4.95, 10.55, 12.75, 15.55].forEach((at) => {
+      tl.set("#mood-dip-in", { opacity: 0.55 }, at);
+      tl.set("#mood-dip-in", { opacity: 0.1 }, at + 0.05);
+      tl.set("#mood-dip-in", { opacity: 0.4 }, at + 0.1);
+      tl.set("#mood-dip-in", { opacity: 0 }, at + 0.16);
+    });
+    window.__timelines["mood"] = tl;
+  </script>
+</template>

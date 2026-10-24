@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    .t-stamp-in {
+      background: var(--accent, #e0352b);
+      color: #ffffff;
+      padding: 6px 22px 10px;
+    }
+    #end-l1-in, #end-ask-in { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="end" data-width="1080" data-height="1920">
+    <div id="end-l1" class="t-body clip" data-start="0" data-duration="4.45" style="top: 220px; font-size: 48px; letter-spacing: 0.16em;">
+      <span id="end-l1-in">NEVER DETECTED AGAIN</span>
+    </div>
+    <div id="end-ask" class="t-display clip" data-start="1.75" data-duration="2.7" style="top: 300px; font-size: 170px;">
+      <span id="end-ask-in">WHO SENT IT?</span>
+    </div>
+    <div id="end-mark" class="t-body clip" data-start="1.75" data-duration="2.7" style="top: 490px; font-size: 40px; letter-spacing: 0.5em; color: #ddd3b4;">
+      <span id="end-mark-in">HOLLOW TRUTH</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#end-l1-in", 0.1);
+    flick("#end-ask-in", 1.77);
+    tl.fromTo("#end-mark-in", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.77);
+    window.__timelines["end"] = tl;
+  </script>
+</template>

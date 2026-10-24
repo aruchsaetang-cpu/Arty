@@ -1,0 +1,55 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #root span {
+      display: inline-block;
+    }
+    .t-display {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-display, "League Gothic"), sans-serif;
+      line-height: 1;
+      color: var(--bone, #ddd3b4);
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.6);
+    }
+    .t-body {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      text-align: center;
+      font-family: var(--font-body, "Oswald"), sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    }
+    .t-stamp-in {
+      background: var(--accent, #e0352b);
+      color: #ffffff;
+      padding: 6px 22px 10px;
+    }
+    #paper-k-in, #paper-k2-in { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="paper" data-width="1080" data-height="1920">
+    <div id="paper-k" class="t-body clip" data-start="0" data-duration="5.6" style="top: 200px; font-size: 64px; letter-spacing: 0.14em;">
+      <span id="paper-k-in">AUG 15, 1977</span>
+    </div>
+    <div id="paper-k2" class="t-body clip" data-start="0" data-duration="5.6" style="top: 290px; font-size: 40px; letter-spacing: 0.16em; color: #ddd3b4;">
+      <span id="paper-k2-in">BIG EAR TELESCOPE · OHIO</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const flick = (sel, at) => {
+      [[0, 1], [0.05, 0.15], [0.09, 1], [0.17, 0.35], [0.22, 1]].forEach(([dt, o]) => tl.set(sel, { opacity: o }, at + dt));
+    };
+    flick("#paper-k-in", 0.5);
+    flick("#paper-k2-in", 0.8);
+    tl.to(["#paper-k-in", "#paper-k2-in"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 5.35);
+    window.__timelines["paper"] = tl;
+  </script>
+</template>
