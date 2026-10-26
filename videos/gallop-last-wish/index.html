@@ -203,7 +203,9 @@
       <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s2-talk.mp4" data-start="4.5" data-duration="4.5" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/s3-cheese.mp4" data-start="9" data-duration="6.5" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/s4-hug.mp4" data-start="15.5" data-duration="6" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w5"><video id="v5" class="clip" src="assets/footage/s5-tears.mp4" data-start="21.5" data-duration="6.5" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/s5-tears.mp4" data-start="21.5" data-duration="6.5" data-track-index="0" muted playsinline></video></div></div>
+      <!-- ghost echo for the impact -->
+      <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/s5-tears.mp4" data-start="24.9" data-duration="1.4" data-media-start="3.4" data-track-index="0" muted playsinline></video></div>
 
       <div id="grade" class="clip" data-start="0" data-duration="28" data-track-index="1"><div class="vig"></div></div>
 
@@ -289,14 +291,15 @@
       <audio id="type-o4-a" src="assets/audio/keyboard-typing.m4a" data-start="16.0" data-duration="0.83" data-track-index="5" data-volume="0.7"></audio>
       <audio id="type-o5-a" src="assets/audio/keyboard-typing.m4a" data-start="21.9" data-duration="0.75" data-track-index="5" data-volume="0.7"></audio>
       <audio id="type-o5-b" src="assets/audio/keyboard-typing.m4a" data-start="22.7" data-duration="0.54" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o5-c" src="assets/audio/keyboard-typing.m4a" data-start="25.2" data-duration="0.33" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o5-d" src="assets/audio/keyboard-typing.m4a" data-start="25.55" data-duration="0.66" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="type-o5-c" src="assets/audio/keyboard-typing.m4a" data-start="25.6" data-duration="0.33" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="type-o5-d" src="assets/audio/keyboard-typing.m4a" data-start="25.95" data-duration="0.66" data-track-index="5" data-volume="0.7"></audio>
       <audio id="pop1" src="assets/audio/pop.m4a" data-start="1.9" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
       <audio id="pop2" src="assets/audio/pop.m4a" data-start="2.4" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
       <audio id="pop3" src="assets/audio/pop.m4a" data-start="4.6" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
       <audio id="pop4" src="assets/audio/pop.m4a" data-start="10.2" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
       <audio id="pop5" src="assets/audio/pop.m4a" data-start="17.6" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
-      <audio id="bell" src="assets/audio/bell-ding.m4a" data-start="25.45" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
+      <audio id="impact" src="assets/audio/shutter.m4a" data-start="25" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="bell" src="assets/audio/bell-ding.m4a" data-start="25.3" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
       <!-- ===== watermark + transitions ===== -->
       <div id="fx" class="clip" data-start="0" data-duration="28" data-track-index="3">
         <div class="wm">MOVIE FACTS</div>
@@ -384,17 +387,23 @@
       type("#o5-b", 22.7);
       tl.to("#o5-cap1", { opacity: 0, duration: 0.25 }, 24.8);
       tl.set("#o5-cap2", { opacity: 1 }, 0);
-      type("#o5-c", 25.2);
-      type("#o5-d", 25.55);
+      type("#o5-c", 25.6);
+      type("#o5-d", 25.95);
       // ---------- ending (channel signature) ----------
-      // light-leak sweep into the verdict
-      tl.fromTo("#leak", { opacity: 0, x: -200 }, { opacity: 1, x: 250, duration: 0.45, ease: "power2.in" }, 24.75);
-      tl.to("#leak", { opacity: 0, x: 600, duration: 0.5, ease: "power2.out" }, 25.2);
-      // heart sticker pops over the moment
-      tl.fromTo("#heart", { scale: 0, rotation: -25, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, transformOrigin: "50% 60%", duration: 0.45, ease: "back.out(2.6)" }, 25.45);
-      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 25.9);
+      // IMPACT (from the reference): blow-out + punch-in blur, ghost echo, decaying shake, then settle
+      flash(25.0, 0.95);
+      tl.fromTo("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)" }, { scale: 1.45, filter: "blur(18px) brightness(2.1)", duration: 0.07, ease: "power4.out" }, 24.98);
+      tl.to("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)", duration: 0.6, ease: "power3.out" }, 25.05);
+      tl.fromTo("#leak", { opacity: 0, x: 0, scale: 1.3 }, { opacity: 1, x: 0, scale: 1.3, duration: 0.06 }, 24.98);
+      tl.to("#leak", { opacity: 0, x: 300, duration: 0.7, ease: "power2.out" }, 25.08);
+      tl.fromTo("#w5g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 25.0);
+      tl.to("#w5g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 25.1);
+      tl.fromTo("#w5", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 25.02);
+      // heart sticker lands on the settle
+      tl.fromTo("#heart", { scale: 0, rotation: -25, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, transformOrigin: "50% 60%", duration: 0.45, ease: "back.out(2.6)" }, 25.3);
+      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 25.8);
       // zoom-blur out, dip to black, then fade into the first frame so the Short loops
-      tl.to("#w5", { scale: 1.35, filter: "blur(16px)", duration: 0.7, ease: "power2.in" }, 26.7);
+      tl.to("#w5i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.7, ease: "power2.in" }, 26.7);
       tl.to(["#o5-cap2", "#heart"], { opacity: 0, scale: 1.3, duration: 0.5, ease: "power2.in" }, 26.8);
       tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.in" }, 27.15);
       tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 27.55);
