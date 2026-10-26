@@ -16,7 +16,7 @@ Talk to the user in Thai.
   "behind the scenes" images or clips as if they were real.
 - **Length: 25–30 s.** 7–9 short sentences, hook → context → But → reveal, talk-like US English, no "Wait"/"Okay" opener,
   emotional beats ("He could barely even stand.", "They lost it.").
-- **Voice:** young male — `scripts/english_tts.py` with `"voice": "am_puck", "speed": 1.2, "gap": 0.16`.
+- **Voice:** young American male (user picked sample C) — `scripts/english_tts.py` with `"voice": {"am_puck": 0.5, "am_liam": 0.5}, "speed": 1.2, "gap": 0.16`.
 - **Captions:** one word per card, big comic style — edit.json `"caption_style": "comic"`, `"caption_y": 1150`
   (move it if the footage has a lower-third), `"pop_frames": 3, "pop_from": 0.5`; keywords (*stars* in the script)
   coloured red `#FF3B30`.
