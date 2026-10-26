@@ -19,6 +19,7 @@ emotional true-moment Shorts**.
 |---|---|
 | Hook text | Appears at 0.0–0.5s, centred mid-frame, wrapped in asterisks: `*SAD MOMENT*`. Heavy condensed sans (Anton / Montserrat Black), ALL CAPS, black stroke + soft glow. |
 | Colours | Neon green `#39FF14` for kindness/good, yellow `#FFE600` for danger/attention, white for neutral lines, red only for one word of loss. Two-tone lines are common: line 1 white, line 2 green. |
+| Text entrance | Keyboard/typewriter: every caption types in letter by letter (~24 letters/s). No explosive scale-in or slam on captions. |
 | Callouts | Yellow circle drawn around the subject + curved arrow pointing at it, with a short label: `GOOD MAN`, `HELPLESS DOG`, `REAL BIKE`, `POOR MAN`. Pops in with a scale bounce. |
 | Year / place stamp | Big white `2016` or `INDIA, 2019` over the footage for "true story" weight. |
 | Watermark | Channel name, semi-transparent white, centre, lower third, on for the whole video. |

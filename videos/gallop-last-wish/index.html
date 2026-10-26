@@ -294,6 +294,19 @@
 
       const pop = (sel, t, d = 0.35) => tl.fromTo(sel, { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(2.2)" }, t);
       const slam = (sel, t) => tl.fromTo(sel, { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "expo.out" }, t);
+      // keyboard-style text: letters appear one by one
+      const type = (sel, t, cps = 24) => {
+        const el = document.querySelector(sel);
+        const txt = el.textContent;
+        el.textContent = "";
+        for (const c of txt) {
+          const sp = document.createElement("span");
+          sp.className = "ch";
+          sp.textContent = c;
+          el.appendChild(sp);
+        }
+        tl.fromTo(el.querySelectorAll(".ch"), { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 1 / cps, ease: "none" }, t);
+      };
       const draw = (sel, t, d = 0.45) => tl.to(sel, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, t);
       const show = (sel, t) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.12 }, t);
       const label = (sel, t) => tl.fromTo(sel, { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, transformOrigin: "0% 50%", duration: 0.3, ease: "back.out(2.5)" }, t);
@@ -308,8 +321,8 @@
       // ---------- 0–4.5 ----------
       flash(0.0, 0.9);
       punch("#w1", 0, 4.5);
-      pop("#o1-a", 0.05);
-      slam("#o1-b", 0.7);
+      type("#o1-a", 0.05);
+      type("#o1-b", 0.85);
       draw("#o1-ring", 1.4);
       draw("#o1-arrow", 1.7, 0.35);
       show("#o1-head", 2.0);
@@ -320,15 +333,15 @@
       flash(4.5);
       punch("#w2", 4.5, 4.5);
       pop("#o2-year", 4.6);
-      pop("#o2-a", 5.0);
-      slam("#o2-b", 5.9);
+      type("#o2-a", 5.0);
+      type("#o2-b", 5.9);
       shake("#o2-b", 6.2, 10, 7);
 
       // ---------- 9–15.5 ----------
       flash(9.0);
       punch("#w3", 9.0, 6.5);
-      pop("#o3-a", 9.2);
-      slam("#o3-b", 10.3);
+      type("#o3-a", 9.2);
+      type("#o3-b", 10.3);
       tl.fromTo("#o3-b", { scale: 1 }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, 10.6);
       draw("#o3-ring", 9.7);
       draw("#o3-arrow", 10.0, 0.4);
@@ -339,7 +352,7 @@
       // ---------- 15.5–21.5 ----------
       flash(15.5);
       punch("#w4", 15.5, 6);
-      pop("#o4-a", 16.0);
+      type("#o4-a", 16.0);
       draw("#o4-ring", 17.6);
       label("#o4-lab", 17.6);
       draw("#o4-arrow", 17.8, 0.4);
@@ -349,12 +362,12 @@
       // ---------- 21.5–28 ----------
       flash(21.5, 0.6);
       punch("#w5", 21.5, 6.5);
-      pop("#o5-a", 21.9);
-      slam("#o5-b", 22.7);
+      type("#o5-a", 21.9);
+      type("#o5-b", 22.7);
       tl.to("#o5-cap1", { opacity: 0, duration: 0.25 }, 24.8);
       tl.set("#o5-cap2", { opacity: 1 }, 0);
-      slam("#o5-c", 25.2);
-      slam("#o5-d", 25.5);
+      type("#o5-c", 25.2);
+      type("#o5-d", 25.55);
       // ---------- ending (channel signature) ----------
       // light-leak sweep into the verdict
       tl.fromTo("#leak", { opacity: 0, x: -200 }, { opacity: 1, x: 250, duration: 0.45, ease: "power2.in" }, 24.75);
