@@ -1,0 +1,49 @@
+{
+ "voice": {
+  "am_puck": 0.5,
+  "am_liam": 0.5
+ },
+ "gap": 0.12,
+ "sentences": [
+  [
+   "Tom Cruise should be *dead* right now.",
+   1.1
+  ],
+  [
+   "Seriously. He's almost died more times than you think.",
+   1.25
+  ],
+  [
+   "In Fallout, he jumps between two rooftops, slams into the wall, and *snaps* his ankle!",
+   1.25
+  ],
+  [
+   "You can literally see it happen.",
+   1.1
+  ],
+  [
+   "But he doesn't stop. He gets up, limps across the roof, and finishes the shot.",
+   1.15
+  ],
+  [
+   "And that's the take they used in the *movie*.",
+   1.1
+  ],
+  [
+   "Then for Dead Reckoning, he trained for *months*. Hundreds of skydives. Thousands of motorcycle jumps.",
+   1.25
+  ],
+  [
+   "All for one moment... riding a motorcycle straight off a *cliff*.",
+   1.1
+  ],
+  [
+   "Why? Because he wants you to know it's *real*.",
+   1.05
+  ],
+  [
+   "And this... is his real reaction, the moment it happened.",
+   1.05
+  ]
+ ]
+}

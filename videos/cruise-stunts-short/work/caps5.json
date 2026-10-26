@@ -1,0 +1,528 @@
+[
+ {
+  "start": 0.01,
+  "text": "Tom",
+  "end": 0.24
+ },
+ {
+  "start": 0.24,
+  "text": "Cruise",
+  "end": 0.47
+ },
+ {
+  "start": 0.47,
+  "text": "should",
+  "end": 0.7
+ },
+ {
+  "start": 0.7,
+  "text": "be",
+  "end": 0.94
+ },
+ {
+  "start": 0.94,
+  "text": "dead",
+  "color": "#FFD400",
+  "end": 1.17
+ },
+ {
+  "start": 1.17,
+  "text": "right",
+  "end": 1.4
+ },
+ {
+  "start": 1.4,
+  "text": "now.",
+  "end": 1.8
+ },
+ {
+  "start": 1.8,
+  "text": "Seriously.",
+  "end": 2.31
+ },
+ {
+  "start": 2.31,
+  "text": "He's",
+  "end": 2.48
+ },
+ {
+  "start": 2.48,
+  "text": "almost",
+  "end": 2.82
+ },
+ {
+  "start": 2.82,
+  "text": "died",
+  "end": 2.99
+ },
+ {
+  "start": 2.99,
+  "text": "more",
+  "end": 3.16
+ },
+ {
+  "start": 3.16,
+  "text": "times",
+  "end": 3.5
+ },
+ {
+  "start": 3.5,
+  "text": "than",
+  "end": 3.67
+ },
+ {
+  "start": 3.67,
+  "text": "you",
+  "end": 3.84
+ },
+ {
+  "start": 3.84,
+  "text": "think.",
+  "end": 4.17
+ },
+ {
+  "start": 4.17,
+  "text": "In",
+  "end": 4.37
+ },
+ {
+  "start": 4.37,
+  "text": "Fallout,",
+  "end": 4.77
+ },
+ {
+  "start": 4.77,
+  "text": "he",
+  "end": 4.97
+ },
+ {
+  "start": 4.97,
+  "text": "jumps",
+  "end": 5.18
+ },
+ {
+  "start": 5.18,
+  "text": "between",
+  "end": 5.58
+ },
+ {
+  "start": 5.58,
+  "text": "two",
+  "end": 5.78
+ },
+ {
+  "start": 5.78,
+  "text": "rooftops,",
+  "end": 6.29
+ },
+ {
+  "start": 6.29,
+  "text": "slams",
+  "end": 6.5
+ },
+ {
+  "start": 6.5,
+  "text": "into",
+  "end": 6.92
+ },
+ {
+  "start": 6.92,
+  "text": "the",
+  "end": 7.13
+ },
+ {
+  "start": 7.13,
+  "text": "wall,",
+  "end": 7.34
+ },
+ {
+  "start": 7.34,
+  "text": "and",
+  "end": 7.55
+ },
+ {
+  "start": 7.55,
+  "text": "snaps",
+  "color": "#FFD400",
+  "end": 7.76
+ },
+ {
+  "start": 7.76,
+  "text": "his",
+  "end": 7.97
+ },
+ {
+  "start": 7.97,
+  "text": "ankle!",
+  "end": 8.35
+ },
+ {
+  "start": 8.35,
+  "text": "You can",
+  "end": 8.61
+ },
+ {
+  "start": 8.61,
+  "text": "literally",
+  "end": 9.14
+ },
+ {
+  "start": 9.14,
+  "text": "see it",
+  "end": 9.41
+ },
+ {
+  "start": 9.41,
+  "text": "happen.",
+  "end": 9.84
+ },
+ {
+  "start": 9.84,
+  "text": "But",
+  "end": 10.06
+ },
+ {
+  "start": 10.06,
+  "text": "he",
+  "end": 10.28
+ },
+ {
+  "start": 10.28,
+  "text": "doesn't",
+  "end": 10.51
+ },
+ {
+  "start": 10.51,
+  "text": "stop.",
+  "end": 10.87
+ },
+ {
+  "start": 10.87,
+  "text": "He",
+  "end": 11.05
+ },
+ {
+  "start": 11.05,
+  "text": "gets",
+  "end": 11.22
+ },
+ {
+  "start": 11.22,
+  "text": "up,",
+  "end": 11.4
+ },
+ {
+  "start": 11.4,
+  "text": "limps",
+  "end": 11.58
+ },
+ {
+  "start": 11.58,
+  "text": "across",
+  "end": 11.93
+ },
+ {
+  "start": 11.93,
+  "text": "the",
+  "end": 12.1
+ },
+ {
+  "start": 12.1,
+  "text": "roof,",
+  "end": 12.28
+ },
+ {
+  "start": 12.28,
+  "text": "and",
+  "end": 12.46
+ },
+ {
+  "start": 12.46,
+  "text": "finishes",
+  "end": 12.99
+ },
+ {
+  "start": 12.99,
+  "text": "the",
+  "end": 13.16
+ },
+ {
+  "start": 13.16,
+  "text": "shot.",
+  "end": 13.55
+ },
+ {
+  "start": 13.55,
+  "text": "And",
+  "end": 13.72
+ },
+ {
+  "start": 13.72,
+  "text": "that's",
+  "end": 13.89
+ },
+ {
+  "start": 13.89,
+  "text": "the",
+  "end": 14.07
+ },
+ {
+  "start": 14.07,
+  "text": "take",
+  "end": 14.24
+ },
+ {
+  "start": 14.24,
+  "text": "they",
+  "end": 14.42
+ },
+ {
+  "start": 14.42,
+  "text": "used",
+  "end": 14.76
+ },
+ {
+  "start": 14.76,
+  "text": "in",
+  "end": 14.94
+ },
+ {
+  "start": 14.94,
+  "text": "the",
+  "end": 15.11
+ },
+ {
+  "start": 15.11,
+  "text": "movie.",
+  "color": "#FFD400",
+  "end": 15.44
+ },
+ {
+  "start": 15.44,
+  "text": "Then",
+  "end": 15.62
+ },
+ {
+  "start": 15.62,
+  "text": "for",
+  "end": 15.79
+ },
+ {
+  "start": 15.79,
+  "text": "Dead",
+  "end": 15.96
+ },
+ {
+  "start": 15.96,
+  "text": "Reckoning,",
+  "end": 16.48
+ },
+ {
+  "start": 16.48,
+  "text": "he",
+  "end": 16.65
+ },
+ {
+  "start": 16.65,
+  "text": "trained",
+  "end": 17.0
+ },
+ {
+  "start": 17.0,
+  "text": "for",
+  "end": 17.17
+ },
+ {
+  "start": 17.17,
+  "text": "months.",
+  "color": "#FFD400",
+  "end": 17.55
+ },
+ {
+  "start": 17.55,
+  "text": "Hundreds",
+  "end": 17.93
+ },
+ {
+  "start": 17.93,
+  "text": "of",
+  "end": 18.11
+ },
+ {
+  "start": 18.11,
+  "text": "skydives.",
+  "end": 18.82
+ },
+ {
+  "start": 18.82,
+  "text": "Thousands",
+  "end": 19.23
+ },
+ {
+  "start": 19.23,
+  "text": "of",
+  "end": 19.43
+ },
+ {
+  "start": 19.43,
+  "text": "motorcycle",
+  "end": 20.03
+ },
+ {
+  "start": 20.03,
+  "text": "jumps.",
+  "end": 20.39
+ },
+ {
+  "start": 20.39,
+  "text": "All",
+  "end": 20.58
+ },
+ {
+  "start": 20.58,
+  "text": "for",
+  "end": 20.78
+ },
+ {
+  "start": 20.78,
+  "text": "one",
+  "end": 20.97
+ },
+ {
+  "start": 20.97,
+  "text": "moment...",
+  "end": 21.52
+ },
+ {
+  "start": 21.52,
+  "text": "riding",
+  "end": 21.87
+ },
+ {
+  "start": 21.87,
+  "text": "a",
+  "end": 22.05
+ },
+ {
+  "start": 22.05,
+  "text": "motorcycle",
+  "end": 22.58
+ },
+ {
+  "start": 22.58,
+  "text": "straight",
+  "end": 22.76
+ },
+ {
+  "start": 22.76,
+  "text": "off",
+  "end": 22.93
+ },
+ {
+  "start": 22.93,
+  "text": "a",
+  "end": 23.11
+ },
+ {
+  "start": 23.11,
+  "text": "cliff.",
+  "color": "#FFD400",
+  "end": 23.44
+ },
+ {
+  "start": 23.44,
+  "text": "Why?",
+  "end": 23.62
+ },
+ {
+  "start": 23.62,
+  "text": "Because",
+  "end": 23.99
+ },
+ {
+  "start": 23.99,
+  "text": "he",
+  "end": 24.17
+ },
+ {
+  "start": 24.17,
+  "text": "wants",
+  "end": 24.36
+ },
+ {
+  "start": 24.36,
+  "text": "you",
+  "end": 24.54
+ },
+ {
+  "start": 24.54,
+  "text": "to",
+  "end": 24.72
+ },
+ {
+  "start": 24.72,
+  "text": "know",
+  "end": 24.91
+ },
+ {
+  "start": 24.91,
+  "text": "it's",
+  "end": 25.09
+ },
+ {
+  "start": 25.09,
+  "text": "real.",
+  "color": "#FFD400",
+  "end": 25.43
+ },
+ {
+  "start": 25.43,
+  "text": "And",
+  "end": 25.61
+ },
+ {
+  "start": 25.61,
+  "text": "this...",
+  "end": 25.8
+ },
+ {
+  "start": 25.8,
+  "text": "is",
+  "end": 25.98
+ },
+ {
+  "start": 25.98,
+  "text": "his",
+  "end": 26.17
+ },
+ {
+  "start": 26.17,
+  "text": "real",
+  "end": 26.35
+ },
+ {
+  "start": 26.35,
+  "text": "reaction,",
+  "end": 26.72
+ },
+ {
+  "start": 26.72,
+  "text": "the",
+  "end": 26.91
+ },
+ {
+  "start": 26.91,
+  "text": "moment",
+  "end": 27.28
+ },
+ {
+  "start": 27.28,
+  "text": "it",
+  "end": 27.46
+ },
+ {
+  "start": 27.46,
+  "text": "happened.",
+  "end": 28.17
+ }
+]
