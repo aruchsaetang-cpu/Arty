@@ -14,6 +14,12 @@ Talk to the user in Thai.
 - **Content:** emotional, high-curiosity movie/celebrity stories, e.g. "Times <star> almost died", "<N> times <star> wasn't
   actually acting", "The secret behind <film>'s craziest scenes". Real facts only, verified (section 2). Never use AI-made
   "behind the scenes" images or clips as if they were real.
+- **Script structure (user rule, 2026-10-27 — strict):**
+  - **Hook:** 1 sentence, spoken in ≤ 3 s.
+  - **Context:** 3–4 sentences that set up the person / situation / what most people believe.
+  - **But:** 1 sentence that flips the situation (starts with "But").
+  - **Reveal:** 3–4 sentences explaining how it really went / why it's different, then the voiced lead-in to the real footage.
+  One story per clip.
 - **Length: 25–30 s.** 7–9 short sentences, hook → context → But → reveal, talk-like US English, no "Wait"/"Okay" opener,
   emotional beats ("He could barely even stand.", "They lost it.").
 - **Voice:** young American male (user picked sample C) — `scripts/english_tts.py` with `"voice": {"am_puck": 0.5, "am_liam": 0.5}, "speed": 1.2, "gap": 0.16`.
