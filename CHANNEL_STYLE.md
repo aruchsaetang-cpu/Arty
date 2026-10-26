@@ -1,0 +1,71 @@
+# Channel style (applies to every new video)
+
+Reference: **Sunnah Edit** Shorts (12M–149M views each). Our channel is now **heartbreaking /
+emotional true-moment Shorts**.
+
+## Hard rules
+
+- **Length 25–30s.** Vertical 1080×1920.
+- **No voice.** No narration, no TTS. Emotion comes from picture, text and music only.
+- **One story per video**, built as a three-act arc: setup (who is it, what's wrong) →
+  the turn (the painful or kind moment) → payoff (the tears, the reunion, the reveal).
+- **Original topics.** Pick angles that the big edit channels have *not* done to death
+  (see the topic bank below). Skip "man feeds hungry dog" and "boy gets surprise bike";
+  those are saturated.
+
+## Editing style (copied from the reference)
+
+| Element | Spec |
+|---|---|
+| Hook text | Appears at 0.0–0.5s, centred mid-frame, wrapped in asterisks: `*SAD MOMENT*`. Heavy condensed sans (Anton / Montserrat Black), ALL CAPS, black stroke + soft glow. |
+| Colours | Neon green `#39FF14` for kindness/good, yellow `#FFE600` for danger/attention, white for neutral lines, red only for one word of loss. Two-tone lines are common: line 1 white, line 2 green. |
+| Callouts | Yellow circle drawn around the subject + curved arrow pointing at it, with a short label: `GOOD MAN`, `HELPLESS DOG`, `REAL BIKE`, `POOR MAN`. Pops in with a scale bounce. |
+| Year / place stamp | Big white `2016` or `INDIA, 2019` over the footage for "true story" weight. |
+| Watermark | Channel name, semi-transparent white, centre, lower third, on for the whole video. |
+| Grade | Punchy: high contrast, +saturation, slight sharpen, light vignette. |
+| Motion | Punch-in zooms on the key moment, freeze-frame + slow-mo on the emotional beat, quick flash cut into the payoff. |
+| Captions | 2–4 text beats per video, max 5 words each, every one in `*ASTERISKS*`. Last beat is the emotional verdict: `*SALUTE TO THIS BOND*`, `*THE LAST GOODBYE*`. |
+| Music | Sad piano / strings swell, quiet first 3s, peak on the payoff. Royalty-free or generated (vidIQ `generate_music`). |
+
+## Footage
+
+The reference reposts other people's viral clips; we don't, for copyright and originality.
+Sources, in order of preference:
+
+1. Clips you film or license yourself (drop them in `videos/<name>/assets/footage/`).
+2. AI-generated realistic clips (Higgsfield once connected, or vidIQ `generate_video`),
+   one prompt per shot, written by Claude for each video.
+3. Our own animation (as in `videos/again-animated`) when a story can't be filmed.
+
+## Topic bank (less-covered angles)
+
+1. A guide dog's last day of work: the blind owner walks him home one final time.
+2. A janitor graduates from the university he cleaned for 20 years.
+3. A mother with dementia only remembers her son when he hums her old lullaby.
+4. A firefighter is invited to the graduation of the baby he carried out of a fire.
+5. A street cat waits every night at the door of the old man who fed it, after he's gone.
+6. A grandmother learns to text so she can message her grandson abroad: her first "I miss you."
+7. A deaf father hears his daughter's voice for the first time, at her wedding.
+8. A boy sells his toys to pay for his dog's surgery; the vet hands the money back.
+9. A night-shift nurse who sleeps in her car; her patients' families secretly raise rent.
+10. A retired lighthouse keeper's dog still walks the pier at dusk.
+11. A soldier's horse/dog recognises him after two years away.
+12. A delivery rider who stops every day to help the same old woman across the road; one day she isn't there.
+
+## Channel description (paste into YouTube → Customise channel → Description)
+
+> Real moments that break your heart, and the kindness that puts it back together.
+> Short true stories about love, loss, loyalty and second chances, told in 30 seconds
+> with no words, only feeling. New story every day.
+> If one made you cry, share it with someone who needs it. 💔
+
+## Per-video description template
+
+```
+*<HOOK TEXT>* 💔
+
+<One sentence that sets up the story without spoiling the payoff.>
+Watch till the end.
+
+#shorts #emotional #heartbreaking #kindness #<topic> #<animal-or-person>
+```
