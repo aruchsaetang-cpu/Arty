@@ -25,6 +25,7 @@ emotional true-moment Shorts**.
 | Grade | Punchy: high contrast, +saturation, slight sharpen, light vignette. |
 | Motion | Punch-in zooms on the key moment, freeze-frame + slow-mo on the emotional beat, quick flash cut into the payoff. |
 | Captions | 2–4 text beats per video, max 5 words each, every one in `*ASTERISKS*`. Last beat is the emotional verdict: `*SALUTE TO THIS BOND*`, `*THE LAST GOODBYE*`. |
+| Shutter SFX | Camera shutter `assets/sfx/camera-shutter.m4a` (taken from the reference) fires with a white flash at 0s and on every scene cut, to grab attention. |
 | Music | Sad piano / strings swell, quiet first 3s, peak on the payoff. Royalty-free or generated (vidIQ `generate_music`). |
 
 ## Footage
