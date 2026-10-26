@@ -26,6 +26,13 @@ All story beats are on-screen captions (no voice), short lines in `*ASTERISKS*`:
 
 Keep every line ≤ 6 words so it can be read at a glance.
 
+### Hook rules (learned from the weak Gallop hook)
+
+1. **Open on the strongest frame of the story** (tears, the rescue, the reunion), never a calm setup shot. Use it for the plain 0–0.93s too.
+2. **2–4 words, emotional label style** like the reference: `*SAD MOMENT*`, `*DOG IN DANGER*`, `*REAL SUPERMAN*`, or a curiosity gap (`*WHO IS HE?*`). Never an information sentence.
+3. **Fully readable by ~1.3s**: the hook types fast (~45 letters/s) right after the 0.93s hit.
+4. **The circle asks the question**: circle the person/animal the hook is about, with a 1–2 word label (`HERO`, `THE BABY`).
+
 ## Editing style (copied from the reference)
 
 | Element | Spec |
