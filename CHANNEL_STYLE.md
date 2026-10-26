@@ -26,6 +26,7 @@ emotional true-moment Shorts**.
 | Grade | Punchy: high contrast, +saturation, slight sharpen, light vignette. |
 | Motion | Punch-in zooms on the key moment, freeze-frame + slow-mo on the emotional beat, quick flash cut into the payoff. |
 | Captions | 2–4 text beats per video, max 5 words each, every one in `*ASTERISKS*`. Last beat is the emotional verdict: `*SALUTE TO THIS BOND*`, `*THE LAST GOODBYE*`. |
+| Other SFX | From `assets/sfx/`: `keyboard-typing` under every caption while it types, `pop` when a callout label or year stamp appears, `bell-ding` when the ending heart lands, `mouse-click` spare for UI-style moments. No music in the file. |
 | Shutter SFX | Camera shutter `assets/sfx/camera-shutter.m4a` (taken from the reference) fires with a white flash at 0s and on every scene cut, to grab attention. |
 | Ending (every video) | Signature close, from the reference: (1) pink/orange light-leak sweep into the verdict line, (2) the mending-heart emoji sticker (`assets/stickers/mending-heart.png`) pops over the subject and pulses, (3) zoom-blur out + dip to black, (4) fade into the video's first frame so the Short loops seamlessly. Built in `videos/gallop-last-wish/index.html` (`#leak`, `#heart`, `#loop`). |
 | Music | Sad piano / strings swell, quiet first 3s, peak on the payoff. Royalty-free or generated (vidIQ `generate_music`). |
