@@ -118,9 +118,11 @@ v = spec.get("voice", "am_michael")
 VOICE = sum(w * k.get_voice_style(n) for n, w in v.items()) if isinstance(v, dict) else v
 out, caps, t, sr = [], [], 0.0, 24000
 for sent in spec["sentences"]:
+    # a sentence can carry its own speed: ["Six times. In one day.", 1.05] (slower = weight, faster = excitement)
+    sent, sp = (sent[0], sent[1]) if isinstance(sent, list) else (sent, spec.get("speed", 1.3))
     toks = tokens(sent)
     speak = sent.replace("*", "")
-    x, sr = k.create(speak, voice=VOICE, speed=spec.get("speed", 1.3), lang="en-us")
+    x, sr = k.create(speak, voice=VOICE, speed=sp, lang="en-us")
     x = np.asarray(x, np.float32)
     idx = np.where(np.abs(x) > 0.01)[0]
     x = x[max(0, idx[0] - int(0.01 * sr)): idx[-1] + int(0.03 * sr)]
@@ -158,5 +160,15 @@ for c in caps:
     else:
         merged.append(c)
 sf.write(sys.argv[2], np.concatenate(out), sr)
+if spec.get("polish", True):
+    # "creator mic" chain so the TTS sounds less dry/synthetic: rumble cut, warmth, presence, gentle
+    # compression, a touch of small-room air
+    import subprocess
+    tmp = sys.argv[2] + ".tmp.wav"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", sys.argv[2], "-af",
+                    "highpass=f=75,equalizer=f=180:t=q:w=1:g=2,equalizer=f=3200:t=q:w=1.2:g=3,"
+                    "equalizer=f=7000:t=q:w=2:g=-2,acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=3,"
+                    "aecho=0.8:0.85:22|37:0.06|0.04,aresample=48000", tmp], check=True)
+    os.replace(tmp, sys.argv[2])
 json.dump(merged, open(sys.argv[3], "w"), ensure_ascii=False, indent=1)
 print("total", round(t, 2), "cards", len(merged))

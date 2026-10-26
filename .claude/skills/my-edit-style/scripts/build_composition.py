@@ -229,6 +229,10 @@ def main():
             '      .cap .t { font-family: "LuckiestGuy", "Itim", sans-serif; font-size: 128px; line-height: 1.15; letter-spacing: 2px;\n'
             f'        text-transform: uppercase; padding: 0 24px; text-shadow: {RING_COMIC}, 0 10px 0 #000, 0 14px 22px rgba(0,0,0,0.6); }}'
         )
+    if edit.get("layout") == "full":
+        # edit.json "layout": "full" = viral-Shorts look: each shot fills the whole 9:16 frame (no blurred fill);
+        # frame the subject with per-shot "pos" (object-position), e.g. "35% 50%"
+        extra += "\n      .fill { display: none; }\n      .band { top: 0; height: 1920px; }"
     out = out.replace("__EXTRA_CSS__", extra)
     open(os.path.join(proj, "index.html"), "w").write(out)
     if not os.path.exists(os.path.join(proj, "hyperframes.json")):

@@ -20,7 +20,12 @@ Talk to the user in Thai.
 - **Captions:** one word per card, big comic style — edit.json `"caption_style": "comic"`, `"caption_y": 1150`
   (move it if the footage has a lower-third), `"pop_frames": 3, "pop_from": 0.5`; keywords (*stars* in the script)
   coloured red `#FF3B30`.
-- **Cuts:** a new shot every 1–2 s; blur-band layout stays; no music in the delivered file.
+- **Layout (user, 2026-10-26): full-frame, NO blur band** — edit.json `"layout": "full"`, `"caption_y": 1250`; set each shot's
+  `"pos"` (object-position) so the subject stays in the 9:16 crop, then check the safety sheet for empty/edge framing.
+- **Cuts:** a new shot every 1–2 s; no music in the delivered file.
+- **Voice realism:** give each sentence its own speed in the spec (`["text", 1.25]` excited, `1.0–1.1` for weight/punchlines),
+  split punchlines into their own sentence, use `...` for a beat; english_tts.py applies a "creator mic" polish chain.
+  Truly human-sounding needs ElevenLabs (vidIQ voiceover, credits) or the user's own voice.
 
 ## 1. Topic
 

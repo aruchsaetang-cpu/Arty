@@ -1,0 +1,613 @@
+{
+ "duration": 28.1,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/cruise-stunts-short/work/voice2.wav",
+ "caption_style": "comic",
+ "caption_y": 1250,
+ "pop_frames": 3,
+ "pop_from": 0.5,
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/train.mp4",
+   "start": 0.0,
+   "dur": 2.33,
+   "media_start": 8.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 2.33,
+   "dur": 1.23,
+   "media_start": 0.3,
+   "pos": "45% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 3.56,
+   "dur": 1.44,
+   "media_start": 4.6,
+   "pos": "28% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 5.0,
+   "dur": 2.8,
+   "media_start": 2.5,
+   "pos": "45% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 7.8,
+   "dur": 1.55,
+   "media_start": 5.4,
+   "pos": "45% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 9.35,
+   "dur": 2.58,
+   "media_start": 8.0,
+   "pos": "45% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 11.93,
+   "dur": 1.18,
+   "media_start": 7.0,
+   "pos": "38% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 13.11,
+   "dur": 1.96,
+   "media_start": 2.0,
+   "pos": "38% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/train.mp4",
+   "start": 15.07,
+   "dur": 0.99,
+   "media_start": 0.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/sky.mp4",
+   "start": 16.06,
+   "dur": 2.4,
+   "media_start": 2.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/train.mp4",
+   "start": 18.46,
+   "dur": 1.62,
+   "media_start": 4.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/cliff.mp4",
+   "start": 20.08,
+   "dur": 1.5,
+   "media_start": 4.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/train.mp4",
+   "start": 21.58,
+   "dur": 1.61,
+   "media_start": 7.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/cliff.mp4",
+   "start": 23.19,
+   "dur": 2.05,
+   "media_start": 9.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/cliff.mp4",
+   "start": 25.24,
+   "dur": 1.25,
+   "media_start": 12.0,
+   "pos": "50% 50%"
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 26.49,
+   "dur": 1.61,
+   "media_start": 11.5,
+   "pos": "50% 50%"
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.01,
+   "text": "Tom",
+   "end": 0.22
+  },
+  {
+   "start": 0.22,
+   "text": "Cruise",
+   "end": 0.43
+  },
+  {
+   "start": 0.43,
+   "text": "has",
+   "end": 0.64
+  },
+  {
+   "start": 0.64,
+   "text": "almost",
+   "end": 1.06
+  },
+  {
+   "start": 1.06,
+   "text": "died",
+   "color": "#FF3B30",
+   "end": 1.27
+  },
+  {
+   "start": 1.27,
+   "text": "making",
+   "end": 1.69
+  },
+  {
+   "start": 1.69,
+   "text": "movies.",
+   "end": 2.33
+  },
+  {
+   "start": 2.33,
+   "text": "And",
+   "end": 2.59
+  },
+  {
+   "start": 2.59,
+   "text": "not",
+   "end": 2.84
+  },
+  {
+   "start": 2.84,
+   "text": "just",
+   "end": 3.09
+  },
+  {
+   "start": 3.09,
+   "text": "once.",
+   "end": 3.56
+  },
+  {
+   "start": 3.56,
+   "text": "In",
+   "end": 3.76
+  },
+  {
+   "start": 3.76,
+   "text": "Fallout,",
+   "end": 4.16
+  },
+  {
+   "start": 4.16,
+   "text": "he",
+   "end": 4.36
+  },
+  {
+   "start": 4.36,
+   "text": "jumps",
+   "end": 4.56
+  },
+  {
+   "start": 4.56,
+   "text": "between",
+   "end": 4.97
+  },
+  {
+   "start": 4.97,
+   "text": "two",
+   "end": 5.17
+  },
+  {
+   "start": 5.17,
+   "text": "rooftops,",
+   "end": 5.68
+  },
+  {
+   "start": 5.68,
+   "text": "slams",
+   "end": 5.89
+  },
+  {
+   "start": 5.89,
+   "text": "into",
+   "end": 6.31
+  },
+  {
+   "start": 6.31,
+   "text": "the",
+   "end": 6.52
+  },
+  {
+   "start": 6.52,
+   "text": "wall,",
+   "end": 6.73
+  },
+  {
+   "start": 6.73,
+   "text": "and",
+   "end": 6.94
+  },
+  {
+   "start": 6.94,
+   "text": "snaps",
+   "color": "#FF3B30",
+   "end": 7.15
+  },
+  {
+   "start": 7.15,
+   "text": "his",
+   "end": 7.36
+  },
+  {
+   "start": 7.36,
+   "text": "ankle!",
+   "end": 7.8
+  },
+  {
+   "start": 7.8,
+   "text": "You can",
+   "end": 8.06
+  },
+  {
+   "start": 8.06,
+   "text": "literally",
+   "end": 8.59
+  },
+  {
+   "start": 8.59,
+   "text": "see it",
+   "end": 8.86
+  },
+  {
+   "start": 8.86,
+   "text": "happen.",
+   "end": 9.35
+  },
+  {
+   "start": 9.35,
+   "text": "But",
+   "end": 9.57
+  },
+  {
+   "start": 9.57,
+   "text": "he",
+   "end": 9.79
+  },
+  {
+   "start": 9.79,
+   "text": "doesn't",
+   "end": 10.02
+  },
+  {
+   "start": 10.02,
+   "text": "stop.",
+   "end": 10.38
+  },
+  {
+   "start": 10.38,
+   "text": "He",
+   "end": 10.56
+  },
+  {
+   "start": 10.56,
+   "text": "gets",
+   "end": 10.73
+  },
+  {
+   "start": 10.73,
+   "text": "up,",
+   "end": 10.91
+  },
+  {
+   "start": 10.91,
+   "text": "limps",
+   "end": 11.08
+  },
+  {
+   "start": 11.08,
+   "text": "across",
+   "end": 11.44
+  },
+  {
+   "start": 11.44,
+   "text": "the",
+   "end": 11.61
+  },
+  {
+   "start": 11.61,
+   "text": "roof,",
+   "end": 11.79
+  },
+  {
+   "start": 11.79,
+   "text": "and",
+   "end": 11.97
+  },
+  {
+   "start": 11.97,
+   "text": "finishes",
+   "end": 12.5
+  },
+  {
+   "start": 12.5,
+   "text": "the",
+   "end": 12.67
+  },
+  {
+   "start": 12.67,
+   "text": "shot.",
+   "end": 13.11
+  },
+  {
+   "start": 13.11,
+   "text": "And",
+   "end": 13.29
+  },
+  {
+   "start": 13.29,
+   "text": "that's",
+   "end": 13.46
+  },
+  {
+   "start": 13.46,
+   "text": "the",
+   "end": 13.64
+  },
+  {
+   "start": 13.64,
+   "text": "take",
+   "end": 13.81
+  },
+  {
+   "start": 13.81,
+   "text": "they",
+   "end": 13.98
+  },
+  {
+   "start": 13.98,
+   "text": "used",
+   "end": 14.33
+  },
+  {
+   "start": 14.33,
+   "text": "in",
+   "end": 14.51
+  },
+  {
+   "start": 14.51,
+   "text": "the",
+   "end": 14.68
+  },
+  {
+   "start": 14.68,
+   "text": "movie.",
+   "color": "#FF3B30",
+   "end": 15.07
+  },
+  {
+   "start": 15.07,
+   "text": "Then",
+   "end": 15.25
+  },
+  {
+   "start": 15.25,
+   "text": "for",
+   "end": 15.42
+  },
+  {
+   "start": 15.42,
+   "text": "Dead",
+   "end": 15.59
+  },
+  {
+   "start": 15.59,
+   "text": "Reckoning,",
+   "end": 16.11
+  },
+  {
+   "start": 16.11,
+   "text": "he",
+   "end": 16.28
+  },
+  {
+   "start": 16.28,
+   "text": "trained",
+   "end": 16.63
+  },
+  {
+   "start": 16.63,
+   "text": "for",
+   "end": 16.8
+  },
+  {
+   "start": 16.8,
+   "text": "months.",
+   "color": "#FF3B30",
+   "end": 17.18
+  },
+  {
+   "start": 17.18,
+   "text": "Hundreds",
+   "end": 17.56
+  },
+  {
+   "start": 17.56,
+   "text": "of",
+   "end": 17.74
+  },
+  {
+   "start": 17.74,
+   "text": "skydives.",
+   "end": 18.45
+  },
+  {
+   "start": 18.45,
+   "text": "Thousands",
+   "end": 18.86
+  },
+  {
+   "start": 18.86,
+   "text": "of",
+   "end": 19.06
+  },
+  {
+   "start": 19.06,
+   "text": "motorcycle",
+   "end": 19.66
+  },
+  {
+   "start": 19.66,
+   "text": "jumps.",
+   "end": 20.08
+  },
+  {
+   "start": 20.08,
+   "text": "All",
+   "end": 20.27
+  },
+  {
+   "start": 20.27,
+   "text": "for",
+   "end": 20.47
+  },
+  {
+   "start": 20.47,
+   "text": "one",
+   "end": 20.66
+  },
+  {
+   "start": 20.66,
+   "text": "moment...",
+   "end": 21.21
+  },
+  {
+   "start": 21.21,
+   "text": "riding",
+   "end": 21.56
+  },
+  {
+   "start": 21.56,
+   "text": "a",
+   "end": 21.74
+  },
+  {
+   "start": 21.74,
+   "text": "motorcycle",
+   "end": 22.27
+  },
+  {
+   "start": 22.27,
+   "text": "straight",
+   "end": 22.44
+  },
+  {
+   "start": 22.44,
+   "text": "off",
+   "end": 22.62
+  },
+  {
+   "start": 22.62,
+   "text": "a",
+   "end": 22.8
+  },
+  {
+   "start": 22.8,
+   "text": "cliff.",
+   "color": "#FF3B30",
+   "end": 23.19
+  },
+  {
+   "start": 23.19,
+   "text": "Why?",
+   "end": 23.37
+  },
+  {
+   "start": 23.37,
+   "text": "Because",
+   "end": 23.74
+  },
+  {
+   "start": 23.74,
+   "text": "he",
+   "end": 23.92
+  },
+  {
+   "start": 23.92,
+   "text": "wants",
+   "end": 24.11
+  },
+  {
+   "start": 24.11,
+   "text": "you",
+   "end": 24.29
+  },
+  {
+   "start": 24.29,
+   "text": "to",
+   "end": 24.47
+  },
+  {
+   "start": 24.47,
+   "text": "know",
+   "end": 24.66
+  },
+  {
+   "start": 24.66,
+   "text": "it's",
+   "end": 24.84
+  },
+  {
+   "start": 24.84,
+   "text": "real.",
+   "color": "#FF3B30",
+   "end": 25.24
+  },
+  {
+   "start": 25.24,
+   "text": "No",
+   "end": 25.58
+  },
+  {
+   "start": 25.58,
+   "text": "stunt",
+   "end": 25.92
+  },
+  {
+   "start": 25.92,
+   "text": "double.",
+   "end": 26.26
+  },
+  {
+   "start": 26.26,
+   "text": "No",
+   "end": 26.6
+  },
+  {
+   "start": 26.6,
+   "text": "CGI.",
+   "end": 26.94
+  },
+  {
+   "start": 26.94,
+   "text": "Just",
+   "end": 27.28
+  },
+  {
+   "start": 27.28,
+   "text": "Tom.",
+   "color": "#FF3B30",
+   "end": 28.1
+  }
+ ],
+ "layout": "full"
+}
