@@ -52,6 +52,19 @@ Sources, in order of preference:
 11. A soldier's horse/dog recognises him after two years away.
 12. A delivery rider who stops every day to help the same old woman across the road; one day she isn't there.
 
+## What is breaking out right now (vidIQ outliers, Shorts, Oct 2026)
+
+Small channels getting far more views than their own average, with emotional stories:
+
+- **Old animal's last visit**: "For nearly 16 years, he went to the cows every morning. Then his
+  farmer took him back one last time" (160K, 11× its channel's average).
+- **Sacrifice for family**: "Selling his beloved cow for his mother's medical treatment" (230K, 32×).
+- **Animal loss**: "This poor mother dog lost all her puppies before they were born" (400K, 77×).
+- **Dog loyalty**: "The most heartbreaking display of dog loyalty" (800K, 295×, only 8 seconds long).
+
+Takeaway: animal loyalty and quiet sacrifice outperform. Topics 1, 5, 8, 10 and 11 above fit
+this best and are still rare as polished edits.
+
 ## Channel description (paste into YouTube → Customise channel → Description)
 
 > Real moments that break your heart, and the kindness that puts it back together.
