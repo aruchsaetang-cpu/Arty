@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>His Last Wish Was Cheese</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+      }
+      :root {
+        --green: #39ff14;
+        --yellow: #ffe600;
+        --white: #ffffff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: "Kanit", sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .shot {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .shot video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ov {
+        z-index: 3;
+      }
+      #fx {
+        z-index: 5;
+      }
+      .vig {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.5) 100%);
+      }
+
+      /* Sunnah-Edit style caption */
+      .cap {
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-align: center;
+      }
+      .t {
+        display: block;
+        font-weight: 900;
+        font-size: 84px;
+        line-height: 1.08;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--white);
+        transform: skewX(-7deg);
+        white-space: nowrap;
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 8px 18px rgba(0, 0, 0, 0.7);
+      }
+      .t.g {
+        color: var(--green);
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 0 26px rgba(57, 255, 20, 0.85), 0 0 50px rgba(57, 255, 20, 0.45);
+      }
+      .t.y {
+        color: var(--yellow);
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 0 26px rgba(255, 230, 0, 0.8), 0 0 50px rgba(255, 230, 0, 0.4);
+      }
+      .t.xl {
+        font-size: 120px;
+      }
+      .t.sm {
+        font-size: 66px;
+      }
+      .label {
+        position: absolute;
+        font-weight: 900;
+        font-size: 58px;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        transform: skewX(-8deg);
+        white-space: nowrap;
+        text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 20px currentColor;
+      }
+      .stamp {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-weight: 900;
+        font-size: 104px;
+        color: #fff;
+        letter-spacing: 0.04em;
+        text-shadow: 0 6px 24px rgba(0, 0, 0, 0.8), -3px -3px 0 #000, 3px 3px 0 #000;
+      }
+      svg.draw {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: visible;
+      }
+      .wm {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 1530px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.45);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+      #flash {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        opacity: 0;
+      }
+      #fade {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="28" data-width="1080" data-height="1920">
+      <!-- ===== footage (real clips from Molly Burke's video) ===== -->
+      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s1-photos.mp4" data-start="0" data-duration="4.5" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s2-talk.mp4" data-start="4.5" data-duration="4.5" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/s3-cheese.mp4" data-start="9" data-duration="6.5" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/s4-hug.mp4" data-start="15.5" data-duration="6" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w5"><video id="v5" class="clip" src="assets/footage/s5-tears.mp4" data-start="21.5" data-duration="6.5" data-track-index="0" muted playsinline></video></div>
+
+      <div id="grade" class="clip" data-start="0" data-duration="28" data-track-index="1"><div class="vig"></div></div>
+
+      <!-- ===== 0–4.5 her eyes for 7 years ===== -->
+      <div id="o1" class="clip ov" data-start="0" data-duration="4.5" data-track-index="2">
+        <div class="cap" style="top: 300px">
+          <span class="t" id="o1-a">*HE WAS HER EYES*</span>
+          <span class="t g" id="o1-b">FOR 7 YEARS!</span>
+        </div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <circle id="o1-ring" cx="975" cy="1090" r="118" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="742" stroke-dashoffset="742" />
+          <path id="o1-arrow" d="M760 1420 Q860 1330 900 1210" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-dasharray="300" stroke-dashoffset="300" />
+          <path id="o1-head" d="M872 1236 L902 1200 L920 1246" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+        </svg>
+        <div class="label" id="o1-lab" style="left: 520px; top: 1420px; color: var(--yellow)">GALLOP</div>
+        <div class="stamp" id="o1-year" style="top: 1560px">2014</div>
+      </div>
+
+      <!-- ===== 4.5–9 one day left ===== -->
+      <div id="o2" class="clip ov" data-start="4.5" data-duration="4.5" data-track-index="2">
+        <div class="stamp" id="o2-year" style="top: 260px">2023</div>
+        <div class="cap" style="top: 1080px">
+          <span class="t" id="o2-a">*THE VET SAID*</span>
+          <span class="t y xl" id="o2-b">1 DAY LEFT</span>
+        </div>
+      </div>
+
+      <!-- ===== 9–15.5 his last wish: cheese ===== -->
+      <div id="o3" class="clip ov" data-start="9" data-duration="6.5" data-track-index="2">
+        <div class="cap" style="top: 200px">
+          <span class="t" id="o3-a">*HIS LAST WISH…*</span>
+          <span class="t g xl" id="o3-b">CHEESE</span>
+        </div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <circle id="o3-ring" cx="390" cy="1020" r="210" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1320" stroke-dashoffset="1320" />
+          <path id="o3-arrow" d="M660 1620 Q600 1430 500 1250" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="620" stroke-dashoffset="620" />
+          <path id="o3-head" d="M478 1296 L498 1244 L546 1270" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+        </svg>
+        <div class="label" id="o3-lab" style="left: 560px; top: 1630px; color: var(--green)">GOOD BOY</div>
+      </div>
+
+      <!-- ===== 15.5–21.5 the last goodbye ===== -->
+      <div id="o4" class="clip ov" data-start="15.5" data-duration="6" data-track-index="2">
+        <div class="cap" style="top: 1415px">
+          <span class="t y" id="o4-a">*THE LAST GOODBYE*</span>
+        </div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <circle id="o4-ring" cx="880" cy="1010" r="165" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1037" stroke-dashoffset="1037" />
+        </svg>
+        <div class="label" id="o4-lab" style="left: 640px; top: 300px; color: var(--yellow)">HIS LAST DAY</div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <path id="o4-arrow" d="M820 380 Q900 600 880 820" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460" />
+          <path id="o4-head" d="M852 790 L880 842 L912 794" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+        </svg>
+      </div>
+
+      <!-- ===== 21.5–28 asleep in her arms ===== -->
+      <div id="o5" class="clip ov" data-start="21.5" data-duration="6.5" data-track-index="2">
+        <div class="cap" style="top: 1060px" id="o5-cap1">
+          <span class="t" id="o5-a">*HE FELL ASLEEP*</span>
+          <span class="t g" id="o5-b">IN HER ARMS</span>
+        </div>
+        <div class="cap" style="top: 1060px" id="o5-cap2">
+          <span class="t g" id="o5-c">*SALUTE</span>
+          <span class="t g" id="o5-d">TO THIS BOND!*</span>
+        </div>
+      </div>
+
+      <!-- ===== watermark + transitions ===== -->
+      <div id="fx" class="clip" data-start="0" data-duration="28" data-track-index="3">
+        <div class="wm">MOVIE FACTS</div>
+        <div id="flash"></div>
+        <div id="fade"></div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      const pop = (sel, t, d = 0.35) => tl.fromTo(sel, { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(2.2)" }, t);
+      const slam = (sel, t) => tl.fromTo(sel, { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "expo.out" }, t);
+      const draw = (sel, t, d = 0.45) => tl.to(sel, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, t);
+      const show = (sel, t) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.12 }, t);
+      const label = (sel, t) => tl.fromTo(sel, { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, transformOrigin: "0% 50%", duration: 0.3, ease: "back.out(2.5)" }, t);
+      const shake = (sel, t, amt = 8, n = 5) => tl.fromTo(sel, { x: 0 }, { x: amt, duration: 0.045, yoyo: true, repeat: n, ease: "none", immediateRender: false }, t);
+      const flash = (t, o = 0.75) => tl.fromTo("#flash", { opacity: o }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      // punch-in on each cut, then a slow push
+      const punch = (sel, t, dur) => {
+        tl.fromTo(sel, { scale: 1.12 }, { scale: 1.0, duration: 0.35, ease: "power3.out" }, t);
+        tl.fromTo(sel, { scale: 1.0 }, { scale: 1.06, duration: dur - 0.35, ease: "none", immediateRender: false }, t + 0.35);
+      };
+
+      // ---------- 0–4.5 ----------
+      punch("#w1", 0, 4.5);
+      pop("#o1-a", 0.05);
+      slam("#o1-b", 0.7);
+      draw("#o1-ring", 1.4);
+      draw("#o1-arrow", 1.7, 0.35);
+      show("#o1-head", 2.0);
+      label("#o1-lab", 1.9);
+      pop("#o1-year", 2.4);
+
+      // ---------- 4.5–9 ----------
+      flash(4.5);
+      punch("#w2", 4.5, 4.5);
+      pop("#o2-year", 4.6);
+      pop("#o2-a", 5.0);
+      slam("#o2-b", 5.9);
+      shake("#o2-b", 6.2, 10, 7);
+
+      // ---------- 9–15.5 ----------
+      flash(9.0);
+      punch("#w3", 9.0, 6.5);
+      pop("#o3-a", 9.2);
+      slam("#o3-b", 10.3);
+      tl.fromTo("#o3-b", { scale: 1 }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, 10.6);
+      draw("#o3-ring", 9.7);
+      draw("#o3-arrow", 10.0, 0.4);
+      show("#o3-head", 10.35);
+      label("#o3-lab", 10.2);
+      tl.to(["#o3-ring", "#o3-arrow", "#o3-head", "#o3-lab"], { opacity: 0, duration: 0.3 }, 12.6);
+
+      // ---------- 15.5–21.5 ----------
+      flash(15.5);
+      punch("#w4", 15.5, 6);
+      pop("#o4-a", 16.0);
+      draw("#o4-ring", 16.6);
+      label("#o4-lab", 16.8);
+      draw("#o4-arrow", 17.0, 0.4);
+      show("#o4-head", 17.35);
+      tl.to(["#o4-ring", "#o4-arrow", "#o4-head", "#o4-lab"], { opacity: 0, duration: 0.3 }, 19.6);
+
+      // ---------- 21.5–28 ----------
+      flash(21.5, 0.6);
+      punch("#w5", 21.5, 6.5);
+      pop("#o5-a", 21.9);
+      slam("#o5-b", 22.7);
+      tl.to("#o5-cap1", { opacity: 0, duration: 0.25 }, 24.8);
+      tl.set("#o5-cap2", { opacity: 1 }, 0);
+      slam("#o5-c", 25.2);
+      slam("#o5-d", 25.5);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.in" }, 27.3);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
