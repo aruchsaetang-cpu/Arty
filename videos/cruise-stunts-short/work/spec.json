@@ -1,0 +1,19 @@
+{
+ "voice": {
+  "am_puck": 0.5,
+  "am_liam": 0.5
+ },
+ "speed": 1.2,
+ "gap": 0.16,
+ "sentences": [
+  "Tom Cruise has almost *died* making movies. And not just once.",
+  "In Fallout, he jumps between two rooftops, slams into the wall, and *snaps* his ankle.",
+  "You can literally see it happen.",
+  "But he doesn't stop. He gets up, limps across the roof, and finishes the shot.",
+  "And that's the take they used in the *movie*.",
+  "Then for Dead Reckoning, he trained for *months*. Hundreds of skydives. Thousands of motorcycle jumps.",
+  "All for one moment. Riding a motorcycle straight off a *cliff*.",
+  "Why? Because he wants you to know it's *real*.",
+  "No stunt double. No CGI. Just *Tom*."
+ ]
+}

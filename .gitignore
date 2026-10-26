@@ -40,3 +40,6 @@ videos/titanic-sketch-short/gfx/.hyperframes/
 videos/titanic-sketch-short/*.log
 videos/raiders-sword-short/*.log
 videos/raiders-sword-short/out*/
+videos/cruise-stunts-short/broll/
+videos/cruise-stunts-short/out*/
+videos/cruise-stunts-short/*.log
