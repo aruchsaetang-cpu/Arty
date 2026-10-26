@@ -26,6 +26,10 @@ FPS = 30
 RING = ", ".join(
     f"{7 * math.cos(math.radians(a)):.1f}px {7 * math.sin(math.radians(a)):.1f}px 0 #111311" for a in range(0, 360, 15)
 )
+# 11px black outline for the "comic" caption style (viral-Shorts look: Luckiest Guy, white fill, keyword red/yellow)
+RING_COMIC = ", ".join(
+    f"{11 * math.cos(math.radians(a)):.1f}px {11 * math.sin(math.radians(a)):.1f}px 0 #000" for a in range(0, 360, 10)
+)
 # 3px outline for the small credit line
 RING2 = ", ".join(
     f"{3 * math.cos(math.radians(a)):.1f}px {3 * math.sin(math.radians(a)):.1f}px 0 #111311" for a in range(0, 360, 30)
@@ -72,6 +76,7 @@ TEMPLATE = """<!doctype html>
       .cap .t { display: block; white-space: nowrap; font-size: 120px; line-height: 1.3; letter-spacing: 1px; color: #ffffff;
         /* 7px #111311 outline as a ring of hard shadows (text-stroke does not render in the capture browser), then the soft drop shadow */
         text-shadow: __RING__, 0 4px 12px rgba(0, 0, 0, 0.55); padding: 0 12px; }
+__EXTRA_CSS__
     </style>
   </head>
   <body>
@@ -147,7 +152,7 @@ def main():
     os.makedirs(os.path.join(proj, "assets", "fonts"), exist_ok=True)
     os.makedirs(os.path.join(proj, "assets", "vendor"), exist_ok=True)
     os.makedirs(os.path.join(proj, "renders"), exist_ok=True)
-    for f in ("itim-thai-400-normal.woff2", "itim-latin-400-normal.woff2"):
+    for f in ("itim-thai-400-normal.woff2", "itim-latin-400-normal.woff2", "luckiest-guy-latin-400-normal.woff2"):
         shutil.copy2(os.path.join(SKILL, "assets", "fonts", f), os.path.join(proj, "assets", "fonts", f))
     shutil.copy2(os.path.join(SKILL, "assets", "vendor", "gsap.min.js"), os.path.join(proj, "assets", "vendor", "gsap.min.js"))
 
@@ -215,6 +220,16 @@ def main():
            .replace("__MUSIC__", music).replace("__CAMDIV__", cam_div).replace("__CREDIT__", credit).replace("__RING2__", RING2).replace("__VOICE__", voice_rel)
            .replace("__CAMPOS__", a.cam_pos).replace("__RING__", RING).replace("__DUR__", str(dur)).replace("__FPS__", str(FPS))
            .replace("__POP_N__", str(edit.get("pop_frames", 4))).replace("__POP_FROM__", str(edit.get("pop_from", 0.3))))
+    extra = ""
+    if edit.get("caption_style") == "comic":
+        # edit.json: "caption_style": "comic", optional "caption_y" (centre of the caption, default 1250)
+        extra = (
+            '      @font-face { font-family: "LuckiestGuy"; src: url("assets/fonts/luckiest-guy-latin-400-normal.woff2") format("woff2"); }\n'
+            f'      .cap {{ top: {edit.get("caption_y", 1250) - 300}px; }}\n'
+            '      .cap .t { font-family: "LuckiestGuy", "Itim", sans-serif; font-size: 128px; line-height: 1.15; letter-spacing: 2px;\n'
+            f'        text-transform: uppercase; padding: 0 24px; text-shadow: {RING_COMIC}, 0 10px 0 #000, 0 14px 22px rgba(0,0,0,0.6); }}'
+        )
+    out = out.replace("__EXTRA_CSS__", extra)
     open(os.path.join(proj, "index.html"), "w").write(out)
     if not os.path.exists(os.path.join(proj, "hyperframes.json")):
         json.dump({"$schema": "https://hyperframes.heygen.com/schema/hyperframes.json",

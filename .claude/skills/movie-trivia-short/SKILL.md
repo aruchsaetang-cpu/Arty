@@ -9,6 +9,19 @@ The workflow behind the user's movie Shorts. The editing itself is the `my-edit-
 skill covers everything around it: topic, facts, script, footage links, platform safety, description.
 Talk to the user in Thai.
 
+## 0. Current house style (user, 2026-10-26) — overrides older notes below
+
+- **Content:** emotional, high-curiosity movie/celebrity stories, e.g. "Times <star> almost died", "<N> times <star> wasn't
+  actually acting", "The secret behind <film>'s craziest scenes". Real facts only, verified (section 2). Never use AI-made
+  "behind the scenes" images or clips as if they were real.
+- **Length: 25–30 s.** 7–9 short sentences, hook → context → But → reveal, talk-like US English, no "Wait"/"Okay" opener,
+  emotional beats ("He could barely even stand.", "They lost it.").
+- **Voice:** young male — `scripts/english_tts.py` with `"voice": "am_puck", "speed": 1.2, "gap": 0.16`.
+- **Captions:** one word per card, big comic style — edit.json `"caption_style": "comic"`, `"caption_y": 1150`
+  (move it if the footage has a lower-third), `"pop_frames": 3, "pop_from": 0.5`; keywords (*stars* in the script)
+  coloured red `#FF3B30`.
+- **Cuts:** a new shot every 1–2 s; blur-band layout stays; no music in the delivered file.
+
 ## 1. Topic
 
 Offer 4–5 behind-the-scenes stories from foreign films that fit the hook "เพื่อนๆ รู้มั้ยว่า ในหนัง X …":
