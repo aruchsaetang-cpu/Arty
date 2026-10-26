@@ -5,7 +5,7 @@ emotional true-moment Shorts**.
 
 ## Hard rules
 
-- **Length ~20s, like the reference.** Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
+- **Length: exactly 18s** (the video ends at 18s, including the ending impact and loop). Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
 - **No voice.** No narration, no TTS. Emotion comes from picture, text and music only.
 - **One story per video**, built as a three-act arc: setup (who is it, what's wrong) →
   the turn (the painful or kind moment) → payoff (the tears, the reunion, the reveal).
