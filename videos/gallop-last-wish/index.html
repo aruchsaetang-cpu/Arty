@@ -217,9 +217,9 @@
           <span class="t g xl" id="o1-c">CHEESE</span>
         </div>
         <svg class="draw" viewBox="0 0 1080 1920">
-          <circle id="o1-ring" cx="560" cy="860" r="250" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1571" stroke-dashoffset="1571" />
-          <path id="o1-arrow" d="M700 1640 Q680 1400 600 1140" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="620" stroke-dashoffset="620" />
-          <path id="o1-head" d="M576 1186 L598 1134 L640 1172" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+          <circle id="o1-ring" cx="430" cy="800" r="280" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1760" stroke-dashoffset="1760" />
+          <path id="o1-arrow" d="M700 1640 Q660 1380 520 1110" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="620" stroke-dashoffset="620" />
+          <path id="o1-head" d="M496 1158 L518 1106 L562 1140" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
         </svg>
         <div class="label" id="o1-lab" style="left: 560px; top: 1630px; color: var(--green)">GOOD BOY</div>
       </div>
@@ -251,9 +251,9 @@
       </div>
 
       <!-- ===== sound: only on attention moments ===== -->
-      <audio id="sfx-shutter-open" src="assets/audio/shutter.m4a" data-start="0" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-type-hook" src="assets/audio/keyboard-typing.m4a" data-start="0.05" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-pop" src="assets/audio/pop.m4a" data-start="0.9" data-duration="0.16" data-track-index="6" data-volume="0.8"></audio>
+      <audio id="sfx-shutter-open" src="assets/audio/shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-type-hook" src="assets/audio/keyboard-typing.m4a" data-start="1" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-pop" src="assets/audio/pop.m4a" data-start="1.68" data-duration="0.16" data-track-index="6" data-volume="0.8"></audio>
       <audio id="sfx-shutter-impact" src="assets/audio/shutter.m4a" data-start="16.5" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
       <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="16.8" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
       <audio id="sfx-type-verdict" src="assets/audio/keyboard-typing.m4a" data-start="17.1" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
@@ -293,18 +293,23 @@
       };
 
       // ---------- 0–6.5 hook ----------
-      flash(0.0, 0.9);
-      punch("#w1", 0, 6.5);
-      type("#o1-a", 0.05);
-      draw("#o1-ring", 0.6);
-      draw("#o1-arrow", 0.8, 0.35);
-      show("#o1-head", 1.1);
-      label("#o1-lab", 0.9);
-      tl.to(["#o1-ring", "#o1-arrow", "#o1-head", "#o1-lab"], { opacity: 0, duration: 0.3 }, 3.4);
-      tl.to("#o1-cap1", { opacity: 0, duration: 0.25 }, 2.6);
-      type("#o1-b", 2.95);
-      type("#o1-c", 3.65);
-      tl.fromTo("#o1-c", { scale: 1 }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 4.0);
+      // 0–0.93s: plain footage, no edits — exactly like the reference.
+      // 0.93s: the attention hit (shutter + white flash + punch-in), synced to "Headlights (Slowed)" like the reference.
+      const HIT = 0.93;
+      tl.set("#w1", { scale: 1.0 }, 0);
+      flash(HIT, 0.95);
+      tl.fromTo("#w1", { scale: 1.14 }, { scale: 1.0, duration: 0.35, ease: "power3.out", immediateRender: false }, HIT);
+      tl.fromTo("#w1", { scale: 1.0 }, { scale: 1.05, duration: 6.5 - HIT - 0.35, ease: "none", immediateRender: false }, HIT + 0.35);
+      type("#o1-a", HIT + 0.07);
+      draw("#o1-ring", HIT + 0.5);
+      label("#o1-lab", HIT + 0.75);
+      draw("#o1-arrow", HIT + 0.7, 0.35);
+      show("#o1-head", HIT + 1.0);
+      tl.to(["#o1-ring", "#o1-arrow", "#o1-head", "#o1-lab"], { opacity: 0, duration: 0.25 }, 2.3);
+      tl.to("#o1-cap1", { opacity: 0, duration: 0.25 }, 2.95);
+      type("#o1-b", 3.2);
+      type("#o1-c", 3.9);
+      tl.fromTo("#o1-c", { scale: 1 }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 4.25);
 
       // ---------- 6.5–12.5 goodbye ----------
       flash(6.5, 0.45);
