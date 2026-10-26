@@ -197,111 +197,69 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="28" data-width="1080" data-height="1920">
-      <!-- ===== footage (real clips from Molly Burke's video) ===== -->
-      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s1-photos.mp4" data-start="0" data-duration="4.5" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s2-talk.mp4" data-start="4.5" data-duration="4.5" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/s3-cheese.mp4" data-start="9" data-duration="6.5" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/s4-hug.mp4" data-start="15.5" data-duration="6" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/s5-tears.mp4" data-start="21.5" data-duration="6.5" data-track-index="0" muted playsinline></video></div></div>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1080" data-height="1920">
+      <!-- ===== real footage (Molly Burke, "Gallop passed away…") ===== -->
+      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s3-cheese.mp4" data-start="0" data-duration="6.5" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s4-hug.mp4" data-start="6.5" data-duration="6" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w3"><div class="shot" id="w3i"><video id="v3" class="clip" src="assets/footage/s5-tears.mp4" data-start="12.5" data-duration="7.5" data-track-index="0" muted playsinline></video></div></div>
       <!-- ghost echo for the impact -->
-      <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/s5-tears.mp4" data-start="24.9" data-duration="1.4" data-media-start="3.4" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w3g" style="opacity: 0"><video id="v3g" class="clip" src="assets/footage/s5-tears.mp4" data-start="16.4" data-duration="1.4" data-media-start="3.9" data-track-index="0" muted playsinline></video></div>
 
-      <div id="grade" class="clip" data-start="0" data-duration="28" data-track-index="1"><div class="vig"></div></div>
+      <div id="grade" class="clip" data-start="0" data-duration="20" data-track-index="1"><div class="vig"></div></div>
 
-      <!-- ===== 0–4.5 her eyes for 7 years ===== -->
-      <div id="o1" class="clip ov" data-start="0" data-duration="4.5" data-track-index="2">
-        <div class="cap" style="top: 840px">
-          <span class="t" id="o1-a">*HE WAS HER EYES*</span>
-          <span class="t g" id="o1-b">FOR 7 YEARS!</span>
+      <!-- ===== 0–6.5 hook: 1 day left → his last wish: cheese ===== -->
+      <div id="o1" class="clip ov" data-start="0" data-duration="6.5" data-track-index="2">
+        <div class="cap" style="top: 200px" id="o1-cap1">
+          <span class="t" id="o1-a">*HE HAD 1 DAY LEFT…*</span>
+        </div>
+        <div class="cap" style="top: 200px" id="o1-cap2">
+          <span class="t" id="o1-b">*HIS LAST WISH*</span>
+          <span class="t g xl" id="o1-c">CHEESE</span>
         </div>
         <svg class="draw" viewBox="0 0 1080 1920">
-          <circle id="o1-ring" cx="470" cy="1420" r="150" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="943" stroke-dashoffset="943" />
-          <path id="o1-arrow" d="M860 1690 Q760 1640 640 1520" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-dasharray="300" stroke-dashoffset="300" />
-          <path id="o1-head" d="M650 1568 L626 1512 L686 1508" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+          <circle id="o1-ring" cx="560" cy="860" r="250" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1571" stroke-dashoffset="1571" />
+          <path id="o1-arrow" d="M700 1640 Q680 1400 600 1140" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="620" stroke-dashoffset="620" />
+          <path id="o1-head" d="M576 1186 L598 1134 L640 1172" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
         </svg>
-        <div class="label" id="o1-lab" style="left: 760px; top: 1690px; color: var(--yellow)">GALLOP</div>
-        <div class="stamp" id="o1-year" style="top: 140px">2014</div>
+        <div class="label" id="o1-lab" style="left: 560px; top: 1630px; color: var(--green)">GOOD BOY</div>
       </div>
 
-      <!-- ===== 4.5–9 one day left ===== -->
-      <div id="o2" class="clip ov" data-start="4.5" data-duration="4.5" data-track-index="2">
-        <div class="stamp" id="o2-year" style="top: 260px">2023</div>
-        <div class="cap" style="top: 1080px">
-          <span class="t" id="o2-a">*THE VET SAID*</span>
-          <span class="t y xl" id="o2-b">1 DAY LEFT</span>
-        </div>
-      </div>
-
-      <!-- ===== 9–15.5 his last wish: cheese ===== -->
-      <div id="o3" class="clip ov" data-start="9" data-duration="6.5" data-track-index="2">
-        <div class="cap" style="top: 200px">
-          <span class="t" id="o3-a">*HIS LAST WISH…*</span>
-          <span class="t g xl" id="o3-b">CHEESE</span>
-        </div>
-        <svg class="draw" viewBox="0 0 1080 1920">
-          <circle id="o3-ring" cx="560" cy="860" r="250" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1571" stroke-dashoffset="1571" />
-          <path id="o3-arrow" d="M700 1640 Q680 1400 600 1140" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="620" stroke-dashoffset="620" />
-          <path id="o3-head" d="M576 1186 L598 1134 L640 1172" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
-        </svg>
-        <div class="label" id="o3-lab" style="left: 560px; top: 1630px; color: var(--green)">GOOD BOY</div>
-      </div>
-
-      <!-- ===== 15.5–21.5 the last goodbye ===== -->
-      <div id="o4" class="clip ov" data-start="15.5" data-duration="6" data-track-index="2">
+      <!-- ===== 6.5–12.5 the last goodbye ===== -->
+      <div id="o2" class="clip ov" data-start="6.5" data-duration="6" data-track-index="2">
         <div class="cap" style="top: 1415px">
-          <span class="t y" id="o4-a">*THE LAST GOODBYE*</span>
+          <span class="t y" id="o2-a">*THE LAST GOODBYE*</span>
         </div>
         <svg class="draw" viewBox="0 0 1080 1920">
-          <circle id="o4-ring" cx="885" cy="1300" r="190" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1194" stroke-dashoffset="1194" />
+          <circle id="o2-ring" cx="885" cy="1300" r="190" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1194" stroke-dashoffset="1194" />
+          <path id="o2-arrow" d="M820 380 Q930 760 885 1080" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-dasharray="760" stroke-dashoffset="760" />
+          <path id="o2-head" d="M857 1050 L885 1102 L917 1054" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
         </svg>
-        <div class="label" id="o4-lab" style="left: 640px; top: 300px; color: var(--yellow)">HIS LAST DAY</div>
-        <svg class="draw" viewBox="0 0 1080 1920">
-          <path id="o4-arrow" d="M820 380 Q930 760 885 1080" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460" />
-          <path id="o4-head" d="M857 1050 L885 1102 L917 1054" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
-        </svg>
+        <div class="label" id="o2-lab" style="left: 640px; top: 300px; color: var(--yellow)">HIS LAST DAY</div>
       </div>
 
-      <!-- ===== 21.5–28 asleep in her arms ===== -->
-      <div id="o5" class="clip ov" data-start="21.5" data-duration="6.5" data-track-index="2">
-        <div class="cap" style="top: 1060px" id="o5-cap1">
-          <span class="t" id="o5-a">*HE FELL ASLEEP*</span>
-          <span class="t g" id="o5-b">IN HER ARMS</span>
+      <!-- ===== 12.5–20 asleep in her arms → impact → verdict → loop ===== -->
+      <div id="o3" class="clip ov" data-start="12.5" data-duration="7.5" data-track-index="2">
+        <div class="cap" style="top: 1060px" id="o3-cap1">
+          <span class="t" id="o3-a">*HE FELL ASLEEP*</span>
+          <span class="t g" id="o3-b">IN HER ARMS</span>
         </div>
-        <div class="cap" style="top: 1060px" id="o5-cap2">
-          <span class="t g" id="o5-c">*SALUTE</span>
-          <span class="t g" id="o5-d">TO THIS BOND!*</span>
+        <div class="cap" style="top: 1060px" id="o3-cap2">
+          <span class="t g" id="o3-c">*SALUTE</span>
+          <span class="t g" id="o3-d">TO THIS BOND!*</span>
         </div>
         <img id="heart" src="assets/img/mending-heart.png" alt="" />
       </div>
 
-      <!-- ===== camera shutter on every flash cut ===== -->
-      <audio id="shutter1" src="assets/audio/shutter.m4a" data-start="0" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="shutter2" src="assets/audio/shutter.m4a" data-start="4.5" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="shutter3" src="assets/audio/shutter.m4a" data-start="9" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="shutter4" src="assets/audio/shutter.m4a" data-start="15.5" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="shutter5" src="assets/audio/shutter.m4a" data-start="21.5" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <!-- ===== keyboard typing under every caption, pops on callouts, bell on the heart ===== -->
-      <audio id="type-o1-a" src="assets/audio/keyboard-typing.m4a" data-start="0.05" data-duration="0.79" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o1-b" src="assets/audio/keyboard-typing.m4a" data-start="0.85" data-duration="0.58" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o2-a" src="assets/audio/keyboard-typing.m4a" data-start="5.0" data-duration="0.66" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o2-b" src="assets/audio/keyboard-typing.m4a" data-start="5.9" data-duration="0.5" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o3-a" src="assets/audio/keyboard-typing.m4a" data-start="9.2" data-duration="0.75" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o3-b" src="assets/audio/keyboard-typing.m4a" data-start="10.3" data-duration="0.33" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o4-a" src="assets/audio/keyboard-typing.m4a" data-start="16.0" data-duration="0.83" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o5-a" src="assets/audio/keyboard-typing.m4a" data-start="21.9" data-duration="0.75" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o5-b" src="assets/audio/keyboard-typing.m4a" data-start="22.7" data-duration="0.54" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o5-c" src="assets/audio/keyboard-typing.m4a" data-start="25.6" data-duration="0.33" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="type-o5-d" src="assets/audio/keyboard-typing.m4a" data-start="25.95" data-duration="0.66" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="pop1" src="assets/audio/pop.m4a" data-start="1.9" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
-      <audio id="pop2" src="assets/audio/pop.m4a" data-start="2.4" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
-      <audio id="pop3" src="assets/audio/pop.m4a" data-start="4.6" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
-      <audio id="pop4" src="assets/audio/pop.m4a" data-start="10.2" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
-      <audio id="pop5" src="assets/audio/pop.m4a" data-start="17.6" data-duration="0.3" data-track-index="6" data-volume="0.75"></audio>
-      <audio id="impact" src="assets/audio/shutter.m4a" data-start="25" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="bell" src="assets/audio/bell-ding.m4a" data-start="25.3" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
+      <!-- ===== sound: only on attention moments ===== -->
+      <audio id="sfx-shutter-open" src="assets/audio/shutter.m4a" data-start="0" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-type-hook" src="assets/audio/keyboard-typing.m4a" data-start="0.05" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-pop" src="assets/audio/pop.m4a" data-start="0.9" data-duration="0.16" data-track-index="6" data-volume="0.8"></audio>
+      <audio id="sfx-shutter-impact" src="assets/audio/shutter.m4a" data-start="16.5" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="16.8" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
+      <audio id="sfx-type-verdict" src="assets/audio/keyboard-typing.m4a" data-start="17.1" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
+
       <!-- ===== watermark + transitions ===== -->
-      <div id="fx" class="clip" data-start="0" data-duration="28" data-track-index="3">
+      <div id="fx" class="clip" data-start="0" data-duration="20" data-track-index="3">
         <div class="wm">MOVIE FACTS</div>
         <div id="flash"></div>
         <div id="leak"></div>
@@ -313,9 +271,6 @@
     <script>
       const tl = gsap.timeline({ paused: true });
 
-      const pop = (sel, t, d = 0.35) => tl.fromTo(sel, { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(2.2)" }, t);
-      const slam = (sel, t) => tl.fromTo(sel, { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "expo.out" }, t);
-      // keyboard-style text: letters appear one by one
       const type = (sel, t, cps = 24) => {
         const el = document.querySelector(sel);
         const txt = el.textContent;
@@ -331,82 +286,60 @@
       const draw = (sel, t, d = 0.45) => tl.to(sel, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, t);
       const show = (sel, t) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.12 }, t);
       const label = (sel, t) => tl.fromTo(sel, { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, transformOrigin: "0% 50%", duration: 0.3, ease: "back.out(2.5)" }, t);
-      const shake = (sel, t, amt = 8, n = 5) => tl.fromTo(sel, { x: 0 }, { x: amt, duration: 0.045, yoyo: true, repeat: n, ease: "none", immediateRender: false }, t);
       const flash = (t, o = 0.75) => tl.fromTo("#flash", { opacity: o }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
-      // punch-in on each cut, then a slow push
       const punch = (sel, t, dur) => {
         tl.fromTo(sel, { scale: 1.12 }, { scale: 1.0, duration: 0.35, ease: "power3.out" }, t);
         tl.fromTo(sel, { scale: 1.0 }, { scale: 1.06, duration: dur - 0.35, ease: "none", immediateRender: false }, t + 0.35);
       };
 
-      // ---------- 0–4.5 ----------
+      // ---------- 0–6.5 hook ----------
       flash(0.0, 0.9);
-      punch("#w1", 0, 4.5);
+      punch("#w1", 0, 6.5);
       type("#o1-a", 0.05);
-      type("#o1-b", 0.85);
-      draw("#o1-ring", 1.4);
-      draw("#o1-arrow", 1.7, 0.35);
-      show("#o1-head", 2.0);
-      label("#o1-lab", 1.9);
-      pop("#o1-year", 2.4);
+      draw("#o1-ring", 0.6);
+      draw("#o1-arrow", 0.8, 0.35);
+      show("#o1-head", 1.1);
+      label("#o1-lab", 0.9);
+      tl.to(["#o1-ring", "#o1-arrow", "#o1-head", "#o1-lab"], { opacity: 0, duration: 0.3 }, 3.4);
+      tl.to("#o1-cap1", { opacity: 0, duration: 0.25 }, 2.6);
+      type("#o1-b", 2.95);
+      type("#o1-c", 3.65);
+      tl.fromTo("#o1-c", { scale: 1 }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 4.0);
 
-      // ---------- 4.5–9 ----------
-      flash(4.5);
-      punch("#w2", 4.5, 4.5);
-      pop("#o2-year", 4.6);
-      type("#o2-a", 5.0);
-      type("#o2-b", 5.9);
-      shake("#o2-b", 6.2, 10, 7);
+      // ---------- 6.5–12.5 goodbye ----------
+      flash(6.5, 0.45);
+      punch("#w2", 6.5, 6);
+      type("#o2-a", 7.0);
+      draw("#o2-ring", 8.6);
+      label("#o2-lab", 8.6);
+      draw("#o2-arrow", 8.8, 0.4);
+      show("#o2-head", 9.15);
+      tl.to(["#o2-ring", "#o2-arrow", "#o2-head", "#o2-lab"], { opacity: 0, duration: 0.3 }, 11.4);
 
-      // ---------- 9–15.5 ----------
-      flash(9.0);
-      punch("#w3", 9.0, 6.5);
-      type("#o3-a", 9.2);
-      type("#o3-b", 10.3);
-      tl.fromTo("#o3-b", { scale: 1 }, { scale: 1.08, duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, 10.6);
-      draw("#o3-ring", 9.7);
-      draw("#o3-arrow", 10.0, 0.4);
-      show("#o3-head", 10.35);
-      label("#o3-lab", 10.2);
-      tl.to(["#o3-ring", "#o3-arrow", "#o3-head", "#o3-lab"], { opacity: 0, duration: 0.3 }, 12.6);
-
-      // ---------- 15.5–21.5 ----------
-      flash(15.5);
-      punch("#w4", 15.5, 6);
-      type("#o4-a", 16.0);
-      draw("#o4-ring", 17.6);
-      label("#o4-lab", 17.6);
-      draw("#o4-arrow", 17.8, 0.4);
-      show("#o4-head", 18.15);
-      tl.to(["#o4-ring", "#o4-arrow", "#o4-head", "#o4-lab"], { opacity: 0, duration: 0.3 }, 20.4);
-
-      // ---------- 21.5–28 ----------
-      flash(21.5, 0.6);
-      punch("#w5", 21.5, 6.5);
-      type("#o5-a", 21.9);
-      type("#o5-b", 22.7);
-      tl.to("#o5-cap1", { opacity: 0, duration: 0.25 }, 24.8);
-      tl.set("#o5-cap2", { opacity: 1 }, 0);
-      type("#o5-c", 25.6);
-      type("#o5-d", 25.95);
-      // ---------- ending (channel signature) ----------
-      // IMPACT (from the reference): blow-out + punch-in blur, ghost echo, decaying shake, then settle
-      flash(25.0, 0.95);
-      tl.fromTo("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)" }, { scale: 1.45, filter: "blur(18px) brightness(2.1)", duration: 0.07, ease: "power4.out" }, 24.98);
-      tl.to("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)", duration: 0.6, ease: "power3.out" }, 25.05);
-      tl.fromTo("#leak", { opacity: 0, x: 0, scale: 1.3 }, { opacity: 1, x: 0, scale: 1.3, duration: 0.06 }, 24.98);
-      tl.to("#leak", { opacity: 0, x: 300, duration: 0.7, ease: "power2.out" }, 25.08);
-      tl.fromTo("#w5g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 25.0);
-      tl.to("#w5g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 25.1);
-      tl.fromTo("#w5", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 25.02);
-      // heart sticker lands on the settle
-      tl.fromTo("#heart", { scale: 0, rotation: -25, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, transformOrigin: "50% 60%", duration: 0.45, ease: "back.out(2.6)" }, 25.3);
-      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 25.8);
-      // zoom-blur out, dip to black, then fade into the first frame so the Short loops
-      tl.to("#w5i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.7, ease: "power2.in" }, 26.7);
-      tl.to(["#o5-cap2", "#heart"], { opacity: 0, scale: 1.3, duration: 0.5, ease: "power2.in" }, 26.8);
-      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.in" }, 27.15);
-      tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 27.55);
+      // ---------- 12.5–20 asleep → impact → verdict → loop ----------
+      flash(12.5, 0.45);
+      punch("#w3", 12.5, 7.5);
+      type("#o3-a", 12.9);
+      type("#o3-b", 13.7);
+      tl.to("#o3-cap1", { opacity: 0, duration: 0.25 }, 16.2);
+      // IMPACT: blow-out + punch-in blur, ghost echo, decaying shake, settle
+      flash(16.5, 0.95);
+      tl.fromTo("#w3i", { scale: 1.0, filter: "blur(0px) brightness(1)" }, { scale: 1.45, filter: "blur(18px) brightness(2.1)", duration: 0.07, ease: "power4.out" }, 16.48);
+      tl.to("#w3i", { scale: 1.0, filter: "blur(0px) brightness(1)", duration: 0.6, ease: "power3.out" }, 16.55);
+      tl.fromTo("#leak", { opacity: 0, x: 0, scale: 1.3 }, { opacity: 1, x: 0, scale: 1.3, duration: 0.06 }, 16.48);
+      tl.to("#leak", { opacity: 0, x: 300, duration: 0.7, ease: "power2.out" }, 16.58);
+      tl.fromTo("#w3g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 16.5);
+      tl.to("#w3g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 16.6);
+      tl.fromTo("#w3", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 16.52);
+      tl.fromTo("#heart", { scale: 0, rotation: -25, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, transformOrigin: "50% 60%", duration: 0.45, ease: "back.out(2.6)" }, 16.8);
+      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 17.3);
+      type("#o3-c", 17.1);
+      type("#o3-d", 17.45);
+      // zoom-blur out, black, then the first frame so the Short loops
+      tl.to("#w3i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.7, ease: "power2.in" }, 18.7);
+      tl.to(["#o3-cap2", "#heart"], { opacity: 0, scale: 1.3, duration: 0.5, ease: "power2.in" }, 18.8);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.in" }, 19.15);
+      tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 19.55);
 
       window.__timelines["main"] = tl;
     </script>

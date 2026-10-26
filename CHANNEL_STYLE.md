@@ -5,7 +5,7 @@ emotional true-moment Shorts**.
 
 ## Hard rules
 
-- **Length 25–30s.** Vertical 1080×1920.
+- **Length ~20s, like the reference.** Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
 - **No voice.** No narration, no TTS. Emotion comes from picture, text and music only.
 - **One story per video**, built as a three-act arc: setup (who is it, what's wrong) →
   the turn (the painful or kind moment) → payoff (the tears, the reunion, the reveal).
@@ -26,8 +26,7 @@ emotional true-moment Shorts**.
 | Grade | Punchy: high contrast, +saturation, slight sharpen, light vignette. |
 | Motion | Punch-in zooms on the key moment, freeze-frame + slow-mo on the emotional beat, quick flash cut into the payoff. |
 | Captions | 2–4 text beats per video, max 5 words each, every one in `*ASTERISKS*`. Last beat is the emotional verdict: `*SALUTE TO THIS BOND*`, `*THE LAST GOODBYE*`. |
-| Other SFX | From `assets/sfx/`: `keyboard-typing` under every caption while it types, `pop` when a callout label or year stamp appears, `bell-ding` when the ending heart lands, `mouse-click` spare for UI-style moments. No music in the file. |
-| Shutter SFX | Camera shutter `assets/sfx/camera-shutter.m4a` (taken from the reference) fires with a white flash at 0s and on every scene cut, to grab attention. |
+| SFX (sparing, attention only) | Sound is for grabbing attention, never wall-to-wall. Use it in two places only: the **opening** (shutter + white flash at 0s, `keyboard-typing` under the hook caption, `pop` on the first circle callout) and the **ending impact** (shutter, `bell-ding` as the heart lands, `keyboard-typing` under the verdict). Everything else is silent. Clean effects live in `assets/sfx/` (song removed). |
 | Ending (every video) | Signature close, from the reference: (1) IMPACT: shutter + the frame blows out (bright pink/orange flash, punch-in to ~1.45× with heavy blur), a ghost echo copy trails offset, decaying camera shake, settle in ~0.6s, (2) the mending-heart emoji sticker (`assets/stickers/mending-heart.png`) pops over the subject and pulses, (3) zoom-blur out + dip to black, (4) fade into the video's first frame so the Short loops seamlessly. Built in `videos/gallop-last-wish/index.html` (`#leak`, `#heart`, `#loop`). |
 | Music | Sad piano / strings swell, quiet first 3s, peak on the payoff. Royalty-free or generated (vidIQ `generate_music`). |
 
