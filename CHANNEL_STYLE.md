@@ -29,17 +29,21 @@ emotional true-moment Shorts**.
 
 ## Footage
 
-The reference reposts other people's viral clips; we don't, for copyright and originality.
-Sources, in order of preference:
+**Real footage only, of the actual event.** No AI-generated clips, no animation, no stock
+"re-enactments". Every video uses the real recording of that real situation.
 
-1. Clips you film or license yourself (drop them in `videos/<name>/assets/footage/`).
-2. AI-generated realistic clips (Higgsfield once connected, or vidIQ `generate_video`),
-   one prompt per shot, written by Claude for each video.
-3. Our own animation (as in `videos/again-animated`) when a story can't be filmed.
+Workflow per video:
+
+1. Claude picks the story and gives you the YouTube link(s) plus the exact minutes to clip.
+2. You download those parts and send them (or drop them in `videos/<name>/assets/footage/`).
+3. Claude cuts them to 25–30s in the editing style above.
+
+Credit the original creator in the description, and ask for permission when you can:
+reposting someone else's footage can get copyright claims or strikes.
 
 ## Topic bank (less-covered angles)
 
-1. A guide dog's last day of work: the blind owner walks him home one final time.
+1. A guide dog's last night: a cheese party, then goodbye (source: Molly Burke, `ucEeH2LKdes`).
 2. A janitor graduates from the university he cleaned for 20 years.
 3. A mother with dementia only remembers her son when he hums her old lullaby.
 4. A firefighter is invited to the graduation of the baby he carried out of a fire.
