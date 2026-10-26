@@ -13,6 +13,19 @@ emotional true-moment Shorts**.
   (see the topic bank below). Skip "man feeds hungry dog" and "boy gets surprise bike";
   those are saturated.
 
+## Story structure (every video)
+
+All story beats are on-screen captions (no voice), short lines in `*ASTERISKS*`:
+
+| Beat | Rule | Time in the 18s video |
+|---|---|---|
+| **Hook** | 1 sentence, finished within 3s | 0.93s (the hit) → 3s |
+| **Context** | 3–4 sentences: the character / situation / what most people believe | 3 → 8.5s |
+| **But** | 1 sentence that flips the situation (starts with BUT…) | 8.5 → 10s |
+| **Reveal** | 3–4 sentences on how it is actually different; the last one is the verdict on the ending impact | 10 → 16.5s, verdict ~16.5–17.5s, loop at 18s |
+
+Keep every line ≤ 6 words so it can be read at a glance.
+
 ## Editing style (copied from the reference)
 
 | Element | Spec |
