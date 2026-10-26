@@ -113,11 +113,14 @@ def align(runs, clauses):
 
 spec = json.load(open(sys.argv[1]))
 k = Kokoro(f"{C}/models/kokoro-v1.0.onnx", f"{C}/voices/voices-v1.0.bin")
+# "voice" is a Kokoro voice id or a blend, e.g. {"am_puck": 0.5, "am_liam": 0.5}
+v = spec.get("voice", "am_michael")
+VOICE = sum(w * k.get_voice_style(n) for n, w in v.items()) if isinstance(v, dict) else v
 out, caps, t, sr = [], [], 0.0, 24000
 for sent in spec["sentences"]:
     toks = tokens(sent)
     speak = sent.replace("*", "")
-    x, sr = k.create(speak, voice=spec.get("voice", "am_michael"), speed=spec.get("speed", 1.3), lang="en-us")
+    x, sr = k.create(speak, voice=VOICE, speed=spec.get("speed", 1.3), lang="en-us")
     x = np.asarray(x, np.float32)
     idx = np.where(np.abs(x) > 0.01)[0]
     x = x[max(0, idx[0] - int(0.01 * sr)): idx[-1] + int(0.03 * sr)]
