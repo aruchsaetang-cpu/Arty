@@ -22,7 +22,7 @@ Final reference clip: `videos/jackie-chan-short` v6 (20.9 s). Every new video = 
    stunt/fall itself (a 1 s flash of the accident, or its most dramatic frame) under the hook, so viewers know what's
    happening before they swipe; (b) the first footage must match the hook's promise ("almost died" = the incident, not a
    calm movie shot); (c) prefer real stunt / behind-the-scenes / outtake footage over ordinary film scenes for the B-roll,
-   and keep it fast (no slow or familiar shots).
+   and keep it fast (no slow or familiar shots). Crop off burned-in source subtitles (crop the bottom ~20% before scaling).
 4. edit.json like edit6.json: `layout: full`, `caption_style: comic`, `caption_y: 1020`, `pop_frames 3`, `pop_from 0.5`,
    red keywords `#FF3B30`, a cut every ~1–1.5 s. Render → finish.sh → one safety sheet → send → title + description
    (format below) in English → commit. No extra previews, no multiple variants, short replies.
