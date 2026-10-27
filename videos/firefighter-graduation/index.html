@@ -210,7 +210,7 @@
 
       <!-- HOOK + CONTEXT 1 (0–4) -->
       <div id="o1" class="clip ov" data-start="0" data-duration="4" data-track-index="2">
-        <div class="cap" style="top: 1180px" id="o1-cap1"><span class="t y" id="o1-a" style="font-size: 92px">*TRAPPED IN FLAMES*</span></div>
+        <div class="cap" style="top: 1180px" id="o1-cap1"><span class="t y xl" id="o1-a">*BABY TRAPPED*</span></div>
         <div class="cap" style="top: 1180px" id="o1-cap2"><span class="t" id="o1-b">*HE PULLED HER</span><span class="t" id="o1-c">FROM HER CRIB*</span></div>
         <svg class="draw" viewBox="0 0 1080 1920">
           <circle id="o1-ring" cx="760" cy="1560" r="230" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1446" stroke-dashoffset="1446" />
@@ -307,7 +307,7 @@
       flash(HIT, 0.95);
       tl.fromTo("#w1", { scale: 1.14 }, { scale: 1.0, duration: 0.35, ease: "power3.out", immediateRender: false }, HIT);
       push("#w1", HIT + 0.35, 4 - HIT - 0.35);
-      type("#o1-a", HIT + 0.05, 45);
+      tl.fromTo("#o1-a", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
       draw("#o1-ring", HIT + 0.45);
       label("#o1-lab", 1.7);
       draw("#o1-arrow", 1.75, 0.3);

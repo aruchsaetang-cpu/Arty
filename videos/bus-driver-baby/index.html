@@ -207,7 +207,7 @@
       <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/e-hold.mp4" data-start="13" data-duration="5" data-track-index="0" muted playsinline></video></div></div>
       <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/e-hold.mp4" data-start="15.2" data-duration="1.4" data-media-start="2.2" data-track-index="0" muted playsinline></video></div>
       <div id="grade" class="clip" data-start="0" data-duration="18" data-track-index="1"><div class="vig"></div></div>
-      <div id="c1" class="clip ov" data-start="0" data-duration="2.8" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t y" id="h1">*WHY IS THIS</span><span class="t y" id="h2">BABY ALONE?*</span></div></div>
+      <div id="c1" class="clip ov" data-start="0" data-duration="2.8" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t y xl" id="h1">*BABY ALONE?*</span></div></div>
       <div id="c2" class="clip ov" data-start="2.8" data-duration="2.5" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k1">*BAREFOOT</span><span class="t" id="k2">IN THE COLD*</span></div></div>
       <div id="c3" class="clip ov" data-start="5.3" data-duration="3.1" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k3">*THEN A BUS</span><span class="t" id="k4">CAME BY…*</span></div></div>
       <div id="c4" class="clip ov" data-start="8.4" data-duration="1.6" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t y" id="b1">*BUT ONE DRIVER</span><span class="t y" id="b2">STOPPED…*</span></div></div>
@@ -269,7 +269,7 @@
       const HIT = 0.93;
       flash(HIT, 0.95);
       tl.fromTo("#w1", { scale: 1.14 }, { scale: 1.0, duration: 0.35, ease: "power3.out", immediateRender: false }, HIT);
-      type("#h1", HIT + 0.05, 45); type("#h2", 1.4, 45);
+      tl.fromTo("#h1", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
       draw("#ring", 1.5); label("#lab", 1.7);
       // ---------- CONTEXT ----------
       type("#k1", 2.9); type("#k2", 3.35);

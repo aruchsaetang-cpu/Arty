@@ -33,8 +33,8 @@ Keep every line ≤ 6 words so it can be read at a glance.
 ### Hook rules (learned from the weak Gallop hook)
 
 1. **Open on the strongest frame of the story** (tears, the rescue, the reunion), never a calm setup shot. Use it for the plain 0–0.93s too.
-2. **2–4 words, emotional label style** like the reference: `*SAD MOMENT*`, `*DOG IN DANGER*`, `*REAL SUPERMAN*`, or a curiosity gap (`*WHO IS HE?*`). Never an information sentence.
-3. **Fully readable by ~1.3s**: the hook types fast (~45 letters/s) right after the 0.93s hit.
+2. **Exactly 2 words, shown instantly on the hit (no typing), emotional label style** like the reference: `*SAD MOMENT*`, `*DOG IN DANGER*`, `*REAL SUPERMAN*`, or a curiosity gap (`*WHO IS HE?*`). Never an information sentence.
+3. **Fully readable on the 0.93s hit frame**: the 2-word hook appears all at once with the flash.
 4. **The circle asks the question**: circle the person/animal the hook is about, with a 1–2 word label (`HERO`, `THE BABY`).
 0. **Frame 1 = the real event or a frame that makes people curious, immediately.** The very first frame of every clip is the actual incident (the danger, the rescue, the tears) or a puzzling image that makes viewers ask "what is happening?". Never a title card, logo, interview, talking head, establishing shot or black frame.
 5. **Open on emotion, not backstory.** Start on the shocking, sad or curious moment itself, never on history or setup. Backstory comes later as Context.
