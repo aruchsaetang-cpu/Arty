@@ -3,6 +3,10 @@
 Reference: **Sunnah Edit** Shorts (12M–149M views each). Our channel is now **heartbreaking /
 emotional true-moment Shorts**.
 
+> **Template:** `videos/firefighter-graduation/` is the approved reference build. Start every new
+> video by copying its `index.html` and swapping footage, captions and circle positions; keep its
+> timing, sound placement, impact, heart and loop exactly.
+
 ## Hard rules
 
 - **Length: exactly 18s** (the video ends at 18s, including the ending impact and loop). Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
