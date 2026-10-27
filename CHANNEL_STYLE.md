@@ -3,7 +3,7 @@
 Reference: **Sunnah Edit** Shorts (12M–149M views each). Our channel is now **heartbreaking /
 emotional true-moment Shorts**.
 
-> **Template:** `videos/firefighter-graduation/` is the approved reference build. Start every new
+> **Template:** `videos/bus-driver-baby/` is the approved reference build (freeze+zoom hook, 2-word instant hook, shutter+ding). Start every new
 > video by copying its `index.html` and swapping footage, captions and circle positions; keep its
 > timing, sound placement, impact, heart and loop exactly.
 
