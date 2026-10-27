@@ -18,6 +18,11 @@ Final reference clip: `videos/jackie-chan-short` v6 (20.9 s). Every new video = 
 2. Voice: `english_tts.py` (voice {"am_puck":0.5,"am_liam":0.5}, per-sentence speeds 1.05–1.3, gap 0.1) → ~12 s.
 3. Real footage after the narration: the action (jump/fall) → the result (hurt/hospital), END there (no slow-mo replays),
    no text, original audio or whoosh/crack/thud SFX if silent. Only the user's real clip.
+   **Viewer feedback (Jackie Chan clip, 2026-10-27):** (a) show the DANGER in the first 1–1.5 s — open on the real
+   stunt/fall itself (a 1 s flash of the accident, or its most dramatic frame) under the hook, so viewers know what's
+   happening before they swipe; (b) the first footage must match the hook's promise ("almost died" = the incident, not a
+   calm movie shot); (c) prefer real stunt / behind-the-scenes / outtake footage over ordinary film scenes for the B-roll,
+   and keep it fast (no slow or familiar shots).
 4. edit.json like edit6.json: `layout: full`, `caption_style: comic`, `caption_y: 1020`, `pop_frames 3`, `pop_from 0.5`,
    red keywords `#FF3B30`, a cut every ~1–1.5 s. Render → finish.sh → one safety sheet → send → title + description
    (format below) in English → commit. No extra previews, no multiple variants, short replies.
