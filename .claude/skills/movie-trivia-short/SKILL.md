@@ -9,6 +9,19 @@ The workflow behind the user's movie Shorts. The editing itself is the `my-edit-
 skill covers everything around it: topic, facts, script, footage links, platform safety, description.
 Talk to the user in Thai.
 
+## 00. LOCKED TEMPLATE (user, 2026-10-27) — copy `videos/jackie-chan-short/work/edit6.json` exactly
+
+Final reference clip: `videos/jackie-chan-short` v6 (20.9 s). Every new video = same recipe, minimum tokens:
+1. Topic → 1 web search to verify → script (Hook "Times <star> almost died." / Context "During the filming of <film>, …" 1–2
+   sentences / But 1 sentence / Reveal 1–2 sentences, keyword in *stars*) → give user YouTube links, ask for screen recordings
+   of (a) 3–4 film clips for the narration B-roll and (b) the REAL accident clip.
+2. Voice: `english_tts.py` (voice {"am_puck":0.5,"am_liam":0.5}, per-sentence speeds 1.05–1.3, gap 0.1) → ~12 s.
+3. Real footage after the narration: the action (jump/fall) → the result (hurt/hospital), END there (no slow-mo replays),
+   no text, original audio or whoosh/crack/thud SFX if silent. Only the user's real clip.
+4. edit.json like edit6.json: `layout: full`, `caption_style: comic`, `caption_y: 1020`, `pop_frames 3`, `pop_from 0.5`,
+   red keywords `#FF3B30`, a cut every ~1–1.5 s. Render → finish.sh → one safety sheet → send → title + description
+   (format below) in English → commit. No extra previews, no multiple variants, short replies.
+
 ## 0. Current house style (user, 2026-10-26) — overrides older notes below
 
 - **Content:** emotional, high-curiosity movie/celebrity stories, e.g. "Times <star> almost died", "<N> times <star> wasn't
