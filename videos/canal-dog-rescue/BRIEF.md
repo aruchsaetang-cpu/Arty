@@ -12,7 +12,7 @@ angle: someone helps something (Sunnah Edit formula); original footage (template
 ## Captions (someone helps something, ~16s)
 
 - **0–2s · helpless one:** dog struggling in the canal; 0.93 hit (shutter + ding), freeze + zoom: *DROWNING DOG* (circle + label `HELPLESS DOG`)
-- **2–5s:** *THE WALLS WERE TOO* **STEEP** / *THE CURRENT TOO* **STRONG**
+- **2–5s:** *THIS DOG* / *ACCIDENTALLY* **FELL**
 - **5–9s · helper appears:** arrow + label `GOOD MAN` → *THEN A WORKER CLIMBED INTO THE CLAW*
 - **9–13s · the help:** *HE RISKED HIS LIFE* / *TO SAVE THE* **DOG**
 - **13–16s · outcome:** impact + heart on the dog lifted out → *RESPECT* *TRUE HERO*
