@@ -214,10 +214,10 @@
       <div id="frz" class="clip" data-start="0.93" data-duration="1.5" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
       <div id="grade" class="clip" data-start="0" data-duration="18" data-track-index="1"><div class="vig"></div></div>
       <div id="c1" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2"><div class="cap" style="top: 1300px"><span class="t g xl" id="h1">*DROWNING DOG*</span></div></div>
-      <div id="c2" class="clip ov" data-start="2.43" data-duration="2.87" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k1">*IT HAD FALLEN</span><div class="row"><span class="t" id="k2">INTO THE</span><span class="t b" id="k3">WATER*</span></div></div></div>
-      <div id="c3" class="clip ov" data-start="5.3" data-duration="8" data-track-index="2"><div class="cap" style="top: 1180px"><span class="t y" id="b1">*HE REFUSED</span><span class="t y" id="b2">TO GIVE UP</span><div class="row"><span class="t" id="b3">ON THE</span><span class="t g" id="b4">DOG*</span></div></div></div>
+      <div id="c2" class="clip ov" data-start="2.43" data-duration="2.87" data-track-index="2"><div class="cap" style="top: 1250px"><div class="row"><span class="t" id="k1">*IT HAD</span><span class="t r" id="k1b">FALLEN</span></div><div class="row"><span class="t" id="k2">INTO THE</span><span class="t b" id="k3">WATER*</span></div></div></div>
+      <div id="c3" class="clip ov" data-start="5.3" data-duration="8" data-track-index="2"><div class="cap" style="top: 1180px"><div class="row"><span class="t" id="b1">*HE</span><span class="t r" id="b1b">REFUSED</span></div><div class="row"><span class="t" id="b2">TO</span><span class="t y" id="b2b">GIVE UP</span></div><div class="row"><span class="t" id="b3">ON THE</span><span class="t g" id="b4">DOG*</span></div></div></div>
       <div id="o5" class="clip ov" data-start="14.4" data-duration="3.6" data-track-index="2">
-        <div class="cap" style="top: 1220px" id="o5-cap2"><span class="t g xl" id="o5-c">*RESPECT*</span><span class="t y" id="o5-d">*TRUE HERO*</span></div>
+        <div class="cap" style="top: 1220px" id="o5-cap2"><span class="t g xl" id="o5-c">*RESPECT*</span><div class="row"><span class="t b" id="o5-d">*TRUE</span><span class="t y" id="o5-e">HERO*</span></div></div>
         <img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 640px; top: 300px" />
       </div>
       <div id="circ" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
@@ -271,10 +271,10 @@
       tl.to("#ring", { opacity: 0, duration: 0.15 }, 2.3);
       // ---------- CONTEXT ----------
       flash(2.43, 0.35); push("#w2", 2.43, 2.87);
-      type("#k1", 2.55); type("#k2", 3.15); type("#k3", 3.45);
+      type("#k1", 2.55); type("#k1b", 2.85); type("#k2", 3.15); type("#k3", 3.45);
       // ---------- BUT ----------
       flash(5.3, 0.7); push("#w3", 5.3, 3);
-      type("#b1", 5.4); type("#b2", 5.95); type("#b3", 6.5); type("#b4", 6.75);
+      type("#b1", 5.4); type("#b1b", 5.55); type("#b2", 5.95); type("#b2b", 6.05); type("#b3", 6.5); type("#b4", 6.75);
       draw("#arrow", 5.6, 0.35);
       tl.to("#arrow", { opacity: 0, duration: 0.15 }, 8.1);
       tl.fromTo("#b4", { scale: 1 }, { scale: 1.15, duration: 0.35, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, 7.2);
@@ -296,7 +296,7 @@
       tl.fromTo("#heart", { scale: 3.2, rotation: -18, opacity: 0, filter: "blur(10px) brightness(1.8)", transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, filter: "blur(0px) brightness(1)", transformOrigin: "50% 60%", duration: 0.22, ease: "expo.out" }, 14.4);
       tl.fromTo("#heart", { x: 0, y: 0 }, { keyframes: [{ x: -18, y: 10, duration: 0.05 }, { x: 15, y: -8, duration: 0.05 }, { x: -9, y: 5, duration: 0.06 }, { x: 5, y: -3, duration: 0.07 }, { x: 0, y: 0, duration: 0.08 }], ease: "none", immediateRender: false }, 14.62);
       tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 15.2);
-      type("#o5-d", 14.95);
+      type("#o5-d", 14.95); type("#o5-e", 15.2);
       // dog safe → blur out → black → first frame (loop)
       flash(16.8, 0.35); push("#w7", 16.8, 1.2);
       tl.to("#w7i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.5, ease: "power2.in" }, 17.0);

@@ -157,3 +157,8 @@ Watch till the end.
 ## Footage delivery
 
 The user uploads screen recordings to the Google Drive folder **"Video files"**. Look there first (Google Drive search, then download) before asking for uploads.
+
+## Text color rule
+
+- Any scene with 2+ caption lines: at least 2 words in different neon colors (red/yellow/green/blue), rest white.
+- The last part (reveal/ending): 3 different colors (e.g. `*RESPECT*` green, `*TRUE` blue, `HERO*` yellow).
