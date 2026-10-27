@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
-    <title>Why Is This Baby Alone</title>
+    <title>Drowning Dog</title>
     <script src="assets/vendor/gsap.min.js"></script>
     <style>
       @font-face {
@@ -197,59 +197,53 @@
       .t.r, .t .r { color: #ff2e3b; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 0 26px rgba(255, 46, 59, 0.85), 0 0 50px rgba(255, 46, 59, 0.45); }
       .t.b, .t .b { color: #2ec5ff; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 0 26px rgba(46, 197, 255, 0.85), 0 0 50px rgba(46, 197, 255, 0.45); }
       .t .g { color: var(--green); text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 0 26px rgba(57, 255, 20, 0.85); }
+          .row { display: flex; gap: 22px; justify-content: center; }
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="18" data-width="1080" data-height="1920">
-      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s1-road.mp4" data-start="0" data-duration="1.43" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s2-carpass.mp4" data-start="1.43" data-duration="2.0" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/s3-sidewalk.mp4" data-start="3.43" data-duration="1.87" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/s4-driver.mp4" data-start="5.3" data-duration="2.25" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w5r"><video id="v5r" class="clip" src="assets/footage/s5-run.mp4" data-start="7.55" data-duration="2.45" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w6x"><video id="v6x" class="clip" src="assets/footage/d-carry.mp4" data-start="10" data-duration="3" data-track-index="0" muted playsinline></video></div>
-      <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/e-hold.mp4" data-start="13" data-duration="5" data-track-index="0" muted playsinline></video></div></div>
-      <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/e-hold.mp4" data-start="15.2" data-duration="1.4" data-media-start="2.2" data-track-index="0" muted playsinline></video></div>
-      <!-- FREEZE on the hit: still frame, zooming into the baby -->
+      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s1-hook.mp4" data-start="0" data-duration="0.93" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s2-canal.mp4" data-start="2.43" data-duration="2.87" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/s3-claw.mp4" data-start="5.3" data-duration="3" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/s4-grab.mp4" data-start="8.3" data-duration="2.7" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w5r"><video id="v5r" class="clip" src="assets/footage/s5-hold.mp4" data-start="11" data-duration="2.3" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/s6-lift.mp4" data-start="13.3" data-duration="3.5" data-track-index="0" muted playsinline></video></div></div>
+      <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/s6-lift.mp4" data-start="14.4" data-duration="1.4" data-media-start="1.1" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w7"><div class="shot" id="w7i"><video id="v7" class="clip" src="assets/footage/s7-safe.mp4" data-start="16.8" data-duration="1.2" data-track-index="0" muted playsinline></video></div></div>
+      <!-- FREEZE on the hit: still frame, zooming into the dog -->
       <div id="frz" class="clip" data-start="0.93" data-duration="1.5" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
       <div id="grade" class="clip" data-start="0" data-duration="18" data-track-index="1"><div class="vig"></div></div>
-      <div id="c1" class="clip ov" data-start="0" data-duration="2.8" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t y xl" id="h1">*BABY ALONE?*</span></div></div>
-      <div id="c2" class="clip ov" data-start="2.8" data-duration="2.5" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k1">*BAREFOOT</span><span class="t" id="k2">IN THE COLD*</span></div></div>
-      <div id="c3" class="clip ov" data-start="5.3" data-duration="3.1" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k3">*THEN A BUS</span><span class="t" id="k4">CAME BY…*</span></div></div>
-      <div id="c4" class="clip ov" data-start="8.4" data-duration="1.6" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t y" id="b1">*BUT ONE DRIVER</span><span class="t y" id="b2">STOPPED…*</span></div></div>
-      <div id="c5" class="clip ov" data-start="10" data-duration="1.6" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="r1">*SHE RAN OUT*</span></div></div>
-      <div id="c6" class="clip ov" data-start="11.6" data-duration="1.4" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t g" id="r2">*AND CARRIED HER</span><span class="t g" id="r3">TO SAFETY*</span></div></div>
-      <div id="c7" class="clip ov" data-start="13" data-duration="2.2" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t g" id="r4">*SHE WAS ONLY 1*</span></div></div>
-      <div id="o5" class="clip ov" data-start="15.2" data-duration="2.8" data-track-index="2">
-        <div class="cap" style="top: 1250px" id="o5-cap2"><span class="t g" id="o5-c">*SALUTE</span><span class="t g" id="o5-d">TO THIS DRIVER!*</span></div>
+      <div id="c1" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2"><div class="cap" style="top: 1300px"><span class="t y xl" id="h1">*DROWNING DOG*</span></div></div>
+      <div id="c2" class="clip ov" data-start="2.43" data-duration="2.87" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k1">*IT HAD FALLEN</span><div class="row"><span class="t" id="k2">INTO THE</span><span class="t b" id="k3">WATER*</span></div></div></div>
+      <div id="c3" class="clip ov" data-start="5.3" data-duration="8" data-track-index="2"><div class="cap" style="top: 1180px"><span class="t y" id="b1">*HE REFUSED</span><span class="t y" id="b2">TO GIVE UP</span><div class="row"><span class="t" id="b3">ON THE</span><span class="t g" id="b4">DOG*</span></div></div></div>
+      <div id="o5" class="clip ov" data-start="14.4" data-duration="3.6" data-track-index="2">
+        <div class="cap" style="top: 1220px" id="o5-cap2"><span class="t g xl" id="o5-c">*RESPECT*</span><span class="t y" id="o5-d">*TRUE HERO*</span></div>
         <img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 640px; top: 300px" />
       </div>
-      <div id="circ" class="clip ov" data-start="0" data-duration="2.5" data-track-index="2">
-        <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="400" cy="970" r="170" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1069" stroke-dashoffset="1069" /></svg>
-        <div class="label" id="lab" style="left: 320px; top: 720px; color: var(--yellow)">BABY</div>
+      <div id="circ" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
+        <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="290" cy="1040" r="170" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1069" stroke-dashoffset="1069" /></svg>
+        <div class="label" id="lab" style="left: 90px; top: 770px; color: #ff2e3b">HELPLESS DOG</div>
+      </div>
+      <div id="arr" class="clip ov" data-start="5.3" data-duration="2.9" data-track-index="2">
+        <svg class="draw" viewBox="0 0 1080 1920"><path id="arrow" d="M300 470 L500 650 M500 650 L440 640 M500 650 L490 590" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="420" stroke-dashoffset="420" /></svg>
+        <div class="label" id="lab2" style="left: 110px; top: 360px; color: var(--green)">GOOD MAN</div>
       </div>
       <audio id="sfx-shutter1" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
       <audio id="sfx-ding-hook" src="assets/audio/ding.m4a" data-start="0.93" data-duration="1.4" data-track-index="6" data-volume="0.7"></audio>
-      <audio id="sfx-shutter2" src="assets/audio/camera-shutter.m4a" data-start="8.4" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-shutter3" src="assets/audio/camera-shutter.m4a" data-start="10.0" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-shutter4" src="assets/audio/camera-shutter.m4a" data-start="15.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-type3" src="assets/audio/keyboard-typing.m4a" data-start="2.9" data-duration="0.42" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type4" src="assets/audio/keyboard-typing.m4a" data-start="3.35" data-duration="0.52" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type5" src="assets/audio/keyboard-typing.m4a" data-start="5.4" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type6" src="assets/audio/keyboard-typing.m4a" data-start="5.9" data-duration="0.66" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type7" src="assets/audio/keyboard-typing.m4a" data-start="8.5" data-duration="0.6" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type8" src="assets/audio/keyboard-typing.m4a" data-start="9.1" data-duration="0.42" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type9" src="assets/audio/keyboard-typing.m4a" data-start="10.1" data-duration="0.55" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type10" src="assets/audio/keyboard-typing.m4a" data-start="11.7" data-duration="0.68" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type11" src="assets/audio/keyboard-typing.m4a" data-start="12.4" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type12" src="assets/audio/keyboard-typing.m4a" data-start="13.15" data-duration="0.7" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type13" src="assets/audio/keyboard-typing.m4a" data-start="15.9" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="15.35" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
+      <audio id="sfx-shutter2" src="assets/audio/camera-shutter.m4a" data-start="5.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-shutter3" src="assets/audio/camera-shutter.m4a" data-start="14.4" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-type1" src="assets/audio/keyboard-typing.m4a" data-start="2.55" data-duration="0.55" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type2" src="assets/audio/keyboard-typing.m4a" data-start="3.15" data-duration="0.62" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type3" src="assets/audio/keyboard-typing.m4a" data-start="5.4" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type4" src="assets/audio/keyboard-typing.m4a" data-start="5.95" data-duration="0.42" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type5" src="assets/audio/keyboard-typing.m4a" data-start="6.5" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type6" src="assets/audio/keyboard-typing.m4a" data-start="14.95" data-duration="0.48" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="14.45" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
       <div id="fx" class="clip" data-start="0" data-duration="18" data-track-index="3">
         <div class="wm">MOVIE FACTS</div><div id="flash"></div><div id="leak"></div><div id="fade"></div><div id="loop"></div>
       </div>
     </div>
-
-    <script>
+<script>
       const tl = gsap.timeline({ paused: true });
       const type = (sel, t, cps = 24) => {
         const el = document.querySelector(sel);
@@ -273,42 +267,44 @@
       // ---------- HOOK (plain footage until the 0.93 hit) ----------
       const HIT = 0.93;
       flash(HIT, 0.95);
-      tl.fromTo("#w1", { scale: 1.14 }, { scale: 1.0, duration: 0.35, ease: "power3.out", immediateRender: false }, HIT);
       tl.fromTo("#h1", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
       draw("#ring", 1.15); label("#lab", 1.35);
-      tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "37% 50%" }, { scale: 1.9, transformOrigin: "37% 50%", duration: 1.5, ease: "power2.out" }, HIT);
-      tl.to(["#ring", "#lab"], { opacity: 0, duration: 0.15 }, 2.35);
+      tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "27% 54%" }, { scale: 1.9, transformOrigin: "27% 54%", duration: 1.5, ease: "power2.out" }, HIT);
+      tl.to(["#ring", "#lab"], { opacity: 0, duration: 0.15 }, 2.3);
       // ---------- CONTEXT ----------
-      type("#k1", 2.9); type("#k2", 3.35);
-      flash(1.43, 0.35); flash(3.43, 0.35);
-      flash(5.3, 0.4); type("#k3", 5.4); type("#k4", 5.9);
-      flash(7.55, 0.35);
+      flash(2.43, 0.35); push("#w2", 2.43, 2.87);
+      type("#k1", 2.55); type("#k2", 3.15); type("#k3", 3.45);
       // ---------- BUT ----------
-      flash(8.4, 0.7); type("#b1", 8.5); type("#b2", 9.1);
+      flash(5.3, 0.7); push("#w3", 5.3, 3);
+      type("#b1", 5.4); type("#b2", 5.95); type("#b3", 6.5); type("#b4", 6.75);
+      draw("#arrow", 5.6, 0.35); label("#lab2", 5.75);
+      tl.to(["#arrow", "#lab2"], { opacity: 0, duration: 0.15 }, 8.1);
+      tl.fromTo("#b4", { scale: 1 }, { scale: 1.15, duration: 0.35, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, 7.2);
+      flash(8.3, 0.35); push("#w4", 8.3, 2.7);
+      flash(11, 0.35); push("#w5r", 11, 2.3);
+      out("#c3 .cap", 13.1);
       // ---------- REVEAL ----------
-      flash(10, 0.7); push("#w6x", 10, 3);
-      type("#r1", 10.1); type("#r2", 11.7); type("#r3", 12.4);
-      flash(13, 0.4); push("#w5", 13, 5);
-      type("#r4", 13.15);
+      flash(13.3, 0.4); push("#w5", 13.3, 3.5);
       // IMPACT
-      flash(15.3, 0.95);
-      tl.fromTo("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)" }, { scale: 1.45, filter: "blur(18px) brightness(2.1)", duration: 0.07, ease: "power4.out" }, 15.28);
-      tl.to("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)", duration: 0.6, ease: "power3.out" }, 15.35);
-      tl.fromTo("#leak", { opacity: 0, x: 0, scale: 1.3 }, { opacity: 1, x: 0, scale: 1.3, duration: 0.06 }, 15.28);
-      tl.to("#leak", { opacity: 0, x: 300, duration: 0.7, ease: "power2.out" }, 15.38);
-      tl.fromTo("#w5g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 15.3);
-      tl.to("#w5g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 15.4);
-      tl.fromTo("#w5", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 15.32);
-      // heart slams in ON the impact: huge → normal with the blow-out, then shakes with the frame
-      tl.fromTo("#heart", { scale: 3.2, rotation: -18, opacity: 0, filter: "blur(10px) brightness(1.8)", transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, filter: "blur(0px) brightness(1)", transformOrigin: "50% 60%", duration: 0.22, ease: "expo.out" }, 15.3);
-      tl.fromTo("#heart", { x: 0, y: 0 }, { keyframes: [{ x: -18, y: 10, duration: 0.05 }, { x: 15, y: -8, duration: 0.05 }, { x: -9, y: 5, duration: 0.06 }, { x: 5, y: -3, duration: 0.07 }, { x: 0, y: 0, duration: 0.08 }], ease: "none", immediateRender: false }, 15.52);
-      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 2, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 16.1);
-      type("#o5-c", 15.9); type("#o5-d", 16.25);
-      // blur out → black → first frame (loop)
-      tl.to("#w5i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.6, ease: "power2.in" }, 16.85);
-      tl.to(["#o5-cap2", "#heart"], { opacity: 0, scale: 1.3, duration: 0.45, ease: "power2.in" }, 16.9);
-      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.in" }, 17.2);
-      tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 17.6);
+      flash(14.4, 0.95);
+      tl.fromTo("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)" }, { scale: 1.45, filter: "blur(18px) brightness(2.1)", duration: 0.07, ease: "power4.out" }, 14.38);
+      tl.to("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)", duration: 0.6, ease: "power3.out" }, 14.45);
+      tl.fromTo("#leak", { opacity: 0, x: 0, scale: 1.3 }, { opacity: 1, x: 0, scale: 1.3, duration: 0.06 }, 14.38);
+      tl.to("#leak", { opacity: 0, x: 300, duration: 0.7, ease: "power2.out" }, 14.48);
+      tl.fromTo("#w5g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 14.4);
+      tl.to("#w5g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 14.5);
+      tl.fromTo("#w5", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 14.42);
+      tl.fromTo("#o5-c", { scale: 2.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.18, ease: "expo.out" }, 14.4);
+      tl.fromTo("#heart", { scale: 3.2, rotation: -18, opacity: 0, filter: "blur(10px) brightness(1.8)", transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, filter: "blur(0px) brightness(1)", transformOrigin: "50% 60%", duration: 0.22, ease: "expo.out" }, 14.4);
+      tl.fromTo("#heart", { x: 0, y: 0 }, { keyframes: [{ x: -18, y: 10, duration: 0.05 }, { x: 15, y: -8, duration: 0.05 }, { x: -9, y: 5, duration: 0.06 }, { x: 5, y: -3, duration: 0.07 }, { x: 0, y: 0, duration: 0.08 }], ease: "none", immediateRender: false }, 14.62);
+      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 15.2);
+      type("#o5-d", 14.95);
+      // dog safe → blur out → black → first frame (loop)
+      flash(16.8, 0.35); push("#w7", 16.8, 1.2);
+      tl.to("#w7i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.5, ease: "power2.in" }, 17.0);
+      tl.to(["#o5-cap2", "#heart"], { opacity: 0, scale: 1.3, duration: 0.4, ease: "power2.in" }, 17.0);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.in" }, 17.3);
+      tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 17.65);
 
       window.__timelines["main"] = tl;
     </script>
