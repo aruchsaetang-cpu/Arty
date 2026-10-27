@@ -16,13 +16,15 @@ Logan, Utah, September 2011: motorcyclist Brandon Wright (21) collided with a BM
 trapped underneath it as it caught fire. Bystanders, with police, lifted the burning car and
 pulled him out. Filmed on a bystander's phone.
 
-## Captions (five beats, scaled to ~16s)
+## Captions (user-supplied script, ~16s)
 
-- **0–2s:** plain footage of the burning car until the 0.93 hit (shutter + ding), freeze + zoom on the car: *HE'S TRAPPED* (circle "UNDER THE CAR")
-- **2–5s:** *A* **BIKER** *CRASHED…* / *THE CAR CAUGHT* **FIRE**
-- **5–9s:** *HE WAS STILL UNDERNEATH*
-- **9–13s:** *BUT STRANGERS RAN IN* / *AND LIFTED THE CAR*
-- **13–16s:** impact + heart → *17 STRANGERS. 1 LIFE.* / verdict *SALUTE TO HUMANITY*
+- **0–2s · Hook:** *HE WAS TRAPPED UNDER A BURNING CAR.*: freeze frame → rapid zoom → circle the trapped person (this hook overrides the 2-word hook rule for this video)
+- **2–5s · Escalation:** *A MOTORCYCLE CRASHED.* / *THEN THE CAR CAUGHT FIRE.*: two quick cuts, each sentence appears separately
+- **5–9s · Suspense:** *THEN STRANGERS RAN TOWARD THE FLAMES.*: slow the footage slightly, hold the final frame for a beat
+- **9–13s · Payoff:** *17 PEOPLE JOINED FOR ONE REASON…* / *TO SAVE HIS LIFE.*: reveal the group lifting the car on "SAVE HIS LIFE"
+- **13–16s · Ending:** *17 STRANGERS.* / *ONE HUMANITY.* ❤️: end on the strongest rescue moment (impact + heart)
+
+Fact to confirm in the footage: 17 people (reported as "a team of 17 bystanders").
 
 ## Sources
 
