@@ -255,7 +255,7 @@
       <audio id="sfx-type-hook" src="assets/audio/keyboard-typing.m4a" data-start="1" data-duration="0.5" data-track-index="5" data-volume="0.7"></audio>
       <audio id="sfx-pop" src="assets/audio/pop.m4a" data-start="1.7" data-duration="0.16" data-track-index="6" data-volume="0.8"></audio>
       <audio id="sfx-shutter-impact" src="assets/audio/camera-shutter.m4a" data-start="15.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="15.6" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
+      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="15.35" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
       <audio id="sfx-type-verdict" src="assets/audio/keyboard-typing.m4a" data-start="15.9" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
 
       <div id="fx" class="clip" data-start="0" data-duration="18" data-track-index="3">
@@ -330,7 +330,9 @@
       tl.fromTo("#w5g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 15.3);
       tl.to("#w5g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 15.4);
       tl.fromTo("#w5", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 15.32);
-      tl.fromTo("#heart", { scale: 0, rotation: -25, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, transformOrigin: "50% 60%", duration: 0.45, ease: "back.out(2.6)" }, 15.6);
+      // heart slams in ON the impact: huge → normal with the blow-out, then shakes with the frame
+      tl.fromTo("#heart", { scale: 3.2, rotation: -18, opacity: 0, filter: "blur(10px) brightness(1.8)", transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, filter: "blur(0px) brightness(1)", transformOrigin: "50% 60%", duration: 0.22, ease: "expo.out" }, 15.3);
+      tl.fromTo("#heart", { x: 0, y: 0 }, { keyframes: [{ x: -18, y: 10, duration: 0.05 }, { x: 15, y: -8, duration: 0.05 }, { x: -9, y: 5, duration: 0.06 }, { x: 5, y: -3, duration: 0.07 }, { x: 0, y: 0, duration: 0.08 }], ease: "none", immediateRender: false }, 15.52);
       tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 2, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 16.1);
       type("#o5-c", 15.9); type("#o5-d", 16.25);
       // blur out → black → first frame (loop)
