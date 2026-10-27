@@ -9,7 +9,7 @@ emotional true-moment Shorts**.
 
 ## Hard rules
 
-- **Length: 30s** (ends at 30s, including the ending impact and loop). Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
+- **Length: 14–30s** (fit the story; never longer than 30s). The five beats scale to the length; the 0.93s hit stays fixed. Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
 - **No voice.** No narration, no TTS. Emotion comes from picture, text and music only.
 - **One story per video**, built as a three-act arc: setup (who is it, what's wrong) →
   the turn (the painful or kind moment) → payoff (the tears, the reunion, the reveal).
@@ -26,15 +26,6 @@ emotional true-moment Shorts**.
 | **7–15s** | Reveal an unexpected detail | The twist nobody expects (the "But…") |
 | **15–24s** | Explain the emotional turning point | The moment it changes: the kindness, the reunion, the tears |
 | **24–30s** | Deliver the most meaningful fact or ending | Impact + heart on the strongest frame, the verdict line, loop back to the start |
-
-**60s version** (use when the story has enough footage; test after 30s videos perform):
-
-| Time | Beat |
-|---|---|
-| 0–3s | Hook: an intriguing or emotional moment immediately |
-| 3–20s | The problem: what is happening, through a sequence of meaningful shots |
-| 20–45s | The emotional turn: the kindness, the unexpected response, the change |
-| 45–60s | The payoff: the most meaningful moment + one concise message |
 
 **Principles (Sunnah Edit style):** real moments with a clear story (someone struggles → someone responds → the outcome); emotion before explanation; **cuts follow the music's emotional build**, not constant flashy transitions; simple text with one memorable theme (kindness, sacrifice, friendship, perseverance). Favor stories of **someone helping a stranger when nobody else does**.
 
