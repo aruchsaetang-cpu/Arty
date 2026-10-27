@@ -26,6 +26,8 @@ Final reference clip: `videos/jackie-chan-short` v6 (20.9 s). Every new video = 
    **Topic pick (user rule):** only very famous actors. If the film/character is better known than the actor, lead with it:
    hook "Did you know the actor from <famous film> almost died?" (e.g. "Did you know the actress from Crouching Tiger…").
    Otherwise "Times <star> almost died."
+   **Hook types (user rule):** lead with a shocking event, a mystery, or an unusual decision — e.g. "Stallone told Dolph
+   Lundgren to hit him for real.", "This punch put Rocky in intensive care.", "Why is Jackie Chan's skull missing a piece?"
 4. edit.json like edit6.json: `layout: full`, `caption_style: comic`, `caption_y: 1020`, `pop_frames 3`, `pop_from 0.5`,
    red keywords `#FF3B30`, a cut every ~1–1.5 s. Render → finish.sh → one safety sheet → send → title + description
    (format below) in English → commit. No extra previews, no multiple variants, short replies.
