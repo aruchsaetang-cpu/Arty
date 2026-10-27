@@ -1,0 +1,29 @@
+{
+ "voice": {
+  "am_puck": 0.5,
+  "am_liam": 0.5
+ },
+ "gap": 0.1,
+ "sentences": [
+  [
+   "Times Jackie Chan almost *died*.",
+   1.05
+  ],
+  [
+   "During the filming of Armour of God, he had to jump from a castle wall, onto a tree branch.",
+   1.3
+  ],
+  [
+   "But the branch *snapped*.",
+   1.05
+  ],
+  [
+   "He fell head-first onto the rocks, and cracked his *skull*.",
+   1.25
+  ],
+  [
+   "Emergency brain surgery. He still has a *hole* in his head.",
+   1.25
+  ]
+ ]
+}

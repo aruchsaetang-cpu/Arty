@@ -28,7 +28,7 @@ Talk to the user in Thai.
   coloured red `#FF3B30`.
 - **Layout (user, 2026-10-26): full-frame, NO blur band** — edit.json `"layout": "full"`, `"caption_y": 1020`; set each shot's
   `"pos"` (object-position) so the subject stays in the 9:16 crop, then check the safety sheet for empty/edge framing.
-- **Format (user rule, 2026-10-27, from the "Times Michael Jackson almost died" reference):** ~14 s of narration (Hook/Context/But/Reveal in short, punchy sentences, no "this is the real footage" line — cut straight to it; hook = the shocking result/consequence, never a spoiler of the event itself), then ~14 s of REAL footage of the moment — original audio, no captions. Total 25–30 s.
+- **Format (user rule, 2026-10-27, from the "Times Michael Jackson almost died" reference):** ~40% narration (~12 s; Hook/Context/But/Reveal in short, punchy sentences, no "this is the real footage" line — cut straight to it; hook = the shocking result/consequence, never a spoiler of the event itself), then ~60% (~17 s) REAL footage of the moment — must include the action itself (e.g. the jump), then the result, then a slow-mo replay — original audio, no captions. Total 25–30 s.
 - **Hook/context wording (user rule):** hook = "Times <star> almost died."; context starts "During the filming of <film>, …". The real-footage half uses ONLY the clip the user gives for it (replay it in slow-mo to fill time; add whoosh/impact SFX if it has no sound) — never borrow footage from other uploads.
 - **Cuts:** a new shot every 1–2 s; no music in the delivered file.
 - **Voice realism:** give each sentence its own speed in the spec (`["text", 1.25]` excited, `1.0–1.1` for weight/punchlines),
