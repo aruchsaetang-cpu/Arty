@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>He Carried Her Out Of A Fire</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+      }
+      :root {
+        --green: #39ff14;
+        --yellow: #ffe600;
+        --white: #ffffff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: "Kanit", sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .shot {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .shot video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ov {
+        z-index: 3;
+      }
+      #fx {
+        z-index: 5;
+      }
+      .vig {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.5) 100%);
+      }
+
+      /* Sunnah-Edit style caption */
+      .cap {
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-align: center;
+      }
+      .t {
+        display: block;
+        font-weight: 900;
+        font-size: 84px;
+        line-height: 1.08;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--white);
+        transform: skewX(-7deg);
+        white-space: nowrap;
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 8px 18px rgba(0, 0, 0, 0.7);
+      }
+      .t.g {
+        color: var(--green);
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 0 26px rgba(57, 255, 20, 0.85), 0 0 50px rgba(57, 255, 20, 0.45);
+      }
+      .t.y {
+        color: var(--yellow);
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 0 26px rgba(255, 230, 0, 0.8), 0 0 50px rgba(255, 230, 0, 0.4);
+      }
+      .t.xl {
+        font-size: 120px;
+      }
+      .t.sm {
+        font-size: 66px;
+      }
+      .label {
+        position: absolute;
+        font-weight: 900;
+        font-size: 58px;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        transform: skewX(-8deg);
+        white-space: nowrap;
+        text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 20px currentColor;
+      }
+      .stamp {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-weight: 900;
+        font-size: 104px;
+        color: #fff;
+        letter-spacing: 0.04em;
+        text-shadow: 0 6px 24px rgba(0, 0, 0, 0.8), -3px -3px 0 #000, 3px 3px 0 #000;
+      }
+      svg.draw {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: visible;
+      }
+      .wm {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 1530px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.45);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+      #flash {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        opacity: 0;
+      }
+      #leak {
+        position: absolute;
+        left: -300px;
+        top: 200px;
+        width: 1700px;
+        height: 1500px;
+        border-radius: 50%;
+        opacity: 0;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 120, 200, 0.85) 30%, rgba(255, 150, 40, 0.55) 55%, rgba(255, 80, 160, 0) 72%);
+        filter: blur(30px);
+      }
+      #heart {
+        position: absolute;
+        left: 600px;
+        top: 560px;
+        width: 340px;
+        height: 339px;
+        opacity: 0;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+      }
+      #loop {
+        position: absolute;
+        inset: 0;
+        background: url(assets/img/loop-first-frame.jpg) center / cover;
+        opacity: 0;
+        transform: scale(1);
+      }
+      #fade {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18" data-width="1080" data-height="1920">
+      <!-- ===== real footage (KOMO News / Wenatchee World, via The Daily Share) ===== -->
+      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/a-rescue.mp4" data-start="0" data-duration="4" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/b-surprise.mp4" data-start="4" data-duration="3" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/c-interview.mp4" data-start="7" data-duration="3" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/d-crowd.mp4" data-start="10" data-duration="3" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/e-hug.mp4" data-start="13" data-duration="5" data-track-index="0" muted playsinline></video></div></div>
+      <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/e-hug.mp4" data-start="15.2" data-duration="1.4" data-media-start="2.2" data-track-index="0" muted playsinline></video></div>
+
+      <div id="grade" class="clip" data-start="0" data-duration="18" data-track-index="1"><div class="vig"></div></div>
+
+      <!-- HOOK + CONTEXT 1 (0–4) -->
+      <div id="o1" class="clip ov" data-start="0" data-duration="4" data-track-index="2">
+        <div class="cap" style="top: 1180px" id="o1-cap1"><span class="t y" id="o1-a" style="font-size: 92px">*TRAPPED IN FLAMES*</span></div>
+        <div class="cap" style="top: 1180px" id="o1-cap2"><span class="t" id="o1-b">*HE PULLED HER</span><span class="t" id="o1-c">FROM HER CRIB*</span></div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <circle id="o1-ring" cx="760" cy="1560" r="230" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1446" stroke-dashoffset="1446" />
+        </svg>
+        <div class="label" id="o1-lab" style="left: 110px; top: 1700px; color: var(--yellow)">THE BABY</div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <path id="o1-arrow" d="M330 1720 Q430 1620 520 1590" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-dasharray="230" stroke-dashoffset="230" />
+          <path id="o1-head" d="M486 1550 L530 1580 L488 1612" fill="none" stroke="#ffe600" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0" />
+        </svg>
+      </div>
+
+      <!-- CONTEXT 2 (4–7) -->
+      <div id="o2" class="clip ov" data-start="4" data-duration="3" data-track-index="2">
+        <div class="cap" style="top: 1300px"><span class="t" id="o2-a">*SHE FOUND OUT</span><span class="t g" id="o2-b">YEARS LATER*</span></div>
+      </div>
+
+      <!-- CONTEXT 3 + BUT (7–10) -->
+      <div id="o3" class="clip ov" data-start="7" data-duration="3" data-track-index="2">
+        <div class="cap" style="top: 1300px" id="o3-cap1"><span class="t" id="o3-a">*SHE OWED HIM</span><span class="t" id="o3-b">HER LIFE*</span></div>
+        <div class="cap" style="top: 1300px" id="o3-cap2"><span class="t y" id="o3-c">*BUT SHE HAD</span><span class="t y" id="o3-d">ONE WISH…*</span></div>
+      </div>
+
+      <!-- REVEAL 1–2 (10–13) -->
+      <div id="o4" class="clip ov" data-start="10" data-duration="3" data-track-index="2">
+        <div class="cap" style="top: 200px" id="o4-cap1"><span class="t xl" id="o4-a">*17 YEARS LATER…*</span></div>
+        <div class="cap" style="top: 200px" id="o4-cap2"><span class="t" id="o4-b">*HER HERO WAS</span><span class="t g" id="o4-c">IN THE CROWD*</span></div>
+        <svg class="draw" viewBox="0 0 1080 1920">
+          <circle id="o4-ring" cx="660" cy="830" r="300" fill="none" stroke="#39ff14" stroke-width="10" stroke-dasharray="1885" stroke-dashoffset="1885" />
+        </svg>
+        <div class="label" id="o4-lab" style="left: 600px; top: 1170px; color: var(--green)">HERO</div>
+      </div>
+
+      <!-- REVEAL 3 + VERDICT (13–18) -->
+      <div id="o5" class="clip ov" data-start="13" data-duration="5" data-track-index="2">
+        <div class="cap" style="top: 1300px" id="o5-cap1"><span class="t g" id="o5-a">*AT HER GRADUATION*</span></div>
+        <div class="cap" style="top: 1300px" id="o5-cap2"><span class="t g" id="o5-c">*SALUTE</span><span class="t g" id="o5-d">TO THIS HERO!*</span></div>
+        <img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 70px; top: 330px" />
+      </div>
+
+      <!-- SOUND: only the hook and the ending impact -->
+      <audio id="sfx-shutter-open" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-type-hook" src="assets/audio/keyboard-typing.m4a" data-start="1" data-duration="0.5" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-pop" src="assets/audio/pop.m4a" data-start="1.7" data-duration="0.16" data-track-index="6" data-volume="0.8"></audio>
+      <audio id="sfx-shutter-impact" src="assets/audio/camera-shutter.m4a" data-start="15.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="15.6" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
+      <audio id="sfx-type-verdict" src="assets/audio/keyboard-typing.m4a" data-start="15.9" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
+
+      <div id="fx" class="clip" data-start="0" data-duration="18" data-track-index="3">
+        <div class="wm">MOVIE FACTS</div>
+        <div id="flash"></div>
+        <div id="leak"></div>
+        <div id="fade"></div>
+        <div id="loop"></div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const type = (sel, t, cps = 24) => {
+        const el = document.querySelector(sel);
+        const txt = el.textContent;
+        el.textContent = "";
+        for (const c of txt) {
+          const sp = document.createElement("span");
+          sp.className = "ch";
+          sp.textContent = c;
+          el.appendChild(sp);
+        }
+        tl.fromTo(el.querySelectorAll(".ch"), { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 1 / cps, ease: "none" }, t);
+      };
+      const out = (sel, t) => tl.to(sel, { opacity: 0, duration: 0.2 }, t);
+      const draw = (sel, t, d = 0.4) => tl.to(sel, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, t);
+      const show = (sel, t) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.12 }, t);
+      const label = (sel, t) => tl.fromTo(sel, { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, transformOrigin: "0% 50%", duration: 0.3, ease: "back.out(2.5)" }, t);
+      const flash = (t, o = 0.75) => tl.fromTo("#flash", { opacity: o }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      const push = (sel, t, dur, a = 1.0, b = 1.06) => tl.fromTo(sel, { scale: a }, { scale: b, duration: dur, ease: "none", immediateRender: false }, t);
+
+      // ---------- HOOK (0.93 hit; plain footage before it) ----------
+      const HIT = 0.93;
+      tl.set("#w1", { scale: 1.0 }, 0);
+      flash(HIT, 0.95);
+      tl.fromTo("#w1", { scale: 1.14 }, { scale: 1.0, duration: 0.35, ease: "power3.out", immediateRender: false }, HIT);
+      push("#w1", HIT + 0.35, 4 - HIT - 0.35);
+      type("#o1-a", HIT + 0.05, 45);
+      draw("#o1-ring", HIT + 0.45);
+      label("#o1-lab", 1.7);
+      draw("#o1-arrow", 1.75, 0.3);
+      show("#o1-head", 2.0);
+      out(["#o1-ring", "#o1-lab", "#o1-arrow", "#o1-head"], 2.75);
+      // ---------- CONTEXT ----------
+      out("#o1-cap1", 2.75);
+      type("#o1-b", 2.95);
+      type("#o1-c", 3.45);
+      flash(4, 0.4); push("#w2", 4, 3);
+      type("#o2-a", 4.15); type("#o2-b", 4.8);
+      flash(7, 0.4); push("#w3", 7, 3);
+      type("#o3-a", 7.1); type("#o3-b", 7.65);
+      // ---------- BUT ----------
+      out("#o3-cap1", 8.35);
+      type("#o3-c", 8.5); type("#o3-d", 9.05);
+      // ---------- REVEAL ----------
+      flash(10, 0.4); push("#w4", 10, 3);
+      type("#o4-a", 10.1);
+      out("#o4-cap1", 11.0);
+      type("#o4-b", 11.15); type("#o4-c", 11.75);
+      draw("#o4-ring", 11.3, 0.45);
+      label("#o4-lab", 11.6);
+      flash(13, 0.4); push("#w5", 13, 5);
+      type("#o5-a", 13.15);
+      out("#o5-cap1", 15.1);
+      // IMPACT
+      flash(15.3, 0.95);
+      tl.fromTo("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)" }, { scale: 1.45, filter: "blur(18px) brightness(2.1)", duration: 0.07, ease: "power4.out" }, 15.28);
+      tl.to("#w5i", { scale: 1.0, filter: "blur(0px) brightness(1)", duration: 0.6, ease: "power3.out" }, 15.35);
+      tl.fromTo("#leak", { opacity: 0, x: 0, scale: 1.3 }, { opacity: 1, x: 0, scale: 1.3, duration: 0.06 }, 15.28);
+      tl.to("#leak", { opacity: 0, x: 300, duration: 0.7, ease: "power2.out" }, 15.38);
+      tl.fromTo("#w5g", { opacity: 0, x: 0, scale: 1.0 }, { opacity: 0.5, x: 70, scale: 1.18, duration: 0.08, ease: "none" }, 15.3);
+      tl.to("#w5g", { opacity: 0, x: 18, scale: 1.04, duration: 1.0, ease: "power2.out" }, 15.4);
+      tl.fromTo("#w5", { x: 0, y: 0 }, { keyframes: [{ x: -26, y: 14, duration: 0.05 }, { x: 22, y: -12, duration: 0.05 }, { x: -14, y: 8, duration: 0.06 }, { x: 9, y: -5, duration: 0.07 }, { x: -4, y: 2, duration: 0.08 }, { x: 0, y: 0, duration: 0.09 }], ease: "none", immediateRender: false }, 15.32);
+      tl.fromTo("#heart", { scale: 0, rotation: -25, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, rotation: 0, opacity: 1, transformOrigin: "50% 60%", duration: 0.45, ease: "back.out(2.6)" }, 15.6);
+      tl.fromTo("#heart", { scale: 1 }, { scale: 1.1, duration: 0.3, yoyo: true, repeat: 2, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 16.1);
+      type("#o5-c", 15.9); type("#o5-d", 16.25);
+      // blur out → black → first frame (loop)
+      tl.to("#w5i", { scale: 1.35, filter: "blur(16px) brightness(0.8)", duration: 0.6, ease: "power2.in" }, 16.85);
+      tl.to(["#o5-cap2", "#heart"], { opacity: 0, scale: 1.3, duration: 0.45, ease: "power2.in" }, 16.9);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.in" }, 17.2);
+      tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 17.6);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
