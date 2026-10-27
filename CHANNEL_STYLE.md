@@ -84,7 +84,7 @@ Keep every line ≤ 6 words so it can be read at a glance.
 
 Every scene's text is animated, not just typed:
 
-- **Four glowing colors, mixed inside one line like the reference `*STUCK DOG*` (green word + red word):** green `.g` = kindness/hero, red `.r` = danger/loss/death, blue `.b` = sadness/tears/memory, yellow `.y` = attention/the subject. Use `<span class="r">WORD</span>` inside a white line to color single words.
+- **Only 3 glowing colors: red, green, yellow (NO blue).** Mix them inside one line like the reference `*STUCK DOG*` (green word + red word): green `.g` = kindness/hero, red `.r` = danger/loss, yellow `.y` = attention/the subject. Rest of the words white.
 - **Two-tone lines:** line 1 white, line 2 the key words in neon green or yellow (`*HIS LAST WISH*` / **CHEESE**).
 - **Key word gets motion:** pulse (scale 1→1.08 yoyo) or shake (`1 DAY LEFT`) right after it finishes typing.
 - **Callout per scene:** circle + curved arrow + 1–2 word label (`GOOD BOY`, `HIS LAST DAY`) drawing in on the subject, then clearing before it moves.
@@ -160,6 +160,6 @@ The user uploads screen recordings to the Google Drive folder **"Video files"**.
 
 ## Text color rule
 
-- Any scene with 2+ caption lines: at least 2 words in different neon colors (red/yellow/green/blue), rest white.
-- The last part (reveal/ending): 3 different colors (e.g. `*RESPECT*` green, `*TRUE` blue, `HERO*` yellow).
-- Hook style (ref STUCK DOG): 2 words in 2 colors (green + red) ABOVE the subject; glowing green circle on subject; user's curved arrow shape (assets/stickers/arrow-curved-mask.png, used as a CSS mask) filled white→red gradient with white edge + red glow, tail at the circle, head pointing at the red word.
+- Any scene with 2+ caption lines: at least 2 words in different neon colors (red/yellow/green only), rest white.
+- The last part (reveal/ending): 3 different colors (e.g. `*RESPECT*` green, `*TRUE` yellow, `HERO*` red).
+- Hook style (ref STUCK DOG): 2 words in 2 colors (green + red) ABOVE the subject; glowing green circle on subject; user's curved arrow shape (assets/stickers/arrow-curved-mask.png, used as a CSS mask) solid red fill with thick white outline + red glow, tail at the circle, head pointing at the red word.
