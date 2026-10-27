@@ -153,3 +153,7 @@ Watch till the end.
 
 
 **Banned ending line:** no `*SALUTE TO …*` verdicts (looks cheap). End on a meaningful fact or short truth instead.
+
+## Footage delivery
+
+The user uploads screen recordings to the Google Drive folder **"Video files"**. Look there first (Google Drive search, then download) before asking for uploads.
