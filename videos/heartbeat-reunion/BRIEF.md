@@ -16,7 +16,7 @@ angle: loss → kindness (organ donation); real news footage (template: videos/b
 - **2–7s (person + situation):** *HER SON* **DIED** *SUDDENLY…* / *SHE NEVER GOT TO SAY GOODBYE*
 - **7–15s (unexpected detail):** *BUT HE WAS AN ORGAN DONOR* / *HIS* **HEART** *SAVED A STRANGER*
 - **15–24s (emotional turning point):** *YEARS LATER… THEY MET* / *SHE HELD THE STETHOSCOPE* / *AND HEARD IT* **AGAIN**
-- **24–30s (meaningful ending):** impact + heart → *HIS HEART STILL BEATS* / verdict *SALUTE TO THIS HERO*
+- **24–30s (meaningful ending):** impact + heart → *HIS HEART STILL BEATS* / *SAVING A STRANGER*
 
 Verify names and details against the footage before building.
 

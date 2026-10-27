@@ -36,7 +36,7 @@ emotional true-moment Shorts**.
 1. **The helpless one:** show them in trouble; circle + label them (`HELPLESS DOG`, `STUCK DOG`, `BABY`).
 2. **The helper appears:** arrow + label on the helper (`GOOD MAN`, `REAL SUPERMAN`, `DRIVER`).
 3. **The help:** the act of kindness itself, the longest beat.
-4. **The outcome + salute:** the subject is safe → impact + heart → `*SALUTE TO THIS …*`.
+4. **The outcome:** the subject is safe → impact + heart → one meaningful closing line (never "SALUTE": it looks cheap). Use the strongest fact or a short truth: `*17 STRANGERS. ONE HUMANITY.*`, `*HIS HEART STILL BEATS*`, `*ONE STOP. ONE LIFE.*`.
 
 These four steps sit inside the five-beat timing and the 3s cut rule.
 
@@ -150,3 +150,6 @@ Watch till the end.
 
 #shorts #emotional #heartbreaking #kindness #<topic> #<animal-or-person>
 ```
+
+
+**Banned ending line:** no `*SALUTE TO …*` verdicts (looks cheap). End on a meaningful fact or short truth instead.

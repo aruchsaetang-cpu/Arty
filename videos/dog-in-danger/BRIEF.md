@@ -15,7 +15,7 @@ angle: developed from Sunnah Edit's *STUCK DOG*; original source footage only (t
 - **2–5s:** *TOO* **DEEP** *TO CLIMB OUT…* / *NO WAY UP*
 - **5–9s:** *HE COULDN'T* **ESCAPE** *ALONE*
 - **9–13s:** helper appears: arrow + label `GOOD MAN` on the excavator driver → *BUT ONE DRIVER STOPPED HIS WORK* / *AND LOWERED THE* **BUCKET**
-- **13–16s:** impact + heart on the dog riding the bucket up → *SALUTE TO THIS DRIVER*
+- **13–16s:** impact + heart on the dog riding the bucket up → *ONE STOP. ONE LIFE SAVED.*
 
 Verify every line against the footage before building.
 
