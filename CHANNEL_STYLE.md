@@ -9,7 +9,7 @@ emotional true-moment Shorts**.
 
 ## Hard rules
 
-- **Length: exactly 18s** (the video ends at 18s, including the ending impact and loop). Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
+- **Length: 30s** (ends at 30s, including the ending impact and loop). Vertical 1080×1920. Only the real moment itself: no talking heads, no photo collages, no filler.
 - **No voice.** No narration, no TTS. Emotion comes from picture, text and music only.
 - **One story per video**, built as a three-act arc: setup (who is it, what's wrong) →
   the turn (the painful or kind moment) → payoff (the tears, the reunion, the reveal).
@@ -17,16 +17,17 @@ emotional true-moment Shorts**.
   (see the topic bank below). Skip "man feeds hungry dog" and "boy gets surprise bike";
   those are saturated.
 
-## Story structure (every video)
+## Story structure (every video, 30s)
 
-All story beats are on-screen captions (no voice), short lines in `*ASTERISKS*`:
-
-| Beat | Rule | Time in the 18s video |
+| Time | Beat | What it does |
 |---|---|---|
-| **Hook** | 1 sentence, finished within 3s | 0.93s (the hit) → 3s |
-| **Context** | 3–4 sentences: the character / situation / what most people believe | 3 → 8.5s |
-| **But** | 1 sentence that flips the situation (starts with BUT…) | 8.5 → 10s |
-| **Reveal** | 3–4 sentences on how it is actually different; the last one is the verdict on the ending impact | 10 → 16.5s, verdict ~16.5–17.5s, loop at 18s |
+| **0–2s** | Strongest emotional image + hook | Plain footage of the strongest moment until the 0.93s hit (shutter + ding, freeze + zoom, 2-word hook) |
+| **2–7s** | Introduce the person and situation | Who they are, what they are going through (lead with the loss/conflict) |
+| **7–15s** | Reveal an unexpected detail | The twist nobody expects (the "But…") |
+| **15–24s** | Explain the emotional turning point | The moment it changes: the kindness, the reunion, the tears |
+| **24–30s** | Deliver the most meaningful fact or ending | Impact + heart on the strongest frame, the verdict line, loop back to the start |
+
+All beats are on-screen captions (no voice), short lines in `*ASTERISKS*`.
 
 Keep every line ≤ 6 words so it can be read at a glance.
 

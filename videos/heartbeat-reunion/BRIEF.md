@@ -6,16 +6,17 @@ message: "She lost her son, then heard his heart beat again."
 destination: youtube-shorts
 aspect: 1080x1920
 language: en
-length: 18s
+length: 30s
 angle: loss → kindness (organ donation); real news footage (template: videos/bus-driver-baby)
 ---
 
-## Captions (lead with loss; 2-word instant hook; freeze+zoom; detailed text like the dog clip)
+## Captions (30s structure)
 
-- **Hit 0.93s, freeze + zoom on the mother with the stethoscope:** *HIS HEARTBEAT* (circle "MOM")
-- **Context:** *HER SON DIED…* / *SHE NEVER GOT TO SAY GOODBYE* / *HE SAVED A STRANGER*
-- **But:** *BUT HIS HEART KEPT BEATING…*
-- **Reveal:** *IN SOMEONE ELSE'S CHEST* / *SHE HEARD IT AGAIN* / *ONE LAST TIME* → verdict: *SALUTE TO THIS HERO*
+- **0–2s (strongest image + hook):** mother with the stethoscope, frozen + zoom on the hit: *HIS HEARTBEAT* (circle "MOM")
+- **2–7s (person + situation):** *HER SON* **DIED** *SUDDENLY…* / *SHE NEVER GOT TO SAY GOODBYE*
+- **7–15s (unexpected detail):** *BUT HE WAS AN ORGAN DONOR* / *HIS* **HEART** *SAVED A STRANGER*
+- **15–24s (emotional turning point):** *YEARS LATER… THEY MET* / *SHE HELD THE STETHOSCOPE* / *AND HEARD IT* **AGAIN**
+- **24–30s (meaningful ending):** impact + heart → *HIS HEART STILL BEATS* / verdict *SALUTE TO THIS HERO*
 
 Verify names and details against the footage before building.
 
