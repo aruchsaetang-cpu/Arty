@@ -162,3 +162,4 @@ The user uploads screen recordings to the Google Drive folder **"Video files"**.
 
 - Any scene with 2+ caption lines: at least 2 words in different neon colors (red/yellow/green/blue), rest white.
 - The last part (reveal/ending): 3 different colors (e.g. `*RESPECT*` green, `*TRUE` blue, `HERO*` yellow).
+- Hook style (ref STUCK DOG): 2 words in 2 colors (green + red) ABOVE the subject; glowing green circle on subject; red curved arrow with white outline from circle up to the red word.
