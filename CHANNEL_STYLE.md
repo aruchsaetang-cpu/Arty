@@ -66,6 +66,7 @@ Keep every line ≤ 6 words so it can be read at a glance.
 
 Every scene's text is animated, not just typed:
 
+- **Four glowing colors, mixed inside one line like the reference `*STUCK DOG*` (green word + red word):** green `.g` = kindness/hero, red `.r` = danger/loss/death, blue `.b` = sadness/tears/memory, yellow `.y` = attention/the subject. Use `<span class="r">WORD</span>` inside a white line to color single words.
 - **Two-tone lines:** line 1 white, line 2 the key words in neon green or yellow (`*HIS LAST WISH*` / **CHEESE**).
 - **Key word gets motion:** pulse (scale 1→1.08 yoyo) or shake (`1 DAY LEFT`) right after it finishes typing.
 - **Callout per scene:** circle + curved arrow + 1–2 word label (`GOOD BOY`, `HIS LAST DAY`) drawing in on the subject, then clearing before it moves.
