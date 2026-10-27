@@ -31,6 +31,8 @@ emotional true-moment Shorts**.
 
 **Principles (Sunnah Edit style):** real moments with a clear story (someone struggles → someone responds → the outcome); emotion before explanation; **cuts follow the music's emotional build**, not constant flashy transitions; simple text with one memorable theme (kindness, sacrifice, friendship, perseverance). Favor stories of **someone helping a stranger when nobody else does**.
 
+**Idea source: copy and develop Sunnah Edit's ideas.** Pick topics from Sunnah Edit's top Shorts (e.g. *DOG IN DANGER*, *REAL SUPERMAN*, *THE LAST GOODBYE*, *SALUTE TO THIS BOND*), then develop them: find the **original source footage** of that event (news, the uploader's own video), or a different real event with the same theme, and tell it with our own five-beat structure, captions and edit. Never download or re-upload Sunnah Edit's edited video itself.
+
 **Reused-content rule:** never just compile others' clips with music. Add original storytelling (structure, captions, edit), credit the source, and prefer footage you own, have permission for, or can lawfully reuse; YouTube can limit monetization for reused content.
 
 All beats are on-screen captions (no voice), short lines in `*ASTERISKS*`.
