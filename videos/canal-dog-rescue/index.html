@@ -222,7 +222,6 @@
       </div>
       <div id="circ" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
         <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="480" cy="1050" r="190" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1194" stroke-dashoffset="1194" /></svg>
-        <div class="label" id="lab" style="left: 280px; top: 770px; color: #ff2e3b">HELPLESS DOG</div>
       </div>
       <div id="arr" class="clip ov" data-start="5.3" data-duration="2.9" data-track-index="2">
         <svg class="draw" viewBox="0 0 1080 1920"><path id="arrow" d="M300 470 L500 650 M500 650 L440 640 M500 650 L490 590" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="420" stroke-dashoffset="420" /></svg>
@@ -267,9 +266,9 @@
       const HIT = 0.93;
       flash(HIT, 0.95);
       tl.fromTo("#h1", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
-      draw("#ring", 1.15); label("#lab", 1.35);
+      draw("#ring", 1.15);
       tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "44% 55%" }, { scale: 1.25, transformOrigin: "44% 55%", duration: 1.5, ease: "power2.out" }, HIT);
-      tl.to(["#ring", "#lab"], { opacity: 0, duration: 0.15 }, 2.3);
+      tl.to("#ring", { opacity: 0, duration: 0.15 }, 2.3);
       // ---------- CONTEXT ----------
       flash(2.43, 0.35); push("#w2", 2.43, 2.87);
       type("#k1", 2.55); type("#k2", 3.15); type("#k3", 3.45);
