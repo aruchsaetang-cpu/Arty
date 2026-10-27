@@ -41,6 +41,8 @@ Keep every line ≤ 6 words so it can be read at a glance.
 5. **Open on emotion, not backstory.** Start on the shocking, sad or curious moment itself, never on history or setup. Backstory comes later as Context.
 6. **Open loop.** The hook hints at what viewers want to know but does NOT answer it. Hold the answer until the Reveal (e.g. `*WHY IS THIS BABY ALONE?*`, `*WHAT SHE DID NEXT…*`).
 
+**Lead with a relatable emotional conflict, loss or regret.** The hook and first Context lines frame something everyone has felt (a goodbye they did not get, a parent they did not call, a pet that waited, a kindness they wish they had shown), before the kindness or reunion pays it off.
+
 **Topic focus:** real situations of human kindness: strangers or ordinary people helping someone, caught on real footage (bodycam, dashcam, CCTV, phone, news).
 
 ## Editing style (copied from the reference)
