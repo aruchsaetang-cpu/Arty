@@ -213,7 +213,7 @@
       <!-- FREEZE on the hit: still frame, zooming into the dog -->
       <div id="frz" class="clip" data-start="0.93" data-duration="1.5" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
       <div id="grade" class="clip" data-start="0" data-duration="18" data-track-index="1"><div class="vig"></div></div>
-      <div id="c1" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2"><div class="cap" style="top: 1300px"><span class="t y xl" id="h1">*DROWNING DOG*</span></div></div>
+      <div id="c1" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2"><div class="cap" style="top: 1300px"><span class="t g xl" id="h1">*DROWNING DOG*</span></div></div>
       <div id="c2" class="clip ov" data-start="2.43" data-duration="2.87" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k1">*IT HAD FALLEN</span><div class="row"><span class="t" id="k2">INTO THE</span><span class="t b" id="k3">WATER*</span></div></div></div>
       <div id="c3" class="clip ov" data-start="5.3" data-duration="8" data-track-index="2"><div class="cap" style="top: 1180px"><span class="t y" id="b1">*HE REFUSED</span><span class="t y" id="b2">TO GIVE UP</span><div class="row"><span class="t" id="b3">ON THE</span><span class="t g" id="b4">DOG*</span></div></div></div>
       <div id="o5" class="clip ov" data-start="14.4" data-duration="3.6" data-track-index="2">
@@ -221,12 +221,11 @@
         <img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 640px; top: 300px" />
       </div>
       <div id="circ" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
-        <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="290" cy="1040" r="170" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1069" stroke-dashoffset="1069" /></svg>
-        <div class="label" id="lab" style="left: 90px; top: 770px; color: #ff2e3b">HELPLESS DOG</div>
+        <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="480" cy="1050" r="190" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1194" stroke-dashoffset="1194" /></svg>
+        <div class="label" id="lab" style="left: 280px; top: 770px; color: #ff2e3b">HELPLESS DOG</div>
       </div>
       <div id="arr" class="clip ov" data-start="5.3" data-duration="2.9" data-track-index="2">
         <svg class="draw" viewBox="0 0 1080 1920"><path id="arrow" d="M300 470 L500 650 M500 650 L440 640 M500 650 L490 590" fill="none" stroke="#39ff14" stroke-width="12" stroke-linecap="round" stroke-dasharray="420" stroke-dashoffset="420" /></svg>
-        <div class="label" id="lab2" style="left: 110px; top: 360px; color: var(--green)">GOOD MAN</div>
       </div>
       <audio id="sfx-shutter1" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
       <audio id="sfx-ding-hook" src="assets/audio/ding.m4a" data-start="0.93" data-duration="1.4" data-track-index="6" data-volume="0.7"></audio>
@@ -269,7 +268,7 @@
       flash(HIT, 0.95);
       tl.fromTo("#h1", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
       draw("#ring", 1.15); label("#lab", 1.35);
-      tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "27% 54%" }, { scale: 1.9, transformOrigin: "27% 54%", duration: 1.5, ease: "power2.out" }, HIT);
+      tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "44% 55%" }, { scale: 1.25, transformOrigin: "44% 55%", duration: 1.5, ease: "power2.out" }, HIT);
       tl.to(["#ring", "#lab"], { opacity: 0, duration: 0.15 }, 2.3);
       // ---------- CONTEXT ----------
       flash(2.43, 0.35); push("#w2", 2.43, 2.87);
@@ -277,8 +276,8 @@
       // ---------- BUT ----------
       flash(5.3, 0.7); push("#w3", 5.3, 3);
       type("#b1", 5.4); type("#b2", 5.95); type("#b3", 6.5); type("#b4", 6.75);
-      draw("#arrow", 5.6, 0.35); label("#lab2", 5.75);
-      tl.to(["#arrow", "#lab2"], { opacity: 0, duration: 0.15 }, 8.1);
+      draw("#arrow", 5.6, 0.35);
+      tl.to("#arrow", { opacity: 0, duration: 0.15 }, 8.1);
       tl.fromTo("#b4", { scale: 1 }, { scale: 1.15, duration: 0.35, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, 7.2);
       flash(8.3, 0.35); push("#w4", 8.3, 2.7);
       flash(11, 0.35); push("#w5r", 11, 2.3);
