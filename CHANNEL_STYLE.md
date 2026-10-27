@@ -172,3 +172,8 @@ The user uploads screen recordings to the Google Drive folder **"Video files"**.
 - **Show the help early.** By ~3s the viewer must see who/what is about to help (not only the victim).
 - **1–3s must raise a question** the viewer wants answered (e.g. `*BUT THEN ONE WORKER STEPPED IN*`), written as on-screen text — the channel has no voice-over.
 - Pick the freeze frame where the subject's face is clearest, and put the circle/arrow on it.
+
+## Frame layout (from the grandma-clip review)
+
+- **Shrink + raise the video:** inset 864x1536 at (108,96) over a blurred copy of the same shot filling the sides (ffmpeg framed clips `f-*.mp4`); all captions end above y~1600 so YouTube Shorts bottom UI never covers them; watermark sits at the top.
+- **Hook line = specific payoff** (who + what happens), e.g. `*GRANDMA SEES HER BABY AND CAN'T STOP CRYING*`, not a generic setup line.
