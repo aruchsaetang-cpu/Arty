@@ -194,3 +194,8 @@ Why: viewers recognise the repeated "edit signature" (neon text + green circle +
 2. **Frame 1 = clear problem or emotion** — no logo, long still, or wide shot where you can't tell what's happening.
 3. **Don't reveal everything up front** — open with conflict/question, give context and payoff later, without stretching the story.
 - For each story, make 3 hook variants (event / question / stakes), same footage, and compare before building the full video. First test: `videos/dog-hook-tests/` (hook-a event, hook-b question, hook-c stakes).
+
+## What works best (user observation, 2026-10-27)
+
+- **Heartbreak / loss content performs best** — someone or an animal dying, a final goodbye, a loyal animal grieving or waiting. Prefer these topics over rescue-with-happy-ending when choosing the next project.
+- Keep it respectful: show the goodbye, the waiting, the grief — never graphic death footage. Verify the story (many viral loss clips are staged or reposted): prefer clips with a news source, a named owner/dog, or the original uploader; credit them.
