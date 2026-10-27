@@ -60,6 +60,16 @@ Keep every line ≤ 6 words so it can be read at a glance.
 | Ending (every video) | Signature close, from the reference: (1) IMPACT: shutter + the frame blows out (bright pink/orange flash, punch-in to ~1.45× with heavy blur), a ghost echo copy trails offset, decaying camera shake, settle in ~0.6s, (2) the mending-heart emoji sticker (`assets/stickers/mending-heart.png`) slams in ON the impact frame (3.2× + blur → 1× in 0.22s, shakes with the frame, bell rings with it), then pulses, (3) zoom-blur out + dip to black, (4) fade into the video's first frame so the Short loops seamlessly. Built in `videos/gallop-last-wish/index.html` (`#leak`, `#heart`, `#loop`). |
 | Music | Sad piano / strings swell, quiet first 3s, peak on the payoff. Royalty-free or generated (vidIQ `generate_music`). |
 
+## Text detail (match the dog clip `videos/gallop-last-wish/`)
+
+Every scene's text is animated, not just typed:
+
+- **Two-tone lines:** line 1 white, line 2 the key words in neon green or yellow (`*HIS LAST WISH*` / **CHEESE**).
+- **Key word gets motion:** pulse (scale 1→1.08 yoyo) or shake (`1 DAY LEFT`) right after it finishes typing.
+- **Callout per scene:** circle + curved arrow + 1–2 word label (`GOOD BOY`, `HIS LAST DAY`) drawing in on the subject, then clearing before it moves.
+- **Year / place stamp** where it adds truth (`2023`).
+- Verdict line two-tone green with glow, typed, on the impact.
+
 ## Footage
 
 **Real footage only, of the actual event.** No AI-generated clips, no animation, no stock
