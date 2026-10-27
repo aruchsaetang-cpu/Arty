@@ -27,6 +27,19 @@ emotional true-moment Shorts**.
 | **15–24s** | Explain the emotional turning point | The moment it changes: the kindness, the reunion, the tears |
 | **24–30s** | Deliver the most meaningful fact or ending | Impact + heart on the strongest frame, the verdict line, loop back to the start |
 
+**60s version** (use when the story has enough footage; test after 30s videos perform):
+
+| Time | Beat |
+|---|---|
+| 0–3s | Hook: an intriguing or emotional moment immediately |
+| 3–20s | The problem: what is happening, through a sequence of meaningful shots |
+| 20–45s | The emotional turn: the kindness, the unexpected response, the change |
+| 45–60s | The payoff: the most meaningful moment + one concise message |
+
+**Principles (Sunnah Edit style):** real moments with a clear story (someone struggles → someone responds → the outcome); emotion before explanation; **cuts follow the music's emotional build**, not constant flashy transitions; simple text with one memorable theme (kindness, sacrifice, friendship, perseverance). Favor stories of **someone helping a stranger when nobody else does**.
+
+**Reused-content rule:** never just compile others' clips with music. Add original storytelling (structure, captions, edit), credit the source, and prefer footage you own, have permission for, or can lawfully reuse; YouTube can limit monetization for reused content.
+
 All beats are on-screen captions (no voice), short lines in `*ASTERISKS*`.
 
 Keep every line ≤ 6 words so it can be read at a glance.
