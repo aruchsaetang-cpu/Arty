@@ -15,7 +15,7 @@ angle: someone helps something (Sunnah Edit formula); original footage (template
 - **2–5s:** *THE WALLS WERE TOO* **STEEP** / *THE CURRENT TOO* **STRONG**
 - **5–9s · helper appears:** arrow + label `GOOD MAN` → *THEN A WORKER CLIMBED INTO THE CLAW*
 - **9–13s · the help:** *AND WAS LOWERED INTO THE* **WATER**
-- **13–16s · outcome:** impact + heart on the dog lifted out → *HE RISKED HIS LIFE FOR A STRAY*
+- **13–16s · outcome:** impact + heart on the dog lifted out → *RESPECT* *TRUE HERO*
 
 Verify details (place, stray or not) against the footage before building.
 
