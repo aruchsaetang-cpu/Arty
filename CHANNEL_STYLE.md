@@ -177,3 +177,13 @@ The user uploads screen recordings to the Google Drive folder **"Video files"**.
 
 - **Shrink + raise the video:** inset 864x1536 at (108,96) over a blurred copy of the same shot filling the sides (ffmpeg framed clips `f-*.mp4`); all captions end above y~1600 so YouTube Shorts bottom UI never covers them; watermark sits at the top.
 - **Hook line = specific payoff** (who + what happens), e.g. `*GRANDMA SEES HER BABY AND CAN'T STOP CRYING*`, not a generic setup line.
+
+## CLEAN & EMOTIONAL style (review of grandma clip — apply from the NEXT clip; supersedes the neon/circle signature unless the user says otherwise)
+
+Why: viewers recognise the repeated "edit signature" (neon text + green circle + red arrow) within 0.5s and swipe; "WAIT FOR..." reads as a retention trap. Review estimate of Stay-to-Watch for the old style: ~30–38% (an estimate from the review, not real analytics).
+
+- **Remove:** green circle, red arrow, and any "WAIT FOR / WAIT UNTIL THE END" text.
+- **Let the footage play naturally**, focused on the face and real emotion.
+- **Text = one small, simple subtitle at the bottom** (above the Shorts bottom UI), e.g. `Grandma meeting her grandchild for the first time...` — not full-screen neon multi-line captions that cover the emotion.
+- **Get to the point fast:** context must be clear within the first 1.5s. For the grandma story: open at ~2s on grandma leaning in to see the baby, then go straight to the baby on the bed.
+- Keep: real footage only, no voice-over, cut every ~3s, blurred-side inset framing, 14–30s.
