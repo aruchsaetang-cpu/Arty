@@ -206,6 +206,8 @@
       <div class="shot" id="w6x"><video id="v6x" class="clip" src="assets/footage/d-carry.mp4" data-start="10" data-duration="3" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w5"><div class="shot" id="w5i"><video id="v5" class="clip" src="assets/footage/e-hold.mp4" data-start="13" data-duration="5" data-track-index="0" muted playsinline></video></div></div>
       <div class="shot" id="w5g" style="opacity: 0"><video id="v5g" class="clip" src="assets/footage/e-hold.mp4" data-start="15.2" data-duration="1.4" data-media-start="2.2" data-track-index="0" muted playsinline></video></div>
+      <!-- FREEZE on the hit: still frame, zooming into the baby -->
+      <div id="frz" class="clip" data-start="0.93" data-duration="1.5" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
       <div id="grade" class="clip" data-start="0" data-duration="18" data-track-index="1"><div class="vig"></div></div>
       <div id="c1" class="clip ov" data-start="0" data-duration="2.8" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t y xl" id="h1">*BABY ALONE?*</span></div></div>
       <div id="c2" class="clip ov" data-start="2.8" data-duration="2.5" data-track-index="2"><div class="cap" style="top: 1250px"><span class="t" id="k1">*BAREFOOT</span><span class="t" id="k2">IN THE COLD*</span></div></div>
@@ -218,9 +220,9 @@
         <div class="cap" style="top: 1250px" id="o5-cap2"><span class="t g" id="o5-c">*SALUTE</span><span class="t g" id="o5-d">TO THIS DRIVER!*</span></div>
         <img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 640px; top: 300px" />
       </div>
-      <div id="circ" class="clip ov" data-start="0" data-duration="2.8" data-track-index="2">
-        <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="800" cy="820" r="140" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="880" stroke-dashoffset="880" /></svg>
-        <div class="label" id="lab" style="left: 730px; top: 600px; color: var(--yellow)">BABY</div>
+      <div id="circ" class="clip ov" data-start="0" data-duration="2.5" data-track-index="2">
+        <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="400" cy="970" r="170" fill="none" stroke="#ffe600" stroke-width="10" stroke-dasharray="1069" stroke-dashoffset="1069" /></svg>
+        <div class="label" id="lab" style="left: 320px; top: 720px; color: var(--yellow)">BABY</div>
       </div>
       <audio id="sfx-shutter1" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
       <audio id="sfx-ding-hook" src="assets/audio/ding.m4a" data-start="0.93" data-duration="1.4" data-track-index="6" data-volume="0.7"></audio>
@@ -270,7 +272,9 @@
       flash(HIT, 0.95);
       tl.fromTo("#w1", { scale: 1.14 }, { scale: 1.0, duration: 0.35, ease: "power3.out", immediateRender: false }, HIT);
       tl.fromTo("#h1", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
-      draw("#ring", 1.5); label("#lab", 1.7);
+      draw("#ring", 1.15); label("#lab", 1.35);
+      tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "37% 50%" }, { scale: 1.9, transformOrigin: "37% 50%", duration: 1.5, ease: "power2.out" }, HIT);
+      tl.to(["#ring", "#lab"], { opacity: 0, duration: 0.15 }, 2.35);
       // ---------- CONTEXT ----------
       type("#k1", 2.9); type("#k2", 3.35);
       flash(1.43, 0.35); flash(3.43, 0.35);
