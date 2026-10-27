@@ -31,6 +31,15 @@ emotional true-moment Shorts**.
 
 **Principles (Sunnah Edit style):** real moments with a clear story (someone struggles → someone responds → the outcome); emotion before explanation; **cuts follow the music's emotional build**, not constant flashy transitions; simple text with one memorable theme (kindness, sacrifice, friendship, perseverance). Favor stories of **someone helping a stranger when nobody else does**.
 
+**Core story formula (copied from Sunnah Edit): SOMEONE HELPS SOMETHING.** Every video is one helper and one helpless subject (a person or an animal):
+
+1. **The helpless one:** show them in trouble; circle + label them (`HELPLESS DOG`, `STUCK DOG`, `BABY`).
+2. **The helper appears:** arrow + label on the helper (`GOOD MAN`, `REAL SUPERMAN`, `DRIVER`).
+3. **The help:** the act of kindness itself, the longest beat.
+4. **The outcome + salute:** the subject is safe → impact + heart → `*SALUTE TO THIS …*`.
+
+These four steps sit inside the five-beat timing and the 3s cut rule.
+
 **Idea source: copy and develop Sunnah Edit's ideas.** Pick topics from Sunnah Edit's top Shorts (e.g. *DOG IN DANGER*, *REAL SUPERMAN*, *THE LAST GOODBYE*, *SALUTE TO THIS BOND*), then develop them: find the **original source footage** of that event (news, the uploader's own video), or a different real event with the same theme, and tell it with our own five-beat structure, captions and edit. Never download or re-upload Sunnah Edit's edited video itself.
 
 **Reused-content rule:** never just compile others' clips with music. Add original storytelling (structure, captions, edit), credit the source, and prefer footage you own, have permission for, or can lawfully reuse; YouTube can limit monetization for reused content.
