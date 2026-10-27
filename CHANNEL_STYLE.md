@@ -36,6 +36,7 @@ Keep every line ≤ 6 words so it can be read at a glance.
 2. **2–4 words, emotional label style** like the reference: `*SAD MOMENT*`, `*DOG IN DANGER*`, `*REAL SUPERMAN*`, or a curiosity gap (`*WHO IS HE?*`). Never an information sentence.
 3. **Fully readable by ~1.3s**: the hook types fast (~45 letters/s) right after the 0.93s hit.
 4. **The circle asks the question**: circle the person/animal the hook is about, with a 1–2 word label (`HERO`, `THE BABY`).
+0. **Frame 1 = the real event or a frame that makes people curious, immediately.** The very first frame of every clip is the actual incident (the danger, the rescue, the tears) or a puzzling image that makes viewers ask "what is happening?". Never a title card, logo, interview, talking head, establishing shot or black frame.
 5. **Open on emotion, not backstory.** Start on the shocking, sad or curious moment itself, never on history or setup. Backstory comes later as Context.
 6. **Open loop.** The hook hints at what viewers want to know but does NOT answer it. Hold the answer until the Reveal (e.g. `*WHY IS THIS BABY ALONE?*`, `*WHAT SHE DID NEXT…*`).
 
