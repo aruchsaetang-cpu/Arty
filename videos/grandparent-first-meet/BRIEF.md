@@ -11,7 +11,7 @@ angle: developed from Sunnah Edit's most-viewed Short ("THE HARDEST BUT SWEETEST
 
 ## Script (Hook · Context · But · Reveal), colors red/green/yellow only
 
-- **Hook 0–2s:** freeze + zoom on grandparent's face with baby → *FIRST* (green) *MEETING* (red) above; green circle on the face; red curved arrow
+- **Hook 0–2s:** freeze + zoom on grandparent's face with baby → *GRAND* (green) *FATHER* (red), or *GRAND* *MOTHER* to match the footage, above; green circle on the face; red curved arrow
 - **Context 2–5s:** *THEY PUT THE* **BABY** (yellow) / *IN HIS* **ARMS** (red)
 - **But 5–13s:** *HE TRIED TO BE* **STRONG** (green) / *BUT HIS* **TEARS** (red) *SAID IT ALL*
 - **Reveal 13–18s:** impact + heart → *LOVE* (green) / *HAS NO* (yellow) **AGE** (red)
