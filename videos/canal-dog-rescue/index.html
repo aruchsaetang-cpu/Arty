@@ -224,8 +224,7 @@
         <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="396" cy="1150" r="290" fill="none" stroke="#39ff14" stroke-width="13" style="filter: drop-shadow(0 0 12px #39ff14) drop-shadow(0 0 26px rgba(57,255,20,0.6))" stroke-dasharray="1822" stroke-dashoffset="1822" /></svg>
       </div>
       <div id="arr" class="clip ov" data-start="0.93" data-duration="1.5" data-track-index="2">
-        <svg class="draw" viewBox="0 0 1080 1920"><defs><linearGradient id="agr" gradientUnits="userSpaceOnUse" x1="700" y1="1240" x2="760" y2="925"><stop offset="0" stop-color="#ffffff" /><stop offset="0.45" stop-color="#ff8a92" /><stop offset="1" stop-color="#ff1f2e" /></linearGradient></defs>
-        <g id="arrow" style="filter: drop-shadow(0 0 10px rgba(255,255,255,0.7)) drop-shadow(0 0 22px rgba(255,46,59,0.7))"><path id="ashaft" d="M705 1235 C 810 1180, 810 1030, 765 930" fill="none" stroke="url(#agr)" stroke-width="30" stroke-linecap="round" stroke-dasharray="380" stroke-dashoffset="380" /><path id="ahead" d="M765 862 L816 947 L713 942 Z" fill="#ff1f2e" stroke="#fff" stroke-width="5" stroke-linejoin="round" opacity="0" /></g></svg>
+        <div id="arrow" style="position:absolute;left:660px;top:850px;width:260px;height:260px;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 18px rgba(255,46,59,0.75))"><div style="width:100%;height:100%;background:linear-gradient(to top right,#ffffff 0%,#ff8a92 38%,#ff1f2e 72%);-webkit-mask:url(assets/img/arrow-mask.png) center/contain no-repeat;mask:url(assets/img/arrow-mask.png) center/contain no-repeat"></div></div>
       </div>
       <audio id="sfx-shutter1" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
       <audio id="sfx-ding-hook" src="assets/audio/ding.m4a" data-start="0.93" data-duration="1.4" data-track-index="6" data-volume="0.7"></audio>
@@ -276,7 +275,7 @@
       // ---------- BUT ----------
       flash(5.3, 0.7); push("#w3", 5.3, 3);
       type("#b1", 5.4); type("#b1b", 5.55); type("#b2", 5.95); type("#b2b", 6.05); type("#b3", 6.5); type("#b4", 6.75);
-      draw("#ashaft", 1.3, 0.25); tl.fromTo("#ahead", { opacity: 0, scale: 0.3, transformOrigin: "50% 60%" }, { opacity: 1, scale: 1, transformOrigin: "50% 60%", duration: 0.18, ease: "back.out(3)" }, 1.5);
+      tl.fromTo("#arrow", { opacity: 0, scale: 0.3, transformOrigin: "5% 95%" }, { opacity: 1, scale: 1, transformOrigin: "5% 95%", duration: 0.25, ease: "back.out(2.2)" }, 1.3);
       tl.to("#arrow", { opacity: 0, duration: 0.15 }, 2.28);
       flash(8.3, 0.35); push("#w4", 8.3, 2.7);
       flash(11, 0.35); push("#w5r", 11, 2.3);
