@@ -218,7 +218,8 @@
       <div id="grade" class="clip" data-start="0" data-duration="26" data-track-index="1"><div class="vig"></div></div>
       <div id="c1" class="clip ov" data-start="0" data-duration="1.68" data-track-index="2"><div class="cap" style="top: 1640px"><div class="row" id="h1"><span class="t y xl" style="font-size: 120px">*BABY*</span></div></div></div>
       <div id="c1b" class="clip ov" data-start="1.68" data-duration="0.75" data-track-index="2"><div class="cap" style="top: 1640px"><div class="row" style="gap: 0"><span class="t g xl" style="font-size: 112px">*GRAND</span><span class="t r xl" style="font-size: 112px">MOTHER*</span></div></div></div>
-      <div id="c2" class="clip ov" data-start="2.43" data-duration="5.87" data-track-index="2"><div class="cap" style="top: 1400px"><div class="row"><span class="t" id="k1">*ONLY A</span></div><div class="row"><span class="t y" id="k2">GRANDMOTHER</span></div><div class="row"><span class="t" id="k3">CAN</span><span class="t r" id="k4">FEEL</span><span class="t" id="k5">THIS*</span></div></div></div>
+      <div id="c2a" class="clip ov" data-start="2.43" data-duration="2.87" data-track-index="2"><div class="cap" style="top: 1400px"><div class="row"><span class="t" id="m1">*SHE MEETS THE</span></div><div class="row"><span class="t y" id="m2">BABY</span><span class="t" id="m3">FOR THE</span></div><div class="row"><span class="t g" id="m4">FIRST TIME*</span></div></div></div>
+      <div id="c2" class="clip ov" data-start="5.3" data-duration="3" data-track-index="2"><div class="cap" style="top: 1400px"><div class="row"><span class="t" id="k1">*ONLY A</span></div><div class="row"><span class="t y" id="k2">GRANDMOTHER</span></div><div class="row"><span class="t" id="k3">CAN</span><span class="t r" id="k4">FEEL</span><span class="t" id="k5">THIS*</span></div></div></div>
       <div id="c3" class="clip ov" data-start="8.3" data-duration="5.5" data-track-index="2"><div class="cap" style="top: 1440px"><div class="row"><span class="t" id="b1">*SHE TRIED TO</span><span class="t g" id="b1b">KEEP</span></div><div class="row"><span class="t" id="b2">HER</span><span class="t r" id="b2b">TEARS</span></div></div></div>
       <div id="c4" class="clip ov" data-start="13.8" data-duration="5.5" data-track-index="2"><div class="cap" style="top: 1440px"><div class="row"><span class="t" id="b3">BUT HER</span><span class="t y" id="b3b">REACTION</span></div><div class="row"><span class="t g" id="b4">SAID IT ALL*</span></div></div></div>
       <div id="o5" class="clip ov" data-start="20.4" data-duration="5.6" data-track-index="2">
@@ -234,8 +235,10 @@
       <audio id="sfx-shutter1b" src="assets/audio/camera-shutter.m4a" data-start="1.68" data-duration="0.36" data-track-index="6" data-volume="1"></audio>
       <audio id="sfx-shutter2" src="assets/audio/camera-shutter.m4a" data-start="8.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
       <audio id="sfx-shutter3" src="assets/audio/camera-shutter.m4a" data-start="20.4" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-type1" src="assets/audio/keyboard-typing.m4a" data-start="2.55" data-duration="0.5" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-type2" src="assets/audio/keyboard-typing.m4a" data-start="3.1" data-duration="0.85" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type1" src="assets/audio/keyboard-typing.m4a" data-start="2.55" data-duration="0.6" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type2" src="assets/audio/keyboard-typing.m4a" data-start="3.15" data-duration="1.05" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type2b" src="assets/audio/keyboard-typing.m4a" data-start="5.4" data-duration="0.85" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type2c" src="assets/audio/keyboard-typing.m4a" data-start="6.25" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
       <audio id="sfx-type3" src="assets/audio/keyboard-typing.m4a" data-start="8.4" data-duration="0.75" data-track-index="5" data-volume="0.7"></audio>
       <audio id="sfx-type4" src="assets/audio/keyboard-typing.m4a" data-start="9.25" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
       <audio id="sfx-type5" src="assets/audio/keyboard-typing.m4a" data-start="13.9" data-duration="0.7" data-track-index="5" data-volume="0.7"></audio>
@@ -282,7 +285,8 @@
       tl.to(["#ring2", "#arrow2"], { opacity: 0, duration: 0.12 }, 2.3);
       // ---------- CONTEXT ----------
       flash(2.43, 0.35); push("#w2", 2.43, 2.87);
-      type("#k1", 2.55); type("#k2", 3.1); type("#k3", 3.65); type("#k4", 3.78); type("#k5", 3.95);
+      type("#m1", 2.55); type("#m2", 3.15); type("#m3", 3.35); type("#m4", 3.75);
+      type("#k1", 5.4); type("#k2", 5.7); type("#k3", 6.25); type("#k4", 6.38); type("#k5", 6.55);
       flash(5.3, 0.35); push("#w2b", 5.3, 3);
       // ---------- BUT ----------
       flash(8.3, 0.7); push("#w3", 8.3, 3);
