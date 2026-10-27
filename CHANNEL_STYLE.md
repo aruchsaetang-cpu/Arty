@@ -17,6 +17,8 @@ emotional true-moment Shorts**.
   (see the topic bank below). Skip "man feeds hungry dog" and "boy gets surprise bike";
   those are saturated.
 
+**Cut rhythm: a new shot every ~3 seconds.** No single shot runs longer than 3s (the 0.93s freeze-zoom counts as its own beat). Split long footage into several 3s cuts (different moments, angles or crops).
+
 ## Story structure (every video, 30s)
 
 | Time | Beat | What it does |
