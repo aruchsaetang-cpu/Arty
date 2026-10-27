@@ -187,3 +187,10 @@ Why: viewers recognise the repeated "edit signature" (neon text + green circle +
 - **Text = one small, simple subtitle at the bottom** (above the Shorts bottom UI), e.g. `Grandma meeting her grandchild for the first time...` — not full-screen neon multi-line captions that cover the emotion.
 - **Get to the point fast:** context must be clear within the first 1.5s. For the grandma story: open at ~2s on grandma leaning in to see the baby, then go straight to the baby on the bed.
 - Keep: real footage only, no voice-over, cut every ~3s, blurred-side inset framing, 14–30s.
+
+## Hook method (open with an EVENT, not a preamble) — test 3 variants per story
+
+1. **Open with the event, not the setup.** ❌ "This is a very heartbreaking story…" ✅ "Everyone thought this dog was going to die." Must match the real footage (no invented facts).
+2. **Frame 1 = clear problem or emotion** — no logo, long still, or wide shot where you can't tell what's happening.
+3. **Don't reveal everything up front** — open with conflict/question, give context and payoff later, without stretching the story.
+- For each story, make 3 hook variants (event / question / stakes), same footage, and compare before building the full video. First test: `videos/dog-hook-tests/` (hook-a event, hook-b question, hook-c stakes).
