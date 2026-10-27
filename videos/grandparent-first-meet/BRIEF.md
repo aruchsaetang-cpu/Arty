@@ -9,14 +9,14 @@ length: ~18s (new shot every ~3s)
 angle: developed from Sunnah Edit's most-viewed Short ("THE HARDEST BUT SWEETEST MOMENT", 149M views): someone meets the most precious person in their life. Original footage only (template: videos/canal-dog-rescue)
 ---
 
-## Script (Hook · Context · But · Reveal), colors red/green/yellow only
+## Script (final)
 
-- **Hook 0–2s:** freeze + zoom on grandparent's face with baby → *GRAND* (green) *FATHER* (red), or *GRAND* *MOTHER* to match the footage, above; green circle on the face; red curved arrow
-- **Context 2–5s:** *THEY PUT THE* **BABY** (yellow) / *IN HIS* **ARMS** (red)
-- **But 5–13s:** *HE TRIED TO BE* **STRONG** (green) / *BUT HIS* **TEARS** (red) *SAID IT ALL*
-- **Reveal 13–18s:** impact + heart → *THE MOST* **PRECIOUS** (green) / **MOMENT** (yellow) *IN HIS* **LIFE*** (red) (HER if grandmother)
+- **Hook:** freeze → *GRAND* (green) *MOTHER* (red); circle + arrow on the baby, then on the grandmother
+- **Context:** *ONLY A* / **GRANDMOTHER** (yellow) / *CAN* **FEEL** (red) *THIS*
+- **But:** *SHE TRIED TO* **KEEP** (green) / *HER* **TEARS** (red) → *BUT HER* **REACTION** (yellow) / **SAID IT ALL** (green)
+- **Reveal:** *THE* **SWEETEST** (green) / **MOMENT** (yellow) *IN* **LIFE** (red)
 
-Adjust HIS/HER to the footage before building.
+Burned-in subtitles in the source are removed with delogo only on shots that have them (covered by captions).
 
 ## Sources
 
