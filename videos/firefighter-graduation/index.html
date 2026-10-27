@@ -250,13 +250,26 @@
         <img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 70px; top: 330px" />
       </div>
 
-      <!-- SOUND: only the hook and the ending impact -->
-      <audio id="sfx-shutter-open" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
-      <audio id="sfx-type-hook" src="assets/audio/keyboard-typing.m4a" data-start="1" data-duration="0.5" data-track-index="5" data-volume="0.7"></audio>
-      <audio id="sfx-pop" src="assets/audio/pop.m4a" data-start="1.7" data-duration="0.16" data-track-index="6" data-volume="0.8"></audio>
-      <audio id="sfx-shutter-impact" src="assets/audio/camera-shutter.m4a" data-start="15.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <!-- SOUND: camera shutter on the attention beats (hook, But, Reveal, impact); keyboard under every caption -->
+      <audio id="sfx-shutter1" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-shutter2" src="assets/audio/camera-shutter.m4a" data-start="8.5" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-shutter3" src="assets/audio/camera-shutter.m4a" data-start="10.0" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-shutter4" src="assets/audio/camera-shutter.m4a" data-start="15.3" data-duration="0.36" data-track-index="4" data-volume="1"></audio>
+      <audio id="sfx-type1" src="assets/audio/keyboard-typing.m4a" data-start="0.98" data-duration="0.45" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type2" src="assets/audio/keyboard-typing.m4a" data-start="2.95" data-duration="0.5" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type3" src="assets/audio/keyboard-typing.m4a" data-start="3.45" data-duration="0.6" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type4" src="assets/audio/keyboard-typing.m4a" data-start="4.15" data-duration="0.6" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type5" src="assets/audio/keyboard-typing.m4a" data-start="4.8" data-duration="0.52" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type6" src="assets/audio/keyboard-typing.m4a" data-start="7.1" data-duration="0.54" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type7" src="assets/audio/keyboard-typing.m4a" data-start="7.65" data-duration="0.4" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type8" src="assets/audio/keyboard-typing.m4a" data-start="8.55" data-duration="0.48" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type9" src="assets/audio/keyboard-typing.m4a" data-start="9.05" data-duration="0.44" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type10" src="assets/audio/keyboard-typing.m4a" data-start="10.1" data-duration="0.72" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type11" src="assets/audio/keyboard-typing.m4a" data-start="11.15" data-duration="0.56" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type12" src="assets/audio/keyboard-typing.m4a" data-start="11.75" data-duration="0.56" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type13" src="assets/audio/keyboard-typing.m4a" data-start="13.15" data-duration="0.8" data-track-index="5" data-volume="0.7"></audio>
+      <audio id="sfx-type14" src="assets/audio/keyboard-typing.m4a" data-start="15.9" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
       <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="15.35" data-duration="1.13" data-track-index="6" data-volume="0.6"></audio>
-      <audio id="sfx-type-verdict" src="assets/audio/keyboard-typing.m4a" data-start="15.9" data-duration="0.84" data-track-index="5" data-volume="0.7"></audio>
 
       <div id="fx" class="clip" data-start="0" data-duration="18" data-track-index="3">
         <div class="wm">MOVIE FACTS</div>
@@ -310,9 +323,10 @@
       type("#o3-a", 7.1); type("#o3-b", 7.65);
       // ---------- BUT ----------
       out("#o3-cap1", 8.35);
+      flash(8.5, 0.6);
       type("#o3-c", 8.5); type("#o3-d", 9.05);
       // ---------- REVEAL ----------
-      flash(10, 0.4); push("#w4", 10, 3);
+      flash(10, 0.7); push("#w4", 10, 3);
       type("#o4-a", 10.1);
       out("#o4-cap1", 11.0);
       type("#o4-b", 11.15); type("#o4-c", 11.75);
