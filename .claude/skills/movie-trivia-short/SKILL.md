@@ -28,7 +28,7 @@ Talk to the user in Thai.
   coloured red `#FF3B30`.
 - **Layout (user, 2026-10-26): full-frame, NO blur band** — edit.json `"layout": "full"`, `"caption_y": 1020`; set each shot's
   `"pos"` (object-position) so the subject stays in the 9:16 crop, then check the safety sheet for empty/edge framing.
-- **Ending (user rule):** after the reveal, a voiced lead-in line ("And this... is his real reaction, the moment it happened.") then the REAL near-death/injury moment for ~2.5 s with its original audio and NO caption on it. Total stays ≤ 30 s.
+- **Format (user rule, 2026-10-27, from the "Times Michael Jackson almost died" reference):** ~14 s of narration (Hook/Context/But/Reveal in short, punchy sentences, ending with a lead-in like "This is the real footage."), then ~14 s of REAL footage of the moment — original audio, no captions. Total 25–30 s.
 - **Cuts:** a new shot every 1–2 s; no music in the delivered file.
 - **Voice realism:** give each sentence its own speed in the spec (`["text", 1.25]` excited, `1.0–1.1` for weight/punchlines),
   split punchlines into their own sentence, use `...` for a beat; english_tts.py applies a "creator mic" polish chain.
