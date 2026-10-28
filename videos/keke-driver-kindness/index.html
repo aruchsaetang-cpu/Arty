@@ -186,7 +186,7 @@
         inset: 0;
         background: url(assets/img/loop-first-frame.jpg) center / cover;
         opacity: 0;
-        transform: scale(1);
+        transform: scale(1.2); transform-origin: 32% 55%;
       }
       #fade {
         position: absolute;
@@ -202,14 +202,13 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="23.0" data-width="1080" data-height="1920">
-      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s1-hook.mp4" data-start="0" data-duration="0.93" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/s2-look.mp4" data-start="2.43" data-duration="3.0" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w7"><video id="v7" class="clip" src="assets/footage/s7-work.mp4" data-start="5.43" data-duration="3.0" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/s3-speak.mp4" data-start="8.43" data-duration="3.0" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/s4-money.mp4" data-start="11.43" data-duration="3.0" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w6"><video id="v6" class="clip" src="assets/footage/s6-ride.mp4" data-start="14.43" data-duration="3.0" data-track-index="0" muted playsinline></video></div>
       <div class="shot" id="w5"><video id="v5" class="clip" src="assets/footage/s5-cash.mp4" data-start="17.43" data-duration="3.0" data-track-index="0" muted playsinline></video></div>
-      <div id="frz" class="clip" data-start="0.93" data-duration="1.5" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+      <div id="frz" class="clip" data-start="0" data-duration="2.43" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
       <div id="wend" class="clip shot" data-start="20.43" data-duration="2.57" data-track-index="0"><div class="shot" id="wendi"><img id="end-img" src="assets/img/freeze-end.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div></div>
       <div id="wendg" class="clip shot" data-start="20.48" data-duration="1.4" data-track-index="1" style="opacity: 0"><img src="assets/img/freeze-end.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
       <div id="grade" class="clip" data-start="0" data-duration="23.0" data-track-index="1"><div class="vig"></div></div>
@@ -227,7 +226,7 @@
       <div id="circ" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
         <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="315" cy="1100" r="250" fill="none" stroke="#39ff14" stroke-width="13" style="filter: drop-shadow(0 0 12px #39ff14) drop-shadow(0 0 26px rgba(57,255,20,0.6))" stroke-dasharray="1572" stroke-dashoffset="1572" /></svg>
       </div>
-      <div id="arr" class="clip ov" data-start="0.93" data-duration="1.5" data-track-index="2">
+      <div id="arr" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
         <div id="arrow" style="position:absolute;left:525px;top:805px;width:290px;height:290px;opacity:0;filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 0 16px rgba(255,46,59,0.85))"><div style="width:100%;height:100%;background:#ff1f2e;-webkit-mask:url(assets/img/arrow-mask.png) center/contain no-repeat;mask:url(assets/img/arrow-mask.png) center/contain no-repeat"></div></div>
       </div>
       <audio id="sfx-t0" src="assets/audio/keyboard-typing.m4a" data-start="2.55" data-duration="1.29" data-track-index="5" data-volume="0.7"></audio>
@@ -269,10 +268,12 @@
       // ---------- HOOK ----------
       const HIT = 0.93;
       flash(HIT, 0.95);
-      tl.fromTo("#h1", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, HIT);
-      draw("#ring", 1.15);
-      tl.fromTo("#arrow", { opacity: 0, scale: 0.3, transformOrigin: "5% 95%" }, { opacity: 1, scale: 1, transformOrigin: "5% 95%", duration: 0.25, ease: "back.out(2.2)" }, 1.3);
-      tl.fromTo("#frz-img", { scale: 1.0, transformOrigin: "32% 55%" }, { scale: 1.2, transformOrigin: "32% 55%", duration: 1.5, ease: "power2.out" }, HIT);
+      // frame 0 = the finished hook picture: zoomed wheel + green circle + red arrow + BROKEN CAR
+      tl.set("#h1", { opacity: 1 }, 0);
+      tl.set("#ring", { strokeDashoffset: 0 }, 0);
+      tl.set("#arrow", { opacity: 1 }, 0);
+      tl.fromTo("#frz-img", { scale: 1.2, transformOrigin: "32% 55%" }, { scale: 1.3, transformOrigin: "32% 55%", duration: 2.43, ease: "none" }, 0);
+      tl.fromTo("#frz", { scale: 1.07 }, { scale: 1.0, duration: 0.3, ease: "power3.out", immediateRender: false }, HIT);
       tl.to(["#ring", "#arrow"], { opacity: 0, duration: 0.15 }, 2.3);
       // ---------- STORY (a cut every 3s) ----------
       flash(2.43, 0.35); push("#w2", 2.43, 3.0);

@@ -31,9 +31,8 @@ for k,(w,src,rows,top) in enumerate(SHOTS):
 J='\n      '
 body=f'''<body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{T}" data-width="1080" data-height="1920">
-      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/s1-hook.mp4" data-start="0" data-duration="0.93" data-track-index="0" muted playsinline></video></div>
       {J.join(vids)}
-      <div id="frz" class="clip" data-start="0.93" data-duration="1.5" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" {IMG} /></div>
+      <div id="frz" class="clip" data-start="0" data-duration="2.43" data-track-index="1"><img id="frz-img" src="assets/img/freeze.jpg" alt="" {IMG} /></div>
       <div id="wend" class="clip shot" data-start="{E}" data-duration="{Ed}" data-track-index="0"><div class="shot" id="wendi"><img id="end-img" src="assets/img/freeze-end.jpg" alt="" {IMG} /></div></div>
       <div id="wendg" class="clip shot" data-start="{IMP}" data-duration="1.4" data-track-index="1" style="opacity: 0"><img src="assets/img/freeze-end.jpg" alt="" {IMG} /></div>
       <div id="grade" class="clip" data-start="0" data-duration="{T}" data-track-index="1"><div class="vig"></div></div>
@@ -46,7 +45,7 @@ body=f'''<body>
       <div id="circ" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
         <svg class="draw" viewBox="0 0 1080 1920"><circle id="ring" cx="315" cy="1100" r="250" fill="none" stroke="#39ff14" stroke-width="13" style="filter: drop-shadow(0 0 12px #39ff14) drop-shadow(0 0 26px rgba(57,255,20,0.6))" stroke-dasharray="1572" stroke-dashoffset="1572" /></svg>
       </div>
-      <div id="arr" class="clip ov" data-start="0.93" data-duration="1.5" data-track-index="2">
+      <div id="arr" class="clip ov" data-start="0" data-duration="2.43" data-track-index="2">
         <div id="arrow" style="position:absolute;left:525px;top:805px;width:290px;height:290px;opacity:0;filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 0 16px rgba(255,46,59,0.85))"><div style="width:100%;height:100%;background:#ff1f2e;-webkit-mask:url(assets/img/arrow-mask.png) center/contain no-repeat;mask:url(assets/img/arrow-mask.png) center/contain no-repeat"></div></div>
       </div>
       {J.join(sfx)}
@@ -64,10 +63,12 @@ I=IMP
 tl='<script>\n'+helpers+f'''      // ---------- HOOK ----------
       const HIT = 0.93;
       flash(HIT, 0.95);
-      tl.fromTo("#h1", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.01, immediateRender: true }}, HIT);
-      draw("#ring", 1.15);
-      tl.fromTo("#arrow", {{ opacity: 0, scale: 0.3, transformOrigin: "5% 95%" }}, {{ opacity: 1, scale: 1, transformOrigin: "5% 95%", duration: 0.25, ease: "back.out(2.2)" }}, 1.3);
-      tl.fromTo("#frz-img", {{ scale: 1.0, transformOrigin: "32% 55%" }}, {{ scale: 1.2, transformOrigin: "32% 55%", duration: 1.5, ease: "power2.out" }}, HIT);
+      // frame 0 = the finished hook picture: zoomed wheel + green circle + red arrow + BROKEN CAR
+      tl.set("#h1", {{ opacity: 1 }}, 0);
+      tl.set("#ring", {{ strokeDashoffset: 0 }}, 0);
+      tl.set("#arrow", {{ opacity: 1 }}, 0);
+      tl.fromTo("#frz-img", {{ scale: 1.2, transformOrigin: "32% 55%" }}, {{ scale: 1.3, transformOrigin: "32% 55%", duration: 2.43, ease: "none" }}, 0);
+      tl.fromTo("#frz", {{ scale: 1.07 }}, {{ scale: 1.0, duration: 0.3, ease: "power3.out", immediateRender: false }}, HIT);
       tl.to(["#ring", "#arrow"], {{ opacity: 0, duration: 0.15 }}, 2.3);
       // ---------- STORY (a cut every 3s) ----------
       {J.join(tlines)}
