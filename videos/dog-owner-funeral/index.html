@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Grandmother First Meet</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: "Kanit";
+        src: url("assets/fonts/kanit-latin-900-normal.woff2") format("woff2");
+        font-weight: 900;
+      }
+      :root {
+        --green: #39ff14;
+        --yellow: #ffe600;
+        --white: #ffffff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: "Kanit", sans-serif;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .shot {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .shot video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ov {
+        z-index: 3;
+      }
+      #fx {
+        z-index: 5;
+      }
+      .vig {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.5) 100%);
+      }
+
+      /* Sunnah-Edit style caption */
+      .cap {
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        text-align: center;
+      }
+      .t {
+        display: block;
+        font-weight: 900;
+        font-size: 84px;
+        line-height: 1.08;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--white);
+        transform: skewX(-7deg);
+        white-space: nowrap;
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 8px 18px rgba(0, 0, 0, 0.7);
+      }
+      .t.g {
+        color: var(--green);
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 0 26px rgba(57, 255, 20, 0.85), 0 0 50px rgba(57, 255, 20, 0.45);
+      }
+      .t.y {
+        color: var(--yellow);
+        text-shadow:
+          -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000,
+          0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000,
+          0 0 26px rgba(255, 230, 0, 0.8), 0 0 50px rgba(255, 230, 0, 0.4);
+      }
+      .t.xl {
+        font-size: 120px;
+      }
+      .t.sm {
+        font-size: 66px;
+      }
+      .label {
+        position: absolute;
+        font-weight: 900;
+        font-size: 58px;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        transform: skewX(-8deg);
+        white-space: nowrap;
+        text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 20px currentColor;
+      }
+      .stamp {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-weight: 900;
+        font-size: 104px;
+        color: #fff;
+        letter-spacing: 0.04em;
+        text-shadow: 0 6px 24px rgba(0, 0, 0, 0.8), -3px -3px 0 #000, 3px 3px 0 #000;
+      }
+      svg.draw {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: visible;
+      }
+      .wm {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 58px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.45);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+      #flash {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        opacity: 0;
+      }
+      #leak {
+        position: absolute;
+        left: -300px;
+        top: 200px;
+        width: 1700px;
+        height: 1500px;
+        border-radius: 50%;
+        opacity: 0;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 120, 200, 0.85) 30%, rgba(255, 150, 40, 0.55) 55%, rgba(255, 80, 160, 0) 72%);
+        filter: blur(30px);
+      }
+      #heart {
+        position: absolute;
+        left: 600px;
+        top: 560px;
+        width: 340px;
+        height: 339px;
+        opacity: 0;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+      }
+      #loop {
+        position: absolute;
+        inset: 0;
+        background: url(assets/img/loop-first-frame.jpg) center / cover;
+        opacity: 0;
+        transform: scale(1);
+      }
+      #fade {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+      }
+      .t.r, .t .r { color: #ff2e3b; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 0 26px rgba(255, 46, 59, 0.85), 0 0 50px rgba(255, 46, 59, 0.45); }
+      .t.b, .t .b { color: #2ec5ff; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 0 26px rgba(46, 197, 255, 0.85), 0 0 50px rgba(46, 197, 255, 0.45); }
+      .t .g { color: var(--green); text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 0 26px rgba(57, 255, 20, 0.85); }
+          .row { display: flex; gap: 22px; justify-content: center; }
+      .wait {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 160px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 64px;
+        letter-spacing: 0.02em;
+        color: #f2f2f2;
+        text-transform: uppercase;
+        text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 6px 16px rgba(0, 0, 0, 0.7);
+      }
+      .sub {
+        position: absolute;
+        left: 150px;
+        right: 150px;
+        top: 1300px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 52px;
+        line-height: 1.22;
+        color: #fff;
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0 4px 14px rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="21" data-width="1080" data-height="1920">
+      <div class="shot" id="w1"><video id="v1" class="clip" src="assets/footage/f-s2b-door2.mp4" data-start="0" data-duration="1.5" data-track-index="0" muted playsinline data-media-start="1.0"></video></div>
+      <div class="shot" id="w2"><video id="v2" class="clip" src="assets/footage/f-s3-bed.mp4" data-start="1.5" data-duration="3.05" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w3"><video id="v3" class="clip" src="assets/footage/f-s4-cry.mp4" data-start="4.55" data-duration="2.7" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w4"><video id="v4" class="clip" src="assets/footage/f-s5-touch.mp4" data-start="7.25" data-duration="2.7" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w5"><video id="v5" class="clip" src="assets/footage/f-s5b-touch2.mp4" data-start="9.95" data-duration="2.6" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w6"><video id="v6" class="clip" src="assets/footage/f-s6-hold.mp4" data-start="12.55" data-duration="3.5" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w7"><video id="v7" class="clip" src="assets/footage/f-s7-mine.mp4" data-start="16.05" data-duration="1.15" data-track-index="0" muted playsinline></video></div>
+      <div class="shot" id="w8"><video id="v8" class="clip" src="assets/footage/f-s8-joy.mp4" data-start="17.2" data-duration="3.7" data-track-index="0" muted playsinline></video></div>
+      <div id="grade" class="clip" data-start="0" data-duration="21" data-track-index="1"><div class="vig"></div></div>
+      <div id="s1" class="clip ov" data-start="0" data-duration="4.45" data-track-index="2"><div class="sub">Grandma meeting her grandchild for the first time...</div></div>
+      <div id="s2" class="clip ov" data-start="4.55" data-duration="3.95" data-track-index="2"><div class="sub">She tried to hold back her tears...</div></div>
+      <div id="s3" class="clip ov" data-start="8.55" data-duration="3.95" data-track-index="2"><div class="sub">but her reaction said it all.</div></div>
+      <div id="s4" class="clip ov" data-start="12.7" data-duration="7.6" data-track-index="2"><div class="sub">The sweetest moment in life.</div></div>
+      <div id="hrt" class="clip ov" data-start="12.8" data-duration="4.3" data-track-index="2"><img id="heart" src="assets/img/mending-heart.png" alt="" style="left: 720px; top: 600px; width: 220px; height: 219px" /></div>
+      <audio id="sfx-shutter1" src="assets/audio/camera-shutter.m4a" data-start="0.93" data-duration="0.36" data-track-index="4" data-volume="0.8"></audio>
+      <audio id="sfx-bell" src="assets/audio/bell-ding.m4a" data-start="12.85" data-duration="1.13" data-track-index="6" data-volume="0.5"></audio>
+      <div id="fx" class="clip" data-start="0" data-duration="21" data-track-index="3">
+        <div class="wm">LIFE IN FRAME</div><div id="flash"></div><div id="fade"></div><div id="loop"></div>
+      </div>
+    </div>
+<script>
+      const tl = gsap.timeline({ paused: true });
+      const type = (sel, t, cps = 24) => {
+        const el = document.querySelector(sel);
+        const txt = el.textContent;
+        el.textContent = "";
+        for (const c of txt) {
+          const sp = document.createElement("span");
+          sp.className = "ch";
+          sp.textContent = c;
+          el.appendChild(sp);
+        }
+        tl.fromTo(el.querySelectorAll(".ch"), { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 1 / cps, ease: "none" }, t);
+      };
+      const out = (sel, t) => tl.to(sel, { opacity: 0, duration: 0.2 }, t);
+      const draw = (sel, t, d = 0.4) => tl.to(sel, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, t);
+      const show = (sel, t) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.12 }, t);
+      const label = (sel, t) => tl.fromTo(sel, { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, transformOrigin: "0% 50%", duration: 0.3, ease: "back.out(2.5)" }, t);
+      const flash = (t, o = 0.75) => tl.fromTo("#flash", { opacity: o }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      const push = (sel, t, dur, a = 1.0, b = 1.06) => tl.fromTo(sel, { scale: a }, { scale: b, duration: dur, ease: "none", immediateRender: false }, t);
+
+      // clean cut-only edit: natural footage, one small subtitle at a time
+      push("#w1", 0, 1.5, 1.0, 1.05);
+      push("#w2", 1.5, 3.05, 1.0, 1.05);
+      push("#w3", 4.55, 2.7, 1.0, 1.05);
+      push("#w4", 7.25, 2.7, 1.0, 1.05);
+      push("#w5", 9.95, 2.6, 1.0, 1.05);
+      push("#w6", 12.55, 3.5, 1.0, 1.05);
+      push("#w7", 16.05, 1.15, 1.0, 1.05);
+      push("#w8", 17.2, 3.7, 1.0, 1.05);
+      tl.fromTo("#s1 .sub", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 0.10); tl.to("#s1 .sub", { opacity: 0, duration: 0.3 }, 4.15);
+      tl.fromTo("#s2 .sub", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 4.65); tl.to("#s2 .sub", { opacity: 0, duration: 0.3 }, 8.20);
+      tl.fromTo("#s3 .sub", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 8.65); tl.to("#s3 .sub", { opacity: 0, duration: 0.3 }, 12.20);
+      tl.fromTo("#s4 .sub", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 12.80); tl.to("#s4 .sub", { opacity: 0, duration: 0.3 }, 20.0);
+      tl.fromTo("#heart", { scale: 0.4, opacity: 0, transformOrigin: "50% 60%" }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 12.85);
+      tl.fromTo("#heart", { scale: 1 }, { scale: 1.08, duration: 0.6, yoyo: true, repeat: 5, ease: "sine.inOut", transformOrigin: "50% 60%", immediateRender: false }, 13.4);
+      tl.to("#heart", { opacity: 0, duration: 0.4 }, 16.7);
+      // fade out -> first frame (loop)
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.in" }, 20.4);
+      tl.fromTo("#loop", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 20.7);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
