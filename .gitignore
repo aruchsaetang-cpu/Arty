@@ -55,3 +55,8 @@ videos/rocky-punch-short/*.log
 videos/rocky-punch-short/work/*.wav
 !videos/rocky-punch-short/work/voice_raw.wav
 videos/rocky-punch-short/work/list.txt
+videos/rocky-punch-short/v2/raw*.wav
+videos/rocky-punch-short/v2/tight*.wav
+videos/rocky-punch-short/v2/trim*.wav
+videos/rocky-punch-short/v2/gap.wav
+videos/rocky-punch-short/work/voice_v1.wav

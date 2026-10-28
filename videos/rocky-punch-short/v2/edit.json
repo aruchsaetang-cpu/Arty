@@ -1,0 +1,289 @@
+{
+ "duration": 23.155,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/rocky-punch-short/v2/voice.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 0,
+   "dur": 1.05,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r3.mp4",
+   "start": 1.05,
+   "dur": 1.12,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 2.17,
+   "dur": 1.12,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 3.29,
+   "dur": 0.858,
+   "media_start": 6
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r6.mp4",
+   "start": 4.148,
+   "dur": 1.832,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r8.mp4",
+   "start": 5.98,
+   "dur": 0.96,
+   "media_start": 1
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r7.mp4",
+   "start": 6.94,
+   "dur": 1.59,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r1.mp4",
+   "start": 8.53,
+   "dur": 0.918,
+   "media_start": 5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r1.mp4",
+   "start": 9.448,
+   "dur": 0.792,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 10.24,
+   "dur": 1.054,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r3.mp4",
+   "start": 11.294,
+   "dur": 1.456,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 12.75,
+   "dur": 1.16,
+   "media_start": 4
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 13.91,
+   "dur": 0.79,
+   "media_start": 3
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 14.7,
+   "dur": 1.51,
+   "media_start": 4
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 16.21,
+   "dur": 1.2,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r8.mp4",
+   "start": 17.41,
+   "dur": 0.761,
+   "media_start": 4
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 18.171,
+   "dur": 1.419,
+   "media_start": 8
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 19.59,
+   "dur": 1.19,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r6.mp4",
+   "start": 20.78,
+   "dur": 1.23,
+   "media_start": 7
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 22.01,
+   "dur": 1.145,
+   "media_start": 7
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "end": 1.05,
+   "text": "เพื่อนๆ รู้ไหมว่า"
+  },
+  {
+   "start": 1.05,
+   "end": 1.65,
+   "text": "พระเอก Rocky"
+  },
+  {
+   "start": 1.65,
+   "end": 2.17,
+   "text": "เคยเกือบ"
+  },
+  {
+   "start": 2.17,
+   "end": 2.71,
+   "text": "ตายจริงๆ"
+  },
+  {
+   "start": 2.71,
+   "end": 3.29,
+   "text": "เพราะฉากต่อย"
+  },
+  {
+   "start": 3.29,
+   "end": 4.148,
+   "text": "มวยในหนัง!"
+  },
+  {
+   "start": 4.148,
+   "end": 4.92,
+   "text": "ตอนถ่าย Rocky 4"
+  },
+  {
+   "start": 4.92,
+   "end": 5.98,
+   "text": "ในปี 1985"
+  },
+  {
+   "start": 5.98,
+   "end": 6.548,
+   "text": "ซิลเวสเตอร์"
+  },
+  {
+   "start": 6.548,
+   "end": 6.94,
+   "text": "สตอลโลน"
+  },
+  {
+   "start": 6.94,
+   "end": 7.58,
+   "text": "อยากให้ฉากต่อย"
+  },
+  {
+   "start": 7.58,
+   "end": 8.53,
+   "text": "ดูสมจริงที่สุด"
+  },
+  {
+   "start": 8.53,
+   "end": 9.448,
+   "text": "เขาเลยยอมให้"
+  },
+  {
+   "start": 9.448,
+   "end": 10.24,
+   "text": "คู่ต่อสู้ในเรื่อง"
+  },
+  {
+   "start": 10.24,
+   "end": 11.294,
+   "text": "ต่อยเค้าจริงๆ"
+  },
+  {
+   "start": 11.294,
+   "end": 11.89,
+   "text": "แต่หมัดหนึ่ง"
+  },
+  {
+   "start": 11.89,
+   "end": 12.75,
+   "text": "กลับรุนแรง"
+  },
+  {
+   "start": 12.75,
+   "end": 13.27,
+   "text": "กว่าที่คิด"
+  },
+  {
+   "start": 13.27,
+   "end": 13.91,
+   "text": "เพราะมันกระแทก"
+  },
+  {
+   "start": 13.91,
+   "end": 14.7,
+   "text": "เข้าที่หน้าอก"
+  },
+  {
+   "start": 14.7,
+   "end": 15.37,
+   "text": "จนเขาต้องเข้า"
+  },
+  {
+   "start": 15.37,
+   "end": 16.21,
+   "text": "โรงพยาบาล"
+  },
+  {
+   "start": 16.21,
+   "end": 16.7,
+   "text": "และอยู่ในห้อง"
+  },
+  {
+   "start": 16.7,
+   "end": 17.41,
+   "text": "ไอซียู"
+  },
+  {
+   "start": 17.41,
+   "end": 18.171,
+   "text": "นานหลายวัน"
+  },
+  {
+   "start": 18.171,
+   "end": 18.791,
+   "text": "ที่พีคคือ"
+  },
+  {
+   "start": 18.791,
+   "end": 19.59,
+   "text": "เหตุการณ์นี้"
+  },
+  {
+   "start": 19.59,
+   "end": 20.11,
+   "text": "เกิดขึ้น"
+  },
+  {
+   "start": 20.11,
+   "end": 20.78,
+   "text": "ระหว่างถ่ายหนัง"
+  },
+  {
+   "start": 20.78,
+   "end": 21.4,
+   "text": "ที่คนดู"
+  },
+  {
+   "start": 21.4,
+   "end": 22.01,
+   "text": "คิดว่า"
+  },
+  {
+   "start": 22.01,
+   "end": 23.155,
+   "text": "เป็นแค่การแสดง!"
+  }
+ ]
+}

@@ -1,0 +1,385 @@
+{
+ "duration": 29.52,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/rocky-punch-short/work/voice_raw.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r3.mp4",
+   "start": 0,
+   "dur": 1.5,
+   "media_start": 0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 1.5,
+   "dur": 0.63,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 2.13,
+   "dur": 0.81,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 2.94,
+   "dur": 0.89,
+   "media_start": 6.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r6.mp4",
+   "start": 3.83,
+   "dur": 1.26,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r8.mp4",
+   "start": 5.09,
+   "dur": 1.0,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r7.mp4",
+   "start": 6.09,
+   "dur": 1.35,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r6.mp4",
+   "start": 7.44,
+   "dur": 1.28,
+   "media_start": 5.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r7.mp4",
+   "start": 8.72,
+   "dur": 0.92,
+   "media_start": 5.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r1.mp4",
+   "start": 9.64,
+   "dur": 0.76,
+   "media_start": 5.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r1.mp4",
+   "start": 10.4,
+   "dur": 0.81,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 11.21,
+   "dur": 0.94,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 12.15,
+   "dur": 1.44,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r3.mp4",
+   "start": 13.59,
+   "dur": 0.44,
+   "media_start": 0.2
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 14.03,
+   "dur": 1.07,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 15.1,
+   "dur": 1.09,
+   "media_start": 3.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r3.mp4",
+   "start": 16.19,
+   "dur": 1.03,
+   "media_start": 0.4
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 17.22,
+   "dur": 1.72,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 18.94,
+   "dur": 1.36,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r8.mp4",
+   "start": 20.3,
+   "dur": 1.21,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 21.51,
+   "dur": 1.83,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 23.34,
+   "dur": 1.37,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r5.mp4",
+   "start": 24.71,
+   "dur": 1.07,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r2.mp4",
+   "start": 25.78,
+   "dur": 1.39,
+   "media_start": 10.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r6.mp4",
+   "start": 27.17,
+   "dur": 1.45,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/rocky-punch-short/broll/r4.mp4",
+   "start": 28.62,
+   "dur": 0.9,
+   "media_start": 3.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "end": 0.69,
+   "text": "เพื่อนๆ รู้ไหมว่า"
+  },
+  {
+   "start": 0.69,
+   "end": 1.18,
+   "text": "ในหนังเรื่อง"
+  },
+  {
+   "start": 1.18,
+   "end": 1.5,
+   "text": "Rocky"
+  },
+  {
+   "start": 1.5,
+   "end": 2.13,
+   "text": "นักแสดงคนนี้"
+  },
+  {
+   "start": 2.13,
+   "end": 2.58,
+   "text": "เกือบโดนต่อย"
+  },
+  {
+   "start": 2.58,
+   "end": 2.94,
+   "text": "จนเสียชีวิต"
+  },
+  {
+   "start": 2.94,
+   "end": 3.828,
+   "text": "ในฉากนี้จริงๆ"
+  },
+  {
+   "start": 3.828,
+   "end": 4.16,
+   "text": "เรื่องเกิดขึ้น"
+  },
+  {
+   "start": 4.16,
+   "end": 5.09,
+   "text": "ตอนถ่าย Rocky 4"
+  },
+  {
+   "start": 5.09,
+   "end": 6.09,
+   "text": "ในปี 1985"
+  },
+  {
+   "start": 6.09,
+   "end": 6.61,
+   "text": "เขาอยากให้"
+  },
+  {
+   "start": 6.61,
+   "end": 7.44,
+   "text": "ฉากชกสมจริงที่สุด"
+  },
+  {
+   "start": 7.44,
+   "end": 8.2,
+   "text": "เพราะเขาไม่ชอบ"
+  },
+  {
+   "start": 8.2,
+   "end": 8.72,
+   "text": "ฉากต่อยปลอม"
+  },
+  {
+   "start": 8.72,
+   "end": 9.64,
+   "text": "แบบหนังทั่วไป"
+  },
+  {
+   "start": 9.64,
+   "end": 10.4,
+   "text": "เลยบอกคนที่เล่น"
+  },
+  {
+   "start": 10.4,
+   "end": 11.21,
+   "text": "เป็นคู่ต่อสู้ของเขา"
+  },
+  {
+   "start": 11.21,
+   "end": 11.74,
+   "text": "ว่าให้ชกเต็ม"
+  },
+  {
+   "start": 11.74,
+   "end": 12.15,
+   "text": "แรงได้เลย"
+  },
+  {
+   "start": 12.15,
+   "end": 12.9,
+   "text": "แต่เขาไม่คิดเลยว่า"
+  },
+  {
+   "start": 12.9,
+   "end": 13.59,
+   "text": "หมัดนั้นจะทำ"
+  },
+  {
+   "start": 13.59,
+   "end": 13.85,
+   "text": "ให้เขา"
+  },
+  {
+   "start": 13.85,
+   "end": 15.1,
+   "text": "ต้องเข้า โรงพยาบาลจริงๆ"
+  },
+  {
+   "start": 15.1,
+   "end": 15.78,
+   "text": "หมัดนั้นพุ่ง"
+  },
+  {
+   "start": 15.78,
+   "end": 16.19,
+   "text": "เข้ากลาง"
+  },
+  {
+   "start": 16.19,
+   "end": 17.22,
+   "text": "หน้าอกเต็มๆ"
+  },
+  {
+   "start": 17.22,
+   "end": 17.55,
+   "text": "คืนนั้น"
+  },
+  {
+   "start": 17.55,
+   "end": 18.47,
+   "text": "หัวใจของ"
+  },
+  {
+   "start": 18.47,
+   "end": 18.94,
+   "text": "เขาเริ่มบวม"
+  },
+  {
+   "start": 18.94,
+   "end": 19.76,
+   "text": "ความดันพุ่งสูง"
+  },
+  {
+   "start": 19.76,
+   "end": 20.3,
+   "text": "ขึ้นเรื่อยๆ"
+  },
+  {
+   "start": 20.3,
+   "end": 20.97,
+   "text": "เขาต้องบิน"
+  },
+  {
+   "start": 20.97,
+   "end": 21.51,
+   "text": "กลับอเมริกา"
+  },
+  {
+   "start": 21.51,
+   "end": 22.57,
+   "text": "และนอนห้องไอซียู"
+  },
+  {
+   "start": 22.57,
+   "end": 23.344,
+   "text": "นานถึง 4 วัน"
+  },
+  {
+   "start": 23.344,
+   "end": 24.01,
+   "text": "ที่พีคคือ"
+  },
+  {
+   "start": 24.01,
+   "end": 24.71,
+   "text": "หมัดที่ทำให้"
+  },
+  {
+   "start": 24.71,
+   "end": 25.45,
+   "text": "การถ่ายทำเกือบ"
+  },
+  {
+   "start": 25.45,
+   "end": 25.78,
+   "text": "กลายเป็น"
+  },
+  {
+   "start": 25.78,
+   "end": 26.594,
+   "text": "โศกนาฏกรรม"
+  },
+  {
+   "start": 26.594,
+   "end": 27.17,
+   "text": "กลับถูกเก็บ"
+  },
+  {
+   "start": 27.17,
+   "end": 27.68,
+   "text": "ไว้ในหนัง"
+  },
+  {
+   "start": 27.68,
+   "end": 28.62,
+   "text": "ที่คนดูเห็นมา"
+  },
+  {
+   "start": 28.62,
+   "end": 29.52,
+   "text": "จนถึงทุกวันนี้!"
+  }
+ ]
+}
