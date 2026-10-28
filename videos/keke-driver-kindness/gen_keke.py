@@ -9,7 +9,7 @@ D=3.0; HOOK=2.43
 # (shot id, footage, caption rows [(id,color,text)...], typing offsets per span, cap top)
 SHOTS=[
  ("w2","s2-look.mp4",[[("w2a","","*HIS CAR")],[("w2b","","WAS"),("w2c","r","BROKEN*")]],1230),
- ("w7","s7-work.mp4",[[("k1","","*HE WORKS"),("k1b","y","HARD")],[("k2","","EVERY DAY FOR")],[("k3","","HIS"),("k3b","g","FAMILY*")]],1190),
+ ("w7","s7-work.mp4",[[("k1","","*HE WORKS"),("k1b","y","HARD")],[("k2","","FOR HIS"),("k3b","g","FAMILY*")]],1230),
  ("w3","s3-speak.mp4",[[("a1","","*HE WANTED")],[("a2","","TO GO BACK"),("a2b","g","HOME*")]],1230),
  ("w4","s4-money.mp4",[[("b1","","*BUT HE HAD")],[("b2","r","NO MONEY*")]],1230),
  ("w6","s6-ride.mp4",[[("d1","","*THE DRIVER SAID")],[("d2","","IT WAS"),("d2b","g","OK"),("d2c","","AND LET")],[("d3","","HIM RIDE"),("d3b","y","FOR FREE*")]],1190),
