@@ -66,3 +66,9 @@ videos/ironman-suit-short/work/trim*.wav
 videos/ironman-suit-short/work/gap.wav
 videos/ironman-suit-short/broll/
 videos/ironman-suit-short/out/
+videos/django-blood-short/work/raw*.wav
+videos/django-blood-short/work/tight*.wav
+videos/django-blood-short/work/trim*.wav
+videos/django-blood-short/work/gap.wav
+videos/django-blood-short/broll/
+videos/django-blood-short/out/
