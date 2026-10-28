@@ -52,3 +52,6 @@ videos/michelle-yeoh-short/*.log
 videos/rocky-punch-short/broll/
 videos/rocky-punch-short/out*/
 videos/rocky-punch-short/*.log
+videos/rocky-punch-short/work/*.wav
+!videos/rocky-punch-short/work/voice_raw.wav
+videos/rocky-punch-short/work/list.txt
