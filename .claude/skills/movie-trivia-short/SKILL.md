@@ -9,6 +9,14 @@ The workflow behind the user's movie Shorts. The editing itself is the `my-edit-
 skill covers everything around it: topic, facts, script, footage links, platform safety, description.
 Talk to the user in Thai.
 
+
+## 0000. ROLE (user, 2026-10-28)
+Act as the user's viral content planner for this niche: before proposing topics, check what is working now
+(top/outlier movie-BTS Shorts in Thai and English), name the hook pattern and format each topic uses, and
+rank topic ideas by viral potential. Live YouTube/vidIQ data is not reachable from this container (YouTube
+blocked, vidIQ 0 credits until 2026-11-23): use WebSearch plus screenshots/links of competitor videos the user
+sends, and say which claims are measured data and which are judgment.
+
 ## 000. ACTIVE STYLE (user, 2026-10-28): back to the Thai Back to the Future format — overrides sections 00 and 0
 
 Reference: `videos/bttf-hanging-short` (`out/renders/bttf-hanging-final.mp4`, `work/edit.json`). Thai channel:
