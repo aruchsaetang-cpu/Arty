@@ -199,3 +199,9 @@ Why: viewers recognise the repeated "edit signature" (neon text + green circle +
 
 - **Heartbreak / loss content performs best** — someone or an animal dying, a final goodbye, a loyal animal grieving or waiting. Prefer these topics over rescue-with-happy-ending when choosing the next project.
 - Keep it respectful: show the goodbye, the waiting, the grief — never graphic death footage. Verify the story (many viral loss clips are staged or reposted): prefer clips with a news source, a named owner/dog, or the original uploader; credit them.
+
+## Genres in rotation (2026-10-28)
+
+- **A. Loss / heartbreak** (primary, performs best): someone or an animal dying, the final goodbye, a loyal animal grieving or waiting.
+- **B. Help a person — open on the PROBLEM** (add to the mix): frame 1 shows the person in danger or trouble (trapped, swept away, stuck), text states the problem as an event; the helper and the outcome come later. Real footage only, no invented facts, credit the source.
+  - Ready topics: `videos/burning-car-lift/` (man trapped under a burning car, ~17 bystanders lift it); flood rescues of elderly men (bus driver wades into flood water; roommates rescue an elderly man in SoCal flood water; passersby rescue an elderly man who fell into a storm drain).
