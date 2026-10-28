@@ -1,0 +1,920 @@
+[
+ {
+  "start": 0.0,
+  "end": 0.16,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 0.16,
+  "end": 0.34,
+  "word": "ไป",
+  "brk": false
+ },
+ {
+  "start": 0.34,
+  "end": 0.48,
+  "word": "ได้",
+  "brk": false
+ },
+ {
+  "start": 0.48,
+  "end": 0.65,
+  "word": "ไง",
+  "brk": true
+ },
+ {
+  "start": 0.65,
+  "end": 0.81,
+  "word": "นัก",
+  "brk": false
+ },
+ {
+  "start": 0.81,
+  "end": 1.11,
+  "word": "แสดง",
+  "brk": false
+ },
+ {
+  "start": 1.11,
+  "end": 1.22,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 1.22,
+  "end": 1.45,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 1.45,
+  "end": 1.71,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 1.71,
+  "end": 1.75,
+  "word": "ความ",
+  "brk": false
+ },
+ {
+  "start": 1.75,
+  "end": 1.93,
+  "word": "ลับ",
+  "brk": false
+ },
+ {
+  "start": 1.93,
+  "end": 2.19,
+  "word": "สุด",
+  "brk": false
+ },
+ {
+  "start": 2.19,
+  "end": 2.31,
+  "word": "ท้าย",
+  "brk": true
+ },
+ {
+  "start": 2.31,
+  "end": 2.61,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 2.61,
+  "end": 2.85,
+  "word": "Harry",
+  "brk": false
+ },
+ {
+  "start": 2.85,
+  "end": 3.37,
+  "word": "Potter",
+  "brk": true
+ },
+ {
+  "start": 3.37,
+  "end": 3.66,
+  "word": "ก่อน",
+  "brk": false
+ },
+ {
+  "start": 3.66,
+  "end": 3.99,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 3.99,
+  "end": 4.27,
+  "word": "ดู",
+  "brk": false
+ },
+ {
+  "start": 4.27,
+  "end": 4.31,
+  "word": "หนัง",
+  "brk": true
+ },
+ {
+  "start": 4.31,
+  "end": 4.54,
+  "word": "ทั้ง",
+  "brk": false
+ },
+ {
+  "start": 4.54,
+  "end": 4.76,
+  "word": "โลก",
+  "brk": true
+ },
+ {
+  "start": 4.76,
+  "end": 4.89,
+  "word": "เกือบ",
+  "brk": false
+ },
+ {
+  "start": 4.89,
+  "end": 5.38,
+  "word": "10",
+  "brk": false
+ },
+ {
+  "start": 5.38,
+  "end": 5.96,
+  "word": "ปี!",
+  "brk": true
+ },
+ {
+  "start": 5.96,
+  "end": 6.15,
+  "word": "ตอน",
+  "brk": false
+ },
+ {
+  "start": 6.15,
+  "end": 6.42,
+  "word": "ถ่าย",
+  "brk": true
+ },
+ {
+  "start": 6.42,
+  "end": 6.63,
+  "word": "Harry",
+  "brk": false
+ },
+ {
+  "start": 6.63,
+  "end": 7.2,
+  "word": "Potter",
+  "brk": true
+ },
+ {
+  "start": 7.2,
+  "end": 7.44,
+  "word": "ภาค",
+  "brk": false
+ },
+ {
+  "start": 7.44,
+  "end": 7.48,
+  "word": "แรก",
+  "brk": true
+ },
+ {
+  "start": 7.48,
+  "end": 8.04,
+  "word": "Alan",
+  "brk": false
+ },
+ {
+  "start": 8.04,
+  "end": 8.39,
+  "word": "Rickman",
+  "brk": true
+ },
+ {
+  "start": 8.39,
+  "end": 8.67,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 8.67,
+  "end": 8.73,
+  "word": "เล่น",
+  "brk": false
+ },
+ {
+  "start": 8.73,
+  "end": 9.0,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 9.0,
+  "end": 9.23,
+  "word": "สเนป",
+  "brk": true
+ },
+ {
+  "start": 9.23,
+  "end": 9.47,
+  "word": "อยาก",
+  "brk": false
+ },
+ {
+  "start": 9.47,
+  "end": 9.66,
+  "word": "เข้า",
+  "brk": false
+ },
+ {
+  "start": 9.66,
+  "end": 9.99,
+  "word": "ใจ",
+  "brk": true
+ },
+ {
+  "start": 9.99,
+  "end": 10.17,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 10.17,
+  "end": 10.63,
+  "word": "ละคร",
+  "brk": true
+ },
+ {
+  "start": 10.63,
+  "end": 10.78,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 10.78,
+  "end": 11.16,
+  "word": "ลึกซึ้ง",
+  "brk": false
+ },
+ {
+  "start": 11.16,
+  "end": 11.33,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 11.33,
+  "end": 12.19,
+  "word": "สุด",
+  "brk": true
+ },
+ {
+  "start": 12.19,
+  "end": 12.55,
+  "word": "เพราะ",
+  "brk": false
+ },
+ {
+  "start": 12.55,
+  "end": 12.73,
+  "word": "สเนป",
+  "brk": true
+ },
+ {
+  "start": 12.73,
+  "end": 12.88,
+  "word": "ดู",
+  "brk": false
+ },
+ {
+  "start": 12.88,
+  "end": 13.09,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 13.09,
+  "end": 13.23,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 13.23,
+  "end": 13.43,
+  "word": "ร้าย",
+  "brk": true
+ },
+ {
+  "start": 13.43,
+  "end": 13.76,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 13.76,
+  "end": 14.05,
+  "word": "เกลียด",
+  "brk": false
+ },
+ {
+  "start": 14.05,
+  "end": 14.28,
+  "word": "แฮร์รี่",
+  "brk": true
+ },
+ {
+  "start": 14.28,
+  "end": 14.46,
+  "word": "ตลอด",
+  "brk": false
+ },
+ {
+  "start": 14.46,
+  "end": 14.68,
+  "word": "ทั้ง",
+  "brk": false
+ },
+ {
+  "start": 14.68,
+  "end": 14.94,
+  "word": "เรื่อง",
+  "brk": true
+ },
+ {
+  "start": 14.94,
+  "end": 15.73,
+  "word": "J.K.",
+  "brk": false
+ },
+ {
+  "start": 15.73,
+  "end": 16.13,
+  "word": "Rowling",
+  "brk": true
+ },
+ {
+  "start": 16.13,
+  "end": 16.35,
+  "word": "เลย",
+  "brk": false
+ },
+ {
+  "start": 16.35,
+  "end": 16.57,
+  "word": "บอก",
+  "brk": false
+ },
+ {
+  "start": 16.57,
+  "end": 16.77,
+  "word": "ความ",
+  "brk": false
+ },
+ {
+  "start": 16.77,
+  "end": 17.05,
+  "word": "ลับ",
+  "brk": true
+ },
+ {
+  "start": 17.05,
+  "end": 17.09,
+  "word": "ข้อ",
+  "brk": false
+ },
+ {
+  "start": 17.09,
+  "end": 17.32,
+  "word": "หนึ่ง",
+  "brk": true
+ },
+ {
+  "start": 17.32,
+  "end": 17.56,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 17.56,
+  "end": 17.95,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 17.95,
+  "end": 18.11,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 18.11,
+  "end": 18.27,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 18.27,
+  "end": 18.43,
+  "word": "เดียว",
+  "brk": true
+ },
+ {
+  "start": 18.43,
+  "end": 18.77,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 18.77,
+  "end": 19.0,
+  "word": "ขอ",
+  "brk": false
+ },
+ {
+  "start": 19.0,
+  "end": 19.24,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 19.24,
+  "end": 19.4,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 19.4,
+  "end": 19.63,
+  "word": "เก็บ",
+  "brk": false
+ },
+ {
+  "start": 19.63,
+  "end": 19.93,
+  "word": "ไว้",
+  "brk": true
+ },
+ {
+  "start": 19.93,
+  "end": 20.09,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 20.09,
+  "end": 20.28,
+  "word": "บอก",
+  "brk": false
+ },
+ {
+  "start": 20.28,
+  "end": 20.914,
+  "word": "ใคร",
+  "brk": true
+ },
+ {
+  "start": 20.914,
+  "end": 21.21,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 21.21,
+  "end": 21.4,
+  "word": "ความ",
+  "brk": false
+ },
+ {
+  "start": 21.4,
+  "end": 21.58,
+  "word": "ลับ",
+  "brk": false
+ },
+ {
+  "start": 21.58,
+  "end": 21.84,
+  "word": "นั้น",
+  "brk": true
+ },
+ {
+  "start": 21.84,
+  "end": 22.04,
+  "word": "คือ",
+  "brk": false
+ },
+ {
+  "start": 22.04,
+  "end": 22.41,
+  "word": "เหตุ",
+  "brk": false
+ },
+ {
+  "start": 22.41,
+  "end": 22.534,
+  "word": "ผล",
+  "brk": true
+ },
+ {
+  "start": 22.534,
+  "end": 22.834,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 22.834,
+  "end": 23.29,
+  "word": "สเนป",
+  "brk": true
+ },
+ {
+  "start": 23.29,
+  "end": 23.45,
+  "word": "คอย",
+  "brk": false
+ },
+ {
+  "start": 23.45,
+  "end": 23.69,
+  "word": "ปก",
+  "brk": false
+ },
+ {
+  "start": 23.69,
+  "end": 23.9,
+  "word": "ป้อง",
+  "brk": true
+ },
+ {
+  "start": 23.9,
+  "end": 24.344,
+  "word": "แฮร์รี่",
+  "brk": true
+ },
+ {
+  "start": 24.344,
+  "end": 24.54,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 24.54,
+  "end": 25.288,
+  "word": "ตลอด!",
+  "brk": true
+ },
+ {
+  "start": 25.288,
+  "end": 25.57,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 25.57,
+  "end": 25.77,
+  "word": "เก็บ",
+  "brk": true
+ },
+ {
+  "start": 25.77,
+  "end": 26.0,
+  "word": "ความ",
+  "brk": false
+ },
+ {
+  "start": 26.0,
+  "end": 26.19,
+  "word": "ลับ",
+  "brk": false
+ },
+ {
+  "start": 26.19,
+  "end": 26.37,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 26.37,
+  "end": 26.5,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 26.5,
+  "end": 26.72,
+  "word": "หลาย",
+  "brk": false
+ },
+ {
+  "start": 26.72,
+  "end": 26.93,
+  "word": "ปี",
+  "brk": true
+ },
+ {
+  "start": 26.93,
+  "end": 27.12,
+  "word": "แม้",
+  "brk": false
+ },
+ {
+  "start": 27.12,
+  "end": 27.43,
+  "word": "แต่",
+  "brk": true
+ },
+ {
+  "start": 27.43,
+  "end": 27.62,
+  "word": "ผู้",
+  "brk": false
+ },
+ {
+  "start": 27.62,
+  "end": 27.78,
+  "word": "กำ",
+  "brk": false
+ },
+ {
+  "start": 27.78,
+  "end": 27.93,
+  "word": "กับ",
+  "brk": true
+ },
+ {
+  "start": 27.93,
+  "end": 28.06,
+  "word": "ยัง",
+  "brk": false
+ },
+ {
+  "start": 28.06,
+  "end": 28.39,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 28.39,
+  "end": 28.55,
+  "word": "รู้",
+  "brk": true
+ },
+ {
+  "start": 28.55,
+  "end": 28.95,
+  "word": "เวลา",
+  "brk": false
+ },
+ {
+  "start": 28.95,
+  "end": 29.18,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 29.18,
+  "end": 29.22,
+  "word": "คน",
+  "brk": true
+ },
+ {
+  "start": 29.22,
+  "end": 29.46,
+  "word": "ขอ",
+  "brk": false
+ },
+ {
+  "start": 29.46,
+  "end": 29.7,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 29.7,
+  "end": 29.74,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 29.74,
+  "end": 30.048,
+  "word": "เล่น",
+  "brk": false
+ },
+ {
+  "start": 30.048,
+  "end": 30.21,
+  "word": "แบบ",
+  "brk": false
+ },
+ {
+  "start": 30.21,
+  "end": 30.46,
+  "word": "อื่น",
+  "brk": true
+ },
+ {
+  "start": 30.46,
+  "end": 30.59,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 30.59,
+  "end": 30.95,
+  "word": "จะ",
+  "brk": false
+ },
+ {
+  "start": 30.95,
+  "end": 31.25,
+  "word": "ตอบ",
+  "brk": false
+ },
+ {
+  "start": 31.25,
+  "end": 31.468,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 31.468,
+  "end": 31.65,
+  "word": "ผม",
+  "brk": false
+ },
+ {
+  "start": 31.65,
+  "end": 31.86,
+  "word": "รู้",
+  "brk": true
+ },
+ {
+  "start": 31.86,
+  "end": 32.04,
+  "word": "บาง",
+  "brk": false
+ },
+ {
+  "start": 32.04,
+  "end": 32.26,
+  "word": "อย่าง",
+  "brk": true
+ },
+ {
+  "start": 32.26,
+  "end": 32.43,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 32.43,
+  "end": 32.77,
+  "word": "คุณ",
+  "brk": false
+ },
+ {
+  "start": 32.77,
+  "end": 32.81,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 32.81,
+  "end": 33.29,
+  "word": "รู้",
+  "brk": true
+ },
+ {
+  "start": 33.29,
+  "end": 33.41,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 33.41,
+  "end": 33.67,
+  "word": "พีค",
+  "brk": false
+ },
+ {
+  "start": 33.67,
+  "end": 33.828,
+  "word": "คือ",
+  "brk": true
+ },
+ {
+  "start": 33.828,
+  "end": 34.07,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 34.07,
+  "end": 34.25,
+  "word": "ดู",
+  "brk": true
+ },
+ {
+  "start": 34.25,
+  "end": 34.29,
+  "word": "ทั้ง",
+  "brk": false
+ },
+ {
+  "start": 34.29,
+  "end": 34.43,
+  "word": "โลก",
+  "brk": true
+ },
+ {
+  "start": 34.43,
+  "end": 34.62,
+  "word": "เพิ่ง",
+  "brk": false
+ },
+ {
+  "start": 34.62,
+  "end": 34.92,
+  "word": "ได้",
+  "brk": false
+ },
+ {
+  "start": 34.92,
+  "end": 35.2,
+  "word": "รู้",
+  "brk": true
+ },
+ {
+  "start": 35.2,
+  "end": 35.24,
+  "word": "ความ",
+  "brk": false
+ },
+ {
+  "start": 35.24,
+  "end": 35.36,
+  "word": "ลับ",
+  "brk": false
+ },
+ {
+  "start": 35.36,
+  "end": 35.57,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 35.57,
+  "end": 35.77,
+  "word": "ตอน",
+  "brk": false
+ },
+ {
+  "start": 35.77,
+  "end": 35.998,
+  "word": "ภาค",
+  "brk": true
+ },
+ {
+  "start": 35.998,
+  "end": 36.23,
+  "word": "สุด",
+  "brk": false
+ },
+ {
+  "start": 36.23,
+  "end": 36.48,
+  "word": "ท้าย",
+  "brk": true
+ },
+ {
+  "start": 36.48,
+  "end": 36.73,
+  "word": "ฉาย",
+  "brk": false
+ },
+ {
+  "start": 36.73,
+  "end": 36.84,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 36.84,
+  "end": 37.07,
+  "word": "ปี",
+  "brk": false
+ },
+ {
+  "start": 37.07,
+  "end": 38.001,
+  "word": "2011!",
+  "brk": true
+ }
+]

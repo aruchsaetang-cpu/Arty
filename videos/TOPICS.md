@@ -12,4 +12,4 @@ Unused ideas, saved for later. Pick one and write the Hook / Context / แต่
 | 6 | The Avengers (2012) | ขนมที่ Iron Man กินในฉากนี้ เขาแอบซ่อนไว้เองจริงๆ! | RDJ hid snacks on set; the blueberry lab moment was unscripted |
 | 7 | One Piece (Netflix, 2023) | ฉากล่องเรือกลางทะเลใน One Piece ไม่ได้ถ่ายในทะเลจริงๆ! | Full-size Going Merry built in Cape Town; sea added in post (gimbal/blue screen: verify from BTS footage) |
 
-In progress (voice done, waiting for footage): `ironman-suit-short`, `django-blood-short`.
+In progress (voice done, waiting for footage): `ironman-suit-short`, `django-blood-short`, `snape-secret-short` (#1).
