@@ -1,0 +1,370 @@
+{
+ "duration": 29.767,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/cruise-stunts-short/th/voice.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 0,
+   "dur": 1.2,
+   "media_start": 0.3
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 1.2,
+   "dur": 1.4,
+   "media_start": 4.6
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 2.6,
+   "dur": 1.7,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 4.3,
+   "dur": 1.2,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 5.5,
+   "dur": 1.6,
+   "media_start": 9.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 7.1,
+   "dur": 1.8,
+   "media_start": 10.2
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 8.9,
+   "dur": 1.4,
+   "media_start": 0.3
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 10.3,
+   "dur": 1.63,
+   "media_start": 4.6
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 11.93,
+   "dur": 1.37,
+   "media_start": 2.5
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 13.3,
+   "dur": 1.7,
+   "media_start": 3.5
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 15.0,
+   "dur": 0.9,
+   "media_start": 4.5
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 15.9,
+   "dur": 1.5,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 17.4,
+   "dur": 1.3,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/fallout.mp4",
+   "start": 18.7,
+   "dur": 1.6,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 20.3,
+   "dur": 2.0,
+   "media_start": 9.5
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/cliff.mp4",
+   "start": 22.3,
+   "dur": 1.8,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/cliff.mp4",
+   "start": 24.1,
+   "dur": 1.3,
+   "media_start": 9.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/cliff.mp4",
+   "start": 25.4,
+   "dur": 1.0,
+   "media_start": 12.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/sky.mp4",
+   "start": 26.4,
+   "dur": 1.2,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/train.mp4",
+   "start": 27.6,
+   "dur": 1.3,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/cruise-stunts-short/broll/ankle.mp4",
+   "start": 28.9,
+   "dur": 0.867,
+   "media_start": 2.9
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "end": 0.45,
+   "text": "รู้มั้ยว่า"
+  },
+  {
+   "start": 0.45,
+   "end": 1.16,
+   "text": "Tom Cruise"
+  },
+  {
+   "start": 1.16,
+   "end": 1.81,
+   "text": "เกือบตายจริงๆ"
+  },
+  {
+   "start": 1.81,
+   "end": 2.59,
+   "text": "ในฉากนี้!"
+  },
+  {
+   "start": 2.59,
+   "end": 2.95,
+   "text": "ตอนถ่าย"
+  },
+  {
+   "start": 2.95,
+   "end": 3.53,
+   "text": "Mission:"
+  },
+  {
+   "start": 3.53,
+   "end": 4.27,
+   "text": "Impossible"
+  },
+  {
+   "start": 4.27,
+   "end": 4.92,
+   "text": "Fallout"
+  },
+  {
+   "start": 4.92,
+   "end": 5.48,
+   "text": "เขาตั้งใจ"
+  },
+  {
+   "start": 5.48,
+   "end": 5.99,
+   "text": "กระโดด"
+  },
+  {
+   "start": 5.99,
+   "end": 6.67,
+   "text": "ข้ามตึก"
+  },
+  {
+   "start": 6.67,
+   "end": 7.13,
+   "text": "สองตึก"
+  },
+  {
+   "start": 7.13,
+   "end": 7.91,
+   "text": "ด้วยตัวเอง"
+  },
+  {
+   "start": 7.91,
+   "end": 8.92,
+   "text": "ไม่ใช้สตั้นแมน"
+  },
+  {
+   "start": 8.92,
+   "end": 9.73,
+   "text": "และไม่ใช้"
+  },
+  {
+   "start": 9.73,
+   "end": 10.27,
+   "text": "CG"
+  },
+  {
+   "start": 10.27,
+   "end": 10.54,
+   "text": "เขาซ้อม"
+  },
+  {
+   "start": 10.54,
+   "end": 10.98,
+   "text": "ฉากนี้"
+  },
+  {
+   "start": 10.98,
+   "end": 11.26,
+   "text": "มาก่อน"
+  },
+  {
+   "start": 11.26,
+   "end": 11.93,
+   "text": "หลายรอบ"
+  },
+  {
+   "start": 11.93,
+   "end": 12.7,
+   "text": "แต่ตอนถ่ายจริง"
+  },
+  {
+   "start": 12.7,
+   "end": 13.26,
+   "text": "เขากระแทก"
+  },
+  {
+   "start": 13.26,
+   "end": 13.91,
+   "text": "กำแพง"
+  },
+  {
+   "start": 13.91,
+   "end": 14.3,
+   "text": "เต็มแรง"
+  },
+  {
+   "start": 14.3,
+   "end": 15.04,
+   "text": "จนข้อเท้าหัก"
+  },
+  {
+   "start": 15.04,
+   "end": 15.929,
+   "text": "ทันที!"
+  },
+  {
+   "start": 15.929,
+   "end": 16.79,
+   "text": "เขาลุกขึ้นมา"
+  },
+  {
+   "start": 16.79,
+   "end": 17.43,
+   "text": "วิ่งกะเผลก"
+  },
+  {
+   "start": 17.43,
+   "end": 18.07,
+   "text": "ข้ามหลังคา"
+  },
+  {
+   "start": 18.07,
+   "end": 18.69,
+   "text": "จนจบฉาก"
+  },
+  {
+   "start": 18.69,
+   "end": 19.21,
+   "text": "ทีมงานเลย"
+  },
+  {
+   "start": 19.21,
+   "end": 20.03,
+   "text": "เก็บเทคนั้น"
+  },
+  {
+   "start": 20.03,
+   "end": 20.31,
+   "text": "ไว้ใช้"
+  },
+  {
+   "start": 20.31,
+   "end": 21.24,
+   "text": "ในหนังจริง"
+  },
+  {
+   "start": 21.24,
+   "end": 21.76,
+   "text": "ไม่กี่ปี"
+  },
+  {
+   "start": 21.76,
+   "end": 22.3,
+   "text": "ต่อมา"
+  },
+  {
+   "start": 22.3,
+   "end": 23.499,
+   "text": "ใน Dead Reckoning"
+  },
+  {
+   "start": 23.499,
+   "end": 23.84,
+   "text": "เขายัง"
+  },
+  {
+   "start": 23.84,
+   "end": 24.65,
+   "text": "ขี่มอเตอร์ไซค์"
+  },
+  {
+   "start": 24.65,
+   "end": 25.13,
+   "text": "พุ่งลง"
+  },
+  {
+   "start": 25.13,
+   "end": 25.39,
+   "text": "หน้าผา"
+  },
+  {
+   "start": 25.39,
+   "end": 26.39,
+   "text": "ที่พีคคือ"
+  },
+  {
+   "start": 26.39,
+   "end": 27.13,
+   "text": "ภาพที่เราเห็น"
+  },
+  {
+   "start": 27.13,
+   "end": 27.58,
+   "text": "ในหนัง"
+  },
+  {
+   "start": 27.58,
+   "end": 28.37,
+   "text": "ทั้งสองฉาก"
+  },
+  {
+   "start": 28.37,
+   "end": 28.939,
+   "text": "ไม่มีใคร"
+  },
+  {
+   "start": 28.939,
+   "end": 29.767,
+   "text": "แสดงแทนเลย!"
+  }
+ ]
+}
