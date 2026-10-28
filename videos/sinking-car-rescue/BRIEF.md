@@ -18,14 +18,14 @@ angle: help-a-person, DANGER FIRST, SLOW REVEAL. Style = the dog-rescue edit (as
 
 | Time | Shot | Caption |
 |---|---|---|
-| 0–2.4 | Car deep in floodwater (freeze) | *SINKING CAR* |
-| 2.4–5.4 | Fast brown water around the car | *THE WATER KEPT RISING* |
-| 5.4–8.4 | Close on the car / window | *SOMEONE WAS STILL* **INSIDE** |
-| 8.4–11.4 | Wide: the current, the road | *THE CURRENT WAS TOO* **STRONG** |
-| 11.4–14.4 | First person steps into the water | *THEN A STRANGER* **WADED IN** |
-| 14.4–17.4 | Reaching the car / door / window | *[verify: e.g. HE PULLED THE DOOR OPEN]* |
-| 17.4–20.4 | Driver brought to safety | *[verify: e.g. THEY GOT HIM OUT ALIVE]* |
-| 20.4–23 | Impact + heart | *RESPECT* *THE* *BRAVE* (no SALUTE) |
+| 0-2.4 | Car deep in floodwater (frozen picture, circle + arrow) | *SINKING CAR* |
+| 2.4-5.4 | Fast brown water around the car | *SOMEONE WAS IN* **REAL DANGER** |
+| 5.4-8.4 | Close on the car / window | *THE WATER KEPT* **RISING** |
+| 8.4-11.4 | Wide: the current, the road | *THE CURRENT WAS TOO* **STRONG** |
+| 11.4-14.4 | First person steps into the water | *THEN A STRANGER* **WADED IN** |
+| 14.4-17.4 | Reaching the car / door / window | *[verify from footage]* |
+| 17.4-20.4 | Driver brought to safety | *[verify, e.g. THEY GOT HIM OUT ALIVE]* |
+| 20.4-23 | Impact + heart | *RESPECT* *THE* *BRAVE* (no SALUTE) |
 
 Facts to verify from the sources: Morayfield / north of Brisbane, Queensland; ABC reporter Will Murray and a bystander; a 4WD sinking in floodwater; the driver rescued.
 
