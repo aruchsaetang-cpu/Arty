@@ -9,6 +9,13 @@ The workflow behind the user's movie Shorts. The editing itself is the `my-edit-
 skill covers everything around it: topic, facts, script, footage links, platform safety, description.
 Talk to the user in Thai.
 
+## 000. ACTIVE STYLE (user, 2026-10-28): back to the Thai Back to the Future format — overrides sections 00 and 0
+
+Reference: `videos/bttf-hanging-short` (`out/renders/bttf-hanging-final.mp4`, `work/edit.json`). Thai channel:
+user records the Thai voiceover ("เพื่อนๆ รู้มั้ยว่า…", hook→บริบท→แต่→เฉลย), Thai Itim captions at the top, my-edit-style
+blur-band layout (no `layout: full`, no comic captions, no English, no AI voice unless asked), ~20 s.
+Sections 00/0 (English, comic, full-frame, real-footage half) are paused, kept only for reference.
+
 ## 00. LOCKED TEMPLATE (user, 2026-10-27) — copy `videos/jackie-chan-short/work/edit6.json` exactly
 
 Final reference clip: `videos/jackie-chan-short` v6 (20.9 s). Every new video = same recipe, minimum tokens:
