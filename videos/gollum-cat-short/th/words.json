@@ -1,0 +1,650 @@
+[
+ {
+  "start": 0.0,
+  "end": 0.17,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 0.17,
+  "end": 0.3,
+  "word": "มั้ย",
+  "brk": false
+ },
+ {
+  "start": 0.3,
+  "end": 0.55,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 0.55,
+  "end": 0.75,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 0.75,
+  "end": 0.9,
+  "word": "The",
+  "brk": false
+ },
+ {
+  "start": 0.9,
+  "end": 1.05,
+  "word": "Lord",
+  "brk": false
+ },
+ {
+  "start": 1.05,
+  "end": 1.2,
+  "word": "of",
+  "brk": false
+ },
+ {
+  "start": 1.2,
+  "end": 1.47,
+  "word": "the",
+  "brk": false
+ },
+ {
+  "start": 1.47,
+  "end": 1.69,
+  "word": "Rings",
+  "brk": true
+ },
+ {
+  "start": 1.69,
+  "end": 1.73,
+  "word": "เสียง",
+  "brk": false
+ },
+ {
+  "start": 1.73,
+  "end": 1.98,
+  "word": "ของ",
+  "brk": true
+ },
+ {
+  "start": 1.98,
+  "end": 2.18,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 2.18,
+  "end": 2.22,
+  "word": "ละคร",
+  "brk": true
+ },
+ {
+  "start": 2.22,
+  "end": 2.4,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 2.4,
+  "end": 2.57,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 2.57,
+  "end": 2.86,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 2.86,
+  "end": 3.08,
+  "word": "จาก",
+  "brk": false
+ },
+ {
+  "start": 3.08,
+  "end": 3.28,
+  "word": "แมว",
+  "brk": true
+ },
+ {
+  "start": 3.28,
+  "end": 3.47,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 3.47,
+  "end": 3.67,
+  "word": "กำลัง",
+  "brk": true
+ },
+ {
+  "start": 3.67,
+  "end": 3.83,
+  "word": "สำลัก",
+  "brk": true
+ },
+ {
+  "start": 3.83,
+  "end": 4.03,
+  "word": "ก้อน",
+  "brk": false
+ },
+ {
+  "start": 4.03,
+  "end": 4.603,
+  "word": "ขน",
+  "brk": true
+ },
+ {
+  "start": 4.603,
+  "end": 4.89,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 4.89,
+  "end": 4.93,
+  "word": "ละคร",
+  "brk": true
+ },
+ {
+  "start": 4.93,
+  "end": 5.07,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 5.07,
+  "end": 5.3,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 5.3,
+  "end": 5.573,
+  "word": "ชื่อ",
+  "brk": false
+ },
+ {
+  "start": 5.573,
+  "end": 5.95,
+  "word": "Gollum",
+  "brk": true
+ },
+ {
+  "start": 5.95,
+  "end": 6.34,
+  "word": "สิ่ง",
+  "brk": false
+ },
+ {
+  "start": 6.34,
+  "end": 6.38,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 6.38,
+  "end": 6.703,
+  "word": "ชีวิต",
+  "brk": true
+ },
+ {
+  "start": 6.703,
+  "end": 6.84,
+  "word": "ผอม",
+  "brk": false
+ },
+ {
+  "start": 6.84,
+  "end": 7.15,
+  "word": "แห้ง",
+  "brk": true
+ },
+ {
+  "start": 7.15,
+  "end": 7.41,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 7.41,
+  "end": 7.6,
+  "word": "หลง",
+  "brk": false
+ },
+ {
+  "start": 7.6,
+  "end": 7.76,
+  "word": "ใหล",
+  "brk": true
+ },
+ {
+  "start": 7.76,
+  "end": 7.92,
+  "word": "แหวน",
+  "brk": false
+ },
+ {
+  "start": 7.92,
+  "end": 8.31,
+  "word": "วิเศษ",
+  "brk": true
+ },
+ {
+  "start": 8.31,
+  "end": 8.48,
+  "word": "จน",
+  "brk": false
+ },
+ {
+  "start": 8.48,
+  "end": 8.66,
+  "word": "เสีย",
+  "brk": false
+ },
+ {
+  "start": 8.66,
+  "end": 9.259,
+  "word": "สติ",
+  "brk": true
+ },
+ {
+  "start": 9.259,
+  "end": 9.42,
+  "word": "นัก",
+  "brk": false
+ },
+ {
+  "start": 9.42,
+  "end": 9.71,
+  "word": "แสดง",
+  "brk": true
+ },
+ {
+  "start": 9.71,
+  "end": 9.83,
+  "word": "ต้อง",
+  "brk": false
+ },
+ {
+  "start": 9.83,
+  "end": 10.14,
+  "word": "คิด",
+  "brk": true
+ },
+ {
+  "start": 10.14,
+  "end": 10.299,
+  "word": "เสียง",
+  "brk": false
+ },
+ {
+  "start": 10.299,
+  "end": 10.45,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 10.45,
+  "end": 10.68,
+  "word": "มัน",
+  "brk": true
+ },
+ {
+  "start": 10.68,
+  "end": 10.85,
+  "word": "ขึ้น",
+  "brk": false
+ },
+ {
+  "start": 10.85,
+  "end": 11.22,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 11.22,
+  "end": 11.43,
+  "word": "เอง",
+  "brk": true
+ },
+ {
+  "start": 11.43,
+  "end": 11.599,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 11.599,
+  "end": 11.84,
+  "word": "ลอง",
+  "brk": true
+ },
+ {
+  "start": 11.84,
+  "end": 12.04,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 12.04,
+  "end": 12.27,
+  "word": "หลาย",
+  "brk": false
+ },
+ {
+  "start": 12.27,
+  "end": 12.44,
+  "word": "แบบ",
+  "brk": true
+ },
+ {
+  "start": 12.44,
+  "end": 12.8,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 12.8,
+  "end": 12.96,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 12.96,
+  "end": 13.169,
+  "word": "เสียง",
+  "brk": true
+ },
+ {
+  "start": 13.169,
+  "end": 13.29,
+  "word": "ไหน",
+  "brk": false
+ },
+ {
+  "start": 13.29,
+  "end": 13.56,
+  "word": "ใช่",
+  "brk": false
+ },
+ {
+  "start": 13.56,
+  "end": 14.077,
+  "word": "เลย",
+  "brk": true
+ },
+ {
+  "start": 14.077,
+  "end": 14.267,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 14.267,
+  "end": 14.457,
+  "word": "แล้ว",
+  "brk": true
+ },
+ {
+  "start": 14.457,
+  "end": 14.69,
+  "word": "วัน",
+  "brk": false
+ },
+ {
+  "start": 14.69,
+  "end": 14.9,
+  "word": "หนึ่ง",
+  "brk": true
+ },
+ {
+  "start": 14.9,
+  "end": 15.12,
+  "word": "แมว",
+  "brk": false
+ },
+ {
+  "start": 15.12,
+  "end": 15.307,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 15.307,
+  "end": 15.44,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 15.44,
+  "end": 15.7,
+  "word": "ก็",
+  "brk": false
+ },
+ {
+  "start": 15.7,
+  "end": 15.9,
+  "word": "ทำ",
+  "brk": true
+ },
+ {
+  "start": 15.9,
+  "end": 16.08,
+  "word": "บาง",
+  "brk": false
+ },
+ {
+  "start": 16.08,
+  "end": 16.317,
+  "word": "อย่าง",
+  "brk": true
+ },
+ {
+  "start": 16.317,
+  "end": 16.46,
+  "word": "ขึ้น",
+  "brk": false
+ },
+ {
+  "start": 16.46,
+  "end": 17.042,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 17.042,
+  "end": 17.3,
+  "word": "มัน",
+  "brk": false
+ },
+ {
+  "start": 17.3,
+  "end": 17.34,
+  "word": "สำ",
+  "brk": false
+ },
+ {
+  "start": 17.34,
+  "end": 17.55,
+  "word": "รอก",
+  "brk": true
+ },
+ {
+  "start": 17.55,
+  "end": 17.8,
+  "word": "ก้อน",
+  "brk": false
+ },
+ {
+  "start": 17.8,
+  "end": 17.99,
+  "word": "ขน",
+  "brk": true
+ },
+ {
+  "start": 17.99,
+  "end": 18.03,
+  "word": "ออก",
+  "brk": false
+ },
+ {
+  "start": 18.03,
+  "end": 18.232,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 18.232,
+  "end": 18.39,
+  "word": "ต่อ",
+  "brk": false
+ },
+ {
+  "start": 18.39,
+  "end": 18.512,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 18.512,
+  "end": 18.96,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 18.96,
+  "end": 19.0,
+  "word": "เสียง",
+  "brk": false
+ },
+ {
+  "start": 19.0,
+  "end": 19.46,
+  "word": "แหบๆ",
+  "brk": true
+ },
+ {
+  "start": 19.46,
+  "end": 19.5,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 19.5,
+  "end": 19.73,
+  "word": "ดัง",
+  "brk": false
+ },
+ {
+  "start": 19.73,
+  "end": 19.89,
+  "word": "ออก",
+  "brk": false
+ },
+ {
+  "start": 19.89,
+  "end": 20.02,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 20.02,
+  "end": 20.29,
+  "word": "จาก",
+  "brk": false
+ },
+ {
+  "start": 20.29,
+  "end": 20.49,
+  "word": "ลำ",
+  "brk": false
+ },
+ {
+  "start": 20.49,
+  "end": 20.64,
+  "word": "คอ",
+  "brk": true
+ },
+ {
+  "start": 20.64,
+  "end": 20.96,
+  "word": "ตอน",
+  "brk": false
+ },
+ {
+  "start": 20.96,
+  "end": 21.25,
+  "word": "นั้น",
+  "brk": true
+ },
+ {
+  "start": 21.25,
+  "end": 21.47,
+  "word": "คือ",
+  "brk": false
+ },
+ {
+  "start": 21.47,
+  "end": 21.51,
+  "word": "เสียง",
+  "brk": true
+ },
+ {
+  "start": 21.51,
+  "end": 21.64,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 21.64,
+  "end": 21.89,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 21.89,
+  "end": 22.12,
+  "word": "ใช้",
+  "brk": true
+ },
+ {
+  "start": 22.12,
+  "end": 22.34,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 22.34,
+  "end": 22.38,
+  "word": "ต้น",
+  "brk": false
+ },
+ {
+  "start": 22.38,
+  "end": 22.69,
+  "word": "แบบ",
+  "brk": true
+ },
+ {
+  "start": 22.69,
+  "end": 22.73,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 22.73,
+  "end": 22.93,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 22.93,
+  "end": 23.207,
+  "word": "ละคร",
+  "brk": true
+ }
+]
