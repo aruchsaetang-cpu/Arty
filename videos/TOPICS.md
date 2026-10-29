@@ -19,6 +19,6 @@ Dropped by user (2026-10-28): ironman-suit-short (voice and captions stay in git
 
 Saved script (not voiced): videos/jackie-chan-th/script.md
 New series idea (user, 2026-10-29): "เรื่องแปลกๆ ในหนัง" (weird things in movies).
-Matrix code short: footage received (6 clips), waiting for voice. See videos/matrix-code-short/script.md
+Matrix code short: DONE (rendered th/out/renders/matrix-th.mp4).
 Gollum cat short: DONE (rendered th/out/renders/gollum-th.mp4, no cat clip, Serkis shots used for the reveal).
 One Piece sea-light short: script locked, waiting for voice + footage. See videos/onepiece-sea-short/script.md

@@ -1,0 +1,309 @@
+{
+ "duration": 26.799,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/matrix-code-short/th/voice.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
+   "start": 0,
+   "dur": 1.0,
+   "media_start": 3.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c6.mp4",
+   "start": 1.0,
+   "dur": 1.4,
+   "media_start": 5.2
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
+   "start": 2.4,
+   "dur": 1.1,
+   "media_start": 6.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c6.mp4",
+   "start": 3.5,
+   "dur": 2.0,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c3.mp4",
+   "start": 5.5,
+   "dur": 1.9,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c6.mp4",
+   "start": 7.4,
+   "dur": 2.1,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c2.mp4",
+   "start": 9.5,
+   "dur": 2.1,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c3.mp4",
+   "start": 11.6,
+   "dur": 0.9,
+   "media_start": 5.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c2.mp4",
+   "start": 12.5,
+   "dur": 2.1,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c1.mp4",
+   "start": 14.6,
+   "dur": 1.4,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c4.mp4",
+   "start": 16.0,
+   "dur": 2.2,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c4.mp4",
+   "start": 18.2,
+   "dur": 1.8,
+   "media_start": 3.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
+   "start": 20.0,
+   "dur": 2.6,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c4.mp4",
+   "start": 22.6,
+   "dur": 1.4,
+   "media_start": 5.5
+  },
+  {
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c6.mp4",
+   "start": 24.0,
+   "dur": 2.799,
+   "media_start": 7.5
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "end": 0.65,
+   "text": "รู้มั้ยว่า"
+  },
+  {
+   "start": 0.65,
+   "end": 1.01,
+   "text": "รหัสลับ"
+  },
+  {
+   "start": 1.01,
+   "end": 1.89,
+   "text": "ใน The Matrix"
+  },
+  {
+   "start": 1.89,
+   "end": 2.4,
+   "text": "คือสูตร"
+  },
+  {
+   "start": 2.4,
+   "end": 3.539,
+   "text": "การทำซูชิ"
+  },
+  {
+   "start": 3.539,
+   "end": 3.82,
+   "text": "ในหนัง"
+  },
+  {
+   "start": 3.82,
+   "end": 4.46,
+   "text": "The Matrix"
+  },
+  {
+   "start": 4.46,
+   "end": 5.48,
+   "text": "ปี 1999"
+  },
+  {
+   "start": 5.48,
+   "end": 6.33,
+   "text": "มีรหัสสีเขียว"
+  },
+  {
+   "start": 6.33,
+   "end": 6.91,
+   "text": "ไหลลงมา"
+  },
+  {
+   "start": 6.91,
+   "end": 7.399,
+   "text": "บนหน้าจอ"
+  },
+  {
+   "start": 7.399,
+   "end": 7.96,
+   "text": "กลายเป็น"
+  },
+  {
+   "start": 7.96,
+   "end": 8.26,
+   "text": "ภาพจำ"
+  },
+  {
+   "start": 8.26,
+   "end": 8.89,
+   "text": "ของโลกจำลอง"
+  },
+  {
+   "start": 8.89,
+   "end": 9.51,
+   "text": "สุดลึกลับ"
+  },
+  {
+   "start": 9.51,
+   "end": 10.39,
+   "text": "หลายคนคิดว่า"
+  },
+  {
+   "start": 10.39,
+   "end": 10.84,
+   "text": "มันเป็น"
+  },
+  {
+   "start": 10.84,
+   "end": 11.6,
+   "text": "รหัสคอมพิวเตอร์"
+  },
+  {
+   "start": 11.6,
+   "end": 12.48,
+   "text": "ที่ซับซ้อน"
+  },
+  {
+   "start": 12.48,
+   "end": 13.11,
+   "text": "แต่เบื้องหลัง"
+  },
+  {
+   "start": 13.11,
+   "end": 13.54,
+   "text": "ตัวอักษร"
+  },
+  {
+   "start": 13.54,
+   "end": 14.27,
+   "text": "เหล่านี้กลับมี"
+  },
+  {
+   "start": 14.27,
+   "end": 14.6,
+   "text": "ที่มา"
+  },
+  {
+   "start": 14.6,
+   "end": 15.23,
+   "text": "ที่คาดไม่ถึง"
+  },
+  {
+   "start": 15.23,
+   "end": 15.99,
+   "text": "เพราะมัน"
+  },
+  {
+   "start": 15.99,
+   "end": 16.39,
+   "text": "เกี่ยวข้อง"
+  },
+  {
+   "start": 16.39,
+   "end": 16.94,
+   "text": "กับหนังสือ"
+  },
+  {
+   "start": 16.94,
+   "end": 17.41,
+   "text": "ทำอาหาร"
+  },
+  {
+   "start": 17.41,
+   "end": 18.17,
+   "text": "ญี่ปุ่น!"
+  },
+  {
+   "start": 18.17,
+   "end": 19.03,
+   "text": "Simon Whiteley"
+  },
+  {
+   "start": 19.03,
+   "end": 20.03,
+   "text": "คนออกแบบหนัง"
+  },
+  {
+   "start": 20.03,
+   "end": 20.3,
+   "text": "สแกน"
+  },
+  {
+   "start": 20.3,
+   "end": 20.76,
+   "text": "ตัวอักษร"
+  },
+  {
+   "start": 20.76,
+   "end": 21.24,
+   "text": "ญี่ปุ่น"
+  },
+  {
+   "start": 21.24,
+   "end": 21.78,
+   "text": "จากหนังสือ"
+  },
+  {
+   "start": 21.78,
+   "end": 22.6,
+   "text": "ทำอาหาร"
+  },
+  {
+   "start": 22.6,
+   "end": 22.97,
+   "text": "ของภรรยาเขา"
+  },
+  {
+   "start": 22.97,
+   "end": 24.0,
+   "text": "แล้วนำมา"
+  },
+  {
+   "start": 24.0,
+   "end": 24.68,
+   "text": "สลับกลับด้าน"
+  },
+  {
+   "start": 24.68,
+   "end": 25.25,
+   "text": "และทำให้"
+  },
+  {
+   "start": 25.25,
+   "end": 25.74,
+   "text": "ไหลลงมา"
+  },
+  {
+   "start": 25.74,
+   "end": 26.799,
+   "text": "เหมือนสายฝน"
+  }
+ ]
+}

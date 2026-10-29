@@ -1,0 +1,674 @@
+[
+ {
+  "start": 0.0,
+  "end": 0.26,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 0.26,
+  "end": 0.3,
+  "word": "มั้ย",
+  "brk": false
+ },
+ {
+  "start": 0.3,
+  "end": 0.65,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 0.65,
+  "end": 0.69,
+  "word": "รหัส",
+  "brk": false
+ },
+ {
+  "start": 0.69,
+  "end": 1.01,
+  "word": "ลับ",
+  "brk": true
+ },
+ {
+  "start": 1.01,
+  "end": 1.11,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 1.11,
+  "end": 1.47,
+  "word": "The",
+  "brk": false
+ },
+ {
+  "start": 1.47,
+  "end": 1.89,
+  "word": "Matrix",
+  "brk": true
+ },
+ {
+  "start": 1.89,
+  "end": 2.26,
+  "word": "คือ",
+  "brk": false
+ },
+ {
+  "start": 2.26,
+  "end": 2.4,
+  "word": "สูตร",
+  "brk": true
+ },
+ {
+  "start": 2.4,
+  "end": 2.73,
+  "word": "การ",
+  "brk": false
+ },
+ {
+  "start": 2.73,
+  "end": 2.88,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 2.88,
+  "end": 3.539,
+  "word": "ซูชิ",
+  "brk": true
+ },
+ {
+  "start": 3.539,
+  "end": 3.65,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 3.65,
+  "end": 3.82,
+  "word": "หนัง",
+  "brk": true
+ },
+ {
+  "start": 3.82,
+  "end": 3.97,
+  "word": "The",
+  "brk": false
+ },
+ {
+  "start": 3.97,
+  "end": 4.46,
+  "word": "Matrix",
+  "brk": true
+ },
+ {
+  "start": 4.46,
+  "end": 4.72,
+  "word": "ปี",
+  "brk": false
+ },
+ {
+  "start": 4.72,
+  "end": 5.48,
+  "word": "1999",
+  "brk": true
+ },
+ {
+  "start": 5.48,
+  "end": 5.679,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 5.679,
+  "end": 5.84,
+  "word": "รหัส",
+  "brk": false
+ },
+ {
+  "start": 5.84,
+  "end": 6.199,
+  "word": "สี",
+  "brk": false
+ },
+ {
+  "start": 6.199,
+  "end": 6.33,
+  "word": "เขียว",
+  "brk": true
+ },
+ {
+  "start": 6.33,
+  "end": 6.61,
+  "word": "ไหล",
+  "brk": false
+ },
+ {
+  "start": 6.61,
+  "end": 6.78,
+  "word": "ลง",
+  "brk": false
+ },
+ {
+  "start": 6.78,
+  "end": 6.91,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 6.91,
+  "end": 7.13,
+  "word": "บน",
+  "brk": false
+ },
+ {
+  "start": 7.13,
+  "end": 7.17,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 7.17,
+  "end": 7.399,
+  "word": "จอ",
+  "brk": true
+ },
+ {
+  "start": 7.399,
+  "end": 7.8,
+  "word": "กลาย",
+  "brk": false
+ },
+ {
+  "start": 7.8,
+  "end": 7.96,
+  "word": "เป็น",
+  "brk": true
+ },
+ {
+  "start": 7.96,
+  "end": 8.22,
+  "word": "ภาพ",
+  "brk": false
+ },
+ {
+  "start": 8.22,
+  "end": 8.26,
+  "word": "จำ",
+  "brk": true
+ },
+ {
+  "start": 8.26,
+  "end": 8.51,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 8.51,
+  "end": 8.64,
+  "word": "โลก",
+  "brk": false
+ },
+ {
+  "start": 8.64,
+  "end": 8.89,
+  "word": "จำลอง",
+  "brk": true
+ },
+ {
+  "start": 8.89,
+  "end": 9.04,
+  "word": "สุด",
+  "brk": false
+ },
+ {
+  "start": 9.04,
+  "end": 9.23,
+  "word": "ลึก",
+  "brk": false
+ },
+ {
+  "start": 9.23,
+  "end": 9.51,
+  "word": "ลับ",
+  "brk": true
+ },
+ {
+  "start": 9.51,
+  "end": 9.689,
+  "word": "หลาย",
+  "brk": false
+ },
+ {
+  "start": 9.689,
+  "end": 10.18,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 10.18,
+  "end": 10.22,
+  "word": "คิด",
+  "brk": false
+ },
+ {
+  "start": 10.22,
+  "end": 10.39,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 10.39,
+  "end": 10.73,
+  "word": "มัน",
+  "brk": false
+ },
+ {
+  "start": 10.73,
+  "end": 10.84,
+  "word": "เป็น",
+  "brk": true
+ },
+ {
+  "start": 10.84,
+  "end": 10.969,
+  "word": "รหัส",
+  "brk": false
+ },
+ {
+  "start": 10.969,
+  "end": 11.14,
+  "word": "คอม",
+  "brk": false
+ },
+ {
+  "start": 11.14,
+  "end": 11.35,
+  "word": "พิว",
+  "brk": false
+ },
+ {
+  "start": 11.35,
+  "end": 11.6,
+  "word": "เตอร์",
+  "brk": true
+ },
+ {
+  "start": 11.6,
+  "end": 11.64,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 11.64,
+  "end": 11.939,
+  "word": "ซับ",
+  "brk": false
+ },
+ {
+  "start": 11.939,
+  "end": 12.48,
+  "word": "ซ้อน",
+  "brk": true
+ },
+ {
+  "start": 12.48,
+  "end": 12.59,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 12.59,
+  "end": 12.81,
+  "word": "เบื้อง",
+  "brk": false
+ },
+ {
+  "start": 12.81,
+  "end": 13.11,
+  "word": "หลัง",
+  "brk": true
+ },
+ {
+  "start": 13.11,
+  "end": 13.33,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 13.33,
+  "end": 13.54,
+  "word": "อักษร",
+  "brk": true
+ },
+ {
+  "start": 13.54,
+  "end": 13.58,
+  "word": "เหล่า",
+  "brk": false
+ },
+ {
+  "start": 13.58,
+  "end": 13.76,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 13.76,
+  "end": 14.1,
+  "word": "กลับ",
+  "brk": false
+ },
+ {
+  "start": 14.1,
+  "end": 14.27,
+  "word": "มี",
+  "brk": true
+ },
+ {
+  "start": 14.27,
+  "end": 14.43,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 14.43,
+  "end": 14.6,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 14.6,
+  "end": 14.73,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 14.73,
+  "end": 14.87,
+  "word": "คาด",
+  "brk": false
+ },
+ {
+  "start": 14.87,
+  "end": 15.23,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 15.23,
+  "end": 15.47,
+  "word": "ถึง",
+  "brk": true
+ },
+ {
+  "start": 15.47,
+  "end": 15.73,
+  "word": "เพราะ",
+  "brk": false
+ },
+ {
+  "start": 15.73,
+  "end": 15.99,
+  "word": "มัน",
+  "brk": true
+ },
+ {
+  "start": 15.99,
+  "end": 16.23,
+  "word": "เกี่ยว",
+  "brk": false
+ },
+ {
+  "start": 16.23,
+  "end": 16.39,
+  "word": "ข้อง",
+  "brk": true
+ },
+ {
+  "start": 16.39,
+  "end": 16.74,
+  "word": "กับ",
+  "brk": false
+ },
+ {
+  "start": 16.74,
+  "end": 16.94,
+  "word": "หนังสือ",
+  "brk": true
+ },
+ {
+  "start": 16.94,
+  "end": 17.1,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 17.1,
+  "end": 17.24,
+  "word": "อา",
+  "brk": false
+ },
+ {
+  "start": 17.24,
+  "end": 17.41,
+  "word": "หาร",
+  "brk": true
+ },
+ {
+  "start": 17.41,
+  "end": 17.56,
+  "word": "ญี่",
+  "brk": false
+ },
+ {
+  "start": 17.56,
+  "end": 18.17,
+  "word": "ปุ่น!",
+  "brk": true
+ },
+ {
+  "start": 18.17,
+  "end": 18.69,
+  "word": "Simon",
+  "brk": false
+ },
+ {
+  "start": 18.69,
+  "end": 19.03,
+  "word": "Whiteley",
+  "brk": true
+ },
+ {
+  "start": 19.03,
+  "end": 19.21,
+  "word": "คน",
+  "brk": false
+ },
+ {
+  "start": 19.21,
+  "end": 19.4,
+  "word": "ออก",
+  "brk": false
+ },
+ {
+  "start": 19.4,
+  "end": 19.58,
+  "word": "แบบ",
+  "brk": false
+ },
+ {
+  "start": 19.58,
+  "end": 20.03,
+  "word": "หนัง",
+  "brk": true
+ },
+ {
+  "start": 20.03,
+  "end": 20.3,
+  "word": "สแกน",
+  "brk": true
+ },
+ {
+  "start": 20.3,
+  "end": 20.34,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 20.34,
+  "end": 20.76,
+  "word": "อักษร",
+  "brk": true
+ },
+ {
+  "start": 20.76,
+  "end": 20.94,
+  "word": "ญี่",
+  "brk": false
+ },
+ {
+  "start": 20.94,
+  "end": 21.24,
+  "word": "ปุ่น",
+  "brk": true
+ },
+ {
+  "start": 21.24,
+  "end": 21.58,
+  "word": "จาก",
+  "brk": false
+ },
+ {
+  "start": 21.58,
+  "end": 21.78,
+  "word": "หนังสือ",
+  "brk": true
+ },
+ {
+  "start": 21.78,
+  "end": 22.02,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 22.02,
+  "end": 22.25,
+  "word": "อา",
+  "brk": false
+ },
+ {
+  "start": 22.25,
+  "end": 22.6,
+  "word": "หาร",
+  "brk": true
+ },
+ {
+  "start": 22.6,
+  "end": 22.64,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 22.64,
+  "end": 22.75,
+  "word": "ภรรยา",
+  "brk": false
+ },
+ {
+  "start": 22.75,
+  "end": 22.97,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 22.97,
+  "end": 23.67,
+  "word": "แล้ว",
+  "brk": false
+ },
+ {
+  "start": 23.67,
+  "end": 23.87,
+  "word": "นำ",
+  "brk": false
+ },
+ {
+  "start": 23.87,
+  "end": 24.0,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 24.0,
+  "end": 24.18,
+  "word": "สลับ",
+  "brk": true
+ },
+ {
+  "start": 24.18,
+  "end": 24.43,
+  "word": "กลับ",
+  "brk": false
+ },
+ {
+  "start": 24.43,
+  "end": 24.68,
+  "word": "ด้าน",
+  "brk": true
+ },
+ {
+  "start": 24.68,
+  "end": 24.89,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 24.89,
+  "end": 25.05,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 25.05,
+  "end": 25.25,
+  "word": "ให้",
+  "brk": true
+ },
+ {
+  "start": 25.25,
+  "end": 25.43,
+  "word": "ไหล",
+  "brk": false
+ },
+ {
+  "start": 25.43,
+  "end": 25.47,
+  "word": "ลง",
+  "brk": false
+ },
+ {
+  "start": 25.47,
+  "end": 25.74,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 25.74,
+  "end": 25.78,
+  "word": "เหมือน",
+  "brk": true
+ },
+ {
+  "start": 25.78,
+  "end": 26.03,
+  "word": "สาย",
+  "brk": false
+ },
+ {
+  "start": 26.03,
+  "end": 26.499,
+  "word": "ฝน",
+  "brk": true
+ }
+]
