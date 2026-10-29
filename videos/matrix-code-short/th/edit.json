@@ -4,10 +4,10 @@
  "voice": "/home/user/Arty/videos/matrix-code-short/th/voice.wav",
  "shots": [
   {
-   "src": "/home/user/Arty/videos/matrix-code-short/broll/c6.mp4",
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c1.mp4",
    "start": 0,
    "dur": 1.9,
-   "media_start": 5.2
+   "media_start": 1.0
   },
   {
    "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
