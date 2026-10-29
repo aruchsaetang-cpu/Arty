@@ -21,3 +21,4 @@ Saved script (not voiced): videos/jackie-chan-th/script.md
 New series idea (user, 2026-10-29): "เรื่องแปลกๆ ในหนัง" (weird things in movies).
 Matrix code short: footage received (6 clips), waiting for voice. See videos/matrix-code-short/script.md
 Gollum cat short: footage received (g1-g6), waiting for voice. See videos/gollum-cat-short/script.md
+One Piece sea-light short: script locked, waiting for voice + footage. See videos/onepiece-sea-short/script.md
