@@ -4,21 +4,15 @@
  "voice": "/home/user/Arty/videos/matrix-code-short/th/voice.wav",
  "shots": [
   {
-   "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
-   "start": 0,
-   "dur": 1.0,
-   "media_start": 3.0
-  },
-  {
    "src": "/home/user/Arty/videos/matrix-code-short/broll/c6.mp4",
-   "start": 1.0,
-   "dur": 1.4,
+   "start": 0,
+   "dur": 1.9,
    "media_start": 5.2
   },
   {
    "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
-   "start": 2.4,
-   "dur": 1.1,
+   "start": 1.9,
+   "dur": 1.6,
    "media_start": 6.0
   },
   {
@@ -76,10 +70,10 @@
    "media_start": 3.0
   },
   {
-   "src": "/home/user/Arty/videos/matrix-code-short/broll/c5.mp4",
+   "src": "/home/user/Arty/videos/matrix-code-short/broll/c4.mp4",
    "start": 20.0,
    "dur": 2.6,
-   "media_start": 1.0
+   "media_start": 6.5
   },
   {
    "src": "/home/user/Arty/videos/matrix-code-short/broll/c4.mp4",
