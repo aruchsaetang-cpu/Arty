@@ -10,6 +10,12 @@ skill covers everything around it: topic, facts, script, footage links, platform
 Talk to the user in Thai.
 
 
+## 000000. REFERENCE SHORTS (user, 2026-10-29; seen as thumbnails only, links not openable here)
+- youtube.com/shorts/NFa7WyU5Mcw "The Secret Behind ONE PIECE's Craziest Scenes!": CGI/behind-the-scenes reveal, bold comic caption over the scene.
+- "Three times Michael Jackson wasn't actually acting!": listicle hook "N times X wasn't actually acting", one big comic word per beat.
+Formats to borrow: (1) "N ครั้งที่นักแสดงไม่ได้แสดง" compilation of 3 real-injury/real-reaction moments, (2) "ความลับเบื้องหลังฉากที่บ้าที่สุดของ <film>".
+Not to borrow: AI-generated footage of a real person (impersonation risk), burned-in comic captions (we use Thai Itim captions).
+
 ## 00000. CHANNEL STRATEGY (user, 2026-10-29): What / Who / Why / How
 - **What:** movie trivia: weird facts nobody would know unless they watched our clip.
 - **Who:** viewers aged 25-34 who had no idea such weird things exist behind a film.
