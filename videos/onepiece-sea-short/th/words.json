@@ -1,0 +1,644 @@
+[
+ {
+  "start": 0.0,
+  "end": 0.17,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 0.17,
+  "end": 0.29,
+  "word": "มั้ย",
+  "brk": false
+ },
+ {
+  "start": 0.29,
+  "end": 0.54,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 0.54,
+  "end": 0.66,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 0.66,
+  "end": 0.88,
+  "word": "หนัง",
+  "brk": true
+ },
+ {
+  "start": 0.88,
+  "end": 1.13,
+  "word": "one",
+  "brk": false
+ },
+ {
+  "start": 1.13,
+  "end": 1.17,
+  "word": "piece",
+  "brk": false
+ },
+ {
+  "start": 1.17,
+  "end": 1.41,
+  "word": "live",
+  "brk": false
+ },
+ {
+  "start": 1.41,
+  "end": 1.87,
+  "word": "action",
+  "brk": true
+ },
+ {
+  "start": 1.87,
+  "end": 2.03,
+  "word": "ฉาก",
+  "brk": false
+ },
+ {
+  "start": 2.03,
+  "end": 2.27,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 2.27,
+  "end": 2.39,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 2.39,
+  "end": 2.52,
+  "word": "ได้",
+  "brk": false
+ },
+ {
+  "start": 2.52,
+  "end": 2.76,
+  "word": "ใช้",
+  "brk": true
+ },
+ {
+  "start": 2.76,
+  "end": 3.26,
+  "word": "CGI",
+  "brk": true
+ },
+ {
+  "start": 3.26,
+  "end": 3.44,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 3.44,
+  "end": 3.6,
+  "word": "ถ่าย",
+  "brk": false
+ },
+ {
+  "start": 3.6,
+  "end": 3.73,
+  "word": "ด้วย",
+  "brk": true
+ },
+ {
+  "start": 3.73,
+  "end": 3.89,
+  "word": "เทค",
+  "brk": false
+ },
+ {
+  "start": 3.89,
+  "end": 4.25,
+  "word": "นิค",
+  "brk": true
+ },
+ {
+  "start": 4.25,
+  "end": 4.43,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 4.43,
+  "end": 4.61,
+  "word": "คุณ",
+  "brk": false
+ },
+ {
+  "start": 4.61,
+  "end": 4.96,
+  "word": "อาจ",
+  "brk": false
+ },
+ {
+  "start": 4.96,
+  "end": 5.15,
+  "word": "จะ",
+  "brk": true
+ },
+ {
+  "start": 5.15,
+  "end": 5.28,
+  "word": "คาด",
+  "brk": false
+ },
+ {
+  "start": 5.28,
+  "end": 5.47,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 5.47,
+  "end": 6.035,
+  "word": "ถึง!",
+  "brk": true
+ },
+ {
+  "start": 6.035,
+  "end": 6.26,
+  "word": "ทีม",
+  "brk": false
+ },
+ {
+  "start": 6.26,
+  "end": 6.47,
+  "word": "งาน",
+  "brk": true
+ },
+ {
+  "start": 6.47,
+  "end": 6.62,
+  "word": "ต้อง",
+  "brk": false
+ },
+ {
+  "start": 6.62,
+  "end": 6.66,
+  "word": "ถ่าย",
+  "brk": true
+ },
+ {
+  "start": 6.66,
+  "end": 6.9,
+  "word": "ฉาก",
+  "brk": false
+ },
+ {
+  "start": 6.9,
+  "end": 7.13,
+  "word": "โจร",
+  "brk": false
+ },
+ {
+  "start": 7.13,
+  "end": 7.33,
+  "word": "สลัด",
+  "brk": true
+ },
+ {
+  "start": 7.33,
+  "end": 7.57,
+  "word": "บน",
+  "brk": false
+ },
+ {
+  "start": 7.57,
+  "end": 7.75,
+  "word": "เรือ",
+  "brk": true
+ },
+ {
+  "start": 7.75,
+  "end": 7.925,
+  "word": "ขนาด",
+  "brk": false
+ },
+ {
+  "start": 7.925,
+  "end": 8.05,
+  "word": "เท่า",
+  "brk": true
+ },
+ {
+  "start": 8.05,
+  "end": 8.23,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 8.23,
+  "end": 8.51,
+  "word": "จริง",
+  "brk": true
+ },
+ {
+  "start": 8.51,
+  "end": 8.73,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 8.73,
+  "end": 8.91,
+  "word": "สตู",
+  "brk": false
+ },
+ {
+  "start": 8.91,
+  "end": 9.14,
+  "word": "ดิ",
+  "brk": false
+ },
+ {
+  "start": 9.14,
+  "end": 9.93,
+  "word": "โอ",
+  "brk": true
+ },
+ {
+  "start": 9.93,
+  "end": 10.055,
+  "word": "พวก",
+  "brk": false
+ },
+ {
+  "start": 10.055,
+  "end": 10.21,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 10.21,
+  "end": 10.32,
+  "word": "เลย",
+  "brk": true
+ },
+ {
+  "start": 10.32,
+  "end": 10.57,
+  "word": "ต้อง",
+  "brk": false
+ },
+ {
+  "start": 10.57,
+  "end": 10.69,
+  "word": "หา",
+  "brk": false
+ },
+ {
+  "start": 10.69,
+  "end": 11.07,
+  "word": "วิธี",
+  "brk": true
+ },
+ {
+  "start": 11.07,
+  "end": 11.27,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 11.27,
+  "end": 11.43,
+  "word": "ให้",
+  "brk": true
+ },
+ {
+  "start": 11.43,
+  "end": 11.555,
+  "word": "ทะเล",
+  "brk": true
+ },
+ {
+  "start": 11.555,
+  "end": 11.7,
+  "word": "ดู",
+  "brk": false
+ },
+ {
+  "start": 11.7,
+  "end": 11.87,
+  "word": "สมจริง",
+  "brk": true
+ },
+ {
+  "start": 11.87,
+  "end": 12.185,
+  "word": "แม้",
+  "brk": false
+ },
+ {
+  "start": 12.185,
+  "end": 12.57,
+  "word": "จะ",
+  "brk": false
+ },
+ {
+  "start": 12.57,
+  "end": 12.745,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 12.745,
+  "end": 12.905,
+  "word": "มี",
+  "brk": true
+ },
+ {
+  "start": 12.905,
+  "end": 13.06,
+  "word": "ทะเล",
+  "brk": true
+ },
+ {
+  "start": 13.06,
+  "end": 13.31,
+  "word": "อยู่",
+  "brk": false
+ },
+ {
+  "start": 13.31,
+  "end": 13.46,
+  "word": "ตรง",
+  "brk": false
+ },
+ {
+  "start": 13.46,
+  "end": 13.68,
+  "word": "หน้า",
+  "brk": true
+ },
+ {
+  "start": 13.68,
+  "end": 13.95,
+  "word": "ก็",
+  "brk": false
+ },
+ {
+  "start": 13.95,
+  "end": 14.506,
+  "word": "ตาม",
+  "brk": true
+ },
+ {
+  "start": 14.506,
+  "end": 14.696,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 14.696,
+  "end": 15.06,
+  "word": "เทค",
+  "brk": false
+ },
+ {
+  "start": 15.06,
+  "end": 15.24,
+  "word": "นิค",
+  "brk": true
+ },
+ {
+  "start": 15.24,
+  "end": 15.44,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 15.44,
+  "end": 15.63,
+  "word": "ใช้",
+  "brk": true
+ },
+ {
+  "start": 15.63,
+  "end": 15.81,
+  "word": "กลับ",
+  "brk": false
+ },
+ {
+  "start": 15.81,
+  "end": 16.05,
+  "word": "ง่าย",
+  "brk": true
+ },
+ {
+  "start": 16.05,
+  "end": 16.33,
+  "word": "กว่า",
+  "brk": false
+ },
+ {
+  "start": 16.33,
+  "end": 16.46,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 16.46,
+  "end": 17.06,
+  "word": "คิด!",
+  "brk": true
+ },
+ {
+  "start": 17.06,
+  "end": 17.21,
+  "word": "พวก",
+  "brk": false
+ },
+ {
+  "start": 17.21,
+  "end": 17.5,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 17.5,
+  "end": 17.65,
+  "word": "ใช้",
+  "brk": true
+ },
+ {
+  "start": 17.65,
+  "end": 17.81,
+  "word": "กระ",
+  "brk": false
+ },
+ {
+  "start": 17.81,
+  "end": 17.96,
+  "word": "ดาษ",
+  "brk": false
+ },
+ {
+  "start": 17.96,
+  "end": 18.18,
+  "word": "สี",
+  "brk": true
+ },
+ {
+  "start": 18.18,
+  "end": 18.43,
+  "word": "ชิ้น",
+  "brk": false
+ },
+ {
+  "start": 18.43,
+  "end": 18.84,
+  "word": "เล็กๆ",
+  "brk": true
+ },
+ {
+  "start": 18.84,
+  "end": 19.13,
+  "word": "ร่วม",
+  "brk": false
+ },
+ {
+  "start": 19.13,
+  "end": 19.83,
+  "word": "กับ",
+  "brk": false
+ },
+ {
+  "start": 19.83,
+  "end": 19.97,
+  "word": "ลม",
+  "brk": true
+ },
+ {
+  "start": 19.97,
+  "end": 20.32,
+  "word": "เพื่อ",
+  "brk": false
+ },
+ {
+  "start": 20.32,
+  "end": 20.49,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 20.49,
+  "end": 20.53,
+  "word": "ให้",
+  "brk": true
+ },
+ {
+  "start": 20.53,
+  "end": 20.76,
+  "word": "แสง",
+  "brk": false
+ },
+ {
+  "start": 20.76,
+  "end": 20.99,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 20.99,
+  "end": 21.18,
+  "word": "เงา",
+  "brk": true
+ },
+ {
+  "start": 21.18,
+  "end": 21.46,
+  "word": "เคลื่อน",
+  "brk": false
+ },
+ {
+  "start": 21.46,
+  "end": 21.59,
+  "word": "ไหว",
+  "brk": true
+ },
+ {
+  "start": 21.59,
+  "end": 22.07,
+  "word": "คล้าย",
+  "brk": false
+ },
+ {
+  "start": 22.07,
+  "end": 22.23,
+  "word": "กับ",
+  "brk": true
+ },
+ {
+  "start": 22.23,
+  "end": 22.45,
+  "word": "แสง",
+  "brk": false
+ },
+ {
+  "start": 22.45,
+  "end": 22.67,
+  "word": "สะท้อน",
+  "brk": true
+ },
+ {
+  "start": 22.67,
+  "end": 22.88,
+  "word": "บน",
+  "brk": false
+ },
+ {
+  "start": 22.88,
+  "end": 23.11,
+  "word": "ผิว",
+  "brk": false
+ },
+ {
+  "start": 23.11,
+  "end": 23.36,
+  "word": "น้ำ",
+  "brk": true
+ },
+ {
+  "start": 23.36,
+  "end": 23.6,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 23.6,
+  "end": 23.77,
+  "word": "กำลัง",
+  "brk": true
+ },
+ {
+  "start": 23.77,
+  "end": 23.95,
+  "word": "ไหว",
+  "brk": true
+ },
+ {
+  "start": 23.95,
+  "end": 24.2,
+  "word": "อยู่",
+  "brk": false
+ },
+ {
+  "start": 24.2,
+  "end": 24.24,
+  "word": "ตลอด",
+  "brk": false
+ },
+ {
+  "start": 24.24,
+  "end": 24.521,
+  "word": "เวลา!",
+  "brk": true
+ }
+]
