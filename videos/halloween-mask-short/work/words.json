@@ -1,0 +1,704 @@
+[
+ {
+  "start": 0.0,
+  "end": 0.25,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 0.25,
+  "end": 0.29,
+  "word": "มั้ย",
+  "brk": true
+ },
+ {
+  "start": 0.29,
+  "end": 0.38,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 0.38,
+  "end": 0.54,
+  "word": "กาก",
+  "brk": true
+ },
+ {
+  "start": 0.54,
+  "end": 0.74,
+  "word": "ฆาต",
+  "brk": false
+ },
+ {
+  "start": 0.74,
+  "end": 0.87,
+  "word": "กร",
+  "brk": true
+ },
+ {
+  "start": 0.87,
+  "end": 1.04,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 1.04,
+  "end": 1.2,
+  "word": "น่า",
+  "brk": false
+ },
+ {
+  "start": 1.2,
+  "end": 1.43,
+  "word": "กลัว",
+  "brk": false
+ },
+ {
+  "start": 1.43,
+  "end": 1.47,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 1.47,
+  "end": 1.67,
+  "word": "สุด",
+  "brk": true
+ },
+ {
+  "start": 1.67,
+  "end": 1.78,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 1.78,
+  "end": 1.95,
+  "word": "หนัง",
+  "brk": false
+ },
+ {
+  "start": 1.95,
+  "end": 2.45,
+  "word": "Halloween",
+  "brk": true
+ },
+ {
+  "start": 2.45,
+  "end": 2.9,
+  "word": "จริงๆ",
+  "brk": false
+ },
+ {
+  "start": 2.9,
+  "end": 3.05,
+  "word": "แล้ว",
+  "brk": true
+ },
+ {
+  "start": 3.05,
+  "end": 3.17,
+  "word": "ทำ",
+  "brk": false
+ },
+ {
+  "start": 3.17,
+  "end": 3.21,
+  "word": "มา",
+  "brk": false
+ },
+ {
+  "start": 3.21,
+  "end": 3.43,
+  "word": "จาก",
+  "brk": true
+ },
+ {
+  "start": 3.43,
+  "end": 3.58,
+  "word": "สิ่ง",
+  "brk": false
+ },
+ {
+  "start": 3.58,
+  "end": 4.071,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 4.071,
+  "end": 4.28,
+  "word": "หนัง",
+  "brk": false
+ },
+ {
+  "start": 4.28,
+  "end": 4.74,
+  "word": "Halloween",
+  "brk": true
+ },
+ {
+  "start": 4.74,
+  "end": 4.88,
+  "word": "ปี",
+  "brk": false
+ },
+ {
+  "start": 4.88,
+  "end": 5.69,
+  "word": "1978",
+  "brk": true
+ },
+ {
+  "start": 5.69,
+  "end": 6.01,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 6.01,
+  "end": 6.12,
+  "word": "เรื่อง",
+  "brk": false
+ },
+ {
+  "start": 6.12,
+  "end": 6.33,
+  "word": "ของ",
+  "brk": true
+ },
+ {
+  "start": 6.33,
+  "end": 6.44,
+  "word": "ฆาต",
+  "brk": false
+ },
+ {
+  "start": 6.44,
+  "end": 6.63,
+  "word": "กร",
+  "brk": true
+ },
+ {
+  "start": 6.63,
+  "end": 6.93,
+  "word": "ใส่",
+  "brk": false
+ },
+ {
+  "start": 6.93,
+  "end": 7.06,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 7.06,
+  "end": 7.46,
+  "word": "กาก",
+  "brk": false
+ },
+ {
+  "start": 7.46,
+  "end": 7.5,
+  "word": "สี",
+  "brk": false
+ },
+ {
+  "start": 7.5,
+  "end": 7.952,
+  "word": "ขาว",
+  "brk": true
+ },
+ {
+  "start": 7.952,
+  "end": 8.08,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 8.08,
+  "end": 8.42,
+  "word": "ไล่",
+  "brk": false
+ },
+ {
+  "start": 8.42,
+  "end": 8.46,
+  "word": "ฆ่า",
+  "brk": false
+ },
+ {
+  "start": 8.46,
+  "end": 8.72,
+  "word": "คน",
+  "brk": true
+ },
+ {
+  "start": 8.72,
+  "end": 8.87,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 8.87,
+  "end": 9.13,
+  "word": "คืน",
+  "brk": false
+ },
+ {
+  "start": 9.13,
+  "end": 9.27,
+  "word": "วัน",
+  "brk": true
+ },
+ {
+  "start": 9.27,
+  "end": 9.46,
+  "word": "ฮา",
+  "brk": false
+ },
+ {
+  "start": 9.46,
+  "end": 9.66,
+  "word": "โล",
+  "brk": false
+ },
+ {
+  "start": 9.66,
+  "end": 10.092,
+  "word": "วีน",
+  "brk": true
+ },
+ {
+  "start": 10.092,
+  "end": 10.28,
+  "word": "หนัง",
+  "brk": false
+ },
+ {
+  "start": 10.28,
+  "end": 10.52,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 10.52,
+  "end": 10.66,
+  "word": "งบ",
+  "brk": true
+ },
+ {
+  "start": 10.66,
+  "end": 10.9,
+  "word": "น้อย",
+  "brk": false
+ },
+ {
+  "start": 10.9,
+  "end": 11.12,
+  "word": "มาก",
+  "brk": true
+ },
+ {
+  "start": 11.12,
+  "end": 11.35,
+  "word": "ทีม",
+  "brk": false
+ },
+ {
+  "start": 11.35,
+  "end": 11.57,
+  "word": "งาน",
+  "brk": false
+ },
+ {
+  "start": 11.57,
+  "end": 11.69,
+  "word": "เลย",
+  "brk": true
+ },
+ {
+  "start": 11.69,
+  "end": 11.97,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 11.97,
+  "end": 12.142,
+  "word": "มี",
+  "brk": false
+ },
+ {
+  "start": 12.142,
+  "end": 12.28,
+  "word": "เงิน",
+  "brk": true
+ },
+ {
+  "start": 12.28,
+  "end": 12.51,
+  "word": "สร้าง",
+  "brk": false
+ },
+ {
+  "start": 12.51,
+  "end": 12.66,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 12.66,
+  "end": 12.992,
+  "word": "กาก",
+  "brk": false
+ },
+ {
+  "start": 12.992,
+  "end": 13.339,
+  "word": "ใหม่",
+  "brk": true
+ },
+ {
+  "start": 13.339,
+  "end": 13.46,
+  "word": "ต้อง",
+  "brk": false
+ },
+ {
+  "start": 13.46,
+  "end": 13.74,
+  "word": "หา",
+  "brk": true
+ },
+ {
+  "start": 13.74,
+  "end": 13.92,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 13.92,
+  "end": 14.11,
+  "word": "กาก",
+  "brk": true
+ },
+ {
+  "start": 14.11,
+  "end": 14.49,
+  "word": "ราคา",
+  "brk": false
+ },
+ {
+  "start": 14.49,
+  "end": 14.7,
+  "word": "ถูก",
+  "brk": true
+ },
+ {
+  "start": 14.7,
+  "end": 14.89,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 14.89,
+  "end": 15.13,
+  "word": "ร้าน",
+  "brk": true
+ },
+ {
+  "start": 15.13,
+  "end": 15.45,
+  "word": "ชุด",
+  "brk": false
+ },
+ {
+  "start": 15.45,
+  "end": 15.58,
+  "word": "แฟน",
+  "brk": false
+ },
+ {
+  "start": 15.58,
+  "end": 15.78,
+  "word": "ซี",
+  "brk": false
+ },
+ {
+  "start": 15.78,
+  "end": 16.449,
+  "word": "แทน",
+  "brk": true
+ },
+ {
+  "start": 16.449,
+  "end": 16.629,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 16.629,
+  "end": 17.06,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 17.06,
+  "end": 17.29,
+  "word": "กาก",
+  "brk": true
+ },
+ {
+  "start": 17.29,
+  "end": 17.49,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 17.49,
+  "end": 17.65,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 17.65,
+  "end": 17.85,
+  "word": "เลือก",
+  "brk": true
+ },
+ {
+  "start": 17.85,
+  "end": 18.04,
+  "word": "กลับ",
+  "brk": false
+ },
+ {
+  "start": 18.04,
+  "end": 18.25,
+  "word": "เป็น",
+  "brk": true
+ },
+ {
+  "start": 18.25,
+  "end": 18.55,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 18.55,
+  "end": 18.69,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 18.69,
+  "end": 18.889,
+  "word": "พระ",
+  "brk": false
+ },
+ {
+  "start": 18.889,
+  "end": 19.13,
+  "word": "เอก",
+  "brk": true
+ },
+ {
+  "start": 19.13,
+  "end": 19.32,
+  "word": "หนัง",
+  "brk": false
+ },
+ {
+  "start": 19.32,
+  "end": 20.186,
+  "word": "อวกาศ!",
+  "brk": true
+ },
+ {
+  "start": 20.186,
+  "end": 20.45,
+  "word": "มัน",
+  "brk": false
+ },
+ {
+  "start": 20.45,
+  "end": 20.58,
+  "word": "คือ",
+  "brk": true
+ },
+ {
+  "start": 20.58,
+  "end": 20.77,
+  "word": "หน้า",
+  "brk": false
+ },
+ {
+  "start": 20.77,
+  "end": 20.96,
+  "word": "กาก",
+  "brk": true
+ },
+ {
+  "start": 20.96,
+  "end": 21.31,
+  "word": "ราคา",
+  "brk": false
+ },
+ {
+  "start": 21.31,
+  "end": 21.54,
+  "word": "ถูก",
+  "brk": true
+ },
+ {
+  "start": 21.54,
+  "end": 21.84,
+  "word": "ของ",
+  "brk": false
+ },
+ {
+  "start": 21.84,
+  "end": 22.15,
+  "word": "กัปตัน",
+  "brk": false
+ },
+ {
+  "start": 22.15,
+  "end": 22.36,
+  "word": "เคิร์ก",
+  "brk": true
+ },
+ {
+  "start": 22.36,
+  "end": 22.64,
+  "word": "จาก",
+  "brk": false
+ },
+ {
+  "start": 22.64,
+  "end": 22.86,
+  "word": "Star",
+  "brk": false
+ },
+ {
+  "start": 22.86,
+  "end": 23.432,
+  "word": "Trek",
+  "brk": true
+ },
+ {
+  "start": 23.432,
+  "end": 23.59,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 23.59,
+  "end": 23.86,
+  "word": "ทีม",
+  "brk": false
+ },
+ {
+  "start": 23.86,
+  "end": 24.022,
+  "word": "งาน",
+  "brk": true
+ },
+ {
+  "start": 24.022,
+  "end": 24.17,
+  "word": "ดึง",
+  "brk": false
+ },
+ {
+  "start": 24.17,
+  "end": 24.43,
+  "word": "คิ้ว",
+  "brk": false
+ },
+ {
+  "start": 24.43,
+  "end": 24.632,
+  "word": "ออก",
+  "brk": true
+ },
+ {
+  "start": 24.632,
+  "end": 25.05,
+  "word": "พ่น",
+  "brk": false
+ },
+ {
+  "start": 25.05,
+  "end": 25.23,
+  "word": "สี",
+  "brk": false
+ },
+ {
+  "start": 25.23,
+  "end": 25.44,
+  "word": "หน้า",
+  "brk": true
+ },
+ {
+  "start": 25.44,
+  "end": 25.59,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 25.59,
+  "end": 25.85,
+  "word": "ขาว",
+  "brk": false
+ },
+ {
+  "start": 25.85,
+  "end": 26.012,
+  "word": "ซีด",
+  "brk": true
+ },
+ {
+  "start": 26.012,
+  "end": 26.23,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 26.23,
+  "end": 26.76,
+  "word": "ขยาย",
+  "brk": true
+ },
+ {
+  "start": 26.76,
+  "end": 26.96,
+  "word": "รู",
+  "brk": false
+ },
+ {
+  "start": 26.96,
+  "end": 27.102,
+  "word": "ตา",
+  "brk": true
+ },
+ {
+  "start": 27.102,
+  "end": 27.36,
+  "word": "ให้",
+  "brk": false
+ },
+ {
+  "start": 27.36,
+  "end": 27.552,
+  "word": "กว้าง",
+  "brk": false
+ },
+ {
+  "start": 27.552,
+  "end": 28.076,
+  "word": "ขึ้น",
+  "brk": true
+ }
+]
