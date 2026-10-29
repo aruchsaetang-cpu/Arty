@@ -16,10 +16,10 @@
    "media_start": 1.0
   },
   {
-   "src": "/home/user/Arty/videos/gollum-cat-short/broll/cat.mp4",
+   "src": "/home/user/Arty/videos/gollum-cat-short/broll/cat3.mp4",
    "start": 2.6,
    "dur": 2.0,
-   "media_start": 2.5
+   "media_start": 0.3
   },
   {
    "src": "/home/user/Arty/videos/gollum-cat-short/broll/c3.mp4",
@@ -64,7 +64,7 @@
    "media_start": 9.5
   },
   {
-   "src": "/home/user/Arty/videos/gollum-cat-short/broll/cat.mp4",
+   "src": "/home/user/Arty/videos/gollum-cat-short/broll/cat3.mp4",
    "start": 14.9,
    "dur": 2.142,
    "media_start": 3.2
