@@ -16,3 +16,6 @@ In progress (voice done, waiting for footage): `django-blood-short`, `snape-secr
 | 8 | Train to Busan (2016) | ซอมบี้ใน Train to Busan จริงๆ แล้วคือคนกลุ่มนี้! | Zombies were bone-breaking street dancers; movement director Jeon Young (script written, not voiced) |
 
 Dropped by user (2026-10-28): ironman-suit-short (voice and captions stay in git, not queued).
+
+Saved script (not voiced): videos/jackie-chan-th/script.md
+New series idea (user, 2026-10-29): "เรื่องแปลกๆ ในหนัง" (weird things in movies).
