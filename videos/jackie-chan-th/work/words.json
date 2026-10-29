@@ -1,0 +1,590 @@
+[
+ {
+  "start": 0.0,
+  "end": 0.17,
+  "word": "รู้",
+  "brk": false
+ },
+ {
+  "start": 0.17,
+  "end": 0.31,
+  "word": "มั้ย",
+  "brk": false
+ },
+ {
+  "start": 0.31,
+  "end": 0.56,
+  "word": "ว่า",
+  "brk": true
+ },
+ {
+  "start": 0.56,
+  "end": 0.6,
+  "word": "เฉิน",
+  "brk": false
+ },
+ {
+  "start": 0.6,
+  "end": 0.77,
+  "word": "หลง",
+  "brk": true
+ },
+ {
+  "start": 0.77,
+  "end": 0.99,
+  "word": "เกือบ",
+  "brk": false
+ },
+ {
+  "start": 0.99,
+  "end": 1.32,
+  "word": "ตาย",
+  "brk": true
+ },
+ {
+  "start": 1.32,
+  "end": 1.6,
+  "word": "จริงๆ",
+  "brk": true
+ },
+ {
+  "start": 1.6,
+  "end": 1.84,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 1.84,
+  "end": 2.0,
+  "word": "ฉาก",
+  "brk": false
+ },
+ {
+  "start": 2.0,
+  "end": 2.457,
+  "word": "นี้!",
+  "brk": true
+ },
+ {
+  "start": 2.457,
+  "end": 2.62,
+  "word": "ตอน",
+  "brk": false
+ },
+ {
+  "start": 2.62,
+  "end": 2.66,
+  "word": "ถ่าย",
+  "brk": true
+ },
+ {
+  "start": 2.66,
+  "end": 2.95,
+  "word": "Armour",
+  "brk": false
+ },
+ {
+  "start": 2.95,
+  "end": 3.11,
+  "word": "of",
+  "brk": false
+ },
+ {
+  "start": 3.11,
+  "end": 3.35,
+  "word": "God",
+  "brk": true
+ },
+ {
+  "start": 3.35,
+  "end": 3.59,
+  "word": "ปี",
+  "brk": false
+ },
+ {
+  "start": 3.59,
+  "end": 4.53,
+  "word": "1986",
+  "brk": true
+ },
+ {
+  "start": 4.53,
+  "end": 4.89,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 4.89,
+  "end": 5.017,
+  "word": "ต้อง",
+  "brk": false
+ },
+ {
+  "start": 5.017,
+  "end": 5.18,
+  "word": "กระ",
+  "brk": false
+ },
+ {
+  "start": 5.18,
+  "end": 5.6,
+  "word": "โดด",
+  "brk": true
+ },
+ {
+  "start": 5.6,
+  "end": 5.83,
+  "word": "จาก",
+  "brk": false
+ },
+ {
+  "start": 5.83,
+  "end": 6.0,
+  "word": "กำ",
+  "brk": false
+ },
+ {
+  "start": 6.0,
+  "end": 6.22,
+  "word": "แพง",
+  "brk": true
+ },
+ {
+  "start": 6.22,
+  "end": 6.817,
+  "word": "ปราสาท",
+  "brk": true
+ },
+ {
+  "start": 6.817,
+  "end": 7.06,
+  "word": "ไป",
+  "brk": false
+ },
+ {
+  "start": 7.06,
+  "end": 7.1,
+  "word": "เกาะ",
+  "brk": true
+ },
+ {
+  "start": 7.1,
+  "end": 7.277,
+  "word": "กิ่ง",
+  "brk": false
+ },
+ {
+  "start": 7.277,
+  "end": 7.63,
+  "word": "ไม้",
+  "brk": true
+ },
+ {
+  "start": 7.63,
+  "end": 7.85,
+  "word": "ด้วย",
+  "brk": false
+ },
+ {
+  "start": 7.85,
+  "end": 8.07,
+  "word": "ตัว",
+  "brk": false
+ },
+ {
+  "start": 8.07,
+  "end": 8.18,
+  "word": "เอง",
+  "brk": true
+ },
+ {
+  "start": 8.18,
+  "end": 8.33,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 8.33,
+  "end": 8.51,
+  "word": "ฉาก",
+  "brk": true
+ },
+ {
+  "start": 8.51,
+  "end": 8.677,
+  "word": "ที่",
+  "brk": false
+ },
+ {
+  "start": 8.677,
+  "end": 8.8,
+  "word": "ดู",
+  "brk": true
+ },
+ {
+  "start": 8.8,
+  "end": 9.0,
+  "word": "ไม่",
+  "brk": false
+ },
+ {
+  "start": 9.0,
+  "end": 9.19,
+  "word": "ยาก",
+  "brk": true
+ },
+ {
+  "start": 9.19,
+  "end": 9.23,
+  "word": "สำ",
+  "brk": false
+ },
+ {
+  "start": 9.23,
+  "end": 9.91,
+  "word": "หรับ",
+  "brk": false
+ },
+ {
+  "start": 9.91,
+  "end": 10.18,
+  "word": "เขา",
+  "brk": false
+ },
+ {
+  "start": 10.18,
+  "end": 10.32,
+  "word": "เลย",
+  "brk": true
+ },
+ {
+  "start": 10.32,
+  "end": 10.36,
+  "word": "และ",
+  "brk": false
+ },
+ {
+  "start": 10.36,
+  "end": 10.61,
+  "word": "เขา",
+  "brk": true
+ },
+ {
+  "start": 10.61,
+  "end": 10.79,
+  "word": "ก็",
+  "brk": false
+ },
+ {
+  "start": 10.79,
+  "end": 11.04,
+  "word": "ถ่าย",
+  "brk": true
+ },
+ {
+  "start": 11.04,
+  "end": 11.08,
+  "word": "เทค",
+  "brk": false
+ },
+ {
+  "start": 11.08,
+  "end": 11.31,
+  "word": "แรก",
+  "brk": true
+ },
+ {
+  "start": 11.31,
+  "end": 11.43,
+  "word": "ผ่าน",
+  "brk": false
+ },
+ {
+  "start": 11.43,
+  "end": 11.6,
+  "word": "ไป",
+  "brk": true
+ },
+ {
+  "start": 11.6,
+  "end": 11.75,
+  "word": "ได้",
+  "brk": false
+ },
+ {
+  "start": 11.75,
+  "end": 11.887,
+  "word": "แล้ว",
+  "brk": false
+ },
+ {
+  "start": 11.887,
+  "end": 12.377,
+  "word": "ด้วย",
+  "brk": true
+ },
+ {
+  "start": 12.377,
+  "end": 12.59,
+  "word": "แต่",
+  "brk": false
+ },
+ {
+  "start": 12.59,
+  "end": 12.727,
+  "word": "พอ",
+  "brk": false
+ },
+ {
+  "start": 12.727,
+  "end": 12.88,
+  "word": "ขอ",
+  "brk": true
+ },
+ {
+  "start": 12.88,
+  "end": 13.08,
+  "word": "ถ่าย",
+  "brk": false
+ },
+ {
+  "start": 13.08,
+  "end": 13.45,
+  "word": "อีก",
+  "brk": false
+ },
+ {
+  "start": 13.45,
+  "end": 13.66,
+  "word": "เทค",
+  "brk": true
+ },
+ {
+  "start": 13.66,
+  "end": 13.86,
+  "word": "กิ่ง",
+  "brk": false
+ },
+ {
+  "start": 13.86,
+  "end": 14.01,
+  "word": "ไม้",
+  "brk": true
+ },
+ {
+  "start": 14.01,
+  "end": 14.3,
+  "word": "กลับ",
+  "brk": false
+ },
+ {
+  "start": 14.3,
+  "end": 14.48,
+  "word": "หัก",
+  "brk": true
+ },
+ {
+  "start": 14.48,
+  "end": 14.64,
+  "word": "กลาง",
+  "brk": false
+ },
+ {
+  "start": 14.64,
+  "end": 15.304,
+  "word": "อากาศ!",
+  "brk": true
+ },
+ {
+  "start": 15.304,
+  "end": 15.52,
+  "word": "ปัญหา",
+  "brk": false
+ },
+ {
+  "start": 15.52,
+  "end": 15.664,
+  "word": "คือ",
+  "brk": true
+ },
+ {
+  "start": 15.664,
+  "end": 15.82,
+  "word": "ตอน",
+  "brk": false
+ },
+ {
+  "start": 15.82,
+  "end": 16.21,
+  "word": "เค้า",
+  "brk": true
+ },
+ {
+  "start": 16.21,
+  "end": 16.45,
+  "word": "ตก",
+  "brk": false
+ },
+ {
+  "start": 16.45,
+  "end": 16.49,
+  "word": "ลง",
+  "brk": false
+ },
+ {
+  "start": 16.49,
+  "end": 16.6,
+  "word": "มา",
+  "brk": true
+ },
+ {
+  "start": 16.6,
+  "end": 16.884,
+  "word": "หัว",
+  "brk": false
+ },
+ {
+  "start": 16.884,
+  "end": 17.33,
+  "word": "เค้า",
+  "brk": true
+ },
+ {
+  "start": 17.33,
+  "end": 17.52,
+  "word": "ดัน",
+  "brk": false
+ },
+ {
+  "start": 17.52,
+  "end": 17.74,
+  "word": "ไป",
+  "brk": true
+ },
+ {
+  "start": 17.74,
+  "end": 17.94,
+  "word": "กระ",
+  "brk": false
+ },
+ {
+  "start": 17.94,
+  "end": 18.08,
+  "word": "แทก",
+  "brk": true
+ },
+ {
+  "start": 18.08,
+  "end": 18.68,
+  "word": "กับ",
+  "brk": false
+ },
+ {
+  "start": 18.68,
+  "end": 18.72,
+  "word": "หิน",
+  "brk": true
+ },
+ {
+  "start": 18.72,
+  "end": 19.04,
+  "word": "จน",
+  "brk": false
+ },
+ {
+  "start": 19.04,
+  "end": 19.75,
+  "word": "กะ",
+  "brk": false
+ },
+ {
+  "start": 19.75,
+  "end": 19.79,
+  "word": "โหลก",
+  "brk": true
+ },
+ {
+  "start": 19.79,
+  "end": 20.3,
+  "word": "แตก",
+  "brk": true
+ },
+ {
+  "start": 20.3,
+  "end": 20.42,
+  "word": "เศษ",
+  "brk": false
+ },
+ {
+  "start": 20.42,
+  "end": 20.68,
+  "word": "กระ",
+  "brk": false
+ },
+ {
+  "start": 20.68,
+  "end": 20.79,
+  "word": "ดูก",
+  "brk": true
+ },
+ {
+  "start": 20.79,
+  "end": 21.21,
+  "word": "ทิ่ม",
+  "brk": false
+ },
+ {
+  "start": 21.21,
+  "end": 21.37,
+  "word": "เข้า",
+  "brk": false
+ },
+ {
+  "start": 21.37,
+  "end": 21.62,
+  "word": "ไป",
+  "brk": true
+ },
+ {
+  "start": 21.62,
+  "end": 21.984,
+  "word": "ใน",
+  "brk": false
+ },
+ {
+  "start": 21.984,
+  "end": 22.45,
+  "word": "สมอง",
+  "brk": true
+ },
+ {
+  "start": 22.45,
+  "end": 22.59,
+  "word": "จน",
+  "brk": false
+ },
+ {
+  "start": 22.59,
+  "end": 22.72,
+  "word": "ต้อง",
+  "brk": true
+ },
+ {
+  "start": 22.72,
+  "end": 22.91,
+  "word": "ผ่า",
+  "brk": false
+ },
+ {
+  "start": 22.91,
+  "end": 23.09,
+  "word": "ตัด",
+  "brk": true
+ },
+ {
+  "start": 23.09,
+  "end": 23.659,
+  "word": "ด่วน",
+  "brk": true
+ }
+]

@@ -1,0 +1,8 @@
+file 'trim1.wav'
+file 'gap.wav'
+file 'trim2.wav'
+file 'gap.wav'
+file 'trim3.wav'
+file 'gap.wav'
+file 'trim4.wav'
+file 'gap.wav'
