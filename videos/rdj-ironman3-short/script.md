@@ -1,7 +1,7 @@
 # Robert Downey Jr.: Iron Man 3 ankle injury: Thai script (user-locked 2026-10-30, 3 paragraphs)
 
 1. ฮุก
-รู้ไหมว่า Robert Downey Jr. ได้รับบาดเจ็บจริงระหว่างถ่ายทำฉากนี้!
+รู้ไหมว่า Robert Downey Jr. ได้รับบาดเจ็บระหว่างถ่ายทำฉากนี้!
 
 2. บริบท
 ตอนถ่าย Iron Man 3 ในปี 2012 เขาอยากทำฉากแอ็กชันให้สมจริงที่สุด เลยพยายามแสดงฉากสตั๊นท์ด้วยตัวเอง

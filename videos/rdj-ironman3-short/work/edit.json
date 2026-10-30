@@ -1,5 +1,5 @@
 {
- "duration": 18.869,
+ "duration": 18.679,
  "facecam": null,
  "voice": "/home/user/Arty/videos/rdj-ironman3-short/work/voice_fast.wav",
  "shots": [
@@ -12,72 +12,72 @@
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c2.mp4",
    "start": 1.204,
-   "dur": 0.974,
+   "dur": 0.784,
    "media_start": 6.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c7.mp4",
-   "start": 2.178,
+   "start": 1.988,
    "dur": 0.796,
    "media_start": 2.5
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c3.mp4",
-   "start": 2.974,
+   "start": 2.784,
    "dur": 1.338,
    "media_start": 5.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c2.mp4",
-   "start": 4.312,
+   "start": 4.122,
    "dur": 1.053,
    "media_start": 3.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c5.mp4",
-   "start": 5.365,
+   "start": 5.175,
    "dur": 2.148,
    "media_start": 0.5
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c6.mp4",
-   "start": 7.513,
+   "start": 7.323,
    "dur": 1.97,
    "media_start": 2.5
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c7.mp4",
-   "start": 9.483,
+   "start": 9.293,
    "dur": 1.465,
    "media_start": 5.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/ankle.mp4",
-   "start": 10.948,
+   "start": 10.758,
    "dur": 1.721,
    "media_start": 0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c3.mp4",
-   "start": 12.669,
+   "start": 12.479,
    "dur": 0.902,
    "media_start": 2.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c1.mp4",
-   "start": 13.571,
+   "start": 13.381,
    "dur": 1.186,
    "media_start": 7.8
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c10.mp4",
-   "start": 14.757,
+   "start": 14.567,
    "dur": 2.053,
    "media_start": 3.6
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c5.mp4",
-   "start": 16.81,
+   "start": 16.62,
    "dur": 2.059,
    "media_start": 8.2
   }
@@ -85,122 +85,127 @@
  "captions": [
   {
    "start": 0.0,
-   "end": 0.44,
+   "end": 0.4,
    "text": "รู้ไหมว่า"
   },
   {
-   "start": 0.44,
+   "start": 0.4,
    "end": 1.21,
    "text": "Robert Downey Jr."
   },
   {
    "start": 1.21,
-   "end": 1.81,
+   "end": 1.78,
    "text": "ได้รับบาดเจ็บ"
   },
   {
-   "start": 1.81,
-   "end": 2.3,
-   "text": "จริง ระหว่างถ่ายทำ"
+   "start": 1.78,
+   "end": 2.19,
+   "text": "ระหว่างถ่ายทำ"
   },
   {
-   "start": 2.3,
-   "end": 2.974,
+   "start": 2.19,
+   "end": 2.784,
    "text": "ฉากนี้!"
   },
   {
-   "start": 2.974,
-   "end": 3.364,
+   "start": 2.784,
+   "end": 3.174,
    "text": "ตอนถ่าย"
   },
   {
-   "start": 3.364,
-   "end": 4.08,
+   "start": 3.174,
+   "end": 3.89,
    "text": "Iron Man 3"
   },
   {
-   "start": 4.08,
-   "end": 5.35,
+   "start": 3.89,
+   "end": 5.16,
    "text": "ปี 2012"
   },
   {
-   "start": 5.35,
-   "end": 6.44,
+   "start": 5.16,
+   "end": 6.25,
    "text": "เขาอยากทำฉากแอ็กชั่น"
   },
   {
-   "start": 6.44,
-   "end": 7.19,
+   "start": 6.25,
+   "end": 7.0,
    "text": "ให้สมจริง"
   },
   {
-   "start": 7.19,
-   "end": 7.69,
+   "start": 7.0,
+   "end": 7.5,
    "text": "ที่สุด"
   },
   {
-   "start": 7.69,
-   "end": 8.03,
+   "start": 7.5,
+   "end": 7.84,
    "text": "เลยพยายาม"
   },
   {
-   "start": 8.03,
-   "end": 8.62,
+   "start": 7.84,
+   "end": 8.43,
    "text": "แสดงฉากสตั๊นท์"
   },
   {
-   "start": 8.62,
-   "end": 9.483,
+   "start": 8.43,
+   "end": 9.293,
    "text": "ด้วยตัวเอง"
   },
   {
-   "start": 9.483,
-   "end": 10.16,
+   "start": 9.293,
+   "end": 9.97,
    "text": "แต่มีฉากนึง"
   },
   {
-   "start": 10.16,
-   "end": 10.948,
+   "start": 9.97,
+   "end": 10.758,
    "text": "เค้ากลับพลาด!"
   },
   {
-   "start": 10.948,
-   "end": 12.19,
+   "start": 10.758,
+   "end": 12.0,
    "text": "เขาบาดเจ็บที่ข้อเท้า"
   },
   {
-   "start": 12.19,
-   "end": 13.68,
-   "text": "จนต้องหยุดถ่ายทำชั่วคราว"
+   "start": 12.0,
+   "end": 12.79,
+   "text": "จนต้องหยุดถ่าย"
   },
   {
-   "start": 13.68,
-   "end": 14.378,
+   "start": 12.79,
+   "end": 13.49,
+   "text": "ทำชั่วคราว"
+  },
+  {
+   "start": 13.49,
+   "end": 14.188,
    "text": "เพื่อพักรักษาตัว"
   },
   {
-   "start": 14.378,
-   "end": 15.06,
+   "start": 14.188,
+   "end": 14.87,
    "text": "ที่พีคคือ"
   },
   {
-   "start": 15.06,
-   "end": 16.2,
+   "start": 14.87,
+   "end": 16.01,
    "text": "ซุปเปอร์ฮีโร่ในเกราะเหล็ก"
   },
   {
-   "start": 16.2,
-   "end": 17.42,
+   "start": 16.01,
+   "end": 17.23,
    "text": "กลับต้องหยุดถ่ายหนัง"
   },
   {
-   "start": 17.42,
-   "end": 17.95,
+   "start": 17.23,
+   "end": 17.76,
    "text": "เพราะสภาพ"
   },
   {
-   "start": 17.95,
-   "end": 18.869,
+   "start": 17.76,
+   "end": 18.679,
    "text": "ร่างกาย รับไม่ไหว!"
   }
  ]
