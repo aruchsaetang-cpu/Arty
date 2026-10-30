@@ -122,3 +122,7 @@ videos/halloween-mask-short/work/gap*.wav
 videos/halloween-mask-short/render.log
 videos/rdj-ironman3-short/broll/
 videos/rdj-ironman3-short/out/
+videos/rdj-ironman3-short/work/raw*.wav
+videos/rdj-ironman3-short/work/tight*.wav
+videos/rdj-ironman3-short/work/trim*.wav
+videos/rdj-ironman3-short/work/gap.wav
