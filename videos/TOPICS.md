@@ -24,3 +24,4 @@ Gollum cat short: DONE (rendered th/out/renders/gollum-th.mp4, no cat clip, Serk
 One Piece sea-light short: voice + captions done (th/), waiting for footage.
 Jackie Chan TH: DONE (jackie-chan-th/out/renders/jackie-th.mp4). Reveal ends at "ผ่าตัดด่วน" (user recorded without the last two sentences).
 Halloween mask short: DONE (out/renders/halloween-th.mp4).
+RDJ Iron Man 3 short: script locked, waiting for voice + footage.
