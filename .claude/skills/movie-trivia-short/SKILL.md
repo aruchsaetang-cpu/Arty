@@ -17,7 +17,7 @@ Context (3 sentences): film + year; the actor chose to do the dangerous thing hi
 Reveal: what physically happened (injury, in plain words) -> he kept going / was rushed to hospital -> the take was kept in the film or the footage is still in the film.
 Close on a peak line ("ที่พีคคือ …") when the user's recording has one.
 Applies to: Jackie Chan (Armour of God), Tom Cruise (Fallout), Rocky. For weird-fact clips (Gollum, Matrix) keep the Hook/Context/แต่/Reveal frame but a near-death hook is not required.
-Topic filter: a famous actor, a verified injury or near-death on set, a clear "kept in the film" payoff.
+Topic filter: an actor Thai viewers actually know (user rule 2026-10-30: drop old-Hollywood or niche names such as Ellen Burstyn, Margaret Hamilton, Buddy Ebsen; use stars like Tom Cruise, Jackie Chan, Harrison Ford, DiCaprio, Keanu Reeves, Dwayne Johnson, Robert Downey Jr.; if the film is better known than the actor, say "the actor from <film>"), a verified injury or near-death on set, a clear "kept in the film" payoff. Previously: a famous actor, a verified injury or near-death on set, a clear "kept in the film" payoff.
 
 ## 000000. REFERENCE SHORTS (user, 2026-10-29; seen as thumbnails only, links not openable here)
 - youtube.com/shorts/NFa7WyU5Mcw "The Secret Behind ONE PIECE's Craziest Scenes!": CGI/behind-the-scenes reveal, bold comic caption over the scene.
