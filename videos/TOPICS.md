@@ -12,7 +12,7 @@ Unused ideas, saved for later. Pick one and write the Hook / Context / แต่
 | 6 | The Avengers (2012) | ขนมที่ Iron Man กินในฉากนี้ เขาแอบซ่อนไว้เองจริงๆ! | RDJ hid snacks on set; the blueberry lab moment was unscripted |
 | 7 | One Piece (Netflix, 2023) | ฉากล่องเรือกลางทะเลใน One Piece ไม่ได้ถ่ายในทะเลจริงๆ! | Full-size Going Merry built in Cape Town; sea added in post (gimbal/blue screen: verify from BTS footage) |
 
-In progress (voice done, waiting for footage): `django-blood-short`, `snape-secret-short` (#1), `squidgame-teeth-short`.
+In progress (voice done, waiting for footage): `snape-secret-short` (#1), `squidgame-teeth-short`.
 | 8 | Train to Busan (2016) | ซอมบี้ใน Train to Busan จริงๆ แล้วคือคนกลุ่มนี้! | Zombies were bone-breaking street dancers; movement director Jeon Young (script written, not voiced) |
 
 Dropped by user (2026-10-28): ironman-suit-short (voice and captions stay in git, not queued).
@@ -25,3 +25,4 @@ One Piece sea-light short: voice + captions done (th/), waiting for footage.
 Jackie Chan TH: DONE (jackie-chan-th/out/renders/jackie-th.mp4). Reveal ends at "ผ่าตัดด่วน" (user recorded without the last two sentences).
 Halloween mask short: DONE (out/renders/halloween-th.mp4).
 RDJ Iron Man 3 short: DONE (out/renders/rdj-th.mp4).
+Django blood short: DONE (out/renders/django-th.mp4, smooth voice 27.3s). Snape: got 2 Great Hall clips only.
