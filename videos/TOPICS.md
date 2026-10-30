@@ -23,4 +23,4 @@ Matrix code short: DONE (rendered th/out/renders/matrix-th.mp4).
 Gollum cat short: DONE (rendered th/out/renders/gollum-th.mp4, no cat clip, Serkis shots used for the reveal).
 One Piece sea-light short: voice + captions done (th/), waiting for footage.
 Jackie Chan TH: DONE (jackie-chan-th/out/renders/jackie-th.mp4). Reveal ends at "ผ่าตัดด่วน" (user recorded without the last two sentences).
-Halloween mask short: voice + captions done (work/), waiting for footage. Deadline 31 Oct.
+Halloween mask short: DONE (out/renders/halloween-th.mp4).
