@@ -36,8 +36,14 @@
   {
    "src": "/home/user/Arty/videos/halloween-mask-short/broll/c1.mp4",
    "start": 7.952,
-   "dur": 2.14,
-   "media_start": 5.2
+   "dur": 0.95,
+   "media_start": 5.9
+  },
+  {
+   "src": "/home/user/Arty/videos/halloween-mask-short/broll/c2.mp4",
+   "start": 8.902,
+   "dur": 1.19,
+   "media_start": 0.2
   },
   {
    "src": "/home/user/Arty/videos/halloween-mask-short/broll/c3.mp4",
