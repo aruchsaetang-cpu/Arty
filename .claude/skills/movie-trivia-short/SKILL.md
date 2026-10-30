@@ -10,6 +10,15 @@ skill covers everything around it: topic, facts, script, footage links, platform
 Talk to the user in Thai.
 
 
+## 0000000. WINNING STRUCTURE (user, 2026-10-30): Jackie Chan + Tom Cruise clips performed well: use this telling for EVERY new clip
+Hook: "รู้มั้ยว่า <famous actor, by name> เกือบตายจริงๆ ในฉากนี้!" (named star, real danger, "this scene", no "เป็นไปได้ไง").
+Context (3 sentences): film + year; the actor chose to do the dangerous thing himself (no stunt double / no CG), plus one detail that makes it look easy or prepared.
+แต่ (1 sentence, "แต่" only here): the exact moment it went wrong.
+Reveal: what physically happened (injury, in plain words) -> he kept going / was rushed to hospital -> the take was kept in the film or the footage is still in the film.
+Close on a peak line ("ที่พีคคือ …") when the user's recording has one.
+Applies to: Jackie Chan (Armour of God), Tom Cruise (Fallout), Rocky. For weird-fact clips (Gollum, Matrix) keep the Hook/Context/แต่/Reveal frame but a near-death hook is not required.
+Topic filter: a famous actor, a verified injury or near-death on set, a clear "kept in the film" payoff.
+
 ## 000000. REFERENCE SHORTS (user, 2026-10-29; seen as thumbnails only, links not openable here)
 - youtube.com/shorts/NFa7WyU5Mcw "The Secret Behind ONE PIECE's Craziest Scenes!": CGI/behind-the-scenes reveal, bold comic caption over the scene.
 - "Three times Michael Jackson wasn't actually acting!": listicle hook "N times X wasn't actually acting", one big comic word per beat.
