@@ -289,223 +289,223 @@
  },
  {
   "start": 10.61,
-  "end": 11.087,
+  "end": 10.948,
   "word": "พลาด!",
   "brk": true
  },
  {
-  "start": 11.087,
-  "end": 11.44,
+  "start": 10.948,
+  "end": 11.31,
   "word": "เขา",
   "brk": false
  },
  {
-  "start": 11.44,
-  "end": 11.48,
+  "start": 11.31,
+  "end": 11.35,
   "word": "บาด",
   "brk": false
  },
  {
-  "start": 11.48,
+  "start": 11.35,
   "end": 11.66,
   "word": "เจ็บ",
   "brk": false
  },
  {
   "start": 11.66,
-  "end": 11.94,
+  "end": 11.8,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 11.94,
-  "end": 12.11,
+  "start": 11.8,
+  "end": 11.97,
   "word": "ข้อ",
   "brk": false
  },
  {
-  "start": 12.11,
-  "end": 12.33,
+  "start": 11.97,
+  "end": 12.19,
   "word": "เท้า",
   "brk": true
  },
  {
-  "start": 12.33,
-  "end": 12.48,
+  "start": 12.19,
+  "end": 12.34,
   "word": "จน",
   "brk": false
  },
  {
-  "start": 12.48,
-  "end": 12.67,
+  "start": 12.34,
+  "end": 12.53,
   "word": "ต้อง",
   "brk": false
  },
  {
-  "start": 12.67,
-  "end": 12.77,
+  "start": 12.53,
+  "end": 12.83,
   "word": "หยุด",
   "brk": false
  },
  {
-  "start": 12.77,
-  "end": 12.97,
+  "start": 12.83,
+  "end": 12.98,
   "word": "ถ่าย",
   "brk": false
  },
  {
-  "start": 12.97,
-  "end": 13.12,
+  "start": 12.98,
+  "end": 13.18,
   "word": "ทำ",
   "brk": false
  },
  {
-  "start": 13.12,
-  "end": 13.31,
+  "start": 13.18,
+  "end": 13.328,
   "word": "ชั่ว",
   "brk": false
  },
  {
-  "start": 13.31,
-  "end": 13.567,
+  "start": 13.328,
+  "end": 13.68,
   "word": "คราว",
   "brk": true
  },
  {
-  "start": 13.567,
-  "end": 13.86,
+  "start": 13.68,
+  "end": 13.72,
   "word": "เพื่อ",
   "brk": false
  },
  {
-  "start": 13.86,
-  "end": 14.04,
+  "start": 13.72,
+  "end": 14.0,
   "word": "พัก",
   "brk": false
  },
  {
-  "start": 14.04,
-  "end": 14.42,
+  "start": 14.0,
+  "end": 14.24,
   "word": "รักษา",
   "brk": false
  },
  {
-  "start": 14.42,
-  "end": 14.46,
+  "start": 14.24,
+  "end": 14.378,
   "word": "ตัว",
   "brk": true
  },
  {
-  "start": 14.46,
-  "end": 14.667,
+  "start": 14.378,
+  "end": 14.6,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 14.667,
-  "end": 15.04,
+  "start": 14.6,
+  "end": 14.83,
   "word": "พีค",
   "brk": false
  },
  {
-  "start": 15.04,
-  "end": 15.27,
+  "start": 14.83,
+  "end": 15.06,
   "word": "คือ",
   "brk": true
  },
  {
-  "start": 15.27,
-  "end": 15.48,
+  "start": 15.06,
+  "end": 15.26,
   "word": "ซุป",
   "brk": false
  },
  {
-  "start": 15.48,
-  "end": 15.8,
+  "start": 15.26,
+  "end": 15.59,
   "word": "เปอร์",
+  "brk": false
+ },
+ {
+  "start": 15.59,
+  "end": 15.8,
+  "word": "ฮีโร่",
   "brk": false
  },
  {
   "start": 15.8,
   "end": 15.84,
-  "word": "ฮีโร่",
-  "brk": false
- },
- {
-  "start": 15.84,
-  "end": 16.02,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 16.02,
+  "start": 15.84,
   "end": 16.16,
   "word": "เกราะ",
   "brk": false
  },
  {
   "start": 16.16,
-  "end": 16.37,
+  "end": 16.2,
   "word": "เหล็ก",
   "brk": true
  },
  {
-  "start": 16.37,
-  "end": 16.81,
+  "start": 16.2,
+  "end": 16.59,
   "word": "กลับ",
   "brk": false
  },
  {
-  "start": 16.81,
-  "end": 17.0,
+  "start": 16.59,
+  "end": 16.78,
   "word": "ต้อง",
   "brk": false
  },
  {
-  "start": 17.0,
-  "end": 17.14,
+  "start": 16.78,
+  "end": 16.93,
   "word": "หยุด",
   "brk": false
  },
  {
-  "start": 17.14,
-  "end": 17.39,
+  "start": 16.93,
+  "end": 17.17,
   "word": "ถ่าย",
   "brk": false
  },
  {
-  "start": 17.39,
-  "end": 17.64,
+  "start": 17.17,
+  "end": 17.42,
   "word": "หนัง",
   "brk": true
  },
  {
-  "start": 17.64,
-  "end": 17.93,
+  "start": 17.42,
+  "end": 17.72,
   "word": "เพราะ",
   "brk": false
  },
  {
-  "start": 17.93,
-  "end": 17.97,
+  "start": 17.72,
+  "end": 17.95,
   "word": "สภาพ",
   "brk": false
  },
  {
-  "start": 17.97,
-  "end": 18.16,
+  "start": 17.95,
+  "end": 17.99,
   "word": "ร่างกาย",
   "brk": false
  },
  {
-  "start": 18.16,
-  "end": 18.387,
+  "start": 17.99,
+  "end": 18.178,
   "word": "รับ",
   "brk": false
  },
  {
-  "start": 18.387,
-  "end": 18.781,
+  "start": 18.178,
+  "end": 18.569,
   "word": "ไม่ไหว!",
   "brk": true
  }

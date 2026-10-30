@@ -1,5 +1,5 @@
 {
- "duration": 19.117,
+ "duration": 18.869,
  "facecam": null,
  "voice": "/home/user/Arty/videos/rdj-ironman3-short/work/voice_fast.wav",
  "shots": [
@@ -48,37 +48,37 @@
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c7.mp4",
    "start": 9.483,
-   "dur": 1.604,
+   "dur": 1.465,
    "media_start": 5.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/ankle.mp4",
-   "start": 11.087,
-   "dur": 1.738,
+   "start": 10.948,
+   "dur": 1.721,
    "media_start": 0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c3.mp4",
-   "start": 12.825,
-   "dur": 0.91,
+   "start": 12.669,
+   "dur": 0.902,
    "media_start": 2.0
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c1.mp4",
-   "start": 13.735,
-   "dur": 1.198,
+   "start": 13.571,
+   "dur": 1.186,
    "media_start": 7.8
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c10.mp4",
-   "start": 14.933,
-   "dur": 2.073,
+   "start": 14.757,
+   "dur": 2.053,
    "media_start": 3.6
   },
   {
    "src": "/home/user/Arty/videos/rdj-ironman3-short/broll/c5.mp4",
-   "start": 17.006,
-   "dur": 2.111,
+   "start": 16.81,
+   "dur": 2.059,
    "media_start": 8.2
   }
  ],
@@ -160,43 +160,48 @@
   },
   {
    "start": 10.16,
-   "end": 11.087,
+   "end": 10.948,
    "text": "เค้ากลับพลาด!"
   },
   {
-   "start": 11.087,
-   "end": 12.33,
+   "start": 10.948,
+   "end": 12.19,
    "text": "เขาบาดเจ็บที่ข้อเท้า"
   },
   {
-   "start": 12.33,
-   "end": 13.567,
+   "start": 12.19,
+   "end": 13.68,
    "text": "จนต้องหยุดถ่ายทำชั่วคราว"
   },
   {
-   "start": 13.567,
-   "end": 14.46,
+   "start": 13.68,
+   "end": 14.378,
    "text": "เพื่อพักรักษาตัว"
   },
   {
-   "start": 14.46,
-   "end": 15.27,
+   "start": 14.378,
+   "end": 15.06,
    "text": "ที่พีคคือ"
   },
   {
-   "start": 15.27,
-   "end": 16.37,
+   "start": 15.06,
+   "end": 16.2,
    "text": "ซุปเปอร์ฮีโร่ในเกราะเหล็ก"
   },
   {
-   "start": 16.37,
-   "end": 17.64,
+   "start": 16.2,
+   "end": 17.42,
    "text": "กลับต้องหยุดถ่ายหนัง"
   },
   {
-   "start": 17.64,
-   "end": 19.117,
-   "text": "เพราะสภาพร่างกายรับไม่ไหว!"
+   "start": 17.42,
+   "end": 17.95,
+   "text": "เพราะสภาพ"
+  },
+  {
+   "start": 17.95,
+   "end": 18.869,
+   "text": "ร่างกาย รับไม่ไหว!"
   }
  ]
 }
