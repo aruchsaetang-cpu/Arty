@@ -10,6 +10,11 @@ skill covers everything around it: topic, facts, script, footage links, platform
 Talk to the user in Thai.
 
 
+## VOICE FLOW (user, 2026-10-30: "make the speech flow smoother")
+The user's memos carry room noise around 0.05 peak, so ffmpeg silenceremove at -40dB leaves 0.3-1.6 s of dead air at each take's ends.
+Trim each take by energy instead (20 ms windows, keep from first to last window above 0.12 peak, pad 60 ms before / 120 ms after,
+15 ms fades), then join with 0.07 s inside a paragraph and 0.22 s between paragraphs. RDJ went from 30.6 s to 21.3 s this way.
+
 ## 0000000. WINNING STRUCTURE (user, 2026-10-30): Jackie Chan + Tom Cruise clips performed well: use this telling for EVERY new clip
 Hook: "รู้มั้ยว่า <famous actor, by name> เกือบตายจริงๆ ในฉากนี้!" (named star, real danger, "this scene", no "เป็นไปได้ไง").
 Context (3 sentences): film + year; the actor chose to do the dangerous thing himself (no stunt double / no CG), plus one detail that makes it look easy or prepared.
