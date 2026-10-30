@@ -1,823 +1,823 @@
 [
  {
   "start": 0.0,
-  "end": 0.29,
+  "end": 0.32,
   "word": "เพื่อนๆ",
   "brk": false
  },
  {
-  "start": 0.29,
-  "end": 0.43,
+  "start": 0.32,
+  "end": 0.56,
   "word": "รู้",
   "brk": false
  },
  {
-  "start": 0.43,
-  "end": 0.77,
+  "start": 0.56,
+  "end": 0.73,
   "word": "ไหม",
   "brk": false
  },
  {
-  "start": 0.77,
-  "end": 0.81,
+  "start": 0.73,
+  "end": 0.91,
   "word": "ว่า",
   "brk": true
  },
  {
-  "start": 0.81,
-  "end": 0.96,
+  "start": 0.91,
+  "end": 1.15,
   "word": "เลือด",
   "brk": false
  },
  {
-  "start": 0.96,
-  "end": 1.28,
+  "start": 1.15,
+  "end": 1.47,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 1.28,
-  "end": 1.32,
+  "start": 1.47,
+  "end": 1.51,
   "word": "มือ",
   "brk": true
  },
  {
-  "start": 1.32,
-  "end": 1.54,
+  "start": 1.51,
+  "end": 1.75,
   "word": "นัก",
   "brk": false
  },
  {
-  "start": 1.54,
-  "end": 1.74,
+  "start": 1.75,
+  "end": 1.98,
   "word": "แสดง",
   "brk": false
  },
  {
-  "start": 1.74,
-  "end": 1.88,
+  "start": 1.98,
+  "end": 2.13,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 1.88,
-  "end": 2.09,
-  "word": "ฉาก",
-  "brk": false
- },
- {
-  "start": 2.09,
-  "end": 2.26,
-  "word": "นี้",
-  "brk": true
- },
- {
-  "start": 2.26,
+  "start": 2.13,
   "end": 2.4,
-  "word": "เป็น",
+  "word": "ฉาก",
   "brk": false
  },
  {
   "start": 2.4,
-  "end": 2.57,
+  "end": 2.58,
+  "word": "นี้",
+  "brk": true
+ },
+ {
+  "start": 2.58,
+  "end": 2.88,
+  "word": "เป็น",
+  "brk": false
+ },
+ {
+  "start": 2.88,
+  "end": 3.07,
   "word": "เลือด",
   "brk": false
  },
  {
-  "start": 2.57,
-  "end": 2.917,
+  "start": 3.07,
+  "end": 3.7,
   "word": "จริง!",
   "brk": true
  },
  {
-  "start": 2.917,
-  "end": 3.1,
+  "start": 3.7,
+  "end": 3.89,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 3.1,
-  "end": 3.25,
+  "start": 3.89,
+  "end": 4.03,
   "word": "หนัง",
   "brk": true
  },
  {
-  "start": 3.25,
-  "end": 3.64,
+  "start": 4.03,
+  "end": 4.45,
   "word": "Django",
   "brk": false
  },
  {
-  "start": 3.64,
-  "end": 3.93,
+  "start": 4.45,
+  "end": 4.78,
   "word": "Unchained",
   "brk": true
  },
  {
-  "start": 3.93,
-  "end": 4.21,
+  "start": 4.78,
+  "end": 5.08,
   "word": "ปี",
   "brk": false
  },
  {
-  "start": 4.21,
-  "end": 4.97,
+  "start": 5.08,
+  "end": 6.06,
   "word": "2012",
   "brk": true
  },
  {
-  "start": 4.97,
-  "end": 5.19,
+  "start": 6.06,
+  "end": 6.31,
   "word": "เขา",
   "brk": false
  },
  {
-  "start": 5.19,
-  "end": 5.34,
+  "start": 6.31,
+  "end": 6.46,
   "word": "เล่น",
   "brk": false
  },
  {
-  "start": 5.34,
-  "end": 5.38,
+  "start": 6.46,
+  "end": 6.5,
   "word": "เป็น",
   "brk": true
  },
  {
-  "start": 5.38,
-  "end": 5.727,
+  "start": 6.5,
+  "end": 6.86,
   "word": "Calvin",
   "brk": false
  },
  {
-  "start": 5.727,
-  "end": 6.19,
+  "start": 6.86,
+  "end": 7.3,
   "word": "Candie",
   "brk": true
  },
  {
-  "start": 6.19,
-  "end": 6.37,
+  "start": 7.3,
+  "end": 7.45,
   "word": "เจ้า",
   "brk": false
  },
  {
-  "start": 6.37,
-  "end": 6.53,
+  "start": 7.45,
+  "end": 7.69,
   "word": "ของ",
   "brk": false
  },
  {
-  "start": 6.53,
-  "end": 6.69,
+  "start": 7.69,
+  "end": 8.04,
   "word": "ไร่",
   "brk": true
  },
  {
-  "start": 6.69,
-  "end": 6.827,
+  "start": 8.04,
+  "end": 8.18,
   "word": "ผู้",
   "brk": false
  },
  {
-  "start": 6.827,
-  "end": 7.0,
+  "start": 8.18,
+  "end": 8.33,
   "word": "โหด",
   "brk": false
  },
  {
-  "start": 7.0,
-  "end": 7.22,
+  "start": 8.33,
+  "end": 8.7,
   "word": "ร้าย",
   "brk": true
  },
  {
-  "start": 7.22,
-  "end": 7.26,
+  "start": 8.7,
+  "end": 8.74,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 7.26,
-  "end": 7.49,
+  "start": 8.74,
+  "end": 9.13,
   "word": "ฉาก",
   "brk": false
  },
  {
-  "start": 7.49,
-  "end": 7.617,
+  "start": 9.13,
+  "end": 9.27,
   "word": "โต๊ะ",
   "brk": false
  },
  {
-  "start": 7.617,
-  "end": 7.74,
+  "start": 9.27,
+  "end": 9.4,
   "word": "อา",
   "brk": false
  },
  {
-  "start": 7.74,
-  "end": 7.86,
+  "start": 9.4,
+  "end": 9.52,
   "word": "หาร",
   "brk": true
  },
  {
-  "start": 7.86,
-  "end": 7.96,
+  "start": 9.52,
+  "end": 9.86,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 7.96,
-  "end": 8.29,
+  "start": 9.86,
+  "end": 10.07,
   "word": "ตึง",
   "brk": false
  },
  {
-  "start": 8.29,
-  "end": 8.33,
+  "start": 10.07,
+  "end": 10.11,
   "word": "เครียด",
   "brk": false
  },
  {
-  "start": 8.33,
-  "end": 8.44,
+  "start": 10.11,
+  "end": 10.25,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 8.44,
-  "end": 8.74,
+  "start": 10.25,
+  "end": 10.56,
   "word": "สุด",
   "brk": true
  },
  {
-  "start": 8.74,
-  "end": 8.78,
+  "start": 10.56,
+  "end": 10.6,
   "word": "ของ",
   "brk": false
  },
  {
-  "start": 8.78,
-  "end": 9.05,
+  "start": 10.6,
+  "end": 10.82,
   "word": "เรื่อง",
   "brk": true
  },
  {
-  "start": 9.05,
-  "end": 9.25,
+  "start": 10.82,
+  "end": 10.97,
   "word": "เขา",
   "brk": false
  },
  {
-  "start": 9.25,
-  "end": 9.29,
+  "start": 10.97,
+  "end": 11.21,
   "word": "ต้อง",
   "brk": false
  },
  {
-  "start": 9.29,
-  "end": 9.54,
+  "start": 11.21,
+  "end": 11.59,
   "word": "ตบ",
   "brk": false
  },
  {
-  "start": 9.54,
-  "end": 9.76,
+  "start": 11.59,
+  "end": 11.83,
   "word": "โต๊ะ",
   "brk": true
  },
  {
-  "start": 9.76,
-  "end": 9.92,
+  "start": 11.83,
+  "end": 12.03,
   "word": "ด้วย",
   "brk": false
  },
  {
-  "start": 9.92,
-  "end": 10.12,
+  "start": 12.03,
+  "end": 12.29,
   "word": "ความ",
   "brk": false
  },
  {
-  "start": 10.12,
-  "end": 10.35,
+  "start": 12.29,
+  "end": 12.43,
   "word": "โกรธ",
   "brk": true
  },
  {
-  "start": 10.35,
-  "end": 10.49,
+  "start": 12.43,
+  "end": 12.78,
   "word": "ทุก",
   "brk": false
  },
  {
-  "start": 10.49,
-  "end": 10.66,
+  "start": 12.78,
+  "end": 12.98,
   "word": "คน",
   "brk": false
  },
  {
-  "start": 10.66,
-  "end": 10.79,
+  "start": 12.98,
+  "end": 13.12,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 10.79,
-  "end": 10.977,
+  "start": 13.12,
+  "end": 13.31,
   "word": "กอง",
   "brk": true
  },
  {
-  "start": 10.977,
-  "end": 11.1,
+  "start": 13.31,
+  "end": 13.49,
   "word": "คิด",
   "brk": false
  },
  {
-  "start": 11.1,
-  "end": 11.39,
+  "start": 13.49,
+  "end": 13.71,
   "word": "ว่า",
   "brk": false
  },
  {
-  "start": 11.39,
-  "end": 11.537,
+  "start": 13.71,
+  "end": 13.99,
   "word": "เป็น",
   "brk": false
  },
  {
-  "start": 11.537,
-  "end": 11.79,
+  "start": 13.99,
+  "end": 14.14,
   "word": "แค่",
   "brk": true
  },
  {
-  "start": 11.79,
-  "end": 11.91,
+  "start": 14.14,
+  "end": 14.29,
   "word": "ฉาก",
   "brk": false
  },
  {
-  "start": 11.91,
-  "end": 12.047,
+  "start": 14.29,
+  "end": 14.64,
   "word": "ตบ",
   "brk": false
  },
  {
-  "start": 12.047,
-  "end": 12.24,
+  "start": 14.64,
+  "end": 14.86,
   "word": "โต๊ะ",
   "brk": true
  },
  {
-  "start": 12.24,
-  "end": 12.367,
+  "start": 14.86,
+  "end": 14.98,
   "word": "ธรรม",
   "brk": false
  },
  {
-  "start": 12.367,
-  "end": 12.665,
+  "start": 14.98,
+  "end": 15.58,
   "word": "ดา",
   "brk": true
  },
  {
-  "start": 12.665,
-  "end": 12.85,
+  "start": 15.58,
+  "end": 15.77,
   "word": "แต่",
   "brk": false
  },
  {
-  "start": 12.85,
-  "end": 13.02,
+  "start": 15.77,
+  "end": 15.96,
   "word": "มือ",
   "brk": false
  },
  {
-  "start": 13.02,
-  "end": 13.14,
+  "start": 15.96,
+  "end": 16.08,
   "word": "ของ",
   "brk": false
  },
  {
-  "start": 13.14,
-  "end": 13.31,
+  "start": 16.08,
+  "end": 16.45,
   "word": "เขา",
   "brk": true
  },
  {
-  "start": 13.31,
-  "end": 13.65,
+  "start": 16.45,
+  "end": 16.67,
   "word": "กลับ",
   "brk": false
  },
  {
-  "start": 13.65,
-  "end": 13.78,
+  "start": 16.67,
+  "end": 16.81,
   "word": "ฟาด",
   "brk": false
  },
  {
-  "start": 13.78,
-  "end": 13.91,
+  "start": 16.81,
+  "end": 16.96,
   "word": "ลง",
   "brk": false
  },
  {
-  "start": 13.91,
-  "end": 14.2,
+  "start": 16.96,
+  "end": 17.27,
   "word": "บน",
   "brk": false
  },
  {
-  "start": 14.2,
-  "end": 14.24,
+  "start": 17.27,
+  "end": 17.31,
   "word": "แก้ว",
   "brk": true
  },
  {
-  "start": 14.24,
-  "end": 14.38,
+  "start": 17.31,
+  "end": 17.46,
   "word": "จน",
   "brk": false
  },
  {
-  "start": 14.38,
-  "end": 14.62,
+  "start": 17.46,
+  "end": 17.79,
   "word": "แตก",
   "brk": true
  },
  {
-  "start": 14.62,
-  "end": 14.79,
+  "start": 17.79,
+  "end": 18.0,
   "word": "และ",
   "brk": false
  },
  {
-  "start": 14.79,
-  "end": 15.01,
+  "start": 18.0,
+  "end": 18.22,
   "word": "บาด",
   "brk": false
  },
  {
-  "start": 15.01,
-  "end": 15.05,
+  "start": 18.22,
+  "end": 18.26,
   "word": "มือ",
   "brk": true
  },
  {
-  "start": 15.05,
-  "end": 15.2,
+  "start": 18.26,
+  "end": 18.43,
   "word": "จน",
   "brk": false
  },
  {
-  "start": 15.2,
-  "end": 15.31,
+  "start": 18.43,
+  "end": 18.55,
   "word": "เลือด",
   "brk": false
  },
  {
-  "start": 15.31,
-  "end": 15.51,
+  "start": 18.55,
+  "end": 18.77,
   "word": "ไหล",
   "brk": true
  },
  {
-  "start": 15.51,
-  "end": 15.655,
+  "start": 18.77,
+  "end": 18.91,
   "word": "ออก",
   "brk": false
  },
  {
-  "start": 15.655,
-  "end": 15.79,
+  "start": 18.91,
+  "end": 19.07,
   "word": "มา",
   "brk": false
  },
  {
-  "start": 15.79,
-  "end": 16.294,
+  "start": 19.07,
+  "end": 19.95,
   "word": "จริงๆ!",
   "brk": true
  },
  {
-  "start": 16.294,
-  "end": 17.01,
+  "start": 19.95,
+  "end": 20.72,
   "word": "DiCaprio",
   "brk": true
  },
  {
-  "start": 17.01,
-  "end": 17.16,
+  "start": 20.72,
+  "end": 20.87,
   "word": "ไม่",
   "brk": false
  },
  {
-  "start": 17.16,
-  "end": 17.47,
+  "start": 20.87,
+  "end": 21.09,
   "word": "หยุด",
   "brk": false
  },
  {
-  "start": 17.47,
-  "end": 17.69,
+  "start": 21.09,
+  "end": 21.46,
   "word": "เล่น",
   "brk": false
  },
  {
-  "start": 17.69,
-  "end": 17.73,
+  "start": 21.46,
+  "end": 21.61,
   "word": "เลย",
   "brk": true
  },
  {
-  "start": 17.73,
-  "end": 18.03,
+  "start": 21.61,
+  "end": 21.98,
   "word": "เขา",
   "brk": false
  },
  {
-  "start": 18.03,
-  "end": 18.16,
+  "start": 21.98,
+  "end": 22.12,
   "word": "เล่น",
   "brk": false
  },
  {
-  "start": 18.16,
-  "end": 18.28,
+  "start": 22.12,
+  "end": 22.26,
   "word": "ต่อ",
   "brk": false
  },
  {
-  "start": 18.28,
-  "end": 18.49,
+  "start": 22.26,
+  "end": 22.54,
   "word": "ไป",
   "brk": true
  },
  {
-  "start": 18.49,
-  "end": 18.69,
+  "start": 22.54,
+  "end": 22.78,
   "word": "ทั้ง",
   "brk": false
  },
  {
-  "start": 18.69,
-  "end": 18.73,
+  "start": 22.78,
+  "end": 22.82,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 18.73,
-  "end": 18.94,
+  "start": 22.82,
+  "end": 23.12,
   "word": "เลือด",
   "brk": true
  },
  {
-  "start": 18.94,
-  "end": 19.13,
+  "start": 23.12,
+  "end": 23.33,
   "word": "ไหล",
   "brk": false
  },
  {
-  "start": 19.13,
-  "end": 19.27,
+  "start": 23.33,
+  "end": 23.49,
   "word": "เต็ม",
   "brk": false
  },
  {
-  "start": 19.27,
-  "end": 19.47,
+  "start": 23.49,
+  "end": 23.71,
   "word": "มือ",
   "brk": true
  },
  {
-  "start": 19.47,
-  "end": 19.76,
+  "start": 23.71,
+  "end": 23.89,
   "word": "แถม",
   "brk": false
  },
  {
-  "start": 19.76,
-  "end": 19.96,
+  "start": 23.89,
+  "end": 24.28,
   "word": "ยัง",
   "brk": false
  },
  {
-  "start": 19.96,
-  "end": 20.0,
+  "start": 24.28,
+  "end": 24.32,
   "word": "เอา",
   "brk": false
  },
  {
-  "start": 20.0,
-  "end": 20.32,
+  "start": 24.32,
+  "end": 24.55,
   "word": "มือ",
   "brk": true
  },
  {
-  "start": 20.32,
-  "end": 20.55,
+  "start": 24.55,
+  "end": 24.87,
   "word": "เปื้อน",
   "brk": false
  },
  {
-  "start": 20.55,
-  "end": 20.59,
+  "start": 24.87,
+  "end": 25.01,
   "word": "เลือด",
   "brk": true
  },
  {
-  "start": 20.59,
-  "end": 20.86,
+  "start": 25.01,
+  "end": 25.2,
   "word": "ไป",
   "brk": false
  },
  {
-  "start": 20.86,
-  "end": 20.9,
+  "start": 25.2,
+  "end": 25.33,
   "word": "ป้าย",
   "brk": false
  },
  {
-  "start": 20.9,
-  "end": 21.04,
+  "start": 25.33,
+  "end": 25.55,
   "word": "หน้า",
   "brk": true
  },
  {
-  "start": 21.04,
-  "end": 21.33,
+  "start": 25.55,
+  "end": 25.85,
   "word": "นัก",
   "brk": false
  },
  {
-  "start": 21.33,
-  "end": 21.53,
+  "start": 25.85,
+  "end": 25.98,
   "word": "แสดง",
   "brk": false
  },
  {
-  "start": 21.53,
-  "end": 21.57,
+  "start": 25.98,
+  "end": 26.18,
   "word": "หญิง",
   "brk": true
  },
  {
-  "start": 21.57,
-  "end": 21.8,
+  "start": 26.18,
+  "end": 26.35,
   "word": "อีก",
   "brk": false
  },
  {
-  "start": 21.8,
-  "end": 21.98,
+  "start": 26.35,
+  "end": 26.7,
   "word": "ด้วย",
   "brk": true
  },
  {
-  "start": 21.98,
-  "end": 22.19,
+  "start": 26.7,
+  "end": 26.91,
   "word": "ที่",
   "brk": false
  },
  {
-  "start": 22.19,
-  "end": 22.44,
+  "start": 26.91,
+  "end": 27.18,
   "word": "พีค",
   "brk": false
  },
  {
-  "start": 22.44,
-  "end": 22.59,
+  "start": 27.18,
+  "end": 27.35,
   "word": "คือ",
   "brk": true
  },
  {
-  "start": 22.59,
-  "end": 22.85,
+  "start": 27.35,
+  "end": 27.63,
   "word": "ผู้",
   "brk": false
  },
  {
-  "start": 22.85,
-  "end": 23.0,
+  "start": 27.63,
+  "end": 27.79,
   "word": "กำ",
   "brk": false
  },
  {
-  "start": 23.0,
-  "end": 23.21,
+  "start": 27.79,
+  "end": 28.02,
   "word": "กับ",
   "brk": true
  },
  {
-  "start": 23.21,
-  "end": 23.96,
+  "start": 28.02,
+  "end": 28.83,
   "word": "Tarantino",
   "brk": true
  },
  {
-  "start": 23.96,
-  "end": 24.08,
+  "start": 28.83,
+  "end": 28.87,
   "word": "ชอบ",
   "brk": false
  },
  {
-  "start": 24.08,
-  "end": 24.24,
+  "start": 28.87,
+  "end": 29.12,
   "word": "เทค",
   "brk": false
  },
  {
-  "start": 24.24,
-  "end": 24.48,
+  "start": 29.12,
+  "end": 29.35,
   "word": "นี้",
   "brk": false
  },
  {
-  "start": 24.48,
-  "end": 24.61,
+  "start": 29.35,
+  "end": 29.52,
   "word": "มาก",
   "brk": true
  },
  {
-  "start": 24.61,
-  "end": 24.81,
+  "start": 29.52,
+  "end": 29.68,
   "word": "จน",
   "brk": false
  },
  {
-  "start": 24.81,
-  "end": 25.03,
+  "start": 29.68,
+  "end": 30.06,
   "word": "เก็บ",
   "brk": false
  },
  {
-  "start": 25.03,
-  "end": 25.21,
+  "start": 30.06,
+  "end": 30.29,
   "word": "ไว้",
   "brk": false
  },
  {
-  "start": 25.21,
-  "end": 25.45,
+  "start": 30.29,
+  "end": 30.56,
   "word": "ใน",
   "brk": false
  },
  {
-  "start": 25.45,
-  "end": 25.56,
+  "start": 30.56,
+  "end": 30.68,
   "word": "หนัง",
   "brk": true
  },
  {
-  "start": 25.56,
-  "end": 25.9,
+  "start": 30.68,
+  "end": 30.9,
   "word": "ให้",
   "brk": false
  },
  {
-  "start": 25.9,
-  "end": 25.94,
+  "start": 30.9,
+  "end": 31.05,
   "word": "เรา",
   "brk": false
  },
  {
-  "start": 25.94,
-  "end": 26.17,
+  "start": 31.05,
+  "end": 31.34,
   "word": "เห็น",
   "brk": true
  },
  {
-  "start": 26.17,
-  "end": 26.29,
+  "start": 31.34,
+  "end": 31.46,
   "word": "จน",
   "brk": false
  },
  {
-  "start": 26.29,
-  "end": 26.41,
+  "start": 31.46,
+  "end": 31.59,
   "word": "ถึง",
   "brk": false
  },
  {
-  "start": 26.41,
-  "end": 26.69,
+  "start": 31.59,
+  "end": 31.86,
   "word": "ทุก",
   "brk": false
  },
  {
-  "start": 26.69,
-  "end": 26.81,
+  "start": 31.86,
+  "end": 32.03,
   "word": "วัน",
   "brk": false
  },
  {
-  "start": 26.81,
-  "end": 27.006,
+  "start": 32.03,
+  "end": 32.25,
   "word": "นี้!",
   "brk": true
  }
