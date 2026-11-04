@@ -4,16 +4,22 @@
  "voice": "/home/user/Arty/videos/squidgame-teeth-short/work_v3/voice.wav",
  "shots": [
   {
-   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
    "start": 0,
-   "dur": 1.8,
+   "dur": 0.9,
    "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 0.9,
+   "dur": 0.9,
+   "media_start": 3.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
    "start": 1.8,
    "dur": 1.3,
-   "media_start": 0.5
+   "media_start": 10.4
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
