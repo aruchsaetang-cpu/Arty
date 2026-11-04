@@ -25,7 +25,7 @@ payoff, "ที่พีคคือ …"). Verify every fact with a source befo
    then trim each take's ends by energy (20 ms windows, keep first..last window above 0.12 peak, pad 50 ms / 120 ms,
    12 ms fades). Join with 0.35 s between paragraphs, 0.30 s after "แต่", 0.12 s inside a paragraph. No speed-up.
 2. Script for captions: `work/script.txt`, one line per take, words split by `|`, caption cards by `/`, `~n` = syllables.
-3. Captions: `python3 .claude/skills/my-edit-style/scripts/align_runs.py script.txt voice.wav captions.json --starts <take starts> --end <end>`
+3. Captions: `python3 .claude/skills/my-edit-style/scripts/align_syll.py` (syllable peaks, tightest; same arguments) or `align_runs.py script.txt voice.wav captions.json --starts <take starts> --end <end>`
    then join split names (e.g. "Django" + "Unchained").
 4. Footage: the owner screen-records clips (iPad/iPhone). Crop to the picture only (`ffmpeg cropdetect`, then check a
    frame): remove app UI, channel names, watermarks, play icons, burned-in subtitles and any iOS control-center frames
