@@ -1,0 +1,337 @@
+{
+ "duration": 30.08,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/squidgame-teeth-short/work/voice_natural.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 0,
+   "dur": 1.4,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 1.4,
+   "dur": 0.5,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
+   "start": 1.9,
+   "dur": 0.9,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 2.8,
+   "dur": 1.22,
+   "media_start": 10.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
+   "start": 4.02,
+   "dur": 1.18,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 5.2,
+   "dur": 1.7,
+   "media_start": 6.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
+   "start": 6.9,
+   "dur": 1.5,
+   "media_start": 3.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 8.4,
+   "dur": 1.5,
+   "media_start": 3.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
+   "start": 9.9,
+   "dur": 2.2,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
+   "start": 12.1,
+   "dur": 1.5,
+   "media_start": 6.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c4.mp4",
+   "start": 13.6,
+   "dur": 2.46,
+   "media_start": 0.3
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
+   "start": 16.06,
+   "dur": 2.57,
+   "media_start": 4.4
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
+   "start": 18.63,
+   "dur": 2.07,
+   "media_start": 9.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c4.mp4",
+   "start": 20.7,
+   "dur": 1.6,
+   "media_start": 3.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
+   "start": 22.3,
+   "dur": 1.8,
+   "media_start": 11.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c4.mp4",
+   "start": 24.1,
+   "dur": 2.2,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 26.3,
+   "dur": 2.0,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
+   "start": 28.3,
+   "dur": 1.78,
+   "media_start": 10.0
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.04,
+   "text": "เป็นไปได้ไง",
+   "end": 0.771
+  },
+  {
+   "start": 0.771,
+   "text": "ผู้กำกับ",
+   "end": 1.44
+  },
+  {
+   "start": 1.44,
+   "text": "Squid Game",
+   "end": 1.934
+  },
+  {
+   "start": 1.934,
+   "text": "ฟันหลุดไป 6 ซี่",
+   "end": 2.757
+  },
+  {
+   "start": 2.757,
+   "text": "เพราะซีรีส์เรื่องนี้!",
+   "end": 4.06
+  },
+  {
+   "start": 4.06,
+   "text": "ฮวังดงฮยอก",
+   "end": 4.493
+  },
+  {
+   "start": 4.493,
+   "text": "เขียนบท",
+   "end": 4.782
+  },
+  {
+   "start": 4.782,
+   "text": "Squid Game",
+   "end": 5.215
+  },
+  {
+   "start": 5.215,
+   "text": "มาตั้งแต่ปี 2008",
+   "end": 6.52
+  },
+  {
+   "start": 6.52,
+   "text": "ถูกปฏิเสธ",
+   "end": 6.87
+  },
+  {
+   "start": 6.87,
+   "text": "มานานกว่า 10 ปี",
+   "end": 8.4
+  },
+  {
+   "start": 8.4,
+   "text": "จนในที่สุด",
+   "end": 9.05
+  },
+  {
+   "start": 9.05,
+   "text": "Netflix",
+   "end": 9.375
+  },
+  {
+   "start": 9.375,
+   "text": "ก็ซื้อไป",
+   "end": 9.863
+  },
+  {
+   "start": 9.863,
+   "text": "เขาเลยต้อง",
+   "end": 10.48
+  },
+  {
+   "start": 10.48,
+   "text": "เขียนบท",
+   "end": 10.843
+  },
+  {
+   "start": 10.843,
+   "text": "และกำกับ",
+   "end": 11.386
+  },
+  {
+   "start": 11.386,
+   "text": "เองคนเดียว",
+   "end": 12.1
+  },
+  {
+   "start": 12.1,
+   "text": "ทั้ง 9 ตอน",
+   "end": 12.696
+  },
+  {
+   "start": 12.696,
+   "text": "แถมยังแก้บท",
+   "end": 13.61
+  },
+  {
+   "start": 13.61,
+   "text": "ไปพร้อมกับ",
+   "end": 14.62
+  },
+  {
+   "start": 14.62,
+   "text": "ถ่ายทำทุกวัน",
+   "end": 16.1
+  },
+  {
+   "start": 16.1,
+   "text": "แต่เค้าเครียดหนัก",
+   "end": 16.984
+  },
+  {
+   "start": 16.984,
+   "text": "จนร่างกาย",
+   "end": 17.647
+  },
+  {
+   "start": 17.647,
+   "text": "รับไม่ไหว!",
+   "end": 18.68
+  },
+  {
+   "start": 18.68,
+   "text": "ฟันของเขา",
+   "end": 19.48
+  },
+  {
+   "start": 19.48,
+   "text": "ค่อยๆหลุด",
+   "end": 19.943
+  },
+  {
+   "start": 19.943,
+   "text": "ไปทีละซี่",
+   "end": 20.67
+  },
+  {
+   "start": 20.67,
+   "text": "จนหายไป",
+   "end": 21.205
+  },
+  {
+   "start": 21.205,
+   "text": "ถึง 6 ซี่",
+   "end": 21.739
+  },
+  {
+   "start": 21.739,
+   "text": "และยุ่งจน",
+   "end": 22.274
+  },
+  {
+   "start": 22.274,
+   "text": "ไม่มีเวลา",
+   "end": 22.986
+  },
+  {
+   "start": 22.986,
+   "text": "ไปทำฟันใหม่",
+   "end": 23.699
+  },
+  {
+   "start": 23.699,
+   "text": "ด้วยซ้ำ",
+   "end": 24.055
+  },
+  {
+   "start": 24.055,
+   "text": "ที่พีคคือ",
+   "end": 24.72
+  },
+  {
+   "start": 24.72,
+   "text": "ซีรีส์ที่",
+   "end": 25.25
+  },
+  {
+   "start": 25.25,
+   "text": "แลกมา",
+   "end": 25.604
+  },
+  {
+   "start": 25.604,
+   "text": "ด้วยฟันของเขา",
+   "end": 26.311
+  },
+  {
+   "start": 26.311,
+   "text": "กลายเป็น",
+   "end": 26.665
+  },
+  {
+   "start": 26.665,
+   "text": "ซีรีส์",
+   "end": 27.018
+  },
+  {
+   "start": 27.018,
+   "text": "ที่มีคนดู",
+   "end": 27.725
+  },
+  {
+   "start": 27.725,
+   "text": "มากที่สุด",
+   "end": 28.256
+  },
+  {
+   "start": 28.256,
+   "text": "ในประวัติศาสตร์",
+   "end": 29.316
+  },
+  {
+   "start": 29.316,
+   "text": "Netflix!",
+   "end": 30.08
+  }
+ ]
+}
