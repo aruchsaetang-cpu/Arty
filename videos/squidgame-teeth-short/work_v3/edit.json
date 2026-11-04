@@ -1,286 +1,286 @@
 {
- "duration": 22.44,
+ "duration": 21.249,
  "facecam": null,
- "voice": "/home/user/Arty/videos/squidgame-teeth-short/work_v3/voice.wav",
+ "voice": "/home/user/Arty/videos/squidgame-teeth-short/work_v3/voice_tight.wav",
  "shots": [
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 0,
-   "dur": 0.9,
+   "start": 0.0,
+   "dur": 0.818,
    "media_start": 0.5
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 0.9,
-   "dur": 0.9,
+   "start": 0.818,
+   "dur": 0.818,
    "media_start": 3.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 1.8,
-   "dur": 1.3,
+   "start": 1.636,
+   "dur": 1.182,
    "media_start": 10.4
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
-   "start": 3.1,
-   "dur": 1.5,
+   "start": 2.818,
+   "dur": 1.419,
    "media_start": 2.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 4.6,
-   "dur": 1.2,
+   "start": 4.237,
+   "dur": 1.136,
    "media_start": 6.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 5.8,
-   "dur": 0.8,
+   "start": 5.373,
+   "dur": 0.757,
    "media_start": 3.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
-   "start": 6.6,
-   "dur": 1.4,
+   "start": 6.13,
+   "dur": 1.325,
    "media_start": 2.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
-   "start": 8.0,
-   "dur": 1.3,
+   "start": 7.455,
+   "dur": 1.23,
    "media_start": 6.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c4.mp4",
-   "start": 9.3,
-   "dur": 1.3,
+   "start": 8.685,
+   "dur": 1.228,
    "media_start": 0.3
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
-   "start": 10.6,
-   "dur": 1.6,
+   "start": 9.913,
+   "dur": 1.472,
    "media_start": 4.4
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c3.mp4",
-   "start": 12.2,
-   "dur": 1.7,
+   "start": 11.385,
+   "dur": 1.564,
    "media_start": 3.2
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
-   "start": 13.9,
-   "dur": 1.5,
+   "start": 12.949,
+   "dur": 1.456,
    "media_start": 9.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c4.mp4",
-   "start": 15.4,
-   "dur": 0.9,
+   "start": 14.405,
+   "dur": 0.874,
    "media_start": 3.5
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c2.mp4",
-   "start": 16.3,
-   "dur": 1.5,
+   "start": 15.279,
+   "dur": 1.456,
    "media_start": 11.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c4.mp4",
-   "start": 17.8,
-   "dur": 1.0,
+   "start": 16.735,
+   "dur": 0.971,
    "media_start": 6.5
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 18.8,
-   "dur": 1.7,
+   "start": 17.706,
+   "dur": 1.651,
    "media_start": 8.0
   },
   {
    "src": "/home/user/Arty/videos/squidgame-teeth-short/broll/c1.mp4",
-   "start": 20.5,
-   "dur": 1.94,
+   "start": 19.357,
+   "dur": 1.892,
    "media_start": 9.99
   }
  ],
  "captions": [
   {
-   "start": 0.03,
+   "start": 0.01,
    "text": "ผู้กำกับ",
-   "end": 0.554
+   "end": 0.532
   },
   {
-   "start": 0.554,
+   "start": 0.532,
    "text": "คนนี้",
-   "end": 0.903
+   "end": 0.88
   },
   {
-   "start": 0.903,
+   "start": 0.88,
    "text": "ต้องเสียอวัยวะ",
-   "end": 1.777
+   "end": 1.75
   },
   {
-   "start": 1.777,
+   "start": 1.75,
    "text": "เพราะซีรีส์",
-   "end": 2.301
+   "end": 2.272
   },
   {
-   "start": 2.301,
+   "start": 2.272,
    "text": "เรื่องเดียว",
-   "end": 3.15
+   "end": 2.85
   },
   {
-   "start": 3.15,
+   "start": 2.85,
    "text": "ผู้กำกับ",
-   "end": 3.873
+   "end": 3.401
   },
   {
-   "start": 3.873,
+   "start": 3.401,
    "text": "Squid Game",
-   "end": 4.597
+   "end": 3.953
   },
   {
-   "start": 4.597,
+   "start": 3.953,
    "text": "ถูกปฏิเสธ",
-   "end": 5.45
+   "end": 4.504
   },
   {
-   "start": 5.45,
+   "start": 4.504,
    "text": "มานานกว่า 10 ปี",
-   "end": 5.82
+   "end": 5.423
   },
   {
-   "start": 5.82,
+   "start": 5.423,
    "text": "จนในที่สุด",
-   "end": 6.561
+   "end": 6.158
   },
   {
-   "start": 6.561,
+   "start": 6.158,
    "text": "เขาก็ได้ทำหนัง",
-   "end": 7.487
+   "end": 7.077
   },
   {
-   "start": 7.487,
+   "start": 7.077,
    "text": "เขาทุ่มเท",
-   "end": 8.043
+   "end": 7.628
   },
   {
-   "start": 8.043,
+   "start": 7.628,
    "text": "สุดชีวิต",
-   "end": 8.598
+   "end": 8.18
   },
   {
-   "start": 8.598,
+   "start": 8.18,
    "text": "กับการเขียนบท",
-   "end": 9.339
+   "end": 8.915
   },
   {
-   "start": 9.339,
+   "start": 8.915,
    "text": "และการกำกับ",
-   "end": 10.6
+   "end": 9.9
   },
   {
-   "start": 10.6,
+   "start": 9.9,
    "text": "แต่ยิ่งเขา",
-   "end": 11.2
+   "end": 10.49
   },
   {
-   "start": 11.2,
+   "start": 10.49,
    "text": "ทุ่มเท",
-   "end": 11.6
+   "end": 10.883
   },
   {
-   "start": 11.6,
+   "start": 10.883,
    "text": "มากเท่าไหร่",
-   "end": 12.2
+   "end": 11.473
   },
   {
-   "start": 12.2,
+   "start": 11.473,
    "text": "สุขภาพของเขา",
-   "end": 13.0
+   "end": 12.26
   },
   {
-   "start": 13.0,
+   "start": 12.26,
    "text": "กลับยิ่งพัง!",
-   "end": 13.95
+   "end": 12.97
   },
   {
-   "start": 13.95,
+   "start": 12.97,
    "text": "เขาเครียด",
-   "end": 14.282
+   "end": 13.314
   },
   {
-   "start": 14.282,
+   "start": 13.314,
    "text": "สะสมหนัก",
-   "end": 14.779
+   "end": 13.83
   },
   {
-   "start": 14.779,
+   "start": 13.83,
    "text": "จนฟันของเขา",
-   "end": 15.443
+   "end": 14.518
   },
   {
-   "start": 15.443,
+   "start": 14.518,
    "text": "หลุดไป",
-   "end": 15.775
+   "end": 14.862
   },
   {
-   "start": 15.775,
+   "start": 14.862,
    "text": "ถึง 6 ซี่",
-   "end": 16.272
+   "end": 15.377
   },
   {
-   "start": 16.272,
+   "start": 15.377,
    "text": "ที่พีคคือ",
-   "end": 16.89
+   "end": 15.893
   },
   {
-   "start": 16.89,
+   "start": 15.893,
    "text": "ซีรีส์ที่",
-   "end": 17.417
+   "end": 16.409
   },
   {
-   "start": 17.417,
+   "start": 16.409,
    "text": "แลกมา",
-   "end": 17.769
+   "end": 16.753
   },
   {
-   "start": 17.769,
+   "start": 16.753,
    "text": "ด้วยฟัน",
-   "end": 18.12
+   "end": 17.097
   },
   {
-   "start": 18.12,
+   "start": 17.097,
    "text": "ของผู้กำกับ",
-   "end": 18.823
+   "end": 17.785
   },
   {
-   "start": 18.823,
+   "start": 17.785,
    "text": "กลับกลายเป็น",
-   "end": 19.49
+   "end": 18.301
   },
   {
-   "start": 19.49,
+   "start": 18.301,
    "text": "ซีรีส์",
-   "end": 19.829
+   "end": 18.645
   },
   {
-   "start": 19.829,
+   "start": 18.645,
    "text": "ที่มีคนดู",
-   "end": 20.506
+   "end": 19.332
   },
   {
-   "start": 20.506,
+   "start": 19.332,
    "text": "มากที่สุด",
-   "end": 21.014
+   "end": 19.848
   },
   {
-   "start": 21.014,
+   "start": 19.848,
    "text": "ในประวัติศาสตร์",
-   "end": 22.44
+   "end": 21.249
   }
  ]
 }
