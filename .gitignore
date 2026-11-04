@@ -134,3 +134,6 @@ videos/django-blood-short/render.log
 videos/django-blood-short/work/t3_*.wav
 videos/squidgame-teeth-short/work/t3_*.wav
 videos/squidgame-teeth-short/render.log
+videos/squidgame-teeth-short/work_v3/raw*.wav
+videos/squidgame-teeth-short/work_v3/t3_*.wav
+videos/squidgame-teeth-short/work_v3/voice.wav
