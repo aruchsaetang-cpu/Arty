@@ -15,4 +15,9 @@
 Sources: Fraser (Kelly Clarkson show; EW 20th anniversary 2019): choked out accidentally in the hanging close-up (stuntman did wide shots).
 Director Stephen Sommers disputes the fault and calls "nearly died" exaggerated: say "เล่าเอง" in captions/description, do not state it as proven.
 Unverified in the script: that the crew rescued him in time (sources only say he blacked out); keep or soften.
-Voice and footage: not received yet.
+Footage (broll/, gitignored; c*.mp4 are cropped to the picture):
+- c1 gallows wide (MOVIECLIPS mark cut off) | c2 gallows + Evelyn and warden | c3 Rick close-up, guard puts the noose on (hook)
+- c4 warden/Evelyn, Rick close, drop | c5 gallows, Evelyn, Rick lying in the dirt afterwards
+- c6 Fraser on the Kelly Clarkson Show (use 0-5 s; later part is the show's framed clip, control center at the end)
+- c7 Kelly Clarkson Show wide, Fraser standing (show logo cut off)
+Voice: not received yet.
