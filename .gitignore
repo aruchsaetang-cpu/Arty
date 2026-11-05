@@ -142,3 +142,7 @@ videos/squidgame-teeth-short/work_v3/t4_*.wav
 videos/squidgame-teeth-short/work_v3/voice_tight.wav
 videos/mummy-hanging-short/broll/
 videos/mummy-hanging-short/out/
+videos/mummy-hanging-short/work/raw*.wav
+videos/mummy-hanging-short/work/t3_*.wav
+videos/mummy-hanging-short/work/t4_*.wav
+videos/mummy-hanging-short/render.log

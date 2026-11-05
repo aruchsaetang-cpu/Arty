@@ -1,0 +1,196 @@
+{
+ "duration": 14.84,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/mummy-hanging-short/work/voice.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c3.mp4",
+   "start": 0,
+   "dur": 1.45,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c3.mp4",
+   "start": 1.45,
+   "dur": 1.29,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c1.mp4",
+   "start": 2.74,
+   "dur": 1.07,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c3.mp4",
+   "start": 3.81,
+   "dur": 1.53,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c2.mp4",
+   "start": 5.34,
+   "dur": 0.62,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c2.mp4",
+   "start": 5.96,
+   "dur": 1.29,
+   "media_start": 5.5
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c4.mp4",
+   "start": 7.25,
+   "dur": 1.11,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c4.mp4",
+   "start": 8.36,
+   "dur": 1.33,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c4.mp4",
+   "start": 9.69,
+   "dur": 0.67,
+   "media_start": 5.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c9.mp4",
+   "start": 10.36,
+   "dur": 1.6,
+   "media_start": 0.2
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c8.mp4",
+   "start": 11.96,
+   "dur": 1.28,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/mummy-hanging-short/broll/c5.mp4",
+   "start": 13.24,
+   "dur": 1.6,
+   "media_start": 5.5
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "รู้มั้ยว่า",
+   "end": 0.44
+  },
+  {
+   "start": 0.44,
+   "text": "นักแสดงคนนี้",
+   "end": 1.45
+  },
+  {
+   "start": 1.45,
+   "text": "เกือบตาย",
+   "end": 1.72
+  },
+  {
+   "start": 1.72,
+   "text": "กลางกองถ่าย!",
+   "end": 2.74
+  },
+  {
+   "start": 2.74,
+   "text": "ในหนังเรื่อง",
+   "end": 3.19
+  },
+  {
+   "start": 3.19,
+   "text": "The Mummy",
+   "end": 3.81
+  },
+  {
+   "start": 3.81,
+   "text": "นักแสดงคนนี้",
+   "end": 4.64
+  },
+  {
+   "start": 4.64,
+   "text": "ต้องแสดง",
+   "end": 5.34
+  },
+  {
+   "start": 5.34,
+   "text": "ฉากถูกแขวนคอ",
+   "end": 5.96
+  },
+  {
+   "start": 5.96,
+   "text": "โดยมีทีมงาน",
+   "end": 6.77
+  },
+  {
+   "start": 6.77,
+   "text": "คอยดูแล",
+   "end": 7.25
+  },
+  {
+   "start": 7.25,
+   "text": "ความปลอดภัยอยู่",
+   "end": 8.36
+  },
+  {
+   "start": 8.36,
+   "text": "แต่มีเทคหนึ่ง",
+   "end": 9.29
+  },
+  {
+   "start": 9.29,
+   "text": "ที่เขา",
+   "end": 9.69
+  },
+  {
+   "start": 9.69,
+   "text": "ไม่ได้แสดง…",
+   "end": 10.36
+  },
+  {
+   "start": 10.36,
+   "text": "เขาถูกเชือก",
+   "end": 10.87
+  },
+  {
+   "start": 10.87,
+   "text": "รัดคอ",
+   "end": 11.25
+  },
+  {
+   "start": 11.25,
+   "text": "จนหมดสติ",
+   "end": 11.96
+  },
+  {
+   "start": 11.96,
+   "text": "ไปจริงๆ",
+   "end": 12.5
+  },
+  {
+   "start": 12.5,
+   "text": "โชคดีที่",
+   "end": 12.84
+  },
+  {
+   "start": 12.84,
+   "text": "ทีมงาน",
+   "end": 13.24
+  },
+  {
+   "start": 13.24,
+   "text": "เข้ามาช่วยเขา",
+   "end": 13.91
+  },
+  {
+   "start": 13.91,
+   "text": "ได้ทันเวลา!",
+   "end": 14.84
+  }
+ ]
+}
