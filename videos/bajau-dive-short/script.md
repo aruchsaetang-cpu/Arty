@@ -1,27 +1,18 @@
-# Bajau hunting-together short (NOT a race: user corrected 2026-11-06): Thai script (user-written 2026-11-06, source video not seen)
+# Bajau short: man tries to keep up with the tribe's best diver (user-edited v3, 2026-11-06)
 
-1. ฮุก
-ถ้าให้แสนนึง คุณกล้ามั้ย
+1. ฮุก (0-3 s)
+ถ้าผมให้คุณแสนนึง! คุณกล้าทำแบบผู้ชายคนนี้มั้ย?
 
 2. บริบท
-ผู้ชายคนนี้อยากรู้ว่า เขาจะดำน้ำตามชนเผ่าบาเจา ที่ใช้ชีวิตอยู่กลางทะเลมาหลายร้อยปีได้หรือไม่ เขาเลยออกล่าปลากับนักดำน้ำที่เก่งที่สุดของชนเผ่า
+ผู้ชายคนนี้อยากพิสูจน์ว่า เขาจะดำน้ำตามชาวบาเจา ชนเผ่าที่ใช้ชีวิตกลางทะเลมาหลายร้อยปีได้หรือไม่ เพราะเขาไม่เคยดำน้ำลึกแบบนี้มาก่อน แถมยังต้องออกล่าปลากับหนึ่งในนักดำน้ำที่เก่งที่สุดของชนเผ่า!
 
 3. แต่
-แต่ปัญหาคือร่างกายของคนกลุ่มนี้ ไม่เหมือนคนทั่วไป!
+แต่สิ่งที่เขาไม่รู้ก็คือ ชาวบาเจามีความสามารถพิเศษที่ซ่อนอยู่ในร่างกาย!
 
 4. เฉลย
-นักวิจัยพบว่าชาวบาเจามีมัดกล้ามใหญ่กว่าคนทั่วไป 50% และร่างกายของพวกเค้าสามารถเก็บออกซิเจนแล้วปล่อยออกมาตอนดำน้ำได้ ที่พีคคือชายคนนี้สามารถทำได้และได้รับการยอมรับจากชนเผ่า
+นักวิจัยพบว่าชาวบาเจามีม้ามใหญ่กว่าคนทั่วไปถึง 50% ซึ่งช่วยให้ร่างกายมีออกซิเจนใช้ได้นานขึ้นตอนดำน้ำ แต่ที่พีคคือ ผู้ชายคนนี้กลับดำน้ำตามพวกเขาได้สำเร็จ!
 
-OPEN (user-written 2026-11-06, flagged): "มัดกล้าม ... 50%" contradicts the study and the source video's own graphic (spleen 50% larger);
-"ชายคนนี้สามารถทำได้และได้รับการยอมรับ" not seen in the footage received so far.
-FIXED (spleen, not muscle) and NOT a race, they hunted together: the study (Ilardo et al., Cell 2018) found Bajau SPLEENS about 50% larger than the land-living Saluan,
-not muscle. Suggested wording: "นักวิจัยพบว่าชาวบาเจามีม้ามใหญ่กว่าคนทั่วไปประมาณ 50% ม้ามเก็บออกซิเจนไว้ แล้วปล่อยออกมาตอนดำน้ำ".
-Other open points: the 100,000 prize is unverified (not known to be in the source video); the thumbnail looks AI-generated, check the video is real footage;
-the video belongs to another creator (use only 2-4 s clips plus stock footage). Footage received 2026-11-06 (broll/, gitignored; k*.mp4 are cropped, no countdown overlay, no control center):
-- k1 (12.6 s) explainer graphics from the source video: "357 / 1,500 years at sea", spleen "50% Bigger", BBC article (Bajau spleens "50% larger"),
-  depth graphic (-201 ft), breath-hold timers (06:30, 13:00), "10 year old Nick". Burned-in English text is the source creator's graphics: keep each shot short.
-- k2 (12.4 s) the challenger next to a Bajau diver at the surface, then dive shots | k3 (12.4 s) Bajau spearfisher, reef, challenger.
-- Source overlay "NN HOURS LEFT" (a countdown challenge) was cropped from k2/k3: top 204 px. Result of the challenge still unknown: needed for the reveal.
-- k4 (5.6 s): school of fish, the man meets a village elder, boat with the diver labelled "MANDOOR" (name burned in by the source), Bajau diver with a spear. Control center cut off.
-Premise (user 2026-11-06): the man wanted to find out if he could dive alongside the tribe; source line: he has to keep up with the best diver of the tribe.
-Voice: not received yet.
+Notes: spleen fix accepted (Cell 2018, Ilardo et al.; the source video's own graphic says 50% bigger).
+Flags: (a) "แต่" appears twice (rule: once): suggest "ที่พีคคือ" without the second แต่; (b) hook is ~15 syllables (~3.7 s) over the 3 s target;
+(c) "ไม่เคยดำน้ำลึกแบบนี้มาก่อน" and "ดำตามได้สำเร็จ" are claims from the source video, not verified; need footage of the success.
+Footage: broll/k1-k4 (cropped), see earlier notes. Voice: not received yet.
