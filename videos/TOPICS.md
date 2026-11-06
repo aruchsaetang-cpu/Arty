@@ -28,4 +28,4 @@ RDJ Iron Man 3 short: DONE (out/renders/rdj-th.mp4).
 Django blood short: DONE (out/renders/django-th.mp4, smooth voice 27.3s). Snape: got 2 Great Hall clips only.
 Squid Game teeth short: DONE (out/renders/squidgame-th.mp4, 30.1s, smooth voice).
 Mummy hanging short (Brendan Fraser): DONE (out/renders/mummy-th.mp4, 14.8 s).
-Bajau dive short: script from the user (needs the muscle->spleen fix), waiting for voice + footage.
+Bajau dive short: DONE v1 (out/renders/bajau-th.mp4, 23.8 s; muscle wording kept by the user).

@@ -1,0 +1,290 @@
+{
+ "duration": 23.819,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/bajau-dive-short/work/voice.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k2.mp4",
+   "start": 0.0,
+   "dur": 1.6,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k2.mp4",
+   "start": 1.6,
+   "dur": 0.88,
+   "media_start": 5.5
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k4.mp4",
+   "start": 2.48,
+   "dur": 1.05,
+   "media_start": 1.9
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k4.mp4",
+   "start": 3.53,
+   "dur": 0.98,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k4.mp4",
+   "start": 4.51,
+   "dur": 0.78,
+   "media_start": 4.75
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k3.mp4",
+   "start": 5.29,
+   "dur": 2.09,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k4.mp4",
+   "start": 7.38,
+   "dur": 1.0,
+   "media_start": 0.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k2.mp4",
+   "start": 8.38,
+   "dur": 2.12,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k3.mp4",
+   "start": 10.5,
+   "dur": 2.03,
+   "media_start": 4.5
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k2.mp4",
+   "start": 12.53,
+   "dur": 2.19,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k1.mp4",
+   "start": 14.72,
+   "dur": 1.99,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k1.mp4",
+   "start": 16.71,
+   "dur": 0.46,
+   "media_start": 3.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k1.mp4",
+   "start": 17.17,
+   "dur": 0.9,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k3.mp4",
+   "start": 18.07,
+   "dur": 2.35,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k2.mp4",
+   "start": 20.42,
+   "dur": 1.31,
+   "media_start": 9.5
+  },
+  {
+   "src": "/home/user/Arty/videos/bajau-dive-short/broll/k3.mp4",
+   "start": 21.73,
+   "dur": 2.089,
+   "media_start": 10.2
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "ถ้าผมให้คุณแสนนึง",
+   "end": 0.89
+  },
+  {
+   "start": 0.89,
+   "text": "คุณกล้าทำแบบ",
+   "end": 1.6
+  },
+  {
+   "start": 1.6,
+   "text": "ผู้ชายคนนี้มั้ย",
+   "end": 2.48
+  },
+  {
+   "start": 2.48,
+   "text": "ผู้ชายคนนี้",
+   "end": 2.99
+  },
+  {
+   "start": 2.99,
+   "text": "อยากพิสูจน์ว่า",
+   "end": 3.41
+  },
+  {
+   "start": 3.41,
+   "text": "เขาจะดำน้ำ",
+   "end": 3.77
+  },
+  {
+   "start": 3.77,
+   "text": "ตามชนเผ่านี้",
+   "end": 4.51
+  },
+  {
+   "start": 4.51,
+   "text": "ได้หรือไม่",
+   "end": 5.29
+  },
+  {
+   "start": 5.29,
+   "text": "ชนเผ่านี้ชื่อ",
+   "end": 5.91
+  },
+  {
+   "start": 5.91,
+   "text": "บาเจา เป็นกลุ่มคน",
+   "end": 7.01
+  },
+  {
+   "start": 7.01,
+   "text": "ที่ใช้ชีวิต",
+   "end": 7.38
+  },
+  {
+   "start": 7.38,
+   "text": "กลางทะเล",
+   "end": 7.89
+  },
+  {
+   "start": 7.89,
+   "text": "มาหลายร้อยปี",
+   "end": 8.38
+  },
+  {
+   "start": 8.38,
+   "text": "พวกเค้า",
+   "end": 8.77
+  },
+  {
+   "start": 8.77,
+   "text": "ออกล่า",
+   "end": 9.25
+  },
+  {
+   "start": 9.25,
+   "text": "ใต้น้ำ กันเป็นปกติ",
+   "end": 10.5
+  },
+  {
+   "start": 10.5,
+   "text": "แต่สิ่งที่เขาไม่รู้",
+   "end": 12.22
+  },
+  {
+   "start": 12.22,
+   "text": "ก็คือ",
+   "end": 12.53
+  },
+  {
+   "start": 12.53,
+   "text": "ชนเผ่านี้",
+   "end": 12.94
+  },
+  {
+   "start": 12.94,
+   "text": "มีความสามารถพิเศษ",
+   "end": 13.53
+  },
+  {
+   "start": 13.53,
+   "text": "ที่ซ่อนอยู่",
+   "end": 14.01
+  },
+  {
+   "start": 14.01,
+   "text": "ในร่างกาย!",
+   "end": 14.72
+  },
+  {
+   "start": 14.72,
+   "text": "พวกเค้ามี",
+   "end": 15.44
+  },
+  {
+   "start": 15.44,
+   "text": "มัดกล้าม",
+   "end": 15.7
+  },
+  {
+   "start": 15.7,
+   "text": "ใหญ่กว่า",
+   "end": 16.17
+  },
+  {
+   "start": 16.17,
+   "text": "คนทั่วไป",
+   "end": 16.71
+  },
+  {
+   "start": 16.71,
+   "text": "ถึง 50%",
+   "end": 17.17
+  },
+  {
+   "start": 17.17,
+   "text": "ซึ่งช่วยให้",
+   "end": 17.72
+  },
+  {
+   "start": 17.72,
+   "text": "ร่างกาย",
+   "end": 18.07
+  },
+  {
+   "start": 18.07,
+   "text": "มีออกซิเจน",
+   "end": 19.23
+  },
+  {
+   "start": 19.23,
+   "text": "ใช้ได้นานขึ้น",
+   "end": 19.84
+  },
+  {
+   "start": 19.84,
+   "text": "ตอนดำน้ำ",
+   "end": 20.42
+  },
+  {
+   "start": 20.42,
+   "text": "ที่พีคคือ",
+   "end": 20.98
+  },
+  {
+   "start": 20.98,
+   "text": "ผู้ชายคนนี้",
+   "end": 21.73
+  },
+  {
+   "start": 21.73,
+   "text": "กลับดำน้ำ",
+   "end": 22.4
+  },
+  {
+   "start": 22.4,
+   "text": "ตามพวกเขา",
+   "end": 22.8
+  },
+  {
+   "start": 22.8,
+   "text": "ได้สำเร็จ!",
+   "end": 23.819
+  }
+ ]
+}
