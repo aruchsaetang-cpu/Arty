@@ -4,7 +4,7 @@
 ถ้าให้แสนนึง คุณกล้ามั้ย
 
 2. บริบท
-ผู้ชายคนนี้ไปออกล่าปลาด้วยกันกับชาวบาเจา ชนเผ่าที่ใช้ชีวิตอยู่กลางทะเลมาหลายร้อยปี พวกเขาไม่ใช้ถังอากาศ และดำลงไปหาอาหารด้วยการกลั้นหายใจ
+ผู้ชายคนนี้อยากรู้ว่า เขาจะดำน้ำตามชาวบาเจาได้หรือไม่ ชนเผ่าที่ใช้ชีวิตอยู่กลางทะเลมาหลายร้อยปี ไม่ใช้ถังอากาศ และดำลงไปหาอาหารด้วยการกลั้นหายใจ เขาเลยออกล่าปลากับนักดำน้ำที่เก่งที่สุดของชนเผ่า
 
 3. แต่
 แต่ปัญหาคือร่างกายของคนกลุ่มนี้ ไม่เหมือนคนทั่วไป!
@@ -20,4 +20,6 @@ the video belongs to another creator (use only 2-4 s clips plus stock footage). 
   depth graphic (-201 ft), breath-hold timers (06:30, 13:00), "10 year old Nick". Burned-in English text is the source creator's graphics: keep each shot short.
 - k2 (12.4 s) the challenger next to a Bajau diver at the surface, then dive shots | k3 (12.4 s) Bajau spearfisher, reef, challenger.
 - Source overlay "NN HOURS LEFT" (a countdown challenge) was cropped from k2/k3: top 204 px. Result of the challenge still unknown: needed for the reveal.
+- k4 (5.6 s): school of fish, the man meets a village elder, boat with the diver labelled "MANDOOR" (name burned in by the source), Bajau diver with a spear. Control center cut off.
+Premise (user 2026-11-06): the man wanted to find out if he could dive alongside the tribe; source line: he has to keep up with the best diver of the tribe.
 Voice: not received yet.
