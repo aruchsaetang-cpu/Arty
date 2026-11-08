@@ -154,3 +154,6 @@ videos/bajau-dive-short/work/t4_*.wav
 videos/bajau-dive-short/render.log
 videos/trainbusan-zombie-short/broll/
 videos/trainbusan-zombie-short/out/
+videos/trainbusan-zombie-short/work/raw*.wav
+videos/trainbusan-zombie-short/work/t4_*.wav
+videos/trainbusan-zombie-short/work/voice.wav

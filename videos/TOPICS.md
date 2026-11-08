@@ -29,4 +29,4 @@ Django blood short: DONE (out/renders/django-th.mp4, smooth voice 27.3s). Snape:
 Squid Game teeth short: DONE (out/renders/squidgame-th.mp4, 30.1s, smooth voice).
 Mummy hanging short (Brendan Fraser): DONE (out/renders/mummy-th.mp4, 14.8 s).
 Bajau dive short: DONE v1 (out/renders/bajau-th.mp4, 23.8 s; muscle wording kept by the user).
-Train to Busan zombie short: script draft v2 saved, waiting for voice + footage.
+Train to Busan zombie short: voice (6 takes, 23.9 s) + captions done (work/), waiting for footage.
