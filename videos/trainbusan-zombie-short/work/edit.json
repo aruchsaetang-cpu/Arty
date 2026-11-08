@@ -34,10 +34,10 @@
    "media_start": 6.5
   },
   {
-   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c1.mp4",
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c2.mp4",
    "start": 7.85,
    "dur": 1.2,
-   "media_start": 7.0
+   "media_start": 9.9
   },
   {
    "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c7.mp4",
@@ -82,10 +82,16 @@
    "media_start": 9.0
   },
   {
-   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c2.mp4",
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c7.mp4",
    "start": 21.73,
-   "dur": 2.461,
-   "media_start": 10.2
+   "dur": 1.1,
+   "media_start": 3.4
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c2.mp4",
+   "start": 22.83,
+   "dur": 1.361,
+   "media_start": 11.1
   }
  ],
  "captions": [
