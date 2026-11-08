@@ -1,7 +1,7 @@
-# Train to Busan (2016): zombie movement from sick animals + bone-breaking dancers: Thai script v5 (hook A chosen, 2026-11-08, not yet voiced)
+# Train to Busan (2016): zombie movement from sick animals + bone-breaking dancers: Thai script v6 (hook A + "รู้มั้ยว่า" opener, 2026-11-08, not yet voiced)
 
 1. ฮุก
-ท่าซอมบี้นี้ เลียนแบบมาจากสัตว์ป่วย!
+รู้มั้ยว่า ท่าซอมบี้นี้ เลียนแบบมาจากสัตว์ป่วย!
 
 2. บริบท
 ใน Train to Busan ซอมบี้ขยับตัวแปลกมาก คอบิด ตัวกระตุก วิ่งเร็วจนน่ากลัว หลายคนคิดว่าเป็นคนธรรมดาแต่งหน้า หรือใช้คอมพิวเตอร์ทำขึ้นมา
