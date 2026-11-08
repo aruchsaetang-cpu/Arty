@@ -1,17 +1,18 @@
-# Train to Busan (2016): zombie movement from sick animals + bone-breaking dancers: Thai script v6 (hook A + "รู้มั้ยว่า" opener, 2026-11-08, not yet voiced)
+# Train to Busan (2016): zombie movement from sick animals + bone-breaking dancers: Thai script v7 (user-written, 2026-11-08, not yet voiced)
 
 1. ฮุก
-รู้มั้ยว่า ท่าซอมบี้นี้ เลียนแบบมาจากสัตว์ป่วย!
+รู้มั้ยว่าในหนังเรื่อง Train to Busan การขยับของซอมบี้ เลียนแบบมาจากสัตว์ที่กำลังป่วย!
 
 2. บริบท
-ใน Train to Busan ซอมบี้ขยับตัวแปลกมาก คอบิด ตัวกระตุก วิ่งเร็วจนน่ากลัว หลายคนคิดว่าเป็นคนธรรมดาแต่งหน้า หรือใช้คอมพิวเตอร์ทำขึ้นมา
+ใน Train to Busan ซอมบี้ขยับตัวแปลกมาก ทั้งคอบิด ตัวกระตุก วิ่งเร็วจนน่ากลัว หลายคนคิดว่าเป็นการขยับมั่วๆให้เข้ากับฉาก
 
 3. แต่
-แต่คนเล่นซอมบี้พวกนี้ คือนักเต้นที่เก่งเรื่องบิดตัว!
+แต่จริงๆแล้วมันตรงข้ามกันเลย
 
 4. เฉลย
-เหมือนกระดูกหักได้ คนที่คิดท่าชื่อ Jeon Young เขาศึกษาท่าทางของสัตว์ป่วยมาเป็นแบบ ที่พีคคือ ท่าซอมบี้นี้ดังมาก จนซีรีส์ Kingdom และหนังภาคต่อเอาไปใช้ด้วย!
+คนเล่นเป็นซอมบี้ในฉากนี้ คือนักเต้นที่เก่งเรื่องบิดตัว จนเหมือนหักกระดูกได้ พวกเขาศึกษาท่าทางของสัตว์ที่กำลังป่วยมาเป็นต้นแบบ ที่พีคคือ ท่าซอมบี้นี้ดังมากจนหนังหลายๆเรื่องก็เอาไปใช้ด้วย
 
-Caveats: "เลียนแบบ" in the hook is stronger than the source (Jeon Young says he STUDIED the movements of rabid animals; softer: "ได้แรงบันดาลใจจากสัตว์ป่วย").
-Sources: Korea JoongAng Daily, Korea Times 2022, /Film "Why Dancers Make Such Epic Zombies". Jeon Young most-cited (one review: Park Jae-in).
-Footage: show dancers/BTS first priority; keep gore out (kid-friendly script). Voice and footage: not received yet.
+Flags: (1) hook is ~25 syllables (~6 s), far over the 3 s target; (2) "พวกเขาศึกษา" credits the dancers, but the sources say the choreographer Jeon Young studied rabid animals;
+(3) "หนังหลายๆเรื่อง" is broader than the sources (Kingdom the series and Peninsula the film, the franchise's own); "เลียนแบบ" is stronger than "ศึกษา".
+Sources: Korea JoongAng Daily, Korea Times 2022, /Film "Why Dancers Make Such Epic Zombies".
+Voice and footage: not received yet.
