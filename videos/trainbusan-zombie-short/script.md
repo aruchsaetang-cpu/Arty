@@ -16,3 +16,5 @@ Flags: (1) hook is ~25 syllables (~6 s), far over the 3 s target; (2) "พวก
 (3) "หนังหลายๆเรื่อง" is broader than the sources (Kingdom the series and Peninsula the film, the franchise's own); "เลียนแบบ" is stronger than "ศึกษา".
 Sources: Korea JoongAng Daily, Korea Times 2022, /Film "Why Dancers Make Such Epic Zombies".
 Voice and footage: not received yet.
+
+Footage note (user 2026-11-08): broll c7 (dark zombie crowd) is from ANOTHER film; never use it while the narration talks about Train to Busan. Only allowed on "หนังหลายๆเรื่องก็เอาไปใช้".
