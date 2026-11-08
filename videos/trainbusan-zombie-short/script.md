@@ -18,3 +18,5 @@ Sources: Korea JoongAng Daily, Korea Times 2022, /Film "Why Dancers Make Such Ep
 Voice and footage: not received yet.
 
 Footage note (user 2026-11-08): broll c7 (dark zombie crowd) is from ANOTHER film; never use it while the narration talks about Train to Busan. Only allowed on "หนังหลายๆเรื่องก็เอาไปใช้".
+
+Censoring (user 2026-11-08): blood blurred by region in 3 shots (broll s1_nb = c1 2.0 zombie face, s6_nb = c3 1.0 last ~1 s, s7_nb = c4 9.2 faces in the train window); hook dog blurred (ellipse, boxblur 16).
