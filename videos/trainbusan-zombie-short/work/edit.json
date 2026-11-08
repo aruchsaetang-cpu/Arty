@@ -1,0 +1,298 @@
+{
+ "duration": 24.191,
+ "facecam": null,
+ "voice": "/home/user/Arty/videos/trainbusan-zombie-short/work/voice.wav",
+ "shots": [
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c2.mp4",
+   "start": 0.0,
+   "dur": 1.72,
+   "media_start": 8.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c1.mp4",
+   "start": 1.72,
+   "dur": 1.88,
+   "media_start": 2.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c8.mp4",
+   "start": 3.6,
+   "dur": 0.86,
+   "media_start": 3.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c1.mp4",
+   "start": 4.46,
+   "dur": 2.25,
+   "media_start": 4.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c2.mp4",
+   "start": 6.71,
+   "dur": 1.22,
+   "media_start": 6.5
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c1.mp4",
+   "start": 7.93,
+   "dur": 0.88,
+   "media_start": 7.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c7.mp4",
+   "start": 8.81,
+   "dur": 3.03,
+   "media_start": 0.3
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c4.mp4",
+   "start": 11.84,
+   "dur": 1.9,
+   "media_start": 9.2
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c5.mp4",
+   "start": 13.74,
+   "dur": 1.37,
+   "media_start": 0.5
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c6.mp4",
+   "start": 15.11,
+   "dur": 2.61,
+   "media_start": 1.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c8.mp4",
+   "start": 17.72,
+   "dur": 1.41,
+   "media_start": 4.1
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c6.mp4",
+   "start": 19.13,
+   "dur": 1.23,
+   "media_start": 9.5
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c1.mp4",
+   "start": 20.36,
+   "dur": 1.67,
+   "media_start": 9.0
+  },
+  {
+   "src": "/home/user/Arty/videos/trainbusan-zombie-short/broll/c2.mp4",
+   "start": 22.03,
+   "dur": 2.161,
+   "media_start": 10.2
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.0,
+   "text": "รู้มั้ยว่า",
+   "end": 0.31
+  },
+  {
+   "start": 0.31,
+   "text": "ในหนัง เรื่องนี้",
+   "end": 0.87
+  },
+  {
+   "start": 0.87,
+   "text": "Train to Busan",
+   "end": 1.72
+  },
+  {
+   "start": 1.72,
+   "text": "การขยับของ",
+   "end": 2.6
+  },
+  {
+   "start": 2.6,
+   "text": "ซอมบี้ เลียนแบบ",
+   "end": 3.09
+  },
+  {
+   "start": 3.09,
+   "text": "มาจาก",
+   "end": 3.6
+  },
+  {
+   "start": 3.6,
+   "text": "สัตว์ที่กำลังป่วย!",
+   "end": 4.46
+  },
+  {
+   "start": 4.46,
+   "text": "ใน Train to Busan",
+   "end": 5.46
+  },
+  {
+   "start": 5.46,
+   "text": "ซอมบี้",
+   "end": 5.86
+  },
+  {
+   "start": 5.86,
+   "text": "ขยับตัว",
+   "end": 6.29
+  },
+  {
+   "start": 6.29,
+   "text": "แปลกมาก",
+   "end": 6.71
+  },
+  {
+   "start": 6.71,
+   "text": "ทั้งคอบิด",
+   "end": 7.41
+  },
+  {
+   "start": 7.41,
+   "text": "ตัวกระตุก",
+   "end": 7.93
+  },
+  {
+   "start": 7.93,
+   "text": "วิ่งเร็ว",
+   "end": 8.29
+  },
+  {
+   "start": 8.29,
+   "text": "จนน่ากลัว",
+   "end": 8.81
+  },
+  {
+   "start": 8.81,
+   "text": "หลายคนคิดว่า",
+   "end": 9.85
+  },
+  {
+   "start": 9.85,
+   "text": "เป็นการขยับ",
+   "end": 10.49
+  },
+  {
+   "start": 10.49,
+   "text": "มั่วๆ",
+   "end": 10.83
+  },
+  {
+   "start": 10.83,
+   "text": "ให้เข้ากับฉาก",
+   "end": 11.84
+  },
+  {
+   "start": 11.84,
+   "text": "แต่จริงๆแล้ว",
+   "end": 12.49
+  },
+  {
+   "start": 12.49,
+   "text": "มันตรงข้าม",
+   "end": 13.18
+  },
+  {
+   "start": 13.18,
+   "text": "กันเลย",
+   "end": 13.74
+  },
+  {
+   "start": 13.74,
+   "text": "คนเล่นเป็นซอมบี้",
+   "end": 14.49
+  },
+  {
+   "start": 14.49,
+   "text": "ในฉากนี้",
+   "end": 15.11
+  },
+  {
+   "start": 15.11,
+   "text": "คือนักเต้น",
+   "end": 15.41
+  },
+  {
+   "start": 15.41,
+   "text": "ที่เก่ง",
+   "end": 15.71
+  },
+  {
+   "start": 15.71,
+   "text": "เรื่องบิดตัว",
+   "end": 16.36
+  },
+  {
+   "start": 16.36,
+   "text": "จนเหมือน",
+   "end": 16.66
+  },
+  {
+   "start": 16.66,
+   "text": "หักกระดูกได้",
+   "end": 17.72
+  },
+  {
+   "start": 17.72,
+   "text": "พวกเขา",
+   "end": 18.08
+  },
+  {
+   "start": 18.08,
+   "text": "ศึกษา ท่าทาง",
+   "end": 18.67
+  },
+  {
+   "start": 18.67,
+   "text": "ของสัตว์",
+   "end": 19.13
+  },
+  {
+   "start": 19.13,
+   "text": "ที่กำลังป่วย",
+   "end": 19.72
+  },
+  {
+   "start": 19.72,
+   "text": "มาเป็นต้นแบบ",
+   "end": 20.36
+  },
+  {
+   "start": 20.36,
+   "text": "ที่พีคคือ",
+   "end": 21.09
+  },
+  {
+   "start": 21.09,
+   "text": "ท่าซอมบี้",
+   "end": 21.59
+  },
+  {
+   "start": 21.59,
+   "text": "นี้ดังมาก",
+   "end": 22.03
+  },
+  {
+   "start": 22.03,
+   "text": "จนหนัง",
+   "end": 22.36
+  },
+  {
+   "start": 22.36,
+   "text": "หลายๆเรื่อง",
+   "end": 22.81
+  },
+  {
+   "start": 22.81,
+   "text": "ก็เอาไป",
+   "end": 23.21
+  },
+  {
+   "start": 23.21,
+   "text": "ใช้ด้วย",
+   "end": 24.191
+  }
+ ]
+}
