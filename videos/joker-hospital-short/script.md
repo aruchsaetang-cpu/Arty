@@ -4,20 +4,20 @@ Status: myth-bust angle. The popular story ("Heath Ledger improvised after the e
 reported as a myth by several outlets. Wording below keeps to what the sources agree on.
 
 ## Hook
-รู้มั้ยว่าฉากที่ Joker ระเบิดตึก ใน The Dark Knight คนส่วนใหญ่เข้าใจผิดมาตลอด!
+รู้มั้ยว่าฉาก Joker ระเบิดโรงพยาบาล คนเข้าใจผิดกันมาตลอด!
 
 ## Context
-ในหนัง Joker วางระเบิดโรงพยาบาล แล้วเดินออกมา
-เขากดรีโมต แต่ตึกไม่ระเบิดสักที เขาเลยกดซ้ำอีกรอบ
-จนคนดูเลยคิดว่า ระเบิดพัง
+ในหนัง Joker เดินออกมาจากโรงพยาบาลเฉยๆ แล้วกดรีโมต
+ตึกไม่ระเบิดสักที เขาเลยกดซ้ำ
+ทุกคนเลยคิดว่า ระเบิดพัง
 
 ## แต่
-แต่ความจริงไม่ใช่แบบนั้น!
+แต่จริงๆ ไม่ใช่!
 
 ## Reveal
-ผู้กำกับอยากให้ฉากนี้ดูจริงที่สุด เขาเลยระเบิดตึกจริงๆ ไม่ใช่ภาพคอมพิวเตอร์
-การรอช่วยให้นักแสดงเดินออกห่างจากตึก จะได้ไม่โดนอันตราย
-ที่พีคคือ ท่าทางตอนกดรีโมต ที่ดูเหมือนเกิดขึ้นเอง อาจเป็นลูกเล่นที่นักแสดง Joker ใส่เพิ่มเอง
+ทุกอย่างวางแผนไว้แล้ว ผู้กำกับอยากให้ดูจริงที่สุด เลยระเบิดตึกจริงๆ ไม่ใช้คอมพิวเตอร์
+ที่ต้องรอ ก็เพื่อให้นักแสดงเดินออกมาทัน จะได้ไม่โดนอันตราย
+ที่พีคคือ ท่ากดรีโมตแบบงงๆ นั่น อาจเป็นของนักแสดง Joker เองด้วย!
 
 ## Sources / verification
 - Pause planned, filmed practically, real building: Screen Rant explainer, Cheat Sheet, Ponderworthy (2nd-hand reports of Nolan's "Gotham Uncovered: Creation of a Scene" special; the special itself NOT checked).
