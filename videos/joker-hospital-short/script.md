@@ -9,7 +9,7 @@ reported as a myth by several outlets. Wording below keeps to what the sources a
 ## Context
 ในหนัง Joker วางระเบิดโรงพยาบาล แล้วเดินออกมา
 เขากดรีโมต แต่ตึกไม่ระเบิดสักที เขาเลยกดซ้ำอีกรอบ
-คนดูเลยคิดว่า ระเบิดพัง
+จนคนดูเลยคิดว่า ระเบิดพัง
 
 ## แต่
 แต่ความจริงไม่ใช่แบบนั้น!
