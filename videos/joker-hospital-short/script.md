@@ -24,3 +24,8 @@ reported as a myth by several outlets. Wording below keeps to what the sources a
 - "Ledger may have added flair": hedged ("อาจ") in the sources.
 - Empire "Story of the Shot" repeats the improvisation version: sources conflict, so the hook says "เชื่อผิด" only about the malfunction claim.
 - NOT verified: building location (do not say Chicago/Brach's), exact setup time, "only one chance" is single-source (Screen Rant).
+
+## Footage (received 2026-11-10; crops in broll/, gitignored)
+- ca.mp4 (crop of a.mp4, 0-16.0 s): Joker on the road, smoke behind; fiddles with the remote 6-11.5 s; big blasts 11-16 s; school bus passes. iOS control center at 16.5 s: cut before it.
+- cb.mp4 (crop of b.mp4, 0-15.0 s): Joker with remote in corridor 0-2.5; corridor blast 4.5-5.5; Joker walks out of the hospital 6-9.5; 10-13.5 is a bus shot where film crew/camera is visible (not used). Control center at 15.5 s.
+- NOTE: in the footage the hospital already blasts once (corridor) and smoke is up before he stops and fumbles the remote, so "ตึกไม่ระเบิดสักที" is not exactly right: it is "ระเบิดยังไม่หมด".
