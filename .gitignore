@@ -160,3 +160,5 @@ videos/trainbusan-zombie-short/work/voice.wav
 videos/trainbusan-zombie-short/render.log
 videos/joker-hospital-short/broll/
 videos/joker-hospital-short/out/
+videos/joker-hospital-short/work/raw*.wav
+videos/joker-hospital-short/work/t[0-9].wav
