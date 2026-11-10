@@ -4,20 +4,20 @@ Status: myth-bust angle. The popular story ("Heath Ledger improvised after the e
 reported as a myth by several outlets. Wording below keeps to what the sources agree on.
 
 ## Hook
-รู้มั้ยว่าฉาก Joker ระเบิดโรงพยาบาล คนเข้าใจผิดกันมาตลอด!
+รู้มั้ยว่าฉากที่ Joker กดรีโมตแล้วตึกไม่ระเบิด ไม่ใช่อุบัติเหตุ!
 
 ## Context
-ในหนัง Joker เดินออกมาจากโรงพยาบาลเฉยๆ แล้วกดรีโมต
+ในหนัง Joker เดินออกมาจากโรงพยาบาล แล้วกดรีโมต
 ตึกไม่ระเบิดสักที เขาเลยกดซ้ำ
-ทุกคนเลยคิดว่า ระเบิดพัง
+คนดูเลยคิดว่า ระเบิดพัง
 
 ## แต่
-แต่จริงๆ ไม่ใช่!
+แต่จริงๆ ผู้กำกับตั้งใจให้เป็นแบบนั้น!
 
 ## Reveal
-ทุกอย่างวางแผนไว้แล้ว ผู้กำกับอยากให้ดูจริงที่สุด เลยระเบิดตึกจริงๆ
-ที่ต้องรอ ก็เพื่อให้นักแสดงเดินออกมาทัน จะได้ไม่โดนอันตราย
-ที่พีคคือ ท่ากดรีโมตแบบงงๆ นั่น อาจเป็นของนักแสดง Joker เองด้วย!
+เขาระเบิดตึกจริงๆ เลยต้องวางแผนทุกอย่างไว้ก่อน
+ให้นักแสดงเดินออกมาทัน จะได้ไม่โดนอันตราย
+ที่พีคคือ คนดูทั่วโลกนึกว่าพัง ที่จริงมันวางแผนไว้แล้ว
 
 ## Sources / verification
 - Pause planned, filmed practically, real building: Screen Rant explainer, Cheat Sheet, Ponderworthy (2nd-hand reports of Nolan's "Gotham Uncovered: Creation of a Scene" special; the special itself NOT checked).
