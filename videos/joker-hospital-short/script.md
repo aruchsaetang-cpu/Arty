@@ -9,7 +9,7 @@ reported as a myth by several outlets. Wording below keeps to what the sources a
 ## Context
 ในหนัง Joker วางระเบิดไว้ในโรงพยาบาล แล้วเดินหนีออกมา
 เขากดปุ่มรีโมต แต่ตึกยังไม่ระเบิด เขาเลยเอียงคอ แล้วกดปุ่มอีกที
-หลายคนเลยคิดว่า นักแสดงชื่อ ฮีธ เลดเจอร์ ต้องคิดท่านี้เอง เพราะระเบิดมันพัง
+หลายคนเลยคิดว่า นักแสดง Joker ต้องคิดท่านี้เอง เพราะระเบิดมันพัง
 
 ## แต่
 แต่ความจริงไม่ใช่แบบนั้น! ผู้กำกับวางแผนให้ตึกรอแป๊บหนึ่งตั้งแต่แรก
@@ -17,7 +17,7 @@ reported as a myth by several outlets. Wording below keeps to what the sources a
 ## Reveal
 ผู้กำกับอยากให้ฉากนี้ดูจริงที่สุด เขาเลยระเบิดตึกจริงๆ ไม่ใช่ภาพคอมพิวเตอร์
 การรอช่วยให้นักแสดงเดินออกห่างจากตึก จะได้ไม่โดนอันตราย
-ที่พีคคือ ท่าทางตอนกดรีโมต ที่ดูเหมือนเกิดขึ้นเอง อาจเป็นลูกเล่นที่ ฮีธ เลดเจอร์ ใส่เพิ่มเอง
+ที่พีคคือ ท่าทางตอนกดรีโมต ที่ดูเหมือนเกิดขึ้นเอง อาจเป็นลูกเล่นที่นักแสดง Joker ใส่เพิ่มเอง
 
 ## Sources / verification
 - Pause planned, filmed practically, real building: Screen Rant explainer, Cheat Sheet, Ponderworthy (2nd-hand reports of Nolan's "Gotham Uncovered: Creation of a Scene" special; the special itself NOT checked).
