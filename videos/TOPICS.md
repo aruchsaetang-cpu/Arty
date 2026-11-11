@@ -31,3 +31,4 @@ Mummy hanging short (Brendan Fraser): DONE (out/renders/mummy-th.mp4, 14.8 s).
 Bajau dive short: DONE v1 (out/renders/bajau-th.mp4, 23.8 s; muscle wording kept by the user).
 Train to Busan zombie short: DONE (out/renders/trainbusan-th.mp4, 24.2 s).
 Joker hospital short (Heath Ledger): rendered v1 (out/renders/joker-th.mp4, 19.2 s), pending user review.
+Harrison Ford Falcon door short: script v1 drafted (near-death angle), waiting for user edits/voice/footage.
