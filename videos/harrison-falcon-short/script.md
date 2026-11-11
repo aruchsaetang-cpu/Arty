@@ -3,11 +3,11 @@
 Plain Thai for a 10-year-old. "แต่" only in the แต่ line.
 
 ## Hook
-รู้มั้ยว่า Han Solo โดนประตูยานทับจริงๆ ในกองถ่าย!
+รู้มั้ยว่า Harrison Ford โดนประตูยานทับจริงๆ!
 
 ## Context
-ในหนัง Star Wars ภาคปี 2015 Han Solo ขับยานชื่อ Millennium Falcon
-นักแสดงคือ Harrison Ford ตอนนั้นอายุ 71 ปี
+Harrison Ford คือพระเอกหนัง Indiana Jones
+ในหนังอวกาศเรื่อง Star Wars เขาเล่นเป็นนักบิน ที่ขับยานอวกาศลำใหญ่
 วันซ้อมถ่าย เขากดปุ่มปิดประตูยาน
 
 ## แต่
