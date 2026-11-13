@@ -96,9 +96,9 @@ svg.fig text { font-family: "Anton"; }
 <script>
 const C = { TALENT: "#39d0ff", EGO: "#ffd84a", OBSESSION: "#ff4d5e", DISCIPLINE: "#54e08a" };
 const P = { TALENT: [700, 1950, 440], EGO: [1460, 1950, 440], OBSESSION: [580, 2860, 600], DISCIPLINE: [1580, 2860, 600] }; // cx, deskY, width
-const G = { TALENT: "B-", EGO: "D", OBSESSION: "C", DISCIPLINE: "A+" };
-const G0 = { TALENT: "A", EGO: "B", OBSESSION: "D", DISCIPLINE: "F" };
-const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)"><rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text></g></g>`;
+const G = { TALENT: "B-", EGO: "D", OBSESSION: "A+++", DISCIPLINE: "A+" };
+const G0 = { TALENT: "A-", EGO: "B+", OBSESSION: "D+", DISCIPLINE: "F" };
+const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)"><rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 3 ? 112 : g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text></g></g>`;
 function fig(k) {
   const c = C[k], [cx, dy, w] = P[k], sc = w / 400;
   const acc = {
@@ -130,7 +130,7 @@ function fig(k) {
     ${k === "EGO" ? `<g class="feet"><polyline class="ln" points="214,286 300,262 352,270 362,238"/><polyline class="ln" points="214,286 292,284 338,254 356,226"/></g>` : ""}
     ${prop}
     <g class="meter"><rect x="90" y="-52" width="220" height="26" rx="13" fill="#0b0e1d" stroke="#f4f1ea" stroke-width="5"/><rect class="mf" x="96" y="-46" width="0" height="14" rx="7" fill="${c}"/></g>
-    ${paper("paper", G[k], k === "DISCIPLINE", k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], k === "TALENT" || k === "EGO", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
+    ${paper("paper", G[k], k === "DISCIPLINE" || k === "OBSESSION", k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], k === "TALENT" || k === "EGO", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
   </svg>`;
 }
 const order = ["TALENT", "EGO", "OBSESSION", "DISCIPLINE"];
