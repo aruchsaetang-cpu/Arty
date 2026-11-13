@@ -12,6 +12,7 @@
 html, body { width: 1080px; height: 1920px; overflow: hidden; background: #070914; }
 #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Space Grotesk", sans-serif; font-weight: 700; color: #f4f1ea; }
 #stage { position: absolute; inset: 0; }
+#punch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; }
 #cam { position: absolute; left: 0; top: 0; width: 2160px; height: 3840px; }
 #world { position: absolute; inset: 0; overflow: hidden; }
 .abs { position: absolute; display: block; }
@@ -58,9 +59,9 @@ svg.fig text { font-family: "Anton"; }
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="20.8" data-width="1080" data-height="1920" data-fps="30">
- <div id="stage" class="clip" data-start="0" data-duration="20.8" data-track-index="1">
-  <div id="cam"><div id="world">
+<div id="root" data-composition-id="main" data-start="0" data-duration="21" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="21" data-track-index="1">
+  <div id="punch"><div id="cam"><div id="world">
     <div id="wall" class="abs"></div>
     <div class="abs poster" style="left:1500px;top:1240px;width:150px;height:200px;background:#39d0ff33;border:8px solid #cfd6f2"></div>
     <div class="abs poster" style="left:520px;top:1240px;width:150px;height:200px;background:#ff4d5e33;border:8px solid #cfd6f2"></div>
@@ -82,7 +83,7 @@ svg.fig text { font-family: "Anton"; }
     <div id="aglow" class="abs"></div>
     <div id="frontrow"></div>
     <div id="dim" class="abs"></div>
-  </div></div>
+  </div></div></div>
   <div id="ui">
     <div id="vig"></div>
     <div id="caps"></div>
@@ -100,7 +101,7 @@ const C = { TALENT: "#39d0ff", EGO: "#ffd84a", OBSESSION: "#ff4d5e", DISCIPLINE:
 const P = { TALENT: [700, 1950, 440], EGO: [1460, 1950, 440], OBSESSION: [580, 2860, 600], DISCIPLINE: [1580, 2860, 600] }; // cx, deskY, width
 const G = { TALENT: "A+", EGO: "B+", OBSESSION: "A", DISCIPLINE: "A+" };
 const G0 = { TALENT: "A+", EGO: "B+", OBSESSION: "D+", DISCIPLINE: "F" };
-const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)"><rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 3 ? 112 : g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text></g></g>`;
+const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)">${good ? `<rect x="66" y="-308" width="268" height="326" rx="24" fill="#ffe27a" opacity=".6" style="filter:blur(18px)"/>` : ""}<rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 3 ? 112 : g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text>${good ? `<text class="ps" x="46" y="-250" font-size="54" fill="#ffe27a">✦</text><text class="ps" x="322" y="-30" font-size="42" fill="#ffe27a">✦</text><text class="ps" x="330" y="-270" font-size="34" fill="#ffe27a">✦</text>` : ""}</g></g>`;
 function fig(k) {
   const c = C[k], [cx, dy, w] = P[k], sc = w / 400;
   const acc = {
@@ -110,7 +111,7 @@ function fig(k) {
     DISCIPLINE: `<path d="M184 88 L216 88 M172 58 L193 66 M228 58 L207 66" stroke="#0b0e1d" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="150" y="30" width="100" height="16" rx="8" fill="${c}"/>`,
   }[k];
   const prop = {
-    TALENT: `<text class="nt nt1" x="300" y="40" font-size="70" fill="${c}">♪</text><text class="nt nt2" x="60" y="20" font-size="56" fill="${c}">♫</text><text class="nt nt3" x="330" y="-40" font-size="48" fill="${c}">♪</text>`,
+    TALENT: `<text class="tz tz1" x="262" y="170" font-size="52" fill="#f4f1ea">z</text><text class="tz tz2" x="296" y="128" font-size="64" fill="#f4f1ea">z</text><text class="tz tz3" x="336" y="78" font-size="78" fill="#f4f1ea">z</text>`,
     EGO: `<g class="trophy" transform="translate(-246 0)"><rect x="296" y="282" width="44" height="12" rx="3" fill="${c}"/><rect x="312" y="262" width="12" height="22" fill="${c}"/><path d="M294 214 H342 V236 A24 24 0 0 1 294 236 Z" fill="${c}"/></g><text class="sp sp1" x="40" y="40" font-size="64" fill="${c}">✦</text><text class="sp sp2" x="345" y="110" font-size="80" fill="${c}">✦</text>`,
     OBSESSION: [0,1,2,3,4,5].map(i => `<rect class="bk bk${i}" x="${286 + (i % 2) * 6}" y="${270 - i * 26}" width="74" height="22" rx="4" fill="${["#ff4d5e","#c93a4a","#ff7d6b","#a52a3a","#ff4d5e","#ff9a8a"][i]}"/>`).join("") + `<text class="zz" x="250" y="150" font-size="60" fill="#f4f1ea">z z z</text><g class="burn"><rect x="60" y="-150" width="280" height="84" rx="14" fill="${c}"/><text x="200" y="-88" font-size="62" text-anchor="middle" fill="#0b0e1d" letter-spacing="3">BURNOUT</text></g>`,
     DISCIPLINE: [0,1,2,3,4,5,6].map(i => i < 3
@@ -124,7 +125,7 @@ ${k === "DISCIPLINE" ? `<g class="aura"><g style="filter:blur(9px)"><g class="au
     ${k === "EGO" ? `<rect x="104" y="96" width="192" height="270" rx="26" fill="#3a2a6e" stroke="${c}" stroke-width="8"/><circle cx="112" cy="100" r="16" fill="${c}"/><circle cx="288" cy="100" r="16" fill="${c}"/>` : `<rect x="120" y="210" width="160" height="150" rx="14" fill="#1b2147"/>`}
     <g class="bd">
       <line class="ln ext" x1="200" y1="200" x2="200" y2="330"/>
-      <line class="ln" x1="200" y1="120" x2="200" y2="290"/>
+      <line class="ln tor" x1="200" y1="120" x2="200" y2="290"/>
       ${k === "EGO" ? `<g class="aL"><polyline class="ln" points="200,160 128,128 158,62"/></g><g class="aR"><polyline class="ln" points="200,160 272,128 242,62"/></g>` : `<g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g><g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>`}
       <polyline class="ln upL" points="200,165 124,104 96,18"/><polyline class="ln upR" points="200,165 276,104 304,18"/>
       <g class="hdg"><circle cx="200" cy="72" r="50" fill="#f4f1ea"/>${acc}</g>
@@ -148,134 +149,148 @@ document.getElementById("caps").innerHTML = [].map((k) => `<span class="A blk nm
 
 document.fonts.ready.then(() => {
   const M = gsap.timeline({ paused: true });
-  const END = 20.8, TL = 4.0, D = 7.2, H = D / 15, EX = 11.2, BO = TL + 3.6, ST = EX + 5.2, UP = TL + 2.2;
+  const END = 21, TL = 6.0, D = 7.0, H = D / 15, EX = 13.0, BO = 10.0, UP = 8.0, ST = 18.0;
   const camTo = (cx, cy, s) => ({ x: 540 - cx * s, y: 960 - cy * s, scale: s });
-  const WIDE = camTo(1080, 1850, 0.56);
-  const mid = (k) => { const [cx, dy, w] = P[k]; const s = w > 500 ? 0.92 : 1.2; return camTo(cx, dy - 330 * (w / 400), s); };
-  const cam = (t, c, d = 0.36, ease = "power4.inOut") => M.to("#cam", { ...c, duration: d, ease }, t);
+  const close = (k) => { const [cx, dy, w] = P[k]; const sc = w / 400; return camTo(cx, dy - 300 * sc, w > 500 ? 1.12 : 1.5); };
+  const WIDE = camTo(1080, 1850, 0.58);
+  // hard cut to a new framing on the beat: punch in, then a slow drift for the rest of the shot
+  const cut = (t, c, len, foc = 0) => {
+    M.set("#cam", c, t); M.set("#focus", { opacity: foc }, t);
+    M.fromTo("#punch", { scale: 1.1 }, { scale: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, t);
+    M.to("#punch", { scale: 1.035, duration: len - 0.16, ease: "none" }, t + 0.16);
+  };
   const flash = (t, a = 0.4) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, t);
-  gsap.set("#cam", { transformOrigin: "0 0", ...camTo(1080, 1850, 0.5) });
+  const rise = (sel, t) => {
+    M.fromTo(sel, { scale: 0.1, opacity: 0, rotation: -28, svgOrigin: "200 280" }, { scale: 1, opacity: 1, rotation: 0, svgOrigin: "200 280", duration: 0.32, ease: "back.out(1.7)" }, t);
+    if (document.querySelector(sel + " .ps")) M.fromTo(sel + " .ps", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, transformOrigin: "50% 50%", duration: 0.2, yoyo: true, repeat: 3, stagger: 0.08, ease: "sine.inOut" }, t + 0.25);
+  };
+  const armsUp = (k, t, up) => { M.set(`.f-${k} .aL, .f-${k} .aR`, { opacity: up ? 0 : 1 }, t); M.set(`.f-${k} .upL, .f-${k} .upR`, { opacity: up ? 1 : 0 }, t); };
+  gsap.set("#cam", { transformOrigin: "0 0", ...WIDE });
   gsap.set("#aglow, .aura, .bolt, #e0, .paper0, #focus, #flash, #e1, #e2, #e3, #dim, .meter, .paper, .zz, .burn, .ext, .upL, .upR, .bk, .ck, .sw, .pb, .beam", { opacity: 0 });
   gsap.set("#clock .hh", { rotation: 100 }); gsap.set("#clock .mh", { rotation: 40 });
   gsap.set(".sky", { backgroundColor: "#0b1638" });
   gsap.set(".aura", { scale: 0.05, svgOrigin: "200 300" });
   gsap.set(".f-TALENT .mf", { attr: { width: 200 } }); gsap.set(".f-EGO .mf", { attr: { width: 150 } });
   gsap.set(".f-OBSESSION .mf", { attr: { width: 40 } }); gsap.set(".f-DISCIPLINE .mf", { attr: { width: 8 } });
-  gsap.set(".f-TALENT .aL", { rotation: 62, svgOrigin: "200 160" }); gsap.set(".f-TALENT .aR", { rotation: -62, svgOrigin: "200 160" });
+  gsap.set(".f-TALENT .hdg", { y: 152, rotation: -18, svgOrigin: "200 120" });
+  gsap.set(".f-TALENT .tor", { scaleY: 0.1, svgOrigin: "200 290" });
 
-  // board text: one source of truth, driven by film time
   const b2 = document.getElementById("b2"), b1 = document.getElementById("b1");
   const clk = { v: 0 }; let last = "";
   M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => {
     const t = M.time(); let a, b;
-    if (t < 2.9) { a = "TEST 1"; b = "RESULTS"; }
+    if (t < 5.5) { a = "TEST 1"; b = "RESULTS"; }
     else if (t < TL) { a = "FINALS IN"; b = "30 DAYS"; }
     else if (t < TL + D) { const n = Math.max(1, Math.round(30 * (1 - (t - TL) / D))); a = "FINALS IN"; b = n + (n === 1 ? " DAY" : " DAYS"); }
     else { a = "TODAY:"; b = "FINALS"; }
     if (a + b !== last) { b1.textContent = a; b2.textContent = b; last = a + b; }
   } }, 0);
 
-  // ---- continuous life: everyone is always in the room
-  M.fromTo(".f-TALENT .hdg", { rotation: -7, svgOrigin: "200 120" }, { rotation: 7, svgOrigin: "200 120", duration: 0.2, yoyo: true, repeat: 103, ease: "sine.inOut" }, 0);
-  ["nt1", "nt2", "nt3"].forEach((n, i) => M.fromTo(`.${n}`, { y: 50, opacity: 0.9 }, { y: -70, opacity: 0, duration: 1.2, ease: "power1.out", repeat: 15 }, 0.2 + i * 0.3));
+  // ---- always-on life
+  ["tz1", "tz2", "tz3"].forEach((n, i) => M.fromTo(`.${n}`, { opacity: 0, y: 14 }, { opacity: 0.95, y: -14, duration: 0.5, yoyo: true, repeat: 41, ease: "sine.inOut" }, i * 0.17));
+  M.fromTo(".f-TALENT .bd", { y: 0 }, { y: 5, duration: 1.0, yoyo: true, repeat: 20, ease: "sine.inOut" }, 0);
   M.fromTo(".f-EGO .bd", { rotation: -15, svgOrigin: "200 290" }, { rotation: -10, svgOrigin: "200 290", duration: 0.8, yoyo: true, repeat: 25, ease: "sine.inOut" }, 0);
   M.fromTo(".sp", { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 360, transformOrigin: "50% 50%", duration: END, ease: "none" }, 0);
-  M.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 151, ease: "none" }, 0);
-  M.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 221, ease: "none", immediateRender: false }, BO + 1.9);
-  M.fromTo(".f-DISCIPLINE .aR", { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.4, yoyo: true, repeat: 39, ease: "sine.inOut" }, 0);
-
-  // ---- 1. first test comes back (0 - 3.6)
-  M.to("#cam", { ...WIDE, duration: 3.5, ease: "power1.out" }, 0);
+  M.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 199, ease: "none" }, 0);
+  M.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 75, ease: "none", immediateRender: false }, 11.7);
+  M.fromTo(".f-DISCIPLINE .aR", { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.25, yoyo: true, repeat: 71, ease: "sine.inOut" }, 0);
   M.fromTo("#bars i", { scaleY: 2.2 }, { scaleY: 1, duration: 0.8, ease: "power2.out" }, 0);
-  M.fromTo("#e0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25 }, 0.05);
-  M.to("#e0", { opacity: 0, duration: 0.2 }, 2.6);
-  order.forEach((k, i) => {
-    M.fromTo(`.f-${k} .paper0`, { scale: 0, opacity: 0, rotation: -30, svgOrigin: "200 280" }, { scale: 1, opacity: 1, rotation: 0, svgOrigin: "200 280", duration: 0.22, ease: "back.out(2)" }, 0.3 + i * 0.4);
-    M.to(`.f-${k} .paper0`, { y: 120, opacity: 0, duration: 0.25, ease: "power2.in" }, 2.6 + i * 0.05);
-  });
-  M.to(".f-OBSESSION .hdg", { y: 22, duration: 0.3, yoyo: true, repeat: 1, repeatDelay: 0.7, ease: "power2.out" }, 1.3);
-  // Discipline takes the F hard: head drops and stays down
-  M.to(".f-DISCIPLINE .hdg", { y: 40, rotation: 16, svgOrigin: "200 120", duration: 0.35, ease: "power2.in" }, 1.6);
-  flash(2.9, 0.5);
-  M.fromTo("#board", { scale: 1.12 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, 2.9);
 
-  // ---- 2. thirty days in the same room (4.0 - 11.2)
-  cam(TL - 0.45, camTo(1580, 2520, 0.98), 0.5);
-  M.to("#cam", { scale: "+=0.04", x: "-=63", y: "-=101", duration: 2.6, ease: "none" }, TL + 0.05);
-  cam(TL + 2.7, camTo(1080, 1850, 0.58), 0.6, "power3.inOut");
-  M.to("#cam", { ...camTo(1080, 1850, 0.62), duration: EX - TL - 3.3, ease: "none" }, TL + 3.3);
-  M.to(".meter", { opacity: 1, duration: 0.25 }, TL - 0.2);
+  // ---- 1. first test (0 - 5.5): one shot per student
+  cut(0, WIDE, 1.0);
+  M.fromTo("#e0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2 }, 0.05); M.set("#e0", { opacity: 0 }, 1.0);
+  cut(1.0, close("TALENT"), 1.0); rise(".f-TALENT .paper0", 1.1);
+  cut(2.0, close("EGO"), 1.0); rise(".f-EGO .paper0", 2.1);
+  M.fromTo(".f-EGO .hdg", { y: 0 }, { y: -10, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.4);
+  cut(3.0, close("OBSESSION"), 1.0, 1); rise(".f-OBSESSION .paper0", 3.1);
+  armsUp("OBSESSION", 3.45, true); armsUp("OBSESSION", 3.62, false);
+  M.fromTo("#world", { y: 16 }, { y: 0, duration: 0.3, ease: "elastic.out(1.4,0.3)", immediateRender: false }, 3.62);
+  armsUp("OBSESSION", 3.78, true); armsUp("OBSESSION", 3.9, false);
+  M.fromTo("#world", { y: 16 }, { y: 0, duration: 0.1, ease: "none", immediateRender: false }, 3.9);
+  cut(4.0, close("DISCIPLINE"), 1.5, 1); rise(".f-DISCIPLINE .paper0", 4.1);
+  M.to(".f-DISCIPLINE .hdg", { y: 40, rotation: 16, svgOrigin: "200 120", duration: 0.3, ease: "power2.in" }, 4.55);
+  M.to(".f-DISCIPLINE .paper0", { scale: 0.08, rotation: 30, svgOrigin: "200 280", duration: 0.3, ease: "power2.in" }, 4.95);
+  M.set(".f-DISCIPLINE .paper0", { opacity: 0 }, 5.25);
+  ["sw0", "sw1", "sw2"].forEach((n, i) => M.fromTo(`.${n}`, { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.5, repeat: 6, ease: "power1.in" }, 4.6 + i * 0.17));
+  cut(5.5, WIDE, 0.5); M.set(".paper0", { opacity: 0 }, 5.5); flash(5.5, 0.5);
+  M.fromTo("#board", { scale: 1.14 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, 5.5);
+
+  // ---- 2. thirty days (6.0 - 13.0)
+  M.set(".meter", { opacity: 1 }, TL);
   M.fromTo("#night", { opacity: 1 }, { opacity: 0.45, duration: H, yoyo: true, repeat: 14, ease: "sine.inOut" }, TL);
   M.fromTo(".sky", { backgroundColor: "#0b1638" }, { backgroundColor: "#3f78ad", duration: H, yoyo: true, repeat: 14, ease: "sine.inOut" }, TL);
   M.fromTo(".beam", { opacity: 0 }, { opacity: 0.5, duration: H, yoyo: true, repeat: 14, ease: "sine.inOut" }, TL);
   M.fromTo(".wheel", { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 180 * 15, transformOrigin: "50% 50%", duration: D, ease: "none" }, TL);
   M.to("#clock .mh", { rotation: 40 + 360 * 14, duration: D, ease: "none" }, TL);
   M.to("#clock .hh", { rotation: 100 + 360 * 2, duration: D, ease: "none" }, TL);
-  // Obsession: sprints, crashes, claws back
-  [0, 1, 2, 3, 4, 5].forEach((i) => M.fromTo(`.bk${i}`, { y: -420, opacity: 0 }, { y: 0, opacity: 1, duration: 0.18, ease: "power2.in" }, TL + 0.2 + i * 0.22));
-  M.to(".f-OBSESSION .mf", { attr: { width: 170 }, duration: 2.8, ease: "power2.out" }, TL);
-  M.to(".f-OBSESSION .mf", { attr: { width: 70 }, fill: "#7a3d48", duration: 0.5, ease: "bounce.out" }, BO);
-  M.to(".f-OBSESSION .hdg", { y: 150, rotation: 24, svgOrigin: "200 120", duration: 0.35, ease: "power3.in" }, BO);
-  M.fromTo(".burn", { scale: 0, opacity: 0, transformOrigin: "50% 100%" }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(2.5)" }, BO + 0.1);
-  M.to(".burn", { opacity: 0, duration: 0.25 }, BO + 1.5);
-  M.fromTo(".zz", { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 0.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, BO + 0.5);
-  flash(BO, 0.25);
-  M.to(".f-OBSESSION .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.3, ease: "back.out(2)" }, BO + 1.7);
-  M.to(".f-OBSESSION .mf", { attr: { width: 184 }, fill: "#ff4d5e", duration: 1.4, ease: "power1.inOut" }, BO + 1.8);
-  // Discipline: fails, fails, fails... keeps showing up
-  const mt = [0.35, 0.9, 1.45, 2.2, 3.3, 4.5, 5.7];
-  mt.forEach((m, i) => {
-    M.fromTo(`.ck${i}`, { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.16, ease: "back.out(3)" }, TL + m);
+  // 2a. Discipline alone: fails, fails, fails, then one finally lands
+  cut(6.0, camTo(1580, 2520, 0.98), 3.0, 1);
+  [6.2, 6.7, 7.2, 8.0, 8.5, 9.5, 11.5].forEach((t, i) => {
+    M.fromTo(`.ck${i}`, { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.16, ease: "back.out(3)" }, t);
     if (i < 3) {
-      M.fromTo(`.pb${i}`, { x: 0, y: 0, opacity: 1 }, { x: [70, 150, 108][i], opacity: 1, duration: 0.45, ease: "none" }, TL + m);
-      M.fromTo(`.pb${i}`, { y: 0 }, { y: [228, 242, 220][i], duration: 0.45, ease: "bounce.out" }, TL + m);
-      M.to(".f-DISCIPLINE .hdg", { y: 58, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.in" }, TL + m);
+      M.fromTo(`.pb${i}`, { x: 0, opacity: 1 }, { x: [70, 150, 108][i], opacity: 1, duration: 0.45, ease: "none" }, t);
+      M.fromTo(`.pb${i}`, { y: 0 }, { y: [228, 242, 220][i], duration: 0.45, ease: "bounce.out" }, t);
+      M.to(".f-DISCIPLINE .hdg", { y: 62, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.in" }, t);
+      M.fromTo("#world", { y: 10 }, { y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.09);
     }
   });
-  ["sw0", "sw1", "sw2"].forEach((n, i) => M.fromTo(`.${n}`, { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.5, repeat: 5, ease: "power1.in" }, 1.9 + i * 0.17));
-  M.to(".f-DISCIPLINE .mf", { attr: { width: 30 }, duration: 2.2, ease: "none" }, TL);
-  M.to(".f-DISCIPLINE .mf", { attr: { width: 208 }, duration: D - 2.2, ease: "power1.in" }, UP);
-  M.to(".f-DISCIPLINE .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 1.0, ease: "power2.out" }, UP);
-  // aura: lights on the first day it finally works, then grows every day
-  M.to(".aura", { scale: 0.3, opacity: 0.85, duration: 0.5, ease: "power2.out" }, UP);
-  M.fromTo(".au1", { scaleY: 0.9, scaleX: 1.05, svgOrigin: "200 300" }, { scaleY: 1.1, scaleX: 0.95, svgOrigin: "200 300", duration: 0.12, yoyo: true, repeat: 121, ease: "sine.inOut" }, UP);
-  M.fromTo(".au2", { scaleY: 1.08, scaleX: 0.94, svgOrigin: "200 300" }, { scaleY: 0.9, scaleX: 1.06, svgOrigin: "200 300", duration: 0.09, yoyo: true, repeat: 161, ease: "sine.inOut" }, UP);
-  [0, 1, 2, 3, 4, 5, 6, 7].forEach((i) => M.fromTo(`.pt${i}`, { y: 0, opacity: 0.95 }, { y: -430, opacity: 0, duration: 0.7 + (i % 3) * 0.2, repeat: 14, ease: "power1.out" }, UP + 0.2 + i * 0.11));
-  M.to(".aura", { scale: 1.0, opacity: 1, duration: D - 2.8, ease: "power1.in" }, UP + 0.6);
-  M.to("#aglow", { opacity: 0.75, duration: D - 2.8, ease: "power1.in" }, UP + 0.6);
+  M.to(".f-DISCIPLINE .mf", { attr: { width: 30 }, duration: 2.0, ease: "none" }, TL);
+  M.to(".f-DISCIPLINE .mf", { attr: { width: 208 }, duration: EX - UP, ease: "power1.in" }, UP);
+  M.to(".f-DISCIPLINE .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.6, ease: "back.out(2)" }, UP);
+  flash(UP, 0.3);
+  M.to(".aura", { scale: 0.34, opacity: 0.9, duration: 0.4, ease: "back.out(3)" }, UP);
+  M.fromTo(".au1", { scaleY: 0.9, scaleX: 1.05, svgOrigin: "200 300" }, { scaleY: 1.1, scaleX: 0.95, svgOrigin: "200 300", duration: 0.12, yoyo: true, repeat: 107, ease: "sine.inOut" }, UP);
+  M.fromTo(".au2", { scaleY: 1.08, scaleX: 0.94, svgOrigin: "200 300" }, { scaleY: 0.9, scaleX: 1.06, svgOrigin: "200 300", duration: 0.09, yoyo: true, repeat: 143, ease: "sine.inOut" }, UP);
+  [0, 1, 2, 3, 4, 5, 6, 7].forEach((i) => M.fromTo(`.pt${i}`, { y: 0, opacity: 0.95 }, { y: -430, opacity: 0, duration: 0.7 + (i % 3) * 0.2, repeat: 13, ease: "power1.out" }, UP + 0.2 + i * 0.11));
+  M.to(".aura", { scale: 1.0, opacity: 1, duration: EX - UP - 0.5, ease: "power1.in" }, UP + 0.5);
+  M.to("#aglow", { opacity: 0.75, duration: EX - UP - 0.5, ease: "power1.in" }, UP + 0.5);
+  // 2b. wide: the room keeps turning
+  cut(9.0, WIDE, 1.0);
+  [0, 1, 2, 3, 4, 5].forEach((i) => M.fromTo(`.bk${i}`, { y: -420, opacity: 0 }, { y: 0, opacity: 1, duration: 0.18, ease: "power2.in" }, TL + 0.2 + i * 0.3));
+  M.to(".f-OBSESSION .mf", { attr: { width: 172 }, duration: 3.8, ease: "power2.out" }, TL);
+  // 2c. Obsession crashes
+  cut(BO, close("OBSESSION"), 1.0, 1); flash(BO, 0.25);
+  M.to(".f-OBSESSION .mf", { attr: { width: 70 }, fill: "#7a3d48", duration: 0.5, ease: "bounce.out" }, BO + 0.05);
+  M.to(".f-OBSESSION .hdg", { y: 150, rotation: 24, svgOrigin: "200 120", duration: 0.3, ease: "power3.in" }, BO + 0.05);
+  M.to(".f-OBSESSION .tor", { scaleY: 0.1, svgOrigin: "200 290", duration: 0.3, ease: "power3.in" }, BO + 0.05);
+  M.to(".f-OBSESSION .tor", { scaleY: 1, svgOrigin: "200 290", duration: 0.3, ease: "back.out(2)" }, 11.5);
+  M.fromTo("#world", { y: 14 }, { y: 0, duration: 0.3, ease: "elastic.out(1.4,0.3)", immediateRender: false }, BO + 0.35);
+  M.fromTo(".burn", { scale: 0, opacity: 0, transformOrigin: "50% 100%" }, { scale: 1, opacity: 1, duration: 0.22, ease: "back.out(2.5)" }, BO + 0.35);
+  M.set(".burn", { opacity: 0 }, 11.0);
+  M.fromTo(".zz", { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 0.45, yoyo: true, repeat: 2, ease: "sine.inOut" }, BO + 0.4);
+  M.set(".zz", { opacity: 0 }, 11.7);
+  cut(11.0, camTo(1080, 1850, 0.6), 2.0);
+  M.to(".f-OBSESSION .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.3, ease: "back.out(2)" }, 11.5);
+  M.to(".f-OBSESSION .mf", { attr: { width: 184 }, fill: "#ff4d5e", duration: 1.3, ease: "power1.inOut" }, 11.6);
 
-  // ---- 3. finals: papers come back (11.2 - 16.4)
-  flash(EX, 0.55);
-  M.to("#night", { opacity: 0.5, duration: 0.2 }, EX);
-  M.to(".meter, .ck, .zz", { opacity: 0, duration: 0.25 }, EX + 0.3);
-  ["EGO", "TALENT", "OBSESSION", "DISCIPLINE"].forEach((k, i) => {
-    const t = EX + 0.8 + i * 0.8;
-    cam(t - 0.3, mid(k), 0.3);
-    M.fromTo(`.f-${k} .paper`, { scale: 0, opacity: 0, rotation: -30, svgOrigin: "200 280" }, { scale: 1, opacity: 1, rotation: 0, svgOrigin: "200 280", duration: 0.22, ease: "back.out(2)" }, t);
-    if (k === "DISCIPLINE") { flash(t + 0.1, 0.7); M.to(".aura", { scale: 1.35, duration: 0.3, ease: "back.out(3)" }, t + 0.1); }
-  });
-  cam(EX + 3.9, camTo(1080, 1850, 0.6), 0.45);
-  M.to("#dim", { opacity: 1, duration: 0.5 }, EX + 4.2);
+  // ---- 3. finals (13.0 - 18.0): one shot per student again
+  cut(EX, camTo(1080, 1850, 0.6), 0.5); flash(EX, 0.55);
+  M.set("#night", { opacity: 0.5 }, EX); M.set(".meter, .ck, .zz", { opacity: 0 }, EX);
+  cut(13.5, close("EGO"), 1.0); rise(".f-EGO .paper", 13.6);
+  cut(14.5, close("TALENT"), 1.0); rise(".f-TALENT .paper", 14.6);
+  cut(15.5, close("OBSESSION"), 1.0, 1); rise(".f-OBSESSION .paper", 15.6);
+  armsUp("OBSESSION", 15.95, true);
+  M.fromTo(".f-OBSESSION .bd", { y: 0 }, { y: -22, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 15.95);
+  cut(16.5, close("DISCIPLINE"), 1.5, 1); rise(".f-DISCIPLINE .paper", 16.6);
+  flash(16.75, 0.7); M.to(".aura", { scale: 1.35, duration: 0.3, ease: "back.out(3)" }, 16.75);
 
-  // ---- 4. he stands (16.4 - end)
-  cam(ST, camTo(1580, 2600, 1.15), 0.5);
-  M.to("#backrow", { opacity: 0, duration: 0.4 }, ST);
-  M.to(".pb", { opacity: 0, duration: 0.3 }, ST);
-  M.to(".f-DISCIPLINE .paper", { y: -120, opacity: 0, duration: 0.3 }, ST + 0.2);
-  M.to(".f-DISCIPLINE .aL, .f-DISCIPLINE .aR", { opacity: 0, duration: 0.1 }, ST + 0.4);
-  M.to(".f-DISCIPLINE .upL, .f-DISCIPLINE .upR, .f-DISCIPLINE .ext", { opacity: 1, duration: 0.1 }, ST + 0.4);
-  M.to(".f-DISCIPLINE .bd", { y: -110, duration: 0.3, ease: "back.out(2.5)" }, ST + 0.4);
-  flash(ST + 0.5, 0.5);
-  M.to(".aura", { scale: 1.75, duration: 0.35, ease: "back.out(2.5)" }, ST + 0.4);
-  M.to("#aglow", { opacity: 1, scale: 1.25, duration: 0.35 }, ST + 0.4);
-  M.fromTo(".bolt", { opacity: 0 }, { opacity: 1, duration: 0.05, yoyo: true, repeat: 41, repeatDelay: 0.04, ease: "steps(1)" }, ST + 0.4);
-  M.fromTo("#world", { x: -10 }, { x: 10, duration: 0.04, yoyo: true, repeat: 11, ease: "none", immediateRender: false }, ST + 0.4);
-  M.set("#world", { x: 0 }, ST + 0.9);
-  M.fromTo("#e1", { opacity: 0, y: -30 }, { opacity: 0.85, y: 0, duration: 0.3 }, ST + 0.7);
-  M.fromTo("#e2", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power4.in" }, ST + 1.4);
-  flash(ST + 1.62, 0.45);
-  M.fromTo("#e3", { opacity: 0, y: 20 }, { opacity: 0.85, y: 0, duration: 0.3 }, ST + 2.2);
-  M.to("#cam", { scale: "+=0.05", x: "-=79", y: "-=130", duration: END - ST - 0.6, ease: "none" }, ST + 0.6);
+  // ---- 4. he stands (18.0 - end)
+  cut(ST, camTo(1580, 2600, 1.15), 3.0);
+  M.set("#backrow, .pb", { opacity: 0 }, ST); M.set("#dim", { opacity: 1 }, ST);
+  armsUp("OBSESSION", ST, false);
+  M.to(".f-DISCIPLINE .paper", { y: -120, opacity: 0, duration: 0.25 }, ST + 0.05);
+  armsUp("DISCIPLINE", ST + 0.3, true); M.set(".f-DISCIPLINE .ext", { opacity: 1 }, ST + 0.3);
+  M.to(".f-DISCIPLINE .bd", { y: -110, duration: 0.3, ease: "back.out(2.5)" }, ST + 0.3);
+  flash(ST + 0.4, 0.5);
+  M.to(".aura", { scale: 1.75, duration: 0.35, ease: "back.out(2.5)" }, ST + 0.3);
+  M.to("#aglow", { opacity: 1, scale: 1.25, duration: 0.35 }, ST + 0.3);
+  M.fromTo(".bolt", { opacity: 0 }, { opacity: 1, duration: 0.05, yoyo: true, repeat: 41, repeatDelay: 0.04, ease: "steps(1)" }, ST + 0.3);
+  M.fromTo("#world", { x: -10 }, { x: 10, duration: 0.04, yoyo: true, repeat: 11, ease: "none", immediateRender: false }, ST + 0.3);
+  M.set("#world", { x: 0 }, ST + 0.8);
+  M.fromTo("#e1", { opacity: 0, y: -30 }, { opacity: 0.85, y: 0, duration: 0.25 }, ST + 0.5);
+  M.fromTo("#e2", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.in" }, ST + 0.8);
+  flash(ST + 1.0, 0.45);
+  M.fromTo("#e3", { opacity: 0, y: 20 }, { opacity: 0.85, y: 0, duration: 0.3 }, ST + 1.6);
   M.set({}, {}, END);
   window.__timelines["main"] = M;
 });
