@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>discipline-wins</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0e1d; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Space Grotesk", sans-serif; font-weight: 700; color: #f4f1ea; }
+#bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 38%, #1c2347 0%, #0f1330 45%, #080a17 100%); }
+#grid { position: absolute; inset: 0; opacity: .13; background-image: linear-gradient(#8ea0ff 2px, transparent 2px), linear-gradient(90deg, #8ea0ff 2px, transparent 2px); background-size: 90px 90px; }
+#vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,.6) 100%); z-index: 50; pointer-events: none; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 60; pointer-events: none; }
+.clip { position: absolute; inset: 0; }
+.A { font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+.blk { display: block; position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap; }
+svg.fig { position: absolute; overflow: visible; }
+svg.fig .ln { fill: none; stroke: #f4f1ea; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+.tag { position: absolute; display: block; text-align: center; font-family: "Anton"; letter-spacing: 3px; font-size: 44px; white-space: nowrap; }
+/* scene 1 */
+#s1 .board { position: absolute; left: 190px; top: 300px; width: 700px; height: 250px; border-radius: 18px; background: #14301f; border: 12px solid #5a4630; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+#s1 .board .b1 { display: block; font-family: "Anton"; font-size: 58px; letter-spacing: 3px; color: #dfeee2; }
+#s1 .board .b2 { display: block; font-family: "Anton"; font-size: 104px; letter-spacing: 3px; color: #ffd84a; line-height: 1.05; }
+#s1 .seat { position: absolute; width: 400px; height: 520px; }
+/* scene 2 cards */
+.card .wash { position: absolute; inset: 0; }
+.card .name { top: 150px; font-size: 230px; line-height: 1; }
+.card .sub { top: 1500px; font-size: 62px; }
+.card .sub2 { top: 1600px; font-size: 46px; opacity: .7; }
+.card .num { position: absolute; left: 60px; top: 70px; font-family: "Anton"; font-size: 56px; opacity: .55; display: block; }
+.prop { position: absolute; display: block; }
+.book { position: absolute; display: block; width: 140px; height: 44px; border-radius: 8px; left: 0; }
+.chk { position: absolute; display: flex; align-items: center; justify-content: center; width: 104px; height: 104px; border-radius: 20px; border: 8px solid #54e08a; font-family: "Anton"; font-size: 70px; color: #0b0e1d; }
+.chk i { display: block; position: absolute; inset: 0; border-radius: 10px; background: #54e08a; }
+.chk b { display: block; position: relative; font-weight: 400; }
+/* scene 3 race */
+#s3 .lane { position: absolute; bottom: 330px; width: 190px; height: 1100px; }
+#s3 .track { position: absolute; inset: 0; border-radius: 22px; background: rgba(255,255,255,.05); }
+#s3 .bar { position: absolute; left: 0; bottom: 0; width: 190px; height: 0; border-radius: 22px 22px 0 0; }
+#s3 .hd { position: absolute; left: 35px; top: -140px; width: 120px; height: 120px; border-radius: 50%; background: #f4f1ea; display: block; }
+#s3 .lab { position: absolute; left: -30px; width: 250px; bottom: -80px; text-align: center; font-family: "Anton"; font-size: 38px; letter-spacing: 2px; display: block; }
+#s3 .fin { position: absolute; left: 70px; width: 940px; bottom: 1230px; height: 0; border-top: 8px dashed #f4f1ea; opacity: .8; }
+#s3 .finl { position: absolute; left: 70px; bottom: 1245px; font-family: "Anton"; font-size: 50px; display: block; }
+#s3 .day { top: 110px; font-size: 150px; }
+#s3 .note { position: absolute; display: block; font-family: "Anton"; font-size: 64px; letter-spacing: 2px; white-space: nowrap; padding: 6px 22px; border-radius: 12px; color: #0b0e1d; }
+/* scene 4 */
+#s4 .paper { position: absolute; width: 440px; height: 560px; background: #f7f4ec; border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.55); color: #151826; }
+#s4 .paper .who { display: block; position: absolute; left: 0; top: 26px; width: 100%; text-align: center; font-family: "Anton"; font-size: 46px; letter-spacing: 3px; }
+#s4 .paper .gr { display: block; position: absolute; left: 0; top: 96px; width: 100%; text-align: center; font-family: "Anton"; font-size: 300px; line-height: 1.1; }
+#s4 .paper .why { display: block; position: absolute; left: 0; bottom: 30px; width: 100%; text-align: center; font-size: 36px; }
+#s4 .paper .ul { position: absolute; left: 60px; right: 60px; top: 86px; height: 6px; background: #151826; opacity: .2; }
+#s4 .ttl { top: 120px; font-size: 130px; }
+/* scene 5 */
+#s5 .glow { position: absolute; left: 140px; top: 520px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(84,224,138,.55) 0%, rgba(84,224,138,0) 65%); }
+#s5 .l1 { top: 200px; font-size: 120px; opacity: .75; }
+#s5 .l2 { top: 1370px; font-size: 118px; color: #54e08a; }
+#s5 .l3 { top: 1560px; font-size: 54px; opacity: .8; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="27.2" data-width="1080" data-height="1920" data-fps="30">
+  <div id="bg"></div><div id="grid"></div>
+
+  <div id="s1" class="clip" data-start="0" data-duration="3.2" data-track-index="1">
+    <span class="A blk t1" style="top:110px;font-size:120px">4 students. 1 exam.</span>
+    <div class="board"><span class="b1">EXAM IN</span><span class="b2">30 DAYS</span></div>
+    <div id="s1seats"></div>
+    <span class="A blk t2" style="top:1700px;font-size:120px;color:#ffd84a">who wins?</span>
+  </div>
+
+  <div id="c1" class="clip card" data-start="3.2" data-duration="2.0" data-track-index="1"></div>
+  <div id="c2" class="clip card" data-start="5.2" data-duration="2.0" data-track-index="1"></div>
+  <div id="c3" class="clip card" data-start="7.2" data-duration="2.0" data-track-index="1"></div>
+  <div id="c4" class="clip card" data-start="9.2" data-duration="2.0" data-track-index="1"></div>
+
+  <div id="s3" class="clip" data-start="11.2" data-duration="6.4" data-track-index="1">
+    <span class="A blk day">DAY <span id="dayn">01</span></span>
+    <div class="fin"></div><span class="finl">A+ LINE</span>
+    <div id="lanes"></div>
+    <span class="note n1" style="left:500px;top:520px;background:#ff4d5e">BURNOUT</span>
+    <span class="note n2" style="left:440px;top:760px;background:#54e08a">STILL GOING</span>
+    <span class="note n3" style="left:60px;top:740px;background:#39d0ff">LAST-NIGHT CRAM</span>
+  </div>
+
+  <div id="s4" class="clip" data-start="17.6" data-duration="5.2" data-track-index="1">
+    <span class="A blk ttl">results</span>
+    <div id="papers"></div>
+  </div>
+
+  <div id="s5" class="clip" data-start="22.8" data-duration="4.4" data-track-index="1">
+    <div class="glow"></div>
+    <span class="A blk l1">talent starts.</span>
+    <div id="hero"></div>
+    <span class="A blk l2">discipline finishes.</span>
+    <span class="blk l3">1 hour. Every day. That's it.</span>
+  </div>
+
+  <div id="flash"></div><div id="vig"></div>
+</div>
+<script>
+const C = { TALENT: "#39d0ff", EGO: "#ffd84a", OBSESSION: "#ff4d5e", DISCIPLINE: "#54e08a" };
+const B = 0.4; // one beat (150 BPM). Change to re-time every cut.
+// seated stick figure at a desk, viewBox 400x520
+function fig(k, w, x, y, extra) {
+  const c = C[k];
+  const acc = {
+    TALENT: `<path class="ln" d="M150 62 A52 52 0 0 1 250 62" style="stroke:${c};stroke-width:14"/><rect x="134" y="52" width="26" height="50" rx="10" fill="${c}"/><rect x="240" y="52" width="26" height="50" rx="10" fill="${c}"/>`,
+    EGO: `<path d="M158 34 L158 -14 L181 12 L200 -22 L219 12 L242 -14 L242 34 Z" fill="${c}"/>`,
+    OBSESSION: `<circle cx="184" cy="72" r="8" fill="${c}"/><circle cx="216" cy="72" r="8" fill="${c}"/><path d="M172 56 L194 62 M228 56 L206 62" stroke="${c}" stroke-width="6" stroke-linecap="round"/>`,
+    DISCIPLINE: `<path d="M180 80 Q200 96 220 80" stroke="#0b0e1d" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="150" y="30" width="100" height="16" rx="8" fill="${c}"/>`,
+  }[k];
+  return `<svg class="fig f-${k}" viewBox="0 0 400 520" style="left:${x}px;top:${y}px;width:${w}px;height:${w * 1.3}px">
+    <g class="bd">
+      <line class="ln" x1="200" y1="120" x2="200" y2="290"/>
+      <g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g>
+      <g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>
+      <g class="hdg"><circle cx="200" cy="72" r="50" fill="#f4f1ea"/>${acc}</g>
+    </g>
+    <rect x="40" y="296" width="320" height="30" rx="10" fill="#3a4374"/>
+    <rect x="66" y="326" width="20" height="190" fill="#2a3158"/><rect x="314" y="326" width="20" height="190" fill="#2a3158"/>
+    <rect x="150" y="276" width="100" height="18" rx="3" fill="#f7f4ec" stroke="${c}" stroke-width="4"/>
+    ${extra || ""}
+  </svg>`;
+}
+// scene 1 seats
+const order = ["TALENT", "EGO", "OBSESSION", "DISCIPLINE"];
+const pos = [[110, 640], [570, 640], [110, 1140], [570, 1140]];
+document.getElementById("s1seats").innerHTML = order.map((k, i) =>
+  `<div class="seat seat${i}" style="left:${pos[i][0]}px;top:${pos[i][1]}px">${fig(k, 320, 40, 0)}<span class="tag" style="left:0;width:400px;top:426px;color:${C[k]}">${k}</span></div>`).join("");
+// scene 2 cards
+const cards = [
+  ["c1", "TALENT", "“I don't need to study.”", "Day 1: music on. Book closed."],
+  ["c2", "EGO", "“I'm already the best.”", "Day 1: admires old trophies."],
+  ["c3", "OBSESSION", "20 hours a day. No sleep.", "Day 1: 3:07 AM. Still going."],
+  ["c4", "DISCIPLINE", "1 hour. Every single day.", "Day 1: one page. Lights out."],
+];
+const props = {
+  TALENT: `<span class="prop A nt nt1" style="left:760px;top:760px;font-size:120px;color:${C.TALENT}">♪</span><span class="prop A nt nt2" style="left:200px;top:700px;font-size:90px;color:${C.TALENT}">♫</span><span class="prop A nt nt3" style="left:820px;top:560px;font-size:80px;color:${C.TALENT}">♪</span>`,
+  EGO: `<span class="prop A sp sp1" style="left:180px;top:560px;font-size:110px;color:${C.EGO}">✦</span><span class="prop A sp sp2" style="left:800px;top:640px;font-size:150px;color:${C.EGO}">✦</span><span class="prop A sp sp3" style="left:760px;top:940px;font-size:90px;color:${C.EGO}">#1</span>`,
+  OBSESSION: `<div class="prop bks" style="left:640px;top:719px;width:140px;height:400px">${[0,1,2,3,4,5,6].map(i => `<span class="book bk${i}" style="bottom:${i * 50}px;background:${["#ff4d5e","#c93a4a","#ff7d6b","#a52a3a","#ff4d5e","#ff9a8a","#c93a4a"][i]}"></span>`).join("")}</div><span class="prop A clk" style="left:90px;top:610px;font-size:96px;color:${C.OBSESSION}">3:07 AM</span>`,
+  DISCIPLINE: `<div class="prop" style="left:118px;top:560px;width:850px;height:110px">${[0,1,2,3,4,5,6].map(i => `<span class="chk ck${i}" style="left:${i * 122}px;top:0"><i></i><b>✓</b></span>`).join("")}</div>`,
+};
+cards.forEach(([id, k, a, b], i) => {
+  document.getElementById(id).innerHTML =
+    `<div class="wash" style="background:radial-gradient(ellipse at 50% 55%, ${C[k]}44 0%, transparent 62%)"></div>
+     <span class="num">0${i + 1} / 04</span>
+     <span class="A blk name" style="color:${C[k]};font-size:${k.length > 8 ? 190 : 250}px">${k}</span>
+     ${props[k]}
+     ${fig(k, 620, 230, 660)}
+     <span class="blk sub">${a}</span>`;
+});
+// scene 3 lanes
+document.getElementById("lanes").innerHTML = order.map((k, i) =>
+  `<div class="lane ln${i}" style="left:${85 + i * 240}px"><div class="track"></div><div class="bar br-${k}" style="background:${C[k]}"><span class="hd"></span></div><span class="lab" style="color:${C[k]}">${k}</span></div>`).join("");
+// scene 4 papers
+const res = [["EGO", "D", "didn't study", 70, 330, -6], ["TALENT", "B-", "crammed last night", 570, 330, 5], ["OBSESSION", "C", "burned out by day 14", 70, 960, 4], ["DISCIPLINE", "A+", "showed up every day", 570, 960, -4]];
+document.getElementById("papers").innerHTML = res.map(([k, g, w, x, y, r], i) =>
+  `<div class="paper pp${i}" style="left:${x}px;top:${y}px"><span class="who" style="color:${k === "DISCIPLINE" ? "#17a355" : "#151826"}">${k}</span><div class="ul"></div><span class="gr" style="color:${k === "DISCIPLINE" ? "#17a355" : "#e0283c"}">${g}</span><span class="why">${w}</span></div>`).join("");
+// scene 5 hero (standing, arms up)
+document.getElementById("hero").innerHTML = `<svg class="fig hero" viewBox="0 0 400 560" style="left:290px;top:560px;width:500px;height:700px">
+  <g class="hb"><line class="ln" x1="200" y1="120" x2="200" y2="330"/><polyline class="ln" points="200,330 150,520"/><polyline class="ln" points="200,330 250,520"/>
+  <g class="hl"><polyline class="ln" points="200,170 120,110 90,20"/></g><g class="hr"><polyline class="ln" points="200,170 280,110 310,20"/></g>
+  <circle cx="200" cy="72" r="50" fill="#f4f1ea"/><rect x="150" y="30" width="100" height="16" rx="8" fill="${C.DISCIPLINE}"/><path d="M178 78 Q200 100 222 78" stroke="#0b0e1d" stroke-width="7" fill="none" stroke-linecap="round"/></g></svg>`;
+
+document.fonts.ready.then(() => {
+  const tl = gsap.timeline({ paused: true });
+  const q = (s) => document.querySelectorAll(s);
+  const pop = (s, t, o = {}) => tl.fromTo(s, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.2)", ...o }, t);
+  const cut = (t, a = 0.5) => tl.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, t);
+  tl.fromTo("#grid", { backgroundPosition: "0px 0px" }, { backgroundPosition: "0px 360px", duration: 27.2, ease: "none" }, 0);
+
+  // ---- scene 1
+  tl.fromTo("#s1 .t1", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 0.02);
+  pop("#s1 .board", 0.1, { transformOrigin: "50% 50%" });
+  [0, 1, 2, 3].forEach((i) => {
+    tl.fromTo(`#s1 .seat${i}`, { y: 140, opacity: 0, scale: 0.6 }, { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, B * (i + 1));
+  });
+  pop("#s1 .t2", B * 6);
+  tl.fromTo("#s1 .t2", { scale: 1 }, { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, B * 7);
+
+  // ---- scene 2 cards
+  cards.forEach(([id, k], i) => {
+    const t = 3.2 + i * 2.0, s = "#" + id;
+    cut(t);
+    tl.fromTo(`${s} .name`, { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: "power4.out" }, t);
+    tl.fromTo(`${s} .fig`, { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, t + 0.05);
+    tl.fromTo(`${s} .sub`, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.2 }, t + 0.08);
+    tl.fromTo(`${s} .wash`, { opacity: 0.5 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 9, ease: "sine.inOut" }, t);
+  });
+  // talent: head bob + notes
+  tl.fromTo("#c1 .hdg", { rotation: -7, svgOrigin: "200 120" }, { rotation: 7, svgOrigin: "200 120", duration: 0.2, yoyo: true, repeat: 7, ease: "sine.inOut" }, 3.2);
+  tl.fromTo("#c1 .aL", { rotation: 0, svgOrigin: "200 160" }, { rotation: 62, svgOrigin: "200 160", duration: 0.3, ease: "power2.out" }, 3.4);
+  tl.fromTo("#c1 .aR", { rotation: 0, svgOrigin: "200 160" }, { rotation: -62, svgOrigin: "200 160", duration: 0.3, ease: "power2.out" }, 3.4);
+  ["nt1", "nt2", "nt3"].forEach((n, i) => tl.fromTo(`#c1 .${n}`, { y: 60, opacity: 0, rotation: -15 }, { y: -120, opacity: 1, rotation: 15, duration: 1.3 - i * 0.2, ease: "power1.out" }, 3.3 + i * 0.2));
+  // ego: flex + crown + sparkles
+  tl.fromTo("#c2 .aL", { rotation: 0, svgOrigin: "200 160" }, { rotation: 38, svgOrigin: "200 160", duration: 0.3, ease: "back.out(2)" }, 5.40);
+  tl.fromTo("#c2 .aR", { rotation: 0, svgOrigin: "200 160" }, { rotation: -38, svgOrigin: "200 160", duration: 0.3, ease: "back.out(2)" }, 5.40);
+  tl.fromTo("#c2 .bd", { y: 0 }, { y: -14, duration: 0.2, yoyo: true, repeat: 5, ease: "sine.inOut" }, 5.60);
+  ["sp1", "sp2", "sp3"].forEach((n, i) => { pop(`#c2 .${n}`, 5.40 + i * B); tl.fromTo(`#c2 .${n}`, { rotation: 0 }, { rotation: i === 2 ? 0 : 90, duration: 1.0, ease: "none", immediateRender: false }, 5.70 + i * B); });
+  // obsession: shake + books
+  tl.fromTo("#c3 .bd", { x: -5 }, { x: 5, duration: 0.05, yoyo: true, repeat: 31, ease: "none" }, 7.20);
+  tl.fromTo("#c3 .aR", { rotation: -8, svgOrigin: "200 160" }, { rotation: 10, svgOrigin: "200 160", duration: 0.08, yoyo: true, repeat: 19, ease: "none" }, 7.20);
+  [0, 1, 2, 3, 4, 5, 6].forEach((i) => tl.fromTo(`#c3 .bk${i}`, { y: -500, opacity: 0, rotation: (i % 2 ? 8 : -8) }, { y: 0, opacity: 1, rotation: (i % 2 ? 2 : -2), duration: 0.18, ease: "power2.in" }, 7.30 + i * 0.17));
+  tl.fromTo("#c3 .clk", { opacity: 0.6 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 7, ease: "sine.inOut" }, 7.20);
+  // discipline: calm writing + checks
+  tl.fromTo("#c4 .aR", { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, 9.20);
+  [0, 1, 2, 3, 4, 5, 6].forEach((i) => { tl.fromTo(`#c4 .ck${i} i`, { scale: 0 }, { scale: 1, duration: 0.14, ease: "back.out(3)" }, 9.40 + i * 0.18); tl.fromTo(`#c4 .ck${i} b`, { scale: 0 }, { scale: 1, duration: 0.14, ease: "back.out(3)" }, 9.44 + i * 0.18); });
+
+  // ---- scene 3 race (starts 11.20, race 11.60 -> 15.6)
+  const R = 11.60, D = 5.6;
+  cut(11.20);
+  const day = { v: 1 }, dn = document.getElementById("dayn");
+  tl.fromTo(day, { v: 1 }, { v: 30, duration: D, ease: "none", onUpdate: () => { dn.textContent = String(Math.round(day.v)).padStart(2, "0"); } }, R);
+  tl.fromTo("#s3 .br-DISCIPLINE", { height: 0 }, { height: 1010, duration: D, ease: "none" }, R);
+  tl.fromTo("#s3 .br-EGO", { height: 0 }, { height: 150, duration: D, ease: "power1.out" }, R);
+  tl.fromTo("#s3 .br-TALENT", { height: 0 }, { height: 120, duration: 4.6, ease: "none" }, R);
+  tl.to("#s3 .br-TALENT", { height: 600, duration: 0.9, ease: "power3.in" }, R + 4.6);
+  tl.fromTo("#s3 .br-OBSESSION", { height: 0 }, { height: 840, duration: 2.0, ease: "power2.out" }, R);
+  tl.fromTo("#s3 .ln2", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 15, ease: "none" }, R + 1.8);
+  tl.to("#s3 .br-OBSESSION", { height: 330, duration: 0.6, ease: "bounce.out" }, R + 2.6);
+  tl.to("#s3 .br-OBSESSION", { backgroundColor: "#6b3a44", duration: 0.3 }, R + 2.6);
+  cut(R + 2.6, 0.35);
+  pop("#s3 .n1", R + 2.6); tl.to("#s3 .n1", { opacity: 0, duration: 0.2 }, R + 3.8);
+  pop("#s3 .n2", R + 3.4); tl.to("#s3 .n2", { opacity: 0, duration: 0.2 }, R + 4.6);
+  pop("#s3 .n3", R + 4.7);
+  tl.fromTo("#s3 .day", { scale: 1 }, { scale: 1.12, duration: 0.2, yoyo: true, repeat: 1, immediateRender: false }, R + D);
+  cut(R + 5.2, 0.4);
+  tl.fromTo("#s3 .br-DISCIPLINE .hd", { scale: 1 }, { scale: 1.25, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut", immediateRender: false }, R + 5.2);
+
+  // ---- scene 4 results (17.60)
+  cut(17.60);
+  tl.fromTo("#s4 .ttl", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, 17.60);
+  res.forEach((r, i) => {
+    const t = 18.00 + i * 0.8;
+    tl.fromTo(`#s4 .pp${i}`, { scale: 2.4, opacity: 0, rotation: r[5] * 4 }, { scale: 1, opacity: 1, rotation: r[5], duration: 0.2, ease: "power4.in" }, t);
+    tl.fromTo("#papers", { y: i === 3 ? 26 : 12 }, { y: 0, duration: 0.3, ease: "elastic.out(1.2,0.3)", immediateRender: false }, t + 0.2);
+    if (i === 3) cut(t + 0.2, 0.7);
+  });
+  tl.to("#s4 .pp0, #s4 .pp1, #s4 .pp2", { opacity: 0.35, duration: 0.3 }, 21.20);
+  tl.to("#s4 .pp3", { scale: 1.16, x: -40, y: -40, duration: 0.4, ease: "back.out(2)" }, 21.20);
+
+  // ---- scene 5 (22.80)
+  cut(22.80, 0.6);
+  tl.fromTo("#s5 .l1", { opacity: 0, y: 30 }, { opacity: 0.75, y: 0, duration: 0.3 }, 22.85);
+  tl.fromTo("#s5 .hero", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 22.90);
+  tl.fromTo("#s5 .glow", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }, 23.00);
+  tl.fromTo("#s5 .glow", { scale: 1 }, { scale: 1.12, duration: 0.4, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, 23.50);
+  tl.fromTo("#s5 .hb", { y: 0 }, { y: -22, duration: 0.2, yoyo: true, repeat: 15, ease: "sine.inOut", immediateRender: false }, 23.40);
+  tl.fromTo("#s5 .l2", { scale: 2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: "power4.in" }, 23.60);
+  cut(23.82, 0.5);
+  tl.fromTo("#s5 .l3", { opacity: 0, y: 20 }, { opacity: 0.8, y: 0, duration: 0.3 }, 24.40);
+  tl.set({}, {}, 27.20);
+  window.__timelines["main"] = tl;
+});
+</script>
+</body>
+</html>
