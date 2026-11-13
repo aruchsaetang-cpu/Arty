@@ -96,8 +96,8 @@ svg.fig text { font-family: "Anton"; }
 <script>
 const C = { TALENT: "#39d0ff", EGO: "#ffd84a", OBSESSION: "#ff4d5e", DISCIPLINE: "#54e08a" };
 const P = { TALENT: [700, 1950, 440], EGO: [1460, 1950, 440], OBSESSION: [580, 2860, 600], DISCIPLINE: [1580, 2860, 600] }; // cx, deskY, width
-const G = { TALENT: "B-", EGO: "D", OBSESSION: "A+++", DISCIPLINE: "A+" };
-const G0 = { TALENT: "A-", EGO: "B+", OBSESSION: "D+", DISCIPLINE: "F" };
+const G = { TALENT: "A+", EGO: "B+", OBSESSION: "A", DISCIPLINE: "A+" };
+const G0 = { TALENT: "A+", EGO: "B+", OBSESSION: "D+", DISCIPLINE: "F" };
 const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)"><rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 3 ? 112 : g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text></g></g>`;
 function fig(k) {
   const c = C[k], [cx, dy, w] = P[k], sc = w / 400;
@@ -130,7 +130,7 @@ function fig(k) {
     ${k === "EGO" ? `<g class="feet"><polyline class="ln" points="214,286 300,262 352,270 362,238"/><polyline class="ln" points="214,286 292,284 338,254 356,226"/></g>` : ""}
     ${prop}
     <g class="meter"><rect x="90" y="-52" width="220" height="26" rx="13" fill="#0b0e1d" stroke="#f4f1ea" stroke-width="5"/><rect class="mf" x="96" y="-46" width="0" height="14" rx="7" fill="${c}"/></g>
-    ${paper("paper", G[k], k === "DISCIPLINE" || k === "OBSESSION", k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], k === "TALENT" || k === "EGO", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
+    ${paper("paper", G[k], true, k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], k === "TALENT" || k === "EGO", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
   </svg>`;
 }
 const order = ["TALENT", "EGO", "OBSESSION", "DISCIPLINE"];
@@ -198,20 +198,21 @@ document.fonts.ready.then(() => {
   tl.to("#clock .hh", { rotation: 100 + 360 * 2, duration: D, ease: "none" }, T);
   tl.to("#cam", { ...camTo(1080, 1850, 0.6), duration: D, ease: "none" }, T);
   // progress meters (full = 208)
+  gsap.set(".f-TALENT .mf", { attr: { width: 200 } }); gsap.set(".f-EGO .mf", { attr: { width: 150 } });
+  gsap.set(".f-OBSESSION .mf", { attr: { width: 40 } }); gsap.set(".f-DISCIPLINE .mf", { attr: { width: 10 } });
   tl.to(".f-DISCIPLINE .mf", { attr: { width: 208 }, duration: D, ease: "none" }, T);
-  tl.to(".f-EGO .mf", { attr: { width: 30 }, duration: D, ease: "power1.out" }, T);
-  tl.to(".f-TALENT .mf", { attr: { width: 24 }, duration: 4.2, ease: "none" }, T);
-  tl.to(".f-TALENT .mf", { attr: { width: 128 }, duration: 0.9, ease: "power3.in" }, T + 4.2);
-  tl.fromTo(".f-TALENT .bd", { x: -5 }, { x: 5, duration: 0.05, yoyo: true, repeat: 17, ease: "none", immediateRender: false }, T + 4.2);
-  tl.to(".f-OBSESSION .mf", { attr: { width: 180 }, duration: 1.8, ease: "power2.out" }, T);
+  tl.to(".f-OBSESSION .mf", { attr: { width: 170 }, duration: 1.8, ease: "power2.out" }, T);
   // burnout
   const BO = T + 2.4;
   tl.to(".f-OBSESSION .mf", { attr: { width: 70 }, fill: "#7a3d48", duration: 0.5, ease: "bounce.out" }, BO);
   tl.to(".f-OBSESSION .hdg", { y: 150, rotation: 24, svgOrigin: "200 120", duration: 0.35, ease: "power3.in" }, BO);
   tl.fromTo(".burn", { scale: 0, opacity: 0, transformOrigin: "50% 100%" }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(2.5)" }, BO + 0.1);
   tl.to(".burn", { opacity: 0, duration: 0.25 }, BO + 1.6);
-  tl.fromTo(".zz", { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 0.8, yoyo: true, repeat: 5, ease: "sine.inOut" }, BO + 0.5);
+  tl.fromTo(".zz", { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 0.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, BO + 0.5);
   flash(BO, 0.25);
+  // he wakes up and claws back, but the crash cost him
+  tl.to(".f-OBSESSION .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.3, ease: "back.out(2)" }, BO + 1.7);
+  tl.to(".f-OBSESSION .mf", { attr: { width: 184 }, fill: "#ff4d5e", duration: 1.0, ease: "power1.inOut" }, BO + 1.8);
 
   // ---- 4. exam day: papers come back (16.0 - 21.2)
   flash(16.0, 0.55);
