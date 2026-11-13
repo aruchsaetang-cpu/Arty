@@ -50,14 +50,15 @@ svg.fig text { font-family: "Anton"; }
 .blk { display: block; position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap; }
 .nm { top: 150px; font-size: 200px; line-height: 1; text-shadow: 0 10px 40px rgba(0,0,0,.6); }
 .qt { top: 1560px; font-size: 62px; text-shadow: 0 4px 0 #05060d, 0 8px 30px rgba(0,0,0,.8); }
+#e0 { top: 1640px; font-size: 96px; text-shadow: 0 6px 30px rgba(0,0,0,.8); }
 #e1 { top: 150px; font-size: 118px; }
 #e2 { top: 1585px; font-size: 118px; color: #54e08a; text-shadow: 0 8px 40px rgba(84,224,138,.5); }
 #e3 { top: 1742px; font-size: 52px; }
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="25.6" data-width="1080" data-height="1920" data-fps="30">
- <div id="stage" class="clip" data-start="0" data-duration="25.6" data-track-index="1">
+<div id="root" data-composition-id="main" data-start="0" data-duration="26.8" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="26.8" data-track-index="1">
   <div id="cam"><div id="world">
     <div id="wall" class="abs"></div>
     <div class="abs poster" style="left:1500px;top:1240px;width:150px;height:200px;background:#39d0ff33;border:8px solid #cfd6f2"></div>
@@ -65,7 +66,7 @@ svg.fig text { font-family: "Anton"; }
     <div class="abs win" style="left:130px"><div class="abs sky"></div><div class="abs wheel"><span class="abs moon"></span><span class="abs sun"></span></div><span class="abs mull" style="left:186px;top:0;width:14px;height:600px"></span><span class="abs mull" style="left:0;top:290px;width:400px;height:14px"></span></div>
     <div class="abs win" style="left:1600px"><div class="abs sky"></div><div class="abs wheel"><span class="abs moon"></span><span class="abs sun"></span></div><span class="abs mull" style="left:186px;top:0;width:14px;height:600px"></span><span class="abs mull" style="left:0;top:290px;width:400px;height:14px"></span></div>
     <div id="clock" class="abs"><i class="hh"></i><i class="mh"></i></div>
-    <div id="board" class="abs"><span class="b1" id="b1">EXAM IN</span><span class="b2" id="b2">30 DAYS</span></div>
+    <div id="board" class="abs"><span class="b1" id="b1">TEST 1</span><span class="b2" id="b2">RESULTS</span></div>
     <div id="tray" class="abs"></div>
     <div id="wains" class="abs"></div><div id="base" class="abs"></div>
     <div id="floor" class="abs"></div><div id="floorl" class="abs"></div>
@@ -83,6 +84,7 @@ svg.fig text { font-family: "Anton"; }
   <div id="ui">
     <div id="vig"></div>
     <div id="caps"></div>
+    <span id="e0" class="A blk">first test.</span>
     <span id="e1" class="A blk">talent starts.</span>
     <span id="e2" class="A blk">discipline finishes.</span>
     <span id="e3" class="blk">1 hour. Every day. That's it.</span>
@@ -95,6 +97,8 @@ svg.fig text { font-family: "Anton"; }
 const C = { TALENT: "#39d0ff", EGO: "#ffd84a", OBSESSION: "#ff4d5e", DISCIPLINE: "#54e08a" };
 const P = { TALENT: [700, 1950, 440], EGO: [1460, 1950, 440], OBSESSION: [580, 2860, 600], DISCIPLINE: [1580, 2860, 600] }; // cx, deskY, width
 const G = { TALENT: "B-", EGO: "D", OBSESSION: "C", DISCIPLINE: "A+" };
+const G0 = { TALENT: "A", EGO: "B", OBSESSION: "D", DISCIPLINE: "F" };
+const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)"><rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text></g></g>`;
 function fig(k) {
   const c = C[k], [cx, dy, w] = P[k], sc = w / 400;
   const acc = {
@@ -105,17 +109,16 @@ function fig(k) {
   }[k];
   const prop = {
     TALENT: `<text class="nt nt1" x="300" y="40" font-size="70" fill="${c}">♪</text><text class="nt nt2" x="60" y="20" font-size="56" fill="${c}">♫</text><text class="nt nt3" x="330" y="-40" font-size="48" fill="${c}">♪</text>`,
-    EGO: `<g class="trophy"><rect x="296" y="282" width="44" height="12" rx="3" fill="${c}"/><rect x="312" y="262" width="12" height="22" fill="${c}"/><path d="M294 214 H342 V236 A24 24 0 0 1 294 236 Z" fill="${c}"/></g><text class="sp sp1" x="40" y="40" font-size="64" fill="${c}">✦</text><text class="sp sp2" x="330" y="150" font-size="80" fill="${c}">✦</text>`,
+    EGO: `<g class="trophy" transform="translate(-246 0)"><rect x="296" y="282" width="44" height="12" rx="3" fill="${c}"/><rect x="312" y="262" width="12" height="22" fill="${c}"/><path d="M294 214 H342 V236 A24 24 0 0 1 294 236 Z" fill="${c}"/></g><text class="sp sp1" x="40" y="40" font-size="64" fill="${c}">✦</text><text class="sp sp2" x="345" y="110" font-size="80" fill="${c}">✦</text>`,
     OBSESSION: [0,1,2,3,4,5].map(i => `<rect class="bk bk${i}" x="${286 + (i % 2) * 6}" y="${270 - i * 26}" width="74" height="22" rx="4" fill="${["#ff4d5e","#c93a4a","#ff7d6b","#a52a3a","#ff4d5e","#ff9a8a"][i]}"/>`).join("") + `<text class="zz" x="250" y="150" font-size="60" fill="#f4f1ea">z z z</text><g class="burn"><rect x="60" y="-150" width="280" height="84" rx="14" fill="${c}"/><text x="200" y="-88" font-size="62" text-anchor="middle" fill="#0b0e1d" letter-spacing="3">BURNOUT</text></g>`,
     DISCIPLINE: [0,1,2,3,4,5,6].map(i => `<g class="ck ck${i}"><rect x="${67 + i * 39}" y="-112" width="32" height="32" rx="7" fill="${c}"/><path d="M${74 + i * 39} -96 l7 8 l12 -15" stroke="#0b0e1d" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`).join("") + `<g class="lamp"><path d="M70 294 L70 240 L100 220" class="ln" style="stroke:#8892c8;stroke-width:8"/><path d="M92 206 L126 222 L110 246 Z" fill="#ffe27a"/><ellipse cx="150" cy="292" rx="70" ry="10" fill="#ffe27a" opacity=".35"/></g>`,
   }[k];
   return `<svg class="fig f-${k}" viewBox="0 0 400 520" style="left:${cx - w / 2}px;top:${dy - 296 * sc}px;width:${w}px;height:${w * 1.3}px">
-    <rect x="120" y="210" width="160" height="150" rx="14" fill="#1b2147"/>
+    ${k === "EGO" ? `<rect x="104" y="96" width="192" height="270" rx="26" fill="#3a2a6e" stroke="${c}" stroke-width="8"/><circle cx="112" cy="100" r="16" fill="${c}"/><circle cx="288" cy="100" r="16" fill="${c}"/>` : `<rect x="120" y="210" width="160" height="150" rx="14" fill="#1b2147"/>`}
     <g class="bd">
       <line class="ln ext" x1="200" y1="200" x2="200" y2="330"/>
       <line class="ln" x1="200" y1="120" x2="200" y2="290"/>
-      <g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g>
-      <g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>
+      ${k === "EGO" ? `<g class="aL"><polyline class="ln" points="200,160 128,128 158,62"/></g><g class="aR"><polyline class="ln" points="200,160 272,128 242,62"/></g>` : `<g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g><g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>`}
       <polyline class="ln upL" points="200,165 124,104 96,18"/><polyline class="ln upR" points="200,165 276,104 304,18"/>
       <g class="hdg"><circle cx="200" cy="72" r="50" fill="#f4f1ea"/>${acc}</g>
     </g>
@@ -124,9 +127,10 @@ function fig(k) {
     <rect x="60" y="430" width="22" height="86" fill="#222950"/><rect x="318" y="430" width="22" height="86" fill="#222950"/>
     <text x="200" y="398" font-size="${k.length > 8 ? 46 : 54}" text-anchor="middle" fill="${c}" letter-spacing="3">${k}</text>
     <rect x="156" y="278" width="88" height="16" rx="3" fill="#f7f4ec" stroke="${c}" stroke-width="4"/>
+    ${k === "EGO" ? `<g class="feet"><polyline class="ln" points="214,286 300,262 352,270 362,238"/><polyline class="ln" points="214,286 292,284 338,254 356,226"/></g>` : ""}
     ${prop}
     <g class="meter"><rect x="90" y="-52" width="220" height="26" rx="13" fill="#0b0e1d" stroke="#f4f1ea" stroke-width="5"/><rect class="mf" x="96" y="-46" width="0" height="14" rx="7" fill="${c}"/></g>
-    <g class="paper"><g transform="translate(0 -46)"><rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${k === "DISCIPLINE" || k === "EGO" ? -4 : 4} 200 -145)"/><text x="200" y="-70" font-size="${G[k].length > 1 ? 180 : 210}" text-anchor="middle" fill="${k === "DISCIPLINE" ? "#17a355" : "#e0283c"}" transform="rotate(${k === "DISCIPLINE" || k === "EGO" ? -4 : 4} 200 -145)">${G[k]}</text></g></g>
+    ${paper("paper", G[k], k === "DISCIPLINE", k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], k === "TALENT" || k === "EGO", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
   </svg>`;
 }
 const order = ["TALENT", "EGO", "OBSESSION", "DISCIPLINE"];
@@ -136,8 +140,9 @@ const Q = { TALENT: "“I don't need to study.”", EGO: "“I'm already the bes
 document.getElementById("caps").innerHTML = order.map((k) => `<span class="A blk nm nm-${k}" style="color:${C[k]};font-size:${k.length > 8 ? 168 : 210}px">${k}</span><span class="blk qt qt-${k}">${Q[k]}</span>`).join("");
 
 document.fonts.ready.then(() => {
-  const tl = gsap.timeline({ paused: true });
-  const END = 25.6;
+  const M = gsap.timeline({ paused: true });
+  const tl = gsap.timeline();
+  const S = 1.2, END = 25.6;
   const camTo = (cx, cy, s) => ({ x: 540 - cx * s, y: 960 - cy * s, scale: s });
   const WIDE = camTo(1080, 1850, 0.56);
   const close = (k) => { const [cx, dy, w] = P[k]; const s = w > 500 ? 1.12 : 1.5; return camTo(cx, dy - 150 * (w / 400), s); };
@@ -145,7 +150,7 @@ document.fonts.ready.then(() => {
   const cam = (t, c, d = 0.36, ease = "power4.inOut") => tl.to("#cam", { ...c, duration: d, ease }, t);
   const flash = (t, a = 0.4) => tl.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, t);
   gsap.set("#cam", { transformOrigin: "0 0", ...camTo(1080, 1850, 0.5) });
-  gsap.set("#focus, #flash, .nm, .qt, #e1, #e2, #e3, #dim, .meter, .paper, .zz, .burn, .ext, .upL, .upR, .nt, .sp, .bk, .ck, .beam", { opacity: 0 });
+  gsap.set("#e0, .paper0, #focus, #flash, .nm, .qt, #e1, #e2, #e3, #dim, .meter, .paper, .zz, .burn, .ext, .upL, .upR, .nt, .sp, .bk, .ck, .beam", { opacity: 0 });
   gsap.set("#clock .hh", { rotation: 100 }); gsap.set("#clock .mh", { rotation: 40 });
   gsap.set(".sky", { backgroundColor: "#0b1638" });
 
@@ -153,9 +158,7 @@ document.fonts.ready.then(() => {
   tl.fromTo(".f-TALENT .hdg", { rotation: -7, svgOrigin: "200 120" }, { rotation: 7, svgOrigin: "200 120", duration: 0.2, yoyo: true, repeat: 71, ease: "sine.inOut" }, 0);
   tl.fromTo(".f-TALENT .aL", { rotation: 0, svgOrigin: "200 160" }, { rotation: 62, svgOrigin: "200 160", duration: 0.3 }, 0.4);
   tl.fromTo(".f-TALENT .aR", { rotation: 0, svgOrigin: "200 160" }, { rotation: -62, svgOrigin: "200 160", duration: 0.3 }, 0.4);
-  tl.fromTo(".f-EGO .aL", { rotation: 0, svgOrigin: "200 160" }, { rotation: 38, svgOrigin: "200 160", duration: 0.3 }, 0.6);
-  tl.fromTo(".f-EGO .aR", { rotation: 0, svgOrigin: "200 160" }, { rotation: -38, svgOrigin: "200 160", duration: 0.3 }, 0.6);
-  tl.fromTo(".f-EGO .bd", { y: 0 }, { y: -8, duration: 0.4, yoyo: true, repeat: 39, ease: "sine.inOut" }, 0);
+  tl.fromTo(".f-EGO .bd", { rotation: -15, svgOrigin: "200 290" }, { rotation: -10, svgOrigin: "200 290", duration: 0.8, yoyo: true, repeat: 31, ease: "sine.inOut" }, 0);
   tl.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 263, ease: "none" }, 0);
   tl.fromTo(".f-OBSESSION .aR", { rotation: -8, svgOrigin: "200 160" }, { rotation: 10, svgOrigin: "200 160", duration: 0.08, yoyo: true, repeat: 163, ease: "none" }, 0);
   tl.fromTo(".f-DISCIPLINE .aR", { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.4, yoyo: true, repeat: 51, ease: "sine.inOut" }, 0);
@@ -186,8 +189,7 @@ document.fonts.ready.then(() => {
   cam(10.4, WIDE, 0.5);
   tl.to("#focus", { opacity: 0, duration: 0.3 }, 10.4);
   tl.to(".meter", { opacity: 1, duration: 0.25 }, 10.5);
-  const day = { v: 30 }, b2 = document.getElementById("b2"), b1 = document.getElementById("b1");
-  tl.fromTo(day, { v: 30 }, { v: 0, duration: D, ease: "none", onUpdate: () => { const n = Math.round(day.v); b1.textContent = n ? "EXAM IN" : "TODAY:"; b2.textContent = n ? n + (n === 1 ? " DAY" : " DAYS") : "EXAM"; } }, T);
+  const b2 = document.getElementById("b2"), b1 = document.getElementById("b1");
   tl.fromTo("#night", { opacity: 1 }, { opacity: 0.12, duration: H, yoyo: true, repeat: 10, ease: "sine.inOut" }, T);
   tl.fromTo(".sky", { backgroundColor: "#0b1638" }, { backgroundColor: "#6fc3ff", duration: H, yoyo: true, repeat: 10, ease: "sine.inOut" }, T);
   tl.fromTo(".beam", { opacity: 0 }, { opacity: 1, duration: H, yoyo: true, repeat: 10, ease: "sine.inOut" }, T);
@@ -226,6 +228,7 @@ document.fonts.ready.then(() => {
 
   // ---- 5. the winner stands (21.2 - end)
   cam(21.2, camTo(1580, 2600, 1.15), 0.5);
+  tl.to("#backrow", { opacity: 0, duration: 0.4 }, 21.2);
   tl.to(".f-DISCIPLINE .paper", { y: -120, opacity: 0, duration: 0.3 }, 21.4);
   tl.to(".f-DISCIPLINE .aL, .f-DISCIPLINE .aR", { opacity: 0, duration: 0.1 }, 21.6);
   tl.to(".f-DISCIPLINE .upL, .f-DISCIPLINE .upR, .f-DISCIPLINE .ext", { opacity: 1, duration: 0.1 }, 21.6);
@@ -238,7 +241,28 @@ document.fonts.ready.then(() => {
   tl.fromTo("#e3", { opacity: 0, y: 20 }, { opacity: 0.85, y: 0, duration: 0.3 }, 23.4);
   tl.to("#cam", { scale: "+=0.05", x: "-=79", y: "-=130", duration: 3.6, ease: "none" }, 21.8);
   tl.set({}, {}, END);
-  window.__timelines["main"] = tl;
+  M.add(tl, S);
+  const clk = { v: 0 }; let last = "";
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: S + END, ease: "none", onUpdate: () => {
+    const t = M.time(); let a, b;
+    if (t < 2.9) { a = "TEST 1"; b = "RESULTS"; }
+    else if (t < S + T) { a = "FINALS IN"; b = "30 DAYS"; }
+    else if (t < S + T + D) { const n = Math.max(1, Math.round(30 * (1 - (t - S - T) / D))); a = "FINALS IN"; b = n + (n === 1 ? " DAY" : " DAYS"); }
+    else { a = "TODAY:"; b = "FINALS"; }
+    if (a + b !== last) { b1.textContent = a; b2.textContent = b; last = a + b; }
+  } }, 0);
+  // ---- 0. first test comes back: the "gifted" ones win round one
+  M.fromTo("#e0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25 }, 0.05);
+  M.to("#e0", { opacity: 0, duration: 0.2 }, 2.6);
+  order.forEach((k, i) => {
+    const t = 0.3 + i * 0.4;
+    M.fromTo(`.f-${k} .paper0`, { scale: 0, opacity: 0, rotation: -30, svgOrigin: "200 280" }, { scale: 1, opacity: 1, rotation: 0, svgOrigin: "200 280", duration: 0.22, ease: "back.out(2)" }, t);
+    M.to(`.f-${k} .paper0`, { y: 120, opacity: 0, duration: 0.25, ease: "power2.in" }, 2.6 + i * 0.05);
+  });
+  M.fromTo(".f-OBSESSION .hdg, .f-DISCIPLINE .hdg", { y: 0 }, { y: 26, duration: 0.3, yoyo: true, repeat: 1, repeatDelay: 0.7, ease: "power2.out" }, 1.3);
+  M.fromTo("#flash", { opacity: 0.5 }, { opacity: 0, duration: 0.25, immediateRender: false }, 2.9);
+  M.fromTo("#board", { scale: 1.12 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, 2.9);
+  window.__timelines["main"] = M;
 });
 </script>
 </body>
