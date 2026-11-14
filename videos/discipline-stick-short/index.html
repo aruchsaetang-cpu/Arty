@@ -17,8 +17,9 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 #world { position: absolute; inset: 0; }
 .abs { position: absolute; display: block; }
 svg.fig, #teacher, #tal { position: absolute; overflow: visible; }
-svg .ln { fill: none; stroke: currentColor; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
-svg .hd { fill: currentColor; }
+svg .ln { fill: none; stroke: currentColor; stroke-width: 27; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln.ol { stroke: #000; stroke-width: 41; }
+svg .hd { fill: currentColor; stroke: #000; stroke-width: 7; }
 svg text { font-family: "Anton"; }
 .fp { left: 0; top: 0; width: 46px; height: 60px; border-radius: 5px; background: #f4f4f4; box-shadow: 0 0 20px rgba(255,255,255,.4); }
 #bubble { left: 730px; top: 1890px; width: 720px; height: 124px; border-radius: 28px; background: #f4f4f4; color: #000; font-family: "DejaVu Sans"; font-weight: 700; font-size: 36px; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
@@ -105,7 +106,7 @@ const LX = 3200; // the library sits to the right of the classroom in the same w
 // back rows first so nearer rows draw on top; U* are unnamed background students
 const SEATS = [
   { k: "U2", x: 450, dy: 1540, w: 300, base: 0.3 }, { k: "U3", x: 870, dy: 1540, w: 300, base: 0.3 }, { k: "U4", x: 1290, dy: 1540, w: 300, base: 0.3 }, { k: "U5", x: 1710, dy: 1540, w: 300, base: 0.3 },
-  { k: "EGO", x: 520, dy: 1990, w: 400 }, { k: "OBSESSION", x: 1640, dy: 1990, w: 400 },
+  { k: "EGO", x: 520, dy: 1990, w: 400 }, { k: "U1", x: 1080, dy: 1990, w: 400, base: 0.42 }, { k: "OBSESSION", x: 1640, dy: 1990, w: 400 },
   { k: "DISCIPLINE", x: 760, dy: 2600, w: 540, front: 1 }, { k: "TALENT", x: 1400, dy: 2600, w: 540, front: 1 },
 ];
 const DLIB = { k: "DLIB", label: "DISCIPLINE", x: LX + 900, dy: 2600, w: 540 };
@@ -152,6 +153,8 @@ function shelf(x) {
 document.getElementById("rowsBack").innerHTML = SEATS.filter((s) => !s.front).map(fig).join("");
 document.getElementById("rowFront").innerHTML = SEATS.filter((s) => s.front).map(fig).join("");
 document.getElementById("lib").innerHTML = shelf(LX + 120) + shelf(LX + 1420) + `<span class="abs" style="left:${LX + 680}px;top:1110px;width:800px;text-align:center;font-size:96px;letter-spacing:14px;color:#6a6a75;white-space:nowrap">LIBRARY</span>` + fig(DLIB);
+// black edge: every limb gets a wider black copy underneath, so limbs read against the body and the desks
+document.querySelectorAll("svg .ln").forEach((el) => { const o = el.cloneNode(false); o.classList.add("ol"); el.parentNode.insertBefore(o, el); });
 document.getElementById("fly").innerHTML = [0,1,2,3,4,5,6,7].map((i) => `<span class="abs fp" id="fp${i}"></span>`).join("");
 
 document.fonts.ready.then(() => {
@@ -226,7 +229,7 @@ document.fonts.ready.then(() => {
   ["tz1", "tz2", "tz3"].forEach((n, i) => M.fromTo(`.${n}`, { opacity: 0, y: 14 }, { opacity: 0.95, y: -14, duration: 0.7, yoyo: true, repeat: 66, ease: "sine.inOut" }, i * 0.2));
   M.fromTo(".f-EGO .bd", { rotation: -15, svgOrigin: "200 290" }, { rotation: -10, svgOrigin: "200 290", duration: 1.0, yoyo: true, repeat: 46, ease: "sine.inOut" }, 0);
   M.fromTo("#punch", { scale: 1 }, { scale: 1.03, duration: 1.0, yoyo: true, repeat: 46, ease: "sine.inOut" }, 0);
-  ["U3", "U5", "OBSESSION"].forEach((k, i) => M.fromTo(`.f-${k} .aR`, { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.5, yoyo: true, repeat: 93, ease: "sine.inOut" }, i * 0.2));
+  ["U1", "U3", "U5", "OBSESSION"].forEach((k, i) => M.fromTo(`.f-${k} .aR`, { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.5, yoyo: true, repeat: 93, ease: "sine.inOut" }, i * 0.2));
   M.fromTo(".f-DLIB .aR", { rotation: -5, svgOrigin: "200 160" }, { rotation: 7, svgOrigin: "200 160", duration: 0.18, yoyo: true, repeat: 127, ease: "sine.inOut", immediateRender: false }, 11.0);
 
   // ---- 1. classroom: the teacher walks by with the tests (beats 0-11)
