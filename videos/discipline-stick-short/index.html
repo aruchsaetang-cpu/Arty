@@ -16,7 +16,8 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; 
 #cam { position: absolute; left: 0; top: 0; width: 2160px; height: 3840px; }
 #world { position: absolute; inset: 0; }
 .abs { position: absolute; display: block; }
-svg.fig, #teacher, #tal { position: absolute; overflow: visible; }
+svg.fig, #teacher, #tal, #bul { position: absolute; overflow: visible; }
+#pp { left: 0; top: 0; width: 100px; height: 124px; border-radius: 6px; background: #f4f4f4; border: 4px solid #8d8d99; }
 svg .ln { fill: none; stroke: currentColor; stroke-width: 27; stroke-linecap: round; stroke-linejoin: round; }
 svg .ln.ol { stroke: #000; stroke-width: 41; }
 svg .hd { fill: currentColor; stroke: #000; stroke-width: 7; }
@@ -71,6 +72,18 @@ svg text { font-family: "Anton"; }
         <path d="M102 62 A48 48 0 0 1 198 62" fill="none" stroke="#8d8d99" stroke-width="12" stroke-linecap="round"/><rect x="88" y="50" width="24" height="46" rx="9" fill="#8d8d99"/><rect x="188" y="50" width="24" height="46" rx="9" fill="#8d8d99"/>
       </g></g>
     </svg>
+    <svg id="bul" class="bully" viewBox="0 0 300 700" style="left:0;top:2044px;width:400px;height:933px;color:#000">
+      <text x="150" y="-14" font-size="30" text-anchor="middle" fill="#f4f4f4" letter-spacing="4">BULLY</text>
+      <g id="bflip"><g id="bbody">
+        <g class="blegL"><line class="ln" x1="150" y1="380" x2="150" y2="640"/></g>
+        <g class="blegR"><line class="ln" x1="150" y1="380" x2="150" y2="640"/></g>
+        <g class="barmB"><line class="ln" x1="150" y1="175" x2="124" y2="310"/></g>
+        <line class="ln" x1="150" y1="116" x2="150" y2="380"/>
+        <g class="bwarm"><line class="ln" x1="150" y1="175" x2="176" y2="310"/></g>
+        <circle class="hd" cx="150" cy="70" r="46"/>
+      </g></g>
+    </svg>
+    <span id="pp" class="abs"></span>
     <div id="bubble" class="abs"><i></i><b>x = (−b ± √(b² − 4ac)) / 2a</b></div>
     <div id="fly"></div>
   </div></div></div>
@@ -224,7 +237,7 @@ document.fonts.ready.then(() => {
   };
 
   gsap.set("#cam", { transformOrigin: "0 0", ...camTo(1080, 2090, 0.58) });
-  gsap.set("#teacher", { x: -500 }); gsap.set("#tal", { x: LX + 2400 });
+  gsap.set("#teacher", { x: -500 }); gsap.set("#tal", { x: LX + 2400 }); gsap.set("#bul", { x: LX + 520 - 200 }); gsap.set("#pp", { opacity: 0 });
   gsap.set("#ball, #flash, #veil, .sheet, .fp, .paper0, .paper, .ext, .upL, .upR, .fpL, .fpR, .sw, .st, #bubble, .parm, .mk, .sc, .hr", { opacity: 0 });
   SEATS.forEach((s) => { if (!named(s.k)) gsap.set(`.f-${s.k}`, { opacity: s.base }); });
   gsap.set(".f-TALENT .hdg", { y: 152, rotation: -18, svgOrigin: "200 120" }); gsap.set(".f-TALENT .tor", { scaleY: 0.1, svgOrigin: "200 290" }); gsap.set(".f-TALENT .lab", { y: 118 });
@@ -262,6 +275,13 @@ document.fonts.ready.then(() => {
   dip(9.0, LWIDE);
   pose("OBSESSION", 9.0, "base"); M.set(".f-OBSESSION .hdg", { y: 0, rotation: 0 }, 9.0); M.set(".f-DISCIPLINE .hdg", { y: 0, rotation: 0 }, 9.0); M.set(".f-BULLY .hdg", { rotation: 0 }, 9.0);
   pan(9.2, LMED, 0.8, "power1.inOut");
+  // obstacle 1: he shoves the desk and sends the worksheet flying
+  M.fromTo(".bwarm", { rotation: 0, svgOrigin: "150 175" }, { rotation: -78, svgOrigin: "150 175", duration: 0.13, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 9.42);
+  M.fromTo(".f-DLIB", { x: 0 }, { x: 46, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 9.52); bump(9.55, 14);
+  M.to(".f-DLIB .hdg", { rotation: 14, svgOrigin: "200 120", duration: 0.12, yoyo: true, repeat: 1 }, 9.52);
+  M.fromTo("#pp", { x: D - 50, opacity: 1, rotation: 0 }, { x: D + 520, opacity: 1, rotation: 220, duration: 0.6, ease: "none", immediateRender: false }, 9.55);
+  M.fromTo("#pp", { y: 2520 }, { y: 2350, duration: 0.22, ease: "power2.out", immediateRender: false }, 9.55); M.to("#pp", { y: 2960, duration: 0.38, ease: "power2.in" }, 9.77); M.to("#pp", { opacity: 0, duration: 0.2 }, 10.3);
+  M.fromTo("#bbody", { y: 0 }, { y: -14, duration: 0.1, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, 9.6);
   pan(10.0, LCU, 0.8, "power2.inOut");
   ["sw0", "sw1", "sw2"].forEach((n, j) => M.fromTo(`.f-DLIB .${n}`, { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.5, repeat: 8, ease: "power1.in" }, 10.1 + j * 0.2));
   pan(11.0, LDESK, 0.3, "power2.in"); sheetIn("#sh1", 11.15);
@@ -270,6 +290,12 @@ document.fonts.ready.then(() => {
   pop("#sh1 .sc", 13.5, 0.25); bump(13.5, 10);
   sheetOut("#sh1", 13.85); pan(13.85, LMED, 0.35);
   headDown("DLIB", 14.25); bump(14.55, 16);
+  // obstacle 2: he points and laughs at the 0/3, then leaves when Talent shows up
+  M.to(".bwarm", { rotation: -62, svgOrigin: "150 175", duration: 0.15, ease: "power2.out" }, 13.95);
+  M.fromTo("#bbody", { y: 0 }, { y: -14, duration: 0.1, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, 13.95);
+  M.to(".bwarm", { rotation: 0, svgOrigin: "150 175", duration: 0.1 }, 14.58);
+  M.set("#bflip", { scaleX: -1, svgOrigin: "150 350" }, 14.6);
+  M.fromTo("#bul", { x: LX + 520 - 200 }, { x: LX - 500, duration: 0.9, ease: "power1.in", immediateRender: false }, 14.6); legs("b", 14.6, 0.9);
 
   // ---- 3. library: Talent walks in, sits next to him and shows him how (beats 15-24)
   pan(15.0, LDUO, 0.5);
