@@ -43,13 +43,13 @@ svg text { font-family: "Anton"; }
  <div id="stage" class="clip" data-start="0" data-duration="32.414" data-track-index="1">
   <div id="punch"><div id="cam"><div id="world">
     <div id="rowsBack"></div>
-    <svg id="teacher" viewBox="0 0 300 700" style="left:0;top:1775px;width:260px;height:607px;color:#6a6a75;filter:blur(1.5px)">
+    <svg id="teacher" viewBox="0 0 300 700" style="left:0;top:1594px;width:345px;height:805px;color:#f4f4f4">
       <g id="tflip"><g id="tbody">
         <g class="tlegL"><line class="ln" x1="150" y1="380" x2="150" y2="640"/></g>
         <g class="tlegR"><line class="ln" x1="150" y1="380" x2="150" y2="640"/></g>
         <g class="tarmB"><line class="ln" x1="150" y1="175" x2="120" y2="310"/></g>
         <line class="ln" x1="150" y1="116" x2="150" y2="380"/>
-        <g class="tarmF"><polyline class="ln" points="150,175 198,262 250,236"/><rect x="236" y="170" width="60" height="76" rx="5" fill="#8a8a94" transform="rotate(10 266 208)"/><rect x="230" y="176" width="60" height="76" rx="5" fill="#b9b9c2" transform="rotate(4 260 214)"/></g>
+        <g class="tarmF"><polyline class="ln" points="150,175 198,262 250,236"/><rect x="236" y="170" width="60" height="76" rx="5" fill="#cfcfd6" stroke="#000" stroke-width="5" transform="rotate(10 266 208)"/><rect x="230" y="176" width="60" height="76" rx="5" fill="#f4f4f4" stroke="#000" stroke-width="5" transform="rotate(4 260 214)"/></g>
         <circle class="hd" cx="150" cy="70" r="46"/>
       </g></g>
     </svg>
@@ -208,12 +208,12 @@ document.fonts.ready.then(() => {
   const teacherPass = (t0, t1, x0, x1) => {
     const d = t1 - t0, dir = x1 > x0 ? 1 : -1;
     M.set("#tflip", { scaleX: dir, svgOrigin: "150 350" }, t0);
-    M.fromTo("#teacher", { x: x0 - 130 }, { x: x1 - 130, duration: d, ease: "none", immediateRender: false }, t0);
+    M.fromTo("#teacher", { x: x0 - 172 }, { x: x1 - 172, duration: d, ease: "none", immediateRender: false }, t0);
     legs("t", t0, d);
     ["EGO", "DISCIPLINE", "TALENT", "OBSESSION"].forEach((k) => {
       const s = seat[k], t = t0 + d * (s.x - x0) / (x1 - x0), fp = `#fp${fpi++}`;
       M.fromTo(".tarmF", { rotation: -34, svgOrigin: "150 175" }, { rotation: 0, svgOrigin: "150 175", duration: 0.25, ease: "back.out(3)", immediateRender: false }, t - 0.05);
-      M.fromTo(fp, { x: s.x + dir * 40 - 23, y: 1990, opacity: 1, rotation: -15 }, { x: s.x - 23, y: s.dy - 52, opacity: 1, rotation: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+      M.fromTo(fp, { x: s.x + dir * 60 - 23, y: 1850, opacity: 1, rotation: -15 }, { x: s.x - 23, y: s.dy - 52, opacity: 1, rotation: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
       M.to(fp, { opacity: 0, duration: 0.2 }, t + 0.7);
     });
   };
