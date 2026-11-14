@@ -45,6 +45,20 @@ svg text { font-family: "Anton"; }
 #clk2 { width: 180px; height: 180px; border-radius: 50%; background: #f4f4f4; border: 12px solid #5c5c66; }
 #clk2 i { position: absolute; display: block; left: 73px; width: 10px; background: #16161a; border-radius: 5px; transform-origin: 50% 100%; }
 #clk2 .hh { top: 34px; height: 44px; } #clk2 .mh { top: 14px; height: 64px; }
+#scr { position: absolute; left: 70px; top: 230px; width: 940px; height: 1460px; border-radius: 26px; background: #0d1320; border: 10px solid #2a3350; overflow: hidden; font-family: "DejaVu Sans"; font-weight: 700; color: #e6ecff; box-shadow: 0 0 120px rgba(120,180,255,.35); }
+#scr .bar { position: absolute; left: 0; top: 0; width: 100%; height: 110px; background: #172038; }
+#scr .bar i { position: absolute; display: block; top: 42px; width: 26px; height: 26px; border-radius: 50%; background: #3b4770; }
+#scr .q { position: absolute; display: block; left: 170px; top: 22px; width: 720px; height: 66px; border-radius: 33px; background: #0d1320; font-size: 30px; line-height: 66px; padding-left: 28px; white-space: nowrap; }
+#scr .wn { position: absolute; width: 560px; height: 300px; border-radius: 16px; background: #1a2440; border: 4px solid #33406b; box-shadow: 0 14px 30px rgba(0,0,0,.5); }
+#scr .wn b { display: block; margin: 22px 26px 18px; font-size: 32px; white-space: nowrap; }
+#scr .wn u { display: block; margin: 0 26px 16px; height: 14px; border-radius: 7px; background: #33406b; text-decoration: none; }
+#ai { position: absolute; left: 0; top: 110px; width: 100%; height: 1340px; background: #0d1320; }
+#ai .aih { height: 96px; line-height: 96px; padding-left: 36px; font-size: 36px; letter-spacing: 3px; color: #8fd3ff; border-bottom: 4px solid #172038; white-space: nowrap; }
+#ai .me { position: absolute; right: 30px; top: 150px; padding: 26px 30px; border-radius: 28px 28px 6px 28px; background: #2b6bff; font-size: 34px; white-space: nowrap; }
+#ai .bot { position: absolute; left: 30px; top: 330px; width: 860px; padding: 26px 32px; border-radius: 28px 28px 28px 6px; background: #172038; font-size: 36px; }
+#ai .bot div { margin: 22px 0; white-space: nowrap; }
+.ty { display: inline-block; }
+#mglow { border-radius: 50%; background: radial-gradient(circle, rgba(143,211,255,.42) 0%, rgba(143,211,255,.12) 45%, rgba(143,211,255,0) 70%); }
 #flash { position: absolute; inset: 0; background: #fff; }
 </style>
 </head>
@@ -96,6 +110,19 @@ svg text { font-family: "Anton"; }
   </div></div></div>
   <div id="chart"></div>
   <div id="veil"></div>
+  <div id="scr">
+    <div class="bar"><i style="left:30px"></i><i style="left:70px"></i><i style="left:110px"></i><span class="q"><span class="ty" id="qy">how to solve quadratic equations</span></span></div>
+    <div class="wn" id="wn0" style="left:40px;top:150px"><b>Quadratic formula</b><u></u><u></u><u style="width:60%"></u><u></u><u style="width:45%"></u></div>
+    <div class="wn" id="wn1" style="left:330px;top:300px"><b>Factoring trinomials</b><u></u><u style="width:70%"></u><u></u><u style="width:50%"></u></div>
+    <div class="wn" id="wn2" style="left:70px;top:540px"><b>Derivative rules</b><u></u><u></u><u style="width:55%"></u><u></u></div>
+    <div class="wn" id="wn3" style="left:340px;top:740px"><b>Trig identities</b><u style="width:80%"></u><u></u><u style="width:40%"></u><u></u></div>
+    <div class="wn" id="wn4" style="left:110px;top:980px"><b>Integration basics</b><u></u><u style="width:65%"></u><u></u><u style="width:50%"></u></div>
+    <div id="ai">
+      <div class="aih">✦ AI ASSISTANT</div>
+      <div class="me"><span class="ty" id="ty0">Explain x² − 5x + 6 = 0 step by step</span></div>
+      <div class="bot"><div><span class="ty" id="ty1">1) Factor it: (x − 2)(x − 3) = 0</span></div><div><span class="ty" id="ty2">2) So x = 2 or x = 3</span></div><div><span class="ty" id="ty3">3) Check: 2² − 5·2 + 6 = 0 ✓</span></div></div>
+    </div>
+  </div>
   <div class="sheet" id="sh1">
     <div class="ttl">PRACTICE TEST 1</div>
     <div class="q">1)  x² − 5x + 6 = 0</div><div class="a"><span class="aw">x = 5, 6</span><span class="mk bad">✗</span></div>
@@ -204,7 +231,8 @@ document.getElementById("bed").innerHTML =
   + `<div class="abs" id="clk2" style="left:${HX + 250}px;top:1360px"><i class="hh"></i><i class="mh"></i></div>`
   + `<svg class="abs" viewBox="0 0 520 260" style="left:${HX + 40}px;top:2740px;width:520px;height:260px"><rect x="6" y="110" width="508" height="110" rx="14" fill="#1b1b20" stroke="#5c5c66" stroke-width="8"/><rect x="6" y="40" width="26" height="216" fill="#5c5c66"/><rect x="488" y="90" width="26" height="166" fill="#5c5c66"/><rect x="44" y="76" width="150" height="50" rx="20" fill="#cfcfd6"/><path d="M200 110 L500 110 L500 150 L200 150 Z" fill="#3a3a43"/></svg>`
   + NOTES.map((t, i) => `<span class="abs note" id="nt${i}" style="background:${["#ffe066", "#ff9ecb", "#8fd3ff", "#9be89b"][(i * 3 + (i / 6 | 0)) % 4]}">${t}</span>`).join("")
-  + [0, 1, 2, 3, 4].map(cup).join("") + fig(OBED);
+  + [0, 1, 2, 3, 4].map(cup).join("") + `<span class="abs" id="mglow" style="left:${HX + 900 - 520}px;top:${2330 - 520}px;width:1040px;height:1040px"></span>` + fig(OBED)
+  + `<svg class="abs" id="mon" viewBox="0 0 340 222" style="left:${HX + 900 - 170}px;top:${2600 - 222}px;width:340px;height:222px"><rect x="150" y="176" width="40" height="34" fill="#5c5c66"/><rect x="104" y="206" width="132" height="14" rx="6" fill="#5c5c66"/><rect x="8" y="4" width="324" height="180" rx="14" fill="#15151a" stroke="#5c5c66" stroke-width="7"/><circle cx="170" cy="94" r="9" fill="#3a3a43"/><rect x="-6" y="-4" width="352" height="196" rx="20" fill="none" stroke="#8fd3ff" stroke-width="5" opacity=".55" style="filter:blur(5px)"/></svg>`;
 document.getElementById("fly").innerHTML = [0,1,2,3,4,5,6,7].map((i) => `<span class="abs fp" id="fp${i}"></span>`).join("") + `<span class="abs fp" id="fp8"></span><span class="abs fp" id="fp9"></span><span class="abs" id="ball"></span>`;
 
 document.fonts.ready.then(() => {
@@ -270,7 +298,7 @@ document.fonts.ready.then(() => {
 
   gsap.set("#cam", { transformOrigin: "0 0", ...camTo(1080, 2090, 0.58) });
   gsap.set("#teacher", { x: -500 }); gsap.set("#tal", { x: LX + 2400 }); gsap.set("#bul", { x: LX + 520 - 200 }); gsap.set("#pp", { opacity: 0 });
-  gsap.set(".note, .cup, #chart, #ball, #flash, #veil, .sheet, .fp, .paper0, .paper, .ext, .upL, .upR, .fpL, .fpR, .sw, .st, #bubble, .parm, .mk, .sc, .hr", { opacity: 0 });
+  gsap.set("#scr, .wn, .note, .cup, #chart, #ball, #flash, #veil, .sheet, .fp, .paper0, .paper, .ext, .upL, .upR, .fpL, .fpR, .sw, .st, #bubble, .parm, .mk, .sc, .hr", { opacity: 0 });
   SEATS.forEach((s) => { if (!named(s.k)) gsap.set(`.f-${s.k}`, { opacity: s.base }); });
   gsap.set(".f-TALENT .hdg", { y: 152, rotation: -18, svgOrigin: "200 120" }); gsap.set(".f-TALENT .tor", { scaleY: 0.1, svgOrigin: "200 290" }); gsap.set(".f-TALENT .lab", { y: 118 });
   gsap.set(".ptL", { opacity: 0 }); gsap.set("#clk2 .hh", { rotation: 300 }); gsap.set("#clk2 .mh", { rotation: 60 });
@@ -333,22 +361,29 @@ document.fonts.ready.then(() => {
   M.set("#bflip", { scaleX: -1, svgOrigin: "150 350" }, 14.6);
   M.fromTo("#bul", { x: LX + 520 - 200 }, { x: LX - 500, duration: 0.9, ease: "power1.in", immediateRender: false }, 14.6); legs("b", 14.6, 0.9);
 
-  // ---- 3. NEW SCENE, his bedroom: nobody helps him, he just does not stop (beats 15-23)
-  const BWIDE = camTo(HX + 1010, 2180, 0.62), BMED = camTo(HX + 930, 2250, 0.86), BDESK = camTo(HX + 900, 2590, 3.4);
-  dip(15.0, BWIDE); pan(15.25, BMED, 4.4, "power1.inOut");
-  M.fromTo(".f-OBED .aR", { rotation: -6, svgOrigin: "200 160" }, { rotation: 8, svgOrigin: "200 160", duration: 0.1, yoyo: true, repeat: 109, ease: "sine.inOut", immediateRender: false }, 15.0);
-  ["sw0", "sw1", "sw2"].forEach((n, j) => M.fromTo(`.f-OBED .${n}`, { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.5, repeat: 8, ease: "power1.in", immediateRender: false }, 15.3 + j * 0.2));
-  NOTES.forEach((_, i) => M.fromTo(`#nt${i}`, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.16, ease: "back.out(3)" }, 15.4 + i * 0.24));
-  [0, 1, 2, 3, 4].forEach((i) => M.fromTo(`#cup${i}`, { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "bounce.out" }, 15.9 + i * 0.85));
+  // ---- 3. NEW SCENE, a dark room and a screen: he researches everything and asks the AI (beats 15-23)
+  const BWIDE = camTo(HX + 1010, 2180, 0.62), BMED = camTo(HX + 930, 2300, 0.95), BMON = camTo(HX + 900, 2500, 3.2), BDESK = camTo(HX + 900, 2590, 3.4);
+  gsap.set(".ty", { clipPath: HIDE }); gsap.set("#ai", { yPercent: 100 });
+  const type = (sel, t, d) => M.to(sel, { clipPath: SHOW, duration: d, ease: "none" }, t);
+  dip(15.0, BWIDE); pan(15.25, BMED, 1.6, "power1.inOut");
+  M.fromTo("#mglow", { opacity: 0.7 }, { opacity: 1, duration: 0.13, yoyo: true, repeat: 83, ease: "steps(1)" }, 15.0);
+  M.fromTo(".f-OBED .bd", { y: 0 }, { y: -5, duration: 0.07, yoyo: true, repeat: 27, ease: "sine.inOut", immediateRender: false }, 15.1);
+  NOTES.forEach((_, i) => M.fromTo(`#nt${i}`, { scale: 0, opacity: 0 }, { scale: 1, opacity: 0.4, duration: 0.14, ease: "back.out(3)" }, 15.3 + i * 0.09));
+  [0, 1, 2, 3, 4].forEach((i) => M.fromTo(`#cup${i}`, { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "bounce.out" }, 15.5 + i * 0.3));
   M.to("#clk2 .mh", { rotation: 60 + 360 * 9, duration: 10.6, ease: "none" }, 15.2); M.to("#clk2 .hh", { rotation: 300 + 270, duration: 10.6, ease: "none" }, 15.2);
-  // he nods off for a second and snaps back
-  M.to(".f-OBED .hdg", { y: 70, rotation: 14, svgOrigin: "200 120", duration: 0.5, ease: "power2.in" }, 18.3);
-  M.to(".f-OBED .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.16, ease: "back.out(4)" }, 18.95); bump(18.95, 10);
-  M.fromTo(".f-OBED .hdg", { x: -6 }, { x: 6, duration: 0.05, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, 19.1);
-  pan(20.0, BDESK, 0.3, "power2.in"); sheetIn("#sh3", 20.18);
-  write("#sh3", 0, 20.62, 0.34); write("#sh3", 1, 21.14, 0.2); write("#sh3", 2, 21.5, 0.26); handOut("#sh3", 21.8);
-  [21.9, 22.03, 22.16].forEach((t, i) => pop(`#sh3 .a:nth-of-type(${3 + i * 2}) .mk`, t, 0.16));
-  pop("#sh3 .sc", 22.3, 0.22); flash(22.3, 0.2);
+  // into the screen: search, a pile of tabs, then the AI walks him through it
+  pan(17.0, BMON, 0.3, "power2.in");
+  M.to("#veil", { opacity: 0.82, duration: 0.2 }, 17.18); M.fromTo("#scr", { scale: 0.25, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.3)" }, 17.18);
+  type("#qy", 17.45, 0.45);
+  [0, 1, 2, 3, 4].forEach((i) => M.fromTo(`#wn${i}`, { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.16, ease: "back.out(2.5)" }, 17.95 + i * 0.17));
+  M.to("#ai", { yPercent: 0, duration: 0.3, ease: "power3.out" }, 18.9);
+  type("#ty0", 19.2, 0.4); type("#ty1", 19.85, 0.28); type("#ty2", 20.2, 0.2); type("#ty3", 20.48, 0.28);
+  M.to("#scr", { scale: 0.25, opacity: 0, duration: 0.18, ease: "power2.in" }, 20.95); M.to("#veil", { opacity: 0, duration: 0.15 }, 20.95);
+  // then he proves it to himself on paper
+  pan(20.95, BDESK, 0.2, "power2.in"); sheetIn("#sh3", 21.12);
+  write("#sh3", 0, 21.46, 0.26); write("#sh3", 1, 21.84, 0.16); write("#sh3", 2, 22.1, 0.2); handOut("#sh3", 22.32);
+  [22.38, 22.48, 22.58].forEach((t, i) => pop(`#sh3 .a:nth-of-type(${3 + i * 2}) .mk`, t, 0.14));
+  pop("#sh3 .sc", 22.68, 0.2); flash(22.68, 0.2);
 
   // ---- 3b. still going at sunrise; the grade climbs like a stock (beats 23-26)
   const SUNCAM = camTo(HX + 1180, 2550, 0.72), CT = 23.4, CD = 2.2;
