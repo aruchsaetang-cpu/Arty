@@ -159,17 +159,17 @@ function fig(s) {
   </svg>`;
 }
 function shelf(x) {
-  let h = `<svg class="abs shelf" style="left:${x}px;top:1250px;width:620px;height:1280px;opacity:.5;filter:blur(1.5px)" viewBox="0 0 620 1280"><rect x="4" y="4" width="612" height="1272" fill="#050506" stroke="#3a3a43" stroke-width="8"/>`;
+  let h = `<svg class="abs shelf" style="left:${x}px;top:1250px;width:620px;height:1280px;opacity:.62;filter:blur(1.5px)" viewBox="0 0 620 1280"><rect x="4" y="4" width="612" height="1272" fill="#120c08" stroke="#6b4a2b" stroke-width="10"/>`;
   for (let r = 0; r < 5; r++) {
-    const y0 = 20 + r * 252; h += `<rect x="4" y="${y0 + 232}" width="612" height="10" fill="#3a3a43"/>`;
+    const y0 = 20 + r * 252; h += `<rect x="4" y="${y0 + 232}" width="612" height="12" fill="#6b4a2b"/>`;
     let bx = 22, i = 0;
-    while (bx < 570) { const bw = 26 + ((i * 7 + r * 5) % 4) * 9, bh = 150 + ((i * 13 + r * 3) % 5) * 16, c = ["#4a4a54", "#6a6a75", "#3a3a43", "#8a8a94", "#55555f"][(i + r * 2) % 5]; if ((i + r) % 7 !== 6) h += `<rect x="${bx}" y="${y0 + 232 - bh}" width="${bw}" height="${bh}" fill="${c}"/>`; bx += bw + 6; i++; }
+    while (bx < 570) { const bw = 26 + ((i * 7 + r * 5) % 4) * 9, bh = 150 + ((i * 13 + r * 3) % 5) * 16, c = ["#9a3b3b", "#2f5f8f", "#3f7d55", "#b8913c", "#6b4c8f", "#a5562e", "#2f7c7c", "#c9c2ad"][(i * 3 + r * 2) % 8]; if ((i + r) % 7 !== 6) h += `<rect x="${bx}" y="${y0 + 232 - bh}" width="${bw}" height="${bh}" fill="${c}"/>`; bx += bw + 6; i++; }
   }
   return h + `</svg>`;
 }
 document.getElementById("rowsBack").innerHTML = SEATS.filter((s) => !s.front).map(fig).join("");
 document.getElementById("rowFront").innerHTML = SEATS.filter((s) => s.front).map(fig).join("");
-const win = `<div class="abs" id="win" style="left:${LX + 860}px;top:1330px;width:440px;height:550px;border:10px solid #5c5c66;border-radius:8px;overflow:hidden;background:#050506">${[[60, 80], [150, 210], [330, 250], [90, 330], [360, 120], [250, 400]].map((p) => `<span class="abs star" style="left:${p[0]}px;top:${p[1]}px;width:7px;height:7px;border-radius:50%;background:#e9e9ee"></span>`).join("")}<span class="abs" id="moon" style="left:270px;top:60px;width:86px;height:86px;border-radius:50%;background:#e9e9ee;box-shadow:0 0 30px rgba(255,255,255,.5)"></span><span class="abs" id="sun" style="left:140px;top:590px;width:140px;height:140px;border-radius:50%;background:#ffffff;box-shadow:0 0 70px 26px rgba(255,255,255,.75)"></span><span class="abs" style="left:205px;top:0;width:10px;height:550px;background:#5c5c66"></span><span class="abs" style="left:0;top:262px;width:420px;height:10px;background:#5c5c66"></span></div>`;
+const win = `<div class="abs" id="win" style="left:${LX + 860}px;top:1330px;width:440px;height:550px;border:10px solid #6b4a2b;border-radius:8px;overflow:hidden;background:#0a1030">${[[60, 80], [150, 210], [330, 250], [90, 330], [360, 120], [250, 400]].map((p) => `<span class="abs star" style="left:${p[0]}px;top:${p[1]}px;width:7px;height:7px;border-radius:50%;background:#e9e9ee"></span>`).join("")}<span class="abs" id="moon" style="left:270px;top:60px;width:86px;height:86px;border-radius:50%;background:#e9e9ee;box-shadow:0 0 30px rgba(255,255,255,.5)"></span><span class="abs" id="sun" style="left:140px;top:590px;width:140px;height:140px;border-radius:50%;background:#ffd84a;box-shadow:0 0 70px 30px rgba(255,170,60,.85)"></span><span class="abs" style="left:205px;top:0;width:10px;height:550px;background:#6b4a2b"></span><span class="abs" style="left:0;top:262px;width:420px;height:10px;background:#6b4a2b"></span></div>`;
 document.getElementById("lib").innerHTML = shelf(LX + 120) + shelf(LX + 1420) + win + `<span class="abs" style="left:${LX + 680}px;top:1110px;width:800px;text-align:center;font-size:96px;letter-spacing:14px;color:#6a6a75;white-space:nowrap">LIBRARY</span>` + fig(DLIB) + fig(TLIB);
 // black edge: every limb gets a wider black copy underneath, so limbs read against the body and the desks
 document.querySelectorAll("svg .ln").forEach((el) => { const o = el.cloneNode(false); o.classList.add("ol"); el.parentNode.insertBefore(o, el); });
@@ -325,11 +325,13 @@ document.fonts.ready.then(() => {
   // ---- 3b. he keeps going until the sun comes up (beats 24-26)
   sheetOut("#sh3", 23.82); pan(23.82, camTo(LX + 1110, 2180, 0.78), 0.4);
   M.to("#cam", { ...camTo(LX + 1110, 2130, 0.72), duration: 1.7, ease: "none" }, 24.22);
-  M.to("#win", { backgroundColor: "#9a9aa6", duration: 1.7, ease: "power1.in" }, 24.1);
+  M.to("#win", { backgroundColor: "#6a3d7a", duration: 0.7, ease: "power1.in" }, 24.1);
+  M.to("#win", { backgroundColor: "#ff9a5c", duration: 0.6, ease: "none" }, 24.8);
+  M.to("#win", { backgroundColor: "#ffd9a0", duration: 0.5, ease: "power1.out" }, 25.4);
   M.to(".star", { opacity: 0, duration: 0.9 }, 24.1);
   M.to("#moon", { y: 560, opacity: 0, duration: 1.2, ease: "power1.in" }, 24.1);
   M.to("#sun", { y: -390, duration: 1.6, ease: "power1.out" }, 24.25);
-  M.to(".shelf", { opacity: 0.8, duration: 1.6 }, 24.2);
+  M.to(".shelf", { opacity: 0.95, duration: 1.6 }, 24.2);
 
   // ---- 4. classroom: the real test comes back (beats 26-34)
   dip(26.0, WIDE); focus(26.0, "all", 0.01);
