@@ -33,3 +33,4 @@ Train to Busan zombie short: DONE (out/renders/trainbusan-th.mp4, 24.2 s).
 Joker hospital short (Heath Ledger): rendered v1 (out/renders/joker-th.mp4, 19.2 s), pending user review.
 Harrison Ford Falcon door short: script v1 drafted (near-death angle), waiting for user edits/voice/footage.
 Stick-figure classroom short (motion graphic, monochrome on black, no captions): renders/discipline-wins.mp4, 24.8 s (36 beats), silent, authored in beats at 87 BPM (half-time of the 174 BPM measured from "Undress Rehearsal (Hardtekk - Slowed)"). Classroom, library study + tutoring scene with real math and a writing hand, classroom finale. Winner-swap variants not rebuilt for this staging.
+Action beats overthinking (stick-figure motion graphic, monochrome on black): renders/action-beats-overthinking.mp4, 24.8 s (36 beats at 87 BPM), silent. Two stickmen, two broken cars, one hill; follows the user's 6-part storyboard. Project: videos/action-overthinking-short/.

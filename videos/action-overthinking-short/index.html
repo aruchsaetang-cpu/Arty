@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>action-beats-overthinking</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "DejaVu Sans"; font-weight: 700; src: url("assets/fonts/DejaVuSans-Bold.ttf") format("truetype"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: "Anton", sans-serif; color: #f4f4f4; }
+#stage { position: absolute; inset: 0; }
+#sky { position: absolute; inset: 0; }
+#wheel { position: absolute; left: 540px; top: 1750px; width: 10px; height: 10px; }
+#sun { position: absolute; left: -60px; top: -1510px; width: 120px; height: 120px; border-radius: 50%; background: #f4f4f4; box-shadow: 0 0 60px 18px rgba(255,255,255,.45); }
+#moon { position: absolute; left: -50px; top: 1400px; width: 100px; height: 100px; border-radius: 50%; background: #9a9aa6; box-shadow: 0 0 40px 8px rgba(255,255,255,.18); }
+#punch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; }
+#cam { position: absolute; left: 0; top: 0; width: 10px; height: 10px; }
+#world { position: absolute; left: 0; top: 0; }
+.abs { position: absolute; display: block; }
+svg { overflow: visible; }
+svg.fg, svg.car, #hill, #flag { position: absolute; left: 0; top: 0; }
+svg .ln { fill: none; stroke: #f4f4f4; stroke-width: 27; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln.ol { stroke: #000; stroke-width: 41; }
+svg .hd { fill: #f4f4f4; stroke: #000; stroke-width: 7; }
+svg text { font-family: "Anton"; }
+.nm { left: 0; top: 0; width: 400px; margin-left: -200px; text-align: center; font-size: 44px; letter-spacing: 5px; white-space: nowrap; }
+.big { left: 0; top: 0; font-size: 170px; letter-spacing: 8px; white-space: nowrap; }
+.card { left: 0; top: 0; background: #f4f4f4; color: #16161a; border-radius: 8px; font-family: "DejaVu Sans"; font-weight: 700; display: flex; align-items: center; justify-content: center; white-space: nowrap; box-shadow: 0 0 26px rgba(255,255,255,.3); }
+.pp { left: 0; top: 0; width: 64px; height: 80px; border-radius: 5px; background: #e9e9ee; border: 3px solid #8d8d99; }
+.qm { left: 0; top: 0; font-size: 120px; }
+#bub { left: -1050px; top: 2370px; width: 330px; height: 220px; border-radius: 40px; background: #f4f4f4; }
+.dot { border-radius: 50%; background: #f4f4f4; }
+#msg1, #msg2 { position: absolute; display: block; left: 0; width: 1080px; text-align: center; font-size: 128px; letter-spacing: 4px; white-space: nowrap; }
+#msg1 { top: 150px; } #msg2 { top: 300px; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="sky"><div id="wheel"><span id="sun"></span><span id="moon"></span></div></div>
+  <div id="punch"><div id="cam"><div id="world"></div></div></div>
+  <span id="msg1">ACTION BEATS</span><span id="msg2">OVERTHINKING.</span>
+  <div id="flash"></div>
+ </div>
+</div>
+<script>
+// ---- terrain: flat start, one long slope, a plateau with the goal flag
+const GY = 3000, SX0 = 1000, SX1 = 2500, TY = 1600, CAR0 = 700;
+const L0 = SX0 - CAR0, L1 = Math.hypot(SX1 - SX0, GY - TY);
+const pt = (d) => d <= L0 ? [CAR0 + d, GY] : d <= L0 + L1 ? [SX0 + (SX1 - SX0) * (d - L0) / L1, GY - (GY - TY) * (d - L0) / L1] : [SX1 + (d - L0 - L1), TY];
+const ang = (d) => { const a = pt(d - 80), b = pt(d + 80); return Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI; };
+const PUSH = 625, DEND = L0 + L1 + 790;
+const person = (id) => `<svg id="${id}" class="fg" viewBox="0 0 300 700" style="width:250px;height:583px"><g class="jump"><g class="pose">
+  <g class="legL"><line class="ln" x1="150" y1="380" x2="150" y2="640"/></g><g class="legR"><line class="ln" x1="150" y1="380" x2="150" y2="640"/></g>
+  <g class="armL"><line class="ln" x1="150" y1="175" x2="150" y2="330"/></g>
+  <line class="ln" x1="150" y1="116" x2="150" y2="380"/>
+  <g class="armR"><line class="ln" x1="150" y1="175" x2="150" y2="330"/></g>
+  <polyline class="ln think" points="150,175 216,240 180,124"/><polyline class="ln write" points="150,175 198,254 256,258"/>
+  <rect class="cb" x="226" y="232" width="92" height="70" rx="6" fill="#e9e9ee" stroke="#8d8d99" stroke-width="5" transform="rotate(-14 272 267)"/>
+  <g class="hdg"><circle class="hd" cx="150" cy="70" r="46"/></g>
+  <circle class="sw sw0" cx="212" cy="50" r="9" fill="#d5d8e0"/><circle class="sw sw1" cx="92" cy="70" r="8" fill="#d5d8e0"/>
+</g></g></svg>`;
+const car = (id) => `<svg id="${id}" class="car" viewBox="0 0 420 200" style="width:546px;height:260px">
+  <circle class="sm sm0" cx="372" cy="40" r="20" fill="#6a6a75"/><circle class="sm sm1" cx="392" cy="26" r="15" fill="#55555f"/><circle class="sm sm2" cx="356" cy="20" r="12" fill="#7a7a86"/>
+  <path d="M112 94 L150 40 L276 40 L326 94 Z" fill="#1b1b20" stroke="#f4f4f4" stroke-width="8" stroke-linejoin="round"/><path d="M158 52 L206 52 L206 88 L134 88 Z M222 52 L270 52 L304 88 L222 88 Z" fill="#3a3a43"/>
+  <rect x="20" y="90" width="380" height="72" rx="24" fill="#1b1b20" stroke="#f4f4f4" stroke-width="8"/>
+  <path d="M330 92 L392 44" stroke="#f4f4f4" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="110" cy="160" r="36" fill="#000" stroke="#f4f4f4" stroke-width="8"/><circle cx="110" cy="160" r="9" fill="#f4f4f4"/><circle cx="310" cy="160" r="36" fill="#000" stroke="#f4f4f4" stroke-width="8"/><circle cx="310" cy="160" r="9" fill="#f4f4f4"/></svg>`;
+const BX = -710, BCAR = -380;
+document.getElementById("world").innerHTML = `
+  <svg id="hill" viewBox="-3000 0 9000 7400" style="left:-3000px;width:9000px;height:7400px"><polygon points="-3000,${GY} ${SX0},${GY} ${SX1},${TY} 6000,${TY} 6000,7400 -3000,7400" fill="#0e0e12"/><polyline points="-3000,${GY} ${SX0},${GY} ${SX1},${TY} 6000,${TY}" fill="none" stroke="#5c5c66" stroke-width="12" stroke-linejoin="round"/></svg>
+  <svg id="flag" viewBox="0 0 200 320" style="left:3640px;top:${TY - 320}px;width:200px;height:320px"><line x1="20" y1="320" x2="20" y2="10" stroke="#f4f4f4" stroke-width="12" stroke-linecap="round"/><path id="flagc" d="M26 16 L170 60 L26 110 Z" fill="#f4f4f4"/></svg>
+  ${car("carB")}${person("figB")}<span class="abs nm" id="nmB">OVERTHINKING</span>
+  <span class="abs qm" id="q0">?</span><span class="abs qm" id="q1">?</span><span class="abs qm" id="q2">?</span><span class="abs qm" id="ex">!</span>
+  <div class="abs card" id="cd0" style="width:250px;height:190px"><svg viewBox="0 0 250 190" style="width:250px;height:190px"><path d="M30 160 L220 160 L220 40 Z" fill="none" stroke="#16161a" stroke-width="7" stroke-linejoin="round"/><path d="M78 160 A48 48 0 0 0 66 137" fill="none" stroke="#e0283c" stroke-width="6"/><text x="92" y="150" font-size="34" fill="#e0283c">45°</text></svg></div>
+  <div class="abs card" id="cd1" style="width:330px;height:100px;font-size:38px">F = m·g·sin θ</div>
+  <div class="abs card" id="cd2" style="width:330px;height:100px;font-size:38px;color:#e0283c">= 8,316 N ?!</div>
+  <div class="abs" id="bub"><svg viewBox="0 0 330 220" style="position:absolute;left:0;top:0;width:330px;height:220px"><path d="M30 190 L300 190 L300 50 Z" fill="none" stroke="#16161a" stroke-width="7" stroke-linejoin="round"/><g id="mini"><rect x="-34" y="-30" width="68" height="26" rx="8" fill="#16161a"/><circle cx="-18" cy="-2" r="9" fill="#16161a"/><circle cx="18" cy="-2" r="9" fill="#16161a"/></g><g id="minim"><circle cx="70" cy="140" r="11" fill="#16161a"/><line x1="70" y1="151" x2="70" y2="186" stroke="#16161a" stroke-width="7" stroke-linecap="round"/></g><path id="minix" d="M40 120 l60 60 m0 -60 l-60 60" stroke="#e0283c" stroke-width="12" stroke-linecap="round"/></svg></div>
+  <span class="abs dot" id="bd0" style="left:-790px;top:2630px;width:34px;height:34px"></span><span class="abs dot" id="bd1" style="left:-765px;top:2684px;width:20px;height:20px"></span>
+  ${Array.from({ length: 14 }, (_, i) => `<span class="abs pp" id="pp${i}"></span>`).join("")}
+  ${car("carA")}${person("figA")}<span class="abs nm" id="nmA">ACTION</span>
+  ${[0, 1, 2, 3, 4].map((i) => `<span class="abs qm st" id="st${i}" style="font-size:${70 + (i % 3) * 26}px">✦</span>`).join("")}
+  <span class="abs big" id="bigA">ACTION</span><span class="abs big" id="bigB">OVERTHINKING</span>`;
+document.querySelectorAll("svg .ln").forEach((el) => { const o = el.cloneNode(false); o.classList.add("ol"); el.parentNode.insertBefore(o, el); });
+
+document.fonts.ready.then(() => {
+  // Authored in beats (1.0 = one beat) and played at 87 BPM, the half-time pulse of the song.
+  const BPM = 87, K = 60 / BPM, END = 36;
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const pop = (sel, t, d = 0.25) => M.fromTo(sel, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(3)" }, t);
+  const FO = "50% 91.43%"; // feet
+  const place = (sel, x, y) => gsap.set(sel, { x: x - 125, y: y - 533 });
+
+  // ---- one clock drives the car, the pusher and the camera, so any frame can be rendered on its own
+  const KF = [[0, 0], [6.4, 0], [12, L0, "power1.in"], [14.3, 780, "none"], [15.0, 540, "power2.in"], [17.9, 540], [20, 860, "power1.inOut"], [29, 2180, "none"], [30.5, DEND, "power1.out"], [END, DEND]];
+  const dAt = (t) => { for (let i = 1; i < KF.length; i++) if (t <= KF[i][0]) { const [t0, d0] = KF[i - 1], [t1, d1, e] = KF[i], k = (t - t0) / (t1 - t0); return d0 + (d1 - d0) * (e ? gsap.parseEase(e)(k) : k); } return DEND; };
+  const fix = (cx, cy, s) => () => ({ cx, cy, s });
+  const follow = (s, ox, oy) => (t, A) => ({ cx: A[0] + ox, cy: A[1] + oy, s });
+  const SHOTS = [
+    { t: 0, f: (t) => ({ cx: 1475, cy: 2080, s: 0.235 + 0.005 * t }) },
+    { t: 1.4, blend: 1.5, f: (t) => ({ cx: 75 + Math.max(0, t - 6.4) * 14, cy: 2740 - Math.max(0, 1 - Math.abs(t - 4.2) / 0.8) * 110, s: 0.58 }) },
+    { t: 12, f: follow(0.8, 300, -300) },
+    { t: 15.6, f: (t) => ({ cx: -570, cy: 2720, s: 1.18 + 0.01 * (t - 15.6) }) },
+    { t: 17.6, f: follow(0.8, 300, -300) },
+    { t: 18.6, f: (t) => ({ cx: -670, cy: 2700, s: 1.18 + 0.012 * (t - 18.6) }) },
+    { t: 20, f: follow(0.6, 260, -330) },
+    { t: 24, f: fix(-550, 2780, 1.0) },
+    { t: 26, f: follow(0.6, 260, -330) },
+    { t: 29, blend: 0.7, f: follow(0.74, 330, -400) },
+    { t: 32, f: fix(-590, 2690, 1.15) },
+    { t: 33.4, blend: 1.3, f: fix(1475, 2060, 0.235) },
+  ];
+  const camAt = (t, A) => {
+    let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].t <= t) i++;
+    const c1 = SHOTS[i].f(t, A), b = SHOTS[i].blend;
+    if (b && t < SHOTS[i].t + b) { const c0 = SHOTS[i - 1].f(t, A), k = gsap.parseEase("power3.inOut")((t - SHOTS[i].t) / b); return { cx: c0.cx + (c1.cx - c0.cx) * k, cy: c0.cy + (c1.cy - c0.cy) * k, s: c0.s * Math.pow(c1.s / c0.s, k) }; }
+    return c1;
+  };
+  // he stands at the bumper, drops back into a lunge to push, and straightens up at the top
+  const io = gsap.parseEase("power2.inOut"), cl = (v) => Math.max(0, Math.min(1, v));
+  const pushAt = (t) => 340 + (PUSH - 340) * io(cl((t - 6.0) / 0.6)) - (PUSH - 430) * io(cl((t - 30.5) / 0.4));
+  const apply = (t) => {
+    const d = dAt(t), P = pushAt(t), c = pt(d), A = pt(d - P).slice(); if (d - P < 0) { A[0] = CAR0 + d - P; A[1] = GY; }
+    gsap.set("#carA", { x: c[0] - 273, y: c[1] - 255, rotation: ang(d), transformOrigin: "50% 98%" });
+    gsap.set("#figA", { x: A[0] - 125, y: A[1] - 533, rotation: ang(d - P) * 0.6, transformOrigin: FO }); gsap.set("#nmA", { x: A[0] + 60, y: A[1] - (t > 30.4 ? 730 : 600) });
+    const k = camAt(t, A); gsap.set("#cam", { x: 540 - k.cx * k.s, y: 960 - k.cy * k.s, scale: k.s, transformOrigin: "0 0" });
+  };
+  const clk = { v: 0 };
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => apply(M.time()) }, 0);
+  apply(0);
+
+  // ---- static placement
+  gsap.set("#carB", { x: BCAR - 273, y: GY - 255 }); place("#figB", BX, GY); gsap.set("#nmB", { x: BX, y: GY - 610 });
+  gsap.set(".think, .write, .cb, .sw, .qm, .card, #bub, .dot, .pp, .big, #msg1, #msg2, #flash, #minix, #sky", { opacity: 0 });
+  [[-830, 2330], [-720, 2250], [-620, 2330]].forEach((p, i) => gsap.set(`#q${i}`, { x: p[0], y: p[1] }));
+  gsap.set("#ex", { x: BX - 26, y: 2230, color: "#e0283c" });
+  gsap.set("#cd0", { x: -550, y: 2280 }); gsap.set("#cd1", { x: -480, y: 2500 }); gsap.set("#cd2", { x: -440, y: 2622 });
+  gsap.set("#bigA", { x: 1900, y: 1180 }); gsap.set("#bigB", { x: -770, y: 3130 });
+  ["sm0", "sm1", "sm2"].forEach((n, i) => M.fromTo(`.${n}`, { y: 0, opacity: 0.9, scale: 0.6, transformOrigin: "50% 50%" }, { y: -90, opacity: 0, scale: 1.5, transformOrigin: "50% 50%", duration: 1.1, repeat: 30, ease: "power1.out" }, i * 0.37));
+  M.fromTo("#flagc", { skewY: -6, transformOrigin: "0% 50%" }, { skewY: 6, transformOrigin: "0% 50%", duration: 0.5, yoyo: true, repeat: 69, ease: "sine.inOut" }, 0);
+  const walk = (f, t0, t1, a = 30, step = 0.34) => {
+    const n = Math.max(2, Math.round((t1 - t0) / step)), d = (t1 - t0) / n;
+    M.fromTo(`${f} .legL`, { rotation: -a, svgOrigin: "150 380" }, { rotation: a, svgOrigin: "150 380", duration: d, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t0);
+    M.fromTo(`${f} .legR`, { rotation: a, svgOrigin: "150 380" }, { rotation: -a, svgOrigin: "150 380", duration: d, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t0);
+    M.to(`${f} .legL, ${f} .legR`, { rotation: 0, duration: 0.12 }, t1);
+  };
+  const arms = (f, t, l, r, d = 0.25) => { M.to(`${f} .armL`, { rotation: l, svgOrigin: "150 175", duration: d, ease: "power2.out" }, t); M.to(`${f} .armR`, { rotation: r, svgOrigin: "150 175", duration: d, ease: "power2.out" }, t); };
+  const punch = (t) => M.fromTo("#punch", { scale: 1.09 }, { scale: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, t);
+  [12, 15.6, 17.6, 18.6, 20, 24, 26, 32].forEach(punch);
+
+  // ---- 1. same start (beats 0-6): both look up at the hill
+  M.to("#figA .hdg, #figB .hdg", { rotation: -22, svgOrigin: "150 116", duration: 0.35, ease: "power2.out" }, 3.6);
+  M.to("#figA .hdg, #figB .hdg", { rotation: 0, svgOrigin: "150 116", duration: 0.3 }, 5.2);
+
+  // ---- 2. two mindsets (beats 6-12)
+  // A: leans in and pushes straight away
+  M.to("#figA .pose", { rotation: 50, svgOrigin: "150 640", duration: 0.45, ease: "power2.out" }, 6.1); arms("#figA", 6.1, -115, -105, 0.4);
+  walk("#figA", 6.4, 14.3, 26, 0.5);
+  ["sw0", "sw1"].forEach((n, i) => M.fromTo(`#figA .${n}`, { y: 0, opacity: 1 }, { y: 110, opacity: 0, duration: 0.6, repeat: 38, ease: "power1.in", immediateRender: false }, 7 + i * 0.3));
+  // B: sits down and starts wondering
+  M.to("#figB .pose", { y: 250, duration: 0.4, ease: "bounce.out" }, 6.5); M.to("#nmB", { y: GY - 610 + 208, duration: 0.4, ease: "bounce.out" }, 6.5);
+  M.to("#figB .legL", { rotation: -84, svgOrigin: "150 380", duration: 0.3 }, 6.5); M.to("#figB .legR", { rotation: -96, svgOrigin: "150 380", duration: 0.3 }, 6.5);
+  M.set("#figB .armR", { opacity: 0 }, 6.9); M.set("#figB .think", { opacity: 1 }, 6.9); arms("#figB", 6.9, -40, 0);
+  [7.6, 8.5, 9.4].forEach((t, i) => { pop(`#q${i}`, t); M.fromTo(`#q${i}`, { rotation: -8 }, { rotation: 8, duration: 0.45, yoyo: true, repeat: 15, ease: "sine.inOut", immediateRender: false }, t + 0.25); });
+  M.to("#figB .hdg", { rotation: 9, svgOrigin: "150 116", duration: 0.6, yoyo: true, repeat: 7, ease: "sine.inOut" }, 7.2);
+
+  // ---- 3. action vs overthinking (beats 12-20)
+  // A slips, the car rolls back, he goes down... and gets up again
+  M.to("#figA .pose", { rotation: 88, svgOrigin: "150 640", duration: 0.45, ease: "power2.in" }, 14.4); arms("#figA", 14.4, -160, -150, 0.3);
+  M.fromTo("#punch", { y: 22 }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, 14.9); flash(14.9, 0.15);
+  M.to("#figA .pose", { rotation: 50, svgOrigin: "150 640", duration: 0.5, ease: "back.out(1.6)" }, 17.6); arms("#figA", 17.6, -115, -105, 0.4);
+  walk("#figA", 17.9, 30.5, 28, 0.42);
+  // B draws plans and does the maths instead
+  M.set(".qm", { opacity: 0 }, 15.6);
+  M.set("#figB .think", { opacity: 0 }, 15.6); M.set("#figB .write, #figB .cb", { opacity: 1 }, 15.6);
+  M.fromTo("#figB .write", { rotation: -5, svgOrigin: "150 175" }, { rotation: 6, svgOrigin: "150 175", duration: 0.12, yoyo: true, repeat: 135, ease: "sine.inOut", immediateRender: false }, 15.6);
+  [15.8, 16.3, 16.8].forEach((t, i) => { pop(`#cd${i}`, t); M.fromTo(`#cd${i}`, { rotation: [-5, 4, -3][i] }, { rotation: [-2, 6, 0][i], duration: 1.4, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, t + 0.25); });
+  // ...and pictures himself failing
+  M.to(".card", { opacity: 0.35, duration: 0.2 }, 18.5);
+  pop("#bd1", 18.65, 0.15); pop("#bd0", 18.75, 0.15); M.fromTo("#bub", { scale: 0, opacity: 0, transformOrigin: "70% 100%" }, { scale: 1, opacity: 1, transformOrigin: "70% 100%", duration: 0.25, ease: "back.out(2)" }, 18.85);
+  M.fromTo("#mini", { x: 280, y: 62, rotation: -27.4 }, { x: 96, y: 158, rotation: -27.4, duration: 0.6, ease: "power2.in", immediateRender: false }, 19.1);
+  M.to("#minim", { rotation: 80, svgOrigin: "70 186", duration: 0.15 }, 19.62); pop("#minix", 19.7, 0.15);
+  M.set("#bub, .dot", { opacity: 0 }, 20); M.to(".card", { opacity: 1, duration: 0.2 }, 20);
+
+  // ---- 4. the difference (beats 20-29): time passes
+  M.to("#sky", { opacity: 1, duration: 0.5 }, 19.8); M.to("#sky", { opacity: 0, duration: 0.5 }, 28.6);
+  M.fromTo("#wheel", { rotation: -80 }, { rotation: 440, duration: 9.2, ease: "none" }, 19.8);
+  // B is buried in paper, same spot
+  Array.from({ length: 14 }, (_, i) => i).forEach((i) => {
+    const x = BX - 300 + ((i * 97) % 520), y = GY - 84 - (i % 3) * 16, t = 20.4 + i * 0.36;
+    M.fromTo(`#pp${i}`, { x, y: y - 700, opacity: 1, rotation: (i * 53) % 90 - 45 }, { x, y, opacity: 1, rotation: (i * 37) % 60 - 30, duration: 0.5, ease: "bounce.out", immediateRender: false }, t);
+  });
+
+  // ---- 5. the result (beats 29-33.4)
+  M.to("#figA .pose", { rotation: 0, svgOrigin: "150 640", duration: 0.3, ease: "back.out(2)" }, 30.5); arms("#figA", 30.6, -158, 158, 0.25);
+  M.fromTo("#figA .jump", { y: 0 }, { y: -130, duration: 0.22, yoyo: true, repeat: 5, ease: "power2.out", immediateRender: false }, 30.7);
+  M.set("#figA .sw", { opacity: 0 }, 30.5);
+  [[2520, 900], [2880, 800], [2440, 1150], [3020, 1040], [2700, 680]].forEach((p, i) => { gsap.set(`#st${i}`, { x: p[0], y: p[1] }); M.fromTo(`#st${i}`, { scale: 0, opacity: 0, rotation: 0 }, { scale: 1, opacity: 1, rotation: 90, duration: 0.3, yoyo: true, repeat: 5, ease: "sine.inOut" }, 30.75 + i * 0.09); });
+  flash(30.7, 0.35);
+  // B looks up: he has not moved an inch
+  M.set("#figB .write, #figB .cb", { opacity: 0 }, 32.25); M.set("#figB .armR", { opacity: 1 }, 32.25);
+  M.to("#figB .pose", { y: 0, duration: 0.2, ease: "back.out(3)" }, 32.25); M.to("#nmB", { y: GY - 610, duration: 0.2 }, 32.25);
+  M.to("#figB .legL, #figB .legR", { rotation: 0, svgOrigin: "150 380", duration: 0.2 }, 32.25); arms("#figB", 32.25, 34, -34, 0.2);
+  M.to("#figB .hdg", { rotation: -30, svgOrigin: "150 116", duration: 0.2 }, 32.25);
+  pop("#ex", 32.4, 0.2); M.fromTo("#figB .jump", { x: -7 }, { x: 7, duration: 0.05, yoyo: true, repeat: 15, ease: "none", immediateRender: false }, 32.45);
+  M.fromTo("#punch", { y: 18 }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, 32.4);
+
+  // ---- 6. final message (beats 33.4-36)
+  M.set("#ex", { opacity: 0 }, 33.6);
+  M.to("#nmA, #nmB", { opacity: 0, duration: 0.3 }, 33.5); M.to(".big", { opacity: 0.9, duration: 0.4 }, 34.2);
+  M.fromTo("#msg1", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 34.4); flash(34.65, 0.25);
+  M.fromTo("#msg2", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 34.95); flash(35.2, 0.35);
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>
