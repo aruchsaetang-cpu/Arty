@@ -32,4 +32,4 @@ Bajau dive short: DONE v1 (out/renders/bajau-th.mp4, 23.8 s; muscle wording kept
 Train to Busan zombie short: DONE (out/renders/trainbusan-th.mp4, 24.2 s).
 Joker hospital short (Heath Ledger): rendered v1 (out/renders/joker-th.mp4, 19.2 s), pending user review.
 Harrison Ford Falcon door short: script v1 drafted (near-death angle), waiting for user edits/voice/footage.
-Discipline stick-figure short (motion graphic, English text): v8 rendered (renders/discipline-wins.mp4, 21 s, silent). Hard cuts on a 0.5 s grid, one close shot per student; reference recording in ref/ (gitignored).
+Stick-figure classroom shorts (motion graphic, monochrome on black, no captions): 5 variants rendered with build.sh (renders/v1..v5-*-wins.mp4, 17 s each, silent). Teacher hands back two rounds of results, camera follows; winner swaps per variant.

@@ -3,294 +3,276 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1080, height=1920" />
-<title>discipline-wins</title>
+<title>stick-classroom</title>
 <script src="assets/vendor/gsap.min.js"></script>
 <style>
 @font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "Space Grotesk"; font-weight: 700; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: 1080px; height: 1920px; overflow: hidden; background: #070914; }
-#root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Space Grotesk", sans-serif; font-weight: 700; color: #f4f1ea; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: "Anton", sans-serif; color: #f4f4f4; }
 #stage { position: absolute; inset: 0; }
 #punch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; }
 #cam { position: absolute; left: 0; top: 0; width: 2160px; height: 3840px; }
-#world { position: absolute; inset: 0; overflow: hidden; }
+#world { position: absolute; inset: 0; }
 .abs { position: absolute; display: block; }
-#wall { left: 0; top: 0; width: 2160px; height: 2500px; background: linear-gradient(#141a3a 0%, #1c2450 55%, #151b3e 100%); }
-#wains { left: 0; top: 2040px; width: 2160px; height: 460px; background: linear-gradient(#131836, #0e122b); border-top: 14px solid #2c3566; }
-#floor { left: 0; top: 2500px; width: 2160px; height: 1340px; background: linear-gradient(#211a27 0%, #17121d 40%, #0b0910 100%); }
-#floorl { left: 0; top: 2500px; width: 2160px; height: 1340px; opacity: .16; background-image: repeating-linear-gradient(90deg, transparent 0 176px, #000 176px 182px); }
-#base { left: 0; top: 2486px; width: 2160px; height: 28px; background: #141936; }
-.win { top: 470px; width: 430px; height: 640px; border: 22px solid #cfd6f2; border-radius: 14px; overflow: hidden; background: #0b1638; box-shadow: 0 0 0 10px #1a2148, 0 30px 60px rgba(0,0,0,.4); }
-.sky { inset: 0; background: #0b1638; }
-.wheel { left: -120px; top: 60px; width: 626px; height: 1000px; }
-.moon { left: 268px; top: 0; width: 90px; height: 90px; border-radius: 50%; background: #f3f0d8; box-shadow: 0 0 50px #f3f0d8aa; }
-.sun { left: 253px; top: 880px; width: 120px; height: 120px; border-radius: 50%; background: #ffe27a; box-shadow: 0 0 90px #ffd84a; }
-.mull { background: #cfd6f2; }
-.beam { top: 1132px; width: 430px; height: 1500px; background: linear-gradient(rgba(255,236,170,.34), rgba(255,236,170,0)); transform-origin: 50% 0; }
-#board { left: 690px; top: 500px; width: 780px; height: 470px; border-radius: 16px; background: linear-gradient(#17402a, #123322); border: 24px solid #7a5a36; box-shadow: 0 26px 50px rgba(0,0,0,.45); display: flex; flex-direction: column; align-items: center; justify-content: center; }
-#board .b1 { display: block; font-family: "Anton"; font-size: 96px; letter-spacing: 6px; color: #e4f1e7; line-height: 1.1; }
-#board .b2 { display: block; font-family: "Anton"; font-size: 190px; letter-spacing: 6px; color: #ffd84a; line-height: 1.05; white-space: nowrap; }
-#tray { left: 720px; top: 978px; width: 720px; height: 22px; background: #5d4428; border-radius: 6px; }
-#clock { left: 1010px; top: 250px; width: 180px; height: 180px; border-radius: 50%; background: #f4f1ea; border: 14px solid #141936; box-shadow: 0 14px 30px rgba(0,0,0,.4); }
-#clock i { position: absolute; display: block; left: 71px; width: 10px; background: #141936; border-radius: 5px; transform-origin: 50% 100%; }
-#clock .hh { top: 36px; height: 40px; } #clock .mh { top: 16px; height: 60px; }
-.poster { border-radius: 10px; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
-.pool { border-radius: 50%; background: radial-gradient(ellipse, rgba(255,240,200,.16), rgba(255,240,200,0) 68%); }
-svg.fig { position: absolute; overflow: visible; filter: drop-shadow(0 18px 20px rgba(0,0,0,.45)); }
-svg.fig .ln { fill: none; stroke: #f4f1ea; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
-svg.fig text { font-family: "Anton"; }
-#night { inset: 0; background: radial-gradient(ellipse at 50% 55%, rgba(4,6,22,.5), rgba(2,3,12,.9)); }
-#aglow { left: 780px; top: 1900px; width: 1600px; height: 1600px; border-radius: 50%; background: radial-gradient(circle, rgba(84,224,138,.5) 0%, rgba(84,224,138,.14) 40%, rgba(84,224,138,0) 68%); }
-#focus { inset: 0; background: rgba(5,7,20,.93); }
-#dim { inset: 0; background: radial-gradient(circle at 1580px 2540px, rgba(4,6,18,0) 0, rgba(4,6,18,0) 430px, rgba(4,6,18,.86) 900px); }
-#ui { position: absolute; inset: 0; }
-#vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, transparent 52%, rgba(0,0,0,.62) 100%); }
-#bars i { position: absolute; display: block; left: 0; width: 1080px; height: 96px; background: #05060d; }
+svg.fig, #teacher { position: absolute; overflow: visible; }
+svg .ln { fill: none; stroke: #f4f4f4; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+svg .tl { fill: none; stroke: #9d9da8; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+svg text { font-family: "Anton"; }
+#focus { inset: 0; background: rgba(0,0,0,.93); }
+#dim { inset: 0; }
+.fp { left: 0; top: 0; width: 70px; height: 90px; border-radius: 6px; background: #f4f4f4; box-shadow: 0 0 26px rgba(255,255,255,.4); }
 #flash { position: absolute; inset: 0; background: #fff; }
-.A { font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 3px; }
-.blk { display: block; position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap; }
-.nm { top: 150px; font-size: 200px; line-height: 1; text-shadow: 0 10px 40px rgba(0,0,0,.6); }
-.qt { top: 1560px; font-size: 62px; text-shadow: 0 4px 0 #05060d, 0 8px 30px rgba(0,0,0,.8); }
-#e0 { top: 1640px; font-size: 96px; text-shadow: 0 6px 30px rgba(0,0,0,.8); }
-#e1 { top: 150px; font-size: 118px; }
-#e2 { top: 1585px; font-size: 118px; color: #54e08a; text-shadow: 0 8px 40px rgba(84,224,138,.5); }
-#e3 { top: 1742px; font-size: 52px; }
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-start="0" data-duration="21" data-width="1080" data-height="1920" data-fps="30">
- <div id="stage" class="clip" data-start="0" data-duration="21" data-track-index="1">
+<div id="root" data-composition-id="main" data-start="0" data-duration="17" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="17" data-track-index="1">
   <div id="punch"><div id="cam"><div id="world">
-    <div id="wall" class="abs"></div>
-    <div class="abs poster" style="left:1500px;top:1240px;width:150px;height:200px;background:#39d0ff33;border:8px solid #cfd6f2"></div>
-    <div class="abs poster" style="left:520px;top:1240px;width:150px;height:200px;background:#ff4d5e33;border:8px solid #cfd6f2"></div>
-    <div class="abs win" style="left:130px"><div class="abs sky"></div><div class="abs wheel"><span class="abs moon"></span><span class="abs sun"></span></div><span class="abs mull" style="left:186px;top:0;width:14px;height:600px"></span><span class="abs mull" style="left:0;top:290px;width:400px;height:14px"></span></div>
-    <div class="abs win" style="left:1600px"><div class="abs sky"></div><div class="abs wheel"><span class="abs moon"></span><span class="abs sun"></span></div><span class="abs mull" style="left:186px;top:0;width:14px;height:600px"></span><span class="abs mull" style="left:0;top:290px;width:400px;height:14px"></span></div>
-    <div id="clock" class="abs"><i class="hh"></i><i class="mh"></i></div>
-    <div id="board" class="abs"><span class="b1" id="b1">TEST 1</span><span class="b2" id="b2">RESULTS</span></div>
-    <div id="tray" class="abs"></div>
-    <div id="wains" class="abs"></div><div id="base" class="abs"></div>
-    <div id="floor" class="abs"></div><div id="floorl" class="abs"></div>
-    <div class="abs beam" style="left:130px"></div><div class="abs beam" style="left:1600px"></div>
-    <div class="abs pool" style="left:330px;top:2090px;width:740px;height:240px"></div>
-    <div class="abs pool" style="left:1090px;top:2090px;width:740px;height:240px"></div>
-    <div class="abs pool" style="left:120px;top:3050px;width:920px;height:300px"></div>
-    <div class="abs pool" style="left:1120px;top:3050px;width:920px;height:300px"></div>
-    <div id="night" class="abs"></div>
     <div id="backrow"></div>
+    <svg id="teacher" viewBox="0 0 300 700" style="left:0;top:1736px;width:330px;height:770px">
+      <text x="150" y="-6" font-size="40" text-anchor="middle" fill="#9d9da8" letter-spacing="3">TEACHER</text>
+      <g id="tflip"><g id="tbody">
+        <g class="tlegL"><line class="tl" x1="150" y1="380" x2="150" y2="640"/></g>
+        <g class="tlegR"><line class="tl" x1="150" y1="380" x2="150" y2="640"/></g>
+        <g class="tarmB"><line class="tl" x1="150" y1="175" x2="120" y2="310"/></g>
+        <line class="tl" x1="150" y1="116" x2="150" y2="380"/>
+        <g class="tarmF"><polyline class="tl" points="150,175 198,262 250,236"/><rect x="236" y="170" width="60" height="76" rx="5" fill="#cfcfd6" transform="rotate(10 266 208)"/><rect x="230" y="176" width="60" height="76" rx="5" fill="#f4f4f4" transform="rotate(4 260 214)"/></g>
+        <circle cx="150" cy="70" r="46" fill="#9d9da8"/>
+      </g></g>
+    </svg>
     <div id="focus" class="abs"></div>
-    <div id="aglow" class="abs"></div>
     <div id="frontrow"></div>
+    <div id="fly"></div>
     <div id="dim" class="abs"></div>
   </div></div></div>
-  <div id="ui">
-    <div id="vig"></div>
-    <div id="caps"></div>
-    <span id="e0" class="A blk">first test.</span>
-    <span id="e1" class="A blk">talent starts.</span>
-    <span id="e2" class="A blk">discipline finishes.</span>
-    <span id="e3" class="blk">1 hour. Every day. That's it.</span>
-    <div id="bars"><i style="top:0"></i><i style="top:1824px"></i></div>
-    <div id="flash"></div>
-  </div>
+  <div id="flash"></div>
  </div>
 </div>
 <script>
-const C = { TALENT: "#39d0ff", EGO: "#ffd84a", OBSESSION: "#ff4d5e", DISCIPLINE: "#54e08a" };
-const P = { TALENT: [700, 1950, 440], EGO: [1460, 1950, 440], OBSESSION: [580, 2860, 600], DISCIPLINE: [1580, 2860, 600] }; // cx, deskY, width
-const G = { TALENT: "A+", EGO: "B+", OBSESSION: "A", DISCIPLINE: "A+" };
-const G0 = { TALENT: "A+", EGO: "B+", OBSESSION: "D+", DISCIPLINE: "F" };
-const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)">${good ? `<rect x="66" y="-308" width="268" height="326" rx="24" fill="#ffe27a" opacity=".6" style="filter:blur(18px)"/>` : ""}<rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f4ec" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 3 ? 112 : g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text>${good ? `<text class="ps" x="46" y="-250" font-size="54" fill="#ffe27a">✦</text><text class="ps" x="322" y="-30" font-size="42" fill="#ffe27a">✦</text><text class="ps" x="330" y="-270" font-size="34" fill="#ffe27a">✦</text>` : ""}</g></g>`;
+const VI = 0; // which variant to render (build.sh rewrites this line)
+const VARIANTS = [
+  { W: ["DISCIPLINE"], B: "OBSESSION", N1: "TALENT", N2: "EGO" },
+  { W: ["OBSESSION"], B: "DISCIPLINE", N1: "TALENT", N2: "EGO" },
+  { W: ["TALENT"], B: "OBSESSION", N1: "EGO", N2: "DISCIPLINE" },
+  { W: ["EGO"], B: "DISCIPLINE", N1: "TALENT", N2: "OBSESSION" },
+  { W: ["DISCIPLINE", "OBSESSION"], B: null, N1: "TALENT", N2: "EGO" },
+];
+const V = VARIANTS[VI], W = V.W, Bc = V.B;
+const P = { TALENT: [700, 1600, 440], EGO: [1460, 1600, 440], OBSESSION: [580, 2860, 600], DISCIPLINE: [1580, 2860, 600] }; // cx, deskY, width
+const order = ["TALENT", "EGO", "OBSESSION", "DISCIPLINE"];
+const SIDE = { L: ["TALENT", "OBSESSION"], R: ["EGO", "DISCIPLINE"] }, STOP = { L: 940, R: 1220 };
+const G0 = {}, G = {};
+order.forEach((k) => { G0[k] = W.includes(k) ? "F" : k === Bc ? "D+" : k === V.N1 ? "A+" : "B+"; G[k] = W.includes(k) ? "A+" : k === Bc ? "A" : k === V.N1 ? "A+" : "B+"; });
+const sleeps = (k) => k === "TALENT" && !W.includes(k);
+const front = (k) => P[k][2] > 500;
+const GR = "#8d8d99";
+const paper = (cls, g, good, r) => `<g class="${cls}"><g transform="translate(0 -46)">${good ? `<rect x="66" y="-308" width="268" height="326" rx="24" fill="#ffffff" opacity=".45" style="filter:blur(18px)"/>` : ""}<rect x="85" y="-290" width="230" height="290" rx="12" fill="#f7f7f7" transform="rotate(${r} 200 -145)"/><text x="200" y="-70" font-size="${g.length > 1 ? 180 : 210}" text-anchor="middle" fill="${good ? "#17a355" : "#e0283c"}" transform="rotate(${r} 200 -145)">${g}</text>${good ? `<text class="ps" x="46" y="-250" font-size="54" fill="#ffffff">✦</text><text class="ps" x="322" y="-30" font-size="42" fill="#ffffff">✦</text><text class="ps" x="330" y="-270" font-size="34" fill="#ffffff">✦</text>` : ""}</g></g>`;
 function fig(k) {
-  const c = C[k], [cx, dy, w] = P[k], sc = w / 400;
+  const [cx, dy, w] = P[k], sc = w / 400, ego = k === "EGO";
   const acc = {
-    TALENT: `<path class="ln" d="M150 62 A52 52 0 0 1 250 62" style="stroke:${c};stroke-width:14"/><rect x="134" y="52" width="26" height="50" rx="10" fill="${c}"/><rect x="240" y="52" width="26" height="50" rx="10" fill="${c}"/><path d="M180 78 L196 78 M206 78 L222 78" stroke="#0b0e1d" stroke-width="6" stroke-linecap="round"/>`,
-    EGO: `<path d="M158 34 L158 -14 L181 12 L200 -22 L219 12 L242 -14 L242 34 Z" fill="${c}"/><path d="M182 84 Q204 96 224 74" stroke="#0b0e1d" stroke-width="7" fill="none" stroke-linecap="round"/>`,
-    OBSESSION: `<circle cx="184" cy="72" r="8" fill="${c}"/><circle cx="216" cy="72" r="8" fill="${c}"/><path d="M172 56 L194 62 M228 56 L206 62" stroke="${c}" stroke-width="6" stroke-linecap="round"/>`,
-    DISCIPLINE: `<path d="M184 88 L216 88 M172 58 L193 66 M228 58 L207 66" stroke="#0b0e1d" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="150" y="30" width="100" height="16" rx="8" fill="${c}"/>`,
+    TALENT: `<path d="M150 62 A52 52 0 0 1 250 62" fill="none" stroke="${GR}" stroke-width="14" stroke-linecap="round"/><rect x="134" y="52" width="26" height="50" rx="10" fill="${GR}"/><rect x="240" y="52" width="26" height="50" rx="10" fill="${GR}"/>`,
+    EGO: "", DISCIPLINE: "",
+    OBSESSION: `<rect x="150" y="30" width="100" height="16" rx="8" fill="${GR}"/>`,
   }[k];
   const prop = {
-    TALENT: `<text class="tz tz1" x="262" y="170" font-size="52" fill="#f4f1ea">z</text><text class="tz tz2" x="296" y="128" font-size="64" fill="#f4f1ea">z</text><text class="tz tz3" x="336" y="78" font-size="78" fill="#f4f1ea">z</text>`,
-    EGO: `<g class="trophy" transform="translate(-246 0)"><rect x="296" y="282" width="44" height="12" rx="3" fill="${c}"/><rect x="312" y="262" width="12" height="22" fill="${c}"/><path d="M294 214 H342 V236 A24 24 0 0 1 294 236 Z" fill="${c}"/></g><text class="sp sp1" x="40" y="40" font-size="64" fill="${c}">✦</text><text class="sp sp2" x="345" y="110" font-size="80" fill="${c}">✦</text>`,
-    OBSESSION: [0,1,2,3,4,5].map(i => `<rect class="bk bk${i}" x="${286 + (i % 2) * 6}" y="${270 - i * 26}" width="74" height="22" rx="4" fill="${["#ff4d5e","#c93a4a","#ff7d6b","#a52a3a","#ff4d5e","#ff9a8a"][i]}"/>`).join("") + `<text class="zz" x="250" y="150" font-size="60" fill="#f4f1ea">z z z</text><g class="burn"><rect x="60" y="-150" width="280" height="84" rx="14" fill="${c}"/><text x="200" y="-88" font-size="62" text-anchor="middle" fill="#0b0e1d" letter-spacing="3">BURNOUT</text></g>`,
-    DISCIPLINE: [0,1,2,3,4,5,6].map(i => i < 3
-      ? `<g class="ck ck${i}"><rect x="${67 + i * 39}" y="-112" width="32" height="32" rx="7" fill="#ff4d5e"/><path d="M${75 + i * 39} -104 l16 16 m0 -16 l-16 16" stroke="#f7f4ec" stroke-width="5" fill="none" stroke-linecap="round"/></g>`
-      : `<g class="ck ck${i}"><rect x="${67 + i * 39}" y="-112" width="32" height="32" rx="7" fill="${c}"/><path d="M${74 + i * 39} -96 l7 8 l12 -15" stroke="#0b0e1d" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`).join("")
-      + `<circle class="sw sw0" cx="262" cy="70" r="8" fill="#9fdcff"/><circle class="sw sw1" cx="138" cy="92" r="7" fill="#9fdcff"/><circle class="sw sw2" cx="250" cy="110" r="6" fill="#9fdcff"/>`
-      + [0,1,2].map(i => `<circle class="pb pb${i}" cx="252" cy="276" r="14" fill="#f7f4ec" stroke="#b9b6ad" stroke-width="3"/>`).join("") + `<g class="lamp"><path d="M70 294 L70 240 L100 220" class="ln" style="stroke:#8892c8;stroke-width:8"/><path d="M92 206 L126 222 L110 246 Z" fill="#ffe27a"/><ellipse cx="150" cy="292" rx="70" ry="10" fill="#ffe27a" opacity=".35"/></g>`,
+    TALENT: sleeps(k) ? `<text class="tz tz1" x="262" y="170" font-size="52" fill="#f4f4f4">z</text><text class="tz tz2" x="296" y="128" font-size="64" fill="#f4f4f4">z</text><text class="tz tz3" x="336" y="78" font-size="78" fill="#f4f4f4">z</text>` : "",
+    EGO: "",
+    OBSESSION: `<path d="M70 294 L70 240 L100 220" fill="none" stroke="#5f5f6a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M92 206 L126 222 L110 246 Z" fill="#d9d9e0"/>`,
+    DISCIPLINE: [0,1,2,3,4,5].map(i => `<rect x="${286 + (i % 2) * 6}" y="${270 - i * 26}" width="74" height="22" rx="4" fill="${["#c9c9d2","#6f6f7a","#9c9ca6","#55555f","#b4b4be","#80808a"][i]}"/>`).join(""),
   }[k];
+  const marks = [0,1,2,3,4,5,6].map(i => i < 3
+    ? `<g class="ck ck${i}"><rect x="${67 + i * 39}" y="-112" width="32" height="32" rx="7" fill="#e0283c"/><path d="M${75 + i * 39} -104 l16 16 m0 -16 l-16 16" stroke="#f7f7f7" stroke-width="5" fill="none" stroke-linecap="round"/></g>`
+    : `<g class="ck ck${i}"><rect x="${67 + i * 39}" y="-112" width="32" height="32" rx="7" fill="#35c46f"/><path d="M${74 + i * 39} -96 l7 8 l12 -15" stroke="#000" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`).join("");
+  const stars = [[-30, -40, 60], [430, -90, 72], [-50, 150, 46], [445, 120, 54], [20, -230, 40], [385, -260, 50], [-70, 30, 34], [470, 10, 38]].map((p, i) => `<text class="st st${i}" x="${p[0]}" y="${p[1]}" font-size="${p[2]}" text-anchor="middle" fill="#ffffff">✦</text>`).join("");
   return `<svg class="fig f-${k}" viewBox="0 0 400 520" style="left:${cx - w / 2}px;top:${dy - 296 * sc}px;width:${w}px;height:${w * 1.3}px">
-${k === "DISCIPLINE" ? `<g class="aura"><g style="filter:blur(9px)"><g class="au1"><path d="M200 300 C 50 300, 30 110, 128 30 C 118 110, 168 80, 200 -110 C 232 80, 282 110, 272 30 C 370 110, 350 300, 200 300 Z" fill="#54e08a" opacity=".42"/></g><g class="au2"><path d="M200 300 C 50 300, 30 110, 128 30 C 118 110, 168 80, 200 -110 C 232 80, 282 110, 272 30 C 370 110, 350 300, 200 300 Z" fill="#b8ffd2" opacity=".5" transform="translate(200 300) scale(.66 .7) translate(-200 -300)"/></g></g>${[0,1,2,3,4,5,6,7].map(i => `<circle class="pt pt${i}" cx="${70 + i * 37}" cy="${280 - (i % 3) * 30}" r="${5 + (i % 3) * 2}" fill="#d6ffe4"/>`).join("")}<path class="bolt" d="M92 150 l26 -44 l-8 34 l30 -8 l-40 60 l10 -40 z" fill="#eafff1"/><path class="bolt" d="M318 90 l-22 -40 l4 30 l-28 -6 l38 56 l-8 -36 z" fill="#eafff1"/></g>` : ""}
-    ${k === "EGO" ? `<rect x="104" y="96" width="192" height="270" rx="26" fill="#3a2a6e" stroke="${c}" stroke-width="8"/><circle cx="112" cy="100" r="16" fill="${c}"/><circle cx="288" cy="100" r="16" fill="${c}"/>` : `<rect x="120" y="210" width="160" height="150" rx="14" fill="#1b2147"/>`}
+    ${ego ? `<rect x="104" y="96" width="192" height="270" rx="26" fill="#0d0d10" stroke="#5c5c66" stroke-width="8"/>` : `<rect x="120" y="210" width="160" height="150" rx="14" fill="#0d0d10" stroke="#2c2c33" stroke-width="4"/>`}
     <g class="bd">
       <line class="ln ext" x1="200" y1="200" x2="200" y2="330"/>
       <line class="ln tor" x1="200" y1="120" x2="200" y2="290"/>
-      ${k === "EGO" ? `<g class="aL"><polyline class="ln" points="200,160 128,128 158,62"/></g><g class="aR"><polyline class="ln" points="200,160 272,128 242,62"/></g>` : `<g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g><g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>`}
+      ${ego ? `<g class="aL"><polyline class="ln" points="200,160 128,128 158,62"/></g><g class="aR"><polyline class="ln" points="200,160 272,128 242,62"/></g>` : `<g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g><g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>`}
       <polyline class="ln upL" points="200,165 124,104 96,18"/><polyline class="ln upR" points="200,165 276,104 304,18"/>
-      <g class="hdg"><circle cx="200" cy="72" r="50" fill="#f4f1ea"/>${acc}</g>
+      <g class="hdg"><circle cx="200" cy="72" r="50" fill="#f4f4f4"/>${acc}</g>
     </g>
-    <rect x="30" y="296" width="340" height="30" rx="10" fill="#566099"/>
-    <rect x="46" y="326" width="308" height="104" rx="6" fill="#2b3364"/>
-    <rect x="60" y="430" width="22" height="86" fill="#222950"/><rect x="318" y="430" width="22" height="86" fill="#222950"/>
-    <text x="200" y="398" font-size="${k.length > 8 ? 46 : 54}" text-anchor="middle" fill="${c}" letter-spacing="3">${k}</text>
-    <rect x="156" y="278" width="88" height="16" rx="3" fill="#f7f4ec" stroke="${c}" stroke-width="4"/>
-    ${k === "EGO" ? `<g class="feet"><polyline class="ln" points="214,286 300,262 352,270 362,238"/><polyline class="ln" points="214,286 292,284 338,254 356,226"/></g>` : ""}
-    ${prop}
-    <g class="meter"><rect x="90" y="-52" width="220" height="26" rx="13" fill="#0b0e1d" stroke="#f4f1ea" stroke-width="5"/><rect class="mf" x="96" y="-46" width="0" height="14" rx="7" fill="${c}"/></g>
-    ${paper("paper", G[k], true, k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], k === "TALENT" || k === "EGO", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
+    <rect x="30" y="296" width="340" height="30" rx="10" fill="#3a3a43"/>
+    <rect x="46" y="326" width="308" height="104" rx="6" fill="#1b1b20"/>
+    <rect x="60" y="430" width="22" height="86" fill="#141418"/><rect x="318" y="430" width="22" height="86" fill="#141418"/>
+    <text x="200" y="398" font-size="${k.length > 8 ? 46 : 54}" text-anchor="middle" fill="#f4f4f4" letter-spacing="3">${k}</text>
+    <rect x="156" y="278" width="88" height="16" rx="3" fill="#f7f7f7" stroke="${GR}" stroke-width="4"/>
+    ${ego ? `<g class="feet"><polyline class="ln" points="214,286 300,262 352,270 362,238"/><polyline class="ln" points="214,286 292,284 338,254 356,226"/></g>` : ""}
+    ${prop}${marks}${stars}
+    <circle class="sw sw0" cx="262" cy="70" r="8" fill="#d5d8e0"/><circle class="sw sw1" cx="138" cy="92" r="7" fill="#d5d8e0"/><circle class="sw sw2" cx="250" cy="110" r="6" fill="#d5d8e0"/>
+    ${[0,1,2].map(i => `<circle class="pb pb${i}" cx="252" cy="276" r="14" fill="#f7f7f7" stroke="#9a9aa4" stroke-width="3"/>`).join("")}
+    <text class="zz" x="${k === "DISCIPLINE" ? 150 : 250}" y="150" font-size="60" fill="#f4f4f4">z z z</text>
+    <g class="burn"><rect x="60" y="-150" width="280" height="84" rx="14" fill="#f4f4f4"/><text x="200" y="-88" font-size="62" text-anchor="middle" fill="#000" letter-spacing="3">BURNOUT</text></g>
+    <g class="meter"><rect x="90" y="-52" width="220" height="26" rx="13" fill="#000" stroke="#f4f4f4" stroke-width="5"/><rect class="mf" x="96" y="-46" width="0" height="14" rx="7" fill="#f4f4f4"/></g>
+    ${paper("paper", G[k], true, k === "DISCIPLINE" || k === "EGO" ? -4 : 4)}${paper("paper0", G0[k], G0[k][0] < "C", k === "TALENT" || k === "OBSESSION" ? -4 : 4)}
   </svg>`;
 }
-const order = ["TALENT", "EGO", "OBSESSION", "DISCIPLINE"];
 document.getElementById("backrow").innerHTML = fig("TALENT") + fig("EGO");
 document.getElementById("frontrow").innerHTML = fig("OBSESSION") + fig("DISCIPLINE");
-const Q = { TALENT: "“I don't need to study.”", EGO: "“I'm already the best.”", OBSESSION: "20 hours a day. No sleep.", DISCIPLINE: "1 hour. Every single day." };
-document.getElementById("caps").innerHTML = [].map((k) => `<span class="A blk nm nm-${k}" style="color:${C[k]};font-size:${k.length > 8 ? 168 : 210}px">${k}</span><span class="blk qt qt-${k}">${Q[k]}</span>`).join("");
+document.getElementById("fly").innerHTML = [0,1,2,3,4,5,6,7].map((i) => `<span class="abs fp" id="fp${i}"></span>`).join("");
+{ // spotlight for the finale follows the winner(s)
+  const d = document.getElementById("dim");
+  if (W.length > 1) d.style.background = "radial-gradient(ellipse 1500px 1000px at 1080px 2480px, rgba(0,0,0,0) 0, rgba(0,0,0,0) 55%, rgba(0,0,0,.92) 100%)";
+  else { const [cx, dy, w] = P[W[0]], sc = w / 400; d.style.background = `radial-gradient(circle at ${cx}px ${dy - 360 * sc}px, rgba(0,0,0,0) 0, rgba(0,0,0,0) ${380 * sc}px, rgba(0,0,0,.92) ${640 * sc}px)`; }
+}
 
 document.fonts.ready.then(() => {
   const M = gsap.timeline({ paused: true });
-  const END = 21, TL = 6.0, D = 7.0, H = D / 15, EX = 13.0, BO = 10.0, UP = 8.0, ST = 18.0;
+  const END = 17, TL = 4.5, UP = 6.5, BO = 8.5, H2 = 10.5, ST = 14.5;
   const camTo = (cx, cy, s) => ({ x: 540 - cx * s, y: 960 - cy * s, scale: s });
-  const close = (k) => { const [cx, dy, w] = P[k]; const sc = w / 400; return camTo(cx, dy - 300 * sc, w > 500 ? 1.12 : 1.5); };
-  const WIDE = camTo(1080, 1850, 0.58);
-  // hard cut to a new framing on the beat: punch in, then a slow drift for the rest of the shot
+  const close = (k) => { const [cx, dy, w] = P[k]; return camTo(cx, dy - 300 * (w / 400), front(k) ? 1.12 : 1.5); };
+  const closeS = (k) => { const [cx, dy, w] = P[k]; return camTo(cx, dy - 230 * (w / 400), front(k) ? 0.98 : 1.3); };
+  const TWO = camTo(1080, 2520, 0.62), WIDE = camTo(1080, 2050, 0.62);
+  const FOLLOW = (x) => camTo(x, 2050, 0.8);
   const cut = (t, c, len, foc = 0) => {
     M.set("#cam", c, t); M.set("#focus", { opacity: foc }, t);
     M.fromTo("#punch", { scale: 1.1 }, { scale: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, t);
     M.to("#punch", { scale: 1.035, duration: len - 0.16, ease: "none" }, t + 0.16);
   };
-  const flash = (t, a = 0.4) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, t);
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 14) => M.fromTo("#world", { y: a }, { y: 0, duration: 0.3, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
   const rise = (sel, t) => {
     M.fromTo(sel, { scale: 0.1, opacity: 0, rotation: -28, svgOrigin: "200 280" }, { scale: 1, opacity: 1, rotation: 0, svgOrigin: "200 280", duration: 0.32, ease: "back.out(1.7)" }, t);
     if (document.querySelector(sel + " .ps")) M.fromTo(sel + " .ps", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, transformOrigin: "50% 50%", duration: 0.2, yoyo: true, repeat: 3, stagger: 0.08, ease: "sine.inOut" }, t + 0.25);
   };
   const armsUp = (k, t, up) => { M.set(`.f-${k} .aL, .f-${k} .aR`, { opacity: up ? 0 : 1 }, t); M.set(`.f-${k} .upL, .f-${k} .upR`, { opacity: up ? 1 : 0 }, t); };
-  gsap.set("#cam", { transformOrigin: "0 0", ...WIDE });
-  gsap.set("#aglow, .aura, .bolt, #e0, .paper0, #focus, #flash, #e1, #e2, #e3, #dim, .meter, .paper, .zz, .burn, .ext, .upL, .upR, .bk, .ck, .sw, .pb, .beam", { opacity: 0 });
-  gsap.set("#clock .hh", { rotation: 100 }); gsap.set("#clock .mh", { rotation: 40 });
-  gsap.set(".sky", { backgroundColor: "#0b1638" });
-  gsap.set(".aura", { scale: 0.05, svgOrigin: "200 300" });
-  gsap.set(".f-TALENT .mf", { attr: { width: 200 } }); gsap.set(".f-EGO .mf", { attr: { width: 150 } });
-  gsap.set(".f-OBSESSION .mf", { attr: { width: 40 } }); gsap.set(".f-DISCIPLINE .mf", { attr: { width: 8 } });
-  gsap.set(".f-TALENT .hdg", { y: 152, rotation: -18, svgOrigin: "200 120" });
-  gsap.set(".f-TALENT .tor", { scaleY: 0.1, svgOrigin: "200 290" });
+  const nod = (k, t) => { if (!sleeps(k)) M.fromTo(`.f-${k} .hdg`, { y: 0 }, { y: -10, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, t); };
+  // which column the teacher serves first: the winner's column comes last
+  const wl = W.some((k) => SIDE.L.includes(k)), wr = W.some((k) => SIDE.R.includes(k));
+  const sides = wl && !wr ? ["R", "L"] : ["L", "R"];
+  const col = (s) => [...SIDE[s]].sort((a, b) => W.includes(a) - W.includes(b));
+  const inX = sides[0] === "L" ? -260 : 2420, outX = sides[0] === "L" ? 2420 : -260;
 
-  const b2 = document.getElementById("b2"), b1 = document.getElementById("b1");
-  const clk = { v: 0 }; let last = "";
-  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => {
-    const t = M.time(); let a, b;
-    if (t < 5.5) { a = "TEST 1"; b = "RESULTS"; }
-    else if (t < TL) { a = "FINALS IN"; b = "30 DAYS"; }
-    else if (t < TL + D) { const n = Math.max(1, Math.round(30 * (1 - (t - TL) / D))); a = "FINALS IN"; b = n + (n === 1 ? " DAY" : " DAYS"); }
-    else { a = "TODAY:"; b = "FINALS"; }
-    if (a + b !== last) { b1.textContent = a; b2.textContent = b; last = a + b; }
-  } }, 0);
+  gsap.set("#cam", { transformOrigin: "0 0", ...FOLLOW(sides[0] === "L" ? 420 : 1740) });
+  gsap.set("#teacher", { x: inX - 165 });
+  gsap.set("#focus, #flash, #dim, .fp, .paper0, .paper, .meter, .zz, .burn, .ext, .upL, .upR, .ck, .sw, .pb, .st", { opacity: 0 });
+  order.forEach((k) => gsap.set(`.f-${k} .mf`, { attr: { width: W.includes(k) ? 8 : k === Bc ? 40 : k === V.N1 ? 200 : 150 } }));
+  if (sleeps("TALENT")) { gsap.set(".f-TALENT .hdg", { y: 152, rotation: -18, svgOrigin: "200 120" }); gsap.set(".f-TALENT .tor", { scaleY: 0.1, svgOrigin: "200 290" }); }
+
+  // ---- teacher: walk cycle + camera that follows
+  const walk = (t, x0, x1, d, follow = true) => {
+    M.set("#tflip", { scaleX: x1 > x0 ? 1 : -1, svgOrigin: "150 350" }, t);
+    M.fromTo("#teacher", { x: x0 - 165 }, { x: x1 - 165, duration: d, ease: "power1.inOut", immediateRender: false }, t);
+    if (follow) M.to("#cam", { ...FOLLOW(x1), duration: d + 0.14, ease: "power1.inOut" }, t);
+    const n = Math.max(2, Math.round(d / 0.16));
+    M.fromTo(".tlegL", { rotation: -26, svgOrigin: "150 380" }, { rotation: 26, svgOrigin: "150 380", duration: d / n, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t);
+    M.fromTo(".tlegR", { rotation: 26, svgOrigin: "150 380" }, { rotation: -26, svgOrigin: "150 380", duration: d / n, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t);
+    M.fromTo(".tarmB", { rotation: 22, svgOrigin: "150 175" }, { rotation: -22, svgOrigin: "150 175", duration: d / n, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t);
+    M.fromTo("#tbody", { y: 0 }, { y: -12, duration: d / n / 2, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut", immediateRender: false }, t);
+    M.to(".tlegL, .tlegR, .tarmB", { rotation: 0, duration: 0.08 }, t + d);
+  };
+  let fpi = 0;
+  const give = (t, k, sx, cls) => {
+    const [cx, dy] = P[k], dir = cx > sx ? 1 : -1, fp = `#fp${fpi++}`;
+    M.set("#tflip", { scaleX: dir, svgOrigin: "150 350" }, t - 0.03);
+    M.fromTo(".tarmF", { rotation: -38, svgOrigin: "150 175" }, { rotation: 0, svgOrigin: "150 175", duration: 0.2, ease: "back.out(3)", immediateRender: false }, t);
+    M.fromTo(fp, { x: sx + dir * 90 - 35, y: 1945, opacity: 1, rotation: -20, scale: 1 }, { x: cx - 35, y: dy - 85, opacity: 1, rotation: 200 * dir, scale: 0.6, duration: 0.2, ease: "power2.in", immediateRender: false }, t);
+    M.set(fp, { opacity: 0 }, t + 0.2);
+    rise(`.f-${k} .${cls}`, t + 0.2);
+  };
+  const handout = (T0, cls, react) => {
+    walk(T0, inX, STOP[sides[0]], 1.0);
+    const seq = [[1.0, col(sides[0])[0], sides[0]], [1.5, col(sides[0])[1], sides[0]], [2.5, col(sides[1])[0], sides[1]], [3.0, col(sides[1])[1], sides[1]]];
+    walk(T0 + 2.0, STOP[sides[0]], STOP[sides[1]], 0.5);
+    seq.forEach(([dt, k, s]) => { give(T0 + dt, k, STOP[s], cls); react(k, T0 + dt + 0.2); });
+    walk(T0 + 3.5, STOP[sides[1]], outX, 0.95, false);
+  };
 
   // ---- always-on life
-  ["tz1", "tz2", "tz3"].forEach((n, i) => M.fromTo(`.${n}`, { opacity: 0, y: 14 }, { opacity: 0.95, y: -14, duration: 0.5, yoyo: true, repeat: 41, ease: "sine.inOut" }, i * 0.17));
-  M.fromTo(".f-TALENT .bd", { y: 0 }, { y: 5, duration: 1.0, yoyo: true, repeat: 20, ease: "sine.inOut" }, 0);
-  M.fromTo(".f-EGO .bd", { rotation: -15, svgOrigin: "200 290" }, { rotation: -10, svgOrigin: "200 290", duration: 0.8, yoyo: true, repeat: 25, ease: "sine.inOut" }, 0);
-  M.fromTo(".sp", { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 360, transformOrigin: "50% 50%", duration: END, ease: "none" }, 0);
-  M.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 199, ease: "none" }, 0);
-  M.fromTo(".f-OBSESSION .bd", { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 75, ease: "none", immediateRender: false }, 11.7);
-  M.fromTo(".f-DISCIPLINE .aR", { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.25, yoyo: true, repeat: 71, ease: "sine.inOut" }, 0);
-  M.fromTo("#bars i", { scaleY: 2.2 }, { scaleY: 1, duration: 0.8, ease: "power2.out" }, 0);
+  if (sleeps("TALENT")) {
+    ["tz1", "tz2", "tz3"].forEach((n, i) => M.fromTo(`.${n}`, { opacity: 0, y: 14 }, { opacity: 0.95, y: -14, duration: 0.5, yoyo: true, repeat: 33, ease: "sine.inOut" }, i * 0.17));
+    M.fromTo(".f-TALENT .bd", { y: 0 }, { y: 5, duration: 1.0, yoyo: true, repeat: 16, ease: "sine.inOut" }, 0);
+  }
+  M.fromTo(".f-EGO .bd", { rotation: -15, svgOrigin: "200 290" }, { rotation: -10, svgOrigin: "200 290", duration: 0.8, yoyo: true, repeat: 16, ease: "sine.inOut" }, 0);
+  if (Bc) {
+    M.fromTo(`.f-${Bc} .bd`, { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: BO / 0.05 - 1, ease: "none" }, 0);
+    M.fromTo(`.f-${Bc} .bd`, { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 59, ease: "none", immediateRender: false }, 10.2);
+  }
+  W.forEach((k) => { if (k !== "EGO") M.fromTo(`.f-${k} .aR`, { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.25, yoyo: true, repeat: 57, ease: "sine.inOut" }, 0); });
 
-  // ---- 1. first test (0 - 5.5): one shot per student
-  cut(0, WIDE, 1.0);
-  M.fromTo("#e0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2 }, 0.05); M.set("#e0", { opacity: 0 }, 1.0);
-  cut(1.0, close("TALENT"), 1.0); rise(".f-TALENT .paper0", 1.1);
-  cut(2.0, close("EGO"), 1.0); rise(".f-EGO .paper0", 2.1);
-  M.fromTo(".f-EGO .hdg", { y: 0 }, { y: -10, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.4);
-  cut(3.0, close("OBSESSION"), 1.0, 1); rise(".f-OBSESSION .paper0", 3.1);
-  armsUp("OBSESSION", 3.45, true); armsUp("OBSESSION", 3.62, false);
-  M.fromTo("#world", { y: 16 }, { y: 0, duration: 0.3, ease: "elastic.out(1.4,0.3)", immediateRender: false }, 3.62);
-  armsUp("OBSESSION", 3.78, true); armsUp("OBSESSION", 3.9, false);
-  M.fromTo("#world", { y: 16 }, { y: 0, duration: 0.1, ease: "none", immediateRender: false }, 3.9);
-  cut(4.0, close("DISCIPLINE"), 1.5, 1); rise(".f-DISCIPLINE .paper0", 4.1);
-  M.to(".f-DISCIPLINE .hdg", { y: 40, rotation: 16, svgOrigin: "200 120", duration: 0.3, ease: "power2.in" }, 4.55);
-  M.to(".f-DISCIPLINE .paper0", { scale: 0.08, rotation: 30, svgOrigin: "200 280", duration: 0.3, ease: "power2.in" }, 4.95);
-  M.set(".f-DISCIPLINE .paper0", { opacity: 0 }, 5.25);
-  ["sw0", "sw1", "sw2"].forEach((n, i) => M.fromTo(`.${n}`, { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.5, repeat: 6, ease: "power1.in" }, 4.6 + i * 0.17));
-  cut(5.5, WIDE, 0.5); M.set(".paper0", { opacity: 0 }, 5.5); flash(5.5, 0.5);
-  M.fromTo("#board", { scale: 1.14 }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, 5.5);
-
-  // ---- 2. thirty days (6.0 - 13.0)
-  M.set(".meter", { opacity: 1 }, TL);
-  M.fromTo("#night", { opacity: 1 }, { opacity: 0.45, duration: H, yoyo: true, repeat: 14, ease: "sine.inOut" }, TL);
-  M.fromTo(".sky", { backgroundColor: "#0b1638" }, { backgroundColor: "#3f78ad", duration: H, yoyo: true, repeat: 14, ease: "sine.inOut" }, TL);
-  M.fromTo(".beam", { opacity: 0 }, { opacity: 0.5, duration: H, yoyo: true, repeat: 14, ease: "sine.inOut" }, TL);
-  M.fromTo(".wheel", { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 180 * 15, transformOrigin: "50% 50%", duration: D, ease: "none" }, TL);
-  M.to("#clock .mh", { rotation: 40 + 360 * 14, duration: D, ease: "none" }, TL);
-  M.to("#clock .hh", { rotation: 100 + 360 * 2, duration: D, ease: "none" }, TL);
-  // 2a. Discipline alone: fails, fails, fails, then one finally lands
-  cut(6.0, camTo(1580, 2520, 0.98), 3.0, 1);
-  [6.2, 6.7, 7.2, 8.0, 8.5, 9.5, 11.5].forEach((t, i) => {
-    M.fromTo(`.ck${i}`, { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.16, ease: "back.out(3)" }, t);
-    if (i < 3) {
-      M.fromTo(`.pb${i}`, { x: 0, opacity: 1 }, { x: [70, 150, 108][i], opacity: 1, duration: 0.45, ease: "none" }, t);
-      M.fromTo(`.pb${i}`, { y: 0 }, { y: [228, 242, 220][i], duration: 0.45, ease: "bounce.out" }, t);
-      M.to(".f-DISCIPLINE .hdg", { y: 62, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.in" }, t);
-      M.fromTo("#world", { y: 10 }, { y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.09);
+  // ---- 1. the teacher hands back the first test (0 - 4.5), camera follows the teacher
+  handout(0, "paper0", (k, t) => {
+    const hd = k === "EGO" ? [12, 8] : [40, 16];
+    if (W.includes(k)) {
+      M.to(`.f-${k} .hdg`, { y: hd[0], rotation: hd[1], svgOrigin: "200 120", duration: 0.3, ease: "power2.in" }, t + 0.4);
+      M.to(`.f-${k} .paper0`, { scale: 0.08, rotation: 30, svgOrigin: "200 280", duration: 0.3, ease: "power2.in" }, t + 0.85);
+      M.set(`.f-${k} .paper0`, { opacity: 0 }, t + 1.15);
+      ["sw0", "sw1", "sw2"].forEach((n, j) => M.fromTo(`.f-${k} .${n}`, { y: 0, opacity: 1 }, { y: 90, opacity: 0, duration: 0.5, repeat: Math.max(1, Math.floor((UP - t - 0.5) / 0.5) - 1), ease: "power1.in" }, t + 0.5 + j * 0.17));
+    } else {
+      if (k === Bc) { armsUp(k, t + 0.3, true); armsUp(k, t + 0.46, false); bump(t + 0.46, 16); armsUp(k, t + 0.62, true); armsUp(k, t + 0.74, false); bump(t + 0.74, 12); }
+      else nod(k, t + 0.3);
+      M.to(`.f-${k} .paper0`, { scale: 0.08, opacity: 0, svgOrigin: "200 280", duration: 0.22, ease: "power2.in" }, 4.1);
     }
   });
-  M.to(".f-DISCIPLINE .mf", { attr: { width: 30 }, duration: 2.0, ease: "none" }, TL);
-  M.to(".f-DISCIPLINE .mf", { attr: { width: 208 }, duration: EX - UP, ease: "power1.in" }, UP);
-  M.to(".f-DISCIPLINE .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.6, ease: "back.out(2)" }, UP);
-  flash(UP, 0.3);
-  M.to(".aura", { scale: 0.34, opacity: 0.9, duration: 0.4, ease: "back.out(3)" }, UP);
-  M.fromTo(".au1", { scaleY: 0.9, scaleX: 1.05, svgOrigin: "200 300" }, { scaleY: 1.1, scaleX: 0.95, svgOrigin: "200 300", duration: 0.12, yoyo: true, repeat: 107, ease: "sine.inOut" }, UP);
-  M.fromTo(".au2", { scaleY: 1.08, scaleX: 0.94, svgOrigin: "200 300" }, { scaleY: 0.9, scaleX: 1.06, svgOrigin: "200 300", duration: 0.09, yoyo: true, repeat: 143, ease: "sine.inOut" }, UP);
-  [0, 1, 2, 3, 4, 5, 6, 7].forEach((i) => M.fromTo(`.pt${i}`, { y: 0, opacity: 0.95 }, { y: -430, opacity: 0, duration: 0.7 + (i % 3) * 0.2, repeat: 13, ease: "power1.out" }, UP + 0.2 + i * 0.11));
-  M.to(".aura", { scale: 1.0, opacity: 1, duration: EX - UP - 0.5, ease: "power1.in" }, UP + 0.5);
-  M.to("#aglow", { opacity: 0.75, duration: EX - UP - 0.5, ease: "power1.in" }, UP + 0.5);
-  // 2b. wide: the room keeps turning
-  cut(9.0, WIDE, 1.0);
-  [0, 1, 2, 3, 4, 5].forEach((i) => M.fromTo(`.bk${i}`, { y: -420, opacity: 0 }, { y: 0, opacity: 1, duration: 0.18, ease: "power2.in" }, TL + 0.2 + i * 0.3));
-  M.to(".f-OBSESSION .mf", { attr: { width: 172 }, duration: 3.8, ease: "power2.out" }, TL);
-  // 2c. Obsession crashes
-  cut(BO, close("OBSESSION"), 1.0, 1); flash(BO, 0.25);
-  M.to(".f-OBSESSION .mf", { attr: { width: 70 }, fill: "#7a3d48", duration: 0.5, ease: "bounce.out" }, BO + 0.05);
-  M.to(".f-OBSESSION .hdg", { y: 150, rotation: 24, svgOrigin: "200 120", duration: 0.3, ease: "power3.in" }, BO + 0.05);
-  M.to(".f-OBSESSION .tor", { scaleY: 0.1, svgOrigin: "200 290", duration: 0.3, ease: "power3.in" }, BO + 0.05);
-  M.to(".f-OBSESSION .tor", { scaleY: 1, svgOrigin: "200 290", duration: 0.3, ease: "back.out(2)" }, 11.5);
-  M.fromTo("#world", { y: 14 }, { y: 0, duration: 0.3, ease: "elastic.out(1.4,0.3)", immediateRender: false }, BO + 0.35);
-  M.fromTo(".burn", { scale: 0, opacity: 0, transformOrigin: "50% 100%" }, { scale: 1, opacity: 1, duration: 0.22, ease: "back.out(2.5)" }, BO + 0.35);
-  M.set(".burn", { opacity: 0 }, 11.0);
-  M.fromTo(".zz", { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 0.45, yoyo: true, repeat: 2, ease: "sine.inOut" }, BO + 0.4);
-  M.set(".zz", { opacity: 0 }, 11.7);
-  cut(11.0, camTo(1080, 1850, 0.6), 2.0);
-  M.to(".f-OBSESSION .hdg", { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.3, ease: "back.out(2)" }, 11.5);
-  M.to(".f-OBSESSION .mf", { attr: { width: 184 }, fill: "#ff4d5e", duration: 1.3, ease: "power1.inOut" }, 11.6);
+  // the camera lets the teacher go and settles on the one who failed
+  M.to("#cam", { ...(W.length > 1 ? TWO : closeS(W[W.length - 1])), duration: 0.9, ease: "power2.inOut" }, 3.55);
 
-  // ---- 3. finals (13.0 - 18.0): one shot per student again
-  cut(EX, camTo(1080, 1850, 0.6), 0.5); flash(EX, 0.55);
-  M.set("#night", { opacity: 0.5 }, EX); M.set(".meter, .ck, .zz", { opacity: 0 }, EX);
-  cut(13.5, close("EGO"), 1.0); rise(".f-EGO .paper", 13.6);
-  cut(14.5, close("TALENT"), 1.0); rise(".f-TALENT .paper", 14.6);
-  cut(15.5, close("OBSESSION"), 1.0, 1); rise(".f-OBSESSION .paper", 15.6);
-  armsUp("OBSESSION", 15.95, true);
-  M.fromTo(".f-OBSESSION .bd", { y: 0 }, { y: -22, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 15.95);
-  cut(16.5, close("DISCIPLINE"), 1.5, 1); rise(".f-DISCIPLINE .paper", 16.6);
-  flash(16.75, 0.7); M.to(".aura", { scale: 1.35, duration: 0.3, ease: "back.out(3)" }, 16.75);
+  // ---- 2. the grind (4.5 - 10.5)
+  M.set(".meter", { opacity: 1 }, TL);
+  if (W.length > 1) cut(TL, TWO, 3.0, 1); else cut(TL, closeS(W[0]), 3.0, front(W[0]) ? 1 : 0);
+  W.forEach((k, wi) => {
+    const f = `.f-${k}`;
+    [TL + 0.2, TL + 0.7, TL + 1.2, UP, UP + 0.5, UP + 1.5, UP + 3.2].forEach((t, i) => {
+      M.fromTo(`${f} .ck${i}`, { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.16, ease: "back.out(3)" }, t);
+      if (i < 3) {
+        M.fromTo(`${f} .pb${i}`, { x: 0, opacity: 1 }, { x: [70, 150, 108][i], opacity: 1, duration: 0.45, ease: "none" }, t);
+        M.fromTo(`${f} .pb${i}`, { y: 0 }, { y: [228, 242, 220][i], duration: 0.45, ease: "bounce.out" }, t);
+        M.to(`${f} .hdg`, { y: k === "EGO" ? 26 : 62, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.in" }, t);
+        if (!wi) M.fromTo("#world", { y: 10 }, { y: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.09);
+      }
+    });
+    M.to(`${f} .mf`, { attr: { width: 30 }, duration: UP - TL, ease: "none" }, TL);
+    M.to(`${f} .mf`, { attr: { width: 208 }, duration: H2 - UP, ease: "power1.in" }, UP);
+    M.to(`${f} .hdg`, { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.6, ease: "back.out(2)" }, UP);
+  });
+  flash(UP, 0.18);
+  cut(7.5, WIDE, 1.0);
+  if (Bc) {
+    const f = `.f-${Bc}`;
+    M.to(`${f} .mf`, { attr: { width: 172 }, duration: BO - TL - 0.2, ease: "power2.out" }, TL);
+    cut(BO, close(Bc), 1.0, front(Bc) ? 1 : 0); flash(BO, 0.15);
+    M.to(`${f} .mf`, { attr: { width: 70 }, opacity: 0.5, duration: 0.5, ease: "bounce.out" }, BO + 0.05);
+    M.to(`${f} .hdg`, { y: 150, rotation: 24, svgOrigin: "200 120", duration: 0.3, ease: "power3.in" }, BO + 0.05);
+    M.to(`${f} .tor`, { scaleY: 0.1, svgOrigin: "200 290", duration: 0.3, ease: "power3.in" }, BO + 0.05);
+    bump(BO + 0.35);
+    M.fromTo(`${f} .burn`, { scale: 0, opacity: 0, transformOrigin: "50% 100%" }, { scale: 1, opacity: 1, duration: 0.22, ease: "back.out(2.5)" }, BO + 0.35);
+    M.set(`${f} .burn`, { opacity: 0 }, BO + 1.0);
+    M.fromTo(`${f} .zz`, { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 0.4, yoyo: true, repeat: 2, ease: "sine.inOut" }, BO + 0.4);
+    M.set(`${f} .zz`, { opacity: 0 }, 10.0);
+    M.to(`${f} .tor`, { scaleY: 1, svgOrigin: "200 290", duration: 0.3, ease: "back.out(2)" }, 10.0);
+    M.to(`${f} .hdg`, { y: 0, rotation: 0, svgOrigin: "200 120", duration: 0.3, ease: "back.out(2)" }, 10.0);
+    M.to(`${f} .mf`, { attr: { width: 184 }, opacity: 1, duration: 0.45, ease: "power1.inOut" }, 10.0);
+  } else cut(BO, TWO, 1.0, 1);
+  cut(9.5, WIDE, 1.0);
 
-  // ---- 4. he stands (18.0 - end)
-  cut(ST, camTo(1580, 2600, 1.15), 3.0);
-  M.set("#backrow, .pb", { opacity: 0 }, ST); M.set("#dim", { opacity: 1 }, ST);
-  armsUp("OBSESSION", ST, false);
-  M.to(".f-DISCIPLINE .paper", { y: -120, opacity: 0, duration: 0.25 }, ST + 0.05);
-  armsUp("DISCIPLINE", ST + 0.3, true); M.set(".f-DISCIPLINE .ext", { opacity: 1 }, ST + 0.3);
-  M.to(".f-DISCIPLINE .bd", { y: -110, duration: 0.3, ease: "back.out(2.5)" }, ST + 0.3);
-  flash(ST + 0.4, 0.5);
-  M.to(".aura", { scale: 1.75, duration: 0.35, ease: "back.out(2.5)" }, ST + 0.3);
-  M.to("#aglow", { opacity: 1, scale: 1.25, duration: 0.35 }, ST + 0.3);
-  M.fromTo(".bolt", { opacity: 0 }, { opacity: 1, duration: 0.05, yoyo: true, repeat: 41, repeatDelay: 0.04, ease: "steps(1)" }, ST + 0.3);
-  M.fromTo("#world", { x: -10 }, { x: 10, duration: 0.04, yoyo: true, repeat: 11, ease: "none", immediateRender: false }, ST + 0.3);
-  M.set("#world", { x: 0 }, ST + 0.8);
-  M.fromTo("#e1", { opacity: 0, y: -30 }, { opacity: 0.85, y: 0, duration: 0.25 }, ST + 0.5);
-  M.fromTo("#e2", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.in" }, ST + 0.8);
-  flash(ST + 1.0, 0.45);
-  M.fromTo("#e3", { opacity: 0, y: 20 }, { opacity: 0.85, y: 0, duration: 0.3 }, ST + 1.6);
+  // ---- 3. the teacher comes back with the second results (10.5 - 14.5)
+  cut(H2, FOLLOW(sides[0] === "L" ? 420 : 1740), 1.0);
+  M.set(".meter, .ck, .zz, .pb", { opacity: 0 }, H2);
+  handout(H2, "paper", (k, t) => {
+    if (W.includes(k)) { flash(t + 0.12, 0.45); bump(t + 0.12, 10); }
+    else if (k === Bc) { armsUp(k, t + 0.3, true); M.fromTo(`.f-${k} .bd`, { y: 0 }, { y: -22, duration: 0.12, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, t + 0.3); armsUp(k, ST, false); }
+    else nod(k, t + 0.3);
+  });
+
+  // ---- 4. the one who failed first stands (14.5 - end)
+  const allFront = W.every(front), allBack = W.every((k) => !front(k));
+  if (W.length > 1) cut(ST, TWO, END - ST); else { const [cx, dy, w] = P[W[0]]; cut(ST, front(W[0]) ? camTo(cx, 2440, 1.05) : camTo(cx, dy - 270 * (w / 400), 1.45), END - ST); }
+  M.set("#teacher", { opacity: 0 }, ST);
+  if (allFront) M.set("#backrow", { opacity: 0 }, ST); if (allBack) M.set("#frontrow", { opacity: 0 }, ST);
+  M.set("#dim", { opacity: 1 }, ST);
+  order.forEach((k) => { if (!W.includes(k)) M.set(`.f-${k} .paper`, { opacity: 0 }, ST); });
+  W.forEach((k) => {
+    const f = `.f-${k}`;
+    M.to(`${f} .paper`, { y: -150, duration: 0.3, ease: "back.out(2)" }, ST + 0.25);
+    armsUp(k, ST + 0.25, true); M.set(`${f} .ext`, { opacity: 1 }, ST + 0.25);
+    if (k === "EGO") { M.set(`${f} .feet`, { opacity: 0 }, ST + 0.25); M.to(`${f} .bd`, { rotation: 0, svgOrigin: "200 290", duration: 0.2 }, ST + 0.25); }
+    M.to(`${f} .bd`, { y: -110, duration: 0.3, ease: "back.out(2.5)" }, ST + 0.25);
+    M.fromTo(`${f} .bd`, { y: -110 }, { y: -128, duration: 0.25, yoyo: true, repeat: 7, ease: "sine.inOut", immediateRender: false }, ST + 0.6);
+    [0, 1, 2, 3, 4, 5, 6, 7].forEach((i) => M.fromTo(`${f} .st${i}`, { scale: 0, opacity: 0, rotation: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, rotation: 90, transformOrigin: "50% 50%", duration: 0.3, yoyo: true, repeat: 5, ease: "sine.inOut" }, ST + 0.3 + i * 0.07));
+  });
+  flash(ST + 0.3, 0.4); bump(ST + 0.3, 18);
   M.set({}, {}, END);
   window.__timelines["main"] = M;
 });
