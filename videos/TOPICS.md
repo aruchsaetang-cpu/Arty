@@ -32,4 +32,4 @@ Bajau dive short: DONE v1 (out/renders/bajau-th.mp4, 23.8 s; muscle wording kept
 Train to Busan zombie short: DONE (out/renders/trainbusan-th.mp4, 24.2 s).
 Joker hospital short (Heath Ledger): rendered v1 (out/renders/joker-th.mp4, 19.2 s), pending user review.
 Harrison Ford Falcon door short: script v1 drafted (near-death angle), waiting for user edits/voice/footage.
-Stick-figure classroom shorts (motion graphic, monochrome on black, no captions): 5 variants rendered with build.sh (renders/v1..v5-*-wins.mp4, 17 s each, silent). Teacher hands back two rounds of results, camera follows; winner swaps per variant.
+Stick-figure classroom short (motion graphic, monochrome on black, no captions): renders/discipline-wins.mp4, 20.0 s, silent, authored on a beat grid at 174 BPM for "Undress Rehearsal (Hardtekk - Slowed)". Named + unnamed students, teacher at the back, study and tutoring scenes with real math. Winner-swap variants not rebuilt for this staging yet.
