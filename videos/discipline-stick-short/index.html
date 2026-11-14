@@ -145,7 +145,9 @@ function fig(s) {
     <g class="bd">
       <line class="ln ext" x1="200" y1="200" x2="200" y2="330"/>
       <line class="ln tor" x1="200" y1="120" x2="200" y2="290"/>
-      ${ego ? `<g class="aL"><polyline class="ln" points="200,160 128,128 158,62"/></g><g class="aR"><polyline class="ln" points="200,160 272,128 242,62"/></g>` : `<g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g><g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>`}
+      ${ego ? `<g class="aL"><polyline class="ln" points="200,160 128,128 158,62"/></g><g class="aR"><polyline class="ln" points="200,160 272,128 242,62"/></g>`
+        : role === "BULLY" ? `<g class="aL"><polyline class="ln" points="200,160 112,152 80,244"/></g><g class="aR"><polyline class="ln" points="200,160 266,214 312,256"/></g><circle class="tb" cx="322" cy="226" r="14" fill="#f4f4f4" stroke="#8d8d99" stroke-width="4"/>`
+        : `<g class="aL"><polyline class="ln" points="200,160 138,232 176,292"/></g><g class="aR"><polyline class="ln" points="200,160 262,232 224,292"/></g>`}
       <polyline class="ln upL" points="200,165 124,104 96,18"/><polyline class="ln upR" points="200,165 276,104 304,18"/>
       <polyline class="ln fpL" points="200,165 132,214 166,104"/><polyline class="ln fpR" points="200,165 268,214 234,104"/>
       ${role === "TALENT" ? `<polyline class="ln ptL" points="200,160 116,196 30,230"/>` : ""}
@@ -156,6 +158,7 @@ function fig(s) {
     <rect x="60" y="430" width="22" height="86" fill="#141418"/><rect x="318" y="430" width="22" height="86" fill="#141418"/>
     <rect x="156" y="278" width="88" height="16" rx="3" fill="${nm ? "#f7f7f7" : "#8a8a94"}" stroke="${GR}" stroke-width="4"/>
     ${ego ? `<g class="feet"><polyline class="ln" points="214,286 300,262 352,270 362,238"/><polyline class="ln" points="214,286 292,284 338,254 356,226"/></g>` : ""}
+    ${role === "BULLY" ? `<g class="feet"><polyline class="ln" points="186,288 96,274 40,286 26,252"/></g>` : ""}
     ${nm ? `${prop}${stars}<text class="lab" x="200" y="2" font-size="40" text-anchor="middle" fill="#f4f4f4" letter-spacing="5">${s.label || k}</text>
     <circle class="sw sw0" cx="262" cy="70" r="8" fill="#d5d8e0"/><circle class="sw sw1" cx="138" cy="92" r="7" fill="#d5d8e0"/><circle class="sw sw2" cx="250" cy="110" r="6" fill="#d5d8e0"/>
     ${G[k] ? paper("paper", G[k], G[k] < "C", k === "DISCIPLINE" || k === "EGO" ? -4 : 4) + paper("paper0", G0[k], G0[k] < "C", k === "TALENT" || k === "OBSESSION" ? -4 : 4) : ""}` : ""}
@@ -261,6 +264,10 @@ document.fonts.ready.then(() => {
   // ---- always-on life
   ["tz1", "tz2", "tz3"].forEach((n, i) => M.fromTo(`.${n}`, { opacity: 0, y: 14 }, { opacity: 0.95, y: -14, duration: 0.7, yoyo: true, repeat: 51, ease: "sine.inOut" }, i * 0.2));
   M.fromTo(".f-EGO .bd", { rotation: -15, svgOrigin: "200 290" }, { rotation: -10, svgOrigin: "200 290", duration: 1.0, yoyo: true, repeat: 35, ease: "sine.inOut" }, 0);
+  M.fromTo(".f-BULLY .bd", { rotation: 9, svgOrigin: "200 290" }, { rotation: 17, svgOrigin: "200 290", duration: 0.9, yoyo: true, repeat: 33, ease: "sine.inOut" }, 0);
+  M.fromTo(".f-BULLY .hdg", { x: 0 }, { x: 10, duration: 0.9, yoyo: true, repeat: 33, ease: "sine.inOut" }, 0);
+  M.fromTo(".tb", { y: 0 }, { y: -78, duration: 0.3, yoyo: true, repeat: 23, ease: "power1.out" }, 0);
+  M.set(".tb", { opacity: 0 }, 7.7);
   M.fromTo("#punch", { scale: 1 }, { scale: 1.03, duration: 1.0, yoyo: true, repeat: 35, ease: "sine.inOut" }, 0);
   ["U3", "U5", "OBSESSION"].forEach((k, i) => M.fromTo(`.f-${k} .aR`, { rotation: -4, svgOrigin: "200 160" }, { rotation: 6, svgOrigin: "200 160", duration: 0.5, yoyo: true, repeat: 71, ease: "sine.inOut" }, i * 0.2));
   M.fromTo(".f-DLIB .aR", { rotation: -5, svgOrigin: "200 160" }, { rotation: 7, svgOrigin: "200 160", duration: 0.18, yoyo: true, repeat: 95, ease: "sine.inOut", immediateRender: false }, 9.0);
@@ -363,6 +370,7 @@ document.fonts.ready.then(() => {
   pan(30.0, shot("OBSESSION")); focus(30.0, ["OBSESSION"]); sink(".f-EGO .paper", 30.0); rise(".f-OBSESSION .paper", 30.2);
   pose("OBSESSION", 30.55, "up"); M.fromTo(".f-OBSESSION .bd", { y: 0 }, { y: -18, duration: 0.14, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 30.55);
   pan(31.0, shot("BULLY")); focus(31.0, ["BULLY"]); sink(".f-OBSESSION .paper", 31.0); rise(".f-BULLY .paper", 31.2);
+  M.to(".f-BULLY .bd", { rotation: 0, svgOrigin: "200 290", duration: 0.25 }, 31.5); M.set(".f-BULLY .feet", { opacity: 0 }, 31.5);
   headDown("BULLY", 31.55); bump(31.85, 10);
   pan(32.0, shot("DISCIPLINE")); focus(32.0, ["DISCIPLINE"]); sink(".f-BULLY .paper", 32.0); rise(".f-DISCIPLINE .paper", 32.2);
   flash(32.55, 0.45); bump(32.55, 12);
