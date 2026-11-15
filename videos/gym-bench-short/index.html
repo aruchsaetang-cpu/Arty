@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>same-gym</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/stickkit.js"></script>
+<style>
+@font-face { font-family: "Teko"; font-weight: 700; src: url("assets/fonts/teko-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Teko"; font-weight: 400; src: url("assets/fonts/teko-latin-400-normal.woff2") format("woff2"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f3eee5; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #f3eee5; font-family: "Teko", sans-serif; font-weight: 700; color: #141414; }
+#stage { position: absolute; inset: 0; }
+#shake { position: absolute; inset: 0; }
+#hdr { position: absolute; left: 0; top: 70px; width: 1080px; text-align: center; }
+#hdr .a { display: block; font-size: 56px; letter-spacing: 14px; line-height: 1; color: #6b6458; white-space: nowrap; }
+#hdr .b { display: block; font-size: 150px; line-height: 0.95; letter-spacing: 4px; white-space: nowrap; }
+.cell { position: absolute; width: 510px; height: 760px; overflow: hidden; border-radius: 22px; border: 6px solid #141414; background: #e9e2d6; }
+.cell svg { position: absolute; left: 0; top: 0; width: 510px; height: 760px; overflow: visible; }
+svg text { font-family: "Teko"; font-weight: 700; }
+.tag { position: absolute; display: block; width: 400px; height: 250px; border-radius: 20px; border: 6px solid #141414; background: #f3eee5; text-align: center; }
+.tag .r { display: block; margin-top: 4px; font-size: 130px; line-height: 0.95; white-space: nowrap; }
+.tag .m { display: block; font-size: 60px; line-height: 0.8; color: #c0392b; white-space: nowrap; }
+.tag .n { display: block; margin-top: 14px; font-size: 34px; font-weight: 400; letter-spacing: 2px; color: #4a453d; white-space: nowrap; }
+.tag.win { background: #141414; color: #f3eee5; } .tag.win .m { color: #f4c542; } .tag.win .n { color: #d8d2c6; }
+.dim { position: absolute; width: 510px; height: 760px; border-radius: 22px; background: #f3eee5; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="shake"><div id="hdr"><span class="a">SAME GYM · SAME BENCH</span><span class="b">WEEK <span id="wk">1</span></span></div><div id="cells"></div></div>
+  <div id="tags"></div>
+  <div id="flash"></div>
+ </div>
+ <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="24.828" data-track-index="2"></audio>
+</div>
+<script>
+// ---- the story. Beats (1.0 = one beat at 87 BPM); 12 weeks run from beat T0 to T1.
+const T0 = 1.5, T1 = 30, END = 36, WEEKS = 12;
+const ORDER = ["E", "P", "Q", "S"];
+const NAME = { E: "EGO LIFT", P: "SELFIE FIRST", Q: "QUIT AT WEEK 4", S: "EVERY WEEK" };
+const CELL = { E: [20, 330], P: [550, 330], Q: [20, 1110], S: [550, 1110] };
+const KG = { // what is on the bar
+  E: [[0, 100], [36, 100]],
+  P: [[0, 40], [T0, 40], [T1, 50], [36, 50]],
+  Q: [[0, 40], [T0, 40], [11, 70], [36, 70]],
+  S: [[0, 40], [T0, 40], [T1, 85], [36, 85]],
+};
+const RESULT = { E: 0, P: 50, Q: 70, S: 85 };
+const RANK = [["4TH", "E", "injured in week 1"], ["3RD", "P", "more photos than reps"], ["2ND", "Q", "fast start, then gone"], ["1ST", "S", "a little more every week"]];
+const FAIL = 3.95, PQUIT = 11, PWALK = 12.2;
+
+const FLOOR = 612, HIPX = 318, S = 0.82;
+const STYLE = { torso: 1.75, layers: [{ c: "#e9e2d6", w: 46 }, { c: "#141414", w: 34, back: "#4d4d4d" }], head: [{ r: 52, fill: "#e9e2d6" }, { r: 46, fill: "#141414" }] };
+const RACKX = [150, 214], HOOKY = FLOOR - 300;
+const cellSvg = (k) => `<svg viewBox="0 0 510 760">
+  <defs><linearGradient id="sky-${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd0f0"/><stop offset="1" stop-color="#e6f4fb"/></linearGradient></defs>
+  <rect x="0" y="0" width="510" height="${FLOOR}" fill="#e9e2d6"/>
+  <rect x="270" y="110" width="200" height="230" rx="6" fill="url(#sky-${k})" stroke="#141414" stroke-width="6"/><line x1="370" y1="110" x2="370" y2="340" stroke="#141414" stroke-width="5"/><line x1="270" y1="225" x2="470" y2="225" stroke="#141414" stroke-width="5"/>
+  <circle cx="430" cy="160" r="22" fill="#fff4c2"/>
+  <polygon points="270,340 470,340 520,${FLOOR} 220,${FLOOR}" fill="#fff8df" opacity=".55"/>
+  <rect x="30" y="250" width="150" height="16" rx="5" fill="#141414"/>${[50, 92, 134].map((x) => `<rect x="${x - 10}" y="210" width="20" height="40" rx="4" fill="#4d4d4d"/><circle cx="${x}" cy="222" r="16" fill="#141414"/>`).join("")}
+  <rect x="0" y="${FLOOR}" width="510" height="${760 - FLOOR}" fill="#c9a36b"/>${[0, 1, 2, 3].map((i) => `<line x1="0" y1="${FLOOR + 30 + i * 32}" x2="510" y2="${FLOOR + 30 + i * 32}" stroke="#a9834e" stroke-width="4"/>`).join("")}<line x1="0" y1="${FLOOR}" x2="510" y2="${FLOOR}" stroke="#141414" stroke-width="6"/>
+  ${RACKX.map((x) => `<rect x="${x - 7}" y="${HOOKY - 40}" width="14" height="${FLOOR - HOOKY + 40}" fill="#7a7a7a" stroke="#141414" stroke-width="4"/><path d="M${x + 7} ${HOOKY} l18 0 l0 -14" fill="none" stroke="#141414" stroke-width="6" stroke-linecap="round"/>`).join("")}
+  <g id="bench-${k}"></g>
+  ${SK.svg("fg-" + k, STYLE)}
+  <g id="bar-${k}"><circle id="pl-${k}" r="40" fill="#141414" stroke="#e9e2d6" stroke-width="5"/><circle id="pi-${k}" r="28" fill="none" stroke="#5a5a5a" stroke-width="4"/><circle r="9" fill="#bdbdbd" stroke="#141414" stroke-width="4"/></g>
+  <g id="ph-${k}"><rect x="-16" y="-30" width="32" height="54" rx="7" fill="#141414" stroke="#e9e2d6" stroke-width="4"/><circle id="fl-${k}" r="60" fill="#fff" opacity="0"/></g>
+  <g id="ice-${k}"><rect x="-26" y="-20" width="52" height="40" rx="10" fill="#8fd3ff" stroke="#141414" stroke-width="5"/></g>
+  <g id="sw-${k}"><circle id="sw0-${k}" r="8" fill="#5aa9e6"/><circle id="sw1-${k}" r="7" fill="#5aa9e6"/></g>
+  <text id="bang-${k}" font-size="110" fill="#c0392b" text-anchor="middle">!</text>
+  <text x="22" y="62" font-size="56" letter-spacing="2">${NAME[k]}</text>
+  <text id="kg-${k}" x="22" y="124" font-size="64" fill="#c0392b">40 KG</text>
+</svg>`;
+document.getElementById("cells").innerHTML = ORDER.map((k) => `<div class="cell" style="left:${CELL[k][0]}px;top:${CELL[k][1]}px">${cellSvg(k)}</div>`).join("");
+document.getElementById("tags").innerHTML = ORDER.map((k) => `<div class="dim" id="dim-${k}" style="left:${CELL[k][0] + 6}px;top:${CELL[k][1] + 6}px"></div>`).join("")
+  + RANK.map((r, i) => `<div class="tag${i === 3 ? " win" : ""}" id="tag${i}" style="left:${CELL[r[1]][0] + 61}px;top:${CELL[r[1]][1] + 250}px"><span class="r">${r[0]}</span><span class="m">${RESULT[r[1]]} KG</span><span class="n">${r[2]}</span></div>`).join("");
+// the bench sits under the lying figure
+const lying = SK.solve(SK.POSE.bench(0, 0, 1)), hipY = FLOOR + lying.to[0][1] * S, BTOP = hipY + 34 * 1.75 / 2 * S - 4;
+ORDER.forEach((k) => { document.getElementById(`bench-${k}`).innerHTML = `<rect x="${HIPX - 230}" y="${BTOP}" width="260" height="26" rx="10" fill="#2b2b2b" stroke="#141414" stroke-width="5"/><rect x="${HIPX - 200}" y="${BTOP + 24}" width="16" height="${FLOOR - BTOP - 24}" fill="#4d4d4d"/><rect x="${HIPX - 30}" y="${BTOP + 24}" width="16" height="${FLOOR - BTOP - 24}" fill="#4d4d4d"/>`; });
+
+document.fonts.ready.then(() => {
+  const BPM = 87, K = 60 / BPM, $ = (id) => document.getElementById(id), kf = SK.kf;
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const P = SK.POSE, cl = (v) => Math.max(0, Math.min(1, v)), sm = (v) => { v = cl(v); return v * v * (3 - 2 * v); };
+  const rep = (t, rate, off = 0) => 0.5 + 0.5 * Math.cos(2 * Math.PI * rate * (t - T0 - off)); // 1 = locked out
+  const sitUp = (t) => ({ ...P.benchSit(t), aF: [20, 40], aB: [10, 40], head: 18 });
+  const blend = (a, b, k) => SK.mix(a, b, sm(k));
+  // each character: pose, where the bar is (hands or hooks), extras
+  const STATE = {
+    E: (t) => {
+      let e = kf([[0, 1], [1.5, 1], [2.4, 0.15, "power1.inOut"], [3.7, 0.42, "power1.out"], [FAIL, 0.12, "power2.in"], [36, 0.12]], t);
+      if (t > 2.4 && t < FAIL) e += 0.035 * Math.sin(t * 44);
+      const ly = P.bench(t, 0, e), sit = { ...P.benchSit(t), aF: [150, 160], aB: [18, 40], head: 30 };
+      return { pose: blend(ly, sit, (t - 4.6) / 0.5), onHooks: t >= FAIL, ice: t > 5.0, sweat: t > 2.2 && t < 6, bang: t > FAIL && t < 5.6 };
+    },
+    P: (t) => {
+      const c = t < T0 ? 0 : ((t - T0) % 2), selfie = t >= T0 && c >= 1 && t < T1, k = t < T0 ? 0 : c < 1 ? (c < 0.3 ? 1 - c / 0.3 : 0) : (c - 1) / 0.3;
+      const ly = P.bench(t, 0, rep(t, 1)), up = { ...sitUp(t), aF: [146, -24], head: -16 };
+      return { pose: blend(ly, up, k), onHooks: k > 0.5, phone: selfie && c > 1.15, flash: selfie && c > 1.45 && c < 1.6 };
+    },
+    Q: (t) => {
+      const ly = P.bench(t, 0, t < PQUIT ? rep(t, 2) : 1);
+      if (t < PQUIT) return { pose: ly, sweat: t > 6 };
+      if (t < PWALK) return { pose: blend(ly, { ...sitUp(t), head: 34 }, (t - PQUIT) / 0.4), onHooks: true, sweat: true };
+      const w = P.walk(t, Math.PI * 2 * (t - PWALK) * 1.6), x = HIPX + 40 + kf([[PWALK, 0], [14.6, 420, "power1.in"]], t);
+      return { pose: blend({ ...sitUp(t), head: 34 }, w, (t - PWALK) / 0.35), onHooks: true, x };
+    },
+    S: (t) => {
+      const e = t < T0 ? 1 : t < T1 ? rep(t, 1) : 1, ly = P.bench(t, 0, e), up = { ...sitUp(t), aF: [160, 6], aB: [-160, -6], head: -16 };
+      return { pose: t < T1 + 0.6 ? ly : blend(ly, up, (t - T1 - 0.6) / 0.35), onHooks: t > T1 + 0.75, sweat: t > T0 && t < T1 };
+    },
+  };
+  const rackPos = [RACKX[0] + 14, HOOKY - 4];
+  let held = {};
+  const apply = (t) => {
+    $("wk").textContent = Math.max(1, Math.min(WEEKS, 1 + Math.floor((t - T0) / (T1 - T0) * WEEKS)));
+    ORDER.forEach((k) => {
+      const s = STATE[k](t), x = s.x || HIPX, pts = SK.solve(s.pose);
+      SK.draw("fg-" + k, pts, STYLE, x, FLOOR, S);
+      const hand = SK.world(pts, pts.aF[2], x, FLOOR, S), kg = kf(KG[k], t), r = 16 + kg * 0.42;
+      const bp = s.onHooks ? rackPos : hand;
+      $(`bar-${k}`).setAttribute("transform", `translate(${bp[0].toFixed(1)} ${bp[1].toFixed(1)})`);
+      $(`pl-${k}`).setAttribute("r", r.toFixed(1)); $(`pi-${k}`).setAttribute("r", (r * 0.7).toFixed(1));
+      $(`kg-${k}`).textContent = k === "E" && t > FAIL ? "INJURED" : (Math.round(kg / 2.5) * 2.5) + " KG";
+      $(`ph-${k}`).setAttribute("opacity", s.phone ? 1 : 0); $(`ph-${k}`).setAttribute("transform", `translate(${hand[0].toFixed(1)} ${(hand[1] - 10).toFixed(1)})`);
+      $(`fl-${k}`).setAttribute("opacity", s.flash ? 0.8 : 0);
+      $(`ice-${k}`).setAttribute("opacity", s.ice ? 1 : 0); $(`ice-${k}`).setAttribute("transform", `translate(${hand[0].toFixed(1)} ${hand[1].toFixed(1)})`);
+      const head = SK.world(pts, pts.hc[0], x, FLOOR, S);
+      [0, 1].forEach((i) => { const f = (t * 1.5 + i * 0.5) % 1, el = $(`sw${i}-${k}`); el.setAttribute("opacity", s.sweat ? 1 - f : 0); el.setAttribute("cx", (head[0] + (i ? -34 : 40)).toFixed(1)); el.setAttribute("cy", (head[1] - 10 + f * 70).toFixed(1)); });
+      const bg = $(`bang-${k}`); bg.setAttribute("opacity", s.bang ? 1 : 0); bg.setAttribute("x", head[0].toFixed(1)); bg.setAttribute("y", (head[1] - 60).toFixed(1));
+    });
+  };
+  const clk = { v: 0 };
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => apply(M.time()) }, 0);
+  apply(0);
+
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 14) => M.fromTo("#shake", { y: a }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
+  gsap.set(".tag, .dim, #flash", { opacity: 0 });
+  bump(FAIL, 16);
+  flash(T1, 0.45); bump(T1, 12);
+  M.fromTo("#hdr .b", { scale: 1 }, { scale: 1.12, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T1);
+  RANK.forEach((r, i) => { const t = 31.0 + i, last = i === 3;
+    M.fromTo(`#tag${i}`, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, t);
+    if (!last) M.to(`#dim-${r[1]}`, { opacity: 0.55, duration: 0.4 }, t + 0.2);
+    else { flash(t + 0.2, 0.5); bump(t + 0.2, 16); } });
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>

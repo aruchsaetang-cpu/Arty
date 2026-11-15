@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>same-salary</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/stickkit.js"></script>
+<style>
+@font-face { font-family: "Caveat"; font-weight: 700; src: url("assets/fonts/caveat-latin-700-normal.woff2") format("woff2"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #f8f4e8; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #f8f4e8; font-family: "Caveat", cursive; font-weight: 700; color: #2741a6; }
+#stage, #shake { position: absolute; inset: 0; }
+#paper { position: absolute; inset: 0; background: repeating-linear-gradient(#f8f4e8 0 62px, #b9cbe8 62px 64px); }
+#margin { position: absolute; left: 70px; top: 0; width: 4px; height: 1920px; background: #e79a9a; }
+#scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+svg text { font-family: "Caveat"; font-weight: 700; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="shake"><div id="paper"></div><div id="margin"></div><svg id="scene" viewBox="0 0 1080 1920"></svg></div>
+  <div id="flash"></div>
+ </div>
+ <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="24.828" data-track-index="2"></audio>
+</div>
+<script>
+// ---- the story. Beats (1.0 = one beat at 87 BPM); 12 paydays run from beat T0 to T1.
+const T0 = 1.5, T1 = 30, END = 36, MW = (T1 - T0) / 12, PAY = 3000;
+const ORDER = ["SP", "LO", "LE", "PF"];
+const NAME = { SP: ["buys", "first"], LO: ["lottery", "every month"], LE: ["saves what's", "left over"], PF: ["saves", "first"] };
+const CX = { SP: 280, LO: 800, LE: 280, PF: 800 }, FL = { SP: 1080, LO: 1080, LE: 1760, PF: 1760 };
+const LEFT_MONTHS = [1, 5, 9], WIN_MONTH = 7;
+const SAVED = (k, m) => k === "PF" ? m * PAY : k === "LE" ? LEFT_MONTHS.filter((x) => x <= m).length * PAY : k === "LO" ? (m >= WIN_MONTH ? 1000 : 0) : 0;
+const RANK = [["4th", "SP", "12 shopping bags"], ["3rd", "LO", "one small win"], ["2nd", "LE", "never any left"], ["1st", "PF", "paid himself first"]];
+
+const S = 0.98, JW = 170, JH = 420, PEN = "#2741a6", RED = "#d23a3a", HL = "#ffd84a";
+const STYLE = { layers: [{ c: PEN, w: 13 }], head: [{ r: 46, fill: "#f8f4e8" }], after: "" };
+STYLE.head = [{ r: 46, fill: "#f8f4e8", stroke: PEN, sw: 13 }];
+const jarX = (k) => CX[k] + 120, figX = (k) => CX[k] - 130;
+const jar = (k) => { const x = jarX(k) - JW / 2, y = FL[k] - JH; return `
+  <defs><clipPath id="jc-${k}"><path d="M${x + 6} ${y + 40} Q ${x + 6} ${y + 22} ${x + 22} ${y + 22} L ${x + JW - 22} ${y + 22} Q ${x + JW - 6} ${y + 22} ${x + JW - 6} ${y + 40} L ${x + JW - 6} ${FL[k] - 14} Q ${x + JW - 6} ${FL[k] - 4} ${x + JW - 18} ${FL[k] - 4} L ${x + 18} ${FL[k] - 4} Q ${x + 6} ${FL[k] - 4} ${x + 6} ${FL[k] - 14} Z"/></clipPath></defs>
+  <g clip-path="url(#jc-${k})"><rect id="fill-${k}" x="${x}" y="${FL[k]}" width="${JW}" height="0" fill="${HL}" opacity=".85"/>
+    ${Array.from({ length: 120 }, (_, i) => `<ellipse class="cn-${k}" cx="${x + 18 + (i % 5) * 26 + ((i / 5 | 0) % 2) * 12}" cy="${FL[k] - 14 - (i / 5 | 0) * 19}" rx="12" ry="7" fill="none" stroke="#c9902b" stroke-width="3"/>`).join("")}</g>
+  <path d="M${x + 6} ${y + 40} Q ${x + 6} ${y + 22} ${x + 22} ${y + 22} L ${x + JW - 22} ${y + 22} Q ${x + JW - 6} ${y + 22} ${x + JW - 6} ${y + 40} L ${x + JW - 6} ${FL[k] - 14} Q ${x + JW - 6} ${FL[k] - 4} ${x + JW - 18} ${FL[k] - 4} L ${x + 18} ${FL[k] - 4} Q ${x + 6} ${FL[k] - 4} ${x + 6} ${FL[k] - 14} Z" fill="none" stroke="${PEN}" stroke-width="8" stroke-linejoin="round"/>
+  <rect x="${x + 16}" y="${y + 4}" width="${JW - 32}" height="20" rx="5" fill="#f8f4e8" stroke="${PEN}" stroke-width="7"/>
+  <path d="M${x + 22} ${y + 60} L ${x + 22} ${y + 150}" stroke="${PEN}" stroke-width="5" stroke-linecap="round" opacity=".5"/>`; };
+const BAG = (i) => `<g class="bag-SP" id="bag${i}"><path d="M-26 -56 L26 -56 L32 0 L-32 0 Z" fill="#f2a7c3" stroke="${PEN}" stroke-width="5" stroke-linejoin="round"/><path d="M-12 -50 Q 0 -74 12 -50" fill="none" stroke="${PEN}" stroke-width="5"/></g>`;
+const TIX = (i) => `<g class="tix-LO" id="tk${i}"><rect x="-24" y="-14" width="48" height="28" rx="4" fill="#ffd1e8" stroke="${PEN}" stroke-width="4"/><line x1="-8" y1="-14" x2="-8" y2="14" stroke="${PEN}" stroke-width="3" stroke-dasharray="4 4"/></g>`;
+document.getElementById("scene").innerHTML = `
+  <text x="540" y="190" font-size="70" text-anchor="middle" fill="${PEN}">same salary · same jar</text>
+  <text id="mo" x="540" y="350" font-size="170" text-anchor="middle" fill="${PEN}">month 1</text>
+  <path d="M290 386 Q 540 416 790 382" fill="none" stroke="${RED}" stroke-width="7" stroke-linecap="round"/>
+  ${[1080, 1760].map((y) => `<line x1="30" y1="${y}" x2="1050" y2="${y}" stroke="${PEN}" stroke-width="7" stroke-linecap="round"/>`).join("")}<line x1="540" y1="520" x2="540" y2="1800" stroke="${PEN}" stroke-width="4" stroke-dasharray="14 14" opacity=".4"/>
+  ${ORDER.map((k) => `<g id="col-${k}">${jar(k)}
+    <text id="amt-${k}" x="${jarX(k)}" y="${FL[k] - JH - 26}" font-size="84" text-anchor="middle" fill="${RED}">฿0</text>
+    <text x="${CX[k] - 250}" y="${FL[k] - 560}" font-size="62" fill="${PEN}">${NAME[k][0]} ${NAME[k][1]}</text>
+    ${SK.svg("fg-" + k, STYLE)}</g>`).join("")}
+  ${Array.from({ length: 12 }, (_, i) => BAG(i)).join("")}${Array.from({ length: 12 }, (_, i) => TIX(i)).join("")}
+  <g id="web" opacity="0"><path d="M${jarX("SP") - 50} ${FL.SP - 330} L ${jarX("SP") + 50} ${FL.SP - 260} M ${jarX("SP") + 50} ${FL.SP - 330} L ${jarX("SP") - 50} ${FL.SP - 260} M ${jarX("SP")} ${FL.SP - 336} L ${jarX("SP")} ${FL.SP - 250}" stroke="${PEN}" stroke-width="3" opacity=".7"/><circle cx="${jarX("SP")}" cy="${FL.SP - 295}" r="22" fill="none" stroke="${PEN}" stroke-width="3" opacity=".7"/></g>
+  <g id="coin"><circle r="15" fill="${HL}" stroke="${PEN}" stroke-width="5"/><text y="9" font-size="24" text-anchor="middle" fill="${PEN}">฿</text></g>
+  ${ORDER.map((k) => `<g id="ct-${k}"><circle r="14" fill="${HL}" stroke="${PEN}" stroke-width="5"/></g><g id="tick-${k}"><rect x="-26" y="-16" width="52" height="32" rx="5" fill="#ffd1e8" stroke="${PEN}" stroke-width="5"/></g><g id="hb-${k}">${BAG("h" + k)}</g><text id="q-${k}" font-size="80" text-anchor="middle" fill="${PEN}">?</text>`).join("")}
+  <text id="win" font-size="56" text-anchor="middle" fill="${RED}">WIN ฿1,000!</text>
+  ${RANK.map((r, i) => `<g id="rk${i}" opacity="0"><ellipse cx="${jarX(r[1])}" cy="${FL[r[1]] - JH / 2}" rx="108" ry="76" fill="#f8f4e8" fill-opacity=".75" stroke="${RED}" stroke-width="9" stroke-dasharray="600" stroke-dashoffset="600" id="rc${i}"/><text x="${jarX(r[1])}" y="${FL[r[1]] - JH / 2 + 36}" font-size="116" text-anchor="middle" fill="${RED}">${r[0]}</text><text x="${CX[r[1]]}" y="${FL[r[1]] + 58}" font-size="44" text-anchor="middle" fill="${RED}">${r[2]}</text></g>`).join("")}
+  ${ORDER.map((k) => `<rect id="dim-${k}" x="${CX[k] - 262}" y="${FL[k] - 600}" width="524" height="590" fill="#f8f4e8" opacity="0"/>`).join("")}`;
+document.getElementById("coin").setAttribute("opacity", 0);
+
+document.fonts.ready.then(() => {
+  const BPM = 87, K = 60 / BPM, $ = (id) => document.getElementById(id), kf = SK.kf;
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const P = SK.POSE, cl = (v) => Math.max(0, Math.min(1, v)), sm = (v) => { v = cl(v); return v * v * (3 - 2 * v); };
+  const monthOf = (t) => Math.max(0, Math.min(12, Math.floor((t - T0) / MW) + 1));
+  const within = (t) => t < T0 ? -1 : (t - T0) % MW; // beats since this month's payday
+  const arc = (a, b, k, h = 160) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k - h * 4 * k * (1 - k)];
+  // pose + held items per character
+  const STATE = {
+    PF: (t) => { const c = within(t), m = monthOf(t), toss = c >= 0 && c < 1 && t < T1; return { pose: toss ? P.toss(t, Math.PI * cl(c / 0.5)) : t >= T1 + 0.5 ? P.cheer(t) : P.stand(t), coin: toss && c < 0.42 ? null : toss && c < 0.9 ? (c - 0.42) / 0.48 : -1 }; },
+    LE: (t) => { const c = within(t), m = monthOf(t), save = LEFT_MONTHS.includes(m) && t < T1; const late = c >= 1.4 && c < 2.3;
+      if (late && save) return { pose: P.toss(t, Math.PI * cl((c - 1.4) / 0.5)), coin: c < 1.82 ? null : c < 2.3 ? (c - 1.82) / 0.48 : -1 };
+      return { pose: late && t < T1 ? P.shrug(t) : P.stand(t), q: late && t < T1 }; },
+    LO: (t) => { const c = within(t), m = monthOf(t), on = t >= T0 && t < T1 && c < 1.6; return { pose: on && c < 1.1 ? P.scratch(t) : on ? P.toss(t, Math.PI * cl((c - 1.1) / 0.4)) : P.stand(t), ticket: on && c < 1.25, win: m === WIN_MONTH && c > 0.4 && c < 2.2 }; },
+    SP: (t) => { const c = within(t), on = t >= T0 && t < T1 && c < 1.2; return { pose: on && c > 0.35 ? { ...P.cheer(t), dy: 0 } : P.stand(t), bag: on && c > 0.35 }; },
+  };
+  const apply = (t) => {
+    const m = monthOf(t); $("mo").textContent = "month " + Math.max(1, m);
+    ORDER.forEach((k) => {
+      const s = STATE[k](t), x = figX(k), pts = SK.solve(s.pose);
+      SK.draw("fg-" + k, pts, STYLE, x, FL[k], S);
+      const hand = SK.world(pts, pts.aF[2], x, FL[k], S), head = SK.world(pts, pts.hc[0], x, FL[k], S);
+      // coin in flight from the hand to the jar
+      const ct = $(`ct-${k}`), mouth = [jarX(k), FL[k] - JH + 10];
+      if (s.coin === null) { ct.setAttribute("opacity", 1); ct.setAttribute("transform", `translate(${hand[0].toFixed(1)} ${hand[1].toFixed(1)})`); }
+      else if (s.coin >= 0) { const q = arc(hand, mouth, s.coin, 120); ct.setAttribute("opacity", 1); ct.setAttribute("transform", `translate(${q[0].toFixed(1)} ${q[1].toFixed(1)})`); }
+      else ct.setAttribute("opacity", 0);
+      // money in the jar, counted as it lands
+      const c = within(t), landed = k === "PF" ? (c >= 0.9 || t >= T1) : k === "LE" ? (c >= 2.3 || t >= T1) : true;
+      const amt = Math.max(0, SAVED(k, Math.max(0, landed ? m : m - 1))), frac = amt / (12 * PAY);
+      $(`fill-${k}`).setAttribute("y", (FL[k] - 6 - frac * (JH - 34)).toFixed(1)); $(`fill-${k}`).setAttribute("height", (frac * (JH - 34) + 6).toFixed(1));
+      Array.from(document.getElementsByClassName("cn-" + k)).forEach((el, i) => el.setAttribute("opacity", FL[k] - 14 - (i / 5 | 0) * 19 > FL[k] - 6 - frac * (JH - 34) ? 1 : 0));
+      $(`amt-${k}`).textContent = "฿" + amt.toLocaleString("en-US");
+      $(`tick-${k}`).setAttribute("opacity", s.ticket ? 1 : 0); $(`tick-${k}`).setAttribute("transform", `translate(${hand[0].toFixed(1)} ${(hand[1] - 6).toFixed(1)}) rotate(-12)`);
+      $(`hb-${k}`).setAttribute("opacity", s.bag ? 1 : 0); $(`hb-${k}`).setAttribute("transform", `translate(${hand[0].toFixed(1)} ${(hand[1] + 50).toFixed(1)})`);
+      const q = $(`q-${k}`); q.setAttribute("opacity", s.q ? 1 : 0); q.setAttribute("x", head[0].toFixed(1)); q.setAttribute("y", (head[1] - 50).toFixed(1));
+      if (k === "LO") { const w = $("win"); w.setAttribute("opacity", s.win ? 1 : 0); w.setAttribute("x", jarX("LO")); w.setAttribute("y", FL.LO - JH / 2); w.setAttribute("transform", `rotate(-10 ${jarX("LO")} ${FL.LO - JH / 2})`); }
+    });
+    // things that pile up: bags beside the shopper, tickets on the floor, a cobweb in the empty jar
+    const done = (cOff) => Math.max(0, Math.min(12, Math.floor((t - T0 - cOff) / MW) + 1));
+    const nb = t < T0 + 1.2 ? 0 : done(1.2), nt = t < T0 + 1.5 ? 0 : done(1.5);
+    for (let i = 0; i < 12; i++) {
+      const b = $(`bag${i}`); b.setAttribute("opacity", i < nb ? 1 : 0); b.setAttribute("transform", `translate(${CX.SP - 236 + (i % 3) * 34} ${FL.SP - (i / 3 | 0) * 52}) rotate(${(i * 23) % 14 - 7})`);
+      const tk = $(`tk${i}`); tk.setAttribute("opacity", i < nt ? 1 : 0); tk.setAttribute("transform", `translate(${CX.LO - 236 + ((i * 37) % 90)} ${FL.LO - 14 - (i / 4 | 0) * 14}) rotate(${(i * 47) % 50 - 25})`);
+    }
+    $("web").setAttribute("opacity", cl((t - 14) / 2) * 0.9);
+  };
+  const clk = { v: 0 };
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => apply(M.time()) }, 0);
+  apply(0);
+
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 12) => M.fromTo("#shake", { y: a }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
+  gsap.set("#flash", { opacity: 0 });
+  flash(T1, 0.4); bump(T1, 12);
+  RANK.forEach((r, i) => { const t = 31.0 + i, last = i === 3;
+    M.set(`#rk${i}`, { opacity: 1 }, t);
+    M.to(`#rc${i}`, { attr: { "stroke-dashoffset": 0 }, duration: 0.35, ease: "power1.inOut" }, t);
+    if (!last) M.to(`#dim-${r[1]}`, { opacity: 0.45, duration: 0.4 }, t + 0.3);
+    else { flash(t + 0.3, 0.4); bump(t + 0.3, 14); } });
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>

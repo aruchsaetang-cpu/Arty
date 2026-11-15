@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>30-day-run</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/stickkit.js"></script>
+<style>
+@font-face { font-family: "Permanent Marker"; src: url("assets/fonts/permanent-marker-latin-400-normal.woff2") format("woff2"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #6b4626; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #6b4626; font-family: "Permanent Marker", cursive; color: #eef2ea; }
+#stage, #shake { position: absolute; inset: 0; }
+#board { position: absolute; left: 26px; top: 26px; width: 1028px; height: 1868px; border-radius: 10px; background: radial-gradient(ellipse at 30% 25%, #2c4d3d 0%, #1f3a2e 55%, #182e24 100%); box-shadow: inset 0 0 60px rgba(0,0,0,.55); }
+#scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+svg text { font-family: "Permanent Marker"; }
+#tray { position: absolute; left: 26px; top: 1870px; width: 1028px; height: 24px; background: #8a5d35; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="shake"><div id="board"></div><svg id="scene" viewBox="0 0 1080 1920"></svg><div id="tray"></div></div>
+  <div id="flash"></div>
+ </div>
+ <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="24.828" data-track-index="2"></audio>
+</div>
+<script>
+// ---- the story. Beats (1.0 = one beat at 87 BPM); 30 days run from beat T0 to T1.
+const T0 = 1.5, T1 = 30, END = 36, DAYS = 30, DW = (T1 - T0) / DAYS;
+const ORDER = ["H", "G", "W", "E"];
+const NAME = { H: "DAY-ONE HERO", G: "GEAR FIRST", W: "WEEKENDS ONLY", E: "EVERY DAY" };
+const RUNS = { H: { 1: 21 }, G: { 10: 3, 25: 3 }, W: {}, E: {} };   // day -> km
+[6, 7, 13, 14, 20, 21, 27, 28].forEach((d) => { RUNS.W[d] = 5; });
+for (let d = 1; d <= DAYS; d++) RUNS.E[d] = 3;
+const IDLE = { H: (d) => d <= 4 ? "limp" : "sitFloor", G: (d) => d <= 4 ? "flex" : "phone", W: () => "sleep", E: () => "stand" };
+const RANK = [["4TH", "G", "bought the shoes"], ["3RD", "H", "21 km, then hurt"], ["2ND", "W", "weekends only"], ["1ST", "E", "3 km, every day"]];
+const KM = (k, d) => Object.entries(RUNS[k]).reduce((a, [dd, km]) => a + (+dd <= d ? km : 0), 0);
+
+const ROW = { H: 360, G: 735, W: 1110, E: 1485 }, RH = 350, FX = 190, S = 0.6, CH = "#eef2ea", YEL = "#f5e27a", BLU = "#9fd3ff", PNK = "#f7a6b9";
+const STYLE = { layers: [{ c: CH, w: 16, back: "#b9c4b5" }], head: [{ r: 46, fill: "none", stroke: CH, sw: 16 }] };
+const BX = 400, BY = 74, BS = 54, BG = 9;
+const box = (d) => [BX + ((d - 1) % 10) * (BS + BG), BY + ((d - 1) / 10 | 0) * (BS + BG)];
+const row = (k) => { const y = ROW[k], g = y + 292; return `<g transform="translate(0 ${y})">
+  <text x="${BX}" y="52" font-size="42" fill="${CH}" letter-spacing="2">${NAME[k]}</text>
+  <text id="km-${k}" x="1030" y="52" font-size="46" text-anchor="end" fill="${YEL}">0 KM</text>
+  ${Array.from({ length: DAYS }, (_, i) => { const [x, yy] = box(i + 1); return `<rect x="${x}" y="${yy}" width="${BS}" height="${BS}" rx="6" fill="none" stroke="${CH}" stroke-width="3" opacity=".45"/>
+    <path id="x${i + 1}-${k}" d="M${x + 10} ${yy + 10} L${x + BS - 10} ${yy + BS - 10} M${x + BS - 10} ${yy + 10} L${x + 10} ${yy + BS - 10}" fill="none" stroke="${k === "E" ? YEL : CH}" stroke-width="7" stroke-linecap="round" stroke-dasharray="90" stroke-dashoffset="90"/>`; }).join("")}
+  <rect id="today-${k}" width="${BS + 8}" height="${BS + 8}" rx="9" fill="${CH}" opacity=".16"/>
+  <line x1="40" y1="${292}" x2="360" y2="${292}" stroke="${CH}" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+  ${[0, 1, 2].map((i) => `<line id="sp${i}-${k}" x1="0" y1="${160 + i * 46}" x2="60" y2="${160 + i * 46}" stroke="${CH}" stroke-width="6" stroke-linecap="round"/>`).join("")}
+  ${SK.svg("fg-" + k, STYLE)}
+  <g id="ice-${k}"><rect x="-24" y="-18" width="48" height="36" rx="8" fill="none" stroke="${BLU}" stroke-width="6"/></g>
+  <g id="ph-${k}"><rect x="-14" y="-26" width="28" height="46" rx="6" fill="none" stroke="${CH}" stroke-width="5"/></g>
+  <text id="zz-${k}" font-size="40" fill="${CH}">z z</text>
+  <line x1="40" y1="${RH - 8}" x2="1040" y2="${RH - 8}" stroke="${CH}" stroke-width="3" opacity=".25"/>
+</g>`; };
+document.getElementById("scene").innerHTML = `
+  <defs><filter id="chalk" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter></defs>
+  <g filter="url(#chalk)">
+    <text x="540" y="140" font-size="52" text-anchor="middle" fill="${CH}" letter-spacing="3">30-DAY RUNNING CHALLENGE</text>
+    <text id="dy" x="540" y="290" font-size="140" text-anchor="middle" fill="${YEL}">DAY 1</text>
+    ${ORDER.map(row).join("")}
+    <g id="hero"><text x="0" y="0" font-size="64" fill="${PNK}">21 KM!</text></g>
+    <g id="shoes"><text x="0" y="0" font-size="40" fill="${PNK}">NEW SHOES</text><path d="M10 14 Q 30 50 60 60" fill="none" stroke="${PNK}" stroke-width="5" stroke-linecap="round"/></g>
+    ${RANK.map((r, i) => `<g id="rk${i}" opacity="0"><rect x="560" y="${ROW[r[1]] + 66}" width="430" height="196" rx="22" fill="#1f3a2e" fill-opacity=".9" stroke="${i === 3 ? YEL : CH}" stroke-width="8"/><text x="775" y="${ROW[r[1]] + 178}" font-size="96" text-anchor="middle" fill="${i === 3 ? YEL : CH}">${r[0]}</text><text x="775" y="${ROW[r[1]] + 236}" font-size="36" text-anchor="middle" fill="${CH}">${r[2]}</text></g>`).join("")}
+  </g>
+  ${ORDER.map((k) => `<rect id="dim-${k}" x="30" y="${ROW[k]}" width="1020" height="${RH - 10}" fill="#1f3a2e" opacity="0"/>`).join("")}`;
+
+document.fonts.ready.then(() => {
+  const BPM = 87, K = 60 / BPM, $ = (id) => document.getElementById(id);
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const cl = (v) => Math.max(0, Math.min(1, v));
+  const dayAt = (t) => Math.max(1, Math.min(DAYS, Math.floor((t - T0) / DW) + 1));
+  const MODES = {};
+  ORDER.forEach((k) => { const m = [[0, "stand"]]; for (let d = 1; d <= DAYS; d++) { const n = RUNS[k][d] ? "run" : IDLE[k](d); if (m[m.length - 1][1] !== n) m.push([T0 + (d - 1) * DW, n]); } m.push([T1 + 0.3, k === "E" ? "cheer" : m[m.length - 1][1]]); MODES[k] = m; });
+  const apply = (t) => {
+    const d = t < T0 ? 0 : dayAt(t); $("dy").textContent = "DAY " + Math.max(1, d);
+    ORDER.forEach((k) => {
+      const ph = Math.PI * 2 * 2 * t, p = SK.poseAt(MODES[k], t, ph), pts = SK.solve(p), mode = MODES[k][SK.modeIndex(MODES[k], t)][1];
+      SK.draw("fg-" + k, pts, STYLE, FX, 292, S);
+      const hand = SK.world(pts, pts.aF[2], FX, 292, S), head = SK.world(pts, pts.hc[0], FX, 292, S), knee = SK.world(pts, pts.lF[1], FX, 292, S);
+      [0, 1, 2].forEach((i) => { const f = (t * 2.2 + i * 0.37) % 1, el = $(`sp${i}-${k}`); el.setAttribute("opacity", mode === "run" ? 0.8 * (1 - f) : 0); el.setAttribute("transform", `translate(${(110 - f * 90).toFixed(1)} 0)`); });
+      $(`ice-${k}`).setAttribute("opacity", mode === "sitFloor" ? 1 : 0); $(`ice-${k}`).setAttribute("transform", `translate(${knee[0].toFixed(1)} ${(knee[1] - 22).toFixed(1)})`);
+      $(`ph-${k}`).setAttribute("opacity", mode === "phone" ? 1 : 0); $(`ph-${k}`).setAttribute("transform", `translate(${hand[0].toFixed(1)} ${(hand[1] - 8).toFixed(1)})`);
+      const zz = $(`zz-${k}`); zz.setAttribute("opacity", mode === "sleep" ? 0.6 + 0.4 * Math.sin(t * 3) : 0); zz.setAttribute("x", (head[0] + 30).toFixed(1)); zz.setAttribute("y", (head[1] - 40).toFixed(1));
+      for (let dd = 1; dd <= DAYS; dd++) if (RUNS[k][dd]) { const tx = T0 + (dd - 1) * DW + 0.45 * DW; $(`x${dd}-${k}`).setAttribute("stroke-dashoffset", (90 * (1 - cl((t - tx) / 0.25))).toFixed(1)); }
+      const td = $(`today-${k}`), bx = box(Math.max(1, d)); td.setAttribute("x", bx[0] - 4); td.setAttribute("y", bx[1] - 4); td.setAttribute("opacity", t >= T0 && t < T1 ? 0.16 : 0);
+      const done = t < T0 ? 0 : Math.floor((t - T0 - 0.45 * DW) / DW) + 1;
+      $(`km-${k}`).textContent = KM(k, Math.min(DAYS, done)) + " KM";
+    });
+    const hero = $("hero"); hero.setAttribute("opacity", t > T0 + 0.6 && t < T0 + 6 ? 1 : 0); hero.setAttribute("transform", `translate(470 ${ROW.H + 300}) rotate(-6)`);
+    const sh = $("shoes"); sh.setAttribute("opacity", t > T0 && t < T0 + 4 * DW ? 1 : 0); sh.setAttribute("transform", `translate(250 ${ROW.G + 120})`);
+  };
+  const clk = { v: 0 };
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => apply(M.time()) }, 0);
+  apply(0);
+
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 12) => M.fromTo("#shake", { y: a }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
+  gsap.set("#flash", { opacity: 0 });
+  bump(T0 + DW, 12);                        // day 2: the hero cannot walk
+  flash(T1, 0.35); bump(T1, 12);
+  M.fromTo("#dy", { scale: 1 }, { scale: 1.12, svgOrigin: "540 250", duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T1);
+  RANK.forEach((r, i) => { const t = 31.0 + i, last = i === 3;
+    M.fromTo(`#rk${i}`, { opacity: 0, scale: 0.7, svgOrigin: `775 ${ROW[r[1]] + 164}` }, { opacity: 1, scale: 1, svgOrigin: `775 ${ROW[r[1]] + 164}`, duration: 0.25, ease: "back.out(2)" }, t);
+    if (!last) M.to(`#dim-${r[1]}`, { opacity: 0.5, duration: 0.4 }, t + 0.2);
+    else { flash(t + 0.2, 0.4); bump(t + 0.2, 14); } });
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>
