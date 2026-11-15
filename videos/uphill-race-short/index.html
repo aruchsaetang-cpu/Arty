@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>uphill-race</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "DejaVu Sans"; font-weight: 700; src: url("assets/fonts/DejaVuSans-Bold.ttf") format("truetype"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: "Anton", sans-serif; color: #f4f4f4; }
+#stage { position: absolute; inset: 0; }
+#punch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; }
+#cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 0 0; }
+#lanes { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+svg text { font-family: "Anton"; }
+.lm { fill: none; stroke: #f4f4f4; stroke-width: 40; stroke-linecap: round; stroke-linejoin: round; }
+.lm.bk { stroke: #a9abba; }
+.lm.tor { stroke-width: 68; }
+.ol { fill: none; stroke: #000; stroke-width: 56; stroke-linecap: round; stroke-linejoin: round; }
+.ol.tor { stroke-width: 84; }
+.hd { fill: #f4f4f4; stroke: #000; stroke-width: 8; }
+.sym { font-family: "DejaVu Sans"; font-weight: 700; }
+.spk { position: absolute; display: block; left: 0; top: 0; font-family: "DejaVu Sans"; font-weight: 700; color: #f4f4f4; white-space: nowrap; }
+#ttl { position: absolute; display: block; left: 0; top: 70px; width: 1080px; text-align: center; font-size: 100px; letter-spacing: 4px; white-space: nowrap; }
+#go { position: absolute; display: block; left: 0; top: 760px; width: 1080px; text-align: center; font-size: 360px; line-height: 1; color: #e0283c; text-shadow: 0 12px 0 #000; }
+#veil { position: absolute; inset: 0; background: #000; }
+#board { position: absolute; left: 60px; top: 250px; width: 960px; }
+#board .bt { display: block; text-align: center; font-size: 120px; letter-spacing: 8px; margin-bottom: 40px; white-space: nowrap; }
+.row { position: relative; height: 230px; margin-bottom: 26px; border: 6px solid #5c5c66; border-radius: 22px; background: #0e0e12; }
+.row .rk { position: absolute; display: block; left: 34px; top: 26px; font-size: 130px; line-height: 1; white-space: nowrap; }
+.row .nmx { position: absolute; display: block; left: 250px; top: 34px; font-size: 76px; line-height: 1; letter-spacing: 3px; white-space: nowrap; }
+.row .nt { position: absolute; display: block; left: 252px; top: 136px; font-family: "DejaVu Sans"; font-weight: 700; font-size: 34px; color: #a9abba; white-space: nowrap; }
+.row .mt { position: absolute; display: block; right: 30px; top: 62px; font-size: 92px; line-height: 1; color: #e0283c; white-space: nowrap; }
+.row.win { background: #f4f4f4; border-color: #f4f4f4; color: #000; }
+.row.win .nt { color: #3a3a43; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="punch"><div id="cam"><svg id="lanes" viewBox="0 0 1080 1920"></svg><div id="fx"></div></div></div>
+  <span id="ttl">SAME HILL. SAME ROCK.</span>
+  <span id="go">GO!</span>
+  <div id="veil"></div>
+  <div id="board"></div>
+  <div id="flash"></div>
+ </div>
+</div>
+<script>
+// ---- the race: who does what, and how far each one gets (edit here to change the winner)
+const ORDER = ["T", "E", "O", "D"];
+const NAME = { T: "TALENT", E: "EGO", O: "OBSESSION", D: "DISCIPLINE" };
+const DIST = { // metres over beats: [beat, metres, ease]
+  T: [[0, 0], [2, 0], [6, 38, "power1.out"], [8.6, 46, "power1.out"], [36, 46]],
+  E: [[0, 0], [7, 0], [14, 12, "none"], [36, 12]],
+  O: [[0, 0], [2, 0], [19, 86, "none"], [36, 86]],
+  D: [[0, 0], [2, 0], [28, 100, "none"], [36, 100]],
+};
+const MODES = {
+  T: [[0, "stand"], [2, "run"], [8.6, "sit"]],
+  E: [[0, "stand"], [2.2, "flex"], [7, "onehand"], [14, "flex"], [14.95, "pinned"]],
+  O: [[0, "stand"], [2, "pushfast"], [19, "tired"], [22.6, "lying"]],
+  D: [[0, "stand"], [2, "push"], [28, "cheer"]],
+};
+const RESULT = [["4TH", "E", "12 M", "showed off, flattened"], ["3RD", "T", "46 M", "fast start, fell asleep"], ["2ND", "O", "86 M", "all out, burned out"], ["1ST", "D", "100 M", "one step, every beat"]];
+
+// ---- stage geometry
+const TH = 9, THR = TH * Math.PI / 180, PXM = 5.4, U = 0.42, RR = 70, X0 = 190, Y0 = { T: 620, E: 960, O: 1300, D: 1640 };
+const ROFF = { T: 163, O: 163, D: 163, E: 131 }, FLAG = 100 * PXM + 163 + RR + 12;
+const ACC = {
+  T: `<path d="M-50 -6 A50 50 0 0 1 50 -6" fill="none" stroke="#8d8d99" stroke-width="13" stroke-linecap="round"/><circle cx="-2" cy="2" r="22" fill="#8d8d99" stroke="#000" stroke-width="5"/>`,
+  E: `<rect x="4" y="-16" width="46" height="22" rx="8" fill="#000"/>`,
+  O: `<rect x="-48" y="-34" width="96" height="18" rx="9" fill="#8d8d99"/><path d="M-46 -26 L-84 -40 L-78 -10 Z" fill="#8d8d99"/>`,
+  D: ``,
+};
+const limbs = (k) => ["aB", "lB", "to", "lF", "aF"].map((p) => `<polyline id="o-${p}-${k}" class="ol${p === "to" ? " tor" : ""}"/><polyline id="p-${p}-${k}" class="lm${p === "to" ? " tor" : ""}${p[1] === "B" ? " bk" : ""}"/>`).join("");
+const figure = (k) => `<g id="fg-${k}">${limbs(k)}<g id="hd-${k}"><circle r="46" class="hd"/>${ACC[k]}</g></g>`;
+const rock = (k) => `<g id="rk-${k}"><circle r="${RR}" fill="#2c2c33" stroke="#f4f4f4" stroke-width="6"/><path d="M-40 -30 L-8 -6 L-22 28 M14 -50 L22 -14 L50 6 M-4 34 L30 44" fill="none" stroke="#6a6a75" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="26" cy="-28" r="9" fill="#55555f"/></g>`;
+document.getElementById("lanes").innerHTML = ORDER.map((k) => `<g transform="translate(${X0} ${Y0[k]}) rotate(${-TH})">
+  <polygon points="-300,0 1200,0 1200,80 -300,80" fill="#0e0e12"/><line x1="-300" y1="0" x2="1200" y2="0" stroke="#5c5c66" stroke-width="8"/>
+  <line x1="${FLAG}" y1="0" x2="${FLAG}" y2="-190" stroke="#f4f4f4" stroke-width="9" stroke-linecap="round"/><path d="M${FLAG + 5} -186 L${FLAG + 80} -160 L${FLAG + 5} -132 Z" fill="#f4f4f4"/>
+  ${k === "E" ? figure(k) + rock(k) : rock(k) + figure(k)}
+  <g id="ex-${k}"><g transform="rotate(${TH})"><text id="zz-${k}" x="112" y="-74" font-size="46" fill="#f4f4f4">z z z</text>
+    ${[0, 1, 2].map((i) => `<path id="st${i}-${k}" d="M${-34 + i * 30} -70 q-10 -12 0 -24 q10 -12 0 -24 q-10 -12 0 -24" fill="none" stroke="#a9abba" stroke-width="6" stroke-linecap="round"/>`).join("")}
+    <circle id="sw0-${k}" cx="50" r="7" fill="#d5d8e0"/><circle id="sw1-${k}" cx="-48" r="6" fill="#d5d8e0"/></g></g>
+  <g id="nm-${k}"><g transform="rotate(${TH})"><text y="0" font-size="34" text-anchor="middle" fill="#f4f4f4" letter-spacing="4">${NAME[k]}</text><text id="mt-${k}" y="-40" font-size="30" text-anchor="middle" fill="#a9abba" letter-spacing="2">0 M</text></g></g>
+</g>`).join("");
+document.getElementById("fx").innerHTML = [0, 1, 2, 3, 4, 5].map((i) => `<span class="spk" id="sp${i}" style="font-size:${46 + (i % 3) * 16}px">✦</span>`).join("");
+document.getElementById("board").innerHTML = `<span class="bt">RESULTS</span>` + [...RESULT].reverse().map((r, i) => `<div class="row${i === 0 ? " win" : ""}" id="row${3 - i}"><span class="rk">${r[0]}</span><span class="nmx">${NAME[r[1]]}</span><span class="nt">${r[3]}</span><span class="mt">${r[2]}</span></div>`).join("");
+
+// ---- a small posable figure: joint angles in, limb points out
+const D2R = Math.PI / 180, $ = (id) => document.getElementById(id);
+const dir = (a) => [Math.sin(a * D2R), Math.cos(a * D2R)];
+const walkLeg = (ph, base, amp, bend) => [base + amp * Math.sin(ph), 18 + bend * Math.max(0, Math.cos(ph))];
+const pushPose = (ph, amp, lean) => ({ lean: lean + 3 * Math.sin(2 * ph), head: -12, aF: [60, 10], aB: [50, 18], lF: walkLeg(ph, -14, amp, 42), lB: walkLeg(ph + Math.PI, -14, amp, 42) });
+const POSE = {
+  stand: () => ({ lean: 0, head: 0, aF: [10, 8], aB: [-8, 8], lF: [8, 0], lB: [-8, 0] }),
+  run: (t, ph) => pushPose(ph(2), 46, 30),
+  pushfast: (t, ph) => pushPose(ph(2), 42, 46),
+  push: (t, ph) => pushPose(ph(0.5), 30, 40),
+  onehand: (t, ph) => ({ lean: 14, head: -8, aF: [62, 0], aB: [-25, 95], lF: walkLeg(ph(0.75), 0, 20, 20), lB: walkLeg(ph(0.75) + Math.PI, 0, 20, 20) }),
+  flex: (t) => ({ lean: -8, head: -8, aF: [92, 112 + 12 * Math.sin(t * 9)], aB: [-25, 95], lF: [10, 0], lB: [-10, 0], dy: -14 * Math.abs(Math.sin(t * Math.PI * 2)) }),
+  sit: (t) => ({ face: -1, lean: -22, head: -14 + 4 * Math.sin(t * 1.5), aF: [15, 75], aB: [5, 85], lF: [80, 5], lB: [62, 70], dx: 170 }),
+  tired: (t) => ({ lean: 66 + 3 * Math.sin(t * 3), head: 18, aF: [-30, -10], aB: [-40, -6], lF: [14, 24], lB: [-10, 22] }),
+  lying: () => ({ lean: 0, rot: 88, head: -5, aF: [160, 10], aB: [172, 4], lF: [4, 4], lB: [-6, 8] }),
+  pinned: (t) => ({ lean: 0, rot: -88, head: 12, aF: [-150, -20 + 14 * Math.sin(t * 8)], aB: [-118, -30], lF: [26 + 10 * Math.sin(t * 8), 26], lB: [6, 10] }),
+  cheer: (t) => ({ lean: -4, head: -12, aF: [158, 8], aB: [-158, -8], lF: [10, 0], lB: [-10, 0], dy: -70 * Math.abs(Math.sin(t * Math.PI)) }),
+};
+const NUM = ["lean", "head", "rot", "dx", "dy"], ARR = ["aF", "aB", "lF", "lB"];
+const mix = (a, b, k) => { const o = { face: b.face || 1 }; NUM.forEach((n) => { o[n] = (a[n] || 0) + ((b[n] || 0) - (a[n] || 0)) * k; }); ARR.forEach((n) => { o[n] = [a[n][0] + (b[n][0] - a[n][0]) * k, a[n][1] + (b[n][1] - a[n][1]) * k]; }); return o; };
+const modeAt = (k, t) => { const m = MODES[k]; let i = 0; while (i + 1 < m.length && m[i + 1][0] <= t) i++; return i; };
+const poseAt = (k, t) => {
+  const ph = (rate) => 2 * Math.PI * rate * (t - 2), m = MODES[k], i = modeAt(k, t), cur = POSE[m[i][1]](t, ph);
+  const B = 0.35; if (i > 0 && t < m[i][0] + B) return mix(POSE[m[i - 1][1]](t, ph), cur, gsap.parseEase("power2.out")((t - m[i][0]) / B));
+  return mix(cur, cur, 1);
+};
+const solve = (p) => {
+  const S = [150 * Math.sin(p.lean * D2R), -150 * Math.cos(p.lean * D2R)], hd = (p.lean + p.head) * D2R, HC = [S[0] + 66 * Math.sin(hd), S[1] - 66 * Math.cos(hd)];
+  const limb = (o, a, b, l) => { const d1 = dir(a), j = [o[0] + l * d1[0], o[1] + l * d1[1]], d2 = dir(b); return [o, j, [j[0] + l * d2[0], j[1] + l * d2[1]]]; };
+  const pts = { to: [[0, 0], S], aF: limb(S, p.aF[0], p.aF[0] + p.aF[1], 82), aB: limb(S, p.aB[0], p.aB[0] + p.aB[1], 82), lF: limb([0, 0], p.lF[0], p.lF[0] - p.lF[1], 105), lB: limb([0, 0], p.lB[0], p.lB[0] - p.lB[1], 105), hc: [HC] };
+  const r = p.rot * D2R, c = Math.cos(r), s = Math.sin(r); let maxY = -1e9;
+  Object.keys(pts).forEach((n) => { pts[n] = pts[n].map(([x, y]) => [x * c - y * s, x * s + y * c]); pts[n].forEach((q) => { maxY = Math.max(maxY, q[1] + (n === "hc" ? 46 : n === "to" ? 34 : 20)); }); });
+  const oy = -maxY + p.dy; Object.keys(pts).forEach((n) => { pts[n] = pts[n].map(([x, y]) => [x, y + oy]); });
+  return pts;
+};
+
+document.fonts.ready.then(() => {
+  // Authored in beats (1.0 = one beat) and played at 87 BPM.
+  const BPM = 87, K = 60 / BPM, END = 36;
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const kf = (a, t) => { for (let i = 1; i < a.length; i++) if (t <= a[i][0]) { const [t0, v0] = a[i - 1], [t1, v1, e] = a[i], k = (t - t0) / (t1 - t0); return v0 + (v1 - v0) * (e ? gsap.parseEase(e)(k) : k); } return a[a.length - 1][1]; };
+  const px = (k, t) => kf(DIST[k], t) * PXM;
+  const scr = (k, t) => [X0 + px(k, t) * Math.cos(THR), Y0[k] - px(k, t) * Math.sin(THR)];
+  const on = (k, sx, sy, s, ox = 60, oy = -115) => (t) => { const p = scr(k, t); return { cx: p[0] + ox, cy: p[1] + oy, s }; };
+  const WIDE = () => ({ cx: 540, cy: 960, s: 1 });
+  const SHOTS = [{ t: 0, f: WIDE }, { t: 6, f: on("E", 0, 0, 2.1) }, { t: 8, f: on("T", 0, 0, 2.1, 90) }, { t: 10, f: on("O", 0, 0, 2.0) }, { t: 12, f: on("D", 0, 0, 2.0) },
+    { t: 14, f: WIDE }, { t: 14.6, f: on("E", 0, 0, 2.0, 70, -90) }, { t: 16.5, f: WIDE }, { t: 19, f: on("O", 0, 0, 2.1) }, { t: 22, f: on("D", 0, 0, 1.7, 90, -190) }, { t: 30, blend: 0.6, f: WIDE }];
+  const camAt = (t) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].t <= t) i++; const c1 = SHOTS[i].f(t), b = SHOTS[i].blend;
+    if (b && t < SHOTS[i].t + b) { const c0 = SHOTS[i - 1].f(t), k = gsap.parseEase("power3.inOut")((t - SHOTS[i].t) / b); return { cx: c0.cx + (c1.cx - c0.cx) * k, cy: c0.cy + (c1.cy - c0.cy) * k, s: c0.s * Math.pow(c1.s / c0.s, k) }; } return c1; };
+  const str = (a) => a.map((q) => q[0].toFixed(1) + "," + q[1].toFixed(1)).join(" ");
+  const apply = (t) => {
+    ORDER.forEach((k) => {
+      const x = px(k, t), p = poseAt(k, t), pts = solve(p), mode = MODES[k][modeAt(k, t)][1], fx = x + p.dx * U;
+      ["aB", "lB", "to", "lF", "aF"].forEach((n) => { const s = str(pts[n]); $(`o-${n}-${k}`).setAttribute("points", s); $(`p-${n}-${k}`).setAttribute("points", s); });
+      $(`hd-${k}`).setAttribute("transform", `translate(${pts.hc[0][0].toFixed(1)} ${pts.hc[0][1].toFixed(1)}) rotate(${(p.lean + p.head + p.rot).toFixed(1)})`);
+      $(`fg-${k}`).setAttribute("transform", `translate(${fx.toFixed(1)} 0) scale(${U * p.face} ${U})`);
+      // the rock: pushed ahead of the hands, unless it gets away
+      let rx = x + ROFF[k], lift = 0;
+      if (k === "E") { rx = x + kf([[0, 131], [14.3, 131], [15.1, -34, "power2.in"], [36, -34]], t); lift = kf([[0, 0], [14.9, 0], [15.1, 14], [36, 14]], t); }
+      $(`rk-${k}`).setAttribute("transform", `translate(${rx.toFixed(1)} ${-RR - 3 - lift}) rotate(${(rx / RR / D2R).toFixed(1)})`);
+      const hx = fx + pts.hc[0][0] * U * p.face, hy = pts.hc[0][1] * U;
+      $(`ex-${k}`).setAttribute("transform", `translate(${hx.toFixed(1)} ${hy.toFixed(1)})`);
+      $(`nm-${k}`).setAttribute("transform", `translate(${hx.toFixed(1)} ${(Math.min(hy, -80) - 46).toFixed(1)})`);
+      $(`mt-${k}`).textContent = Math.round(kf(DIST[k], t)) + " M";
+      $(`zz-${k}`).setAttribute("opacity", mode === "sit" && t > MODES[k][modeAt(k, t)][0] + 0.5 ? 0.6 + 0.4 * Math.sin(t * 3) : 0);
+      const hot = mode === "tired" || mode === "lying";
+      [0, 1, 2].forEach((i) => { const f = (t * 0.7 + i / 3) % 1, el = $(`st${i}-${k}`); el.setAttribute("opacity", hot ? 1 - f : 0); el.setAttribute("transform", `translate(0 ${(-f * 44).toFixed(1)})`); });
+      const wet = mode === "pushfast" ? 1 : mode === "push" || mode === "tired" ? 0.7 : 0;
+      [0, 1].forEach((i) => { const f = (t * 1.6 + i * 0.5) % 1, el = $(`sw${i}-${k}`); el.setAttribute("opacity", wet * (1 - f)); el.setAttribute("cy", (4 + f * 80).toFixed(1)); });
+    });
+    const c = camAt(t); gsap.set("#cam", { x: 540 - c.cx * c.s, y: 960 - c.cy * c.s, scale: c.s });
+  };
+  const clk = { v: 0 };
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => apply(M.time()) }, 0);
+  apply(0);
+
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 14) => M.fromTo("#punch", { y: a }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
+  gsap.set("#go, #veil, #board, .row, .bt, .spk, #flash", { opacity: 0 });
+  [6, 8, 10, 12, 14, 14.6, 16.5, 19, 22].forEach((t) => M.fromTo("#punch", { scale: 1.08 }, { scale: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, t));
+
+  // ---- text beats
+  M.fromTo("#ttl", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.1); M.to("#ttl", { opacity: 0, duration: 0.25 }, 5.6);
+  M.fromTo("#go", { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in" }, 1.82); flash(2.0, 0.4); M.to("#go", { opacity: 0, scale: 1.4, duration: 0.25 }, 2.6);
+  bump(15.1, 22); flash(15.1, 0.2);        // the rock lands on Ego
+  bump(22.9, 14);                           // Obsession drops
+  flash(28.0, 0.5); bump(28.0, 16);         // Discipline reaches the flag
+  const FL = [X0 + (100 * PXM + 60) * Math.cos(THR), Y0.D - (100 * PXM + 60) * Math.sin(THR)];
+  [[-190, -330], [60, -400], [-90, -470], [-260, -230], [-20, -560], [-300, -420]].forEach((p, i) => { gsap.set(`#sp${i}`, { x: FL[0] + p[0], y: FL[1] + p[1] }); M.fromTo(`#sp${i}`, { scale: 0, opacity: 0, rotation: 0 }, { scale: 1, opacity: 1, rotation: 90, duration: 0.3, yoyo: true, repeat: 5, ease: "sine.inOut" }, 28.1 + i * 0.08); });
+
+  // ---- individual results
+  M.to("#veil", { opacity: 0.94, duration: 0.3 }, 30.7); M.to("#lanes", { opacity: 0, duration: 0.3 }, 30.7); M.set("#board", { opacity: 1 }, 30.7);
+  M.fromTo("#board .bt", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.25 }, 30.8);
+  [31.2, 32.0, 32.8, 33.8].forEach((t, i) => { M.fromTo(`#row${i}`, { opacity: 0, x: i % 2 ? 160 : -160 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, t); if (i === 3) { flash(t + 0.2, 0.5); bump(t + 0.2, 16); M.fromTo("#row3", { scale: 1 }, { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t + 0.25); } });
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>
