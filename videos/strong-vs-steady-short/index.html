@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>strong-vs-steady</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; src: url("assets/fonts/JetBrainsMono-700.woff2") format("woff2"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: "JetBrains Mono", monospace; font-weight: 700; color: #f1ede6; }
+#stage { position: absolute; inset: 0; }
+#shake { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+.pn { position: absolute; left: 0; width: 1080px; height: 600px; overflow: hidden; }
+.pn svg { position: absolute; left: 0; top: 0; width: 1080px; height: 600px; }
+svg text { font-family: "JetBrains Mono"; font-weight: 700; }
+.ol { fill: none; stroke: #0b0a09; stroke-linecap: round; }
+.sh { fill: none; stroke: #a9a7a2; stroke-linecap: round; }
+.hi { fill: none; stroke: #f6f4ef; stroke-linecap: round; }
+.bk.sh { stroke: #77756f; } .bk.hi { stroke: #c4c2bc; }
+#strip { position: absolute; left: 0; top: 780px; width: 1080px; height: 220px; text-align: center; }
+#strip .a { display: block; margin-top: 14px; font-size: 36px; letter-spacing: 13px; color: #cfc8bb; white-space: nowrap; }
+#strip .b { display: block; font-size: 54px; letter-spacing: 8px; line-height: 1.2; white-space: nowrap; }
+#strip .b b { font-size: 70px; font-weight: 700; }
+#strip svg { position: absolute; left: 0; top: 136px; width: 1080px; height: 80px; overflow: visible; }
+.tag { position: absolute; display: block; right: 40px; width: 360px; height: 220px; border-radius: 20px; border: 5px solid #5a4a36; background: rgba(0,0,0,.8); text-align: center; }
+.tag .r { display: block; margin-top: 18px; font-size: 98px; line-height: 1; white-space: nowrap; }
+.tag .m { display: block; font-size: 52px; line-height: 1.5; color: #e9c98a; white-space: nowrap; }
+.tag.win { background: #f1ede6; border-color: #f1ede6; color: #0b0a09; }
+.tag.win .m { color: #7a4f12; }
+.dimr { position: absolute; left: 0; width: 1080px; height: 600px; background: #000; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="shake"><div id="panels"></div>
+   <div id="strip"><span class="a">SAME STONE</span><span class="b">DAY <b id="day">1</b></span>
+    <svg viewBox="0 0 1080 80"><line x1="150" y1="40" x2="930" y2="40" stroke="#5a4a36" stroke-width="6" stroke-linecap="round"/><line x1="930" y1="40" x2="930" y2="-6" stroke="#f1ede6" stroke-width="6" stroke-linecap="round"/><path d="M933 -4 L972 8 L933 20 Z" fill="#f1ede6"/>
+     <circle id="mk-B" cy="24" r="17" fill="#f1ede6" stroke="#0b0a09" stroke-width="5"/><circle id="mk-S" cy="58" r="10" fill="#e9c98a" stroke="#0b0a09" stroke-width="5"/></svg></div></div>
+  <div id="tags"></div>
+  <div id="flash"></div>
+ </div>
+</div>
+<script>
+// ---- the story (edit these tables to change it)
+const ORDER = ["B", "S"], DAYS = 60, MPF = 2, T0 = 1.5, T1 = 30; // metres per flip; the 60 days run from beat T0 to T1
+const NAME = { B: "BODYBUILDER", S: "SKINNY" };
+const FLIPS = { // [beat, total flips so far]. The bodybuilder starts at twice the skinny one's pace.
+  B: [[0, 0], [T0, 0], [8.6, 25, "none"], [14, 33, "power1.out"], [20, 36, "power2.out"], [36, 36]],
+  S: [[0, 0], [T0, 0], [T1, 50, "none"], [36, 50]],
+};
+const MODES = {
+  B: [[0, "flex"], [T0, "pushfast"], [8.6, "push"], [20, "tired"], [25.5, "sit"]],
+  S: [[0, "stand"], [T0, "push"], [T1, "cheer"]],
+};
+const STAMINA = { // [beat, percent]. He is not lazy: he simply runs out.
+  B: [[0, 100], [T0, 100], [8.6, 46, "none"], [14, 16, "none"], [20, 0, "none"], [36, 0]],
+  S: [[0, 100], [T0, 100], [T1, 38, "none"], [36, 38]],
+};
+const RANK = [["2ND", "B"], ["1ST", "S"]];
+// ---- two builds on one skeleton: widths of each body part, in figure units
+const BUILD = {
+  B: { u: 0.88, head: 42, toL: 86, toU: 132, up: 66, fo: 48, th: 68, sn: 48, delt: 48 },
+  S: { u: 0.8, head: 46, toL: 42, toU: 46, up: 26, fo: 22, th: 30, sn: 24, delt: 0 },
+};
+const PY = { B: 180, S: 1000 }, FLOOR = 520, SX = 610, A = 140;
+const FX = { B: SX - A - 240 * BUILD.B.u - 4, S: SX - A - 240 * BUILD.S.u - 4 };
+const SEGS = [["aBu", "up", 1], ["aBl", "fo", 1], ["lBu", "th", 1], ["lBl", "sn", 1], ["toL", "toL", 0], ["toU", "toU", 0], ["lFu", "th", 0], ["lFl", "sn", 0], ["dl", "delt", 0], ["aFu", "up", 0], ["aFl", "fo", 0]];
+const seg = (k, [id, part, back]) => { const w = BUILD[k][part], c = back ? " bk" : ""; if (!w) return "";
+  if (id === "dl") return `<g id="dl-${k}"><circle r="${w}" fill="#a9a7a2" stroke="#0b0a09" stroke-width="8"/><circle cx="${-w * 0.12}" cy="${-w * 0.14}" r="${w * 0.74}" fill="#f6f4ef"/></g>`;
+  return `<polyline id="o-${id}-${k}" class="ol" stroke-width="${w + 16}"/><polyline id="s-${id}-${k}" class="sh${c}" stroke-width="${w}"/><polyline id="h-${id}-${k}" class="hi${c}" stroke-width="${Math.max(8, w * 0.62)}" transform="translate(${-w * 0.1} ${-w * 0.12})"/>`; };
+const panel = (k) => { const hr = BUILD[k].head; return `<div class="pn" style="top:${PY[k]}px"><svg viewBox="0 0 1080 600">
+  <defs><linearGradient id="cone-${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".34"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0.03"/></linearGradient>
+  <linearGradient id="flr-${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2c1c"/><stop offset="1" stop-color="#000"/></linearGradient>
+  <linearGradient id="stn-${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9bba0"/><stop offset="1" stop-color="#8a7a62"/></linearGradient></defs>
+  ${[0, 1].map((i) => `<g id="lamp${i}-${k}"><polygon points="-38,96 38,96 300,${FLOOR} -300,${FLOOR}" fill="url(#cone-${k})"/><line x1="0" y1="0" x2="0" y2="60" stroke="#5a4a36" stroke-width="5"/><path d="M-46 96 L-26 60 L26 60 L46 96 Z" fill="#2a2118" stroke="#5a4a36" stroke-width="5"/><ellipse cx="0" cy="99" rx="38" ry="10" fill="#ffe6b8"/></g>`).join("")}
+  <rect x="0" y="${FLOOR}" width="1080" height="${600 - FLOOR}" fill="url(#flr-${k})"/><line x1="0" y1="${FLOOR}" x2="1080" y2="${FLOOR}" stroke="#6a573f" stroke-width="6"/>
+  ${Array.from({ length: 30 }, (_, i) => `<rect id="ch${i}-${k}" x="-8" y="${FLOOR - 14 - (i % 3) * 3}" width="${11 + (i % 3) * 6}" height="${11 + (i % 2) * 6}" fill="#b8a98e" transform="rotate(${(i * 37) % 50})"/>`).join("")}
+  <g id="st-${k}"><rect id="sr-${k}" x="${-A}" y="${-A}" width="${2 * A}" height="${2 * A}" rx="14" fill="url(#stn-${k})" stroke="#1d1810" stroke-width="9"/><rect id="si-${k}" x="${-A + 13}" y="${-A + 13}" width="${2 * A - 26}" height="${2 * A - 26}" rx="8" fill="none" stroke="#efe4cc" stroke-opacity=".35" stroke-width="5"/>
+    <path d="M-62 -50 L-16 -14 L-36 36 M16 -72 L32 -26 L72 4 M-10 50 L42 66" fill="none" stroke="#5e5140" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>${[[-50, 66], [56, -56], [-72, -10], [12, 12], [66, 50], [-22, -76]].map((p) => `<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#6d5f4b"/>`).join("")}</g>
+  <g id="fg-${k}">${SEGS.map((s) => seg(k, s)).join("")}<g id="hd-${k}"><circle r="${hr}" fill="#a9a7a2" stroke="#0b0a09" stroke-width="8"/><circle cx="-5" cy="-6" r="${hr - 10}" fill="#f6f4ef"/></g></g>
+  <g id="ex-${k}"><text id="zz-${k}" x="110" y="-70" font-size="54" fill="#f1ede6">z z z</text>
+    ${[0, 1, 2].map((i) => `<path id="sm${i}-${k}" d="M${-44 + i * 40} -80 q-13 -16 0 -32 q13 -16 0 -32 q-13 -16 0 -32" fill="none" stroke="#cfc8bb" stroke-width="8" stroke-linecap="round"/>`).join("")}
+    <circle id="sw0-${k}" cx="66" r="9" fill="#cfe6ff"/><circle id="sw1-${k}" cx="-60" r="8" fill="#cfe6ff"/></g>
+  <text x="44" y="60" font-size="38" fill="#f1ede6" letter-spacing="10">${NAME[k]}</text>
+  <rect x="44" y="84" width="304" height="26" rx="13" fill="#0b0a09" stroke="#cfc8bb" stroke-width="4"/><rect id="sb-${k}" x="48" y="88" width="296" height="18" rx="9" fill="#f1ede6"/><text x="362" y="107" font-size="24" fill="#cfc8bb" letter-spacing="5">STAMINA</text>
+  <text id="mt-${k}" x="1036" y="60" font-size="40" text-anchor="end" fill="#e9c98a" letter-spacing="3">0 M</text>
+</svg></div>`; };
+document.getElementById("panels").innerHTML = ORDER.map(panel).join("");
+document.getElementById("tags").innerHTML = ORDER.map((k) => `<div class="dimr" id="dim-${k}" style="top:${PY[k]}px"></div>`).join("") + RANK.map((r, i) => `<div class="tag${i === RANK.length - 1 ? " win" : ""}" id="tag${i}" style="top:${PY[r[1]] + 200}px"><span class="r">${r[0]}</span><span class="m" id="tm${i}"></span></div>`).join("");
+
+// ---- posable figure: joint angles in, limb points out
+const D2R = Math.PI / 180, $ = (id) => document.getElementById(id);
+const dir = (a) => [Math.sin(a * D2R), Math.cos(a * D2R)];
+const walkLeg = (ph, base, amp, bend) => [base + amp * Math.sin(ph), 18 + bend * Math.max(0, Math.cos(ph))];
+const pushPose = (ph, amp, lean) => ({ lean: lean + 3 * Math.sin(2 * ph), head: -12, aF: [60, 10], aB: [50, 18], lF: walkLeg(ph, -14, amp, 42), lB: walkLeg(ph + Math.PI, -14, amp, 42) });
+const POSE = {
+  stand: () => ({ lean: 0, head: 0, aF: [10, 8], aB: [-8, 8], lF: [8, 0], lB: [-8, 0] }),
+  flex: (t) => ({ lean: -8, head: -8, aF: [92, 112 + 12 * Math.sin(t * 9)], aB: [-25, 95], lF: [10, 0], lB: [-10, 0], dy: -10 * Math.abs(Math.sin(t * Math.PI * 2)) }),
+  pushfast: (t, ph) => pushPose(ph, 40, 38),
+  push: (t, ph) => pushPose(ph, 34, 50),
+  lazy: (t, ph) => ({ lean: 12, head: 16, aF: [62, 0], aB: [-25, 95], lF: walkLeg(ph, 0, 18, 18), lB: walkLeg(ph + Math.PI, 0, 18, 18) }),
+  stretch: (t) => ({ lean: -12, head: -24, aF: [172, -16 + 6 * Math.sin(t * 5)], aB: [-164, 12], lF: [10, 0], lB: [-10, 0] }),
+  sit: (t) => ({ face: -1, lean: -22 + 3 * Math.sin(t * 4), head: 24, aF: [15, 75], aB: [5, 85], lF: [80, 5], lB: [62, 70], dx: 196 }),
+  tired: (t) => ({ lean: 66 + 4 * Math.sin(t * 4), head: 18, aF: [-30, -10], aB: [-40, -6], lF: [14, 24], lB: [-10, 22], dx: -30 }),
+  down: (t) => ({ lean: 0, rot: -88, head: 8, aF: [-160, -10], aB: [-100, -24], lF: [18 + 4 * Math.sin(t * 3), 14], lB: [-4, 6], dx: -60 }),
+  cheer: (t) => ({ lean: -4, head: -12, aF: [158, 8], aB: [-158, -8], lF: [10, 0], lB: [-10, 0], dy: -30 * Math.abs(Math.sin(t * Math.PI)), dx: -60 }),
+};
+const NUM = ["lean", "head", "rot", "dx", "dy"], ARR = ["aF", "aB", "lF", "lB"];
+const mix = (a, b, k) => { const o = { face: b.face || 1 }; NUM.forEach((n) => { o[n] = (a[n] || 0) + ((b[n] || 0) - (a[n] || 0)) * k; }); ARR.forEach((n) => { o[n] = [a[n][0] + (b[n][0] - a[n][0]) * k, a[n][1] + (b[n][1] - a[n][1]) * k]; }); return o; };
+const modeAt = (k, t) => { const m = MODES[k]; let i = 0; while (i + 1 < m.length && m[i + 1][0] <= t) i++; return i; };
+const solve = (p, bd) => {
+  const S = [150 * Math.sin(p.lean * D2R), -150 * Math.cos(p.lean * D2R)], hd = (p.lean + p.head) * D2R, nk = 20 + bd.head, HC = [S[0] + nk * Math.sin(hd), S[1] - nk * Math.cos(hd)], Mi = [S[0] * 0.5, S[1] * 0.5];
+  const limb = (o, a, b, l) => { const d1 = dir(a), j = [o[0] + l * d1[0], o[1] + l * d1[1]], d2 = dir(b); return [o, j, [j[0] + l * d2[0], j[1] + l * d2[1]]]; };
+  const aF = limb(S, p.aF[0], p.aF[0] + p.aF[1], 82), aB = limb(S, p.aB[0], p.aB[0] + p.aB[1], 82), lF = limb([0, 0], p.lF[0], p.lF[0] - p.lF[1], 105), lB = limb([0, 0], p.lB[0], p.lB[0] - p.lB[1], 105);
+  const pts = { aBu: [aB[0], aB[1]], aBl: [aB[1], aB[2]], lBu: [lB[0], lB[1]], lBl: [lB[1], lB[2]], toL: [[0, 0], Mi], toU: [Mi, S], lFu: [lF[0], lF[1]], lFl: [lF[1], lF[2]], aFu: [aF[0], aF[1]], aFl: [aF[1], aF[2]], hc: [HC], sp: [S] };
+  const r = p.rot * D2R, c = Math.cos(r), s = Math.sin(r), pad = { hc: bd.head, toL: bd.toL / 2, toU: bd.toU / 2, lFl: bd.sn / 2, lBl: bd.sn / 2, lFu: bd.th / 2, lBu: bd.th / 2 }; let maxY = -1e9;
+  Object.keys(pts).forEach((n) => { pts[n] = pts[n].map(([x, y]) => [x * c - y * s, x * s + y * c]); pts[n].forEach((q) => { maxY = Math.max(maxY, q[1] + (pad[n] || 12)); }); });
+  const oy = -maxY + p.dy; Object.keys(pts).forEach((n) => { pts[n] = pts[n].map(([x, y]) => [x, y + oy]); });
+  return pts;
+};
+
+document.fonts.ready.then(() => {
+  // Authored in beats (1.0 = one beat) and played at 87 BPM. Fixed framing: no camera moves.
+  const BPM = 87, K = 60 / BPM, END = 36;
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const kf = (a, t) => { for (let i = 1; i < a.length; i++) if (t <= a[i][0]) { const [t0, v0] = a[i - 1], [t1, v1, e] = a[i], k = (t - t0) / (t1 - t0); return v0 + (v1 - v0) * (e ? gsap.parseEase(e)(k) : k); } return a[a.length - 1][1]; };
+  const mod = (v, m) => ((v % m) + m) % m, str = (a) => a.map((q) => q[0].toFixed(1) + "," + q[1].toFixed(1)).join(" ");
+  const poseAt = (k, t, ph) => { const m = MODES[k], i = modeAt(k, t), cur = POSE[m[i][1]](t, ph), B = 0.4;
+    if (i > 0 && t < m[i][0] + B) return mix(POSE[m[i - 1][1]](t, ph), cur, gsap.parseEase("power2.out")((t - m[i][0]) / B)); return mix(cur, cur, 1); };
+  const apply = (t) => {
+    $("day").textContent = Math.max(1, Math.min(DAYS, 1 + Math.floor((t - T0) / (T1 - T0) * (DAYS - 1))));
+    ORDER.forEach((k) => {
+      const bd = BUILD[k], U = bd.u, fl = kf(FLIPS[k], t), q = Math.pow(Math.min(1, fl / 50), 1.3), r = 14 + q * (A - 14), th = fl * 90, tr = th * D2R;
+      const h = r + (A - r) * (Math.abs(Math.cos(tr)) + Math.abs(Math.sin(tr))), scroll = fl * 240;
+      $(`st-${k}`).setAttribute("transform", `translate(${SX} ${(FLOOR - h).toFixed(1)}) rotate(${th.toFixed(1)})`);
+      $(`sr-${k}`).setAttribute("rx", r.toFixed(1)); $(`si-${k}`).setAttribute("rx", Math.max(6, r - 12).toFixed(1));
+      [0, 1].forEach((i) => $(`lamp${i}-${k}`).setAttribute("transform", `translate(${(mod([300, 1000][i] - scroll * 0.7, 1400) - 160).toFixed(1)} 0)`));
+      for (let i = 0; i < 30; i++) { const el = $(`ch${i}-${k}`); el.setAttribute("x", (mod(((i * 211) % 1300) - scroll, 1300) - 110).toFixed(1)); el.setAttribute("opacity", fl > 0.5 && i < 3 + q * 27 ? 0.9 : 0); }
+      const p = poseAt(k, t, Math.PI * fl), pts = solve(p, bd), mode = MODES[k][modeAt(k, t)][1], fx = FX[k] + p.dx * U;
+      SEGS.forEach(([id]) => { if (id === "dl") return; const s = str(pts[id]); ["o", "s", "h"].forEach((l) => $(`${l}-${id}-${k}`).setAttribute("points", s)); });
+      if (bd.delt) $(`dl-${k}`).setAttribute("transform", `translate(${pts.sp[0][0].toFixed(1)} ${pts.sp[0][1].toFixed(1)})`);
+      $(`hd-${k}`).setAttribute("transform", `translate(${pts.hc[0][0].toFixed(1)} ${pts.hc[0][1].toFixed(1)}) rotate(${(p.lean + p.head + p.rot).toFixed(1)})`);
+      $(`fg-${k}`).setAttribute("transform", `translate(${fx.toFixed(1)} ${FLOOR}) scale(${U * p.face} ${U})`);
+      $(`ex-${k}`).setAttribute("transform", `translate(${(fx + pts.hc[0][0] * U * p.face).toFixed(1)} ${(FLOOR + pts.hc[0][1] * U).toFixed(1)})`);
+      $(`mt-${k}`).textContent = Math.round(fl * MPF) + " M";
+      $(`mk-${k}`).setAttribute("cx", (150 + 780 * Math.min(1, fl * MPF / 100)).toFixed(1));
+      $(`zz-${k}`).setAttribute("opacity", 0);
+      const st = kf(STAMINA[k], t), sb = $(`sb-${k}`); sb.setAttribute("width", Math.max(0, 296 * st / 100).toFixed(1)); sb.setAttribute("fill", st < 25 ? "#e0283c" : "#f1ede6");
+      const hot = mode === "tired" || mode === "down" || mode === "sit";
+      [0, 1, 2].forEach((i) => { const f = (t * 0.7 + i / 3) % 1, el = $(`sm${i}-${k}`); el.setAttribute("opacity", hot ? 1 - f : 0); el.setAttribute("transform", `translate(0 ${(-f * 56).toFixed(1)})`); });
+      const wet = mode === "push" || mode === "tired" ? 1 : mode === "pushfast" ? 0.5 : 0;
+      [0, 1].forEach((i) => { const f = (t * 1.6 + i * 0.5) % 1, el = $(`sw${i}-${k}`); el.setAttribute("opacity", wet * (1 - f)); el.setAttribute("cy", (6 + f * 110).toFixed(1)); });
+    });
+  };
+  RANK.forEach((r, i) => { $(`tm${i}`).textContent = Math.round(kf(FLIPS[r[1]], END) * MPF) + " M"; });
+  const clk = { v: 0 };
+  M.fromTo(clk, { v: 0 }, { v: 1, duration: END, ease: "none", onUpdate: () => apply(M.time()) }, 0);
+  apply(0);
+
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 14) => M.fromTo("#shake", { y: a }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
+  gsap.set(".tag, .dimr, #flash", { opacity: 0 });
+  bump(25.85, 16);                      // he goes down
+  flash(T1, 0.45); bump(T1, 14);
+  M.fromTo("#strip .b", { scale: 1 }, { scale: 1.18, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, T1);
+  // ---- individual results, loser first
+  RANK.forEach((r, i) => { const t = 31.2 + i * 1.6, last = i === RANK.length - 1;
+    M.fromTo(`#tag${i}`, { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, t);
+    if (!last) M.to(`#dim-${r[1]}`, { opacity: 0.45, duration: 0.4 }, t + 0.2);
+    else { flash(t + 0.2, 0.5); bump(t + 0.2, 16); M.fromTo(`#tag${i}`, { scale: 1 }, { scale: 1.1, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t + 0.25); } });
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>
