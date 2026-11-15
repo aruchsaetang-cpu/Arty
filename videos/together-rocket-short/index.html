@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>no-one-launches-alone</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "DejaVu Sans"; font-weight: 700; src: url("assets/fonts/DejaVuSans-Bold.ttf") format("truetype"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #05071a; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #05071a; font-family: "Anton", sans-serif; color: #f4f4f4; }
+#stage { position: absolute; inset: 0; }
+#sky { position: absolute; inset: 0; background: linear-gradient(#04061a 0%, #0a0f30 55%, #18205a 100%); }
+#punch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 540px 960px; }
+#cam { position: absolute; left: 0; top: 0; width: 10px; height: 10px; }
+#world { position: absolute; left: 0; top: 0; }
+.abs { position: absolute; display: block; left: 0; top: 0; }
+svg { overflow: visible; }
+svg.fg { position: absolute; }
+svg .ln { fill: none; stroke: #f4f4f4; stroke-width: 27; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln.ol { stroke: #05071a; stroke-width: 41; }
+svg .hd { fill: #f4f4f4; stroke: #05071a; stroke-width: 7; }
+svg text { font-family: "Anton"; }
+.nm { position: absolute; display: block; left: -200px; top: -640px; width: 400px; text-align: center; font-size: 40px; letter-spacing: 5px; white-space: nowrap; }
+.idea { position: absolute; display: block; left: -30px; top: -790px; width: 60px; text-align: center; font-size: 110px; color: #ffe066; }
+.sym { font-family: "DejaVu Sans"; font-weight: 700; white-space: nowrap; }
+#ground { left: -3000px; top: 3000px; width: 9000px; height: 3200px; background: #080b1a; border-top: 10px solid #3a4470; }
+#pad { left: 760px; top: 2940px; width: 480px; height: 60px; background: #232a4a; border: 6px solid #5a6699; border-radius: 8px; }
+.scrap { width: 170px; height: 70px; background: #8a93ad; border: 6px solid #05071a; border-radius: 8px; }
+.blk { width: 74px; height: 44px; background: #54e08a; border: 5px solid #05071a; border-radius: 6px; }
+#cal { width: 190px; height: 180px; border-radius: 14px; background: #f4f4f4; color: #16161a; text-align: center; overflow: hidden; }
+#cal b { display: block; background: #54e08a; font-weight: 400; font-size: 36px; letter-spacing: 4px; line-height: 56px; }
+#cal span { display: block; font-size: 96px; line-height: 118px; }
+#post { left: 1760px; top: 2640px; width: 30px; height: 360px; background: #5a6699; border-radius: 6px; }
+#btn { left: 1727px; top: 2596px; width: 96px; height: 56px; border-radius: 48px 48px 10px 10px; background: #ff3b4e; border: 6px solid #05071a; }
+#btnb { left: 1712px; top: 2640px; width: 126px; height: 26px; border-radius: 8px; background: #8a93ad; border: 5px solid #05071a; }
+.smoke { width: 220px; height: 220px; border-radius: 50%; background: #c9cfe6; }
+.star { border-radius: 50%; background: #f4f4f4; }
+#far { width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 0 40px 14px rgba(255,200,120,.9); }
+#fart { width: 10px; height: 300px; margin-left: 8px; margin-top: 20px; background: linear-gradient(rgba(255,190,110,.9), rgba(255,190,110,0)); border-radius: 5px; }
+.cap { position: absolute; display: block; left: 0; top: 1480px; width: 1080px; text-align: center; font-size: 96px; letter-spacing: 5px; white-space: nowrap; text-shadow: 0 6px 0 #05071a, 0 10px 40px rgba(0,0,0,.8); }
+.cnt { position: absolute; display: block; left: 0; top: 190px; width: 1080px; text-align: center; font-size: 330px; line-height: 1; color: #ff3b4e; text-shadow: 0 10px 0 #05071a; }
+#m1, #m2 { position: absolute; display: block; left: 0; width: 1080px; text-align: center; font-size: 124px; letter-spacing: 4px; white-space: nowrap; text-shadow: 0 8px 0 #05071a; }
+#m1 { top: 170px; } #m2 { top: 322px; color: #ffe066; }
+#veil { position: absolute; inset: 0; background: #05071a; }
+#flash { position: absolute; inset: 0; background: #fff; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="24.828" data-width="1080" data-height="1920" data-fps="30">
+ <div id="stage" class="clip" data-start="0" data-duration="24.828" data-track-index="1">
+  <div id="sky"></div>
+  <div id="punch"><div id="cam"><div id="world"></div></div></div>
+  <div id="caps"></div>
+  <span class="cnt" id="c3">3</span><span class="cnt" id="c2">2</span><span class="cnt" id="c1">1</span>
+  <span id="m1">NO ONE</span><span id="m2">LAUNCHES ALONE.</span>
+  <div id="veil"></div><div id="flash"></div>
+ </div>
+</div>
+<script>
+const GY = 3000, RX = 1000, RTOP = GY - 60 - 1240;
+const X = { T: 300, O: 600, D: 1400, E: 1620 };
+const COL = { T: "#39d0ff", O: "#ff4d5e", D: "#54e08a", E: "#a78bfa" };
+const LOOK = {
+  T: { acc: `<path d="M102 62 A48 48 0 0 1 198 62" fill="none" stroke="${COL.T}" stroke-width="13" stroke-linecap="round"/><rect x="86" y="48" width="26" height="48" rx="10" fill="${COL.T}"/><rect x="188" y="48" width="26" height="48" rx="10" fill="${COL.T}"/><text class="zz" x="210" y="20" font-size="70" fill="#f4f4f4">z z</text>`, inR: `<line x1="150" y1="322" x2="184" y2="372" stroke="#ffe066" stroke-width="12" stroke-linecap="round"/>` },
+  O: { acc: `<rect x="100" y="34" width="100" height="18" rx="9" fill="${COL.O}"/><path d="M196 44 L236 30 L230 58 Z" fill="${COL.O}"/>`, inR: `<rect x="143" y="296" width="14" height="124" rx="5" fill="#b98a55" stroke="#05071a" stroke-width="4"/><rect x="112" y="396" width="76" height="40" rx="6" fill="#aab3cc" stroke="#05071a" stroke-width="5"/>` },
+  D: { acc: `<path d="M98 66 A52 52 0 0 1 202 66 Z" fill="${COL.D}" stroke="#05071a" stroke-width="6"/><rect x="88" y="60" width="124" height="14" rx="6" fill="${COL.D}" stroke="#05071a" stroke-width="5"/>`, inL: `<rect x="106" y="300" width="88" height="110" rx="8" fill="#f4f4f4" stroke="#05071a" stroke-width="6"/><rect x="128" y="290" width="44" height="18" rx="5" fill="${COL.D}"/><path d="M122 336 h56 M122 360 h56 M122 384 h36" stroke="#8a93ad" stroke-width="7" stroke-linecap="round"/>` },
+  E: { acc: `<rect x="108" y="54" width="84" height="24" rx="10" fill="#05071a"/>`, behind: `<path class="cape" d="M150 150 L40 470 L104 436 L150 330 Z" fill="${COL.E}" stroke="#05071a" stroke-width="6" stroke-linejoin="round"/>` },
+};
+const NAME = { T: "TALENT", O: "OBSESSION", D: "DISCIPLINE", E: "EGO" };
+const ch = (k) => { const L = LOOK[k]; return `<div class="abs ch" id="ch${k}"><svg class="fg" viewBox="0 0 300 700" style="left:-125px;top:-533px;width:250px;height:583px"><g class="jump"><g class="pose">
+  ${L.behind || ""}
+  <g class="legL"><line class="ln" x1="150" y1="380" x2="110" y2="640"/></g><g class="legR"><line class="ln" x1="150" y1="380" x2="190" y2="640"/></g>
+  <g class="armL"><line class="ln" x1="150" y1="175" x2="120" y2="326"/><g transform="translate(-30 -4)">${L.inL || ""}</g></g>
+  <line class="ln" x1="150" y1="116" x2="150" y2="380"/>
+  <g class="armR"><line class="ln" x1="150" y1="175" x2="180" y2="326"/><g transform="translate(30 -4)">${L.inR || ""}</g></g>
+  <g class="hdg"><circle class="hd" cx="150" cy="70" r="46"/>${L.acc}</g>
+  <circle class="sw sw0" cx="214" cy="60" r="9" fill="#bfe3ff"/><circle class="sw sw1" cx="88" cy="84" r="8" fill="#bfe3ff"/>
+</g></g></svg><span class="nm">${NAME[k]}</span><span class="idea">!</span></div>`; };
+const SIL = `<path d="M200 20 C120 140 100 260 100 340 L100 1130 L300 1130 L300 340 C300 260 280 140 200 20 Z"/><path d="M100 880 L20 1200 L100 1130"/><path d="M300 880 L380 1200 L300 1130"/><path d="M130 1130 L100 1236 L300 1236 L270 1130"/><circle cx="200" cy="480" r="48"/>`;
+const stars = Array.from({ length: 170 }, (_, i) => { const s = 4 + (i % 3) * 3; return `<span class="abs star" style="left:${(i * 397) % 3400 - 700}px;top:${2500 - ((i * 811) % 8800)}px;width:${s}px;height:${s}px;opacity:${0.35 + (i % 5) * 0.14}"></span>`; }).join("");
+document.getElementById("world").innerHTML = `${stars}
+  <svg class="abs" viewBox="0 0 360 360" style="left:1560px;top:-3500px;width:360px;height:360px"><circle cx="180" cy="180" r="170" fill="#e9ecf5"/><circle cx="120" cy="130" r="34" fill="#cfd4e6"/><circle cx="230" cy="220" r="48" fill="#cfd4e6"/><circle cx="210" cy="96" r="20" fill="#cfd4e6"/></svg>
+  <span class="abs" id="far"><span class="abs" id="fart"></span></span>
+  <div class="abs" id="ground"></div><div class="abs" id="pad"></div>
+  <div class="abs" id="rk" style="left:${RX - 200}px;top:${RTOP}px"><svg viewBox="0 0 400 1240" style="position:absolute;left:0;top:0;width:400px;height:1240px">
+    <defs><clipPath id="oclip"><rect id="orect" x="-40" y="1240" width="480" height="0"/></clipPath></defs>
+    <g id="ghost" fill="none" stroke="#f4f4f4" stroke-width="6" stroke-dasharray="18 16" opacity=".16">${SIL}</g>
+    <g id="flame"><path d="M112 1228 Q200 1820 288 1228 Z" fill="#ff8a2e"/><path d="M150 1228 Q200 1560 250 1228 Z" fill="#ffe066"/></g>
+    <g id="s1"><path d="M100 880 L20 1200 L100 1130 Z" fill="#ff4d5e" stroke="#05071a" stroke-width="8" stroke-linejoin="round"/><path d="M300 880 L380 1200 L300 1130 Z" fill="#ff4d5e" stroke="#05071a" stroke-width="8" stroke-linejoin="round"/><path d="M130 1130 L100 1236 L300 1236 L270 1130 Z" fill="#8a93ad" stroke="#05071a" stroke-width="8" stroke-linejoin="round"/><rect x="100" y="1050" width="200" height="84" fill="#eef1f8" stroke="#05071a" stroke-width="8"/></g>
+    <g id="s2"><rect x="100" y="670" width="200" height="384" fill="#eef1f8" stroke="#05071a" stroke-width="8"/><rect x="100" y="820" width="200" height="40" fill="#ff4d5e" stroke="#05071a" stroke-width="6"/></g>
+    <g id="s3"><rect x="100" y="340" width="200" height="334" fill="#eef1f8" stroke="#05071a" stroke-width="8"/><circle cx="200" cy="480" r="52" fill="#39d0ff" stroke="#05071a" stroke-width="10"/><path d="M172 462 A34 34 0 0 1 206 446" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/></g>
+    <g id="s4"><path d="M200 20 C120 140 100 260 100 340 L300 340 C300 260 280 140 200 20 Z" fill="#ff4d5e" stroke="#05071a" stroke-width="8" stroke-linejoin="round"/></g>
+    <g id="bright" clip-path="url(#oclip)" fill="none" stroke="#39d0ff" stroke-width="9" stroke-dasharray="22 12">${SIL}</g>
+  </svg></div>
+  <svg class="abs" id="bp" viewBox="0 0 200 250" style="width:200px;height:250px"><rect x="4" y="4" width="192" height="242" rx="10" fill="#1d4ed8" stroke="#f4f4f4" stroke-width="8"/><g fill="none" stroke="#f4f4f4" stroke-width="5" stroke-linejoin="round"><path d="M100 30 C78 62 72 96 72 118 L72 196 L128 196 L128 118 C128 96 122 62 100 30 Z"/><path d="M72 150 L46 214 L72 196 M128 150 L154 214 L128 196"/><circle cx="100" cy="112" r="13"/><path d="M24 228 h152" stroke-dasharray="8 8"/></g></svg>
+  ${[0, 1, 2, 3].map((i) => `<span class="abs scrap" id="sc${i}"></span>`).join("")}
+  ${[0, 1, 2].map((i) => `<span class="abs blk" id="bk${i}"></span>`).join("")}
+  <div class="abs" id="cal"><b>DAY</b><span id="caln">1</span></div>
+  <span class="abs" id="post"></span><span class="abs" id="btn"></span><span class="abs" id="btnb"></span>
+  <span class="abs sym" id="click" style="font-size:44px;color:#f4f4f4">click.</span>
+  <span class="abs smoke" id="puff" style="width:90px;height:90px"></span>
+  ${["T", "O", "D", "E"].map(ch).join("")}
+  ${[0, 1, 2, 3].map((i) => `<span class="abs sym ck" id="ck${i}" style="font-size:150px;color:#54e08a;text-shadow:0 6px 0 #05071a">✓</span>`).join("")}
+  <span class="abs sym" id="warn" style="font-size:120px;color:#ff3b4e;text-shadow:0 6px 0 #05071a">!</span>
+  ${[0, 1, 2, 3, 4, 5, 6, 7].map((i) => `<span class="abs sym spk" id="sp${i}" style="font-size:${70 + (i % 3) * 20}px;color:#ffe066">✦</span>`).join("")}
+  ${[0, 1, 2, 3, 4, 5, 6, 7].map((i) => `<span class="abs smoke" id="sm${i}"></span>`).join("")}`;
+document.querySelectorAll("svg .ln").forEach((el) => { const o = el.cloneNode(false); o.classList.add("ol"); el.parentNode.insertBefore(o, el); });
+const CAPS = [[3.15, 4.95, "ONLY A PLAN.", "#ff4d5e"], [5.15, 6.95, "NO PLAN.", "#ff4d5e"], [7.15, 8.95, "TOO SLOW.", "#ff4d5e"], [9.15, 10.95, "ALL TALK.", "#ff4d5e"],
+  [12.15, 13.9, "THE PLAN.", COL.T], [14.15, 16.9, "THE GRIND.", COL.O], [17.15, 18.9, "THE DETAILS.", COL.D], [19.15, 20.9, "THE NERVE.", COL.E]];
+document.getElementById("caps").innerHTML = CAPS.map((c, i) => `<span class="cap" id="cp${i}" style="color:${c[3]}">${c[2]}</span>`).join("");
+
+document.fonts.ready.then(() => {
+  // Authored in beats (1.0 = one beat) and played at 87 BPM.
+  const BPM = 87, K = 60 / BPM, END = 36;
+  const R = gsap.timeline({ paused: true }), M = gsap.timeline();
+  const camTo = (cx, cy, s) => ({ x: 540 - cx * s, y: 960 - cy * s, scale: s });
+  const WIDE = camTo(1030, 2250, 0.56), MID = camTo(1000, 2420, 0.6), FIN = camTo(1000, 2380, 0.7);
+  const cut = (t, c) => { M.set("#cam", c, t); M.fromTo("#punch", { scale: 1.08 }, { scale: 1, duration: 0.22, ease: "power3.out", immediateRender: false }, t); };
+  const pan = (t, c, d = 0.5, ease = "power3.inOut") => M.to("#cam", { ...c, duration: d, ease }, t);
+  const flash = (t, a = 0.3) => M.fromTo("#flash", { opacity: a }, { opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
+  const bump = (t, a = 14) => M.fromTo("#punch", { y: a }, { y: 0, duration: 0.4, ease: "elastic.out(1.4,0.3)", immediateRender: false }, t);
+  const pop = (sel, t, d = 0.22) => M.fromTo(sel, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: d, ease: "back.out(3)", immediateRender: false }, t);
+  const hide = (sel, t) => M.set(sel, { opacity: 0 }, t);
+  const arms = (k, t, l, r, d = 0.25) => { M.to(`#ch${k} .armL`, { rotation: l, svgOrigin: "150 175", duration: d, ease: "power2.out" }, t); M.to(`#ch${k} .armR`, { rotation: r, svgOrigin: "150 175", duration: d, ease: "power2.out" }, t); };
+  const swing = (k, t0, t1, a, b, step = 0.1) => { const n = Math.max(2, Math.round((t1 - t0) / step)); M.fromTo(`#ch${k} .armR`, { rotation: a, svgOrigin: "150 175" }, { rotation: b, svgOrigin: "150 175", duration: (t1 - t0) / n, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t0); };
+  const walk = (k, t0, t1, x) => {
+    M.to(`#ch${k}`, { x, duration: t1 - t0, ease: "power1.inOut" }, t0);
+    const n = Math.max(2, Math.round((t1 - t0) / 0.18)), d = (t1 - t0) / n;
+    M.fromTo(`#ch${k} .legL`, { rotation: -26, svgOrigin: "150 380" }, { rotation: 26, svgOrigin: "150 380", duration: d, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t0);
+    M.fromTo(`#ch${k} .legR`, { rotation: 26, svgOrigin: "150 380" }, { rotation: -26, svgOrigin: "150 380", duration: d, yoyo: true, repeat: n - 1, ease: "sine.inOut", immediateRender: false }, t0);
+    M.to(`#ch${k} .legL, #ch${k} .legR`, { rotation: 0, duration: 0.1 }, t1);
+  };
+  const jump = (k, t, n, h = 90) => M.fromTo(`#ch${k} .jump`, { y: 0 }, { y: -h, duration: 0.22, yoyo: true, repeat: n, ease: "power2.out", immediateRender: false }, t);
+  const sweat = (k, t, n) => ["sw0", "sw1"].forEach((s, j) => M.fromTo(`#ch${k} .${s}`, { y: 0, opacity: 1 }, { y: 100, opacity: 0, duration: 0.5, repeat: n, ease: "power1.in", immediateRender: false }, t + j * 0.2));
+
+  const spot = (t, k) => ["T", "O", "D", "E"].forEach((c) => M.set(`#ch${c}`, { opacity: !k || c === k ? 1 : 0.22 }, t));
+
+  // ---- placement
+  gsap.set("#cam", { transformOrigin: "0 0", ...camTo(1030, 2250, 0.5) });
+  Object.keys(X).forEach((k) => gsap.set(`#ch${k}`, { x: X[k], y: GY }));
+  gsap.set("#chD svg", { scaleX: -1, transformOrigin: "50% 50%" });
+  gsap.set("#s1, #s2, #s3, #s4, #flame, .zz, .sw, .idea, #bp, .scrap, .blk, #cal, #click, #puff, .ck, #warn, .spk, .smoke, #far, .cap, .cnt, #m1, #m2, #veil, #flash", { opacity: 0 });
+  gsap.set("#cal", { x: X.D - 95, y: 2130 }); gsap.set("#click", { x: 1790, y: 2520 }); gsap.set("#puff", { x: RX - 45, y: GY - 150 });
+  [2830, 2560, 2205, 1900].forEach((y, i) => gsap.set(`#ck${i}`, { x: 1250, y: y - 95 }));
+  gsap.set("#warn", { x: 1280, y: 2205 - 80 });
+  [[720, 2760], [1220, 2700], [730, 2480], [1230, 2420], [720, 2120], [1220, 2060], [760, 1800], [1190, 1760]].forEach((p, i) => gsap.set(`#sp${i}`, { x: p[0], y: p[1] }));
+  M.fromTo(".cape", { skewX: -6, svgOrigin: "150 150" }, { skewX: 9, svgOrigin: "150 150", duration: 0.4, yoyo: true, repeat: 89, ease: "sine.inOut" }, 0);
+  CAPS.forEach((c, i) => { M.fromTo(`#cp${i}`, { opacity: 0, y: 40, scale: 1.3 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power3.out" }, c[0]); hide(`#cp${i}`, c[1]); });
+
+  // ---- 1. four people, one empty launch pad (beats 0-3)
+  M.to("#cam", { ...WIDE, duration: 2.8, ease: "power1.out" }, 0);
+  M.fromTo("#ghost", { opacity: 0.08 }, { opacity: 0.3, duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0);
+
+  // ---- 2. each one tries alone (beats 3-11)
+  // Talent: a brilliant plan in seconds, then a nap
+  cut(3, camTo(250, 2600, 1.08)); spot(3, "T");
+  arms("T", 3.05, 0, -70, 0.15); swing("T", 3.2, 3.9, -78, -58, 0.07);
+  gsap.set("#bp", { x: -130, y: 2230 }); pop("#bp", 3.5);
+  M.to("#chT .armR", { rotation: 0, svgOrigin: "150 175", duration: 0.2 }, 3.95);
+  M.to("#chT .hdg", { rotation: 22, svgOrigin: "150 116", duration: 0.3, ease: "power2.in" }, 4.0); M.to("#chT .zz", { opacity: 1, duration: 0.2 }, 4.25);
+  // Obsession: hammers all night with no plan; it falls over
+  cut(5, camTo(800, 2600, 1.0)); hide("#bp", 5); spot(5, "O");
+  swing("O", 5.0, 6.2, -112, -38, 0.1);
+  [[0, 4], [34, -9], [-18, 12], [44, -7]].forEach((p, i) => { gsap.set(`#sc${i}`, { x: 850 + p[0], y: GY - 60 - 70 * (i + 1) - 3, rotation: p[1] }); pop(`#sc${i}`, 5.15 + i * 0.26, 0.16); });
+  [[-150, 70], [150, -80], [-60, 100], [230, -110]].forEach((p, i) => M.to(`#sc${i}`, { x: 850 + p[0], y: GY - 60 - 76, rotation: p[1], duration: 0.4, ease: "bounce.out" }, 6.25));
+  bump(6.4, 18); flash(6.4, 0.15); M.to("#chO .armR", { rotation: 0, svgOrigin: "150 175", duration: 0.2 }, 6.3);
+  M.to("#chO .hdg", { rotation: 20, svgOrigin: "150 116", duration: 0.25 }, 6.45);
+  // Discipline: one block a day; a year later it is still three blocks
+  cut(7, camTo(1300, 2560, 1.0)); hide(".scrap", 7); spot(7, "D");
+  pop("#cal", 7.1);
+  const dn = { v: 1 }, caln = document.getElementById("caln");
+  M.fromTo(dn, { v: 1 }, { v: 365, duration: 1.3, ease: "power1.in", onUpdate: () => { caln.textContent = Math.round(dn.v); } }, 7.25);
+  [7.3, 7.8, 8.3].forEach((t, i) => { gsap.set(`#bk${i}`, { x: 1140, y: GY - 60 - 44 * (i + 1) }); pop(`#bk${i}`, t, 0.16); M.fromTo("#chD .armR", { rotation: 0, svgOrigin: "150 175" }, { rotation: -70, svgOrigin: "150 175", duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t - 0.14); });
+  // Ego: walks straight up and hits LAUNCH. There is nothing to launch.
+  cut(9, camTo(1400, 2560, 0.82)); hide(".blk, #cal", 9); spot(9, "E");
+  arms("E", 9.15, 40, -150, 0.2);
+  arms("E", 9.7, 40, -92, 0.12); M.to("#btn", { y: 18, duration: 0.08 }, 9.8); M.to("#btn", { y: 0, duration: 0.2 }, 10.1);
+  pop("#click", 9.85, 0.15); hide("#click", 10.9);
+  M.fromTo("#puff", { scale: 0.3, opacity: 0.7 }, { scale: 1.6, opacity: 0, y: GY - 230, duration: 0.8, ease: "power1.out", immediateRender: false }, 10.1);
+  M.to("#chE .hdg", { rotation: 20, svgOrigin: "150 116", duration: 0.25 }, 10.45); arms("E", 10.4, 0, 0, 0.2);
+
+  // ---- 3. they look at each other (beats 11-12)
+  cut(11, WIDE); spot(11, null);
+  M.set("#chT .hdg, #chO .hdg, #chE .hdg", { rotation: 0 }, 11); hide(".zz", 11);
+  ["T", "O", "D", "E"].forEach((k, i) => { pop(`#ch${k} .idea`, 11.15 + i * 0.12, 0.18); jump(k, 11.15 + i * 0.12, 1, 50); });
+  hide(".idea", 12);
+
+  // ---- 4. together (beats 12-21)
+  cut(12, MID);
+  // Talent brings the plan
+  arms("T", 12.05, 0, -150, 0.2);
+  M.fromTo("#bp", { x: 230, y: 2440, scale: 0.4, opacity: 1, rotation: -20 }, { x: 420, y: 1880, scale: 1.5, opacity: 1, rotation: -4, duration: 0.5, ease: "back.out(1.4)", immediateRender: false }, 12.15);
+  M.fromTo("#orect", { attr: { y: 1240, height: 0 } }, { attr: { y: -20, height: 1280 }, duration: 1.2, ease: "power1.inOut" }, 12.6);
+  arms("T", 13.6, 0, 0, 0.2);
+  // Obsession builds it, fast
+  walk("O", 14.0, 14.45, 770); swing("O", 14.45, 16.85, -112, -38, 0.1);
+  [["#s1", "200 1236"], ["#s2", "200 1050"], ["#s3", "200 670"], ["#s4", "200 340"]].forEach(([sel, o], i) => {
+    const t = 14.6 + i * 0.68, r = i === 2 ? 7 : 0;
+    M.fromTo(sel, { scale: 0.2, opacity: 0, rotation: r, svgOrigin: o }, { scale: 1, opacity: 1, rotation: r, svgOrigin: o, duration: 0.2, ease: "back.out(2.5)" }, t);
+    bump(t + 0.12, 10); flash(t + 0.12, 0.1);
+    [2 * i, 2 * i + 1].forEach((j) => { M.fromTo(`#sp${j}`, { scale: 0, opacity: 1, rotation: 0 }, { scale: 1, opacity: 1, rotation: 90, duration: 0.2, ease: "power2.out", immediateRender: false }, t + 0.08); M.to(`#sp${j}`, { opacity: 0, scale: 1.6, duration: 0.2 }, t + 0.3); });
+  });
+  M.to("#chO .armR", { rotation: 0, svgOrigin: "150 175", duration: 0.2 }, 16.9); hide("#bright", 16.9);
+  // Discipline checks every part and fixes the crooked one
+  walk("D", 17.0, 17.35, 1330); arms("D", 17.35, -60, 0, 0.15);
+  pop("#ck0", 17.45, 0.16); pop("#ck1", 17.75, 0.16);
+  pop("#warn", 18.0, 0.14); M.to("#s3", { rotation: 0, svgOrigin: "200 670", duration: 0.25, ease: "back.out(3)" }, 18.2); hide("#warn", 18.38);
+  pop("#ck2", 18.4, 0.16); pop("#ck3", 18.68, 0.16);
+  // Ego is the only one who dares to press it
+  ["T", "O", "D"].forEach((k) => { M.fromTo(`#ch${k} .pose`, { x: -5 }, { x: 5, duration: 0.05, yoyo: true, repeat: 35, ease: "none", immediateRender: false }, 19.2); sweat(k, 19.2, 3); });
+  arms("E", 19.15, 40, -150, 0.2);
+  [["#c3", 19.5], ["#c2", 20.0], ["#c1", 20.5]].forEach(([sel, t]) => { M.fromTo(sel, { scale: 1.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.14, ease: "power3.out" }, t); hide(sel, t + 0.46); });
+  arms("E", 20.86, 40, -92, 0.1); M.to("#btn", { y: 18, duration: 0.06 }, 20.94);
+
+  // ---- 5. launch (beats 21-29.5)
+  flash(21.0, 0.6); hide(".ck, #bp, #ghost", 21.0);
+  M.fromTo("#flame", { opacity: 0, scaleY: 0.2, svgOrigin: "200 1228" }, { opacity: 1, scaleY: 1, svgOrigin: "200 1228", duration: 0.2 }, 21.0);
+  M.fromTo("#flame", { scaleX: 0.86, svgOrigin: "200 1228" }, { scaleX: 1.14, svgOrigin: "200 1228", duration: 0.07, yoyo: true, repeat: 119, ease: "sine.inOut", immediateRender: false }, 21.2);
+  M.fromTo("#world", { x: -9 }, { x: 9, duration: 0.05, yoyo: true, repeat: 27, ease: "none", immediateRender: false }, 21.0); M.set("#world", { x: 0 }, 22.42);
+  [0, 1, 2, 3, 4, 5, 6, 7].forEach((i) => M.fromTo(`#sm${i}`, { x: RX - 110, y: GY - 220, scale: 0.3, opacity: 0.85 }, { x: RX - 110 + (i % 2 ? 1 : -1) * (160 + i * 55), y: GY - 250 - (i % 3) * 40, scale: 2.2, opacity: 0, duration: 1.7, ease: "power1.out", immediateRender: false }, 21.0 + i * 0.14));
+  M.to("#rk", { y: -6400, duration: 7.5, ease: "power2.in" }, 22.0);
+  M.to("#cam", { y: 960 - (2420 - 6400 * 0.94) * 0.6, duration: 7.5, ease: "power2.in" }, 22.0);
+  ["T", "O", "D", "E"].forEach((k, i) => { arms(k, 22.2, 150, -150, 0.2); jump(k, 22.3 + i * 0.07, 29); });
+  M.to(".nm", { y: -150, duration: 0.2 }, 22.2);
+
+  // ---- 6. the four of them, and a light in the sky (beats 29.5-36)
+  M.to("#veil", { opacity: 1, duration: 0.22 }, 29.28); M.to("#veil", { opacity: 0, duration: 0.3 }, 29.52);
+  M.set("#cam", FIN, 29.5); hide("#rk, #post, #btn, #btnb", 29.5);
+  [["T", 660], ["O", 880], ["D", 1120], ["E", 1340]].forEach(([k, x], i) => { M.set(`#ch${k}`, { x }, 29.5); jump(k, 29.6 + i * 0.09, 27, 70); });
+  M.fromTo("#far", { x: RX - 13, y: 2060, opacity: 1 }, { x: RX - 13, y: 1860, opacity: 1, duration: 6.4, ease: "none", immediateRender: false }, 29.5);
+  M.to("#cam", { ...camTo(1000, 2340, 0.74), duration: 6.4, ease: "none" }, 29.55);
+  M.fromTo("#m1", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 31.75); flash(32.0, 0.25);
+  M.fromTo("#m2", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 32.75); flash(33.0, 0.35);
+  M.set({}, {}, END);
+  M.timeScale(1 / K); R.add(M, 0);
+  window.__timelines["main"] = R;
+});
+</script>
+</body>
+</html>
