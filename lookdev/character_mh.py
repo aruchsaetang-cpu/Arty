@@ -426,6 +426,26 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         skirt_piece("coat_skirt", coll, V, F, G, kd, bused, per_vert, COAT, st.get("hem", 0.36), st.get("open_skirt", True),
                     flare=st.get("coat_flare", (0.10, 0.22)), finish=finish)
 
+    # --- police tactical vest: navy shell over the jacket, reflective band, white chest patch
+    if st.get("vest"):
+        VEST = cel(st["vest"], "#070b16", rim="#5a6b90", rim_amt=0.6, name="vest")
+        VS = ("spine", "breast", "pelvis", "clavicle")
+        vf = [f for f in body_faces if region(f, VS) and pelvis_z - 0.06 < min(V[i].z for i in f)
+              and max(V[i].z for i in f) < neck_z - 0.01]
+        off = {i: nrm[i] * 0.034 for f in vf for i in f}
+        ve, used = make_mesh("vest", coll, V, vf, off); ve.data.materials.append(VEST); finish(ve, used, solidify=0.012)
+        band_z = (sternum_z + pelvis_z) / 2 - 0.02
+        bf = [f for f in vf if band_z < min(V[i].z for i in f) and max(V[i].z for i in f) < band_z + 0.06]
+        off = {i: nrm[i] * 0.048 for f in bf for i in f}
+        bd, used = make_mesh("vest_band", coll, V, bf, off)
+        bd.data.materials.append(cel("#d6f25c", "#8fa832", rim="#f4ffc0", name="reflective", glow=1.6)); finish(bd, used)
+        pf = [f for f in vf if sum(V[i].y for i in f) / len(f) < -0.05 and 0.02 < sum(V[i].x for i in f) / len(f) < 0.1
+              and sternum_z - 0.13 < min(V[i].z for i in f) and max(V[i].z for i in f) < sternum_z - 0.05]
+        if pf:   # "POLICE" patch
+            off = {i: nrm[i] * 0.05 for f in pf for i in f}
+            pt, used = make_mesh("vest_patch", coll, V, pf, off); pt.data.materials.append(cel("#f2f2ee", "#a9acb4", name="patch"))
+            finish(pt, used)
+
     # --- legwear
     if st["legs"] == "skirt":
         skirt_piece("skirt", coll, V, F, G, kd, bused, per_vert, cel(st["leg_col"][0], st["leg_col"][1], rim="#ffe0f0", name="skirt"),

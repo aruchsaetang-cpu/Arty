@@ -14,7 +14,7 @@ os.environ["FRAMES"] = str(N)
 os.environ.setdefault("PEOPLE", "24"); os.environ.setdefault("LIGHT_EXTRAS", "1"); os.environ.setdefault("SEED", "7")
 sys.path.insert(0, os.path.join(ROOT, "lookdev"))
 import bpy, bmesh
-from mathutils import Vector
+from mathutils import Vector, Matrix
 import city as C                     # importing resets the scene and defines the city builders
 import character_mh as ch
 
@@ -57,8 +57,12 @@ nspeed = ch.animate_walk(narr, (narr_start.x, narr_start.y, 0), 0.0, fr("payoff"
 # the three theories: a shopkeeper, a police officer, two kids
 SHOP = dict(manhwa_head=True, body="m_heavy", height=1.72, skin=("#e3b894", "#a2734f"), hair="buzz", hair_col="#22201f", coat=None,
             top=("#e9e6df", "#9a978f"), turtleneck=False, leg_col=("#4a4a4d", "#1d1d1f"), head_yaw=28, subsurf=1)
-COP = dict(manhwa_head=True, body="m", height=1.82, skin=("#f0cfb3", "#b48466"), hair="short", locks=False, coat=("#1f2a3d", "#0c1220"),
-           hem=0.62, top=("#8a9bb0", "#4b5868"), turtleneck=False, leg_col=("#1f2a3d", "#0c1220"), head_yaw=-24, subsurf=1)
+# Korean street police: light-grey jacket, navy tactical vest with reflective band and POLICE patch,
+# navy trousers, navy cap with gold braid
+COP = dict(manhwa_head=True, body="m", height=1.82, skin=("#f0cfb3", "#b48466"), hair="short", locks=False,
+           coat=("#b4b8bd", "#6c7178"), hem=0.9, open_skirt=False, coat_flare=(0.02, 0.04), top=("#b4b8bd", "#6c7178"),
+           turtleneck=True, vest="#1c2742", leg_col=("#151b2e", "#070a14"), shoes=("#111114", "#2a2a2e"),
+           head_yaw=-24, subsurf=1)
 # school uniforms (Korean primary school): navy blazer, white shirt, tie / bow, navy shorts or pleated skirt,
 # white knee socks, black school shoes, backpack
 KID1 = dict(body="f", height=1.28, skin=("#f3d6bf", "#bf9274"), hair="bob", hair_col="#1a1414",
@@ -69,16 +73,88 @@ KID2 = dict(KID1, body="m", height=1.34, hair="bangs", legs="shorts", tie=("tie"
             backpack=("#2c4a8a", "#14244a"), head_yaw=0)
 shop, _ = ch.build(C.PEOPLE_C, (6.9, 53.0, 0.15), SHOP, pose_mode="stand", heading=-90)
 cop, _ = ch.build(C.PEOPLE_C, (-5.5, 49.0, 0.15), COP, pose_mode="umbrella", heading=90)
-ch.add_umbrella(cop, C.PEOPLE_C, "#121214"); ch.add_cap(cop, C.PEOPLE_C)
+ch.add_umbrella(cop, C.PEOPLE_C, "#121214"); ch.add_cap(cop, C.PEOPLE_C, "#18213a", "#d8b24a")
 kid1, _ = ch.build(C.PEOPLE_C, (5.35, 45.1, 0.15), KID1, pose_mode="stand", heading=-90)
 kid2, _ = ch.build(C.PEOPLE_C, (5.9, 44.3, 0.15), KID2, pose_mode="phone", heading=-90)
 ch.add_phone(kid2, C.PEOPLE_C)
+# customers inside the shop behind the shopkeeper (its window is real glass, see shop_interior below)
+CUSTOMERS = [
+    (dict(body="f", height=1.63, skin=("#f2d5c0", "#c0927a"), hair="bob", hair_col="#3a2418", coat=("#c9b48f", "#7d6a4c"),
+          hem=0.55, top=("#f0ece4", "#a9a49a"), legs="trousers", leg_col=("#2b2f3a", "#11131a"), shoes=("#e8e6e0", "#cfcac0"),
+          sneakers=True, manhwa_head=True, subsurf=1), (9.4, 54.2), 180, "phone"),
+    (dict(body="m", height=1.76, skin=("#e9c4a6", "#a8795d"), hair="short", locks=False, coat=None, top=("#56704f", "#26331f"),
+          turtleneck=False, legs="trousers", leg_col=("#3a4a66", "#18202e"), shoes=("#1b1a1c", "#3a2a22"),
+          manhwa_head=True, subsurf=1), (8.5, 55.5), 120, "stand"),
+    (dict(body="m_heavy", height=1.7, skin=("#e3b894", "#a2734f"), hair="buzz", hair_col="#2a2622", coat=("#3b3f47", "#15171b"),
+          hem=0.8, top=("#d9d4c8", "#8c877c"), legs="trousers", leg_col=("#2a2c30", "#0f1012"), shoes=("#1b1a1c", "#3a2a22"),
+          manhwa_head=True, subsurf=1), (10.2, 56.4), -120, "stand"),
+]
+for st_, (cx, cy), hd, pm in CUSTOMERS:
+    c_, _ = ch.build(C.PEOPLE_C, (cx, cy, 0.15), st_, pose_mode=pm, heading=hd)
+    if pm == "phone":
+        ch.add_phone(c_, C.PEOPLE_C)
 for k in (kid1, kid2):                       # children: larger head for their height
     k.pose.bones["head"].scale = (1.16, 1.16, 1.16)
 
 # ------------------------------------------------------------------ the city
 C.build_scene(with_hero=False, avoid=[(6.9, 53), (-5.5, 49), (5.6, 44.8), (HERO_X, 40)],
               rain_box=(0.0, 40.0, 18.0, 64.0, 9.0, 24, 18000))
+
+# ------------------------------------------------------------------ a real shop behind the shopkeeper
+def shop_interior(probe=(9.5, 54.5, 1.5)):
+    """Swap the shop's painted window for clear glass, cut a room into the building and furnish it."""
+    P = Vector(probe)
+    glass = next(o for o in C.CITY.objects if o.name.startswith("shop") and abs(o.matrix_world.translation.x - 7.58) < 0.3
+                 and abs(o.matrix_world.translation.y - P.y) < o.dimensions.y / 2)
+    def inside(o):
+        lp = o.matrix_world.inverted() @ P; bb = [Vector(c) for c in o.bound_box]
+        return all(min(c[k] for c in bb) <= lp[k] <= max(c[k] for c in bb) for k in range(3))
+    bld = next(o for o in C.CITY.objects if o.name.startswith("bld") and inside(o))
+    gy = glass.matrix_world.translation.y; hw = glass.dimensions.y / 2
+    y0, y1, x0, x1, z0, z1 = gy - hw + 0.1, gy + hw - 0.1, 7.55, 11.8, 0.12, 3.45
+    xm, ym, W = (x0 + x1) / 2, (y0 + y1) / 2, y1 - y0
+    coll = bpy.data.collections.new("shop_interior"); C.CITY.children.link(coll)
+    def box(name, c, size, mat):
+        me = bpy.data.meshes.new(name); bm_ = bmesh.new()
+        bmesh.ops.create_cube(bm_, size=1.0, matrix=Matrix.Diagonal((size[0], size[1], size[2], 1))); bm_.to_mesh(me); bm_.free()
+        ob = bpy.data.objects.new(name, me); coll.objects.link(ob); ob.location = c; me.materials.append(mat); return ob
+    # cut the room out of the building mass
+    cut = box("shop_cut", (xm, ym, (z0 + z1) / 2), (x1 - x0, W, z1 - z0), C.CONC)
+    cut.hide_render = True; cut.display_type = "WIRE"
+    bo = bld.modifiers.new("shop_room", "BOOLEAN"); bo.operation = "DIFFERENCE"; bo.object = cut
+    try: bo.solver = "EXACT"
+    except TypeError: pass
+    # clear glass: see-through with a fresnel reflection of the street
+    gm = bpy.data.materials.new("shop_glass_clear"); gm.use_nodes = True; nt = gm.node_tree; nt.nodes.clear()
+    o_ = nt.nodes.new("ShaderNodeOutputMaterial"); tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+    tr.inputs[0].default_value = (0.86, 0.93, 0.95, 1); gl = nt.nodes.new("ShaderNodeBsdfGlossy"); gl.inputs["Roughness"].default_value = 0.02
+    lw = nt.nodes.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = 0.12
+    mx = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(lw.outputs["Fresnel"], mx.inputs[0])
+    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(gl.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o_.inputs[0])
+    glass.data.materials[0] = gm
+    # room
+    FLOOR = C.principled("shop_floor", "#c4bfb4", 0.22); WALL = C.principled("shop_wall", "#e4e0d6", 0.8)
+    WOOD = C.principled("counter_wood", "#6b4a33", 0.5); TOPW = C.principled("counter_top", "#eeeae2", 0.3)
+    LAMP = bpy.data.materials.new("shop_lamp"); LAMP.use_nodes = True; e_ = LAMP.node_tree.nodes.new("ShaderNodeEmission")
+    e_.inputs[0].default_value = (1.0, 0.97, 0.92, 1); e_.inputs[1].default_value = 9.0
+    LAMP.node_tree.links.new(e_.outputs[0], LAMP.node_tree.nodes["Material Output"].inputs[0])
+    box("shop_floor", (xm, ym, z0 + 0.02), (x1 - x0, W, 0.04), FLOOR)
+    box("shop_ceiling", (xm, ym, z1 - 0.02), (x1 - x0, W, 0.04), WALL)
+    box("shop_back", (x1 - 0.05, ym, (z0 + z1) / 2), (0.1, W, z1 - z0), C.shopglass("#fff2d8"))       # wall of lit shelves
+    box("shop_fridges", (xm + 0.6, y0 + 0.05, 1.2), (x1 - x0 - 1.4, 0.1, 2.1), C.shopglass("#d8f0ff"))  # drinks fridges
+    box("shop_side", (xm, y1 - 0.05, (z0 + z1) / 2), (x1 - x0, 0.1, z1 - z0), WALL)
+    for k, lx in enumerate((8.4, 9.7, 11.0)):
+        box(f"shop_light{k}", (lx, ym, z1 - 0.06), (0.25, W - 1.2, 0.03), LAMP)
+    for gx, gyc in ((10.9, 54.9), (11.0, 57.6), (10.9, ym + 3.4)):     # free-standing shelf runs
+        box("shop_gondola", (gx, gyc, 0.85), (0.6, 1.6, 1.4), C.shopglass("#ffe3c0"))
+    box("shop_counter", (8.55, y0 + 1.0, 0.62), (0.6, 1.5, 0.95), WOOD)
+    box("shop_counter_top", (8.55, y0 + 1.0, 1.11), (0.66, 1.56, 0.04), TOPW)
+    box("shop_register", (8.55, y0 + 0.7, 1.25), (0.3, 0.35, 0.22), C.METAL)
+    ld = bpy.data.lights.new("shop_fill", "AREA"); ld.shape = "RECTANGLE"; ld.size = 3.0; ld.size_y = W - 1.0
+    ld.energy = 1400; ld.color = (1.0, 0.96, 0.9)
+    lo = bpy.data.objects.new("shop_fill", ld); coll.objects.link(lo); lo.location = (9.7, ym, z1 - 0.1)
+    print("shop interior:", bld.name, glass.name, round(y0, 2), round(y1, 2))
+shop_interior()
 
 # rain: falls, freezes on "The rain stopped around me", falls again for the payoff
 rain = bpy.data.objects["rain"]; rain.animation_data_clear()
