@@ -10,9 +10,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SR = 48000
 beats = json.load(open(os.path.join(HERE, "beats.json")))
 DUR = beats["duration"]; n = int(DUR * SR)
-B = {b["id"]: b for b in beats["beats"]}
+B = {b["id"]: b for b in beats["shots"]}
 FREEZE = beats["freeze"]
-PAYOFF = B["payoff"]["start"]; TURN = B["turn"]["start"]; REVEAL = B["reveal"]["start"]
+PAYOFF = B["payoff_side"]["start"]; TURN = B["turn"]["start"]; REVEAL = B["reveal_low"]["start"]
 rng = np.random.default_rng(3)
 t = np.arange(n) / SR
 
@@ -69,11 +69,11 @@ music = lp(music, 2800)
 
 # ------------------------------------------------------------------ SFX
 sfx = np.zeros((n, 2))
-rain = rng.standard_normal(n); rain = hp(lp(rain, 6500), 700) * 0.6 + lp(rng.standard_normal(n), 300) * 0.4
+rain = rng.standard_normal(n); rain = hp(lp(rain, 3800), 500) * 0.5 + lp(rng.standard_normal(n), 250) * 0.5
 drops = (rng.random(n) < 0.0009) * rng.standard_normal(n) * 3.0
 rain = rain + lp(drops, 4000)
 rain *= env([(0, 0), (0.8, 1), (FREEZE - 0.05, 1), (FREEZE + 0.12, 0.0), (PAYOFF - 0.1, 0.0), (PAYOFF + 0.9, 1), (DUR, 1)])
-sfx += stereo(rain, 0.6, 1) * 0.5
+RAIN = stereo(rain, 0.6, 1)
 
 def place(x, at, gain=1.0, width=0.4, seed=2):
     i0 = int(at * SR); L = min(len(x), n - i0); s = stereo(x[:L], width, seed) * gain
@@ -82,7 +82,7 @@ def place(x, at, gain=1.0, width=0.4, seed=2):
 tl = np.arange(int(SR * 4.0)) / SR
 thunder = lp(rng.standard_normal(len(tl)), 180) * np.exp(-tl * 0.9) * (1 + 0.6 * np.sin(2 * np.pi * 2.3 * tl))
 place(thunder, 0.4, 2.2)
-place(lp(rng.standard_normal(len(tl)), 140) * np.exp(-tl * 1.1), 24.5, 1.4)            # far thunder during the reveal
+place(lp(rng.standard_normal(len(tl)), 140) * np.exp(-tl * 1.1), REVEAL + 1.0, 1.4)            # far thunder during the reveal
 tw = np.arange(int(SR * 1.2)) / SR                                                       # time-stop: reverse whoosh into a low boom
 whoosh = hp(lp(rng.standard_normal(len(tw)), 2400), 200) * (tw / tw[-1]) ** 3
 place(whoosh, FREEZE - 1.15, 1.6)
@@ -95,7 +95,7 @@ tc = np.arange(int(SR * 3.0)) / SR                                              
 car = lp(rng.standard_normal(len(tc)), 900) * np.exp(-((tc - 1.5) / 0.6) ** 2)
 place(car, 2.0, 1.2, 0.8)
 sting = np.sin(2 * np.pi * 880 * tb) * np.exp(-tb * 2.0) + 0.5 * np.sin(2 * np.pi * 1318.5 * tb) * np.exp(-tb * 2.6)
-place(sting, B["turn"]["end"] - 0.55, 0.8)                                               # "Your turn."
+place(sting, next(x["start"] for x in json.load(open(os.path.join(HERE, "sentences.json"))) if "Your turn" in x["text"]) + 0.05, 0.8)                                               # "Your turn."
 place(boom * 0.6, DUR - 2.4, 1.2)                                                        # last word lands
 
 def write(path, x):
@@ -107,4 +107,5 @@ def write(path, x):
 os.makedirs(os.path.join(HERE, "audio"), exist_ok=True)
 write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
+write(os.path.join(HERE, "audio", "rain.wav"), RAIN)
 print(f"stems written: {DUR:.2f}s, freeze at {FREEZE:.2f}s, payoff at {PAYOFF:.2f}s")

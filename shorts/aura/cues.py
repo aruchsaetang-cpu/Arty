@@ -3,7 +3,8 @@
 Times were read from the voiceover's speech segments (silencedetect, -38 dB, 0.25 s) and the syllable
 beats inside each segment (energy-envelope peaks). The narrator pauses at commas as well as full stops,
 which pins each sentence to its segments, e.g. "Midnight, | no coat, | no hat," and "Then I | saw why."
-    python3 shorts/aura/cues.py"""
+    python3 shorts/aura/cues.py
+Times below are measured on the original take; they are divided by TEMPO for the 1.2x voice."""
 import json, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -26,21 +27,23 @@ CUES = [  # beat, start, end, text
     ("payoff", 37.67, 39.33, "And I never get wet."),
 ]
 DUR = 39.68
+TEMPO = 1.2          # voiceover sped up with ffmpeg atempo (audio/voice_fast.wav); pauses scale exactly by 1/TEMPO
+CUES = [(b, round(s0 / TEMPO, 3), round(s1 / TEMPO, 3), t) for b, s0, s1, t in CUES]
+DUR = round(DUR / TEMPO, 3)
 sents = [dict(beat=b, start=s, end=e, text=t) for b, s, e, t in CUES]
 json.dump(sents, open(os.path.join(HERE, "sentences.json"), "w"), indent=1)
-order = []
-for c in CUES:
-    if c[0] not in order: order.append(c[0])
-first = {b: min(c[1] for c in CUES if c[0] == b) for b in order}
-beats = []
-for k, b in enumerate(order):
-    s0 = 0.0 if k == 0 else first[b] - 0.15                       # cut just before the first word of the shot
-    s1 = DUR if k == len(order) - 1 else first[order[k + 1]] - 0.15
-    beats.append(dict(id=b, text=" ".join(c[3] for c in CUES if c[0] == b), start=round(s0, 3), end=round(s1, 3),
-                      f0=round(s0 * 30) + 1, f1=round(s1 * 30)))
+# ~3 s shots, each cut 0.15 s before the first word of its sentence
+SHOTS = [("hook_wide", 0), ("hook_feet", 1), ("name_med", 2), ("name_close", 3), ("shop", 4), ("cop", 5), ("kids", 6),
+         ("follow", 7), ("freeze", 8), ("reveal_low", 10), ("reveal_crane", 11), ("turn", 12), ("payoff_side", 14),
+         ("payoff_wide", 15)]
+shots = []
+for k, (sid, si) in enumerate(SHOTS):
+    s0 = 0.0 if k == 0 else CUES[si][1] - 0.15
+    s1 = DUR if k == len(SHOTS) - 1 else CUES[SHOTS[k + 1][1]][1] - 0.15
+    shots.append(dict(id=sid, start=round(s0, 3), end=round(s1, 3), f0=round(s0 * 30) + 1, f1=round(s1 * 30)))
 freeze = next(c[1] for c in CUES if c[3].startswith("The rain stopped"))
-json.dump(dict(duration=DUR, frames=round(DUR * 30), freeze=freeze, freeze_frame=round(freeze * 30) + 1, beats=beats),
+json.dump(dict(duration=DUR, frames=round(DUR * 30), freeze=freeze, freeze_frame=round(freeze * 30) + 1, shots=shots),
           open(os.path.join(HERE, "beats.json"), "w"), indent=1)
-for b in beats:
-    print(f'{b["id"]:7s} {b["start"]:6.2f}-{b["end"]:6.2f}s frames {b["f0"]:4d}-{b["f1"]:4d}')
-print("rain freezes at", freeze, "s")
+for b in shots:
+    print(f'{b["id"]:13s} {b["start"]:6.2f}-{b["end"]:6.2f}s ({b["end"] - b["start"]:4.2f}s) frames {b["f0"]:4d}-{b["f1"]:4d}')
+print("rain freezes at", freeze, "s; total", DUR, "s")

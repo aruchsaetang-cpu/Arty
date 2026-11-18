@@ -23,8 +23,9 @@ FIRST = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 LAST = int(sys.argv[3]) if len(sys.argv) > 3 else N
 SAMPLES = int(os.environ.get("SAMPLES", 16))
 scn = C.scn; prefs = C.prefs
-B = {b["id"]: b for b in BEATS["beats"]}
-def fr(beat, k=0): return B[beat]["f0" if k == 0 else "f1"]
+B = {b["id"]: b for b in BEATS["shots"]}
+B["payoff"] = B["payoff_side"]               # the handover to the narrator starts with this shot
+def fr(shot, k=0): return B[shot]["f0" if k == 0 else "f1"]
 
 # ------------------------------------------------------------------ cast (built before the city)
 HERO_X, HERO_Y0, CYCLE = 0.6, 66.0, 34
@@ -131,42 +132,37 @@ def key(f, loc, look, foc, lens, fstop):
 def hp(f): return Vector((HERO_X, hero_y(f), 0))
 V = Vector
 head = V((0, 0, 1.72))
-# 1 hook: wide down the street, slow push toward the hero walking out of the rain
-a, b = fr("hook"), fr("hook", 1)
-key(a, hp(a) + V((1.9, -17, 1.5)), hp(a) + V((-0.4, 10, 4.2)), hp(a) + head, 24, 4.0)
-key(b, hp(b) + V((1.5, -12.5, 1.42)), hp(b) + V((-0.2, 8, 3.0)), hp(b) + head, 26, 3.2)
-# 2 name: low medium in front of him, dry while umbrellas pass
-a, b = fr("name"), fr("name", 1)
-key(a, hp(a) + V((1.0, -3.5, 0.95)), hp(a) + V((0, 0, 1.5)), hp(a) + head, 38, 2.0)
-key(b, hp(b) + V((0.8, -3.2, 1.0)), hp(b) + V((0, 0, 1.52)), hp(b) + head, 40, 2.0)
-# 3 theories: shopkeeper / police officer / kids, each a slow push-in
-a, b = fr("theory"), fr("theory", 1)
-SENT = json.load(open(os.path.join(HERE, "sentences.json")))
-t1 = round((next(x["start"] for x in SENT if x["text"].startswith("The police")) - 0.15) * 30)   # cut on each sentence
-t2 = round((next(x["start"] for x in SENT if x["text"].startswith("The kids")) - 0.15) * 30)
-key(a, V((4.6, 51.5, 1.45)), V((6.9, 53.3, 1.62)), V((6.9, 53.0, 1.62)), 45, 2.0)
-key(t1, V((4.85, 51.75, 1.47)), V((6.9, 53.3, 1.62)), V((6.9, 53.0, 1.62)), 45, 2.0)
-key(t1 + 1, V((-3.25, 47.5, 1.35)), V((-5.5, 49.2, 1.72)), V((-5.5, 49.0, 1.7)), 45, 2.0)
-key(t2, V((-3.5, 47.8, 1.38)), V((-5.5, 49.2, 1.72)), V((-5.5, 49.0, 1.7)), 45, 2.0)
-key(t2 + 1, V((3.2, 42.7, 1.0)), V((5.65, 44.7, 1.12)), V((5.6, 44.7, 1.15)), 34, 2.2)
-key(b, V((3.45, 42.95, 1.02)), V((5.65, 44.7, 1.12)), V((5.6, 44.7, 1.15)), 34, 2.2)
-# 4 follow: behind him (the narrator's view); the rain freezes mid-shot
-a, b = fr("follow"), fr("follow", 1)
-key(a, hp(a) + V((0.75, 3.3, 1.72)), hp(a) + V((0, -6, 1.35)), hp(a) + head, 30, 2.8)
-key(b, hp(b) + V((0.6, 3.0, 1.7)), hp(b) + V((0, -6, 1.3)), hp(b) + head, 30, 2.8)
-# 5 reveal: crane up over him; the frozen storm hangs above Sol
-a, b = fr("reveal"), fr("reveal", 1)
-key(a, hp(a) + V((1.0, 4.0, 2.2)), hp(a) + V((0, -6, 1.2)), hp(a) + head, 26, 5.6)
-key(b, hp(b) + V((0.5, 11.0, 23.0)), hp(b) + V((0, -9, 0.5)), hp(b) + head, 24, 11.0)
-# 6 turn: close on him as he stops and turns round: "Your turn."
-a, b = fr("turn"), fr("turn", 1)
-key(a, STOP + V((0.35, 2.6, 1.66)), STOP + V((0, 0, 1.6)), STOP + head, 50, 2.0)
-key(b, STOP + V((0.3, 2.2, 1.66)), STOP + V((0, 0, 1.62)), STOP + head, 52, 2.0)
-# 7 payoff: the narrator walks the street at midnight, dry, the rain falling again
-a, b = fr("payoff"), N
+def shot(sid, start, end):
+    """Key a shot at its first and last frame: start/end = (cam, look, focus, lens, fstop) for frame f."""
+    a, b = fr(sid), fr(sid, 1)
+    key(a, *start(a)); key(b, *end(b))
+def on_hero(cam_off, look_off, lens, fstop):
+    return lambda f: (hp(f) + V(cam_off), hp(f) + V(look_off), hp(f) + head, lens, fstop)
+def on_narr(cam_off, look_off, lens, fstop):
+    return lambda f: (np_(f) + V(cam_off), np_(f) + V(look_off), np_(f) + head, lens, fstop)
+def fixed(cam_p, look_p, foc_p, lens, fstop):
+    return lambda f: (V(cam_p), V(look_p), V(foc_p), lens, fstop)
 def np_(f): return narr_start + V((0, -nspeed * max(0, f - (fr("payoff") - 34)) / 30.0, 0))
-key(a, np_(a) + V((0.7, 3.6, 0.95)), np_(a) + V((0, -8, 1.8)), np_(a) + head, 28, 2.8)
-key(b, np_(b) + V((0.45, 5.0, 2.0)), np_(b) + V((0, -9, 1.5)), np_(b) + head, 26, 3.5)
+
+# about every 3 s a new angle, cut just before the line that motivates it
+shot("hook_wide",   on_hero((1.9, -17, 1.5), (-0.4, 10, 4.2), 24, 4.0),  on_hero((1.5, -12.5, 1.42), (-0.2, 8, 3.0), 26, 3.2))
+shot("hook_feet",   on_hero((0.45, -1.7, 0.18), (0, 0, 0.32), 30, 2.0),  on_hero((0.38, -1.5, 0.2), (0, 0, 0.36), 30, 2.0))   # dry shoes, rain splashing around
+shot("name_med",    on_hero((1.0, -3.5, 0.95), (0, 0, 1.5), 38, 2.0),    on_hero((0.8, -3.2, 1.0), (0, 0, 1.52), 40, 2.0))
+shot("name_close",  on_hero((1.15, -1.0, 1.62), (0, -0.25, 1.66), 60, 2.0), on_hero((1.05, -0.8, 1.62), (0, -0.25, 1.66), 62, 2.0))  # profile
+shot("shop",        fixed((4.6, 51.5, 1.45), (6.9, 53.3, 1.62), (6.9, 53.0, 1.62), 45, 2.0),
+                    fixed((4.85, 51.75, 1.47), (6.9, 53.3, 1.62), (6.9, 53.0, 1.62), 45, 2.0))
+shot("cop",         fixed((-3.25, 47.5, 1.35), (-5.5, 49.2, 1.72), (-5.5, 49.0, 1.7), 45, 2.0),
+                    fixed((-3.5, 47.8, 1.38), (-5.5, 49.2, 1.72), (-5.5, 49.0, 1.7), 45, 2.0))
+shot("kids",        fixed((3.2, 42.7, 1.0), (5.65, 44.7, 1.12), (5.6, 44.7, 1.15), 34, 2.2),
+                    fixed((3.45, 42.95, 1.02), (5.65, 44.7, 1.12), (5.6, 44.7, 1.15), 34, 2.2))
+shot("follow",      on_hero((0.75, 3.3, 1.72), (0, -6, 1.35), 30, 2.8),  on_hero((0.65, 3.1, 1.7), (0, -6, 1.3), 30, 2.8))
+shot("freeze",      on_hero((-2.9, -0.6, 1.25), (0, -0.4, 1.55), 26, 3.5), on_hero((-2.7, -1.2, 1.3), (0, -0.4, 1.6), 26, 3.5))   # side track: rain stops
+shot("reveal_low",  on_hero((0.55, -2.4, 0.32), (0, 0, 2.6), 20, 5.0),   on_hero((0.5, -2.2, 0.3), (0, 0, 2.8), 20, 5.0))   # up into the frozen storm
+shot("reveal_crane", on_hero((1.0, 4.0, 2.2), (0, -6, 1.2), 26, 5.6),    on_hero((0.5, 11.0, 23.0), (0, -9, 0.5), 24, 11.0))
+shot("turn",        lambda f: (STOP + V((0.35, 2.6, 1.66)), STOP + V((0, 0, 1.6)), STOP + head, 50, 2.0),
+                    lambda f: (STOP + V((0.3, 2.2, 1.66)), STOP + V((0, 0, 1.62)), STOP + head, 52, 2.0))
+shot("payoff_side", on_narr((1.6, -2.7, 1.0), (0, 0, 1.5), 35, 2.2),    on_narr((1.4, -2.4, 1.05), (0, 0, 1.55), 35, 2.2))
+shot("payoff_wide", on_narr((0.6, 4.0, 1.3), (0, -9, 1.7), 26, 3.5),    on_narr((0.4, 6.5, 3.0), (0, -9, 1.5), 24, 4.0))
 
 # hard cuts between shots, constant speed inside each shot (no overshoot / swinging camera)
 for idb in (cam, tgt, focus, cd, cd.dof):

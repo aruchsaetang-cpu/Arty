@@ -1,98 +1,98 @@
 [
  {
   "beat": "hook",
-  "start": 0.28,
-  "end": 3.96,
+  "start": 0.233,
+  "end": 3.3,
   "text": "It had rained in Sol for nine years."
  },
  {
   "beat": "hook",
-  "start": 4.23,
-  "end": 6.45,
+  "start": 3.525,
+  "end": 5.375,
   "text": "One man never got wet."
  },
  {
   "beat": "name",
-  "start": 6.92,
-  "end": 9.45,
+  "start": 5.767,
+  "end": 7.875,
   "text": "They called him Aura monster."
  },
  {
   "beat": "name",
-  "start": 9.76,
-  "end": 12.65,
+  "start": 8.133,
+  "end": 10.542,
   "text": "Midnight, no coat, no hat, bone dry."
  },
  {
   "beat": "theory",
-  "start": 13.15,
-  "end": 14.86,
+  "start": 10.958,
+  "end": 12.383,
   "text": "The shopkeepers said luck."
  },
  {
   "beat": "theory",
-  "start": 14.86,
-  "end": 16.56,
+  "start": 12.383,
+  "end": 13.8,
   "text": "The police said a trick."
  },
  {
   "beat": "theory",
-  "start": 16.92,
-  "end": 19.02,
+  "start": 14.1,
+  "end": 15.85,
   "text": "The kids said magic."
  },
  {
   "beat": "follow",
-  "start": 19.28,
-  "end": 20.76,
+  "start": 16.067,
+  "end": 17.3,
   "text": "So one night I followed him."
  },
  {
   "beat": "follow",
-  "start": 21.22,
-  "end": 22.53,
+  "start": 17.683,
+  "end": 18.775,
   "text": "The rain stopped around me."
  },
  {
   "beat": "follow",
-  "start": 22.93,
-  "end": 24.28,
+  "start": 19.108,
+  "end": 20.233,
   "text": "Then I saw why."
  },
  {
   "beat": "reveal",
-  "start": 24.78,
-  "end": 26.33,
+  "start": 20.65,
+  "end": 21.942,
   "text": "He wasn't dodging the storm."
  },
  {
   "beat": "reveal",
-  "start": 26.33,
-  "end": 30.52,
+  "start": 21.942,
+  "end": 25.433,
   "text": "He was holding it up, one walk at a time, so the city could sleep."
  },
  {
   "beat": "turn",
-  "start": 31.16,
-  "end": 33.19,
+  "start": 25.967,
+  "end": 27.658,
   "text": "He turned, tired, and smiled."
  },
  {
   "beat": "turn",
-  "start": 33.69,
-  "end": 34.15,
+  "start": 28.075,
+  "end": 28.458,
   "text": "\u201cYour turn.\u201d"
  },
  {
   "beat": "payoff",
-  "start": 34.89,
-  "end": 37.19,
+  "start": 29.075,
+  "end": 30.992,
   "text": "Now I walk these streets at midnight."
  },
  {
   "beat": "payoff",
-  "start": 37.67,
-  "end": 39.33,
+  "start": 31.392,
+  "end": 32.775,
   "text": "And I never get wet."
  }
 ]

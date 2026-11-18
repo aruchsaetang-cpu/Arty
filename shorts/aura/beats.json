@@ -1,64 +1,106 @@
 {
- "duration": 39.68,
- "frames": 1190,
- "freeze": 21.22,
- "freeze_frame": 638,
- "beats": [
+ "duration": 33.067,
+ "frames": 992,
+ "freeze": 17.683,
+ "freeze_frame": 531,
+ "shots": [
   {
-   "id": "hook",
-   "text": "It had rained in Sol for nine years. One man never got wet.",
+   "id": "hook_wide",
    "start": 0.0,
-   "end": 6.77,
+   "end": 3.375,
    "f0": 1,
-   "f1": 203
+   "f1": 101
   },
   {
-   "id": "name",
-   "text": "They called him Aura monster. Midnight, no coat, no hat, bone dry.",
-   "start": 6.77,
-   "end": 13.0,
-   "f0": 204,
-   "f1": 390
+   "id": "hook_feet",
+   "start": 3.375,
+   "end": 5.617,
+   "f0": 102,
+   "f1": 169
   },
   {
-   "id": "theory",
-   "text": "The shopkeepers said luck. The police said a trick. The kids said magic.",
-   "start": 13.0,
-   "end": 19.13,
-   "f0": 391,
-   "f1": 574
+   "id": "name_med",
+   "start": 5.617,
+   "end": 7.983,
+   "f0": 170,
+   "f1": 239
+  },
+  {
+   "id": "name_close",
+   "start": 7.983,
+   "end": 10.808,
+   "f0": 240,
+   "f1": 324
+  },
+  {
+   "id": "shop",
+   "start": 10.808,
+   "end": 12.233,
+   "f0": 325,
+   "f1": 367
+  },
+  {
+   "id": "cop",
+   "start": 12.233,
+   "end": 13.95,
+   "f0": 368,
+   "f1": 418
+  },
+  {
+   "id": "kids",
+   "start": 13.95,
+   "end": 15.917,
+   "f0": 419,
+   "f1": 478
   },
   {
    "id": "follow",
-   "text": "So one night I followed him. The rain stopped around me. Then I saw why.",
-   "start": 19.13,
-   "end": 24.63,
-   "f0": 575,
-   "f1": 739
+   "start": 15.917,
+   "end": 17.533,
+   "f0": 479,
+   "f1": 526
   },
   {
-   "id": "reveal",
-   "text": "He wasn't dodging the storm. He was holding it up, one walk at a time, so the city could sleep.",
-   "start": 24.63,
-   "end": 31.01,
-   "f0": 740,
-   "f1": 930
+   "id": "freeze",
+   "start": 17.533,
+   "end": 20.5,
+   "f0": 527,
+   "f1": 615
+  },
+  {
+   "id": "reveal_low",
+   "start": 20.5,
+   "end": 21.792,
+   "f0": 616,
+   "f1": 654
+  },
+  {
+   "id": "reveal_crane",
+   "start": 21.792,
+   "end": 25.817,
+   "f0": 655,
+   "f1": 775
   },
   {
    "id": "turn",
-   "text": "He turned, tired, and smiled. \u201cYour turn.\u201d",
-   "start": 31.01,
-   "end": 34.74,
-   "f0": 931,
-   "f1": 1042
+   "start": 25.817,
+   "end": 28.925,
+   "f0": 776,
+   "f1": 868
   },
   {
-   "id": "payoff",
-   "text": "Now I walk these streets at midnight. And I never get wet.",
-   "start": 34.74,
-   "end": 39.68,
-   "f0": 1043,
-   "f1": 1190
+   "id": "payoff_side",
+   "start": 28.925,
+   "end": 31.242,
+   "f0": 869,
+   "f1": 937
+  },
+  {
+   "id": "payoff_wide",
+   "start": 31.242,
+   "end": 33.067,
+   "f0": 938,
+   "f1": 992
   }
  ]
 }

@@ -1,4 +1,5 @@
-"""Mix voice + music + SFX: music and SFX at 50 % of the voice (gated RMS, -6 dB), SFX peaks <= 0.7x voice peak.
+"""Mix voice (1.2x) + music + rain + SFX, levels relative to the voice's gated RMS: music -9 dB, rain -18 dB,
+SFX hits -10 dB with peaks <= 0.6x voice peak, so the narration always stays on top.
 Then one linear gain to -14 LUFS and a -1 dBFS limiter (ffmpeg).   python3 shorts/aura/mix.py"""
 import os, re, subprocess, wave
 import numpy as np
@@ -18,17 +19,20 @@ def gated_rms(x, gate_db=-40):
     keep = r[r > 10 ** (gate_db / 20)]
     return np.sqrt((keep ** 2).mean()) if len(keep) else 1e-9
 
-voice, music, sfx = load(os.path.join(A, "voice.wav")), load(os.path.join(A, "music.wav")), load(os.path.join(A, "sfx.wav"))
-n = len(voice); music = music[:n]; sfx = sfx[:n]
-music = np.pad(music, ((0, n - len(music)), (0, 0))); sfx = np.pad(sfx, ((0, n - len(sfx)), (0, 0)))
+voice, music, sfx, rain = [load(os.path.join(A, f)) for f in ("voice_fast.wav", "music.wav", "sfx.wav", "rain.wav")]
+n = len(voice)
+fit = lambda x: np.pad(x[:n], ((0, max(0, n - len(x))), (0, 0)))
+music, sfx, rain = fit(music), fit(sfx), fit(rain)
 vr = gated_rms(voice); vp = np.abs(voice).max()
-music *= 0.5 * vr / gated_rms(music)
-sfx *= 0.5 * vr / gated_rms(sfx)
-if np.abs(sfx).max() > 0.7 * vp:
-    sfx *= 0.7 * vp / np.abs(sfx).max()
-for name, x in (("music", music), ("sfx", sfx)):
+db = lambda d: 10 ** (d / 20)
+music *= db(-9) * vr / gated_rms(music)
+rain *= db(-18) * vr / gated_rms(rain)
+sfx *= db(-10) * vr / gated_rms(sfx)
+if np.abs(sfx).max() > 0.6 * vp:
+    sfx *= 0.6 * vp / np.abs(sfx).max()
+for name, x in (("music", music), ("rain", rain), ("sfx", sfx)):
     print(f"{name}: {20 * np.log10(gated_rms(x) / vr):+.1f} dB vs voice (gated RMS), peak {np.abs(x).max() / vp:.2f}x voice peak")
-mix = voice + music + sfx
+mix = voice + music + rain + sfx
 raw = os.path.join(A, "mix_raw.wav")
 with wave.open(raw, "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
