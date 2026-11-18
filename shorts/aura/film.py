@@ -45,18 +45,19 @@ hero.location = STOP; hero.keyframe_insert("location", frame=TURN + 8)
 hero.rotation_euler = (0, 0, 0); hero.keyframe_insert("rotation_euler", index=2, frame=TURN + 10)
 hero.rotation_euler = (0, 0, math.pi); hero.keyframe_insert("rotation_euler", index=2, frame=TURN + 26)
 
-# the narrator (who inherits the job): own face, same kind of long dark coat
-NARR = dict(body="m", height=1.8, skin=("#d9a982", "#9a6a4a"), hair="short", hair_col="#2a1d16", locks=False,
-            top=("#26292f", "#0e1013"), coat=("#1c1c1e", "#08080a"), hem=0.4, leg_col=("#1b1d22", "#0a0b0d"),
-            shoes=("#1b1a1c", "#3a2a22"), brows="#2b211b", iris="#3a2a22")
+# the narrator (who inherits the job): an ordinary kid in a dark hoodie, jeans and sneakers, heavy fringe
+NARR = dict(body="m_lean", height=1.8, skin=("#f1d3ba", "#b4876e"), hair="bangs", hair_col="#15171c", locks=False,
+            top=("#2a2c33", "#0b0c10"), turtleneck=True, coat=None, manhwa_head=True,
+            legs="trousers", leg_col=("#4a6d96", "#1d2c44"), shoes=("#1c1c20", "#e8e6e0"), sneakers=True,
+            brows="#16131a", iris="#2e2624")
 narr_start = STOP + Vector((0, 2.2, 0))
 narr, _ = ch.build(C.PEOPLE_C, (narr_start.x, narr_start.y, 0), NARR, pose_mode="walk"); narr.name = "NARRATOR"
 nspeed = ch.animate_walk(narr, (narr_start.x, narr_start.y, 0), 0.0, fr("payoff") - 34, N, phase=0.25, cycle=36)
 
 # the three theories: a shopkeeper, a police officer, two kids
-SHOP = dict(body="m_heavy", height=1.72, skin=("#e3b894", "#a2734f"), hair="buzz", hair_col="#22201f", coat=None,
+SHOP = dict(manhwa_head=True, body="m_heavy", height=1.72, skin=("#e3b894", "#a2734f"), hair="buzz", hair_col="#22201f", coat=None,
             top=("#e9e6df", "#9a978f"), turtleneck=False, leg_col=("#4a4a4d", "#1d1d1f"), head_yaw=28, subsurf=1)
-COP = dict(body="m", height=1.82, skin=("#f0cfb3", "#b48466"), hair="short", locks=False, coat=("#1f2a3d", "#0c1220"),
+COP = dict(manhwa_head=True, body="m", height=1.82, skin=("#f0cfb3", "#b48466"), hair="short", locks=False, coat=("#1f2a3d", "#0c1220"),
            hem=0.62, top=("#8a9bb0", "#4b5868"), turtleneck=False, leg_col=("#1f2a3d", "#0c1220"), head_yaw=-24, subsurf=1)
 KID1 = dict(body="f", height=1.28, skin=("#f3d6bf", "#bf9274"), hair="bob", hair_col="#2a1d16", coat=("#e2b437", "#8f6f16"),
             hem=0.62, top=("#e9e6df", "#9a978f"), legs="trousers", leg_col=("#2f3f5a", "#141c2b"),

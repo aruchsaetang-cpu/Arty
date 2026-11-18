@@ -13,7 +13,9 @@ from mathutils import Vector, Matrix, Quaternion, kdtree, bvhtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 MH = os.path.join(HERE, "assets", "makehuman")
 S = 0.1  # MakeHuman decimetres -> metres
-OUTLINE = 0.0042  # ink line width in metres (0 disables)
+OUTLINE = 0.005  # ink line width in metres (0 disables); heavier webtoon ink
+SHADOW = 0.2      # manhwa shading: deep, hard-edged shadow (fraction of base colour)
+SHADOW_TINT = (0.09, 0.07, 0.16)  # shadows lean cool violet, like printed webtoon panels
 
 BODY = {
     "m": {"asian-male-young.target": 0.55, "caucasian-male-young.target": 0.45,
@@ -21,6 +23,11 @@ BODY = {
           "universal-male-young-averagemuscle-minweight.target": 0.25,
           "male-young-averagemuscle-averageweight-maxheight.target": 0.3,
           "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
+    "m_lean": {"asian-male-young.target": 0.75, "caucasian-male-young.target": 0.25,
+               "universal-male-young-maxmuscle-averageweight.target": 0.55,
+               "universal-male-young-averagemuscle-minweight.target": 0.45,
+               "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
+               "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
     "m_heavy": {"asian-male-young.target": 0.5, "african-male-young.target": 0.2, "caucasian-male-young.target": 0.3,
                 "universal-male-young-averagemuscle-maxweight.target": 0.55,
                 "male-young-averagemuscle-averageweight-idealproportions.target": 0.6},
@@ -30,9 +37,11 @@ BODY = {
           "female-young-averagemuscle-averageweight-idealproportions.target": 1.0},
 }
 
-HERO = dict(body="m", height=1.86, skin=("#e8c2a2", "#a9775b"), hair="short", hair_col="#16181d", locks=True,
-            top=("#cfc4b2", "#7d7466"), coat=("#2f343c", "#11141a"), hem=0.36, open_skirt=True,
-            legs="trousers", leg_col=("#24272d", "#0c0e12"), shoes=("#1b1a1c", "#3a2a22"), brows="#1a1714")
+# Lead: "midnight, no coat, no hat". Tall webtoon build, slicked-back black hair, black open-collar shirt,
+# charcoal slacks, black leather shoes. Original design in the Korean webtoon idiom (not any existing character).
+HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick", hair_col="#101216", locks=True,
+            top=("#1d1f25", "#07080b"), turtleneck=False, coat=None, manhwa_head=True,
+            legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#2a2220")
 
 def set_interp(idblock, kind="LINEAR", data_path=None):
     """Force interpolation on an ID's keyframes (Blender 5 ignores the new-key preference in background mode)."""
@@ -120,9 +129,11 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
     ln = Vector(light).normalized()
     d = N.new("ShaderNodeVectorMath"); d.operation = "DOT_PRODUCT"; L.new(geo.outputs["Normal"], d.inputs[0]); d.inputs[1].default_value = ln
     base = lin(hexc); sh = lin(shade) if shade else tuple(c * 0.38 for c in base[:3]) + (1.0,)
-    mid = tuple((a + b) / 2 for a, b in zip(base, sh))
-    c = mix(mth("GREATER_THAN", d.outputs["Value"], -0.15), sh, mid)       # 3-tone ramp
-    c = mix(mth("GREATER_THAN", d.outputs["Value"], 0.25), c, base)
+    if name != "skin":   # cloth and hair: deeper, cooler shadow; skin keeps its warm given shade
+        sh = tuple(min(a, b * SHADOW + t) for a, b, t in zip(sh[:3], base[:3], SHADOW_TINT)) + (1.0,)
+    mid = tuple(a * 0.62 + b * 0.38 for a, b in zip(base, sh))
+    c = mix(mth("GREATER_THAN", d.outputs["Value"], 0.02), sh, mid)        # hard shadow edge
+    c = mix(mth("GREATER_THAN", d.outputs["Value"], 0.42), c, base)
     if spec:  # sheen band: N.H with H = light + view
         h = N.new("ShaderNodeVectorMath"); h.operation = "ADD"; h.inputs[0].default_value = ln
         L.new(geo.outputs["Incoming"], h.inputs[1])
@@ -267,6 +278,19 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     zmin = min(V[i].z for f in body_faces for i in f)
     for v in V:
         v.z -= zmin
+    if st.get("manhwa_head"):
+        jj = lambda n: sum((V[i] for i in sk["joints"][sk["bones"][n]["head"]]), Vector()) / len(sk["joints"][sk["bones"][n]["head"]])
+        nz = jj("neck03").z; eye_z = jj("eye.L").z
+        piv = Vector((0.0, jj("head").y, nz))
+        for v in V:
+            if v.z <= nz:
+                continue
+            t = min(1.0, (v.z - nz) / 0.07)
+            k = 1.0 - 0.075 * t                          # ~8% smaller head: longer-looking webtoon body
+            d = v - piv; v.x = piv.x + d.x * k * (1.0 - 0.12 * t); v.y = piv.y + d.y * k; v.z = piv.z + d.z * k
+            jaw = max(0.0, min(1.0, (eye_z - 0.02 - v.z) / 0.085)) * t   # cheekbone -> chin: V-line jaw
+            v.x *= 1.0 - 0.2 * jaw
+            v.z -= 0.01 * jaw                                    # slightly longer chin
     jpos = {j: sum((V[i] for i in idx), Vector()) / len(idx) for j, idx in sk["joints"].items()}
     dom = {i: max(lst, key=lambda t: t[1])[0] for i, lst in per_vert.items()}
     def region(f, names):
@@ -320,7 +344,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
                 and max(V[i].z for i in f) < neck_cut]
     off = {i: nrm[i] * 0.004 for f in tn_faces for i in f}
     tn, used = make_mesh("top", coll, V, tn_faces, off)
-    tn.data.materials.append(cel(st["top"][0], st["top"][1], rim="#fff4e0", name="knit")); finish(tn, used)
+    tn.data.materials.append(cel(st["top"][0], st["top"][1], rim="#fff4e0" if sum(lin(st["top"][0])[:3]) > 0.3 else "#4a5874", rim_amt=0.8 if sum(lin(st["top"][0])[:3]) > 0.3 else 0.6, name="knit")); finish(tn, used)
 
     # --- coat / jacket
     if st.get("coat"):
@@ -488,7 +512,12 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
         if style == "bob":       # fringe to the brows, sides to the jaw
             thr = eyeL.z - 0.1 + 0.125 * frontness
             return c.z > thr
-        thr = eyeL.z - 0.075 + 0.135 * frontness
+        if style == "bangs":     # heavy fringe down to the brows, short tidy sides
+            thr = eyeL.z - 0.05 + 0.065 * frontness
+            if abs(c.x) > hx * 0.86 and c.z < eyeL.z + 0.025:
+                return False
+            return c.z > thr
+        thr = eyeL.z - 0.075 + (0.155 if style == "slick" else 0.135) * frontness   # slick: higher hairline, forehead shows
         if abs(c.x) > hx * 0.86 and c.z < eyeL.z + 0.035:
             return False
         return c.z > thr
@@ -499,7 +528,14 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
     for i in hidx:
         p = V[i]; n = nrm[i]
         up = min(1.0, max(0.0, (p.z - eyeL.z - 0.03) / 0.1)); front = min(1.0, max(0.0, (hc.y - p.y) / 0.1))
-        if style == "short":
+        if style == "slick":   # swept back: volume on top, pushed toward the crown, tight sides
+            th = 0.004 + 0.022 * up + 0.006 * front * up + 0.0022 * math.sin(p.x * 260 + p.y * 120) * up
+            HV[i] = p + n * th + Vector((0, 0.014 * up, 0.006 * up))
+        elif style == "bangs":   # thick fringe falling forward over the brow
+            low = min(1.0, max(0.0, (eyeL.z + 0.06 - p.z) / 0.06)) * front
+            th = 0.008 + 0.016 * up + 0.012 * low + 0.002 * math.sin(p.x * 420) * (up + low)
+            HV[i] = p + n * th + Vector((0, -0.01 * low, -0.004 * low))
+        elif style == "short":
             th = 0.005 + 0.017 * up + 0.012 * front * up + 0.0018 * math.sin(p.x * 380) * up
             HV[i] = p + n * th + Vector((0, 0.008 * up, 0.004 * front * up))
         elif style == "buzz":
@@ -509,7 +545,7 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
             th = 0.012 + 0.008 * up + 0.014 * low + 0.0012 * math.sin(p.z * 300)
             HV[i] = p + n * th + Vector((0, 0.004 * low, 0))
     hair, used = make_mesh("hair", coll, HV, hf)
-    HM = cel(st["hair_col"], "#07080a", rim="#6f7f9f", spec=0.06, spec_col="#5d6782", rim_amt=0.5, name="hair")
+    HM = cel(st["hair_col"], "#050608", rim="#4f5d7c", spec=0.02, spec_col="#3c4660", rim_amt=0.45, name="hair")  # thin gloss band
     hair.data.materials.append(HM)
     return [(hair, used, 0.004)]
 
