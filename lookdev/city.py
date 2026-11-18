@@ -23,7 +23,7 @@ FRAMES = int(os.environ.get("FRAMES", 72))
 PEOPLE = int(os.environ.get("PEOPLE", 28))
 random.seed(int(os.environ.get("SEED", 11)))
 OUT = os.path.join(HERE, "renders"); os.makedirs(OUT, exist_ok=True)
-FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf"
+FONT_PATH = os.path.join(HERE, "assets", "fonts", "NanumSquareEB.ttf")   # Korean signage (Nanum, SIL OFL)
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scn = bpy.context.scene
@@ -272,10 +272,12 @@ def spot(M, loc, watts, col, size_deg=75, blend=0.5, coll=PROPS):
 ROT_FACE_STREET = Matrix.Rotation(math.radians(-90), 4, "Z") @ Matrix.Rotation(math.radians(90), 4, "X")  # text on local -x face
 
 # ======================================================================= buildings
-SHOP_NAMES = ["NOODLE BAR", "24H MART", "KARAOKE", "BBQ GRILL", "PHARMACY", "CAFE MOON", "DUMPLING", "GAME ROOM",
-              "HOTEL", "OPTICAL", "BOOKS", "BAKERY", "PC ROOM", "FISH MARKET", "TEA HOUSE", "DENTAL", "LAUNDRY",
-              "RAMEN", "FLOWERS", "PHOTO", "SUSHI", "HAIR", "BAR 3F", "COFFEE"]
-BLADE = ["HOTEL", "KARAOKE", "BAR", "CLINIC", "GAME", "SAUNA", "POOL", "NOODLE", "MOTEL", "PHOTO", "DINER", "CLUB", "BBQ", "PUB"]
+# Korean signage, same list lengths as before so the seeded layout is unchanged
+SHOP_NAMES = ["국수집", "24시 마트", "노래방", "숯불구이", "약국", "달빛카페", "만두", "오락실",
+              "호텔", "안경원", "서점", "빵집", "PC방", "수산시장", "찻집", "치과", "세탁소",
+              "라멘", "꽃집", "사진관", "초밥", "미용실", "3층 주점", "커피"]
+BLADE = ["호텔", "노래방", "주점", "의원", "게임장", "사우나", "당구장", "국수", "모텔", "사진관", "식당", "클럽", "고기", "호프"]
+BILLBOARD = ["솔", "강변선", "심야영업", "하늘은행", "루나항공"]
 
 def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop=True, tag=""):
     """Local frame: facade plane at x=0, building extends to +x, spans y in [0,w]; street is toward -x."""
@@ -323,7 +325,7 @@ def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop
         name = random.choice(SHOP_NAMES)
         B("fascia", METAL).box(M, (-0.18, w / 2, 3.95), (0.3, w - 0.3, 0.75))
         obj_box("signface", M, (-0.34, w / 2, 3.95), (0.02, w - 0.6, 0.6), glow(sign_c, 2.2))
-        text(name, M, (-0.36, w / 2, 3.95), ROT_FACE_STREET, 0.42, glow("#fffaf0" if sign_c != "#f5f1e8" else "#202024", 4.0), extrude=0.02)
+        text(name, M, (-0.36, w / 2, 3.95), ROT_FACE_STREET, 0.48, glow("#fffaf0" if sign_c != "#f5f1e8" else "#202024", 4.0), extrude=0.02)
         if random.random() < 0.45:   # awning
             fab = random.choice(list(FABRIC.values()))
             aw = obj_box("awning", M @ Matrix.Translation((0, 0, 3.5)) @ Matrix.Rotation(math.radians(-18), 4, "Y"),
@@ -336,10 +338,12 @@ def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop
         flick = random.choice([None, None, "soft", "broken"]) if k == 0 else None
         B("blade_frame", METAL).box(M, (-0.75, y, bz + bh / 2), (1.3, 0.34, bh + 0.2))
         obj_box("blade", M, (-0.75, y, bz + bh / 2), (1.1, 0.36, bh), glow(c, 3.0, flick))
-        letters = "\n".join(word[:max(2, int(bh / 1.05))])
+        chars = word.replace(" ", "")[:max(2, int(bh / 1.05))]
+        letters = "\n".join(chars)    # Korean vertical sign: one syllable per row, spread down the blade
+        spread = min(1.9, max(1.05, 0.72 * bh / (len(chars) * 0.88)))
         for face, rz in ((-0.19, 0), (0.19, 180)):
             text(letters, M, (-0.75, y + face, bz + bh / 2), Matrix.Rotation(math.radians(90), 4, "X") @ Matrix.Rotation(math.radians(rz), 4, "Y"),
-                 0.72, glow("#ffffff", 5.0, flick), extrude=0.01, line=1.05)
+                 0.88, glow("#ffffff", 5.0, flick), extrude=0.01, line=spread)
         B("blade_arm", METAL).box(M, (-0.2, y, bz + bh + 0.1), (0.5, 0.06, 0.06))
     # --- rooftop
     if rooftop:
@@ -361,7 +365,7 @@ def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop
             B("bb_frame", METAL).box(M, (0.8, w / 2, h + 3.4), (0.3, min(w - 1, 8), 4.6))
             obj_box("billboard", M, (0.62, w / 2, h + 3.6), (0.04, min(w - 1.4, 7.6), 3.8),
                     glow(random.choice(NEON), 2.0))
-            text(random.choice(["SOL", "RIVER LINE", "OPEN LATE", "SKY BANK", "LUNA AIR"]), M, (0.6, w / 2, h + 3.6),
+            text(random.choice(BILLBOARD), M, (0.6, w / 2, h + 3.6),
                  ROT_FACE_STREET, 0.9, glow("#101014", 1.0), extrude=0.02)
     return mass
 
