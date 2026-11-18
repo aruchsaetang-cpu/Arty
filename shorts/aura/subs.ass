@@ -10,19 +10,19 @@ Style: Sub,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H00101010,&H64000000,-1,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.23,0:00:04.20,Sub,,0,0,0,{\fad(70,70)},It had rained in Sol for\Nnine years.
-Dialogue: 0,0:00:04.18,0:00:06.89,Sub,,0,0,0,{\fad(70,70)},One man never got wet.
-Dialogue: 0,0:00:06.87,0:00:09.73,Sub,,0,0,0,{\fad(70,70)},They called him Aura\Nmonster.
-Dialogue: 0,0:00:09.71,0:00:13.12,Sub,,0,0,0,{\fad(70,70)},Midnight, no coat, no hat,\Nbone dry.
-Dialogue: 0,0:00:13.10,0:00:14.83,Sub,,0,0,0,{\fad(70,70)},The shopkeepers said luck.
-Dialogue: 0,0:00:14.81,0:00:16.89,Sub,,0,0,0,{\fad(70,70)},The police said a trick.
-Dialogue: 0,0:00:16.87,0:00:19.25,Sub,,0,0,0,{\fad(70,70)},The kids said magic.
-Dialogue: 0,0:00:19.23,0:00:21.19,Sub,,0,0,0,{\fad(70,70)},So one night I followed\Nhim.
-Dialogue: 0,0:00:21.17,0:00:22.90,Sub,,0,0,0,{\fad(70,70)},The rain stopped around\Nme.
-Dialogue: 0,0:00:22.88,0:00:24.75,Sub,,0,0,0,{\fad(70,70)},Then I saw why.
-Dialogue: 0,0:00:24.73,0:00:26.30,Sub,,0,0,0,{\fad(70,70)},He wasn't dodging the\Nstorm.
-Dialogue: 0,0:00:26.28,0:00:31.13,Sub,,0,0,0,{\fad(70,70)},He was holding it up, one\Nwalk at a time, so the\Ncity could sleep.
-Dialogue: 0,0:00:31.11,0:00:33.66,Sub,,0,0,0,{\fad(70,70)},He turned, tired, and\Nsmiled.
-Dialogue: 0,0:00:33.64,0:00:34.86,Sub,,0,0,0,{\fad(70,70)},“Your turn.”
-Dialogue: 0,0:00:34.84,0:00:37.64,Sub,,0,0,0,{\fad(70,70)},Now I walk these streets\Nat midnight.
-Dialogue: 0,0:00:37.62,0:00:39.58,Sub,,0,0,0,{\fad(70,70)},And I never get wet.
+Dialogue: 0,0:00:00.18,0:00:03.50,Sub,,0,0,0,{\fad(70,70)},It had rained in Sol for\Nnine years.
+Dialogue: 0,0:00:03.48,0:00:05.74,Sub,,0,0,0,{\fad(70,70)},One man never got wet.
+Dialogue: 0,0:00:05.72,0:00:08.10,Sub,,0,0,0,{\fad(70,70)},They called him Aura\Nmonster.
+Dialogue: 0,0:00:08.08,0:00:10.93,Sub,,0,0,0,{\fad(70,70)},Midnight, no coat, no hat,\Nbone dry.
+Dialogue: 0,0:00:10.91,0:00:12.35,Sub,,0,0,0,{\fad(70,70)},The shopkeepers said luck.
+Dialogue: 0,0:00:12.33,0:00:14.07,Sub,,0,0,0,{\fad(70,70)},The police said a trick.
+Dialogue: 0,0:00:14.05,0:00:16.04,Sub,,0,0,0,{\fad(70,70)},The kids said magic.
+Dialogue: 0,0:00:16.02,0:00:17.65,Sub,,0,0,0,{\fad(70,70)},So one night I followed\Nhim.
+Dialogue: 0,0:00:17.63,0:00:19.08,Sub,,0,0,0,{\fad(70,70)},The rain stopped around\Nme.
+Dialogue: 0,0:00:19.06,0:00:20.62,Sub,,0,0,0,{\fad(70,70)},Then I saw why.
+Dialogue: 0,0:00:20.60,0:00:21.91,Sub,,0,0,0,{\fad(70,70)},He wasn't dodging the\Nstorm.
+Dialogue: 0,0:00:21.89,0:00:25.94,Sub,,0,0,0,{\fad(70,70)},He was holding it up, one\Nwalk at a time, so the\Ncity could sleep.
+Dialogue: 0,0:00:25.92,0:00:28.04,Sub,,0,0,0,{\fad(70,70)},He turned, tired, and\Nsmiled.
+Dialogue: 0,0:00:28.02,0:00:29.04,Sub,,0,0,0,{\fad(70,70)},“Your turn.”
+Dialogue: 0,0:00:29.02,0:00:31.36,Sub,,0,0,0,{\fad(70,70)},Now I walk these streets\Nat midnight.
+Dialogue: 0,0:00:31.34,0:00:33.02,Sub,,0,0,0,{\fad(70,70)},And I never get wet.
