@@ -5,8 +5,14 @@ cd "$(dirname "$0")"
 mkdir -p out
 python3 compose.py
 python3 subs.py
-ffmpeg -v error -y -framerate 30 -i 'graded/f%04d.png' -i audio/mix.wav \
-  -vf "scale=1080:1920:flags=lanczos,unsharp=5:5:0.5:5:5:0.0,ass=subs.ass" \
+if [ -f caps/frame_000001.png ]; then   # HyperFrames word-pop captions (captions.py), Whisper-timed
+  IN=(-framerate 30 -i 'graded/f%04d.png' -framerate 30 -i 'caps/frame_%06d.png' -i audio/mix.wav)
+  VF=(-filter_complex "[0]scale=1080:1920:flags=lanczos,unsharp=5:5:0.5:5:5:0.0[v];[v][1]overlay=format=auto[o]" -map "[o]" -map 2:a)
+else                                     # fallback: burned-in ASS sentence subtitles
+  IN=(-framerate 30 -i 'graded/f%04d.png' -i audio/mix.wav)
+  VF=(-vf "scale=1080:1920:flags=lanczos,unsharp=5:5:0.5:5:5:0.0,ass=subs.ass")
+fi
+ffmpeg -v error -y "${IN[@]}" "${VF[@]}" \
   -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -c:a aac -b:a 192k -shortest -movflags +faststart \
   "out/aura_monster.mp4"
 echo "--- QA"

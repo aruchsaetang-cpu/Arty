@@ -1,0 +1,646 @@
+[
+{
+"w": "It",
+"s": 0.0,
+"e": 0.34,
+"sent": 0,
+"key": false
+},
+{
+"w": "had",
+"s": 0.34,
+"e": 0.5,
+"sent": 0,
+"key": false
+},
+{
+"w": "rained",
+"s": 0.5,
+"e": 0.84,
+"sent": 0,
+"key": false
+},
+{
+"w": "in",
+"s": 0.84,
+"e": 1.1,
+"sent": 0,
+"key": false
+},
+{
+"w": "Sol",
+"s": 1.1,
+"e": 1.38,
+"sent": 0,
+"key": true
+},
+{
+"w": "for",
+"s": 1.38,
+"e": 1.92,
+"sent": 0,
+"key": false
+},
+{
+"w": "nine",
+"s": 1.92,
+"e": 2.5,
+"sent": 0,
+"key": false
+},
+{
+"w": "years.",
+"s": 2.5,
+"e": 3.18,
+"sent": 0,
+"key": false
+},
+{
+"w": "One",
+"s": 3.6,
+"e": 3.86,
+"sent": 1,
+"key": false
+},
+{
+"w": "man",
+"s": 3.86,
+"e": 4.18,
+"sent": 1,
+"key": false
+},
+{
+"w": "never",
+"s": 4.18,
+"e": 4.88,
+"sent": 1,
+"key": false
+},
+{
+"w": "got",
+"s": 4.88,
+"e": 5.12,
+"sent": 1,
+"key": false
+},
+{
+"w": "wet.",
+"s": 5.12,
+"e": 5.32,
+"sent": 1,
+"key": true
+},
+{
+"w": "They",
+"s": 5.8,
+"e": 5.86,
+"sent": 2,
+"key": false
+},
+{
+"w": "called",
+"s": 5.86,
+"e": 6.06,
+"sent": 2,
+"key": false
+},
+{
+"w": "him",
+"s": 6.06,
+"e": 6.3,
+"sent": 2,
+"key": false
+},
+{
+"w": "Aura",
+"s": 6.3,
+"e": 6.569,
+"sent": 2,
+"key": true
+},
+{
+"w": "monster.",
+"s": 6.569,
+"e": 7.0,
+"sent": 2,
+"key": true
+},
+{
+"w": "Midnight,",
+"s": 7.56,
+"e": 7.76,
+"sent": 3,
+"key": false
+},
+{
+"w": "no",
+"s": 8.12,
+"e": 8.34,
+"sent": 3,
+"key": false
+},
+{
+"w": "coat,",
+"s": 8.34,
+"e": 8.6,
+"sent": 3,
+"key": false
+},
+{
+"w": "no",
+"s": 9.0,
+"e": 9.16,
+"sent": 3,
+"key": false
+},
+{
+"w": "hat,",
+"s": 9.16,
+"e": 9.46,
+"sent": 3,
+"key": false
+},
+{
+"w": "bone",
+"s": 10.02,
+"e": 10.16,
+"sent": 3,
+"key": false
+},
+{
+"w": "dry.",
+"s": 10.16,
+"e": 10.46,
+"sent": 3,
+"key": true
+},
+{
+"w": "The",
+"s": 10.94,
+"e": 11.02,
+"sent": 4,
+"key": false
+},
+{
+"w": "shopkeepers",
+"s": 11.02,
+"e": 11.46,
+"sent": 4,
+"key": false
+},
+{
+"w": "said",
+"s": 11.46,
+"e": 11.76,
+"sent": 4,
+"key": false
+},
+{
+"w": "luck.",
+"s": 11.9,
+"e": 12.04,
+"sent": 4,
+"key": true
+},
+{
+"w": "The",
+"s": 12.44,
+"e": 12.56,
+"sent": 5,
+"key": false
+},
+{
+"w": "police",
+"s": 12.56,
+"e": 12.82,
+"sent": 5,
+"key": false
+},
+{
+"w": "said",
+"s": 12.82,
+"e": 13.3,
+"sent": 5,
+"key": false
+},
+{
+"w": "a",
+"s": 13.3,
+"e": 13.5,
+"sent": 5,
+"key": false
+},
+{
+"w": "trick.",
+"s": 13.5,
+"e": 13.74,
+"sent": 5,
+"key": true
+},
+{
+"w": "The",
+"s": 14.04,
+"e": 14.18,
+"sent": 6,
+"key": false
+},
+{
+"w": "kids",
+"s": 14.18,
+"e": 14.42,
+"sent": 6,
+"key": false
+},
+{
+"w": "said",
+"s": 14.42,
+"e": 14.88,
+"sent": 6,
+"key": false
+},
+{
+"w": "magic.",
+"s": 14.88,
+"e": 15.5,
+"sent": 6,
+"key": true
+},
+{
+"w": "So",
+"s": 16.04,
+"e": 16.18,
+"sent": 7,
+"key": false
+},
+{
+"w": "one",
+"s": 16.18,
+"e": 16.36,
+"sent": 7,
+"key": false
+},
+{
+"w": "night",
+"s": 16.36,
+"e": 16.58,
+"sent": 7,
+"key": false
+},
+{
+"w": "I",
+"s": 16.7,
+"e": 16.92,
+"sent": 7,
+"key": false
+},
+{
+"w": "followed",
+"s": 16.92,
+"e": 17.18,
+"sent": 7,
+"key": false
+},
+{
+"w": "him.",
+"s": 17.18,
+"e": 17.36,
+"sent": 7,
+"key": false
+},
+{
+"w": "The",
+"s": 17.68,
+"e": 17.78,
+"sent": 8,
+"key": false
+},
+{
+"w": "rain",
+"s": 17.78,
+"e": 17.96,
+"sent": 8,
+"key": false
+},
+{
+"w": "stopped",
+"s": 17.96,
+"e": 18.3,
+"sent": 8,
+"key": true
+},
+{
+"w": "around",
+"s": 18.3,
+"e": 18.56,
+"sent": 8,
+"key": false
+},
+{
+"w": "me.",
+"s": 18.56,
+"e": 18.8,
+"sent": 8,
+"key": false
+},
+{
+"w": "Then",
+"s": 19.16,
+"e": 19.32,
+"sent": 9,
+"key": false
+},
+{
+"w": "I",
+"s": 19.48,
+"e": 19.74,
+"sent": 9,
+"key": false
+},
+{
+"w": "saw",
+"s": 19.74,
+"e": 19.9,
+"sent": 9,
+"key": false
+},
+{
+"w": "why.",
+"s": 19.9,
+"e": 20.18,
+"sent": 9,
+"key": false
+},
+{
+"w": "He",
+"s": 20.58,
+"e": 20.74,
+"sent": 10,
+"key": false
+},
+{
+"w": "wasn't",
+"s": 20.74,
+"e": 21.04,
+"sent": 10,
+"key": false
+},
+{
+"w": "dodging",
+"s": 21.04,
+"e": 21.34,
+"sent": 10,
+"key": false
+},
+{
+"w": "the",
+"s": 21.34,
+"e": 21.52,
+"sent": 10,
+"key": false
+},
+{
+"w": "storm.",
+"s": 21.52,
+"e": 21.76,
+"sent": 10,
+"key": true
+},
+{
+"w": "He",
+"s": 22.1,
+"e": 22.2,
+"sent": 11,
+"key": false
+},
+{
+"w": "was",
+"s": 22.2,
+"e": 22.34,
+"sent": 11,
+"key": false
+},
+{
+"w": "holding",
+"s": 22.34,
+"e": 22.66,
+"sent": 11,
+"key": false
+},
+{
+"w": "it",
+"s": 22.66,
+"e": 22.84,
+"sent": 11,
+"key": false
+},
+{
+"w": "up,",
+"s": 22.84,
+"e": 23.04,
+"sent": 11,
+"key": false
+},
+{
+"w": "one",
+"s": 23.28,
+"e": 23.52,
+"sent": 11,
+"key": false
+},
+{
+"w": "walk",
+"s": 23.52,
+"e": 23.78,
+"sent": 11,
+"key": false
+},
+{
+"w": "at",
+"s": 23.78,
+"e": 24.0,
+"sent": 11,
+"key": false
+},
+{
+"w": "a",
+"s": 24.0,
+"e": 24.12,
+"sent": 11,
+"key": false
+},
+{
+"w": "time,",
+"s": 24.12,
+"e": 24.36,
+"sent": 11,
+"key": false
+},
+{
+"w": "so",
+"s": 24.46,
+"e": 24.74,
+"sent": 11,
+"key": false
+},
+{
+"w": "the",
+"s": 24.74,
+"e": 24.86,
+"sent": 11,
+"key": false
+},
+{
+"w": "city",
+"s": 24.86,
+"e": 25.0,
+"sent": 11,
+"key": false
+},
+{
+"w": "could",
+"s": 25.0,
+"e": 25.16,
+"sent": 11,
+"key": false
+},
+{
+"w": "sleep.",
+"s": 25.16,
+"e": 25.4,
+"sent": 11,
+"key": true
+},
+{
+"w": "He",
+"s": 25.4,
+"e": 26.0,
+"sent": 12,
+"key": false
+},
+{
+"w": "turned,",
+"s": 26.0,
+"e": 26.3,
+"sent": 12,
+"key": false
+},
+{
+"w": "tired,",
+"s": 26.48,
+"e": 26.88,
+"sent": 12,
+"key": false
+},
+{
+"w": "and",
+"s": 27.24,
+"e": 27.28,
+"sent": 12,
+"key": false
+},
+{
+"w": "smiled.",
+"s": 27.28,
+"e": 27.56,
+"sent": 12,
+"key": false
+},
+{
+"w": "Your",
+"s": 28.18,
+"e": 28.24,
+"sent": 13,
+"key": true
+},
+{
+"w": "turn.",
+"s": 28.24,
+"e": 28.48,
+"sent": 13,
+"key": true
+},
+{
+"w": "Now",
+"s": 29.16,
+"e": 29.3,
+"sent": 14,
+"key": false
+},
+{
+"w": "I",
+"s": 29.64,
+"e": 29.96,
+"sent": 14,
+"key": false
+},
+{
+"w": "walk",
+"s": 29.96,
+"e": 30.12,
+"sent": 14,
+"key": false
+},
+{
+"w": "these",
+"s": 30.12,
+"e": 30.32,
+"sent": 14,
+"key": false
+},
+{
+"w": "streets",
+"s": 30.32,
+"e": 30.52,
+"sent": 14,
+"key": false
+},
+{
+"w": "at",
+"s": 30.52,
+"e": 30.66,
+"sent": 14,
+"key": false
+},
+{
+"w": "midnight.",
+"s": 30.66,
+"e": 30.92,
+"sent": 14,
+"key": false
+},
+{
+"w": "And",
+"s": 31.48,
+"e": 31.62,
+"sent": 15,
+"key": false
+},
+{
+"w": "I",
+"s": 31.62,
+"e": 32.12,
+"sent": 15,
+"key": false
+},
+{
+"w": "never",
+"s": 32.12,
+"e": 32.38,
+"sent": 15,
+"key": false
+},
+{
+"w": "get",
+"s": 32.38,
+"e": 32.56,
+"sent": 15,
+"key": false
+},
+{
+"w": "wet.",
+"s": 32.56,
+"e": 32.76,
+"sent": 15,
+"key": true
+}
+]
