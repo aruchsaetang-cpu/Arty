@@ -11,7 +11,7 @@ arm, objs = ch.build(cc, (0, 0, 0))
 w = bpy.data.worlds.new("w"); scn.world = w; w.use_nodes = True
 w.node_tree.nodes["Background"].inputs[0].default_value = (0.25, 0.28, 0.32, 1)
 scn.render.engine = "CYCLES"; scn.cycles.samples = 16; scn.cycles.use_denoising = False
-scn.render.use_freestyle = True; scn.render.line_thickness_mode = "ABSOLUTE"; scn.render.line_thickness = 1.0
+scn.render.use_freestyle = False; scn.render.line_thickness_mode = "ABSOLUTE"; scn.render.line_thickness = 1.0
 fs = scn.view_layers[0].freestyle_settings; ls = fs.linesets[0] if fs.linesets else fs.linesets.new("c")
 ls.select_by_collection = True; ls.collection = cc; ls.select_crease = False
 ls.select_silhouette = True; ls.select_border = True; ls.select_material_boundary = True
