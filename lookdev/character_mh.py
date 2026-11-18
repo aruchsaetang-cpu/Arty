@@ -324,6 +324,9 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     keep = ["head", "jaw", "neck", "eye", "oculi", "orbicularis", "oris", "levator", "risorius", "temporalis",
             "special", "tongue", "wrist", "finger", "metacarpal", "lowerarm02"]
     skin_faces = [f for f in body_faces if region(f, keep)]
+    if st.get("socks"):   # school uniform: bare legs between hem and knee socks
+        knee_z0 = jpos[sk["bones"]["lowerleg01.L"]["head"]].z
+        skin_faces += [f for f in body_faces if region(f, ("upperleg", "lowerleg")) and min(V[i].z for i in f) > knee_z0 - 0.08]
     SKIN = cel(st["skin"][0], st["skin"][1], rim="#ffe6d2", name="skin")
     skin, used = make_mesh("skin", coll, V, skin_faces); skin.data.materials.append(SKIN); finish(skin, used)
 
@@ -361,18 +364,28 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
                   lambda co: 0.028 + max(0.0, sternum_z - co.z) * 0.22, 0.0)
         finish(cu, used, solidify=0.006)
         skirt_piece("coat_skirt", coll, V, F, G, kd, bused, per_vert, COAT, st.get("hem", 0.36), st.get("open_skirt", True),
-                    flare=(0.10, 0.22), finish=finish)
+                    flare=st.get("coat_flare", (0.10, 0.22)), finish=finish)
 
     # --- legwear
     if st["legs"] == "skirt":
         skirt_piece("skirt", coll, V, F, G, kd, bused, per_vert, cel(st["leg_col"][0], st["leg_col"][1], rim="#ffe0f0", name="skirt"),
                     st.get("skirt_hem", 0.52), False, flare=(0.03, 0.12), finish=finish, solid=0.003)
-        legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.0025, straight=False,
+        legs = None if st.get("socks") else trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.0025, straight=False,
                         mat=cel(st.get("tights", "#23222a"), "#0d0c10", rim="#6d6a80", name="tights"))
+    elif st["legs"] == "shorts":
+        knee_z = jpos[sk["bones"]["lowerleg01.L"]["head"]].z
+        legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.014, straight=False, zlo=knee_z + 0.06,
+                        mat=cel(st["leg_col"][0], st["leg_col"][1], rim="#c9e8ff", name="shorts"))
     else:
         legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.009, straight=True,
                         mat=cel(st["leg_col"][0], st["leg_col"][1], rim="#c9e8ff", name="trousers"))
-    finish(legs)
+    if legs: finish(legs)
+    if st.get("socks"):
+        knee_z = jpos[sk["bones"]["lowerleg01.L"]["head"]].z
+        sock = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.003, straight=False, zhi=knee_z - 0.08,
+                        mat=cel(st["socks"], "#b9bcc4", rim="#ffffff", name="socks"))
+        sock.name = "socks"; finish(sock)
+    uniform_bits(coll, arm, V, J, st, sternum_z, pelvis_z, finish)
 
     # --- hair
     hair_objs = make_hair(coll, V, body_faces, region, nrm, J, st, per_vert)
@@ -472,7 +485,47 @@ def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, 
     tex.noise_scale = 0.12; disp.texture = tex; disp.strength = 0.01; disp.texture_coords = "LOCAL"
     finish(cs, solidify=solid)
 
-def trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, gap, straight, mat):
+def uniform_bits(coll, arm, V, J, st, sternum_z, pelvis_z, finish):
+    """School-uniform extras: necktie or bow, and a backpack. Built in the rest pose, parented to the chest bone."""
+    if not (st.get("tie") or st.get("backpack")):
+        return
+    def front_y(z, xr=0.03):
+        ys = [v.y for v in V if abs(v.x) < xr and abs(v.z - z) < 0.02]
+        return min(ys) if ys else -0.12
+    def back_y(z):
+        ys = [v.y for v in V if abs(v.x) < 0.06 and abs(v.z - z) < 0.03]
+        return max(ys) if ys else 0.12
+    def box(name, loc, size, col, shade, rot=(0, 0, 0)):
+        bpy.ops.mesh.primitive_cube_add(size=1, location=loc, rotation=rot); ob = bpy.context.object
+        ob.name = name; ob.scale = size; bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+        for c in list(ob.users_collection): c.objects.unlink(ob)
+        coll.objects.link(ob); ob.data.materials.append(cel(col, shade, rim="#dfe8ff", name=name))
+        bev = ob.modifiers.new("bev", "BEVEL"); bev.width = min(size) * 0.3; bev.segments = 2
+        finish(ob, subsurf=0); bone_parent(ob, arm, "spine01"); return ob
+    tie = st.get("tie")
+    if tie:
+        kind, col = tie
+        z0 = sternum_z - 0.025
+        if kind == "bow":
+            y = front_y(z0) - 0.012
+            for sx in (-1, 1):
+                box("bow", (sx * 0.034, y, z0), (0.05, 0.012, 0.038), col, None, (0, sx * 0.25, 0))
+            box("bow", (0, y - 0.004, z0), (0.018, 0.014, 0.022), col, None)
+        else:
+            L = 0.2; y = front_y(z0 - L / 2) - 0.009
+            box("tie", (0, y, z0 - L / 2), (0.034, 0.007, L), col, None)
+            box("tie", (0, front_y(z0) - 0.01, z0 + 0.004), (0.026, 0.012, 0.022), col, None)
+    bp = st.get("backpack")
+    if bp:
+        zc = (sternum_z + pelvis_z) / 2 + 0.03
+        y = back_y(zc) + 0.075
+        box("backpack", (0, y, zc), (0.27, 0.12, 0.32), bp[0], bp[1])
+        box("backpack", (0, y - 0.002, zc + 0.172), (0.25, 0.11, 0.035), bp[1], None)
+        for sx in (-1, 1):   # straps: over the shoulder and down the chest, outside the blazer
+            zs = sternum_z - 0.12
+            box("strap", (sx * 0.09, front_y(zs, 0.12) - 0.024, zs), (0.03, 0.01, 0.15), bp[1], None)
+
+def trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, gap, straight, mat, zlo=None, zhi=None):
     tf = [f for f, g in zip(F, G) if g == "helper-tights"]
     tidx = {i for f in tf for i in f}
     tn_ = vnormals(V, tf)
@@ -491,7 +544,8 @@ def trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, gap, straight, mat):
         TV[i] = v
     ank_z = jpos[sk["bones"]["foot.L"]["head"]].z
     cut = ank_z - (0.035 if straight else 0.0)
-    tf = [f for f in tf if min(TV[i].z for i in f) > cut and max(TV[i].z for i in f) < pelvis_z + 0.06]
+    lo = cut if zlo is None else zlo; hi = pelvis_z + 0.06 if zhi is None else zhi
+    tf = [f for f in tf if min(TV[i].z for i in f) > lo and max(TV[i].z for i in f) < hi]
     tr, used = make_mesh("trousers", coll, TV, tf); tr.data.materials.append(mat)
     assign_weights(tr, used, per_vert)
     if straight:
