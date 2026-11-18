@@ -735,7 +735,7 @@ for name, b in list(_B.items()):
                             "curb", "paint", "manhole") else PROPS)
 # moving traffic: one car toward camera, one away
 prefs.keyframe_new_interpolation_type = "LINEAR"
-for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 16, 16 + 11 * FRAMES / 30, 0, "#1a2c44")):
+for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 40, 40 + 11 * FRAMES / 30, 0, "#1a2c44")):
     root = bpy.data.objects.new("traffic", None); PROPS.objects.link(root)
     for p in car(Matrix.Rotation(math.radians(rz), 4, "Z"), col, moving=True, name="mcar"):
         mw = p.matrix_world.copy(); p.parent = root; p.matrix_world = mw
@@ -763,7 +763,7 @@ SHOTS = {
     "street": dict(loc=(1.8, -6.0, 1.7), tgt=(0.0, 40, 5.5), lens=22, f=8, focus=(0, 26, 1.5), frame=1),
     "hero":   dict(loc=(1.2, 22.5, 1.25), tgt=(0.4, 31, 1.75), lens=35, f=2.2, focus="HERO", frame=1),
     "alley":  dict(loc=(-3.2, 32.5, 1.6), tgt=(-40, 32.5, 4.5), lens=24, f=5.6, focus=(-20, 32.5, 2), frame=1),
-    "aerial": dict(loc=(9.0, -22.0, 30.0), tgt=(0.0, 50, 2.0), lens=24, f=11, focus=(0, 40, 0), frame=1),
+    "aerial": dict(loc=(0.8, -16.0, 24.0), tgt=(0.0, 45, 3.0), lens=24, f=11, focus=(0, 40, 0), frame=1),
 }
 if SHOT == "clip":     # camera dollies backward in front of the hero
     prefs.keyframe_new_interpolation_type = "LINEAR"
