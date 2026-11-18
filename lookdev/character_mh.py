@@ -29,7 +29,7 @@ BODY = {
                "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
                "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
     "m_muscle": {"asian-male-young.target": 0.75, "caucasian-male-young.target": 0.25,
-                 "universal-male-young-maxmuscle-averageweight.target": 1.15,
+                 "universal-male-young-maxmuscle-averageweight.target": 1.4,
                  "universal-male-young-averagemuscle-minweight.target": 0.55,
                  "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
                  "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
@@ -49,7 +49,8 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
             legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#2a2220")
 
 # the lead's fighter build (only when build() is given HERO itself): webtoon muscle anatomy
-HERO_LOOK = dict(body="m_muscle", vtaper=True, sleeves="short", crease=0.012)
+HERO_LOOK = dict(body="m_muscle", vtaper=True, crease=0.012, turtleneck=True,
+                 coat=("#23262c", "#090b0e"), hem=0.36, open_skirt=True)   # his long black coat, over a fighter's body
 
 def set_interp(idblock, kind="LINEAR", data_path=None):
     """Force interpolation on an ID's keyframes (Blender 5 ignores the new-key preference in background mode)."""
@@ -323,8 +324,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         def sx(z):   # torso width factor by height
             if z < waist - 0.12: return 1.0
             if z < waist: return 1.0 - 0.07 * (z - (waist - 0.12)) / 0.12
-            if z < chest: return 0.93 + 0.19 * (z - waist) / max(chest - waist, 1e-3)
-            return 1.12 - 0.12 * min(1.0, (z - chest) / max(nk - chest, 1e-3))
+            if z < chest: return 0.93 + 0.23 * (z - waist) / max(chest - waist, 1e-3)
+            return 1.16 - 0.14 * min(1.0, (z - chest) / max(nk - chest, 1e-3))
         for i, v in enumerate(V):
             b = dm.get(i, "")
             if b.startswith(torso):
@@ -340,7 +341,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
                 b = dm.get(i, "")
                 if not b.endswith("." + side) or not b.startswith(("upperarm", "lowerarm")):
                     continue
-                a0, a1, gain = (sh_, el, 0.3) if b.startswith("upperarm") else (el, wr, 0.2)
+                a0, a1, gain = (sh_, el, 0.38) if b.startswith("upperarm") else (el, wr, 0.24)
                 ax = a1 - a0; t = max(0.0, min(1.0, (v - a0).dot(ax) / ax.length_squared))
                 bulge = gain * math.sin(math.pi * min(1.0, t * 1.15)) ** 0.7     # belly of the muscle mid-segment
                 foot = a0 + ax * t; r = v - foot
@@ -409,7 +410,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
 
     # --- coat / jacket
     if st.get("coat"):
-        COAT = cel(st["coat"][0], st["coat"][1], rim="#d6efff", name="coat")
+        dark = sum(lin(st["coat"][0])[:3]) < 0.3
+        COAT = cel(st["coat"][0], st["coat"][1], rim="#56668a" if dark else "#d6efff", rim_amt=0.6 if dark else 0.8, name="coat")
         def open_front(f):
             c = sum((V[i] for i in f), Vector()) / len(f)
             return c.y < -0.02 and c.z > sternum_z - 0.13 and abs(c.x) < 0.012 + max(0.0, sternum_z - c.z) * 0.22
