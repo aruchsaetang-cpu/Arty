@@ -1,61 +1,63 @@
 {
  "duration": 39.68,
  "frames": 1190,
+ "freeze": 21.22,
+ "freeze_frame": 638,
  "beats": [
   {
    "id": "hook",
    "text": "It had rained in Sol for nine years. One man never got wet.",
    "start": 0.0,
-   "end": 6.688,
+   "end": 6.77,
    "f0": 1,
-   "f1": 201
+   "f1": 203
   },
   {
    "id": "name",
    "text": "They called him Aura monster. Midnight, no coat, no hat, bone dry.",
-   "start": 6.688,
-   "end": 9.606,
-   "f0": 202,
-   "f1": 288
+   "start": 6.77,
+   "end": 13.0,
+   "f0": 204,
+   "f1": 390
   },
   {
    "id": "theory",
    "text": "The shopkeepers said luck. The police said a trick. The kids said magic.",
-   "start": 9.606,
-   "end": 16.739,
-   "f0": 289,
-   "f1": 502
+   "start": 13.0,
+   "end": 19.13,
+   "f0": 391,
+   "f1": 574
   },
   {
    "id": "follow",
    "text": "So one night I followed him. The rain stopped around me. Then I saw why.",
-   "start": 16.739,
-   "end": 22.728,
-   "f0": 503,
-   "f1": 682
+   "start": 19.13,
+   "end": 24.63,
+   "f0": 575,
+   "f1": 739
   },
   {
    "id": "reveal",
    "text": "He wasn't dodging the storm. He was holding it up, one walk at a time, so the city could sleep.",
-   "start": 22.728,
-   "end": 30.842,
-   "f0": 683,
-   "f1": 925
+   "start": 24.63,
+   "end": 31.01,
+   "f0": 740,
+   "f1": 930
   },
   {
    "id": "turn",
-   "text": "He turned, tired, and smiled. Your turn.",
-   "start": 30.842,
-   "end": 33.442,
-   "f0": 926,
-   "f1": 1003
+   "text": "He turned, tired, and smiled. \u201cYour turn.\u201d",
+   "start": 31.01,
+   "end": 34.74,
+   "f0": 931,
+   "f1": 1042
   },
   {
    "id": "payoff",
    "text": "Now I walk these streets at midnight. And I never get wet.",
-   "start": 33.442,
+   "start": 34.74,
    "end": 39.68,
-   "f0": 1004,
+   "f0": 1043,
    "f1": 1190
   }
  ]

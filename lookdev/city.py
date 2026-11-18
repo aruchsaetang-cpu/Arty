@@ -642,6 +642,7 @@ def rain(cx, cy, w, dep, H=9.0, T=24, n=14000):
     for k in range(0, FRAMES + T, T):           # fall H metres every T frames, then wrap
         ob.location = (0, 0, 0); ob.keyframe_insert("location", index=2, frame=k)
         ob.location = (0, 0, -H * (T - 1) / T); ob.keyframe_insert("location", index=2, frame=k + T - 1)
+    ch.set_interp(ob, "LINEAR")
     return ob
 
 def fog():
@@ -746,6 +747,7 @@ def build_scene(with_hero=True, avoid=(), rain_box=(0, 22, 18, 46)):
             mw = p.matrix_world.copy(); p.parent = root; p.matrix_world = mw
         root.location = (x, y0, 0); root.keyframe_insert("location", frame=1)
         root.location = (x, y1, 0); root.keyframe_insert("location", frame=FRAMES)
+        ch.set_interp(root, "LINEAR")
     rain(*rain_box)
     fog(); world()
     print("objects", len(bpy.data.objects), "build", round(__import__("time").time() - t0, 1), "s")

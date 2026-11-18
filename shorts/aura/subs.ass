@@ -1,0 +1,28 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H00101010,&H64000000,-1,0,0,0,100,100,1,0,1,4,2,2,90,90,430,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.23,0:00:04.20,Sub,,0,0,0,{\fad(70,70)},It had rained in Sol for\Nnine years.
+Dialogue: 0,0:00:04.18,0:00:06.89,Sub,,0,0,0,{\fad(70,70)},One man never got wet.
+Dialogue: 0,0:00:06.87,0:00:09.73,Sub,,0,0,0,{\fad(70,70)},They called him Aura\Nmonster.
+Dialogue: 0,0:00:09.71,0:00:13.12,Sub,,0,0,0,{\fad(70,70)},Midnight, no coat, no hat,\Nbone dry.
+Dialogue: 0,0:00:13.10,0:00:14.83,Sub,,0,0,0,{\fad(70,70)},The shopkeepers said luck.
+Dialogue: 0,0:00:14.81,0:00:16.89,Sub,,0,0,0,{\fad(70,70)},The police said a trick.
+Dialogue: 0,0:00:16.87,0:00:19.25,Sub,,0,0,0,{\fad(70,70)},The kids said magic.
+Dialogue: 0,0:00:19.23,0:00:21.19,Sub,,0,0,0,{\fad(70,70)},So one night I followed\Nhim.
+Dialogue: 0,0:00:21.17,0:00:22.90,Sub,,0,0,0,{\fad(70,70)},The rain stopped around\Nme.
+Dialogue: 0,0:00:22.88,0:00:24.75,Sub,,0,0,0,{\fad(70,70)},Then I saw why.
+Dialogue: 0,0:00:24.73,0:00:26.30,Sub,,0,0,0,{\fad(70,70)},He wasn't dodging the\Nstorm.
+Dialogue: 0,0:00:26.28,0:00:31.13,Sub,,0,0,0,{\fad(70,70)},He was holding it up, one\Nwalk at a time, so the\Ncity could sleep.
+Dialogue: 0,0:00:31.11,0:00:33.66,Sub,,0,0,0,{\fad(70,70)},He turned, tired, and\Nsmiled.
+Dialogue: 0,0:00:33.64,0:00:34.86,Sub,,0,0,0,{\fad(70,70)},“Your turn.”
+Dialogue: 0,0:00:34.84,0:00:37.64,Sub,,0,0,0,{\fad(70,70)},Now I walk these streets\Nat midnight.
+Dialogue: 0,0:00:37.62,0:00:39.58,Sub,,0,0,0,{\fad(70,70)},And I never get wet.

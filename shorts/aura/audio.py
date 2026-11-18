@@ -11,7 +11,7 @@ SR = 48000
 beats = json.load(open(os.path.join(HERE, "beats.json")))
 DUR = beats["duration"]; n = int(DUR * SR)
 B = {b["id"]: b for b in beats["beats"]}
-FREEZE = (B["follow"]["f0"] + int(0.43 * (B["follow"]["f1"] - B["follow"]["f0"]))) / 30.0
+FREEZE = beats["freeze"]
 PAYOFF = B["payoff"]["start"]; TURN = B["turn"]["start"]; REVEAL = B["reveal"]["start"]
 rng = np.random.default_rng(3)
 t = np.arange(n) / SR

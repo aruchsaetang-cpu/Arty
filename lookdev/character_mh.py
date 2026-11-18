@@ -34,6 +34,20 @@ HERO = dict(body="m", height=1.86, skin=("#e8c2a2", "#a9775b"), hair="short", ha
             top=("#cfc4b2", "#7d7466"), coat=("#2f343c", "#11141a"), hem=0.36, open_skirt=True,
             legs="trousers", leg_col=("#24272d", "#0c0e12"), shoes=("#1b1a1c", "#3a2a22"), brows="#1a1714")
 
+def set_interp(idblock, kind="LINEAR", data_path=None):
+    """Force interpolation on an ID's keyframes (Blender 5 ignores the new-key preference in background mode)."""
+    from bpy_extras import anim_utils
+    ad = getattr(idblock, "animation_data", None)
+    if not ad or not ad.action:
+        return
+    cb = anim_utils.action_get_channelbag_for_slot(ad.action, ad.action_slot)
+    if cb is None:
+        return
+    for fc in cb.fcurves:
+        if data_path is None or fc.data_path == data_path:
+            for k in fc.keyframe_points:
+                k.interpolation = kind
+
 def lin(h):
     h = h.lstrip("#"); c = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
     return tuple(((x + 0.055) / 1.055) ** 2.4 if x > 0.04045 else x / 12.92 for x in c) + (1.0,)
@@ -672,6 +686,7 @@ def animate_walk(arm, start, heading_deg, f0, f1, phase=0.0, prop=None, cycle=32
         arm.location = Vector(start) + d * speed * (f - f0) / 30.0 + Vector((0, 0, arm["ground"] + bob))
         arm.keyframe_insert("location", frame=f)
         f += step
+    set_interp(arm, "LINEAR", "location")          # steady walking speed between keys
     return speed
 
 def add_umbrella(arm, coll, colour="#1d2230", clear=False):

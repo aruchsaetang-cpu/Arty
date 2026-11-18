@@ -3,7 +3,7 @@
     /root/.venvs/bpy/bin/python shorts/aura/film.py [scale%] [first] [last]
 Renders PNG frames to shorts/aura/frames/ (existing frames are skipped, so it can resume).
 env: SAMPLES (default 16), NORENDER=1 to only build, STILLS="f1,f2,..." to render single frames.
-Shot timing comes from beats.json (python3 shorts/aura/timing.py shorts/aura/audio/voice.wav).
+Shot timing comes from beats.json (python3 shorts/aura/cues.py).
 """
 import json, math, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -29,7 +29,7 @@ def fr(beat, k=0): return B[beat]["f0" if k == 0 else "f1"]
 # ------------------------------------------------------------------ cast (built before the city)
 HERO_X, HERO_Y0, CYCLE = 0.6, 66.0, 34
 TURN = fr("turn") + 6                       # hero stops walking here, then turns around
-FREEZE = fr("follow") + int(0.43 * (fr("follow", 1) - fr("follow")))   # "The rain stopped around me"
+FREEZE = BEATS["freeze_frame"]               # "The rain stopped around me"
 
 hero, _ = ch.build(C.PEOPLE_C, (HERO_X, HERO_Y0, 0), ch.HERO, pose_mode="walk"); hero.name = "HERO"
 speed = ch.animate_walk(hero, (HERO_X, HERO_Y0, 0), 0.0, -40, TURN - 1, phase=0.0, cycle=CYCLE)
@@ -83,6 +83,7 @@ for f in range(1, N + 1):
     if falling:
         phase += 1
     rain.location.z = -H * ((phase % T) / T); rain.keyframe_insert("location", index=2, frame=f)
+ch.set_interp(rain, "CONSTANT")
 # a dry channel: no drop ever touches the hero's (and later the narrator's) path
 bm = bmesh.new(); bm.from_mesh(rain.data)
 ylo, yhi = hero_y(TURN) - 9.0, HERO_Y0 + 1.0
@@ -99,6 +100,14 @@ def aura(owner, f_on, f_full, f_off=None, watts=70):
     return ob
 aura(hero, FREEZE - 4, FREEZE + 24, fr("payoff"))
 aura(narr, fr("payoff"), fr("payoff") + 30, None, 45)
+
+# the white aura is composited from a per-frame mask of the hero/narrator (see compose.py):
+# tag them with pass index 7 so the compositor can write the mask next to each frame.
+for rig in (hero, narr):
+    for o in [rig] + list(rig.children_recursive):
+        o.pass_index = 7
+json.dump({"keys": [[1, 0.55], [FREEZE - 4, 0.55], [FREEZE + 20, 1.25], [fr("payoff"), 1.0], [fr("payoff") + 30, 1.1]]},
+          open(os.path.join(HERE, "aura.json"), "w"))
 
 # who is visible when: the hero hands over to the narrator at the payoff
 def visible(rig, f_show, f_hide=None):
@@ -131,7 +140,10 @@ a, b = fr("name"), fr("name", 1)
 key(a, hp(a) + V((1.0, -3.5, 0.95)), hp(a) + V((0, 0, 1.5)), hp(a) + head, 38, 2.0)
 key(b, hp(b) + V((0.8, -3.2, 1.0)), hp(b) + V((0, 0, 1.52)), hp(b) + head, 40, 2.0)
 # 3 theories: shopkeeper / police officer / kids, each a slow push-in
-a, b = fr("theory"), fr("theory", 1); t1, t2 = a + (b - a) // 3, a + 2 * (b - a) // 3
+a, b = fr("theory"), fr("theory", 1)
+SENT = json.load(open(os.path.join(HERE, "sentences.json")))
+t1 = round((next(x["start"] for x in SENT if x["text"].startswith("The police")) - 0.15) * 30)   # cut on each sentence
+t2 = round((next(x["start"] for x in SENT if x["text"].startswith("The kids")) - 0.15) * 30)
 key(a, V((4.6, 51.5, 1.45)), V((6.9, 53.3, 1.62)), V((6.9, 53.0, 1.62)), 45, 2.0)
 key(t1, V((4.85, 51.75, 1.47)), V((6.9, 53.3, 1.62)), V((6.9, 53.0, 1.62)), 45, 2.0)
 key(t1 + 1, V((-3.25, 47.5, 1.35)), V((-5.5, 49.2, 1.72)), V((-5.5, 49.0, 1.7)), 45, 2.0)
@@ -156,12 +168,27 @@ def np_(f): return narr_start + V((0, -nspeed * max(0, f - (fr("payoff") - 34)) 
 key(a, np_(a) + V((0.7, 3.6, 0.95)), np_(a) + V((0, -8, 1.8)), np_(a) + head, 28, 2.8)
 key(b, np_(b) + V((0.45, 5.0, 2.0)), np_(b) + V((0, -9, 1.5)), np_(b) + head, 26, 3.5)
 
+# hard cuts between shots, constant speed inside each shot (no overshoot / swinging camera)
+for idb in (cam, tgt, focus, cd, cd.dof):
+    ch.set_interp(idb, "LINEAR")
+ch.set_interp(cd, "LINEAR")
+
 # ------------------------------------------------------------------ render
 C.render_settings(SCALE, SAMPLES)
 scn.frame_start, scn.frame_end = FIRST, LAST
 scn.frame_step = int(os.environ.get("STEP", 1))       # STEP=2 renders on twos (held frames at encode)
 out_dir = os.path.join(HERE, "frames"); os.makedirs(out_dir, exist_ok=True)
 scn.render.image_settings.file_format = "PNG"
+# compositor: pass the image through and save the hero mask (object index 7) as masks/mask_####.png
+scn.render.compositor_device = "CPU"
+scn.view_layers[0].use_pass_object_index = True
+ng = bpy.data.node_groups.new("comp", "CompositorNodeTree"); scn.compositing_node_group = ng
+rl = ng.nodes.new("CompositorNodeRLayers"); idm = ng.nodes.new("CompositorNodeIDMask"); idm.inputs["Index"].default_value = 7
+go = ng.nodes.new("NodeGroupOutput"); ng.interface.new_socket("Image", in_out="OUTPUT", socket_type="NodeSocketColor")
+ng.links.new(rl.outputs["Image"], go.inputs[0]); ng.links.new(rl.outputs["Object Index"], idm.inputs["ID value"])
+fo = ng.nodes.new("CompositorNodeOutputFile"); fo.directory = os.path.join(HERE, "masks"); fo.file_name = "mask_"
+fo.format.media_type = "IMAGE"; fo.format.file_format = "PNG"; fo.format.color_mode = "BW"
+fo.file_output_items.new("FLOAT", ""); ng.links.new(idm.outputs["Alpha"], fo.inputs[0])
 if os.environ.get("NORENDER"):
     print("built only"); sys.exit(0)
 if os.environ.get("STILLS"):

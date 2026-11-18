@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
-# Grade frames, hold on twos (15 fps rendered -> 30 fps), upscale to 1080x1920, mux the mix, QA.
+# Aura + grade every frame, upscale to 1080x1920, burn subtitles, mux the mix, QA.
 set -euo pipefail
 cd "$(dirname "$0")"
-mkdir -p graded out
-for f in frames/f*.png; do
-  g="graded/$(basename "$f")"
-  [ -f "$g" ] || python3 ../../lookdev/grade.py "$f" "$g" >/dev/null
-done
-ffmpeg -v error -y -framerate 15 -pattern_type glob -i 'graded/f*.png' -i audio/mix.wav \
-  -vf "scale=1080:1920:flags=lanczos,unsharp=5:5:0.6:5:5:0.0,fps=30" \
+mkdir -p out
+python3 compose.py
+python3 subs.py
+ffmpeg -v error -y -framerate 30 -i 'graded/f%04d.png' -i audio/mix.wav \
+  -vf "scale=1080:1920:flags=lanczos,unsharp=5:5:0.5:5:5:0.0,ass=subs.ass" \
   -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -c:a aac -b:a 192k -shortest -movflags +faststart \
   "out/aura_monster.mp4"
 echo "--- QA"
