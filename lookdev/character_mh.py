@@ -28,6 +28,11 @@ BODY = {
                "universal-male-young-averagemuscle-minweight.target": 0.45,
                "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
                "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
+    "m_muscle": {"asian-male-young.target": 0.75, "caucasian-male-young.target": 0.25,
+                 "universal-male-young-maxmuscle-averageweight.target": 1.15,
+                 "universal-male-young-averagemuscle-minweight.target": 0.55,
+                 "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
+                 "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
     "m_heavy": {"asian-male-young.target": 0.5, "african-male-young.target": 0.2, "caucasian-male-young.target": 0.3,
                 "universal-male-young-averagemuscle-maxweight.target": 0.55,
                 "male-young-averagemuscle-averageweight-idealproportions.target": 0.6},
@@ -42,6 +47,9 @@ BODY = {
 HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick", hair_col="#101216", locks=True,
             top=("#1d1f25", "#07080b"), turtleneck=False, coat=None, manhwa_head=True,
             legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#2a2220")
+
+# the lead's fighter build (only when build() is given HERO itself): webtoon muscle anatomy
+HERO_LOOK = dict(body="m_muscle", vtaper=True, sleeves="short", crease=0.012)
 
 def set_interp(idblock, kind="LINEAR", data_path=None):
     """Force interpolation on an ID's keyframes (Blender 5 ignores the new-key preference in background mode)."""
@@ -119,8 +127,9 @@ def _nodes(m):
         return n.outputs[2]
     return N, L, mth, mix
 
-def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0.55, -0.7, 0.55), rim_amt=0.8, name=None, glow=1.0):
-    key = (hexc, shade, rim, spec, spec_col, light, rim_amt, glow)
+def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0.55, -0.7, 0.55), rim_amt=0.8, name=None, glow=1.0,
+        crease=0.0, crease_zmax=99.0):
+    key = (hexc, shade, rim, spec, spec_col, light, rim_amt, glow, crease, crease_zmax, name)
     if key in _cache:
         return _cache[key]
     m = bpy.data.materials.new(name or f"cel_{hexc}")
@@ -140,6 +149,11 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
         hn = N.new("ShaderNodeVectorMath"); hn.operation = "NORMALIZE"; L.new(h.outputs[0], hn.inputs[0])
         d2 = N.new("ShaderNodeVectorMath"); d2.operation = "DOT_PRODUCT"; L.new(geo.outputs["Normal"], d2.inputs[0]); L.new(hn.outputs[0], d2.inputs[1])
         c = mix(mth("MULTIPLY", mth("GREATER_THAN", d2.outputs["Value"], 1 - spec), 0.9), c, lin(spec_col))
+    if crease:   # webtoon muscle lines: ink the concave creases between muscle masses (Cycles pointiness)
+        cav = mth("LESS_THAN", geo.outputs["Pointiness"], 0.5 - crease)
+        tc = N.new("ShaderNodeTexCoord"); sep = N.new("ShaderNodeSeparateXYZ"); L.new(tc.outputs["Object"], sep.inputs[0])
+        cav = mth("MULTIPLY", cav, mth("LESS_THAN", sep.outputs["Z"], crease_zmax))
+        c = mix(mth("MULTIPLY", cav, 0.85), c, tuple(x * 0.35 for x in sh[:3]) + (1.0,))
     lw = N.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = 0.3
     c = mix(mth("MULTIPLY", mth("GREATER_THAN", lw.outputs["Facing"], 0.6), rim_amt), c, lin(rim))
     e = N.new("ShaderNodeEmission"); e.inputs["Strength"].default_value = glow
@@ -271,9 +285,18 @@ def bone_parent(ob, arm, bone):
 
 # ---------------------------------------------------------------- build
 def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
-    st = dict(HERO); st.update(style or {})
+    st = dict(HERO, **HERO_LOOK) if style is None or style is HERO else dict(HERO)
+    st.update(style if style is not None and style is not HERO else {})
     V, F, G = load_base(st["body"])
     sk, per_vert = load_rig()
+    if st["body"] == "m_muscle":   # keep the lean face and neck on the muscular body (the muscle target widens the jaw)
+        Vl = load_base("m_lean")[0]
+        nidx = sk["joints"][sk["bones"]["neck02"]["head"]]
+        cm = sum((V[i] for i in nidx), Vector()) / len(nidx); cl = sum((Vl[i] for i in nidx), Vector()) / len(nidx)
+        for i in range(len(V)):
+            t = max(0.0, min(1.0, (Vl[i].z - cl.z + 0.01) / 0.05))
+            if t > 0:
+                V[i] = V[i].lerp(Vl[i] + (cm - cl), t)
     body_faces = [f for f, g in zip(F, G) if g == "body"]
     zmin = min(V[i].z for f in body_faces for i in f)
     for v in V:
@@ -291,6 +314,37 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             jaw = max(0.0, min(1.0, (eye_z - 0.02 - v.z) / 0.085)) * t   # cheekbone -> chin: V-line jaw
             v.x *= 1.0 - 0.2 * jaw
             v.z -= 0.01 * jaw                                    # slightly longer chin
+    if st.get("vtaper"):   # webtoon fighter build: wide shoulders and lats, narrow waist, arms pushed out
+        jz = lambda n: sum(V[i].z for i in sk["joints"][sk["bones"][n]["head"]]) / len(sk["joints"][sk["bones"][n]["head"]])
+        waist = jz("spine04"); chest = jz("spine01"); nk = jz("neck01")
+        dm = {i: max(lst, key=lambda t: t[1])[0] for i, lst in per_vert.items()}
+        torso = ("spine", "pelvis", "breast", "clavicle", "shoulder", "neck01", "pectoral")
+        arms = ("upperarm", "lowerarm", "wrist", "finger", "metacarpal")
+        def sx(z):   # torso width factor by height
+            if z < waist - 0.12: return 1.0
+            if z < waist: return 1.0 - 0.07 * (z - (waist - 0.12)) / 0.12
+            if z < chest: return 0.93 + 0.19 * (z - waist) / max(chest - waist, 1e-3)
+            return 1.12 - 0.12 * min(1.0, (z - chest) / max(nk - chest, 1e-3))
+        for i, v in enumerate(V):
+            b = dm.get(i, "")
+            if b.startswith(torso):
+                f = sx(v.z); v.x *= f
+                if waist < v.z < nk: v.y *= 1.0 + 0.05 * (f - 1.0) / 0.12   # deeper chest
+            elif b.startswith(arms):
+                v.x += math.copysign(0.022, v.x)                          # arms ride on the wider shoulders
+        # thicker arms: push arm skin away from the bone axis (biceps/triceps and forearm mass)
+        jp = lambda n: sum((V[i] for i in sk["joints"][sk["bones"][n]["head"]]), Vector()) / len(sk["joints"][sk["bones"][n]["head"]])
+        for side in ("L", "R"):
+            sh_, el, wr = jp(f"upperarm01.{side}"), jp(f"lowerarm01.{side}"), jp(f"wrist.{side}")
+            for i, v in enumerate(V):
+                b = dm.get(i, "")
+                if not b.endswith("." + side) or not b.startswith(("upperarm", "lowerarm")):
+                    continue
+                a0, a1, gain = (sh_, el, 0.3) if b.startswith("upperarm") else (el, wr, 0.2)
+                ax = a1 - a0; t = max(0.0, min(1.0, (v - a0).dot(ax) / ax.length_squared))
+                bulge = gain * math.sin(math.pi * min(1.0, t * 1.15)) ** 0.7     # belly of the muscle mid-segment
+                foot = a0 + ax * t; r = v - foot
+                V[i] = foot + r * (1.0 + bulge)
     jpos = {j: sum((V[i] for i in idx), Vector()) / len(idx) for j, idx in sk["joints"].items()}
     dom = {i: max(lst, key=lambda t: t[1])[0] for i, lst in per_vert.items()}
     def region(f, names):
@@ -323,11 +377,13 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     # --- skin: head, neck, hands (+ lower legs under a skirt)
     keep = ["head", "jaw", "neck", "eye", "oculi", "orbicularis", "oris", "levator", "risorius", "temporalis",
             "special", "tongue", "wrist", "finger", "metacarpal", "lowerarm02"]
+    if st.get("sleeves") == "short":
+        keep += ["lowerarm01", "upperarm02"]
     skin_faces = [f for f in body_faces if region(f, keep)]
     if st.get("socks"):   # school uniform: bare legs between hem and knee socks
         knee_z0 = jpos[sk["bones"]["lowerleg01.L"]["head"]].z
         skin_faces += [f for f in body_faces if region(f, ("upperleg", "lowerleg")) and min(V[i].z for i in f) > knee_z0 - 0.08]
-    SKIN = cel(st["skin"][0], st["skin"][1], rim="#ffe6d2", name="skin")
+    SKIN = cel(st["skin"][0], st["skin"][1], rim="#ffe6d2", name="skin", crease=st.get("crease", 0.0), crease_zmax=J("neck01").z - 0.03)
     skin, used = make_mesh("skin", coll, V, skin_faces); skin.data.materials.append(SKIN); finish(skin, used)
 
     bused = sorted({i for f in body_faces for i in f})
@@ -341,13 +397,15 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
 
     # --- top (knit): fits the body 4 mm off the skin
     TOP = ("spine", "clavicle", "shoulder", "upperarm", "lowerarm01", "breast", "neck01", "neck02", "pelvis")
+    if st.get("sleeves") == "short":   # fitted T-shirt: sleeve ends on the upper arm
+        TOP = ("spine", "clavicle", "shoulder", "upperarm01", "breast", "neck01", "neck02", "pelvis")
     neck_cut = chin_z - (0.035 if st.get("turtleneck", True) else 0.075)
-    sleeve = ("lowerarm",) if not st.get("coat") else ()
+    sleeve = ("lowerarm",) if not st.get("coat") and st.get("sleeves") != "short" else ()
     tn_faces = [f for f in body_faces if region(f, TOP + sleeve) and min(V[i].z for i in f) > pelvis_z - 0.12
                 and max(V[i].z for i in f) < neck_cut]
     off = {i: nrm[i] * 0.004 for f in tn_faces for i in f}
     tn, used = make_mesh("top", coll, V, tn_faces, off)
-    tn.data.materials.append(cel(st["top"][0], st["top"][1], rim="#fff4e0" if sum(lin(st["top"][0])[:3]) > 0.3 else "#4a5874", rim_amt=0.8 if sum(lin(st["top"][0])[:3]) > 0.3 else 0.6, name="knit")); finish(tn, used)
+    tn.data.materials.append(cel(st["top"][0], st["top"][1], rim="#fff4e0" if sum(lin(st["top"][0])[:3]) > 0.3 else "#4a5874", rim_amt=0.8 if sum(lin(st["top"][0])[:3]) > 0.3 else 0.6, name="knit", crease=st.get("crease", 0.0))); finish(tn, used)
 
     # --- coat / jacket
     if st.get("coat"):
