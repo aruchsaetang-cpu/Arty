@@ -83,7 +83,7 @@ def asphalt():
     base = g.mix(g.math("MULTIPLY", grain.outputs["Fac"], 0.5), base, lin("#3a3c3e"), rgba=True)
     base = g.mix(M, base, lin("#0b0c0e"), rgba=True)
     g.ln(base, b.inputs["Base Color"])
-    g.ln(g.mix(M, 0.42, 0.02), b.inputs["Roughness"])
+    g.ln(g.mix(M, 0.55, 0.025), b.inputs["Roughness"])
     # aggregate bump outside puddles, rain ripples inside puddles
     vor = g.n("ShaderNodeTexVoronoi", Scale=9.0, _feature="F1"); g.ln(tc.outputs["Object"], vor.inputs["Vector"])
     rings = g.math("SINE", g.math("MULTIPLY", vor.outputs["Distance"], 60.0))
@@ -171,7 +171,7 @@ def cel(hexc, shade="#000000", rim="#c9f6ff", light=(0.35, 0.8, 0.55)):
     lo = lin(shade_c) if shade_c else tuple(c * 0.42 for c in lin(hexc)[:3]) + (1.0,)
     col_ = g.mix(step, lo, lin(hexc), rgba=True)
     lw = g.n("ShaderNodeLayerWeight", Blend=0.3)
-    rimv = g.math("GREATER_THAN", lw.outputs["Facing"], 0.62)
+    rimv = g.math("GREATER_THAN", lw.outputs["Facing"], 0.55)
     col_ = g.mix(g.math("MULTIPLY", rimv, 0.85), col_, lin(rim), rgba=True)
     e = g.n("ShaderNodeEmission", Strength=1.0); g.ln(col_, e.inputs["Color"]); g.ln(e.outputs[0], g.out.inputs[0])
     return m
@@ -181,6 +181,23 @@ ASPH = asphalt()
 bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 40, 0)); road = bpy.context.object
 road.scale = (60, 120, 1); bpy.ops.object.transform_apply(scale=True); road.data.materials.append(ASPH)
 bpy.ops.object.modifier_add(type="SUBSURF"); road.modifiers[0].subdivision_type = "SIMPLE"; road.modifiers[0].levels = 2
+
+# worn road paint: centre dashes + crosswalk just behind the character
+def paint():
+    m = bpy.data.materials.new("paint"); g = G(m)
+    b = g.n("ShaderNodeBsdfPrincipled"); g.ln(b.outputs[0], g.out.inputs[0])
+    tc = g.n("ShaderNodeTexCoord"); nz = g.n("ShaderNodeTexNoise", Scale=14.0, Detail=6.0); g.ln(tc.outputs["Object"], nz.inputs["Vector"])
+    worn = g.math("GREATER_THAN", nz.outputs["Fac"], 0.42)
+    g.ln(g.mix(worn, lin("#2a2c2f"), lin("#c9ccc8"), rgba=True), b.inputs["Base Color"])
+    b.inputs["Roughness"].default_value = 0.3
+    return m
+PAINT = paint()
+for yy in range(10, 90, 6):
+    box("dash", (0.15, 3.0, 0.004), (0, yy, 0.002), PAINT)
+for i in range(9):
+    box("zebra", (0.55, 3.6, 0.004), (-4.4 + i * 1.1, CHAR_Y + 3.6, 0.002), PAINT)
+for sx in (-1, 1):
+    box("edge", (0.12, 120, 0.004), (sx * 4.85, 40, 0.002), PAINT)
 
 CURB = concrete("#55595d", 0.18, "curb")
 for sx in (-1, 1):
