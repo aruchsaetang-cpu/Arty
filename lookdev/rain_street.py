@@ -4,8 +4,7 @@ Run with the Blender 5 Python module (has OpenImageDenoise):
     /root/.venvs/bpy/bin/python lookdev/rain_street.py <shot> [scale%]
 shots: hero | low
 Everything is procedural (no downloaded assets). Scene units are metres.
-The character is a STAND-IN mannequin to test the 2D-on-photoreal mix;
-final characters are original designs (see STYLE.md).
+The hero comes from character_mh.py (CC0 MakeHuman body, fitted clothes, cel shading).
 """
 import bpy, bmesh, math, os, random, sys
 
@@ -15,6 +14,7 @@ SAMPLES = int(os.environ.get("SAMPLES", 128))
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "renders")
 os.makedirs(OUT, exist_ok=True)
 random.seed(7)
+CHAR_Y = 3.2  # where the hero stands
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scn = bpy.context.scene
@@ -160,22 +160,6 @@ def fog_mat(density):
     v.inputs["Color"].default_value = lin("#cfe3ee")
     g.ln(v.outputs[0], g.out.inputs["Volume"]); return m
 
-def cel(hexc, shade="#000000", rim="#c9f6ff", light=(0.35, 0.8, 0.55)):
-    """Manhwa cel shading that works in Cycles: flat 2-tone from a fixed key direction + cyan rim."""
-    m = bpy.data.materials.new(f"cel_{hexc}"); g = G(m)
-    geo = g.n("ShaderNodeNewGeometry")
-    dot = g.n("ShaderNodeVectorMath", _operation="DOT_PRODUCT"); g.ln(geo.outputs["Normal"], dot.inputs[0])
-    l = math.sqrt(sum(c * c for c in light)); dot.inputs[1].default_value = tuple(c / l for c in light)
-    step = g.math("GREATER_THAN", dot.outputs["Value"], 0.05)
-    shade_c = shade if shade != "#000000" else None
-    lo = lin(shade_c) if shade_c else tuple(c * 0.42 for c in lin(hexc)[:3]) + (1.0,)
-    col_ = g.mix(step, lo, lin(hexc), rgba=True)
-    lw = g.n("ShaderNodeLayerWeight", Blend=0.3)
-    rimv = g.math("GREATER_THAN", lw.outputs["Facing"], 0.55)
-    col_ = g.mix(g.math("MULTIPLY", rimv, 0.85), col_, lin(rim), rgba=True)
-    e = g.n("ShaderNodeEmission", Strength=1.0); g.ln(col_, e.inputs["Color"]); g.ln(e.outputs[0], g.out.inputs[0])
-    return m
-
 # ---------- street ----------
 ASPH = asphalt()
 bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 40, 0)); road = bpy.context.object
@@ -235,7 +219,6 @@ def area(name, loc, target, size, watts, hexc):
     e = bpy.data.objects.new(name + "_t", None); col.objects.link(e); e.location = target
     c = ob.constraints.new("TRACK_TO"); c.target = e; c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 
-CHAR_Y = 3.2
 area("backrim", (0.0, CHAR_Y + 4.5, 3.2), (0, CHAR_Y, 1.2), 3.0, 2500, "#e6f6ff")
 area("magenta_kick", (-4.5, CHAR_Y + 2.0, 1.8), (0, CHAR_Y, 1.2), 1.5, 500, "#ff3d8b")
 
@@ -271,81 +254,32 @@ def part(prim, name, loc, scale, mat, rot=(0, 0, 0), **kw):
         p.use_smooth = True
     return ob
 
-COAT = cel("#3a4556", "#151a23"); KNIT = cel("#d9d4cc", "#77726c"); SKIN = cel("#ecc9ab", "#9c7158")
-HAIR = cel("#16181d", "#08090b"); PANTS = cel("#23262e", "#0c0e12"); SHOE = cel("#141517", "#050506")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import character_mh
 X, Y = 0.0, CHAR_Y
-
-def lathe(name, prof, mat, seg=40, off=(0, 0, 0)):
-    """prof: [(z, rx, ry, dy)] elliptical rings stacked in z (dy shifts a ring forward/back)."""
-    bm = bmesh.new(); rings = []
-    for z, rx, ry, dy in prof:
-        rings.append([bm.verts.new((off[0] + rx * math.cos(2 * math.pi * i / seg), off[1] + dy + ry * math.sin(2 * math.pi * i / seg), off[2] + z)) for i in range(seg)])
-    for r0, r1 in zip(rings, rings[1:]):
-        for i in range(seg):
-            bm.faces.new((r0[i], r0[(i + 1) % seg], r1[(i + 1) % seg], r1[i]))
-    bm.faces.new(rings[-1])
-    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
-    for p in me.polygons:
-        p.use_smooth = True
-    ob = bpy.data.objects.new(name, me); chars.objects.link(ob); me.materials.append(mat)
-    return ob
-
-def limb(name, a, b_, r0, r1, mat):
-    """Tapered tube from point a to point b_ with ball joints."""
-    ax, ay, az = a; bx, by, bz = b_
-    d = math.dist(a, b_); mid = ((ax + bx) / 2, (ay + by) / 2, (az + bz) / 2)
-    bpy.ops.mesh.primitive_cone_add(vertices=24, radius1=r0, radius2=r1, depth=d, location=mid)
-    ob = bpy.context.object; ob.name = name
-    for c in ob.users_collection:
-        c.objects.unlink(ob)
-    chars.objects.link(ob); ob.data.materials.append(mat)
-    v = (bx - ax, by - ay, bz - az); ob.rotation_mode = "QUATERNION"
-    from mathutils import Vector
-    ob.rotation_quaternion = Vector((0, 0, 1)).rotation_difference(Vector(v).normalized())
-    for p in ob.data.polygons:
-        p.use_smooth = True
-    for pt, r in ((a, r0), (b_, r1)):
-        part("primitive_uv_sphere_add", name + "_j", pt, (r, r, r), mat, segments=20, ring_count=10)
-
-# long coat: tall manhwa proportions (~8 heads), hem flares and swings with the stride
-lathe("coat", [(0.40, 0.33, 0.21, 0.05), (0.62, 0.29, 0.19, 0.03), (0.9, 0.25, 0.165, 0.0), (1.12, 0.215, 0.15, 0.0),
-               (1.3, 0.22, 0.15, 0.0), (1.42, 0.245, 0.15, 0.0), (1.49, 0.23, 0.14, 0.0), (1.53, 0.15, 0.11, 0.0),
-               (1.555, 0.07, 0.07, 0.0)], COAT, off=(X, Y, 0))
-lathe("collar", [(1.5, 0.075, 0.075, 0.0), (1.64, 0.062, 0.065, 0.0), (1.66, 0.05, 0.05, 0.0)], KNIT, off=(X, Y, 0))
-stride = math.radians(13)
-for sx, a in ((-1, stride), (1, -stride)):   # mid-stride walk toward camera
-    hip = (X + sx * 0.1, Y, 0.95); knee = (X + sx * 0.1, Y - math.sin(a) * 0.48, 0.5)
-    ank = (X + sx * 0.1, Y - math.sin(a) * 0.48 - math.sin(a * 0.4) * 0.42, 0.08)
-    limb(f"thigh{sx}", hip, knee, 0.085, 0.07, PANTS); limb(f"shin{sx}", knee, ank, 0.07, 0.055, PANTS)
-    part("primitive_uv_sphere_add", f"shoe{sx}", (ank[0], ank[1] - 0.06, 0.045), (0.06, 0.14, 0.05), SHOE, segments=24, ring_count=12)
-for sx in (-1, 1):   # hands in coat pockets
-    sh = (X + sx * 0.235, Y, 1.43); el = (X + sx * 0.29, Y + 0.03, 1.13); pk = (X + sx * 0.25, Y - 0.07, 0.93)
-    limb(f"uarm{sx}", sh, el, 0.065, 0.058, COAT); limb(f"farm{sx}", el, pk, 0.058, 0.055, COAT)
-part("primitive_uv_sphere_add", "head", (X, Y - 0.005, 1.775), (0.098, 0.112, 0.122), SKIN, segments=48, ring_count=24)
-part("primitive_uv_sphere_add", "jaw", (X, Y - 0.03, 1.715), (0.07, 0.075, 0.06), SKIN, segments=32, ring_count=16)
-part("primitive_uv_sphere_add", "hair", (X, Y + 0.02, 1.835), (0.106, 0.12, 0.085), HAIR, segments=48, ring_count=24)
-part("primitive_uv_sphere_add", "hair_back", (X, Y + 0.05, 1.78), (0.1, 0.09, 0.1), HAIR, segments=32, ring_count=16)
+rig, char_objs = character_mh.build(chars, (X, Y, 0))
 
 # freestyle line art on the character only
 scn.render.use_freestyle = True; scn.render.line_thickness_mode = "ABSOLUTE"; scn.render.line_thickness = 1.3
 vl = scn.view_layers[0]; fs = vl.freestyle_settings
 ls = fs.linesets[0] if fs.linesets else fs.linesets.new("chars")
 ls.select_by_collection = True; ls.collection = chars
-ls.select_silhouette = True; ls.select_border = True; ls.select_crease = True
+ls.select_silhouette = True; ls.select_border = True; ls.select_crease = False; ls.select_material_boundary = True
 ls.linestyle = ls.linestyle or bpy.data.linestyles.new("ink")
-ls.linestyle.color = (0.03, 0.035, 0.05); ls.linestyle.thickness = 1.6
+ls.linestyle.color = (0.03, 0.035, 0.05); ls.linestyle.thickness = 1.3
 
 # ---------- camera ----------
 SHOTS = {
     "hero": dict(loc=(0.35, -1.2, 0.75), tgt=(0.0, CHAR_Y, 1.25), lens=38, f=2.2),
     "low": dict(loc=(0.6, CHAR_Y - 1.6, 0.18), tgt=(0.0, CHAR_Y + 0.6, 0.9), lens=24, f=2.8),
+    "portrait": dict(loc=(0.3, CHAR_Y - 1.45, 1.47), tgt=(0.0, CHAR_Y, 1.6), lens=50, f=1.8),
 }
 S = SHOTS[SHOT]
 cd = bpy.data.cameras.new("cam"); cd.lens = S["lens"]; cd.sensor_fit = "VERTICAL"; cd.sensor_height = 36; cd.clip_start = 0.05
 cam = bpy.data.objects.new("cam", cd); col.objects.link(cam); cam.location = S["loc"]; scn.camera = cam
 t = bpy.data.objects.new("cam_t", None); col.objects.link(t); t.location = S["tgt"]
 c = cam.constraints.new("TRACK_TO"); c.target = t; c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
-foc = bpy.data.objects.new("focus", None); col.objects.link(foc); foc.location = (X, Y - 0.1, 1.5)
+foc = bpy.data.objects.new("focus", None); col.objects.link(foc); foc.location = (X, Y - 0.12, 1.72 if SHOT == "portrait" else 1.5)
 cd.dof.use_dof = True; cd.dof.focus_object = foc; cd.dof.aperture_fstop = S["f"]; cd.dof.aperture_blades = 7
 
 # ---------- world + render ----------
