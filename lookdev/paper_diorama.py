@@ -153,7 +153,7 @@ def disc(name, cx, cz, r, y, mat, depth=0.0012):
 bpy.ops.mesh.primitive_plane_add(size=3, location=(0, 0.2, -0.03))
 bpy.context.object.data.materials.append(paper(PAL["kraft"], fibre=2.0))
 
-card("sky", rrect(-0.45, -0.03, 0.5, 0.8, 0.01), 0.30, PAL["sky_n"] if NIGHT else PAL["sky"], thick=0.002)
+card("sky", rrect(-0.45, -0.03, 0.5, 0.8, 0.01), 0.30, PAL["sky_n"] if NIGHT else PAL["sky"], thick=0.002, glow=0.35 if NIGHT else 0)
 card("sun", ellipse(-0.07, 0.31, 0.035, 0.035), 0.288, PAL["cream"] if NIGHT else PAL["mustard"], glow=0.6 if NIGHT else 0)
 for i, (cx, cz, s) in enumerate(((0.12, 0.33, 1.0), (-0.13, 0.24, 0.7), (0.02, 0.40, 0.55))):
     top = []  # cloud = flat bottom + scalloped top
