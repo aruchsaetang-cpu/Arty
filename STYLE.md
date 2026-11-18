@@ -1,117 +1,74 @@
-# Arty style: paper diorama shorts
+# Arty style: cinematic manhwa in Neon Harbor
 
-Every short is a **handmade paper-cutout diorama filmed like a tabletop miniature**.
-The look test is `lookdev/paper_diorama.py` and its renders are in `lookdev/renders/`.
+Our shorts put **cel-shaded manhwa characters with ink outlines** into a **realistic 3D night city**
+(Neon Harbor), lit by neon, rain and wet reflections. Earlier the guide described a paper-diorama
+look; that direction is retired (its look test stays in `lookdev/paper_diorama.py`).
 
-This guide exists so our shorts never read as a copy of another channel, in particular the
-bean-head, ink-outline, painted-3D-world look used by channels such as RicksClips3000.
-We borrow storytelling *technique* only (see the end of this file), never the look.
+| Piece | Where it lives |
+|---|---|
+| City generator (buildings, props, crowd, rain, traffic, cameras) | `lookdev/city.py` |
+| Characters (body, outfits, faces, walk cycle, umbrella/phone) | `lookdev/character_mh.py` (CC0 MakeHuman base in `lookdev/assets/makehuman`) |
+| Single-street test scene | `lookdev/rain_street.py` |
+| Finishing grade (bloom, split tone, vignette, grain) | `lookdev/grade.py` |
 
 ## 1. Look
 
-| Element | Arty does | Never |
+| Element | Do | Don't |
 |---|---|---|
-| Material | Layered cardstock with visible paper fibre, uneven risograph-style ink density, real card thickness | Smooth painted 3D textures |
-| Edges | An off-white **die-cut margin** (sticker edge) around characters and key props; soft contact shadows between layers | Black ink outlines |
-| Depth | Flat cards stacked in depth (sky, hills, sea, set, foreground grass), lit so each layer casts a shadow on the one behind | Full 3D environments |
-| Lens | Real miniature optics: shallow depth of field, a blurred foreground layer, focus on the eyes | Deep-focus wides |
-| Grade | AgX "Punchy", exposure about −0.35, warm paper whites | Pure white or pure black anywhere |
+| Characters | Realistic proportions, 3-tone cel shading, cool rim light, ink outline (inverted hull) | Photoreal skin, chibi proportions |
+| World | Realistic materials: wet asphalt with puddles and ripples, grimy concrete, glass, metal; real-scale streets | Flat painted backdrops |
+| Light | Night; neon signs, shopfront spill, cool street LEDs, warm windows, haze | Daylight flatness |
+| Weather | Rain streaks, puddle ripples, steam from manholes | Dry, static streets |
+| Grade | AgX Punchy, then `grade.py`: bloom, teal shadows, warm highlights, vignette, grain | Crushed blacks, oversaturated neon |
 
-## 2. Palette (muted risograph)
+## 2. Neon Harbor (original city)
 
-`cream #F3E6CC` · `navy #23324A` (replaces black) · `teal #2E6F73` · `sea #3F8C8C` · `deep #24566B` ·
-`sage #8FB3A0` · `moss #5E9A86` · `grass #2F5A47` · `mustard #E3A72F` · `coral #E8664A` ·
-`ochre #D49A4A` · `clay #B9773F` · `kraft #C49A6C`. Night sky: `#2A3B63`.
+- Dense mid-rise blocks (12–42 m) along a main street, narrow alleys with lanterns, a crosswalk,
+  utility poles with sagging wires, AC units, balconies, rooftop water tanks and billboards.
+- A distant skyline with an original twisted tower and a hill with a broadcast tower.
+- **All signage is invented and generic** (NOODLE BAR, KARAOKE, 24H MART, HOTEL...). No real
+  businesses, brands, logos or landmarks, and no buildings copied from reference photos.
+- Reference photos are mood references only (density, colour, layering), never traced.
 
-Skin tones are always coloured paper (`#C9825B`, plus darker or lighter variants per character),
-**never white**.
+## 3. Characters
 
-## 3. Characters: paper puppets
+- **Hero** (`character_mh.HERO`): charcoal long coat, oatmeal turtleneck, slicked-back hair with
+  loose locks, dark dress shoes. Our own design; no glasses, no pink suit, nothing from an existing
+  webtoon.
+- **Extras**: random bodies (male, female, heavier build), heights, skin tones, hair (short, bob,
+  buzz), coats or jackets or knitwear, trousers or skirts with tights, sneakers or leather shoes.
+  Umbrellas for walkers in the rain, phones for people standing.
+- Every person walks with a looping cycle (legs, arm swing, bob) and moves through the street.
 
-- **Head:** a soft square (superellipse), not a round bean. Coloured skin paper.
-- **Face:** punched-hole navy eyes with one cream glint, coral cheek circles, a triangle nose
-  notch, a small arc mouth. Expressions come from swapping these small pieces (eye shape,
-  mouth arc, brow strips).
-- **Body:** separate paper parts joined by **brass split pins** at the shoulders (and hips if
-  needed). Limbs rotate around the pins, like a real paper puppet. This is our signature.
-- **Proportions:** head about 40 % of height, stubby legs, chunky boots.
-- **Identity:** each recurring character gets one coloured accessory (the keeper's coral
-  beanie with teal band) and one silhouette feature.
-- **Never use:** a round white head, dot eyes on blank white, a chef hat, a pirate dog, or any
-  design lifted from another creator.
+## 4. Life in every shot
 
-## 4. Camera and motion
+Something always moves: rain, ripples, steam, flickering or broken neon, traffic lights cycling,
+cars passing with headlights, people walking past, camera dolly or crane. Never a frozen frame.
 
-- **Tabletop camera:** slow dolly, truck and crane moves, as if a real camera moves past a
-  real set. No whip pans and no fast crane drops (those belong to the reference style).
-- **Stepped motion:** characters animate **on twos** (12 drawings per second inside 30 fps
-  output), like stop-motion. The camera stays smooth. Mixing the two is the signature feel.
-- **Puppet acting:** pin rotations, tiny hops, a paper flutter on landings. Something always
-  moves (waves sliding sideways, clouds drifting on their layer).
-- **Shot sizes:** hook close-up on face plus prop, then a wide reveal of the set, then
-  inserts on props and signs.
+## 5. Camera
 
-## 5. Pivot device (our topic change)
+Real-lens language: 22–35 mm for streets, 50 mm+ for portraits, shallow depth of field on people,
+low angles for the hero, slow dolly and crane moves. 9:16 at 1080×1920, 30 fps.
 
-The reference style changes topic with a spoken "see," or "imagine" plus a camera pull-back.
-**Arty changes topic with a physical stage device:**
+## 6. Story structure
 
-1. **Paper curtain** (default): coral curtains with a scalloped hem slide in from both sides.
-   The stage behind them switches (day to night, place A to place B), then they open.
-2. **Turntable:** the whole diorama rotates 180° to reveal a second set built on its back.
-3. **Page flip:** a foreground card folds down like a pop-up book page.
+Hook in the first sentence, setting in a line, escalation in two to four beats, a pivot, and an
+ironic payoff on the last words. Narration is the user's own voice; music and SFX sit at 50 % of it.
 
-Every pivot gets a recurring **sound motif**: a paper swish followed by a wooden *clack*.
-The palette also shifts to a cool blue key light with warm practical lights (lanterns,
-windows) for the explanation beat.
+## 7. Originality checklist (before every render)
 
-## 6. Text
+- [ ] Story, characters and shot list are our own, not a remake of another creator's video.
+- [ ] No real people, brands, logos, landmarks or copied buildings.
+- [ ] Hero and extras are original designs (no existing webtoon or anime characters).
+- [ ] Signage text is invented and generic.
 
-- **No word-by-word captions.** If the user wants captions, use phrase-level text in a
-  rounded cream paper tag with navy text, top third, like a label taped to the set.
-- **Prefer diegetic text:** pinned paper tags, signs and labels inside the diorama
-  ("KEEPER WANTED"). It must read correctly (not mirrored).
-
-## 7. Sound
-
-- Use the user's voice unchanged. Music and SFX sit at 50 % of the voice level (the
-  `cartoon-audio-short` mix rules still apply).
-- **Music:** a light music-box or marimba bed, not a march loop.
-- **SFX:** made from paper and craft sounds (rustle, card flick, split-pin squeak, wooden
-  clack, a felt "thump" on landings).
-
-## 8. Story structure (technique, which is fine to share)
-
-These patterns are general short-form craft and are used across the whole format. We use
-them with our own topics and words:
-
-1. **Hook (0–3 s):** say the paradox as a fact in the first sentence, over a close-up of one
-   prop.
-2. **Setting:** one line answering who, where and when.
-3. **Escalation:** two to four beats, each bigger; others doubt or mock.
-4. **Pivot:** the stage device from section 5 plus the real mechanism, explained with an
-   everyday analogy.
-5. **Payoff:** a short ironic last line, landing on a prop or sign reveal.
-
-## 9. Originality checklist (run before every render)
-
-- [ ] The topic is our own pick and was researched by us. It is not a topic another channel just
-      posted, and the title is not built on their format ("Why X Don't Work").
-- [ ] The script is written from scratch. No sentences paraphrased from another video.
-- [ ] No round white bean heads, no black ink outlines, no word-by-word white captions.
-- [ ] No characters, mascots, logos or channel marks from other creators.
-- [ ] Shots are planned from our script, not traced from a reference video's cut list.
-- [ ] The pivot uses an Arty stage device and the swish-clack motif.
-
-## Rendering the look test
+## Rendering
 
 ```bash
-blender -b -P lookdev/paper_diorama.py -- hook 50
-blender -b -P lookdev/paper_diorama.py -- wide 50
-blender -b -P lookdev/paper_diorama.py -- pivot 50
+/root/.venvs/bpy/bin/python lookdev/city.py hero 50     # stills: street | hero | alley | aerial
+FRAMES=48 SAMPLES=10 /root/.venvs/bpy/bin/python lookdev/city.py clip 25
 ```
 
-`50` is the render scale in percent of 1080x1920. `SAMPLES=64` gives a fast preview. The apt Blender
-build (4.0.2) has no OpenImageDenoise, so the script uses plain path tracing with more
-samples. In a fresh cloud container, reinstall Blender with
-`apt-get update && apt-get install -y blender`.
+The Blender 5 Python module lives in `/root/.venvs/bpy` (install: `uv venv -p 3.13 /root/.venvs/bpy`
+then `VIRTUAL_ENV=/root/.venvs/bpy uv pip install bpy`). It includes OpenImageDenoise. Freestyle
+is off by default because it costs minutes per frame on the whole city (`FREESTYLE=1` enables it).
