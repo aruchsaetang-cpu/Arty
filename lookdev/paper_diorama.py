@@ -247,9 +247,9 @@ if NIGHT:
             pts.append((xx, -0.02 + 0.006 * (i % 2)))
         pts.append((x1, 0.75))
         return pts[::-1]
-    card("curtainL", curtain(-0.45, -0.065, -0.06), -0.06, PAL["coral"], thick=0.002, margin=0.002)
-    card("curtainR", curtain(0.145, 0.55, -0.06), -0.06, PAL["coral"], thick=0.002, margin=0.002)
-    card("valance", wave_strip(-0.45, 0.55, 0.7, 0.33, 0.012, 7, 1.0), -0.065, PAL["navy"], thick=0.002)
+    card("curtainL", curtain(-0.45, 0.018, -0.06), -0.06, PAL["coral"], thick=0.002, margin=0.002)
+    card("curtainR", curtain(0.142, 0.55, -0.06), -0.06, PAL["coral"], thick=0.002, margin=0.002)
+    card("valance", wave_strip(-0.45, 0.55, 0.7, 0.305, 0.01, 7, 1.0), -0.065, PAL["navy"], thick=0.002)
 
 # ---------- lights ----------
 def area(name, loc, target, size, watts, hexc):
@@ -266,8 +266,8 @@ def point(name, loc, watts, hexc, r=0.004):
 world = bpy.data.worlds.new("w"); scn.world = world; world.use_nodes = True
 bg = world.node_tree.nodes["Background"]
 if NIGHT:
-    bg.inputs[0].default_value = lin("#1B2747"); bg.inputs[1].default_value = 0.25
-    area("key", (-0.4, -0.5, 0.6), (0.05, 0.1, 0.08), 0.4, 9, "#7C97E0")
+    bg.inputs[0].default_value = lin("#2A3B63"); bg.inputs[1].default_value = 0.7
+    area("key", (-0.4, -0.5, 0.6), (0.05, 0.1, 0.08), 0.4, 22, "#7C97E0")
     area("rim", (0.35, 0.55, 0.35), (0.05, 0.05, 0.1), 0.2, 4, "#A9B9F0")
     point("lantern", (lantern_xz[0], KY - 0.02, lantern_xz[1]), 0.25, "#FFB45A")
     point("lamp", (LX, 0.05, 0.226), 0.6, "#FFC46B")
@@ -279,7 +279,7 @@ else:
 
 # ---------- camera ----------
 SHOTS = {
-    "hook": dict(loc=(0.08, -0.17, 0.178), tgt=(0.076, KY, 0.172), lens=50, f=2.0, focus=(0.062, KY, 0.185)),
+    "hook": dict(loc=(0.08, -0.17, 0.178), tgt=(0.076, KY, 0.172), lens=50, f=2.8, focus=(0.062, KY - 0.009, 0.185)),
     "wide": dict(loc=(0.08, -0.33, 0.2), tgt=(0.08, 0.12, 0.185), lens=35, f=2.8, focus=(KX, KY, 0.16)),
     "pivot": dict(loc=(0.08, -0.33, 0.2), tgt=(0.08, 0.12, 0.185), lens=35, f=2.8, focus=(KX, KY, 0.16)),
 }
