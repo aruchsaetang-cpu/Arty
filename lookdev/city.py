@@ -793,6 +793,7 @@ if os.environ.get("NORENDER"):
 if SHOT == "clip":
     scn.render.image_settings.file_format = "PNG"
     scn.render.filepath = os.path.join(OUT, "clip", "f")
+    scn.render.use_overwrite = not os.environ.get("RESUME")      # RESUME=1 skips frames already on disk
     bpy.ops.render.render(animation=True)
     print("WROTE clip frames")
 else:
