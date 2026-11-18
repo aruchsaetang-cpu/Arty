@@ -65,11 +65,11 @@ COP = dict(manhwa_head=True, body="m", height=1.82, skin=("#f0cfb3", "#b48466"),
            head_yaw=-24, subsurf=1)
 # school uniforms (Korean primary school): navy blazer, white shirt, tie / bow, navy shorts or pleated skirt,
 # white knee socks, black school shoes, backpack
-KID1 = dict(body="f", height=1.28, skin=("#f3d6bf", "#bf9274"), hair="bob", hair_col="#1a1414",
+KID1 = dict(body="kid_f", height=1.28, skin=("#f3d6bf", "#bf9274"), hair="bob", hair_col="#1a1414",
             coat=("#1f2a4a", "#0b1124"), hem=0.9, open_skirt=True, coat_flare=(0.02, 0.04), top=("#f4f4f0", "#b8bcc6"), turtleneck=False,
             legs="skirt", leg_col=("#1f2a4a", "#0b1124"), skirt_hem=0.6, socks="#f6f6f2", tie=("bow", "#22336a"),
             backpack=("#c9475a", "#7a2232"), shoes=("#141416", "#2a2a2e"), sneakers=False, head_yaw=30, subsurf=1)
-KID2 = dict(KID1, body="m", height=1.34, hair="bangs", legs="shorts", tie=("tie", "#22336a"),
+KID2 = dict(KID1, body="kid_m", height=1.34, hair="bangs", legs="shorts", tie=("tie", "#22336a"),
             backpack=("#2c4a8a", "#14244a"), head_yaw=0)
 shop, _ = ch.build(C.PEOPLE_C, (6.9, 53.0, 0.15), SHOP, pose_mode="stand", heading=-90)
 cop, _ = ch.build(C.PEOPLE_C, (-5.5, 49.0, 0.15), COP, pose_mode="umbrella", heading=90)

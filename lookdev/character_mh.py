@@ -33,6 +33,11 @@ BODY = {
                  "universal-male-young-averagemuscle-minweight.target": 0.55,
                  "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
                  "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
+    # children: slim, soft, no muscle definition (no muscle or height targets)
+    "kid_m": {"asian-male-young.target": 0.8, "caucasian-male-young.target": 0.2,
+              "universal-male-young-averagemuscle-minweight.target": 0.55},
+    "kid_f": {"asian-female-young.target": 0.8, "caucasian-female-young.target": 0.2,
+              "universal-female-young-averagemuscle-minweight.target": 0.5},
     "m_heavy": {"asian-male-young.target": 0.5, "african-male-young.target": 0.2, "caucasian-male-young.target": 0.3,
                 "universal-male-young-averagemuscle-maxweight.target": 0.55,
                 "male-young-averagemuscle-averageweight-idealproportions.target": 0.6},
@@ -490,7 +495,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     # --- brows ray-cast onto the forehead
     skin_bvh = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], skin_faces)
     bm = bmesh.new()
-    thick = 0.0034 if st["body"] != "f" else 0.0024
+    thick = 0.0034 if st["body"] not in ("f", "kid_f") else 0.0024
     for sx in (1, -1):
         ec = J("eye.L" if sx > 0 else "eye.R")
         rows = []
