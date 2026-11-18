@@ -28,6 +28,7 @@ c = cam.constraints.new("TRACK_TO"); c.target = t; c.track_axis = "TRACK_NEGATIV
 OUT = os.path.join(HERE, "renders"); os.makedirs(OUT, exist_ok=True)
 for name, loc, tgt, lens in VIEWS if os.environ.get("CAST") == "kids" else (("lineup", (0, -6.4, 1.0), (0, 0, 0.95), 50),
                              ("face_hero", (-0.32, -0.85, 1.8), (-0.5, 0, 1.77), 70),
+                             ("face_hero_front", (-0.5, -0.95, 1.79), (-0.5, 0, 1.77), 75),
                              ("face_narr", (0.66, -0.85, 1.69), (0.5, 0, 1.67), 70)):
     cam.location = loc; t.location = tgt; cd.lens = lens
     scn.render.filepath = os.path.join(OUT, f"cast_{name}.png"); bpy.ops.render.render(write_still=True)

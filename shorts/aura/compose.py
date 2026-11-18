@@ -47,6 +47,17 @@ def grade(a):
     a = a * (1 - np.clip(r - 0.55, 0, 1)[..., None] * 0.45)
     return a + np.random.default_rng(1).normal(0, 0.012, a.shape).astype(np.float32)
 
+FOLLOW = next(s for s in json.load(open(os.path.join(HERE, "beats.json")))["shots"] if s["id"] == "follow")
+
+def handheld(a, f):
+    """First-person follow shot: the hand-held roll a walking camera can't avoid (position shake is in film.py)."""
+    u = 2 * np.pi * f / 15.0
+    roll = 1.3 * np.sin(u / 2 + 0.3) + 0.45 * np.sin(f * 0.9) + 0.25 * np.sin(f * 2.3 + 1)
+    h, w, _ = a.shape; z = 1.07
+    im = Image.fromarray((np.clip(a, 0, 1) * 255).astype(np.uint8)).rotate(roll, Image.BICUBIC)
+    cw, ch_ = int(w / z), int(h / z); im = im.crop(((w - cw) // 2, (h - ch_) // 2, (w - cw) // 2 + cw, (h - ch_) // 2 + ch_))
+    return np.asarray(im.resize((w, h), Image.BICUBIC), np.float32) / 255
+
 prev = None
 for f in range(first, last + 1):
     src = os.path.join(HERE, "frames", f"f{f:04d}.png"); dst = os.path.join(HERE, "graded", f"f{f:04d}.png")
@@ -62,6 +73,8 @@ for f in range(first, last + 1):
         m = np.asarray(mi, np.float32) / 255
         if m.max() > 0:
             a = add_aura(a, m, aura_k(f))
+    if FOLLOW["f0"] <= f <= FOLLOW["f1"]:
+        a = handheld(a, f)
     Image.fromarray((np.clip(grade(a), 0, 1) * 255).astype(np.uint8)).save(dst)
     prev = dst
 print("composed", first, last)

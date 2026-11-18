@@ -55,7 +55,34 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
 
 # the lead's fighter build (only when build() is given HERO itself): webtoon muscle anatomy
 HERO_LOOK = dict(body="m_muscle", vtaper=True, crease=0.012, turtleneck=True,
-                 coat=("#23262c", "#090b0e"), hem=0.36, open_skirt=True)   # his long black coat, over a fighter's body
+                 coat=("#23262c", "#090b0e"), hem=0.36, open_skirt=True,   # his long black coat, over a fighter's body
+                 face="idol", hair="idol", locks=True, brow_style="sharp", jaw_v=0.42)
+
+# face sculpts from MakeHuman's CC0 face targets (assets/makehuman/targets/face): weights per target
+FACES = {
+    # K-pop idol / webtoon lead: slim oval V-line face, small sharp chin, high straight narrow nose,
+    # long upturned eyes, low angled brows, small mouth with a defined cupid's bow
+    "idol": {"head-oval": 0.7, "head-invertedtriangular": 0.35, "head-scale-horiz-decr": 0.25, "head-age-decr": 0.4,
+             "chin-width-decr": 0.7, "chin-triangle": 0.5, "chin-height-decr": 0.6, "mouth-trans-up": 0.35, "chin-prominent-incr": 0.25,
+             "l-cheek-volume-decr": 0.6, "r-cheek-volume-decr": 0.6, "l-cheek-bones-incr": 0.3, "r-cheek-bones-incr": 0.3,
+             "nose-scale-horiz-decr": 0.55, "nose-point-width-decr": 0.7, "nose-flaring-decr": 0.6,
+             "nose-nostrils-width-decr": 0.6, "nose-volume-decr": 0.45, "nose-hump-decr": 0.5, "nose-greek-incr": 0.35,
+             "nose-point-up": 0.25, "nose-scale-vert-incr": 0.2, "nose-width1-decr": 0.4, "nose-width2-decr": 0.4,
+             "l-eye-corner1-up": 0.7, "r-eye-corner1-up": 0.7, "l-eye-height2-decr": 0.35, "r-eye-height2-decr": 0.35,
+             "l-eye-scale-incr": 0.25, "r-eye-scale-incr": 0.25, "l-eye-epicanthus-in": 0.3, "r-eye-epicanthus-in": 0.3,
+             "eyebrows-angle-up": 0.5, "eyebrows-trans-down": 0.3, "forehead-scale-vert-decr": 0.6,
+             "mouth-scale-horiz-decr": 0.25, "mouth-cupidsbow-incr": 0.5, "mouth-angles-up": 0.2,
+             "mouth-lowerlip-volume-incr": 0.3, "mouth-upperlip-volume-decr": 0.2, "neck-scale-vert-incr": 0.4},
+}
+
+def apply_face(V, name):
+    for fn, w in FACES[name].items():
+        key = "face/" + fn
+        if key not in _TGT:
+            _TGT[key] = [(int(a), float(b), float(c), float(d)) for a, b, c, d in
+                         (l.split() for l in open(os.path.join(MH, "targets", "face", fn + ".target")) if l[0] not in "#\n")]
+        for i, dx, dy, dz in _TGT[key]:
+            V[i] += Vector((dx * S, -dz * S, dy * S)) * w
 
 def set_interp(idblock, kind="LINEAR", data_path=None):
     """Force interpolation on an ID's keyframes (Blender 5 ignores the new-key preference in background mode)."""
@@ -303,6 +330,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             t = max(0.0, min(1.0, (Vl[i].z - cl.z + 0.01) / 0.05))
             if t > 0:
                 V[i] = V[i].lerp(Vl[i] + (cm - cl), t)
+    if st.get("face"):
+        apply_face(V, st["face"])
     body_faces = [f for f, g in zip(F, G) if g == "body"]
     zmin = min(V[i].z for f in body_faces for i in f)
     for v in V:
@@ -319,7 +348,22 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             d = v - piv; v.x = piv.x + d.x * k * (1.0 - 0.12 * t); v.y = piv.y + d.y * k; v.z = piv.z + d.z * k
             jaw = max(0.0, min(1.0, (eye_z - 0.02 - v.z) / 0.085)) * t   # cheekbone -> chin: V-line jaw
             v.x *= 1.0 - 0.2 * jaw
-            v.z -= 0.01 * jaw                                    # slightly longer chin
+            v.z -= (0.0 if st.get("jaw_v") else 0.01) * jaw     # slightly longer chin (not on the short idol face)
+    if st.get("jaw_v"):   # idol V-line: taper the face from the cheekbones to a small chin; the neck stays as it is
+        ny = jj("neck03").y
+        NOTFACE = ("neck", "spine", "clavicle", "shoulder", "breast", "upperarm", "pectoral")
+        hw = {i: sum(w for b, w in lst if not b.startswith(NOTFACE)) for i, lst in per_vert.items()}
+        face = [i for i, w in hw.items() if w > 0.5 and nz - 0.08 < V[i].z < eye_z and abs(V[i].x) < 0.13]
+        zc = min(V[i].z for i in face)
+        for i in face:
+            v = V[i]; w = min(1.0, (hw[i] - 0.5) / 0.4)
+            front = max(0.0, min(1.0, (ny - 0.03 - v.y) / 0.04))
+            rn = 0.04 - 0.028 * front
+            if abs(v.x) <= rn:
+                continue
+            j = max(0.0, min(1.0, (eye_z - 0.015 - v.z) / (eye_z - 0.015 - zc))); j = j * j * (3 - 2 * j)
+            k = 1.0 - st["jaw_v"] * j * w
+            v.x = math.copysign(rn + (abs(v.x) - rn) * k, v.x)
     if st.get("vtaper"):   # webtoon fighter build: wide shoulders and lats, narrow waist, arms pushed out
         jz = lambda n: sum(V[i].z for i in sk["joints"][sk["bones"][n]["head"]]) / len(sk["joints"][sk["bones"][n]["head"]])
         waist = jz("spine04"); chest = jz("spine01"); nk = jz("neck01")
@@ -502,8 +546,13 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         for k in range(13):
             s = k / 12
             x = ec.x + sx * (-0.016 + 0.036 * s)
-            zc = ec.z + 0.019 + 0.003 * math.sin(math.pi * min(s * 1.15, 1)) - 0.004 * s
-            half = thick * (1 - 0.55 * s) + 0.0006
+            if st.get("brow_style") == "sharp":   # low, straight and rising toward a tapered tail: a sharp webtoon brow
+                x = ec.x + sx * (-0.02 + 0.04 * s)
+                zc = ec.z + 0.0145 + 0.008 * math.sin(math.pi * 0.5 * min(s * 1.25, 1)) - 0.005 * max(0.0, s - 0.75) / 0.25
+                half = thick * 1.2 * (1 - 0.7 * s ** 1.5) + 0.0005
+            else:
+                zc = ec.z + 0.019 + 0.003 * math.sin(math.pi * min(s * 1.15, 1)) - 0.004 * s
+                half = thick * (1 - 0.55 * s) + 0.0006
             ring = []
             for dz in (-half, half):
                 hit = skin_bvh.ray_cast(Vector((x, ec.y - 0.3, zc + dz)), Vector((0, 1, 0)))
@@ -517,6 +566,36 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     brows = bpy.data.objects.new("brows", me); coll.objects.link(brows)
     brows.data.materials.append(cel(st["brows"], "#0b0a09", rim=st["brows"], name="brow"))
     weights_from_body(brows, kd, bused, per_vert, k=2); add_mods(brows, arm, subsurf=0, outline=0); objs.append(brows)
+
+    # --- idol fringe: flat tapered clumps lying on the forehead, swept toward the part
+    if st["hair"] == "idol":
+        HM = hair_objs[0][0].data.materials[0]
+        ecL, ecR = J("eye.L"), J("eye.R"); mid = (ecL + ecR) / 2; ez = mid.z
+        bm = bmesh.new()
+        CLUMPS = ((-0.060, 0.030, 0.010, 0.022), (-0.044, 0.016, 0.014, 0.026), (-0.026, 0.008, 0.018, 0.028),
+                  (-0.008, 0.012, 0.022, 0.027), (0.010, 0.004, 0.026, 0.026), (0.028, 0.016, 0.026, 0.024),
+                  (0.046, 0.034, 0.020, 0.018))
+        for x0, tip_z, sweep, w0 in CLUMPS:      # root x, tip height above the eyes, sideways sweep, root width
+            pts = []
+            for k in range(7):
+                t = k / 6
+                x = mid.x + x0 + sweep * t ** 1.4; z = ez + 0.105 - (0.105 - tip_z) * t ** 0.9
+                hit = skin_bvh.ray_cast(Vector((x, mid.y - 0.3, z)), Vector((0, 1, 0)))
+                if not hit[0]:
+                    hit = skin_bvh.find_nearest(Vector((x, mid.y, z)))
+                p, n = hit[0], hit[1]
+                pts.append((p + n * (0.03 - 0.024 * t ** 0.7), n))
+            ring = []
+            for k, (p, n) in enumerate(pts):
+                t = k / 6; d = (pts[min(k + 1, 6)][0] - pts[max(k - 1, 0)][0]).normalized()
+                side = d.cross(n).normalized(); w = w0 * (1 - t) ** 0.8 * 0.5 + 0.0004
+                ring.append((bm.verts.new(p - side * w), bm.verts.new(p + side * w)))
+            for a, b in zip(ring, ring[1:]):
+                bm.faces.new((a[0], b[0], b[1], a[1]))
+        me = bpy.data.meshes.new("fringe"); bm.to_mesh(me); bm.free()
+        fringe = bpy.data.objects.new("fringe", me); coll.objects.link(fringe); fringe.data.materials.append(HM)
+        weights_from_body(fringe, kd, bused, per_vert, k=2); add_mods(fringe, arm, subsurf=1, solidify=0.004, outline=1.0)
+        objs.append(fringe)
 
     # --- shoes
     make_shoes(coll, V, bused, dom, kd, per_vert, st, finish)
@@ -656,6 +735,12 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
             if abs(c.x) > hx * 0.86 and c.z < eyeL.z + 0.025:
                 return False
             return c.z > thr
+        if style == "idol":      # two-block: soft fringe swept to one side, the forehead showing at the part
+            side = c.x / hx
+            thr = eyeL.z - 0.075 + (0.152 + 0.012 * max(0.0, side)) * frontness
+            if abs(c.x) > hx * 0.84 and c.z < eyeL.z + 0.045:
+                return False
+            return c.z > thr
         thr = eyeL.z - 0.075 + (0.155 if style == "slick" else 0.135) * frontness   # slick: higher hairline, forehead shows
         if abs(c.x) > hx * 0.86 and c.z < eyeL.z + 0.035:
             return False
@@ -670,6 +755,10 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
         if style == "slick":   # swept back: volume on top, pushed toward the crown, tight sides
             th = 0.004 + 0.022 * up + 0.006 * front * up + 0.0022 * math.sin(p.x * 260 + p.y * 120) * up
             HV[i] = p + n * th + Vector((0, 0.014 * up, 0.006 * up))
+        elif style == "idol":    # volume on top, fringe falling forward and swept toward the part, tight sides
+            side = p.x / hx
+            th = 0.005 + 0.028 * up + 0.008 * front * up + 0.003 * math.sin(p.x * 300 + p.z * 200) * up
+            HV[i] = p + n * th + Vector((0.004 * up * side, 0.004 * up, 0.008 * up))
         elif style == "bangs":   # thick fringe falling forward over the brow
             low = min(1.0, max(0.0, (eyeL.z + 0.06 - p.z) / 0.06)) * front
             th = 0.008 + 0.016 * up + 0.012 * low + 0.002 * math.sin(p.x * 420) * (up + low)
@@ -684,7 +773,7 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
             th = 0.012 + 0.008 * up + 0.014 * low + 0.0012 * math.sin(p.z * 300)
             HV[i] = p + n * th + Vector((0, 0.004 * low, 0))
     hair, used = make_mesh("hair", coll, HV, hf)
-    HM = cel(st["hair_col"], "#050608", rim="#4f5d7c", spec=0.02, spec_col="#3c4660", rim_amt=0.45, name="hair")  # thin gloss band
+    HM = cel(st["hair_col"], "#050608", rim="#4f5d7c", spec=0.0 if style == "idol" else 0.02, spec_col="#3c4660", rim_amt=0.45, name="hair")  # thin gloss band
     hair.data.materials.append(HM)
     return [(hair, used, 0.004)]
 

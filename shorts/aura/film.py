@@ -236,7 +236,18 @@ shot("cop",         fixed((-3.25, 47.5, 1.35), (-5.5, 49.2, 1.72), (-5.5, 49.0, 
                     fixed((-3.5, 47.8, 1.38), (-5.5, 49.2, 1.72), (-5.5, 49.0, 1.7), 45, 2.0))
 shot("kids",        fixed((3.2, 42.7, 1.0), (5.65, 44.7, 1.12), (5.6, 44.7, 1.15), 34, 2.2),
                     fixed((3.45, 42.95, 1.02), (5.65, 44.7, 1.12), (5.6, 44.7, 1.15), 34, 2.2))
-shot("follow",      on_hero((0.75, 3.3, 1.72), (0, -6, 1.35), 30, 2.8),  on_hero((0.65, 3.1, 1.7), (0, -6, 1.3), 30, 2.8))
+def pov(f):   # "So one night I followed him": first person, handheld, walking a few steps behind him
+    import math
+    a, b = fr("follow"), fr("follow", 1); u = 2 * math.pi * f / 15.0      # ~2 steps a second
+    back = 3.9 - 0.7 * (f - a) / (b - a)                                    # closing in on him
+    cam_p = hp(f) + V((0.35 + 0.018 * math.sin(u / 2) + 0.006 * (math.sin(f * 0.71) + 0.6 * math.sin(f * 1.93 + 1)),
+                       back,
+                       1.66 + 0.02 * math.cos(u) + 0.005 * (math.sin(f * 0.83 + 2) + 0.6 * math.sin(f * 2.11))))
+    look = hp(f) + V((-0.1 + 0.05 * math.sin(f * 0.37 + 0.5) + 0.025 * math.sin(f * 1.31),
+                      -6, 1.3 + 0.04 * math.sin(f * 0.43 + 2) + 0.02 * math.sin(f * 1.7) + 0.012 * math.cos(u + 0.6)))
+    return cam_p, look, hp(f) + head, 24, 4.0
+for f in range(fr("follow"), fr("follow", 1) + 1):
+    key(f, *pov(f))
 shot("freeze",      on_hero((-2.9, -0.6, 1.25), (0, -0.4, 1.55), 26, 3.5), on_hero((-2.7, -1.2, 1.3), (0, -0.4, 1.6), 26, 3.5))   # side track: rain stops
 shot("reveal_low",  on_hero((0.55, -2.4, 0.32), (0, 0, 2.6), 20, 5.0),   on_hero((0.5, -2.2, 0.3), (0, 0, 2.8), 20, 5.0))   # up into the frozen storm
 shot("reveal_crane", on_hero((1.0, 4.0, 2.2), (0, -6, 1.2), 26, 5.6),    on_hero((0.5, 11.0, 23.0), (0, -9, 0.5), 24, 11.0))
