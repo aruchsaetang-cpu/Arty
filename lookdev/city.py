@@ -549,7 +549,7 @@ def street_props():
     M = Matrix.Identity(4)
     traffic_light(ROAD_HALF + 0.4, CROSS_Y - 2.2, 1); traffic_light(-ROAD_HALF - 0.4, CROSS_Y + 2.2, -1)
     # parked cars along the curbs
-    for (x, y, rz, c) in ((3.3, 32, 0, "#d6d8da"), (3.3, 38.5, 0, "#1d2a3a"), (-3.3, 52, 180, "#7a1d22"),
+    for (x, y, rz, c) in ((3.3, 32, 0, "#d6d8da"), (3.3, 38.5, 0, "#1d2a3a"), (-3.3, 18, 180, "#7a1d22"),
                           (3.3, 70, 0, "#2b2d30"), (-3.3, 84, 180, "#c8c3b5"), (3.3, 104, 0, "#30465c")):
         car(Matrix.Translation((x, y, 0)) @ Matrix.Rotation(math.radians(rz), 4, "Z"), c)
     # vending machines, bins, bollards, planters with trees, scooters
@@ -692,16 +692,19 @@ def extra_style():
         st["skirt_hem"] = random.uniform(0.42, 0.56); st["tights"] = random.choice(["#23222a", "#3a2f2a"])
     return st
 
-def crowd():
+def crowd(with_hero=True, avoid=()):
     actors = []
-    # hero walks down the middle of the wet street toward camera
-    hero, _ = ch.build(PEOPLE_C, (0.6, 34, 0), ch.HERO, pose_mode="walk")
-    hero.name = "HERO"
-    ch.animate_walk(hero, (0.6, 34, 0), 0.0, -40, FRAMES, phase=0.0, cycle=34)
-    actors.append(hero)
+    if with_hero:   # hero walks down the middle of the wet street toward camera
+        hero, _ = ch.build(PEOPLE_C, (0.6, 34, 0), ch.HERO, pose_mode="walk")
+        hero.name = "HERO"
+        ch.animate_walk(hero, (0.6, 34, 0), 0.0, -40, FRAMES, phase=0.0, cycle=34)
+        actors.append(hero)
     for i in range(PEOPLE):
-        st = extra_style(); side = random.choice([-1, 1])
+        st = extra_style(); st["subsurf"] = 0 if os.environ.get("LIGHT_EXTRAS") else 1
+        side = random.choice([-1, 1])
         y = random.uniform(-2, 90); x = side * random.uniform(ROAD_HALF + 0.8, FRONT - 0.9)
+        while any(abs(x - ax) < 2.5 and abs(y - ay) < 3.0 for ax, ay in avoid):
+            y = random.uniform(-2, 90)
         r = random.random()
         if r < 0.82:   # walkers
             heading = random.choice([0.0, 180.0]); prop = "umbrella" if random.random() < 0.55 else None
@@ -721,83 +724,96 @@ def crowd():
     return actors
 
 # ======================================================================= assemble
-t0 = __import__("time").time()
-actors = crowd()                       # people first: their pose solves stay cheap in an empty scene
-print("people", round(__import__("time").time() - t0, 1), "s")
-ground()
-street_side(-1); street_side(1)
-for side, ys in ALLEYS.items():
-    for ya in ys:
-        alley(side, ya)
-poles_and_wires(); build_wires(); street_props(); skyline()
-for name, b in list(_B.items()):
-    b.done(CITY if name in ("ledges", "fins", "parapet", "hut", "tank", "pipes", "ac", "ac_grille", "rail", "clutter", "mullion", "fascia",
-                            "curb", "paint", "manhole") else PROPS)
-# moving traffic: one car toward camera, one away
-prefs.keyframe_new_interpolation_type = "LINEAR"
-for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 40, 40 + 11 * FRAMES / 30, 0, "#1a2c44")):
-    root = bpy.data.objects.new("traffic", None); PROPS.objects.link(root)
-    for p in car(Matrix.Rotation(math.radians(rz), 4, "Z"), col, moving=True, name="mcar"):
-        mw = p.matrix_world.copy(); p.parent = root; p.matrix_world = mw
-    root.location = (x, y0, 0); root.keyframe_insert("location", frame=1)
-    root.location = (x, y1, 0); root.keyframe_insert("location", frame=FRAMES)
-rain(0, 22, 18, 46)
-fog(); world()
-print("objects", len(bpy.data.objects), "build", round(__import__("time").time() - t0, 1), "s")
+def build_scene(with_hero=True, avoid=(), rain_box=(0, 22, 18, 46)):
+    """Build the whole city. People first: their pose solves stay cheap in an empty scene."""
+    t0 = __import__("time").time()
+    actors = crowd(with_hero, avoid)
+    print("people", round(__import__("time").time() - t0, 1), "s")
+    ground()
+    street_side(-1); street_side(1)
+    for side, ys in ALLEYS.items():
+        for ya in ys:
+            alley(side, ya)
+    poles_and_wires(); build_wires(); street_props(); skyline()
+    for name, b in list(_B.items()):
+        b.done(CITY if name in ("ledges", "fins", "parapet", "hut", "tank", "pipes", "ac", "ac_grille", "rail", "clutter", "mullion", "fascia",
+                                "curb", "paint", "manhole") else PROPS)
+    _B.clear()
+    prefs.keyframe_new_interpolation_type = "LINEAR"      # moving traffic: one car toward camera, one away
+    for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 72, 72 + 11 * FRAMES / 30, 0, "#1a2c44")):
+        root = bpy.data.objects.new("traffic", None); PROPS.objects.link(root)
+        for p in car(Matrix.Rotation(math.radians(rz), 4, "Z"), col, moving=True, name="mcar"):
+            mw = p.matrix_world.copy(); p.parent = root; p.matrix_world = mw
+        root.location = (x, y0, 0); root.keyframe_insert("location", frame=1)
+        root.location = (x, y1, 0); root.keyframe_insert("location", frame=FRAMES)
+    rain(*rain_box)
+    fog(); world()
+    print("objects", len(bpy.data.objects), "build", round(__import__("time").time() - t0, 1), "s")
+    return actors
 
-# ======================================================================= camera, lines, render
-scn.render.use_freestyle = bool(os.environ.get("FREESTYLE")); scn.render.line_thickness_mode = "ABSOLUTE"; scn.render.line_thickness = 1.0 * SCALE / 50
-vl = scn.view_layers[0]; fs = vl.freestyle_settings
-ls = fs.linesets[0] if fs.linesets else fs.linesets.new("people")
-ls.select_by_collection = True; ls.collection = PEOPLE_C
-ls.select_silhouette = True; ls.select_border = True; ls.select_crease = False; ls.select_material_boundary = True
-ls.linestyle = ls.linestyle or bpy.data.linestyles.new("ink"); ls.linestyle.color = (0.03, 0.035, 0.05); ls.linestyle.thickness = 1.2
+def render_settings(scale, samples):
+    scn.render.engine = "CYCLES"; scn.cycles.device = "CPU"
+    scn.cycles.samples = samples; scn.cycles.use_adaptive_sampling = True; scn.cycles.adaptive_threshold = 0.03
+    scn.cycles.use_denoising = True; scn.cycles.denoiser = "OPENIMAGEDENOISE"
+    scn.cycles.max_bounces = 4; scn.cycles.diffuse_bounces = 2; scn.cycles.glossy_bounces = 3
+    scn.cycles.transparent_max_bounces = 12; scn.cycles.volume_bounces = 0; scn.cycles.volume_step_rate = 8.0
+    scn.cycles.sample_clamp_indirect = 5.0; scn.cycles.light_sampling_threshold = 0.02
+    scn.render.resolution_x, scn.render.resolution_y = 1080, 1920; scn.render.resolution_percentage = scale
+    scn.view_settings.view_transform = "AgX"; scn.view_settings.look = "AgX - Punchy"; scn.view_settings.exposure = -0.4
+    scn.render.use_persistent_data = True      # keep the static city in memory between frames
 
-cd = bpy.data.cameras.new("cam"); cd.sensor_fit = "VERTICAL"; cd.sensor_height = 36; cd.clip_start = 0.05; cd.clip_end = 3000
-cam = bpy.data.objects.new("cam", cd); scn.collection.objects.link(cam); scn.camera = cam
-tgt = bpy.data.objects.new("cam_t", None); scn.collection.objects.link(tgt)
-c = cam.constraints.new("TRACK_TO"); c.target = tgt; c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
-cd.dof.use_dof = True; cd.dof.aperture_fstop = 2.8; cd.dof.aperture_blades = 7
-hero = actors[0]
-SHOTS = {
-    "street": dict(loc=(1.8, -6.0, 1.7), tgt=(0.0, 40, 5.5), lens=22, f=8, focus=(0, 26, 1.5), frame=1),
-    "hero":   dict(loc=(1.2, 22.5, 1.25), tgt=(0.4, 31, 1.75), lens=35, f=2.2, focus="HERO", frame=1),
-    "alley":  dict(loc=(-3.2, 32.5, 1.6), tgt=(-40, 32.5, 4.5), lens=24, f=5.6, focus=(-20, 32.5, 2), frame=1),
-    "aerial": dict(loc=(0.8, -16.0, 24.0), tgt=(0.0, 45, 3.0), lens=24, f=11, focus=(0, 40, 0), frame=1),
-}
-if SHOT == "clip":     # camera dollies backward in front of the hero
-    prefs.keyframe_new_interpolation_type = "LINEAR"
-    cd.lens = 32; cd.dof.focus_object = hero; cd.dof.aperture_fstop = 2.8
-    for f in (1, FRAMES):
-        scn.frame_set(f); hp = hero.matrix_world.translation
-        cam.location = (hp.x + 0.9, hp.y - 6.5, 1.45); cam.keyframe_insert("location", frame=f)
-        tgt.location = (hp.x - 0.2, hp.y + 4, 2.4); tgt.keyframe_insert("location", frame=f)
-else:
-    S = SHOTS[SHOT]; scn.frame_set(S["frame"])
-    cam.location = S["loc"]; tgt.location = S["tgt"]; cd.lens = S["lens"]; cd.dof.aperture_fstop = S["f"]
-    if S["focus"] == "HERO":
-        cd.dof.focus_object = hero
+def make_camera():
+    cd = bpy.data.cameras.new("cam"); cd.sensor_fit = "VERTICAL"; cd.sensor_height = 36; cd.clip_start = 0.05; cd.clip_end = 3000
+    cam = bpy.data.objects.new("cam", cd); scn.collection.objects.link(cam); scn.camera = cam
+    tgt = bpy.data.objects.new("cam_t", None); scn.collection.objects.link(tgt)
+    c = cam.constraints.new("TRACK_TO"); c.target = tgt; c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
+    cd.dof.use_dof = True; cd.dof.aperture_fstop = 2.8; cd.dof.aperture_blades = 7
+    return cam, tgt, cd
+
+# ======================================================================= camera, lines, render (CLI)
+if __name__ == "__main__":
+    actors = build_scene()
+    scn.render.use_freestyle = bool(os.environ.get("FREESTYLE")); scn.render.line_thickness_mode = "ABSOLUTE"; scn.render.line_thickness = 1.0 * SCALE / 50
+    vl = scn.view_layers[0]; fs = vl.freestyle_settings
+    ls = fs.linesets[0] if fs.linesets else fs.linesets.new("people")
+    ls.select_by_collection = True; ls.collection = PEOPLE_C
+    ls.select_silhouette = True; ls.select_border = True; ls.select_crease = False; ls.select_material_boundary = True
+    ls.linestyle = ls.linestyle or bpy.data.linestyles.new("ink"); ls.linestyle.color = (0.03, 0.035, 0.05); ls.linestyle.thickness = 1.2
+
+    cam, tgt, cd = make_camera()
+    hero = actors[0]
+    SHOTS = {
+        "street": dict(loc=(1.8, -6.0, 1.7), tgt=(0.0, 40, 5.5), lens=22, f=8, focus=(0, 26, 1.5), frame=1),
+        "hero":   dict(loc=(1.2, 22.5, 1.25), tgt=(0.4, 31, 1.75), lens=35, f=2.2, focus="HERO", frame=1),
+        "alley":  dict(loc=(-3.2, 32.5, 1.6), tgt=(-40, 32.5, 4.5), lens=24, f=5.6, focus=(-20, 32.5, 2), frame=1),
+        "aerial": dict(loc=(0.8, -16.0, 24.0), tgt=(0.0, 45, 3.0), lens=24, f=11, focus=(0, 40, 0), frame=1),
+    }
+    if SHOT == "clip":     # camera dollies backward in front of the hero
+        prefs.keyframe_new_interpolation_type = "LINEAR"
+        cd.lens = 32; cd.dof.focus_object = hero; cd.dof.aperture_fstop = 2.8
+        for f in (1, FRAMES):
+            scn.frame_set(f); hp = hero.matrix_world.translation
+            cam.location = (hp.x + 0.9, hp.y - 6.5, 1.45); cam.keyframe_insert("location", frame=f)
+            tgt.location = (hp.x - 0.2, hp.y + 4, 2.4); tgt.keyframe_insert("location", frame=f)
     else:
-        fo = bpy.data.objects.new("focus", None); scn.collection.objects.link(fo); fo.location = S["focus"]; cd.dof.focus_object = fo
+        S = SHOTS[SHOT]; scn.frame_set(S["frame"])
+        cam.location = S["loc"]; tgt.location = S["tgt"]; cd.lens = S["lens"]; cd.dof.aperture_fstop = S["f"]
+        if S["focus"] == "HERO":
+            cd.dof.focus_object = hero
+        else:
+            fo = bpy.data.objects.new("focus", None); scn.collection.objects.link(fo); fo.location = S["focus"]; cd.dof.focus_object = fo
 
-scn.render.engine = "CYCLES"; scn.cycles.device = "CPU"
-scn.cycles.samples = SAMPLES; scn.cycles.use_adaptive_sampling = True; scn.cycles.adaptive_threshold = 0.03
-scn.cycles.use_denoising = True; scn.cycles.denoiser = "OPENIMAGEDENOISE"
-scn.cycles.max_bounces = 4; scn.cycles.diffuse_bounces = 2; scn.cycles.glossy_bounces = 3
-scn.cycles.transparent_max_bounces = 12; scn.cycles.volume_bounces = 0; scn.cycles.volume_step_rate = 8.0
-scn.cycles.sample_clamp_indirect = 5.0; scn.cycles.light_sampling_threshold = 0.02
-scn.render.resolution_x, scn.render.resolution_y = 1080, 1920; scn.render.resolution_percentage = SCALE
-scn.view_settings.view_transform = "AgX"; scn.view_settings.look = "AgX - Punchy"; scn.view_settings.exposure = -0.4
-if os.environ.get("NORENDER"):
-    print("built only"); sys.exit(0)
-if SHOT == "clip":
-    scn.render.image_settings.file_format = "PNG"
-    scn.render.filepath = os.path.join(OUT, "clip", "f")
-    scn.render.use_overwrite = not os.environ.get("RESUME")      # RESUME=1 skips frames already on disk
-    bpy.ops.render.render(animation=True)
-    print("WROTE clip frames")
-else:
-    scn.render.image_settings.file_format = "PNG"
-    scn.render.filepath = os.path.join(OUT, f"city_{SHOT}_raw.png")
-    bpy.ops.render.render(write_still=True)
-    print("WROTE", scn.render.filepath)
+    render_settings(SCALE, SAMPLES)
+    if os.environ.get("NORENDER"):
+        print("built only"); sys.exit(0)
+    if SHOT == "clip":
+        scn.render.image_settings.file_format = "PNG"
+        scn.render.filepath = os.path.join(OUT, "clip", "f")
+        scn.render.use_overwrite = not os.environ.get("RESUME")      # RESUME=1 skips frames already on disk
+        bpy.ops.render.render(animation=True)
+        print("WROTE clip frames")
+    else:
+        scn.render.image_settings.file_format = "PNG"
+        scn.render.filepath = os.path.join(OUT, f"city_{SHOT}_raw.png")
+        bpy.ops.render.render(write_still=True)
+        print("WROTE", scn.render.filepath)

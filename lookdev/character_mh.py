@@ -280,7 +280,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     def finish(ob, used=None, subsurf=1, solidify=0.0, kdw=None):
         if used is not None:
             assign_weights(ob, used, per_vert)
-        add_mods(ob, arm, subsurf=subsurf, solidify=solidify); objs.append(ob)
+        add_mods(ob, arm, subsurf=subsurf * st.get("subsurf", 1), solidify=solidify); objs.append(ob)
 
     # --- skin: head, neck, hands (+ lower legs under a skirt)
     keep = ["head", "jaw", "neck", "eye", "oculi", "orbicularis", "oris", "levator", "risorius", "temporalis",
@@ -386,7 +386,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     make_shoes(coll, V, bused, dom, kd, per_vert, st, finish)
 
     # --- pose, scale to height, ground, place
-    posed(arm, pose_mode)
+    posed(arm, pose_mode, st.get("head_yaw", 0.0))
     top = max(V[i].z for f in skin_faces for i in f)
     arm.scale = (st["height"] / top,) * 3
     arm.rotation_euler = (0, 0, math.radians(heading))
@@ -621,18 +621,24 @@ def _prop_arm(aim, prop):
         aim("upperarm01.R", (-0.1, -0.12, -1)); aim("upperarm02.R", (-0.1, -0.12, -1))
         aim("lowerarm01.R", (0.45, -1, 0.55)); aim("lowerarm02.R", (0.45, -1, 0.55)); aim("wrist.R", (0.3, -1, 0.2))
 
-def posed(arm, mode):
+def posed(arm, mode, head_yaw=0.0):
     aim = _aimer(arm); _reset(arm)
     if mode == "walk":           # hero still: mid-stride, natural arm swing
         _walk_phase(arm, aim, 0.0)
-    elif mode in ("stand", "phone"):
+    elif mode in ("stand", "phone", "umbrella"):
         for side, sx in (("L", 1), ("R", -1)):
             aim(f"upperarm01.{side}", (sx * 0.1, 0.02, -1)); aim(f"upperarm02.{side}", (sx * 0.1, 0.02, -1))
             aim(f"lowerarm01.{side}", (sx * 0.02, -0.15, -1)); aim(f"lowerarm02.{side}", (sx * 0.02, -0.15, -1))
             aim(f"wrist.{side}", (sx * 0.03, -0.1, -1))
         if mode == "phone":
             _prop_arm(aim, "phone"); aim("neck02", (0, -0.35, 1)); aim("head", (0, -0.45, 1))
+        if mode == "umbrella":
+            _prop_arm(aim, "umbrella")
     _fingers(arm, aim)
+    if head_yaw:   # look sideways: twist neck and head about their own (vertical) axes
+        for b in ("neck02", "head"):
+            pb = arm.pose.bones[b]
+            pb.rotation_quaternion = pb.rotation_quaternion @ Quaternion((0, 1, 0), math.radians(head_yaw) / 2)
     bpy.context.view_layer.update()
 
 _LIB = {}
@@ -713,3 +719,31 @@ def add_phone(arm, coll):
     coll.objects.link(ph); ph.data.materials.append(glow_mat("#cfe8ff", 3.0))
     bone_parent(ph, arm, "wrist.R")
     return ph
+
+
+def add_cap(arm, coll, colour="#1c2638", badge="#d9b24a"):
+    """Peaked uniform cap on the head bone (police officer)."""
+    bpy.context.view_layer.update()
+    pb = arm.pose.bones["head"]
+    top = arm.matrix_world @ pb.tail; up = (arm.matrix_world.to_3x3() @ (pb.tail - pb.head)).normalized()
+    fwd = arm.matrix_world.to_3x3() @ Vector((0, -1, 0)); fwd.normalize()
+    s = arm.scale[0] / 0.83
+    obs = []
+    bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=0.108 * s, depth=0.075 * s, location=top - up * 0.035 * s)
+    obs.append(bpy.context.object)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=0.125 * s, depth=0.012 * s, location=top + up * 0.005 * s)
+    obs.append(bpy.context.object)
+    bpy.ops.mesh.primitive_cube_add(size=1, location=top - up * 0.075 * s + fwd * 0.1 * s)
+    brim = bpy.context.object; brim.scale = (0.17 * s, 0.07 * s, 0.008 * s); brim.rotation_euler = (math.radians(-12), 0, arm.rotation_euler.z)
+    obs.append(brim)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=0.018 * s, depth=0.004 * s, location=top - up * 0.02 * s + fwd * 0.106 * s,
+                                        rotation=(math.radians(90), 0, arm.rotation_euler.z))
+    obs.append(bpy.context.object)
+    mats = [cel(colour, None, rim="#a9c4ff", name="cap"), cel("#141a26", None, rim="#a9c4ff", name="cap_top"),
+            cel("#0d0f14", None, rim="#7f8faa", spec=0.05, name="brim"), glow_mat(badge, 2.0)]
+    for o, m in zip(obs, mats):
+        o.data.materials.append(m)
+        for c in o.users_collection:
+            c.objects.unlink(o)
+        coll.objects.link(o); bone_parent(o, arm, "head")
+    return obs
