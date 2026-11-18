@@ -2,3 +2,4 @@ __pycache__/
 lookdev/renders/clip/
 shorts/aura/frames/
 shorts/aura/graded/
+shorts/aura/audio/mix_raw.wav
