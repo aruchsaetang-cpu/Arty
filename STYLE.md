@@ -1,7 +1,7 @@
-# Arty style: cinematic manhwa in Neon Harbor
+# Arty style: cinematic manhwa in Sol
 
 Our shorts put **cel-shaded manhwa characters with ink outlines** into a **realistic 3D night city**
-(Neon Harbor), lit by neon, rain and wet reflections. Earlier the guide described a paper-diorama
+(Sol), lit by neon, rain and wet reflections. Earlier the guide described a paper-diorama
 look; that direction is retired (its look test stays in `lookdev/paper_diorama.py`).
 
 | Piece | Where it lives |
@@ -21,7 +21,7 @@ look; that direction is retired (its look test stays in `lookdev/paper_diorama.p
 | Weather | Rain streaks, puddle ripples, steam from manholes | Dry, static streets |
 | Grade | AgX Punchy, then `grade.py`: bloom, teal shadows, warm highlights, vignette, grain | Crushed blacks, oversaturated neon |
 
-## 2. Neon Harbor (original city)
+## 2. Sol (original city)
 
 - Dense mid-rise blocks (12–42 m) along a main street, narrow alleys with lanterns, a crosswalk,
   utility poles with sagging wires, AC units, balconies, rooftop water tanks and billboards.

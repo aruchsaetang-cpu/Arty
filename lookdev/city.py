@@ -1,4 +1,4 @@
-"""Neon Harbor: an original procedural night city for the story shorts.
+"""Sol: an original procedural night city for the story shorts.
 
     /root/.venvs/bpy/bin/python lookdev/city.py <shot> [scale%]
 shots: street | hero | alley | aerial | clip   (clip renders an animated test sequence)
@@ -361,7 +361,7 @@ def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop
             B("bb_frame", METAL).box(M, (0.8, w / 2, h + 3.4), (0.3, min(w - 1, 8), 4.6))
             obj_box("billboard", M, (0.62, w / 2, h + 3.6), (0.04, min(w - 1.4, 7.6), 3.8),
                     glow(random.choice(NEON), 2.0))
-            text(random.choice(["NEON HARBOR", "RIVER LINE", "OPEN LATE", "SKY BANK", "LUNA AIR"]), M, (0.6, w / 2, h + 3.6),
+            text(random.choice(["SOL", "RIVER LINE", "OPEN LATE", "SKY BANK", "LUNA AIR"]), M, (0.6, w / 2, h + 3.6),
                  ROT_FACE_STREET, 0.9, glow("#101014", 1.0), extrude=0.02)
     return mass
 
