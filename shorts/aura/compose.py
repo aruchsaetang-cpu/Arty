@@ -47,16 +47,34 @@ def grade(a):
     a = a * (1 - np.clip(r - 0.55, 0, 1)[..., None] * 0.45)
     return a + np.random.default_rng(1).normal(0, 0.012, a.shape).astype(np.float32)
 
-FOLLOW = next(s for s in json.load(open(os.path.join(HERE, "beats.json")))["shots"] if s["id"] == "follow")
+SHOTS = json.load(open(os.path.join(HERE, "beats.json")))["shots"]
+HAND = {"follow": 1.0, "alley_pov": 0.7, "turn": 0.45, "train_mont": 0.6}     # hand-held roll amount per shot
+TRAIL = json.load(open(os.path.join(HERE, "aura.json"))).get("trail", [0, -1])
 
-def handheld(a, f):
-    """First-person follow shot: the hand-held roll a walking camera can't avoid (position shake is in film.py)."""
+def shot_of(f):
+    return next((s["id"] for s in SHOTS if s["f0"] <= f <= s["f1"]), None)
+
+def handheld(a, f, amt):
+    """First-person shots: the roll a hand-held camera can't avoid (position shake is keyed in film_camera.py)."""
     u = 2 * np.pi * f / 15.0
-    roll = 1.3 * np.sin(u / 2 + 0.3) + 0.45 * np.sin(f * 0.9) + 0.25 * np.sin(f * 2.3 + 1)
+    roll = amt * (1.3 * np.sin(u / 2 + 0.3) + 0.45 * np.sin(f * 0.9) + 0.25 * np.sin(f * 2.3 + 1))
     h, w, _ = a.shape; z = 1.07
     im = Image.fromarray((np.clip(a, 0, 1) * 255).astype(np.uint8)).rotate(roll, Image.BICUBIC)
     cw, ch_ = int(w / z), int(h / z); im = im.crop(((w - cw) // 2, (h - ch_) // 2, (w - cw) // 2 + cw, (h - ch_) // 2 + ch_))
     return np.asarray(im.resize((w, h), Image.BICUBIC), np.float32) / 255
+
+GHOSTS = []          # (rgb * mask, mask) of the last few frames: afterimages while he dodges in slow motion
+def trail(a, m, f):
+    global GHOSTS
+    if not (TRAIL[0] <= f <= TRAIL[1]) or m is None:
+        GHOSTS = []; return a
+    out = a.copy(); free = (1 - np.clip(m * 1.5, 0, 1))[..., None]
+    for k, (g, gm) in enumerate(reversed(GHOSTS)):
+        w_ = (0.5 * 0.62 ** k) * gm[..., None] * free
+        tint = g * np.array([0.85, 0.95, 1.15], np.float32) + 0.12
+        out = out * (1 - w_) + tint * w_
+    GHOSTS = (GHOSTS + [(a * m[..., None], m)])[-4:]
+    return out
 
 prev = None
 for f in range(first, last + 1):
@@ -66,15 +84,17 @@ for f in range(first, last + 1):
             Image.open(prev).save(dst)
         continue
     a = np.asarray(Image.open(src).convert("RGB"), np.float32) / 255
-    mp = os.path.join(HERE, "masks", f"mask_{f:04d}.png")
+    mp = os.path.join(HERE, "masks", f"mask_{f:04d}.png"); m = None
     if os.path.exists(mp):
         mi = Image.open(mp).convert("L")
         mi = mi.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(5))   # close holes punched by raindrops
         m = np.asarray(mi, np.float32) / 255
-        if m.max() > 0:
+        a = trail(a, m, f)
+        if m.max() > 0 and aura_k(f) > 0:
             a = add_aura(a, m, aura_k(f))
-    if FOLLOW["f0"] <= f <= FOLLOW["f1"]:
-        a = handheld(a, f)
+    sid = shot_of(f)
+    if sid in HAND:
+        a = handheld(a, f, HAND[sid])
     Image.fromarray((np.clip(grade(a), 0, 1) * 255).astype(np.uint8)).save(dst)
     prev = dst
 print("composed", first, last)

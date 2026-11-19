@@ -678,6 +678,7 @@ TOPS = [("#cfc4b2", "#7d7466"), ("#e9e6df", "#9a978f"), ("#26292f", "#0e1013"), 
 LEGS = [("#24272d", "#0c0e12"), ("#2f3f5a", "#141c2b"), ("#4a4a4d", "#1d1d1f"), ("#c6bfae", "#7d7768"), ("#141416", "#060607")]
 UMB = ["#1d2230", "#121214", "#6b1d24", "#24405e", "#3c3f44", "#c9a227"]
 
+_LOOKS = random.Random(1234)
 def extra_style():
     sex = random.choice(["m", "m", "f", "f", "m_heavy"])
     st = dict(body=sex, skin=random.choice(SKIN), hair_col=random.choice(HAIR), locks=False,
@@ -686,7 +687,10 @@ def extra_style():
               brows=random.choice(["#1a1714", "#2b211b"]), iris=random.choice(["#5a4232", "#3a2a22", "#4a3a2a"]))
     st["sneakers"] = st["shoes"][0] == "#ecebe7"
     st["height"] = random.uniform(1.58, 1.72) if sex == "f" else random.uniform(1.68, 1.86)
-    st["hair"] = random.choice(["bob", "bob", "short"]) if sex == "f" else random.choice(["short", "short", "buzz"])
+    st["hair"] = random.choice(["bob", "long", "long"]) if sex == "f" else random.choice(["short", "short", "buzz"])
+    st["hair_len"] = _LOOKS.uniform(0.22, 0.38)        # separate RNG: the seeded city layout stays the same
+    st["manhwa_head"] = True        # every passer-by gets a face of their own
+    st["face"] = _LOOKS.choice(["soft_f", "sharp_f"]) if sex == "f" else _LOOKS.choice(["round", "long", "diamond", "square", "boy"])
     r = random.random()
     st["coat"] = random.choice(COATS) if r < 0.75 else None
     st["hem"] = random.choice([0.36, 0.5, 0.72, 0.8])

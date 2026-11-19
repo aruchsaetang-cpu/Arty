@@ -33,6 +33,15 @@ BODY = {
                  "universal-male-young-averagemuscle-minweight.target": 0.55,
                  "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
                  "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
+    "m_fit": {"asian-male-young.target": 0.75, "caucasian-male-young.target": 0.25,
+              "universal-male-young-maxmuscle-averageweight.target": 0.95,
+              "universal-male-young-averagemuscle-minweight.target": 0.6,
+              "male-young-averagemuscle-averageweight-maxheight.target": 0.6,
+              "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
+    "m_slim": {"asian-male-young.target": 0.8, "caucasian-male-young.target": 0.2,
+               "universal-male-young-averagemuscle-minweight.target": 0.65,
+               "male-young-averagemuscle-averageweight-maxheight.target": 0.5,
+               "male-young-averagemuscle-averageweight-idealproportions.target": 0.8},
     # children: slim, soft, no muscle definition (no muscle or height targets)
     "kid_m": {"asian-male-young.target": 0.8, "caucasian-male-young.target": 0.2,
               "universal-male-young-averagemuscle-minweight.target": 0.55},
@@ -53,10 +62,12 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
             top=("#1d1f25", "#07080b"), turtleneck=False, coat=None, manhwa_head=True,
             legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#2a2220")
 
-# the lead's fighter build (only when build() is given HERO itself): webtoon muscle anatomy
-HERO_LOOK = dict(body="m_muscle", vtaper=True, crease=0.012, turtleneck=True,
-                 coat=("#23262c", "#090b0e"), hem=0.36, open_skirt=True,   # his long black coat, over a fighter's body
-                 face="idol", hair="idol", locks=True, brow_style="sharp", jaw_v=0.42)
+# the lead (only when build() is given HERO itself): tall and lean in a black two-piece suit, white shirt, black tie,
+# penny loafers; slicked-back hair, idol face, and the eyes nobody else has (black sclera, white irises)
+HERO_LOOK = dict(body="m_lean", vtaper=False, crease=0.006, turtleneck=False, top=("#f1f1ee", "#a9aeb8"),
+                 coat=("#1b1c21", "#07080a"), hem=0.86, open_skirt=True, coat_flare=(0.02, 0.04), tie=("tie", "#0b0c0f"),
+                 leg_col=("#1e1f25", "#08090c"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
+                 face="idol", hair="slick", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
 
 # face sculpts from MakeHuman's CC0 face targets (assets/makehuman/targets/face): weights per target
 FACES = {
@@ -73,6 +84,26 @@ FACES = {
              "eyebrows-angle-up": 0.5, "eyebrows-trans-down": 0.3, "forehead-scale-vert-decr": 0.6,
              "mouth-scale-horiz-decr": 0.25, "mouth-cupidsbow-incr": 0.5, "mouth-angles-up": 0.2,
              "mouth-lowerlip-volume-incr": 0.3, "mouth-upperlip-volume-decr": 0.2, "neck-scale-vert-incr": 0.4},
+    # everyone else gets a face of their own (no two of the cast share a head)
+    "square": {"head-square": 0.7, "chin-width-incr": 0.5, "eyebrows-angle-down": 0.4, "l-eye-height2-decr": 0.3,
+               "r-eye-height2-decr": 0.3, "nose-scale-horiz-incr": 0.3, "nose-hump-incr": 0.35, "mouth-scale-horiz-incr": 0.3,
+               "head-age-incr": 0.35, "neck-scale-horiz-incr": 0.4},
+    "round": {"head-round": 0.8, "head-fat-incr": 0.7, "l-cheek-volume-incr": 0.7, "r-cheek-volume-incr": 0.7,
+              "nose-volume-incr": 0.5, "nose-point-width-incr": 0.5, "l-eye-scale-decr": 0.3, "r-eye-scale-decr": 0.3,
+              "mouth-upperlip-volume-incr": 0.3, "head-age-incr": 0.5},
+    "long": {"head-rectangular": 0.6, "forehead-scale-vert-incr": 0.4, "nose-scale-vert-incr": 0.5, "chin-height-incr": 0.4,
+             "l-eye-corner1-down": 0.4, "r-eye-corner1-down": 0.4, "mouth-angles-down": 0.3, "eyebrows-angle-down": 0.3},
+    "diamond": {"head-diamond": 0.7, "l-cheek-volume-incr": 0.4, "r-cheek-volume-incr": 0.4, "nose-flaring-incr": 0.5,
+                "head-scale-horiz-incr": 0.3, "head-age-incr": 0.6},
+    "soft_f": {"head-oval": 0.6, "l-eye-scale-incr": 0.45, "r-eye-scale-incr": 0.45, "l-eye-corner1-up": 0.3,
+               "r-eye-corner1-up": 0.3, "nose-scale-horiz-decr": 0.5, "nose-point-width-decr": 0.5, "nose-volume-decr": 0.4,
+               "chin-width-decr": 0.5, "chin-triangle": 0.3, "mouth-lowerlip-volume-incr": 0.4, "mouth-cupidsbow-incr": 0.4,
+               "l-cheek-volume-decr": 0.2, "r-cheek-volume-decr": 0.2, "head-age-decr": 0.4},
+    "sharp_f": {"head-invertedtriangular": 0.5, "l-eye-height2-decr": 0.3, "r-eye-height2-decr": 0.3, "l-eye-corner1-up": 0.6,
+                "r-eye-corner1-up": 0.6, "nose-greek-incr": 0.3, "nose-scale-horiz-decr": 0.4, "chin-triangle": 0.5,
+                "eyebrows-angle-up": 0.4, "mouth-scale-horiz-decr": 0.2, "head-age-decr": 0.3},
+    "boy": {"head-oval": 0.4, "head-age-decr": 0.6, "l-eye-scale-incr": 0.2, "r-eye-scale-incr": 0.2,
+            "nose-scale-horiz-decr": 0.3, "chin-width-decr": 0.3, "nose-volume-decr": 0.3, "mouth-lowerlip-volume-incr": 0.2},
 }
 
 def apply_face(V, name):
@@ -194,7 +225,9 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
     _cache[key] = m
     return m
 
-def eye_mat(radius, iris="#5a4232"):
+def eye_mat(radius, iris="#5a4232", void=False):
+    if void:
+        return void_eye_mat(radius)
     key = ("eye", round(radius, 4), iris)
     if key in _cache:
         return _cache[key]
@@ -211,6 +244,26 @@ def eye_mat(radius, iris="#5a4232"):
     glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * 0.11) ** 2)
     c = mix(mth("MULTIPLY", glint, front), c, lin("#ffffff"))
     e = N.new("ShaderNodeEmission"); L.new(c, e.inputs["Color"]); L.new(e.outputs[0], out.inputs[0])
+    _cache[key] = m
+    return m
+
+def void_eye_mat(radius):
+    """The hero's eyes: black sclera with a small glowing white iris (only he has them)."""
+    key = ("void_eye", round(radius, 4))
+    if key in _cache:
+        return _cache[key]
+    m = bpy.data.materials.new("eye_void")
+    N, L, mth, mix = _nodes(m)
+    out = N.new("ShaderNodeOutputMaterial"); tc = N.new("ShaderNodeTexCoord")
+    sep = N.new("ShaderNodeSeparateXYZ"); L.new(tc.outputs["Object"], sep.inputs[0])
+    r = mth("SQRT", mth("ADD", mth("MULTIPLY", sep.outputs["X"], sep.outputs["X"]), mth("MULTIPLY", sep.outputs["Z"], sep.outputs["Z"])))
+    front = mth("LESS_THAN", sep.outputs["Y"], 0.0)
+    c = lin("#040405")
+    ring = mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.3), front)
+    c = mix(ring, c, lin("#f4f8ff"))
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.12), front), c, lin("#9fb2c8"))
+    e = N.new("ShaderNodeEmission"); L.new(c, e.inputs["Color"]); e.inputs["Strength"].default_value = 1.6
+    L.new(e.outputs[0], out.inputs[0])
     _cache[key] = m
     return m
 
@@ -322,7 +375,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     st.update(style if style is not None and style is not HERO else {})
     V, F, G = load_base(st["body"])
     sk, per_vert = load_rig()
-    if st["body"] == "m_muscle":   # keep the lean face and neck on the muscular body (the muscle target widens the jaw)
+    if st["body"] in ("m_muscle", "m_fit"):   # keep the lean face and neck on the muscular body (the muscle target widens the jaw)
         Vl = load_base("m_lean")[0]
         nidx = sk["joints"][sk["bones"]["neck02"]["head"]]
         cm = sum((V[i] for i in nidx), Vector()) / len(nidx); cl = sum((Vl[i] for i in nidx), Vector()) / len(nidx)
@@ -479,8 +532,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     if st.get("vest"):
         VEST = cel(st["vest"], "#070b16", rim="#5a6b90", rim_amt=0.6, name="vest")
         VS = ("spine", "breast", "pelvis", "clavicle")
-        vf = [f for f in body_faces if region(f, VS) and pelvis_z - 0.06 < min(V[i].z for i in f)
-              and max(V[i].z for i in f) < neck_z - 0.01]
+        vf = [f for f in body_faces if region(f, VS) and pelvis_z + 0.07 < min(V[i].z for i in f)
+              and max(V[i].z for i in f) < neck_z - 0.01]                  # ends at the belt, like a real duty vest
         off = {i: nrm[i] * 0.034 for f in vf for i in f}
         ve, used = make_mesh("vest", coll, V, vf, off); ve.data.materials.append(VEST); finish(ve, used, solidify=0.012)
         band_z = (sternum_z + pelvis_z) / 2 - 0.02
@@ -488,6 +541,12 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         off = {i: nrm[i] * 0.048 for f in bf for i in f}
         bd, used = make_mesh("vest_band", coll, V, bf, off)
         bd.data.materials.append(cel("#d6f25c", "#8fa832", rim="#f4ffc0", name="reflective", glow=1.6)); finish(bd, used)
+        # black duty belt over the tucked-in shirt
+        blf = [f for f in body_faces if region(f, ("spine", "pelvis")) and pelvis_z + 0.015 < min(V[i].z for i in f)
+               and max(V[i].z for i in f) < pelvis_z + 0.075]
+        off = {i: nrm[i] * 0.02 for f in blf for i in f}
+        bl, used = make_mesh("duty_belt", coll, V, blf, off)
+        bl.data.materials.append(cel("#111114", "#050506", rim="#5a6b90", rim_amt=0.5, name="belt")); finish(bl, used, solidify=0.008)
         pf = [f for f in vf if sum(V[i].y for i in f) / len(f) < -0.05 and 0.02 < sum(V[i].x for i in f) / len(f) < 0.1
               and sternum_z - 0.13 < min(V[i].z for i in f) and max(V[i].z for i in f) < sternum_z - 0.05]
         if pf:   # "POLICE" patch
@@ -529,7 +588,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         eidx = {i for f in ef for i in f}; c = sum((V[i] for i in eidx), Vector()) / len(eidx)
         rad = sum((V[i] - c).length for i in eidx) / len(eidx)
         ob, used = make_mesh(f"eye_{side}", coll, [v - c for v in V], ef)
-        ob.location = c; ob.data.materials.append(eye_mat(rad, st.get("iris", "#5a4232"))); assign_weights(ob, used, per_vert); add_mods(ob, arm, subsurf=2, outline=0); objs.append(ob)
+        ob.location = c; ob.data.materials.append(eye_mat(rad, st.get("iris", "#5a4232"), st.get("void_eyes", False))); assign_weights(ob, used, per_vert); add_mods(ob, arm, subsurf=2, outline=0); objs.append(ob)
         for k in (1, 2):
             lf = [f for f, g in zip(F, G) if g == f"helper-{side}-eyelashes-{k}"]
             if lf:
@@ -596,6 +655,44 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         fringe = bpy.data.objects.new("fringe", me); coll.objects.link(fringe); fringe.data.materials.append(HM)
         weights_from_body(fringe, kd, bused, per_vert, k=2); add_mods(fringe, arm, subsurf=1, solidify=0.004, outline=1.0)
         objs.append(fringe)
+
+    # --- long hair: a curtain falling from under the cap down the back, clear of the neck and shoulders
+    if st["hair"] == "long":
+        HM = hair_objs[0][0].data.materials[0]
+        body_bvh = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], body_faces)
+        eyeL = J("eye.L"); sy = eyeL.y + 0.095
+        drop = st.get("hair_len", 0.3)
+        A = [math.radians(-12 + 204 * j / 16) for j in range(17)]
+        rmax = [0.0] * len(A); bm = bmesh.new(); rows = []
+        for k in range(13):
+            t = k / 12; z = eyeL.z + 0.01 - drop * t; row = []
+            for j, a in enumerate(A):
+                d = Vector((math.cos(a), math.sin(a), 0)); c = Vector((0, sy, z))
+                hit = body_bvh.ray_cast(c + d * 0.4, -d)          # from outside toward the axis: outermost surface
+                r_hit = (0.4 - hit[3]) if hit[0] else 0.0
+                r = max(r_hit + 0.014 + 0.006 * t, rmax[j] + 0.004 * t)
+                rmax[j] = r
+                row.append(bm.verts.new(c + d * r + Vector((0, 0.01 * t, 0))))
+            rows.append(row)
+        for r0, r1 in zip(rows, rows[1:]):
+            for j in range(len(A) - 1):
+                bm.faces.new((r0[j], r0[j + 1], r1[j + 1], r1[j]))
+        me = bpy.data.meshes.new("hair_long"); bm.to_mesh(me); bm.free()
+        lh = bpy.data.objects.new("hair_long", me); coll.objects.link(lh); lh.data.materials.append(HM)
+        weights_from_body(lh, kd, bused, per_vert, k=6); add_mods(lh, arm, subsurf=1, solidify=0.008, outline=1.0)
+        objs.append(lh)
+    # --- hoodie: the hood lying folded behind the neck
+    if st.get("hood"):
+        nk = J("neck01")
+        bpy.ops.mesh.primitive_torus_add(major_radius=0.085, minor_radius=0.032, major_segments=32, minor_segments=10,
+                                         location=(0, nk.y + 0.035, nk.z - 0.015), rotation=(math.radians(-28), 0, 0))
+        hd = bpy.context.object; hd.name = "hood"; hd.scale = (1.15, 1.0, 1.0)
+        bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+        for c in list(hd.users_collection): c.objects.unlink(hd)
+        coll.objects.link(hd); hd.data.materials.append(cel(st["top"][0], st["top"][1], rim="#56668a", rim_amt=0.6, name="hood"))
+        for p_ in hd.data.polygons: p_.use_smooth = True
+        add_mods(hd, arm, subsurf=0, outline=1.0)
+        hd.modifiers.remove(hd.modifiers["arm"]); bone_parent(hd, arm, "spine01"); objs.append(hd)
 
     # --- shoes
     make_shoes(coll, V, bused, dom, kd, per_vert, st, finish)
@@ -727,7 +824,7 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
     def scalp(f):
         c = sum((V[i] for i in f), Vector()) / len(f)
         frontness = min(1.0, max(0.0, (eyeL.y + 0.16 - c.y) / 0.16))
-        if style == "bob":       # fringe to the brows, sides to the jaw
+        if style in ("bob", "long"):   # fringe to the brows, sides to the jaw (long: plus a curtain down the back)
             thr = eyeL.z - 0.1 + 0.125 * frontness
             return c.z > thr
         if style == "bangs":     # heavy fringe down to the brows, short tidy sides
@@ -753,8 +850,8 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
         p = V[i]; n = nrm[i]
         up = min(1.0, max(0.0, (p.z - eyeL.z - 0.03) / 0.1)); front = min(1.0, max(0.0, (hc.y - p.y) / 0.1))
         if style == "slick":   # swept back: volume on top, pushed toward the crown, tight sides
-            th = 0.004 + 0.022 * up + 0.006 * front * up + 0.0022 * math.sin(p.x * 260 + p.y * 120) * up
-            HV[i] = p + n * th + Vector((0, 0.014 * up, 0.006 * up))
+            th = 0.006 + 0.03 * up + 0.022 * front * up + 0.003 * math.sin(p.x * 260 + p.y * 120) * up
+            HV[i] = p + n * th + Vector((0, 0.016 * up, 0.006 * up + 0.012 * front * up))   # high swept-back volume
         elif style == "idol":    # volume on top, fringe falling forward and swept toward the part, tight sides
             side = p.x / hx
             th = 0.005 + 0.028 * up + 0.008 * front * up + 0.003 * math.sin(p.x * 300 + p.z * 200) * up
@@ -773,7 +870,7 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
             th = 0.012 + 0.008 * up + 0.014 * low + 0.0012 * math.sin(p.z * 300)
             HV[i] = p + n * th + Vector((0, 0.004 * low, 0))
     hair, used = make_mesh("hair", coll, HV, hf)
-    HM = cel(st["hair_col"], "#050608", rim="#4f5d7c", spec=0.0 if style == "idol" else 0.02, spec_col="#3c4660", rim_amt=0.45, name="hair")  # thin gloss band
+    HM = cel(st["hair_col"], "#050608", rim="#4f5d7c", spec=0.0, spec_col="#3c4660", rim_amt=0.45, name="hair")  # thin gloss band
     hair.data.materials.append(HM)
     return [(hair, used, 0.004)]
 
@@ -794,8 +891,9 @@ def add_locks(coll, arm, V, J, hair, st, objs):
 
 def make_shoes(coll, V, bused, dom, kd, per_vert, st, finish):
     up_c, sole_c = st["shoes"]
-    sneaker = st.get("sneakers", False)
-    LEATHER = cel(up_c, None, rim="#bcd8ff", spec=0.0 if sneaker else 0.035, spec_col="#9aa3b5", name="shoe")
+    sneaker = st.get("sneakers", False); loafer = st.get("loafer", False)
+    LEATHER = cel(up_c, None, rim="#bcd8ff", spec=0.0 if sneaker else (0.07 if loafer else 0.035), spec_col="#9aa3b5", name="shoe")
+    STRAP = cel("#34363d", "#121317", rim="#bcd8ff", spec=0.05, spec_col="#9aa3b5", name="loafer_strap")
     SOLE = cel(sole_c, None, rim=sole_c, name="sole")
     for side in ("L", "R"):
         fv = [i for i in bused if dom.get(i, "").startswith(("foot." + side, "toe")) and (V[i].x > 0) == (side == "L")]
@@ -803,6 +901,17 @@ def make_shoes(coll, V, bused, dom, kd, per_vert, st, finish):
         x0 = sum(xs) / len(xs); yh = max(ys) + 0.012; yt = min(ys) - 0.016
         Lg = yh - yt; W = (max(xs) - min(xs)) + (0.02 if sneaker else 0.014)
         def section(t, sole=False):
+            if loafer:   # slim penny loafer: low collar, long tapered toe, thin sole with a heel block
+                w = W * (0.31 + 0.11 * math.sin(math.pi * min(t / 0.68, 1) * 0.5))
+                if t > 0.72:
+                    w *= math.sqrt(max(0.0, 1 - ((t - 0.72) / 0.28) ** 2)) * 0.82 + 0.18
+                spring = 0.012 * max(0.0, (t - 0.8) / 0.2) ** 2
+                heel = 0.026 if t < 0.24 else (0.009 if t > 0.3 else 0.026 - 0.017 * (t - 0.24) / 0.06)
+                if sole:
+                    return w + 0.0035, heel + spring, spring
+                h = 0.056 - 0.024 * min(1.0, max(0.0, (t - 0.18) / 0.32)) - 0.006 * max(0.0, (t - 0.6) / 0.4)
+                h *= 1 if t < 0.9 else math.sqrt(max(0.0, 1 - (t - 0.9) / 0.1)) * 0.8 + 0.2
+                return w, heel + spring + h, heel + spring
             w = W * (0.36 + 0.14 * math.sin(math.pi * min(t / 0.72, 1) * 0.5))
             if t > 0.8:
                 w *= math.sqrt(max(0.0, 1 - ((t - 0.8) / 0.2) ** 2)) * 0.9 + 0.1
@@ -839,6 +948,23 @@ def make_shoes(coll, V, bused, dom, kd, per_vert, st, finish):
             ob = bpy.data.objects.new(f"shoe_{kind}{side}", me); coll.objects.link(ob)
             ob.data.materials.append(LEATHER if kind == "upper" else SOLE)
             weights_from_body(ob, kd, bused, per_vert, k=6); finish(ob)
+        if loafer:   # the saddle strap across the instep: a lighter band that reads the loafer shape in close-up
+            bm = bmesh.new(); rows = []
+            for k in range(5):
+                t = 0.44 + 0.08 * k / 4
+                w, ztop, zbot = section(t); y = yh - t * Lg; row = []
+                for j in range(13):
+                    a = math.pi * (0.06 + 0.88 * j / 12); c_, s_ = math.cos(a), math.sin(a)
+                    px = x0 + (w + 0.0015) * math.copysign(abs(c_) ** 0.6, c_)
+                    zz = zbot + (ztop - zbot) * (0.5 + 0.5 * s_ ** 0.5) + 0.0015
+                    row.append(bm.verts.new((px, y, zz)))
+                rows.append(row)
+            for r0, r1 in zip(rows, rows[1:]):
+                for j in range(12):
+                    bm.faces.new((r0[j], r0[j + 1], r1[j + 1], r1[j]))
+            me = bpy.data.meshes.new(f"loafer_strap{side}"); bm.to_mesh(me); bm.free()
+            ob = bpy.data.objects.new(f"loafer_strap{side}", me); coll.objects.link(ob); ob.data.materials.append(STRAP)
+            weights_from_body(ob, kd, bused, per_vert, k=6); finish(ob, solidify=0.002)
 
 # ---------------------------------------------------------------- poses & walk cycle
 ANIM_BONES = [f"{b}.{s}" for s in ("L", "R") for b in ("upperarm01", "upperarm02", "lowerarm01", "lowerarm02", "wrist",
