@@ -864,8 +864,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.014, straight=False, zlo=knee_z + 0.06,
                         mat=cel(st["leg_col"][0], st["leg_col"][1], rim="#c9e8ff", name="shorts"))
     else:
-        legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.009, straight=True,
-                        mat=cel(st["leg_col"][0], st["leg_col"][1], rim="#c9e8ff", name="trousers"))
+        legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.009 + 0.006 * st.get("wide", 0.0), straight=True,
+                        mat=cel(st["leg_col"][0], st["leg_col"][1], rim="#c9e8ff", name="trousers"), wide=st.get("wide", 0.0))
     if legs and st.get("creases"):   # pressed trousers: a crease line down the front of each leg
         tb = bvhtree.BVHTree.FromObject(legs, bpy.context.evaluated_depsgraph_get())
         bm = bmesh.new()
@@ -1278,7 +1278,7 @@ def uniform_bits(coll, arm, V, J, st, sternum_z, pelvis_z, finish):
             zs = sternum_z - 0.12
             box("strap", (sx * 0.09, front_y(zs, 0.12) - 0.024, zs), (0.03, 0.01, 0.15), bp[1], None)
 
-def trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, gap, straight, mat, zlo=None, zhi=None):
+def trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, gap, straight, mat, zlo=None, zhi=None, wide=0.0):
     tf = [f for f, g in zip(F, G) if g == "helper-tights"]
     tidx = {i for f in tf for i in f}
     tn_ = vnormals(V, tf)
@@ -1291,12 +1291,12 @@ def trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, gap, straight, mat, zl
             if v.z < knee.z:
                 t = (knee.z - v.z) / max(knee.z - ank.z, 1e-3)
                 axis = knee.lerp(ank, min(t, 1)); rv = Vector((v.x - axis.x, v.y - axis.y, 0))
-                want = 0.058 + 0.006 * t
+                want = 0.058 + 0.006 * t + wide * 0.03 * (0.5 + 0.5 * t)      # wide-leg: fuller toward the hem
                 if 1e-4 < rv.length < want:
                     rv = rv.normalized() * want; v.x = axis.x + rv.x; v.y = axis.y + rv.y
         TV[i] = v
     ank_z = jpos[sk["bones"]["foot.L"]["head"]].z
-    cut = ank_z - (0.035 if straight else 0.0)
+    cut = ank_z - (0.035 if straight else 0.0) - 0.02 * wide            # wide legs break over the shoe
     lo = cut if zlo is None else zlo; hi = pelvis_z + 0.06 if zhi is None else zhi
     tf = [f for f in tf if min(TV[i].z for i in f) > lo and max(TV[i].z for i in f) < hi]
     tr, used = make_mesh("trousers", coll, TV, tf); tr.data.materials.append(mat)

@@ -7,76 +7,76 @@
  "c01": {
   "height": 1.67,
   "body": "f",
-  "pose": "stand"
+  "pose": "phone"
  },
  "c02": {
-  "height": 1.804,
-  "body": "m_lean",
+  "height": 1.624,
+  "body": "f",
   "pose": "stand"
  },
  "c03": {
-  "height": 1.835,
+  "height": 1.863,
   "body": "m",
-  "pose": "stand"
+  "pose": "phone"
  },
  "c04": {
-  "height": 1.863,
-  "body": "m_lean",
+  "height": 1.76,
+  "body": "f",
   "pose": "stand"
  },
  "c05": {
-  "height": 1.335,
-  "body": "kid_m",
-  "pose": "stand"
- },
- "c06": {
-  "height": 1.886,
-  "body": "m",
-  "pose": "stand"
- },
- "c07": {
-  "height": 1.739,
-  "body": "m_heavy",
-  "pose": "stand"
- },
- "c08": {
-  "height": 1.403,
-  "body": "kid_f",
-  "pose": "phone"
- },
- "c09": {
-  "height": 1.424,
-  "body": "kid_m",
-  "pose": "stand"
- },
- "c10": {
-  "height": 1.369,
-  "body": "kid_m",
-  "pose": "phone"
- },
- "c11": {
-  "height": 1.807,
-  "body": "m_slim",
-  "pose": "phone"
- },
- "c12": {
-  "height": 1.894,
+  "height": 1.813,
   "body": "m_lean",
   "pose": "stand"
  },
+ "c06": {
+  "height": 1.755,
+  "body": "f",
+  "pose": "phone"
+ },
+ "c07": {
+  "height": 1.65,
+  "body": "f",
+  "pose": "stand"
+ },
+ "c08": {
+  "height": 1.63,
+  "body": "f",
+  "pose": "stand"
+ },
+ "c09": {
+  "height": 1.82,
+  "body": "m",
+  "pose": "stand"
+ },
+ "c10": {
+  "height": 1.617,
+  "body": "f",
+  "pose": "stand"
+ },
+ "c11": {
+  "height": 1.622,
+  "body": "f",
+  "pose": "stand"
+ },
+ "c12": {
+  "height": 1.896,
+  "body": "m",
+  "pose": "phone"
+ },
  "c13": {
-  "height": 1.74,
+  "height": 1.652,
   "body": "f",
   "pose": "stand"
  },
  "c14": {
-  "height": 1.721,
-  "body": "m_slim",
+  "height": 1.778,
+  "body": "m",
   "pose": "stand"
  },
  "c15": {
-  "height": 1.693,
-  "body": "f",
-  "pose": "phone"
+  "height": 1.783,
+  "body": "m_heavy",
+  "pose": "stand"
  }
 }

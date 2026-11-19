@@ -16,6 +16,7 @@ import mathutils, mathutils.bvhtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import character_mh as ch
+import fashion as FASHION
 
 SHOT = sys.argv[1] if len(sys.argv) > 1 else "street"
 SCALE = int(sys.argv[2]) if len(sys.argv) > 2 else 50
@@ -1008,7 +1009,7 @@ def extra_style():
     if sex == "f":
         st["face"] = "kstar_f"; st["jaw_v"] = 0.3
         st["lips"] = _LOOKS.choice(["#c25a62", "#d27a7a", "#b84a55", "#cf7468"])
-        st["_women_look"] = _LOOKS.choice(WOMEN)
+        st["_women_look"] = _LOOKS.choice(WOMEN + FASHION.WOMEN + FASHION.WOMEN)
         if _LOOKS.random() < 0.6:
             st["bag"] = _LOOKS.choice([("#8a5a32", "#4e321b"), ("#1c1c1e", "#08080a"), ("#b88a5a", "#6e5032")])
     r = random.random()
@@ -1019,6 +1020,8 @@ def extra_style():
     if sex == "f" and random.random() < 0.45:
         st["legs"] = "skirt"; st["leg_col"] = random.choice(LEGS + [("#7a2d3a", "#3a141b")])
         st["skirt_hem"] = random.uniform(0.42, 0.56); st["tights"] = random.choice(["#23222a", "#3a2f2a"])
+    if sex != "f":   # men: the street-style looks (fashion.MEN), drawn from the separate RNG
+        st["_women_look"] = _LOOKS.choice(FASHION.MEN)
     if st.get("_women_look"):
         look = st.pop("_women_look")
         for k in ("legs", "skirt_hem", "tights", "socks", "mask", "sneakers"):

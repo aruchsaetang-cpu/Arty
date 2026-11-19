@@ -66,6 +66,9 @@ MAN_LONG = dict(vary=109, body="m", height=1.77, face="long", skin=("#e9c4a6", "
 MAN_DIAMOND = dict(vary=110, body="m_heavy", height=1.68, face="diamond", skin=("#c58f6a", "#86583d"), hair="buzz", hair_col="#2a2622",
                    coat=("#3b3f47", "#15171b"), hem=0.8, top=("#d9d4c8", "#8c877c"), legs="trousers",
                    leg_col=("#2a2c30", "#0f1012"), shoes=("#1b1a1c", "#3a2a22"), manhwa_head=True, subsurf=1)
+# the two shop customers, dressed from the user's street-style references (lookdev/fashion.py)
+import fashion as _F
+MAN_LONG.update(_F.MEN[1]); MAN_DIAMOND.update(_F.MEN[8])          # olive overshirt + wide cream trousers; long navy coat over a hoodie
 MAN_LONG["clear_face"] = MAN_DIAMOND["clear_face"] = True
 
 # first-version designs (body, face, hair and outfit exactly as in the first-half preview), built with ch.build_v1

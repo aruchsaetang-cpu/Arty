@@ -1944,15 +1944,15 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795110392.5464587,
-    "seen": 1795110592.299846,
-    "ast_hash": "4339317c74b25e29775d94fe60f81b84",
+    "mtime": 1795110714.6776168,
+    "seen": 1795111439.4986386,
+    "ast_hash": "c2020714376796d7032f19d1097b625f",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
-    "mtime": 1795109159.1859887,
-    "seen": 1795109249.3536065,
-    "ast_hash": "cd94ce47ebfd13ad66c4a120810d91a3",
+    "mtime": 1795110714.6787736,
+    "seen": 1795111439.49865,
+    "ast_hash": "c8a173715e930b4fa25cb7fc1b3dcede",
     "semantic_hash": ""
   },
   "lookdev/grade.py": {
@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795109523.1806138,
-    "seen": 1795110592.2998714,
+    "mtime": 1795111164.299123,
+    "seen": 1795111439.498667,
     "ast_hash": "b95b1d706a6fb6242d95cfeec9485b13",
     "semantic_hash": ""
   },
@@ -6660,9 +6660,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/cast.py": {
-    "mtime": 1795108154.4151187,
-    "seen": 1795109249.3536253,
-    "ast_hash": "0040c2ee893146e0c771a86307738186",
+    "mtime": 1795110854.4497778,
+    "seen": 1795111439.498671,
+    "ast_hash": "cfe4b98eca61137cbdfa1ea1c058472a",
     "semantic_hash": ""
   },
   "shorts/aura/cues2.py": {
@@ -7146,9 +7146,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795109523.2774115,
-    "seen": 1795110592.2999167,
-    "ast_hash": "5380cd2ad1a9e47d2899eb3972c3a458",
+    "mtime": 1795111236.2865617,
+    "seen": 1795111439.498697,
+    "ast_hash": "eca65a59a9d4c994624df0cb6526edef",
     "semantic_hash": ""
   },
   ".claude/skills/openverse-sfx/SKILL.md": {
@@ -7254,303 +7254,303 @@
     "semantic_hash": ""
   },
   "lookdev/customers.py": {
-    "mtime": 1795106444.6948853,
-    "seen": 1795109249.3536088,
-    "ast_hash": "0a5083f065150f2367484ce75fb773e9",
+    "mtime": 1795110728.0962546,
+    "seen": 1795111439.4986527,
+    "ast_hash": "506cd674d111d8ee68b4db84647d7b67",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/customers.json": {
-    "mtime": 1795106519.7942946,
-    "seen": 1795109249.3536181,
-    "ast_hash": "4e65e192824ccc2ebacd4c0bfd1f0260",
+    "mtime": 1795110841.4880867,
+    "seen": 1795111439.4986644,
+    "ast_hash": "fb2ba3535f940ee9f6855d529192e0de",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c00_back.png": {
-    "mtime": 1795106451.0262773,
-    "seen": 1795109249.354686,
-    "ast_hash": "615f9758f0b2d645604fe06f02dbe4b9",
+    "mtime": 1795110735.966532,
+    "seen": 1795111439.4997432,
+    "ast_hash": "1fc98a90405202462e6daa55b90f0774",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c00_front.png": {
-    "mtime": 1795106448.9422772,
-    "seen": 1795109249.3546875,
-    "ast_hash": "facc8db8a13dc8a8310c38f89bf8acab",
+    "mtime": 1795110733.3185318,
+    "seen": 1795111439.4997451,
+    "ast_hash": "1a17914de59fef0480effee27283ada2",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c00_side.png": {
-    "mtime": 1795106449.9382772,
-    "seen": 1795109249.354689,
-    "ast_hash": "4f195c964099de1409aa32e75568be3d",
+    "mtime": 1795110734.6265318,
+    "seen": 1795111439.499746,
+    "ast_hash": "1544d83419f2b2148bc19e47e8cb84de",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c01_back.png": {
-    "mtime": 1795106455.5302775,
-    "seen": 1795109249.3546898,
-    "ast_hash": "6043055d140948c3513cc0a44fea3c02",
+    "mtime": 1795110743.1585324,
+    "seen": 1795111439.4997473,
+    "ast_hash": "3f37361870fba8cfdaa89ea8c3ec85c0",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c01_front.png": {
-    "mtime": 1795106453.7342775,
-    "seen": 1795109249.3546908,
-    "ast_hash": "68cc9b976fa8fa09a41f7bdd9983b2e4",
+    "mtime": 1795110740.6145322,
+    "seen": 1795111439.4997485,
+    "ast_hash": "2edae32366b146795b021b64cfa80b57",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c01_side.png": {
-    "mtime": 1795106454.4902775,
-    "seen": 1795109249.354692,
-    "ast_hash": "d9d154a8a4c669f2253486ce76c55cc2",
+    "mtime": 1795110741.8025324,
+    "seen": 1795111439.4997494,
+    "ast_hash": "7d27c2f6e8544512c75e1819aaafa36b",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c02_back.png": {
-    "mtime": 1795106459.998278,
-    "seen": 1795109249.3546934,
-    "ast_hash": "26bd6aa214b429e57c2477109e580fbd",
+    "mtime": 1795110750.702533,
+    "seen": 1795111439.4997506,
+    "ast_hash": "06add88374d1e357cf4e93f30a45bdf7",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c02_front.png": {
-    "mtime": 1795106458.2982779,
-    "seen": 1795109249.3546944,
-    "ast_hash": "745a5ed63d5e929ed98b5e52907c0486",
+    "mtime": 1795110747.6745327,
+    "seen": 1795111439.499752,
+    "ast_hash": "786fdfab68024425f81565139406f10b",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c02_side.png": {
-    "mtime": 1795106459.0462778,
-    "seen": 1795109249.3546958,
-    "ast_hash": "995f06426079cfbfb3a8aa3ffc8c2596",
+    "mtime": 1795110749.0225327,
+    "seen": 1795111439.499753,
+    "ast_hash": "6bb521bd8e182a709792930da7c6fccf",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c03_back.png": {
-    "mtime": 1795106464.230278,
-    "seen": 1795109249.3546968,
-    "ast_hash": "15781c147aa2948c8b86e58bb3b3f864",
+    "mtime": 1795110758.3705332,
+    "seen": 1795111439.4997542,
+    "ast_hash": "d21c3de98b596cfcb38e38335f8cd571",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c03_front.png": {
-    "mtime": 1795106462.590278,
-    "seen": 1795109249.3546977,
-    "ast_hash": "9f9335c3214d25e5c20493193adc58c8",
+    "mtime": 1795110755.3665333,
+    "seen": 1795111439.4997556,
+    "ast_hash": "b8a5f088539d552b79bb66e55ff0e165",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c03_side.png": {
-    "mtime": 1795106463.298278,
-    "seen": 1795109249.3546987,
-    "ast_hash": "74588894b911518ab37e09b5c4d429cc",
+    "mtime": 1795110756.6745331,
+    "seen": 1795111439.4997566,
+    "ast_hash": "bf4661a5c5bae5dd8dbd400ee5f57a7f",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c04_back.png": {
-    "mtime": 1795106468.4022784,
-    "seen": 1795109249.3546999,
-    "ast_hash": "170e388a849ad5cb6cb53e33d4c6e8ec",
+    "mtime": 1795110764.2265337,
+    "seen": 1795111439.4997578,
+    "ast_hash": "6a05037b76cd307033c66f0933c932d6",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c04_front.png": {
-    "mtime": 1795106466.7942781,
-    "seen": 1795109249.3547008,
-    "ast_hash": "01ff01616e507da484a9dc99ac36c35a",
+    "mtime": 1795110761.7425334,
+    "seen": 1795111439.499759,
+    "ast_hash": "3cd5ff39dab21e1953cdbafa498d6daa",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c04_side.png": {
-    "mtime": 1795106467.4902782,
-    "seen": 1795109249.354702,
-    "ast_hash": "f8aa48d6789f20c84a6276b62919f922",
+    "mtime": 1795110762.7665336,
+    "seen": 1795111439.49976,
+    "ast_hash": "f55360f35e29e5a747a1446571d6d781",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c05_back.png": {
-    "mtime": 1795106472.5342786,
-    "seen": 1795109249.3547032,
-    "ast_hash": "16a62ff09d3e6c1ba44573b4bb8a4a22",
+    "mtime": 1795110771.010534,
+    "seen": 1795111439.499761,
+    "ast_hash": "23cb2d30e40f8c2039c9d92773fa9a48",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c05_front.png": {
-    "mtime": 1795106470.8662784,
-    "seen": 1795109249.3547044,
-    "ast_hash": "01319dfa0eb04a07835ea208ab26cf53",
+    "mtime": 1795110767.7505338,
+    "seen": 1795111439.4997628,
+    "ast_hash": "86b80e1de74ec31318043d3be2f2dbcc",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c05_side.png": {
-    "mtime": 1795106471.6182785,
-    "seen": 1795109249.3547056,
-    "ast_hash": "08ac4cfe5faa7f8773ed65eea7cdde1d",
+    "mtime": 1795110769.086534,
+    "seen": 1795111439.4997637,
+    "ast_hash": "2d479ac3faded76ed29424ab477b2c7a",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c06_back.png": {
-    "mtime": 1795106476.7582788,
-    "seen": 1795109249.354707,
-    "ast_hash": "255176b2aafb6c05bd134475b3b87638",
+    "mtime": 1795110777.6665344,
+    "seen": 1795111439.4997647,
+    "ast_hash": "4ae70d660592c1b6cd9cd86161982109",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c06_front.png": {
-    "mtime": 1795106474.9662788,
-    "seen": 1795109249.3547077,
-    "ast_hash": "f8b45d95a972627ce36b1b13ebee8c7f",
+    "mtime": 1795110774.8465343,
+    "seen": 1795111439.499766,
+    "ast_hash": "d0cc3b8fc4c02582fa16f0477476ba39",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c06_side.png": {
-    "mtime": 1795106475.7502787,
-    "seen": 1795109249.3547087,
-    "ast_hash": "7cc4b534008f79644749e39320787e21",
+    "mtime": 1795110776.1665344,
+    "seen": 1795111439.499767,
+    "ast_hash": "b105f47a212c20fff6ca8d8c849d2753",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c07_back.png": {
-    "mtime": 1795106481.666279,
-    "seen": 1795109249.35471,
-    "ast_hash": "f645004a030b828662d9c823dac959e7",
+    "mtime": 1795110783.7465348,
+    "seen": 1795111439.499768,
+    "ast_hash": "065e1274b58b7ce6f1707e9156cda377",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c07_front.png": {
-    "mtime": 1795106479.674279,
-    "seen": 1795109249.354711,
-    "ast_hash": "e1929f4de045f875e92cdc3c2c16cde9",
+    "mtime": 1795110781.2305348,
+    "seen": 1795111439.499769,
+    "ast_hash": "57aa94f918fcd168ac57d434390e0bfe",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c07_side.png": {
-    "mtime": 1795106480.582279,
-    "seen": 1795109249.3547122,
-    "ast_hash": "6d68993d1468d2be5bceff951522a5b7",
+    "mtime": 1795110782.3905349,
+    "seen": 1795111439.4997706,
+    "ast_hash": "2dd1a6dcaae76287c14efa9ab23714b7",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c08_back.png": {
-    "mtime": 1795106486.8102794,
-    "seen": 1795109249.3547134,
-    "ast_hash": "2d77769a64b5a65cf2cf934cda7f6b6b",
+    "mtime": 1795110791.4865353,
+    "seen": 1795111439.4997716,
+    "ast_hash": "85c0e509280903d585dc3a890c770e20",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c08_front.png": {
-    "mtime": 1795106484.9622793,
-    "seen": 1795109249.3547144,
-    "ast_hash": "f0e3937fe3663f691c36eef03a27aca6",
+    "mtime": 1795110788.0345352,
+    "seen": 1795111439.4997728,
+    "ast_hash": "5e507283da3df99d80c245824a31a3aa",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c08_side.png": {
-    "mtime": 1795106485.8022795,
-    "seen": 1795109249.3547153,
-    "ast_hash": "65cfff1b9fe595f822fe63fb05ddc563",
+    "mtime": 1795110789.5065353,
+    "seen": 1795111439.4997737,
+    "ast_hash": "ba26191db12ebee9b610fe7821030a4a",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c09_back.png": {
-    "mtime": 1795106491.5902798,
-    "seen": 1795109249.354716,
-    "ast_hash": "ebf265f39f48985812309f48c666198e",
+    "mtime": 1795110799.4345357,
+    "seen": 1795111439.4997747,
+    "ast_hash": "471431b88e8d2c6208d97d288cf975f8",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c09_front.png": {
-    "mtime": 1795106489.6702795,
-    "seen": 1795109249.3547173,
-    "ast_hash": "441cc20a3b4a75e3fb5f96ebe60fcfe5",
+    "mtime": 1795110795.8465357,
+    "seen": 1795111439.4997756,
+    "ast_hash": "f865de38698c55ea27f8d76457d5e6b9",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c09_side.png": {
-    "mtime": 1795106490.5742795,
-    "seen": 1795109249.3547182,
-    "ast_hash": "969d258cbd39c00039c3957ed5869c9c",
+    "mtime": 1795110797.5185356,
+    "seen": 1795111439.499777,
+    "ast_hash": "23d48ff6e1166d70cb1d4a8f9f295ec1",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c10_back.png": {
-    "mtime": 1795106496.19828,
-    "seen": 1795109249.3547194,
-    "ast_hash": "be1f8b504141c32639b0c3eced544306",
+    "mtime": 1795110807.4625363,
+    "seen": 1795111439.4997783,
+    "ast_hash": "7000ac8f170e025ba1ea5a17ca9e83ca",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c10_front.png": {
-    "mtime": 1795106494.45428,
-    "seen": 1795109249.3547206,
-    "ast_hash": "927b4fd960355de12b983335d90f9a01",
+    "mtime": 1795110803.530536,
+    "seen": 1795111439.49978,
+    "ast_hash": "ca5c15d2006b3188225bfa7af2998ec6",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c10_side.png": {
-    "mtime": 1795106495.22628,
-    "seen": 1795109249.3547215,
-    "ast_hash": "89e5dca2ce34f2ff541403a0de5c2457",
+    "mtime": 1795110805.170536,
+    "seen": 1795111439.499781,
+    "ast_hash": "486af839aa3c1e63d4e105b1b38c8fa1",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c11_back.png": {
-    "mtime": 1795106500.7702804,
-    "seen": 1795109249.3547225,
-    "ast_hash": "00fc9c68bd69f4881e89d37dce737d96",
+    "mtime": 1795110814.9305367,
+    "seen": 1795111439.4997818,
+    "ast_hash": "9462dc4d98ea692d31b7dd21b6163eac",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c11_front.png": {
-    "mtime": 1795106499.18228,
-    "seen": 1795109249.3547237,
-    "ast_hash": "970594896f8b51d2809d69e480256547",
+    "mtime": 1795110811.7985365,
+    "seen": 1795111439.4997828,
+    "ast_hash": "15b76a5c8da296ae345a43703017098c",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c11_side.png": {
-    "mtime": 1795106499.9302802,
-    "seen": 1795109249.3547246,
-    "ast_hash": "88e5d6ec39eafc45b135e6597142b504",
+    "mtime": 1795110813.2185366,
+    "seen": 1795111439.4997842,
+    "ast_hash": "433339860a7786107959092b82be6231",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c12_back.png": {
-    "mtime": 1795106505.4182806,
-    "seen": 1795109249.3547256,
-    "ast_hash": "50f097a008a9d9be6f055cd71eb5d4d0",
+    "mtime": 1795110822.662537,
+    "seen": 1795111439.4997852,
+    "ast_hash": "5c91cdcdd2603cfcd78f5d37b1c9d577",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c12_front.png": {
-    "mtime": 1795106503.5142803,
-    "seen": 1795109249.354727,
-    "ast_hash": "4de7e98dd0d11facd97d9b3053538739",
+    "mtime": 1795110820.082537,
+    "seen": 1795111439.4997864,
+    "ast_hash": "aaf57b8b444f5c374d134df27a544f76",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c12_side.png": {
-    "mtime": 1795106504.3822806,
-    "seen": 1795109249.354728,
-    "ast_hash": "8cd49315dbd1b024be32663b84551e7c",
+    "mtime": 1795110821.2345371,
+    "seen": 1795111439.4997876,
+    "ast_hash": "999f03ec429a5f82e560df7aa2627495",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c13_back.png": {
-    "mtime": 1795106510.0662808,
-    "seen": 1795109249.3547287,
-    "ast_hash": "d3e2c9fbccbbbc3616e1c1cbe8544b1a",
+    "mtime": 1795110828.3145375,
+    "seen": 1795111439.4997885,
+    "ast_hash": "5b59f9d040e22a9e4f3f8e2fb23dc2d2",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c13_front.png": {
-    "mtime": 1795106508.1942806,
-    "seen": 1795109249.3547297,
-    "ast_hash": "3c67b7f26e6023c11d159455a09b690f",
+    "mtime": 1795110825.9225373,
+    "seen": 1795111439.4997895,
+    "ast_hash": "bdc956f7cb18ec253962408d9199b537",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c13_side.png": {
-    "mtime": 1795106509.0262806,
-    "seen": 1795109249.3547308,
-    "ast_hash": "ee75f4023dc7cc4cbdbd3f69328d27e9",
+    "mtime": 1795110827.0345373,
+    "seen": 1795111439.499791,
+    "ast_hash": "be2afbaed4253e1027227565b43c8f3e",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c14_back.png": {
-    "mtime": 1795106514.3582811,
-    "seen": 1795109249.3547318,
-    "ast_hash": "acb402fdc6b46ce645f729a7904928d0",
+    "mtime": 1795110834.858538,
+    "seen": 1795111439.4997919,
+    "ast_hash": "1292ad0395658894c48c9a3f41b795e3",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c14_front.png": {
-    "mtime": 1795106512.626281,
-    "seen": 1795109249.3547328,
-    "ast_hash": "1ad6ae00b0867e5a039540a47c45d152",
+    "mtime": 1795110832.0905378,
+    "seen": 1795111439.499793,
+    "ast_hash": "1cd5f0abed0abb183cc8d61813d62a11",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c14_side.png": {
-    "mtime": 1795106513.4142811,
-    "seen": 1795109249.3547337,
-    "ast_hash": "cff254bccbfcb960445806b8d79607da",
+    "mtime": 1795110833.2505379,
+    "seen": 1795111439.4997942,
+    "ast_hash": "b72cd11bf22931978b858b84995309d4",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c15_back.png": {
-    "mtime": 1795106519.7542813,
-    "seen": 1795109249.354735,
-    "ast_hash": "d81ea4367a5cbfea219b12efc6149fd3",
+    "mtime": 1795110841.4505384,
+    "seen": 1795111439.4997952,
+    "ast_hash": "be57cc04a9fb09c5fa78eb2c7b13e64e",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c15_front.png": {
-    "mtime": 1795106517.7662814,
-    "seen": 1795109249.3547359,
-    "ast_hash": "c0f3b448c0f3fdccda1b9f17c3e6ea34",
+    "mtime": 1795110838.694538,
+    "seen": 1795111439.4997962,
+    "ast_hash": "c68ff37437e47ab7aacfd1fa74e5ff73",
     "semantic_hash": ""
   },
   "shorts/aura/assets/customers/c15_side.png": {
-    "mtime": 1795106518.7262814,
-    "seen": 1795109249.3547368,
-    "ast_hash": "6bd3a814850c3c6092b23c4ab79b32d3",
+    "mtime": 1795110839.9065382,
+    "seen": 1795111439.4997978,
+    "ast_hash": "efb1b072085be15698fc1390a76ae329",
     "semantic_hash": ""
   },
   "shorts/aura/out/cars_shops_preview.png": {
@@ -7563,6 +7563,18 @@
     "mtime": 1795110582.9185228,
     "seen": 1795110592.3017397,
     "ast_hash": "671056492e9f38b8a76bf0b03adbe0c7",
+    "semantic_hash": ""
+  },
+  "lookdev/fashion.py": {
+    "mtime": 1795110706.9185302,
+    "seen": 1795111439.4986546,
+    "ast_hash": "6883577e49cea34fed5d9988d5e90d00",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/npc_fashion_preview.png": {
+    "mtime": 1795111430.4785733,
+    "seen": 1795111439.4998372,
+    "ast_hash": "a976baf655b3dfc8735ef5e480214a55",
     "semantic_hash": ""
   }
 }

@@ -7,6 +7,7 @@ shorts/aura/assets/customers/c{NN}_{front,side,back}.png  (+ customers.json: hei
 import bpy, os, sys, json, math, random
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import character_mh as ch
+import fashion
 N = int(sys.argv[-1]) if sys.argv[-1].isdigit() else 16
 OUT = os.path.join(HERE, "..", "shorts", "aura", "assets", "customers"); os.makedirs(OUT, exist_ok=True)
 rng = random.Random(2026)
@@ -39,8 +40,12 @@ def style(k):
     else:
         st.update(face=rng.choice(["boy", "square", "round", "long", "diamond", "idol"]),
                   hair=rng.choice(["short", "buzz", "quiff", "crop", "bangs", "idol"]), brows="#121014")
+    if not kid:   # dressed from the street-style references (fashion.py)
+        out = dict(rng.choice(fashion.WOMEN if f else fashion.MEN))
+        for k in ("legs", "skirt_hem", "tights", "socks"): st.pop(k, None)
+        st["legs"] = "trousers"; st.update(out)
     if st["coat"]:
-        st.update(hem=rng.uniform(0.8, 0.98), open_skirt=False, open_coat=rng.random() < 0.4, coat_flare=(0.02, 0.04))
+        st.setdefault("coat_flare", (0.02, 0.04))
     if kid:
         st["face"] = "soft_f" if f else "boy"
     if not kid and rng.random() < 0.5: st["bag"] = rng.choice(BAGS)
