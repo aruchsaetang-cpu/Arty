@@ -1944,15 +1944,15 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795054816.8710756,
-    "seen": 1795055380.1345847,
-    "ast_hash": "4826fa3eee81106a4d3d1e782dd535bb",
+    "mtime": 1795055566.4518263,
+    "seen": 1795055839.28101,
+    "ast_hash": "c9f0b79fde429ba25c652a69c19bf974",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
-    "mtime": 1795053568.7032788,
-    "seen": 1795054095.2270608,
-    "ast_hash": "3c85852ad18811c6541965e93d1a284c",
+    "mtime": 1795055470.6050086,
+    "seen": 1795055839.2810118,
+    "ast_hash": "337fd42e435efdd6ad0f474ecce65448",
     "semantic_hash": ""
   },
   "lookdev/grade.py": {
@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795055298.2711058,
-    "seen": 1795055380.134592,
+    "mtime": 1795055745.7165253,
+    "seen": 1795055839.281017,
     "ast_hash": "45dc7434399396d90e74a5eafe6608ee",
     "semantic_hash": ""
   },
@@ -6912,9 +6912,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/stills/s0044.png": {
-    "mtime": 1795048835.0888212,
-    "seen": 1795048962.0315404,
-    "ast_hash": "1ac26a54bafd838bb438d0f9693ebe5a",
+    "mtime": 1795055780.229234,
+    "seen": 1795055839.281892,
+    "ast_hash": "b0752a2ca765759348e1782b0e64c3f4",
     "semantic_hash": ""
   },
   "shorts/aura/stills/s0122.png": {
@@ -7122,9 +7122,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/stills/s0230.png": {
-    "mtime": 1795054478.6411567,
-    "seen": 1795055380.1354709,
-    "ast_hash": "13c9f6f34198d35093777947ecfc10ff",
+    "mtime": 1795055807.9812357,
+    "seen": 1795055839.2818954,
+    "ast_hash": "11200f5ef8fcae2e0ee96a727bb0f987",
     "semantic_hash": ""
   },
   "shorts/aura/stills/s0650.png": {
@@ -7137,6 +7137,24 @@
     "mtime": 1795055373.1279764,
     "seen": 1795055380.1354613,
     "ast_hash": "5cb11a63c9be030f5c20421adbafb308",
+    "semantic_hash": ""
+  },
+  "lookdev/renders/v2_hairs.png": {
+    "mtime": 1795055553.9852207,
+    "seen": 1795055839.2818499,
+    "ast_hash": "fb573a02eb803a2cef764592a58640c5",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/natural_hair_preview.png": {
+    "mtime": 1795055832.1063945,
+    "seen": 1795055839.2818816,
+    "ast_hash": "fb573a02eb803a2cef764592a58640c5",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/realistic_buildings_preview.png": {
+    "mtime": 1795055832.1043222,
+    "seen": 1795055839.2818851,
+    "ast_hash": "46a0c99cc91402561976ba5c092dd9a8",
     "semantic_hash": ""
   }
 }

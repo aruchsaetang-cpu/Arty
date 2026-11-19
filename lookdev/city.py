@@ -178,14 +178,35 @@ def facade(kind):
     wall = g.mix(nz.outputs["Fac"], lin(base), lin(base2))
     wall = g.mix(g.m("MULTIPLY", stain.outputs["Fac"], 0.55), wall, lin("#1a1b1e"))
     wall = g.mix(g.m("LESS_THAN", sw.outputs["Z"], 4.4), wall, lin("#1b1c1f"))
-    g.ln(g.mix(win, wall, lin("#06080b")), b.inputs["Base Color"])
-    g.ln(g.mix(win, 0.82 if kind != "glass" else 0.25, 0.04, rgba=False), b.inputs["Roughness"])
-    if kind == "glass":
-        b.inputs["Metallic"].default_value = 0.3
-    em = g.mix(lit, lin("#000000"), lc)
-    ems = g.m("MULTIPLY", g.m("MULTIPLY", blinds, grad), 3.2)
+    # --- realistic windows: frame, mullion + transom, recessed reveal, reflective glass, varied rooms
+    wu = g.m("DIVIDE", g.m("SUBTRACT", fu, (1 - ww) / 2), ww); wv = g.m("DIVIDE", g.m("SUBTRACT", fv, 0.18), wh)   # 0..1 in the window
+    fr_w = 0.07                                                                           # frame width (window units)
+    inner = g.m("MULTIPLY", g.band(wu, fr_w, 1 - fr_w), g.band(wv, fr_w, 1 - fr_w))
+    mull = g.m("MAXIMUM", g.band(wu, 0.485, 0.515), g.m("MULTIPLY", g.band(wv, 0.66, 0.69), g.m("GREATER_THAN", sc.outputs[1], 0.35)))
+    glass = g.m("MULTIPLY", g.m("MULTIPLY", win, inner), g.m("SUBTRACT", 1.0, mull))
+    frame = g.m("SUBTRACT", win, glass)                                                   # frame + dividers
+    fcol = g.mix(g.m("GREATER_THAN", info.outputs["Random"], 0.5), lin("#2a2c30"), lin("#b9bcbf"))   # dark or aluminium frames
+    # rain streaks: dark vertical stains running down from each sill
+    strk = g.n("ShaderNodeTexNoise", Scale=1.0, Detail=4.0); mps = g.n("ShaderNodeMapping"); mps.inputs["Scale"].default_value = (14, 14, 0.6)
+    g.ln(tc.outputs["Object"], mps.inputs[0]); g.ln(mps.outputs[0], strk.inputs["Vector"])
+    below = g.m("MULTIPLY", g.band(fu, (1 - ww) / 2, (1 + ww) / 2), g.band(fv, 0.0, 0.18))
+    wall = g.mix(g.m("MULTIPLY", g.m("MULTIPLY", below, g.m("GREATER_THAN", strk.outputs["Fac"], 0.5)), 0.45), wall, lin("#141518"))
+    # glass: dark, faintly blue, reflective; lit rooms show through dimmer and uneven (curtain on one side)
+    gcol = lin("#0a0f15")
+    col = g.mix(frame, wall, fcol); col = g.mix(glass, col, gcol)
+    g.ln(col, b.inputs["Base Color"])
+    g.ln(g.mix(glass, g.mix(frame, 0.82 if kind != "glass" else 0.25, 0.35, rgba=False), 0.03, rgba=False), b.inputs["Roughness"])
+    g.ln(g.mix(frame, 0.0, 0.6, rgba=False), b.inputs["Metallic"])
+    curtain = g.mix(g.m("GREATER_THAN", sc.outputs[2], 0.5), g.m("ADD", 0.25, g.m("MULTIPLY", g.m("GREATER_THAN", wu, 0.42), 0.75)), 1.0, rgba=False)
+    depth = g.m("ADD", 0.45, g.m("MULTIPLY", g.m("MINIMUM", g.m("MINIMUM", wu, g.m("SUBTRACT", 1.0, wu)), 0.25), 2.2))   # darker at the reveal
+    lit_g = g.m("MULTIPLY", lit, glass)
+    em = g.mix(lit_g, lin("#000000"), lc)
+    vary = g.m("ADD", 0.45, g.m("MULTIPLY", sc.outputs[0], 1.1))                         # every room its own brightness
+    ems = g.m("MULTIPLY", g.m("MULTIPLY", g.m("MULTIPLY", blinds, grad), g.m("MULTIPLY", curtain, depth)), g.m("MULTIPLY", vary, 1.5))
     g.ln(em, b.inputs["Emission Color"]); g.ln(ems, b.inputs["Emission Strength"])
-    bp = g.n("ShaderNodeBump", Strength=0.15); g.ln(nz.outputs["Fac"], bp.inputs["Height"]); g.ln(bp.outputs[0], b.inputs["Normal"])
+    # bump: wall texture + the window set into the wall (recess) with a raised frame
+    hgt = g.m("ADD", g.m("MULTIPLY", nz.outputs["Fac"], 0.3), g.m("SUBTRACT", g.m("MULTIPLY", frame, 0.4), g.m("MULTIPLY", glass, 0.9)))
+    bp = g.n("ShaderNodeBump", Strength=0.35, Distance=0.04); g.ln(hgt, bp.inputs["Height"]); g.ln(bp.outputs[0], b.inputs["Normal"])
     _M[f"fac_{kind}"] = m; return m
 
 def shopglass(col):
@@ -345,6 +366,17 @@ def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop
             text(letters, M, (-0.75, y + face, bz + bh / 2), Matrix.Rotation(math.radians(90), 4, "X") @ Matrix.Rotation(math.radians(rz), 4, "Y"),
                  0.88, glow("#ffffff", 5.0, flick), extrude=0.01, line=spread)
         B("blade_arm", METAL).box(M, (-0.2, y, bz + bh + 0.1), (0.5, 0.06, 0.06))
+    # --- window sills under every upper-floor window (aligned with the facade shader's window grid)
+    _, _, bay_, fl_, ww_, wh_, _ = FACADES[kind]
+    nf = int((h - 1.0) // fl_)
+    for k in range(nf + 1):
+        z = k * fl_ + 0.18 * fl_ - 0.03
+        if z < 4.6 or z + wh_ * fl_ > h - 0.4:
+            continue
+        for n in range(-int(w / bay_) - 3, int(w / bay_) + 3):
+            yc = (n + 0.5) * bay_ + depth / 2 + w / 2          # facade-local y of the window centre
+            if 0.3 < yc - ww_ * bay_ / 2 and yc + ww_ * bay_ / 2 < w - 0.3:
+                B("sills", CONC).box(M, (-0.07, yc, z), (0.16, ww_ * bay_ + 0.12, 0.06))
     # --- rooftop
     if rooftop:
         for (cx, cy, sx, sy) in ((depth / 2, 0.1, depth, 0.2), (depth / 2, w - 0.1, depth, 0.2), (0.1, w / 2, 0.2, w), (depth - 0.1, w / 2, 0.2, w)):
@@ -777,7 +809,7 @@ def build_scene(with_hero=True, avoid=(), rain_box=(0, 22, 18, 46)):
             alley(side, ya)
     poles_and_wires(); build_wires(); street_props(); skyline()
     for name, b in list(_B.items()):
-        b.done(CITY if name in ("ledges", "fins", "parapet", "hut", "tank", "pipes", "ac", "ac_grille", "rail", "clutter", "mullion", "fascia",
+        b.done(CITY if name in ("ledges", "sills", "fins", "parapet", "hut", "tank", "pipes", "ac", "ac_grille", "rail", "clutter", "mullion", "fascia",
                                 "curb", "paint", "manhole") else PROPS)
     _B.clear()
     prefs.keyframe_new_interpolation_type = "LINEAR"      # moving traffic: one car toward camera, one away

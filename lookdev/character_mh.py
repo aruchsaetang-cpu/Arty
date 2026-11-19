@@ -327,9 +327,8 @@ def real_mat(hexc, name, spec=0.0, crease=0.0, crease_zmax=99.0):
         b.inputs["Subsurface Weight"].default_value = 0.12
         b.inputs["Subsurface Radius"].default_value = (0.9, 0.4, 0.25)
         b.inputs["Subsurface Scale"].default_value = 0.008
-    elif n.startswith("hair"):
-        rough, spec_lvl, sheen = 0.32, 0.55, 0.0
-        b.inputs["Coat Weight"].default_value = 0.15; b.inputs["Coat Roughness"].default_value = 0.25
+    elif n.startswith("hair"):     # matte strands with a soft sheen (no plastic helmet gloss)
+        rough, spec_lvl, sheen = 0.58, 0.3, 0.18
     elif n in ("shoe", "sole", "belt", "loafer_strap", "lips", "shaft", "umbrella", "pov_umbrella", "bag", "bag_strap"):
         rough, spec_lvl, sheen = (0.22 if n in ("shoe", "loafer_strap", "lips") else 0.4), 0.6, 0.0
     elif n in ("brow", "lash"):
@@ -1282,6 +1281,8 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
     out = [(hair, used, 0.004)]
     if style == "crop":
         out += crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM)
+    if style in ("short", "bangs", "slick", "bob"):
+        out += natural_locks(coll, HV, hf, V, head_faces, eyeL, hx, hc, st, HM, style)
     if style == "long":
         out += long_locks(coll, HV, hf, V, head_faces, eyeL, hx, hc, st, HM, st.get("hair_len", 0.3))
     if style == "quiff":
@@ -1289,6 +1290,76 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
                            lo_z=eyeL.z - 0.075, tufts=False, front_max=0.62)
         out += quiff_locks(coll, hair, HV, hf, eyeL, hx, hc, st, HM, V, head_faces)
     return out
+
+def natural_locks(coll, HV, hf, V, head_faces, eyeL, hx, hc, st, HM, style):
+    """Ordinary hair: strands lying on the cap in the way hair grows, so it reads as hair and not a helmet.
+    short: from the crown whorl outward and forward; bangs: the front falls over the forehead to the brows;
+    slick: swept back from the hairline; bob: falls from a side parting to the jaw."""
+    import random as _r
+    rng = _r.Random(hash((style, st.get("vary", 0), st["hair_col"])) & 0xffffff)
+    bvh = bvhtree.BVHTree.FromPolygons([tuple(HV[i]) for i in range(len(HV))], hf)
+    sbvh = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], head_faces)
+    C0 = Vector((0.0, hc.y + 0.01, eyeL.z - 0.005))
+    def surf(el, az, skin=False):
+        d = Vector((math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el)))
+        best = None
+        for b_ in ((bvh, sbvh) if skin else (bvh,)):
+            hit = b_.ray_cast(C0 + d * 0.4, -d)
+            if hit[0] is not None and (best is None or (hit[0] - C0).length > (best - C0).length):
+                best = hit[0]
+        if best is None:
+            best = bvh.find_nearest(C0 + d * 0.11)[0]
+        return best, (best - C0).normalized()
+    bm = bmesh.new(); lite_faces = []
+    def ribbon(path, w0, lift, lite, skin=False):
+        pts = []
+        for k, (el, az) in enumerate(path):
+            p, n = surf(el, az, skin); pts.append((p + n * lift, n))
+        ring = []
+        for k, (p, n) in enumerate(pts):
+            t = k / (len(pts) - 1); d = (pts[min(k + 1, len(pts) - 1)][0] - pts[max(k - 1, 0)][0]).normalized()
+            side = d.cross(n).normalized(); w = w0 * (1 - 0.8 * t ** 1.3) * 0.5 + 0.0005
+            ring.append((bm.verts.new(p - side * w), bm.verts.new(p + side * w)))
+        for a, b in zip(ring, ring[1:]):
+            fc = bm.faces.new((a[0], b[0], b[1], a[1]))
+            if lite: lite_faces.append(fc)
+    R = math.radians
+    if style in ("short", "bangs"):
+        crown_az = R(180) + rng.uniform(-0.3, 0.3)
+        for j in range(70):
+            az0 = rng.uniform(-math.pi, math.pi); el0 = R(rng.uniform(55, 95))
+            fwd = math.cos(az0)                                        # +1 at the front
+            L = R(rng.uniform(14, 24)) * (1.6 if style == "bangs" and fwd > 0.55 else 1.0)
+            el1 = el0 - L * (1.8 if style == "bangs" and fwd > 0.55 else 1.0)
+            if el0 < R(70):                                            # outer strands run past the cap into a soft hairline
+                el1 = min(el1, R(rng.uniform(24, 34) + 14 * max(0.0, fwd)))
+            if style == "bangs" and fwd > 0.55:
+                el1 = R(rng.uniform(8, 16))                            # down onto the forehead, to the brows
+            swirl = R(rng.uniform(4, 12)) * (1 if az0 > 0 else -1)
+            n_ = 7; path = [(el0 + (el1 - el0) * k / (n_ - 1), az0 + swirl * k / (n_ - 1)) for k in range(n_)]
+            ribbon(path, rng.uniform(0.016, 0.026), 0.006, rng.random() < 0.35, skin=True)
+    elif style == "slick":
+        for j in range(36):
+            az0 = R(-70 + 140 * j / 35 + rng.uniform(-3, 3)); el0 = R(rng.uniform(38, 46))
+            n_ = 10; path = [(el0 + (R(125) - el0) * k / (n_ - 1), az0 * (1 - 0.35 * k / (n_ - 1))) for k in range(n_)]
+            ribbon(path, rng.uniform(0.018, 0.026), 0.006, rng.random() < 0.35)
+    elif style == "bob":
+        part = R(-12)
+        for sx in (1, -1):
+            for j in range(16):
+                az1 = sx * R(25 + 95 * j / 15); n_ = 10
+                path = [(R(84) + (R(-6) - R(84)) * k / (n_ - 1), part + (az1 - part) * (k / (n_ - 1)) ** 0.8) for k in range(n_)]
+                ribbon(path, rng.uniform(0.022, 0.03), 0.007, rng.random() < 0.35, skin=True)
+    me = bpy.data.meshes.new("hair_strands"); bm.to_mesh(me)
+    lite_idx = {f.index for f in lite_faces}; bm.free()
+    ob = bpy.data.objects.new("hair_strands", me); coll.objects.link(ob); ob.data.materials.append(HM)
+    c0 = [int(st["hair_col"][k:k + 2], 16) for k in (1, 3, 5)]
+    lite = "#%02x%02x%02x" % tuple(min(255, int(v * 1.35 + 10)) for v in c0)
+    ob.data.materials.append(cel(lite, st["hair_col"], rim="#8a7a6c", rim_amt=0.4, name="hair_lite"))
+    for pl in me.polygons:
+        if pl.index in lite_idx: pl.material_index = 1
+    ob["tufts"] = True; ob["locks"] = True
+    return [(ob, None, 0.0)]
 
 def long_locks(coll, HV, hf, V, head_faces, eyeL, hx, hc, st, HM, drop):
     """Long wavy hair: locks flowing from a side parting down over the head, and face-framing locks that leave the
