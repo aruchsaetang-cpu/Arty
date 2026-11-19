@@ -32,6 +32,7 @@ OUT = os.path.join(HERE, "renders"); os.makedirs(OUT, exist_ok=True)
 hx = X["hero"]
 VIEWS = [("v2_lineup", (0, -6.6, 1.05), (0, 0, 1.0), 40, 1080, 1920),
          ("v2_face_hero", (hx + 0.12, -0.9, 1.8), (hx, 0, 1.78), 75, 1080, 1920),
+         ("v2_side_hero", (hx - 0.85, -0.1, 1.82), (hx, 0, 1.8), 75, 1080, 1920),
          ("v2_feet_hero", (hx + 0.35, -0.75, 0.16), (hx, 0, 0.08), 40, 1080, 1920),
          ("v2_face_narr_b", (X["narr_b"] + 0.1, -0.95, 1.62), (X["narr_b"], 0, 1.62), 70, 1080, 1920),
          ("v2_body_narr_b", (X["narr_b"], -2.0, 1.25), (X["narr_b"], 0, 1.2), 50, 1080, 1920)]
