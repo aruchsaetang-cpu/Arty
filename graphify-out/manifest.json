@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795115257.671584,
-    "seen": 1795115479.876541,
+    "mtime": 1795116064.8427086,
+    "seen": 1795116305.8923674,
     "ast_hash": "b95b1d706a6fb6242d95cfeec9485b13",
     "semantic_hash": ""
   },
@@ -6678,9 +6678,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film_sets.py": {
-    "mtime": 1795047717.3767548,
-    "seen": 1795048391.2684796,
-    "ast_hash": "66eac7a3c9e0f03a4f35503206d1ca87",
+    "mtime": 1795115632.5014675,
+    "seen": 1795116305.8923843,
+    "ast_hash": "dcbbdc720bcd33d40b5f346b52171036",
     "semantic_hash": ""
   },
   "shorts/aura/script_v2.json": {
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795115326.634805,
-    "seen": 1795115479.8765926,
+    "mtime": 1795116133.8082414,
+    "seen": 1795116305.8924005,
     "ast_hash": "eca65a59a9d4c994624df0cb6526edef",
     "semantic_hash": ""
   },
@@ -7593,6 +7593,18 @@
     "mtime": 1795115458.5228128,
     "seen": 1795115479.879019,
     "ast_hash": "ca1f9b7bfe1126ff16665474f7646669",
+    "semantic_hash": ""
+  },
+  "shorts/aura/shop_detail.py": {
+    "mtime": 1795115759.602798,
+    "seen": 1795116305.892396,
+    "ast_hash": "fe0b2530c29d3887c6ce86b52abd2258",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/store_interior_preview.png": {
+    "mtime": 1795116282.0508616,
+    "seen": 1795116305.8937085,
+    "ast_hash": "4cc60b7d1f4f70e2bd1a74bd55c1e222",
     "semantic_hash": ""
   }
 }

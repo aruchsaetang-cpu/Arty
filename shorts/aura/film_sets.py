@@ -38,21 +38,10 @@ def shop_interior(probe=(9.5, 54.5, 1.5)):
     mx = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(lw.outputs["Fresnel"], mx.inputs[0])
     nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(gl.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], o_.inputs[0])
     glass.data.materials[0] = gm
-    FLOOR = C.principled("shop_floor", "#c4bfb4", 0.22); WALL = C.principled("shop_wall", "#e4e0d6", 0.8)
-    WOOD = C.principled("counter_wood", "#6b4a33", 0.5); TOPW = C.principled("counter_top", "#eeeae2", 0.3)
-    LAMP = _emit("shop_lamp", "#fff7ea", 9.0)
-    _box(coll, "shop_floor", (xm, ym, z0 + 0.02), (x1 - x0, W, 0.04), FLOOR)
-    _box(coll, "shop_ceiling", (xm, ym, z1 - 0.02), (x1 - x0, W, 0.04), WALL)
-    _box(coll, "shop_back", (x1 - 0.05, ym, (z0 + z1) / 2), (0.1, W, z1 - z0), C.shopglass("#fff2d8"))
-    _box(coll, "shop_fridges", (xm + 0.6, y0 + 0.05, 1.2), (x1 - x0 - 1.4, 0.1, 2.1), C.shopglass("#d8f0ff"))
-    _box(coll, "shop_side", (xm, y1 - 0.05, (z0 + z1) / 2), (x1 - x0, 0.1, z1 - z0), WALL)
-    for k, lx in enumerate((8.4, 9.7, 11.0)):
-        _box(coll, f"shop_light{k}", (lx, ym, z1 - 0.06), (0.25, W - 1.2, 0.03), LAMP)
-    for gx, gyc in ((10.9, 54.9), (11.0, 57.6), (10.9, ym + 3.4)):
-        _box(coll, "shop_gondola", (gx, gyc, 0.85), (0.6, 1.6, 1.4), C.shopglass("#ffe3c0"))
-    _box(coll, "shop_counter", (8.55, y0 + 1.0, 0.62), (0.6, 1.5, 0.95), WOOD)
-    _box(coll, "shop_counter_top", (8.55, y0 + 1.0, 1.11), (0.66, 1.56, 0.04), TOPW)
-    _box(coll, "shop_register", (8.55, y0 + 0.7, 1.25), (0.3, 0.35, 0.22), C.METAL)
+    # high-detail convenience store (the shop shot looks straight in): coolers, shelving, counter, lights, signs
+    exec(open(os.path.join(HERE, "shop_detail.py")).read(), globals())
+    shop_dressing(coll, x0, x1, y0, y1, z0, z1, avoid=[(9.4, 54.2), (8.5, 55.5), (10.2, 56.4)])
+    print("shop interior", round(x0, 2), round(x1, 2), round(y0, 2), round(y1, 2))
     ld = bpy.data.lights.new("shop_fill", "AREA"); ld.shape = "RECTANGLE"; ld.size = 3.0; ld.size_y = W - 1.0
     ld.energy = 1400; ld.color = (1.0, 0.96, 0.9)
     lo = bpy.data.objects.new("shop_fill", ld); coll.objects.link(lo); lo.location = (9.7, ym, z1 - 0.1)
