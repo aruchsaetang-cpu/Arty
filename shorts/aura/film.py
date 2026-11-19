@@ -99,7 +99,8 @@ TURN_IN = fr("follow") + 30
 hero_s, _ = ch.build(P, (HERO_X, 60, 0), ch.HERO, pose_mode="walk"); hero_s.name = "HERO_street"
 spd = (2 * 0.62 * hero_s.scale[0] / 0.83) / (34 / 30.0)
 y_start = AL_Y + spd * (TURN_IN + 40) / 30.0
-_, hero_s_at = walk_path(hero_s, [(HERO_X, y_start, 0), (HERO_X, AL_Y, 0), (-30, AL_Y, 0)], -40, fr("follow", 1) + 2)
+_, hero_s_at = walk_path(hero_s, [(HERO_X, y_start, 0), (HERO_X, AL_Y, 0), (-30, AL_Y, 0)], -40, fr("follow", 1) + 2,
+                        prop="pockets")
 visible(hero_s, [(1, fr("follow", 1))])
 
 # the hero in the alley: walking (weaving between the drops in slow motion), stops, turns round
@@ -109,9 +110,9 @@ def weave(f):   # side-steps between drops while the storm crawls
     k = min(1.0, (f - SLOW0) / 12.0) * min(1.0, (SLOW1 - f) / 12.0)
     return k * (0.15 * math.sin(2 * math.pi * f / 17.0) + 0.06 * math.sin(2 * math.pi * f / 7.3))
 hero_a, _ = ch.build(P, (-11, AL_Y, 0), ch.HERO, pose_mode="walk"); hero_a.name = "HERO_alley"
-_, hero_a_at = walk_path(hero_a, [(-11.0, AL_Y, 0), (-40.0, AL_Y, 0)], fr("alley_pov"), TURN, sway=weave)
+_, hero_a_at = walk_path(hero_a, [(-11.0, AL_Y, 0), (-40.0, AL_Y, 0)], fr("alley_pov"), TURN, sway=weave, prop="pockets")
 STOP = hero_a_at(TURN)[0].copy(); STOP.z = 0
-stand_at(hero_a, TURN + 6, STOP, -90)                       # stands, still facing down the alley
+stand_at(hero_a, TURN + 6, STOP, -90, "pockets")                       # stands, still facing down the alley
 prefs.keyframe_new_interpolation_type = "BEZIER"
 hero_a.rotation_euler = (0, 0, math.radians(-90)); hero_a.keyframe_insert("rotation_euler", index=2, frame=TURN + 10)
 hero_a.rotation_euler = (0, 0, math.radians(90)); hero_a.keyframe_insert("rotation_euler", index=2, frame=TURN + 26)
@@ -131,7 +132,7 @@ umb_b = ch.add_umbrella(narr_b, P, "#1d2230")
 hero_p, _ = ch.build(P, (0.0, 64, 0), ch.HERO, pose_mode="walk"); hero_p.name = "HERO_payoff"
 narr_p, _ = ch.build(P, (1.25, 64, 0), K.NARR_B, pose_mode="walk"); narr_p.name = "NARR_payoff"
 PAY0 = fr("payoff_two") - 20
-_, hero_p_at = walk_path(hero_p, [(0.0, 62.5, 0), (0.0, 30.0, 0)], PAY0, N + 4, cycle=34)
+_, hero_p_at = walk_path(hero_p, [(0.0, 62.5, 0), (0.0, 30.0, 0)], PAY0, N + 4, cycle=34, prop="pockets")
 walk_path(narr_p, [(1.25, 62.5, 0), (1.25, 30.0, 0)], PAY0, N + 4, cycle=34, stride=0.6, phase=0.25)
 visible(hero_p, [(fr("payoff_two"), N)]); visible(narr_p, [(fr("payoff_two"), N)])
 
@@ -144,11 +145,13 @@ stand_at(narr_a, fr("teach"), NARR_T, deg_to(NARR_T, STOP), "umbrella")
 stand_at(narr_a, fr("train_roof"), RN, deg_to(RN, RT), "umbrella")
 stand_at(narr_a, fr("train_umb"), UN, deg_to(UN, UT), "umbrella")
 stand_at(narr_a, MONT[0][0], RN, deg_to(RN, RT), "umbrella")
-stand_at(hero_t, fr("train_roof"), RT, deg_to(RT, RN))
-stand_at(hero_t, fr("train_umb"), UT, deg_to(UT, UN))
-stand_at(hero_t, MONT[0][0], RT, deg_to(RT, RN))
-stand_at(hero_t, MONT[1][0], UT, deg_to(UT, UN))
-stand_at(hero_t, MONT[2][0], RT, deg_to(RT, RN))
+stand_at(hero_t, fr("train_roof"), RT, deg_to(RT, RN), "pockets")
+stand_at(hero_t, fr("train_umb"), UT, deg_to(UT, UN), "pockets")
+stand_at(hero_t, MONT[0][0], RT, deg_to(RT, RN), "pockets")
+stand_at(hero_t, MONT[1][0], UT, deg_to(UT, UN), "pockets")
+stand_at(hero_t, MONT[2][0], RT, deg_to(RT, RN), "pockets")
+for h_ in (hero_s, hero_a, hero_t, hero_p):        # his hands live in his trouser pockets
+    ch.hands_in_pockets(h_)
 stand_at(narr_m, 1, UN, deg_to(UN, UT), "umbrella")
 stand_at(narr_b, 1, RN, deg_to(RN, RT), "umbrella")
 stand_at(narr_b, fr("close"), CLOSE_P, 0, "umbrella")

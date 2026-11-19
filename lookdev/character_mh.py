@@ -66,7 +66,8 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
 # flaring off the shoulders, black V-neck top, light-grey creased trousers, black loafers; slicked-back hair,
 # idol face, and the eyes nobody else has (black sclera, white irises)
 HERO_LOOK = dict(body="m_lean", vtaper=False, crease=0.006, turtleneck=False, vneck=True, top=("#17181c", "#050506"),
-                 coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, coat_flare=(0.05, 0.1), tie=None,
+                 coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, lapels=True, coat_flare=(0.07, 0.16), tie=None,
+                 creases=True,
                  leg_col=("#c4c5ca", "#767880"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
                  face="idol", hair="slick", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
 
@@ -543,6 +544,35 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             snap_edge(cu, lambda co: co.y < -0.02 and co.z > sternum_z - 0.14 and abs(co.x) < 0.06,
                       lambda co: 0.028 + max(0.0, sternum_z - co.z) * 0.22, 0.0)
         finish(cu, used, solidify=0.006)
+        if st.get("lapels") and wide:   # notched suit lapels folded back along the open front
+            body_bvh_l = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], body_faces)
+            zb, zn, zt = pelvis_z + 0.13, sternum_z - 0.035, neck_z + 0.005
+            LAP = cel(st["coat"][1] if not dark else st["coat"][0], st["coat"][1], rim="#d6efff", rim_amt=0.6, name="lapel")
+            LAP = cel("#b9bbc1", st["coat"][1], rim="#e6f4ff", rim_amt=0.7, name="lapel") if not dark else COAT
+            bm = bmesh.new()
+            for sx in (1, -1):
+                rows = []
+                for k in range(16):
+                    z = zb + (zt - zb) * k / 15
+                    if z < zn:
+                        w = 0.068 * (z - zb) / (zn - zb)
+                    elif z < zn + 0.012:
+                        w = 0.022                                   # the notch
+                    else:
+                        w = 0.04 * (1 - 0.5 * (z - zn) / (zt - zn))  # collar
+                    row = []
+                    for u in (0.0, 1.0):
+                        x = sx * (gap_w(min(z, sternum_z)) + 0.004 + u * w)
+                        hit = body_bvh_l.ray_cast(Vector((x, -0.6, z)), Vector((0, 1, 0)))
+                        p_ = (hit[0] + hit[1] * 0.024) if hit[0] else Vector((x, -0.1, z))
+                        row.append(bm.verts.new(p_))
+                    rows.append(row)
+                for r0, r1 in zip(rows, rows[1:]):
+                    bm.faces.new((r0[0], r1[0], r1[1], r0[1]) if sx > 0 else (r0[0], r0[1], r1[1], r1[0]))
+            me = bpy.data.meshes.new("lapels"); bm.to_mesh(me); bm.free()
+            lp = bpy.data.objects.new("lapels", me); coll.objects.link(lp); lp.data.materials.append(LAP)
+            weights_from_body(lp, kd, bused, per_vert, k=4); add_mods(lp, arm, subsurf=0, solidify=0.003, outline=1.0)
+            objs.append(lp)
         skirt_piece("coat_skirt", coll, V, F, G, kd, bused, per_vert, COAT, st.get("hem", 0.36), st.get("open_skirt", True),
                     flare=st.get("coat_flare", (0.10, 0.22)), finish=finish, gap=0.075 if wide else 0.035)
 
@@ -585,6 +615,27 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     else:
         legs = trousers(coll, V, F, G, sk, jpos, pelvis_z, per_vert, 0.009, straight=True,
                         mat=cel(st["leg_col"][0], st["leg_col"][1], rim="#c9e8ff", name="trousers"))
+    if legs and st.get("creases"):   # pressed trousers: a crease line down the front of each leg
+        tb = bvhtree.BVHTree.FromObject(legs, bpy.context.evaluated_depsgraph_get())
+        bm = bmesh.new()
+        for side in ("L", "R"):
+            hip = jpos[sk["bones"][f"upperleg01.{side}"]["head"]]; knee = jpos[sk["bones"][f"lowerleg01.{side}"]["head"]]
+            ank = jpos[sk["bones"][f"foot.{side}"]["head"]]
+            row = []
+            for k in range(22):
+                z = (pelvis_z - 0.06) - k / 21 * (pelvis_z - 0.06 - (ank.z + 0.05))
+                a, b = (hip, knee) if z > knee.z else (knee, ank)
+                u = (a.z - z) / max(1e-4, a.z - b.z); x = a.x + (b.x - a.x) * u
+                hit = tb.ray_cast(Vector((x, -0.6, z)), Vector((0, 1, 0)))
+                if hit[0]:
+                    p_ = hit[0] + hit[1] * 0.0018
+                    row.append((bm.verts.new(p_ + Vector((-0.0016, 0, 0))), bm.verts.new(p_ + Vector((0.0016, 0, 0)))))
+            for r0, r1 in zip(row, row[1:]):
+                bm.faces.new((r0[0], r1[0], r1[1], r0[1]))
+        me = bpy.data.meshes.new("trouser_creases"); bm.to_mesh(me); bm.free()
+        cr = bpy.data.objects.new("trouser_creases", me); coll.objects.link(cr)
+        cr.data.materials.append(cel(st["leg_col"][1], "#2a2b30", rim=st["leg_col"][1], name="crease_line"))
+        weights_from_body(cr, kd, bused, per_vert, k=4); add_mods(cr, arm, subsurf=0, outline=0); objs.append(cr)
     if legs: finish(legs)
     if st.get("socks"):
         knee_z = jpos[sk["bones"]["lowerleg01.L"]["head"]].z
@@ -1025,7 +1076,7 @@ def _walk_phase(arm, aim, p, prop=None):
         aim(f"lowerleg01.{side}", sh); aim(f"lowerleg02.{side}", sh)
         aim(f"foot.{side}", (0, -math.cos(pitch - (a - flex) * 0.15), math.sin(pitch)))
     for side, sx, ph in (("L", 1, p + 0.5), ("R", -1, p)):
-        if prop and side == "R":
+        if prop and (side == "R" or prop == "pockets"):
             continue
         s = math.radians(15) * math.cos(2 * math.pi * ph)
         ua = (sx * 0.12, -math.sin(s), -math.cos(s)); fa_ang = s + math.radians(14 + 10 * max(0.0, math.cos(2 * math.pi * ph)))
@@ -1036,6 +1087,12 @@ def _walk_phase(arm, aim, p, prop=None):
         _prop_arm(aim, prop)
 
 def _prop_arm(aim, prop):
+    if prop == "pockets":      # both hands in the trouser pockets, elbows out and back
+        for side, sx in (("L", 1), ("R", -1)):
+            ua = (sx * 0.22, 0.22, -1); fa = (-sx * 0.62, -0.42, -0.66); wr = (-sx * 0.25, -0.2, -1)
+            aim(f"upperarm01.{side}", ua); aim(f"upperarm02.{side}", ua)
+            aim(f"lowerarm01.{side}", fa); aim(f"lowerarm02.{side}", fa); aim(f"wrist.{side}", wr)
+        return
     if prop == "umbrella":     # right fist at chest height, shaft vertical
         aim("upperarm01.R", (-0.18, -0.25, -1)); aim("upperarm02.R", (-0.18, -0.25, -1))
         aim("lowerarm01.R", (0.32, -1, 0.75)); aim("lowerarm02.R", (0.32, -1, 0.75)); aim("wrist.R", (0.2, -1, 0.5))
@@ -1043,19 +1100,24 @@ def _prop_arm(aim, prop):
         aim("upperarm01.R", (-0.1, -0.12, -1)); aim("upperarm02.R", (-0.1, -0.12, -1))
         aim("lowerarm01.R", (0.45, -1, 0.55)); aim("lowerarm02.R", (0.45, -1, 0.55)); aim("wrist.R", (0.3, -1, 0.2))
 
+def hands_in_pockets(arm):
+    """The hands disappear into the trouser pockets: scale them down inside the cloth (permanent for this rig)."""
+    for side in ("L", "R"):
+        arm.pose.bones[f"wrist.{side}"].scale = (0.35, 0.35, 0.35)
+
 def posed(arm, mode, head_yaw=0.0):
     aim = _aimer(arm); _reset(arm)
     if mode == "walk":           # hero still: mid-stride, natural arm swing
         _walk_phase(arm, aim, 0.0)
-    elif mode in ("stand", "phone", "umbrella"):
+    elif mode in ("stand", "phone", "umbrella", "pockets"):
         for side, sx in (("L", 1), ("R", -1)):
             aim(f"upperarm01.{side}", (sx * 0.1, 0.02, -1)); aim(f"upperarm02.{side}", (sx * 0.1, 0.02, -1))
             aim(f"lowerarm01.{side}", (sx * 0.02, -0.15, -1)); aim(f"lowerarm02.{side}", (sx * 0.02, -0.15, -1))
             aim(f"wrist.{side}", (sx * 0.03, -0.1, -1))
         if mode == "phone":
             _prop_arm(aim, "phone"); aim("neck02", (0, -0.35, 1)); aim("head", (0, -0.45, 1))
-        if mode == "umbrella":
-            _prop_arm(aim, "umbrella")
+        if mode in ("umbrella", "pockets"):
+            _prop_arm(aim, mode)
     _fingers(arm, aim)
     if head_yaw:   # look sideways: twist neck and head about their own (vertical) axes
         for b in ("neck02", "head"):

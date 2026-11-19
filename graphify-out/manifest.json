@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795048589.3262708,
-    "seen": 1795048619.1968474,
-    "ast_hash": "1f88e94d037782f7922015e2d8cccf4b",
+    "mtime": 1795048738.659899,
+    "seen": 1795048797.788116,
+    "ast_hash": "b50241b600e0b1cc02f7f4167c22a54c",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795047750.749805,
-    "seen": 1795048391.2684774,
-    "ast_hash": "52600acffee566c04c92cb2932304054",
+    "mtime": 1795048781.1291733,
+    "seen": 1795048797.7881346,
+    "ast_hash": "cf0800fc6c24a64281946a986d6d99e2",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -6761,24 +6761,6 @@
     "ast_hash": "de1ed9bdea52807b67f990dcbc6b6942",
     "semantic_hash": ""
   },
-  "shorts/aura/stills/s0044.png": {
-    "mtime": 1795048230.2487853,
-    "seen": 1795048391.269452,
-    "ast_hash": "6171c2e44ddf377806768f7ff71fd193",
-    "semantic_hash": ""
-  },
-  "shorts/aura/stills/s0122.png": {
-    "mtime": 1795048258.096787,
-    "seen": 1795048391.269453,
-    "ast_hash": "f3c63a2fc2b665f114adb046ee4b6dd0",
-    "semantic_hash": ""
-  },
-  "shorts/aura/stills/s0189.png": {
-    "mtime": 1795048279.788788,
-    "seen": 1795048391.269454,
-    "ast_hash": "7e03e3f08ec8e9987efb11a673ca1e2b",
-    "semantic_hash": ""
-  },
   "shorts/aura/audio/lines/l00.wav": {
     "mtime": 1795046897.926539,
     "seen": 1795048391.2694795,
@@ -6906,15 +6888,21 @@
     "semantic_hash": ""
   },
   "lookdev/renders/v2_hero_greysuit.png": {
-    "mtime": 1795048600.6888072,
-    "seen": 1795048619.1977124,
-    "ast_hash": "ed80da4f565770d89c81161cde50d3bd",
+    "mtime": 1795048764.416817,
+    "seen": 1795048797.7889988,
+    "ast_hash": "cf005b2235a51daec68d36dd2c877563",
     "semantic_hash": ""
   },
   "shorts/aura/out/hero_greysuit_preview.png": {
-    "mtime": 1795048612.6097128,
-    "seen": 1795048619.1977215,
-    "ast_hash": "ed80da4f565770d89c81161cde50d3bd",
+    "mtime": 1795048790.9178777,
+    "seen": 1795048797.7890067,
+    "ast_hash": "cf005b2235a51daec68d36dd2c877563",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/hero_outfit_closeup.png": {
+    "mtime": 1795048790.9195077,
+    "seen": 1795048797.789011,
+    "ast_hash": "688839914ebd0a15421001b8adc5acdd",
     "semantic_hash": ""
   }
 }
