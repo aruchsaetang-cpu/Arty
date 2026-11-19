@@ -68,14 +68,12 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
             top=("#1d1f25", "#07080b"), turtleneck=False, coat=None, manhwa_head=True,
             legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#6e4a32")
 
-# the lead (only when build() is given HERO itself): tall and lean; a long light-grey jacket worn open and loose,
-# flaring off the shoulders, black V-neck top, light-grey creased trousers, black loafers; slicked-back hair,
-# idol face, and the eyes nobody else has (black sclera, white irises)
-HERO_LOOK = dict(body="m_slender", vtaper=False, crease=0.0, turtleneck=False, vneck=True, top=("#17181c", "#050506"),
-                 coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, lapels=True, drape=True, coat_flare=(0.04, 0.08),
-                 tie=None,
-                 creases=True,
-                 leg_col=("#c4c5ca", "#767880"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
+# the lead (only when build() is given HERO itself): tall and lean, in the first-version outfit (long charcoal coat,
+# oatmeal turtleneck, dark trousers); idol face, quiff, and the eyes nobody else has (black sclera, white irises)
+HERO_LOOK = dict(body="m_slender", vtaper=False, crease=0.0,
+                 # dressed as in the first-version preview: long charcoal coat over an oatmeal turtleneck, dark trousers
+                 top=("#cfc4b2", "#7d7466"), turtleneck=True, coat=("#2f343c", "#11141a"), hem=0.36, open_skirt=True,
+                 tie=None, leg_col=("#24272d", "#0c0e12"), shoes=("#1b1a1c", "#3a2a22"), loafer=False, sneakers=False,
                  face="idol", hair="quiff", hair_col="#16120f", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
 
 # face sculpts from MakeHuman's CC0 face targets (assets/makehuman/targets/face): weights per target

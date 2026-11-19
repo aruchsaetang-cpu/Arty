@@ -16,8 +16,8 @@ SHOP = dict(vary=101, manhwa_head=True, body="m_heavy", height=1.72, face="round
             head_yaw=28, subsurf=1)
 # Korean street police: light-grey jacket, navy vest with reflective band, navy trousers, cap with gold braid
 COP = dict(vary=102, manhwa_head=True, body="m", height=1.82, face="square", skin=("#d9a982", "#9a6a4a"), hair="short", locks=False,
-           coat=None, top=("#b4b8bd", "#6c7178"), turtleneck=False,     # long-sleeved grey shirt tucked in, no jacket
-           vest="#1c2742", leg_col=("#151b2e", "#070a14"), shoes=("#111114", "#2a2a2e"), head_yaw=-24,
+           coat=("#1f2a3d", "#0c1220"), hem=0.62, top=("#8a9bb0", "#4b5868"), turtleneck=False,   # first-version uniform:
+           leg_col=("#1f2a3d", "#0c1220"), shoes=("#111114", "#2a2a2e"), head_yaw=-24,             # long navy coat, blue shirt
            brows="#0e0c0b", subsurf=1)
 KID1 = dict(vary=103, body="kid_f", height=1.28, face="soft_f", skin=("#f3d6bf", "#bf9274"), hair="bob", hair_col="#1a1414",
             coat=("#1f2a4a", "#0b1124"), hem=0.9, open_skirt=True, coat_flare=(0.02, 0.04), top=("#f4f4f0", "#b8bcc6"),
