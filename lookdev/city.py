@@ -704,6 +704,16 @@ CAR_KINDS = {
     "crossover": dict(L2=2.28, zb=0.25, top=[(-2.28, 1.08), (-2.12, 1.22), (-1.55, 1.56), (0.2, 1.6), (1.05, 1.0), (2.28, 0.86)],
                       belt=(1.07, 0.99), hw=0.93, hw_roof=0.7, axles=(1.36, -1.34), wr=0.36, glass=(-1.85, 1.0),
                       pillars=((-0.15, -0.04), (-1.25, -1.15)), grille="hex", gw=0.36, rails=True, clad=True),
+    "sportback": dict(L2=2.37, zb=0.2, top=[(-2.37, 1.02), (-2.25, 1.08), (-1.9, 1.2), (-0.6, 1.39), (0.15, 1.4), (1.0, 0.93), (2.37, 0.78)],
+                      belt=(0.98, 0.92), hw=0.93, hw_roof=0.66, axles=(1.42, -1.38), wr=0.35, glass=(-1.75, 0.95),
+                      pillars=((-0.25, -0.15),), grille="hex", gw=0.4, rails=False, clad=False),
+    "gt":        dict(L2=2.32, zb=0.16, top=[(-2.32, 0.98), (-2.1, 1.02), (-1.3, 1.2), (-0.4, 1.3), (0.2, 1.29), (0.85, 0.88), (2.32, 0.7)],
+                      belt=(0.92, 0.86), hw=0.98, hw_roof=0.62, axles=(1.42, -1.35), wr=0.35, glass=(-1.2, 0.8),
+                      pillars=(), grille="slots", gw=0.34, rails=False, clad=False, splitter=True, wing="lip"),
+    "supercar":  dict(L2=2.25, zb=0.12, top=[(-2.25, 0.92), (-1.9, 0.98), (-1.0, 1.04), (-0.6, 1.14), (0.0, 1.16), (0.45, 1.1), (1.3, 0.72), (2.25, 0.5)],
+                      belt=(0.95, 0.8), hw=1.0, hw_roof=0.56, axles=(1.35, -1.38), wr=0.36, glass=(-0.5, 0.95),
+                      pillars=(), grille="slats", gw=0.5, rails=False, clad=False, splitter=True, wing="high", intakes=True,
+                      lamps="arrow", vents=True),
     "offroad":   dict(L2=2.3, zb=0.42, top=[(-2.3, 1.84), (0.35, 1.86), (0.9, 1.2), (1.05, 1.16), (2.3, 1.12)],
                       belt=(1.24, 1.2), hw=0.94, hw_roof=0.86, axles=(1.42, -1.38), wr=0.42, glass=(-2.15, 0.88),
                       pillars=((-0.12, 0.0), (-1.3, -1.18)), grille="slots", gw=0.45, rails=False, clad=True, boxy=True),
@@ -726,13 +736,18 @@ def _car_profile(K, y):
     if y < -L2 + 0.6: hw -= taper * 0.8 * ((-L2 + 0.6 - y) / 0.6) ** 2
     return zb, belt, top, hw
 
-def car(M, colour, moving=False, name="car", kind=None):
+def car(M, colour, moving=False, name="car", kind=None, matte=False, accent=None):
     """A modern car of one of five body types (suv, sedan, hatch, crossover, offroad): lofted clear-coated body with
     real wheel arches, dark glass with gloss-black pillars, chrome window line, grille, slim LED or round lamps,
     alloys, mirrors, handles, plates. Local frame: +y forward, x across, z up; origin on the ground at the middle."""
     rr = random.Random(int(abs(M.translation.x) * 100 + abs(M.translation.y) * 1000))           # (keeps the city's seeded layout)
     kind = kind or rr.choice(list(CAR_KINDS)); K = CAR_KINDS[kind]; L2 = K["L2"]; boxy = K.get("boxy", False)
     CM = _car_mats(colour); paint = CM["paint_" + colour]; parts = []
+    if matte:   # satin-matte wrap (the black supercar)
+        if "matte_" + colour not in CM:
+            m_ = principled(f"carmatte_{colour}", colour, 0.55, 0.3); CM["matte_" + colour] = m_
+        paint = CM["matte_" + colour]
+    ACC = principled(f"car_accent_{accent}", accent, 0.3, 0.2) if accent else None
     MATS = [paint, CM["glass"], CM["black"], CM["clad"]]
     knots = sorted(set([round(y, 3) for y, _ in K["top"]] + [round(-L2 + d, 3) for d in (0.02, 0.07, 0.15)] +
                        [round(L2 - d, 3) for d in (0.02, 0.05, 0.13, 0.25)] + [round(v, 3) for p in K["pillars"] for v in p] +
@@ -771,6 +786,12 @@ def car(M, colour, moving=False, name="car", kind=None):
             f = bm.faces.new((r0[i], r0[j], r1[j], r1[i])); f.material_index = seg_mat(i, ys[a_], ys[a_ + 1]); f.smooth = True
     for r, flip in ((rings[0], True), (rings[-1], False)):
         f = bm.faces.new(list(reversed(r)) if flip else r); f.material_index = 0
+    if K.get("splitter"):   # performance cars: crisp creased shoulder and sill lines (sharp, not blobby)
+        cl = bm.edges.layers.float.get("crease_edge") or bm.edges.layers.float.new("crease_edge")
+        for r0, r1 in zip(rings, rings[1:]):
+            for i in (2, 3, 11, 12):
+                e_ = bm.edges.get((r0[i], r1[i]))
+                if e_: e_[cl] = 0.85
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
     body = bpy.data.objects.new(name, me); PROPS.objects.link(body); body.matrix_world = M
@@ -819,7 +840,13 @@ def car(M, colour, moving=False, name="car", kind=None):
     for s_ in (-1, 1):
         lx = gw + 0.3 if not boxy else gw + 0.2
         ly, _ = hit((s_ * lx, 6, lamp_z), (0, -1, 0)); ly = ly.y if ly is not None else fy - 0.1
-        if boxy:   # round lamps in chrome rings
+        if K.get("lamps") == "arrow":   # supercar: an arrow of light, a long blade and a downward stroke
+            lz = nose_bot + 0.24
+            for k_, (dx, dz, sx_, sz_, ang) in enumerate(((0.0, 0.0, 0.34, 0.014, 0.12), (0.13, -0.06, 0.13, 0.014, 0.75))):
+                px_ = s_ * (lx - 0.1 + dx); py_, _ = hit((px_, 6, lz + dz), (0, -1, 0)); py_ = py_.y if py_ is not None else ly
+                box(name + "_hl", (px_, py_ + 0.004, lz + dz), (sx_, 0.012, sz_), hl, 0.003,
+                    Matrix.Rotation(-s_ * 0.3, 4, "Z") @ Matrix.Rotation(-s_ * ang, 4, "Y"))
+        elif boxy:   # round lamps in chrome rings
             cyl(name + "_hl", (s_ * lx, ly + 0.02, lamp_z - 0.05), 0.09, 0.04, hl, Matrix.Rotation(math.radians(90), 4, "X"))
             cyl(name + "_hlring", (s_ * lx, ly + 0.012, lamp_z - 0.05), 0.11, 0.03, CM["chrome"], Matrix.Rotation(math.radians(90), 4, "X"))
         else:
@@ -853,7 +880,9 @@ def car(M, colour, moving=False, name="car", kind=None):
     box(name + "_plate_r", (0, ry - 0.02, rt[0] + 0.32), (0.52, 0.012, 0.11), CM["plate"], 0.004)
     for s_ in (-1, 1):
         if not boxy:
-            for y0, y1 in ((gy0 + 0.03, K["pillars"][0][0] - 0.01), (K["pillars"][0][1] + 0.01, gy1 - 0.04)):
+            spans = (((gy0 + 0.03, K["pillars"][0][0] - 0.01), (K["pillars"][0][1] + 0.01, gy1 - 0.04)) if K["pillars"]
+                     else ((gy0 + 0.03, gy1 - 0.04),))
+            for y0, y1 in spans:
                 yc = (y0 + y1) / 2; zb_, belt, top, hw = _car_profile(K, yc)
                 p_, n_ = hit((s_ * 2, yc, min(belt, top) - 0.005), (-s_, 0, 0))
                 if p_ is not None:
@@ -861,7 +890,8 @@ def car(M, colour, moving=False, name="car", kind=None):
         else:   # fender flares over the arches
             for ay in K["axles"]:
                 box(name + "_flare", (s_ * (K["hw"] + 0.03), ay, wr + 0.32), (0.08, 2 * wr + 0.2, 0.12), CM["clad"], 0.03)
-        door_ys = [K["pillars"][0][1] + 0.0, gy1 - 0.02] + ([K["pillars"][1][0]] if len(K["pillars"]) > 1 else [])
+        door_ys = ([K["pillars"][0][1] + 0.0, gy1 - 0.02] + ([K["pillars"][1][0]] if len(K["pillars"]) > 1 else [])
+                   if K["pillars"] else [gy1 - 0.02, gy0 + 0.25])
         for yd in door_ys:
             for z in (0.5, 0.65, 0.8, 0.94):
                 p_, n_ = hit((s_ * 2, yd, z + K["zb"] - 0.27), (-s_, 0, 0))
@@ -877,7 +907,33 @@ def car(M, colour, moving=False, name="car", kind=None):
         if K["rails"]:
             rz_, _ = hit((s_ * 0.6, (roof_r + roof_f) / 2, 3), (0, 0, -1)); rz_ = rz_.z if rz_ is not None else 1.6
             box(name + "_rail", (s_ * 0.6, (roof_r + roof_f) / 2, rz_ + 0.022), (0.03, roof_f - roof_r, 0.025), CM["black"], 0.01)
+    if K.get("splitter"):   # carbon front splitter lip, with the accent line along it
+        box(name + "_splitter", (0, fy - 0.02, nose_bot + 0.02), (2 * K["hw"] - 0.3, 0.16, 0.02), CM["black"], 0.006)
+        if ACC: box(name + "_acc_f", (0, fy + 0.06, nose_bot + 0.008), (2 * K["hw"] - 0.35, 0.012, 0.008), ACC)
+    if ACC:   # accent line along the sills
+        for s_ in (-1, 1):
+            p_, n_ = hit((s_ * 2, 0, K["zb"] + 0.1), (-s_, 0, 0))
+            if p_ is not None: box(name + "_acc_s", (p_.x + s_ * 0.004, 0, K["zb"] + 0.05), (0.01, 2 * L2 - 1.4, 0.012), ACC)
+    if K.get("intakes"):    # big side intakes behind the doors
+        for s_ in (-1, 1):
+            p_, n_ = hit((s_ * 2, -0.95, 0.65), (-s_, 0, 0))
+            if p_ is not None:
+                box(name + "_intake", (p_.x - s_ * 0.03, -0.95, 0.66), (0.08, 0.55, 0.3), CM["clad"], 0.02, Matrix.Rotation(s_ * 0.15, 4, "X"))
+    if K.get("vents"):      # hood vents
+        for s_ in (-1, 1):
+            hz_, _ = hit((s_ * 0.3, 1.65, 3), (0, 0, -1))
+            if hz_ is not None:
+                box(name + "_vent", (s_ * 0.3, 1.65, hz_.z + 0.004), (0.22, 0.32, 0.012), CM["clad"], 0.004, Matrix.Rotation(-s_ * 0.25, 4, "Z"))
+    if K.get("wing"):       # rear wing on two uprights (high) or a lip on the deck (GT)
+        dz_, _ = hit((0, -L2 + 0.25, 3), (0, 0, -1)); dz_ = dz_.z if dz_ is not None else 1.0
+        if K["wing"] == "high":
+            for s_ in (-1, 1): box(name + "_wing_post", (s_ * 0.5, -L2 + 0.28, dz_ + 0.15), (0.03, 0.12, 0.3), CM["black"], 0.006)
+            box(name + "_wing", (0, -L2 + 0.25, dz_ + 0.31), (1.75, 0.34, 0.03), ACC or CM["black"], 0.01, Matrix.Rotation(math.radians(-8), 4, "X"))
+            for s_ in (-1, 1): box(name + "_wing_end", (s_ * 0.88, -L2 + 0.25, dz_ + 0.27), (0.02, 0.36, 0.12), CM["black"], 0.004)
+        else:
+            box(name + "_wing", (0, -L2 + 0.18, dz_ + 0.02), (1.3, 0.12, 0.025), paint, 0.008, Matrix.Rotation(math.radians(-12), 4, "X"))
     rim_mat = CM[rr.choice(["rim", "rim", "rim_dark", "rim_black"])]; spokes = rr.choice([5, 6, 10, 10])
+    if K.get("splitter"): rim_mat = CM[rr.choice(["rim_black", "rim_dark"])]; spokes = rr.choice([5, 10])
     for sx in (-1, 1):
         for ay in K["axles"]:
             W_ = Matrix.Translation((sx * (K["hw"] - 0.14), ay, wr))
@@ -913,9 +969,11 @@ def street_props():
     M = Matrix.Identity(4)
     traffic_light(ROAD_HALF + 0.4, CROSS_Y - 2.2, 1); traffic_light(-ROAD_HALF - 0.4, CROSS_Y + 2.2, -1)
     # parked cars along the curbs
-    for (x, y, rz, c) in ((3.3, 32, 0, "#e6e6e2"), (3.3, 38.5, 0, "#2f6fae"), (-3.3, 18, 180, "#a8121c"),
-                          (3.3, 70, 0, "#4a4f57"), (-3.3, 84, 180, "#a89f92"), (3.3, 104, 0, "#5f8e98")):   # pearl, sky blue, red, graphite, greige, teal
-        car(Matrix.Translation((x, y, 0)) @ Matrix.Rotation(math.radians(rz), 4, "Z"), c)
+    for (x, y, rz, c, kd, kw) in ((3.3, 32, 0, "#e6e6e2", "suv", {}), (3.3, 38.5, 0, "#1f4fc0", "sportback", {}),
+                                  (-3.3, 18, 180, "#b0121c", "gt", {}), (3.3, 70, 0, "#141416", "supercar", dict(matte=True, accent="#22c46a")),
+                                  (-3.3, 84, 180, "#f07a10", "supercar", {}), (3.3, 104, 0, "#5f8e98", "crossover", {}),
+                                  (-3.3, 50, 180, "#e3b318", "supercar", {}), (-3.3, 64, 180, "#b9bcc2", "gt", {})):
+        car(Matrix.Translation((x, y, 0)) @ Matrix.Rotation(math.radians(rz), 4, "Z"), c, kind=kd, **kw)   # the user's car references
     # vending machines, bins, bollards, planters with trees, scooters
     for side in (-1, 1):
         for y in range(2, 140, 9):
@@ -1143,9 +1201,9 @@ def build_scene(with_hero=True, avoid=(), rain_box=(0, 22, 18, 46)):
                                 "curb", "paint", "manhole") else PROPS)
     _B.clear()
     prefs.keyframe_new_interpolation_type = "LINEAR"      # moving traffic: one car toward camera, one away
-    for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 72, 72 + 11 * FRAMES / 30, 0, "#1a2c44")):
+    for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 72, 72 + 11 * FRAMES / 30, 0, "#6cc832")):
         root = bpy.data.objects.new("traffic", None); PROPS.objects.link(root)
-        for p in car(Matrix.Rotation(math.radians(rz), 4, "Z"), col, moving=True, name="mcar"):
+        for p in car(Matrix.Rotation(math.radians(rz), 4, "Z"), col, moving=True, name="mcar", kind="sedan" if rz else "supercar"):
             mw = p.matrix_world.copy(); p.parent = root; p.matrix_world = mw
         root.location = (x, y0, 0); root.keyframe_insert("location", frame=1)
         root.location = (x, y1, 0); root.keyframe_insert("location", frame=FRAMES)

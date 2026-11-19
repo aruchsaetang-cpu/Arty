@@ -1,7 +1,7 @@
 # Graph Report - Arty  (2026-11-19)
 
 ## Corpus Check
-- 812 files · ~1,058,983 words
+- 812 files · ~1,059,651 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 196 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `eddd9d97`
+- Built from commit: `e496d3d9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -2672,11 +2672,11 @@ Nodes (5): Blueprints (the proven shapes), Motion coverage, Picking guidance, Ro
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Text To Speech` connect `Text To Speech` to `heygen.mjs`?**
-  _High betweenness centrality (0.153) - this node is a cross-community bridge._
+  _High betweenness centrality (0.197) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.03875492125984252 - nodes in this community are weakly interconnected._
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `heygen.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.153) - this node is a cross-community bridge._
+  _High betweenness centrality (0.196) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Should `json` be split into smaller, more focused modules?**
