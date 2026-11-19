@@ -1,7 +1,7 @@
 # Graph Report - Arty  (2026-11-19)
 
 ## Corpus Check
-- 800 files · ~1,033,271 words
+- 800 files · ~1,033,774 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 196 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1fba1499`
+- Built from commit: `35cfc1b0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -2658,12 +2658,12 @@ Nodes (4): _box(), _emit(), rooftop(), shop_interior()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `clone()` connect `heygen.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.179) - this node is a cross-community bridge._
+- **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `Text To Speech` to `heygen.mjs`?**
+  _High betweenness centrality (0.173) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.046703296703296704 - nodes in this community are weakly interconnected._
-- **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `Text To Speech` to `heygen.mjs`?**
-  _High betweenness centrality (0.179) - this node is a cross-community bridge._
+- **Why does `clone()` connect `heygen.mjs` to `Text To Speech`?**
+  _High betweenness centrality (0.173) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Should `json` be split into smaller, more focused modules?**

@@ -679,6 +679,18 @@ LEGS = [("#24272d", "#0c0e12"), ("#2f3f5a", "#141c2b"), ("#4a4a4d", "#1d1d1f"), 
 UMB = ["#1d2230", "#121214", "#6b1d24", "#24405e", "#3c3f44", "#c9a227"]
 
 _LOOKS = random.Random(1234)
+# women passers-by, from the user's references: oversized blazers, wrap suits, cropped blazer + midi skirt, long coats
+WOMEN = [dict(coat=("#ece3d2", "#a49a88"), hem=0.66, open_skirt=True, open_coat=True, top=("#c09f74", "#7a6345"), legs="skirt",
+              leg_col=("#7a5a3c", "#45321f"), skirt_hem=0.56, tights="#e9c9b2"),
+         dict(coat=("#9b8468", "#5e4d3a"), hem=0.78, open_skirt=False, top=("#9b8468", "#5e4d3a"), legs="trousers",
+              leg_col=("#9b8468", "#5e4d3a"), mask="#111114"),
+         dict(coat=("#8f9a82", "#566050"), hem=0.88, open_skirt=False, top=("#8f9a82", "#566050"), legs="skirt",
+              leg_col=("#8f9a82", "#566050"), skirt_hem=0.3, socks="#141416", shoes=("#f2f2f0", "#141416"), sneakers=True,
+              mask="#f4f4f2"),
+         dict(coat=("#d9a51b", "#8a6608"), hem=0.3, open_skirt=True, open_coat=True, top=("#a29a90", "#5f5a53"), turtleneck=True,
+              legs="trousers", leg_col=("#c4b9a6", "#7c7364")),
+         dict(coat=("#2a2a2e", "#0c0c0e"), hem=0.36, open_skirt=True, top=("#e9e6df", "#9a978f"), turtleneck=True,
+              legs="skirt", leg_col=("#24272d", "#0c0e12"), skirt_hem=0.5, tights="#23222a")]
 def extra_style():
     sex = random.choice(["m", "m", "f", "f", "m_heavy"])
     st = dict(body=sex, skin=random.choice(SKIN), hair_col=random.choice(HAIR), locks=False,
@@ -691,6 +703,10 @@ def extra_style():
     st["hair_len"] = _LOOKS.uniform(0.22, 0.38)        # separate RNG: the seeded city layout stays the same
     st["manhwa_head"] = True        # every passer-by gets a face of their own
     st["face"] = _LOOKS.choice(["soft_f", "sharp_f"]) if sex == "f" else _LOOKS.choice(["round", "long", "diamond", "square", "boy"])
+    if sex == "f":
+        st["_women_look"] = _LOOKS.choice(WOMEN)
+        if _LOOKS.random() < 0.6:
+            st["bag"] = _LOOKS.choice([("#8a5a32", "#4e321b"), ("#1c1c1e", "#08080a"), ("#b88a5a", "#6e5032")])
     r = random.random()
     st["coat"] = random.choice(COATS) if r < 0.75 else None
     st["hem"] = random.choice([0.36, 0.5, 0.72, 0.8])
@@ -699,6 +715,11 @@ def extra_style():
     if sex == "f" and random.random() < 0.45:
         st["legs"] = "skirt"; st["leg_col"] = random.choice(LEGS + [("#7a2d3a", "#3a141b")])
         st["skirt_hem"] = random.uniform(0.42, 0.56); st["tights"] = random.choice(["#23222a", "#3a2f2a"])
+    if st.get("_women_look"):
+        look = st.pop("_women_look")
+        for k in ("legs", "skirt_hem", "tights", "socks", "mask", "sneakers"):
+            st.pop(k, None)
+        st["legs"] = "trousers"; st.update(look); st["turtleneck"] = look.get("turtleneck", False)
     return st
 
 def crowd(with_hero=True, avoid=()):

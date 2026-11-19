@@ -27,23 +27,32 @@ KID1 = dict(body="kid_f", height=1.28, face="soft_f", skin=("#f3d6bf", "#bf9274"
 KID2 = dict(KID1, body="kid_m", face="boy", height=1.34, hair="bangs", legs="shorts", tie=("tie", "#22336a"),
             backpack=("#2c4a8a", "#14244a"), head_yaw=0)
 
-# women of Sol (webtoon city style): long or bobbed hair, coats, skirts, umbrellas
-W1 = dict(body="f", height=1.66, face="sharp_f", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.34,
-          hair_col="#0f1013", coat=("#1c1c1e", "#08080a"), hem=0.5, open_skirt=True, top=("#e9e6df", "#9a978f"),
-          turtleneck=True, legs="skirt", leg_col=("#24272d", "#0c0e12"), skirt_hem=0.5, tights="#23222a",
-          shoes=("#141416", "#2a2a2e"), manhwa_head=True, brows="#14110f", subsurf=1)
-W2 = dict(body="f", height=1.62, face="soft_f", skin=("#f3d6bf", "#bf9274"), hair="long", hair_len=0.26,
-          hair_col="#3b2a20", coat=("#c9b48f", "#7d6a4c"), hem=0.55, open_skirt=True, top=("#f0ece4", "#a9a49a"),
-          turtleneck=False, legs="trousers", leg_col=("#2b2f3a", "#11131a"), shoes=("#e8e6e0", "#cfcac0"),
-          sneakers=True, manhwa_head=True, subsurf=1)
-W3 = dict(body="f", height=1.64, face="soft_f", skin=("#e8c2a2", "#a9775b"), hair="bob", hair_col="#16181d",
-          coat=("#6b2a2e", "#331314"), hem=0.72, open_skirt=True, top=("#26292f", "#0e1013"), turtleneck=True,
-          legs="skirt", leg_col=("#141416", "#060607"), skirt_hem=0.46, tights="#1c1b20", shoes=("#141416", "#2a2a2e"),
-          manhwa_head=True, subsurf=1)
-W4 = dict(body="f", height=1.68, face="sharp_f", skin=("#f0cfb3", "#b48466"), hair="long", hair_len=0.4,
-          hair_col="#2a1d16", coat=("#c9c3b6", "#7f7a70"), hem=0.36, open_skirt=True, top=("#cfc4b2", "#7d7466"),
-          turtleneck=True, legs="trousers", leg_col=("#24272d", "#0c0e12"), shoes=("#1b1a1c", "#3a2a22"),
-          manhwa_head=True, subsurf=1)
+# women of Sol, dressed from the user's references: oversized blazers, a wrap suit, a cropped blazer with a slit
+# midi skirt, a long mustard coat; long wavy hair, crossbody bags, face masks
+BAG = ("#8a5a32", "#4e321b")
+# long mustard double-breasted coat, grey turtleneck, wide beige trousers (the mom waiting with the kids)
+W1 = dict(body="f", height=1.68, face="sharp_f", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.3,
+          hair_col="#2a1c15", coat=("#d9a51b", "#8a6608"), hem=0.3, open_skirt=True, open_coat=True, lapels=True,
+          coat_flare=(0.04, 0.1), top=("#a29a90", "#5f5a53"),
+          turtleneck=True, legs="trousers", leg_col=("#c4b9a6", "#7c7364"), shoes=("#141416", "#2a2a2e"), bag=BAG,
+          manhwa_head=True, brows="#14110f", subsurf=1)
+# cream oversized blazer, white shirt, camel knit, brown pleated mini skirt, crossbody bag (in the shop, on her phone)
+W2 = dict(body="f", height=1.63, face="soft_f", skin=("#f3d6bf", "#bf9274"), hair="long", hair_len=0.32,
+          hair_col="#4a3022", coat=("#ece3d2", "#a49a88"), hem=0.66, open_skirt=True, open_coat=True, lapels=True,
+          coat_flare=(0.1, 0.22), top=("#c09f74", "#7a6345"),
+          turtleneck=False, legs="skirt", leg_col=("#7a5a3c", "#45321f"), skirt_hem=0.56, tights="#e9c9b2",
+          shoes=("#1b1a1c", "#3a2a22"), bag=BAG, manhwa_head=True, subsurf=1)
+# sage cropped blazer + slit midi skirt, black socks, black-and-white sneakers, white mask (walking past the hero)
+W3 = dict(body="f", height=1.62, face="soft_f", skin=("#f0cfb3", "#b48466"), hair="long", hair_len=0.28,
+          hair_col="#5a3a26", coat=("#8f9a82", "#566050"), hem=0.88, open_skirt=False, coat_flare=(0.02, 0.04),
+          top=("#8f9a82", "#566050"), turtleneck=False, legs="skirt", leg_col=("#8f9a82", "#566050"), skirt_hem=0.3,
+          socks="#141416", shoes=("#f2f2f0", "#141416"), sneakers=True, bag=BAG, mask="#f4f4f2", manhwa_head=True, subsurf=1)
+# taupe wrap blazer and wide-leg trousers, black mask (under the awning in the alley)
+W4 = dict(body="f", height=1.68, face="sharp_f", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.4,
+          hair_col="#14110f", coat=("#9b8468", "#5e4d3a"), hem=0.78, open_skirt=False, coat_flare=(0.03, 0.06),
+          top=("#9b8468", "#5e4d3a"), turtleneck=False, legs="trousers", leg_col=("#9b8468", "#5e4d3a"),
+          shoes=("#141416", "#2a2a2e"), mask="#111114", manhwa_head=True, subsurf=1)
+W_LOOKS = [W1, W2, W3, W4]
 # shop customers (no two faces alike)
 MAN_LONG = dict(body="m", height=1.76, face="long", skin=("#e9c4a6", "#a8795d"), hair="short", locks=False, coat=None,
                 top=("#56704f", "#26331f"), turtleneck=False, legs="trousers", leg_col=("#3a4a66", "#18202e"),

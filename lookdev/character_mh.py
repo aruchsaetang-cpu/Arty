@@ -572,7 +572,9 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             body_bvh_l = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], body_faces)
             zb, zn, zt = pelvis_z + 0.13, sternum_z - 0.035, neck_z + 0.005
             LAP = cel(st["coat"][1] if not dark else st["coat"][0], st["coat"][1], rim="#d6efff", rim_amt=0.6, name="lapel")
-            LAP = cel("#b9bbc1", st["coat"][1], rim="#e6f4ff", rim_amt=0.7, name="lapel") if not dark else COAT
+            c0 = [int(st["coat"][0][k:k + 2], 16) for k in (1, 3, 5)]; c1 = [int(st["coat"][1][k:k + 2], 16) for k in (1, 3, 5)]
+            lap_col = "#%02x%02x%02x" % tuple(int(a * 0.8 + b * 0.2) for a, b in zip(c0, c1))   # a shade under the coat
+            LAP = cel(lap_col, st["coat"][1], rim="#e6f4ff", rim_amt=0.6, name="lapel") if not dark else COAT
             bm = bmesh.new()
             for sx in (1, -1):
                 rows = []
@@ -796,6 +798,18 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         add_mods(hd, arm, subsurf=0, outline=1.0)
         hd.modifiers.remove(hd.modifiers["arm"]); bone_parent(hd, arm, "spine01"); objs.append(hd)
 
+    # --- face mask (Korean street style): a cloth shell over the nose, mouth and chin
+    if st.get("mask"):
+        eL = J("eye.L"); eR = J("eye.R"); ey = (eL.y + eR.y) / 2
+        mf = [f for f in skin_faces if (lambda c: c.z < eL.z - 0.022 and c.z > eL.z - 0.115 and c.y < ey + 0.035
+              and abs(c.x) < 0.072)(sum((V[i] for i in f), Vector()) / len(f))]
+        if mf:
+            off = {i: nrm[i] * 0.005 for f in mf for i in f}
+            mk, used = make_mesh("face_mask", coll, V, mf, off)
+            mk.data.materials.append(cel(st["mask"], "#1a1a1e" if sum(lin(st["mask"])[:3]) > 0.5 else "#050506",
+                                         rim="#ffffff", name="face_mask"))
+            finish(mk, used, solidify=0.002)
+
     # --- shoes
     make_shoes(coll, V, bused, dom, kd, per_vert, st, finish)
 
@@ -963,7 +977,7 @@ def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, 
 
 def uniform_bits(coll, arm, V, J, st, sternum_z, pelvis_z, finish):
     """School-uniform extras: necktie or bow, and a backpack. Built in the rest pose, parented to the chest bone."""
-    if not (st.get("tie") or st.get("backpack")):
+    if not (st.get("tie") or st.get("backpack") or st.get("bag")):
         return
     def front_y(z, xr=0.03):
         ys = [v.y for v in V if abs(v.x) < xr and abs(v.z - z) < 0.02]
@@ -991,6 +1005,16 @@ def uniform_bits(coll, arm, V, J, st, sternum_z, pelvis_z, finish):
             L = 0.2; y = front_y(z0 - L / 2) - 0.009
             box("tie", (0, y, z0 - L / 2), (0.034, 0.007, L), col, None)
             box("tie", (0, front_y(z0) - 0.01, z0 + 0.004), (0.026, 0.012, 0.022), col, None)
+    bag = st.get("bag")
+    if bag:   # small leather crossbody bag on the right hip, strap from the left shoulder across the chest
+        col, shade = bag
+        zb = pelvis_z + 0.03; bx = -0.16
+        yb = front_y(zb, 0.2) - 0.02
+        box("bag", (bx, yb + 0.03, zb), (0.17, 0.06, 0.12), col, shade)
+        box("bag", (bx, yb, zb + 0.035), (0.172, 0.012, 0.055), shade, None)          # flap
+        a = Vector((0.11, front_y(sternum_z + 0.06, 0.13) - 0.012, sternum_z + 0.06)); b = Vector((bx + 0.06, yb + 0.01, zb + 0.06))
+        d = b - a; rot = d.to_track_quat("Z", "Y").to_euler()
+        box("bag_strap", (a + b) / 2, (0.022, 0.006, d.length), shade, None, tuple(rot))
     bp = st.get("backpack")
     if bp:
         zc = (sternum_z + pelvis_z) / 2 + 0.03
