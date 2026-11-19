@@ -3,120 +3,120 @@
   "beat": "hook",
   "text": "It had rained in Sol for nine years.",
   "start": 0.3,
-  "end": 2.33
+  "end": 3.353
  },
  {
   "beat": "hook",
   "text": "One man never got wet.",
-  "start": 3.086,
-  "end": 4.606
+  "start": 3.603,
+  "end": 5.208
  },
  {
   "beat": "name",
   "text": "They called him Aura Monster.",
-  "start": 5.36,
-  "end": 6.87
+  "start": 5.458,
+  "end": 7.158
  },
  {
   "beat": "name",
   "text": "Midnight. No umbrella. Bone dry.",
-  "start": 7.522,
-  "end": 9.702
+  "start": 7.408,
+  "end": 9.9
  },
  {
   "beat": "theory",
   "text": "The shopkeepers said luck.",
-  "start": 10.638,
-  "end": 11.868
+  "start": 10.15,
+  "end": 11.393
  },
  {
   "beat": "theory",
   "text": "The police said a trick.",
-  "start": 12.364,
-  "end": 13.454
+  "start": 11.643,
+  "end": 12.98
  },
  {
   "beat": "theory",
   "text": "The kids said magic.",
-  "start": 13.922,
-  "end": 15.052
+  "start": 13.23,
+  "end": 14.663
  },
  {
   "beat": "follow",
   "text": "So one night, I followed him into the alleys.",
-  "start": 15.778,
-  "end": 18.238
+  "start": 14.913,
+  "end": 17.055
  },
  {
   "beat": "follow",
   "text": "Then I saw it.",
-  "start": 19.13,
-  "end": 19.96
+  "start": 17.305,
+  "end": 18.005
  },
  {
   "beat": "reveal",
   "text": "He wasn't stopping the rain. He was dodging it.",
-  "start": 20.676,
-  "end": 23.166
+  "start": 18.255,
+  "end": 20.545
  },
  {
   "beat": "reveal",
   "text": "Every drop. Too fast for the storm to touch him.",
-  "start": 24.014,
-  "end": 26.844
+  "start": 20.795,
+  "end": 22.895
  },
  {
   "beat": "turn",
   "text": "He turned.",
-  "start": 27.96,
-  "end": 28.67
+  "start": 23.145,
+  "end": 23.66
  },
  {
   "beat": "turn",
   "text": "\"You'll catch a cold, kid.\"",
-  "start": 29.112,
-  "end": 30.462
+  "start": 23.91,
+  "end": 25.412
  },
  {
   "beat": "turn",
   "text": "\"Teach me,\" I said.",
-  "start": 31.132,
-  "end": 32.192
+  "start": 25.662,
+  "end": 26.682
  },
  {
   "beat": "train",
   "text": "So he did. Every night, in the rain.",
-  "start": 32.904,
-  "end": 34.874
+  "start": 26.932,
+  "end": 28.738
  },
  {
   "beat": "train",
   "text": "I held my umbrella. I couldn't dodge yet.",
-  "start": 35.568,
-  "end": 38.018
+  "start": 28.988,
+  "end": 30.873
  },
  {
   "beat": "train",
   "text": "A hundred nights. A thousand drops.",
-  "start": 38.858,
-  "end": 41.158
+  "start": 31.123,
+  "end": 33.143
  },
  {
   "beat": "close",
   "text": "Then one night, I closed it.",
-  "start": 42.118,
-  "end": 43.568
+  "start": 33.393,
+  "end": 34.653
  },
  {
   "beat": "payoff",
   "text": "Now there are two of us.",
-  "start": 44.408,
-  "end": 45.598
+  "start": 34.903,
+  "end": 36.109
  },
  {
   "beat": "payoff",
   "text": "And we never get wet.",
-  "start": 46.186,
-  "end": 47.306
+  "start": 36.359,
+  "end": 37.759
  }
 ]

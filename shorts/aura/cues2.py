@@ -2,7 +2,7 @@
 
     python3 shorts/aura/cues2.py
 Inputs: script_v2.json  [beat, text, pause-after-seconds] per line
-        audio/lines/lNN.wav   one take per line (scratch: Kokoro TTS; later the user's own recording, cut per line)
+        audio/lines/lNN.wav   one take per line (the user's recording, cut per line by cut_vo.py)
 Outputs: audio/voice_fast.wav (the voice track), sentences.json, beats.json (shots, frames, slow-mo window).
 Each line's slot = its take trimmed of silence + its pause. A replacement take that runs longer than the slot
 is sped up (atempo) to fit, so the picture never needs re-rendering when the real voiceover arrives."""
@@ -39,14 +39,15 @@ for k, ((beat, text, pause), x) in enumerate(zip(L, takes)):
         if d > speak:
             x = atempo(x, d / speak); d = len(x) / SR
         gap = frozen[k]["slot"] - d
-    else:                                    # room for a slower human read: each slot is 20% longer than the scratch take
-        gap = pause + 0.2 * d
+    else:                                    # the user's own takes: quiet parts cut to a short breath (the last line holds)
+        gap = pause if k == len(L) - 1 else min(pause, 0.25)
     sents.append(dict(beat=beat, text=text, start=round(t, 3), end=round(t + d, 3)))
     track += [x, np.zeros(int(round(gap * SR)), np.float32)]
     t += d + gap
 if not frozen:
-    json.dump([dict(speak=round(1.2 * (s["end"] - s["start"]), 3), slot=round(1.2 * (s["end"] - s["start"]) + p, 3))
-               for s, (_, _, p) in zip(sents, L)], open(SLOTS, "w"), indent=1)
+    nxt = [s["start"] for s in sents[1:]] + [t]
+    json.dump([dict(speak=round(s["end"] - s["start"], 3), slot=round(n - s["start"], 3)) for s, n in zip(sents, nxt)],
+              open(SLOTS, "w"), indent=1)
 v = np.concatenate(track)
 v = v / max(1e-6, np.abs(v).max()) * 0.89
 with wave.open(os.path.join(A, "voice_fast.wav"), "wb") as w:

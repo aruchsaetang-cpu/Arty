@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p out
 python3 audio.py
-python3 mix.py
+VOICE=1 python3 mix.py   # the user's own voiceover (cut_vo.py -> cues2.py)
 python3 compose.py
 python3 subs.py
 if [ -f caps/frame_000001.png ]; then   # HyperFrames word-pop captions (captions.py), Whisper-timed
