@@ -123,6 +123,60 @@ FACES = {
             "nose-scale-horiz-decr": 0.3, "chin-width-decr": 0.3, "nose-volume-decr": 0.3, "mouth-lowerlip-volume-incr": 0.2},
 }
 
+VARY_PAIRS = ["eye-scale-incr", "eye-scale-decr", "eye-height2-incr", "eye-height2-decr", "eye-corner1-up",
+              "eye-corner1-down", "cheek-volume-incr", "cheek-volume-decr", "cheek-bones-incr"]
+VARY_SINGLES = ["head-oval", "head-round", "head-square", "head-rectangular", "head-diamond", "head-invertedtriangular",
+                "head-fat-incr", "head-scale-horiz-incr", "head-scale-horiz-decr", "chin-width-incr", "chin-width-decr",
+                "chin-height-incr", "chin-height-decr", "chin-prominent-incr", "chin-triangle", "nose-scale-horiz-incr",
+                "nose-scale-horiz-decr", "nose-volume-incr", "nose-volume-decr", "nose-hump-incr", "nose-hump-decr",
+                "nose-point-up", "nose-scale-vert-incr", "nose-point-width-incr", "nose-point-width-decr", "nose-flaring-incr",
+                "nose-flaring-decr", "nose-greek-incr", "mouth-scale-horiz-incr", "mouth-scale-horiz-decr",
+                "mouth-lowerlip-volume-incr", "mouth-upperlip-volume-incr", "mouth-upperlip-volume-decr", "mouth-cupidsbow-incr",
+                "mouth-angles-up", "mouth-angles-down", "eyebrows-angle-up", "eyebrows-angle-down", "eyebrows-trans-down",
+                "forehead-scale-vert-incr", "forehead-scale-vert-decr", "head-age-incr", "head-age-decr",
+                "neck-scale-horiz-incr", "neck-scale-vert-incr"]
+NOT_FOR_STARS = {"head-square", "head-rectangular", "head-fat-incr", "nose-hump-incr", "nose-volume-incr", "head-age-incr",
+                 "chin-width-incr", "mouth-angles-down", "neck-scale-horiz-incr", "nose-flaring-incr", "eyebrows-angle-down",
+                 "nose-scale-horiz-incr", "nose-point-width-incr", "eye-scale-decr", "eye-height2-decr", "eye-corner1-down",
+                 "cheek-volume-incr"}
+
+def _target(path):
+    if path not in _TGT:
+        _TGT[path] = [(int(a), float(b), float(c), float(d)) for a, b, c, d in
+                      (l.split() for l in open(os.path.join(MH, "targets", path + ".target")) if l[0] not in "#\n")]
+    return _TGT[path]
+
+def apply_targets(V, weights):
+    for path, w in weights.items():
+        for i, dx, dy, dz in _target(path):
+            V[i] += Vector((dx * S, -dz * S, dy * S)) * w
+
+def vary_face(seed, pretty=False):
+    """A face of one's own: 7-10 random face targets on top of the preset (gentler and 'beauty-safe' for stars)."""
+    import random as _r
+    rng = _r.Random(seed); out = {}
+    pool = [t for t in VARY_SINGLES + VARY_PAIRS if not (pretty and t in NOT_FOR_STARS)]
+    for t in rng.sample(pool, rng.randint(7, 10)):
+        w = rng.uniform(0.1, 0.4) if pretty else rng.uniform(0.15, 0.6)
+        if t in VARY_PAIRS:
+            out["face/l-" + t] = w; out["face/r-" + t] = w
+        else:
+            out["face/" + t] = w
+    return out
+
+def vary_body(seed, sex):
+    """A build of one's own: random weight / muscle / height / proportion blend on top of the body type."""
+    import random as _r
+    rng = _r.Random(seed * 7 + 3)
+    if sex == "f":
+        return {"universal-female-young-averagemuscle-minweight.target": rng.uniform(-0.25, 0.45),
+                "female-young-averagemuscle-averageweight-maxheight.target": rng.uniform(-0.2, 0.4),
+                "female-young-averagemuscle-averageweight-idealproportions.target": rng.uniform(-0.3, 0.3)}
+    return {"universal-male-young-averagemuscle-maxweight.target": rng.choice([0.0, 0.0, rng.uniform(0.1, 0.55)]),
+            "universal-male-young-averagemuscle-minweight.target": rng.uniform(-0.2, 0.45),
+            "universal-male-young-maxmuscle-averageweight.target": rng.uniform(-0.15, 0.45),
+            "male-young-averagemuscle-averageweight-maxheight.target": rng.uniform(-0.2, 0.4)}
+
 def apply_face(V, name):
     for fn, w in FACES[name].items():
         key = "face/" + fn
@@ -394,6 +448,9 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     st.update(style if style is not None and style is not HERO else {})
     V, F, G = load_base(st["body"])
     sk, per_vert = load_rig()
+    if st.get("vary") is not None and not st["body"].startswith("kid"):   # everyone's own build
+        apply_targets(V, {k[:-len(".target")]: w for k, w in
+                          vary_body(st["vary"], "f" if st["body"] == "f" else "m").items()})
     if st["body"] in ("m_muscle", "m_fit"):   # keep the lean face and neck on the muscular body (the muscle target widens the jaw)
         Vl = load_base("m_lean")[0]
         nidx = sk["joints"][sk["bones"]["neck02"]["head"]]
@@ -404,6 +461,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
                 V[i] = V[i].lerp(Vl[i] + (cm - cl), t)
     if st.get("face"):
         apply_face(V, st["face"])
+    if st.get("vary") is not None:                                        # ...and everyone's own face
+        apply_targets(V, vary_face(st["vary"], pretty=st.get("face") == "kstar_f"))
     body_faces = [f for f, g in zip(F, G) if g == "body"]
     zmin = min(V[i].z for f in body_faces for i in f)
     for v in V:

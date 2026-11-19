@@ -702,6 +702,11 @@ def extra_style():
     st["hair"] = random.choice(["bob", "long", "long"]) if sex == "f" else random.choice(["short", "short", "buzz"])
     st["hair_len"] = _LOOKS.uniform(0.22, 0.38)        # separate RNG: the seeded city layout stays the same
     st["manhwa_head"] = True        # every passer-by gets a face of their own
+    st["vary"] = _LOOKS.randint(1000, 999999)                          # own face sculpt + own build
+    st["height"] = _LOOKS.uniform(1.54, 1.74) if sex == "f" else _LOOKS.uniform(1.64, 1.9)
+    if sex != "f":
+        st["hair"] = _LOOKS.choice(["short", "short", "buzz", "bangs", "quiff", "slick"])
+        st["locks"] = False
     st["face"] = _LOOKS.choice(["soft_f", "sharp_f"]) if sex == "f" else _LOOKS.choice(["round", "long", "diamond", "square", "boy"])
     if sex == "f":
         st["face"] = "kstar_f"; st["jaw_v"] = 0.3
