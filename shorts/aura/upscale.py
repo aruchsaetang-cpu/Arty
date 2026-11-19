@@ -61,6 +61,9 @@ if __name__ == "__main__":
     files = sorted(glob.glob(os.path.join(SRC, "*.png")))
     todo = [f for f in files if not os.path.exists(os.path.join(DST, os.path.basename(f)))]
     for k, f in enumerate(todo):
-        upscale(m, Image.open(f)).save(os.path.join(DST, os.path.basename(f)), compress_level=1)
+        im = Image.open(f)
+        if im.width >= W:   # rendered at full resolution already (the eye close-up)
+            im.convert("RGB").resize((W, H), Image.LANCZOS).save(os.path.join(DST, os.path.basename(f)), compress_level=1); continue
+        upscale(m, im).save(os.path.join(DST, os.path.basename(f)), compress_level=1)
         if k % 50 == 0: print(f"{k}/{len(todo)}", flush=True)
     print("upscaled", len(todo), "frames ->", DST)

@@ -40,8 +40,26 @@ def shake(f, walk=1.0, amp=1.0):
 shot("hook_wide", track(hs, (1.9, -17, 1.5), (-0.4, 10, 4.2), 24, 4.0), track(hs, (1.5, -12.5, 1.42), (-0.2, 8, 3.0), 26, 3.2))
 shot("hook_feet", track(hs, (0.85, -1.25, 0.14), (0, 0, 0.13), 32, 2.2, V((0, 0, 0.1))),
      track(hs, (0.75, -1.1, 0.15), (0, 0, 0.14), 32, 2.2, V((0, 0, 0.1))))           # dry loafers, splashes all round
-shot("name_close", track(hs, (0.55, -1.3, 1.76), (0, 0, 1.77), 55, 2.0, V((0, 0, 1.78))),
-     track(hs, (0.45, -1.15, 1.76), (0, 0, 1.77), 57, 2.0, V((0, 0, 1.78))))        # the eyes
+# "They called him Aura Monster": push in from his face to an extreme close-up of one eye (black sclera, white iris),
+# locked to the eye itself so the walk's head bob never shakes the frame
+_pb = hero_s.pose.bones["head"]
+_eyes = sorted([o for o in hero_s.children_recursive if o.name.startswith("eye_")], key=lambda o: o.name)
+scn.frame_set(1)
+_rest = {o.name: _pb.bone.matrix_local.inverted() @ (hero_s.matrix_world.inverted() @ o.matrix_world.translation) for o in _eyes}
+def eye_at(f, which):
+    scn.frame_set(f)
+    return hero_s.matrix_world @ _pb.matrix @ _rest[which]
+_EL = next(o.name for o in _eyes if o.name.startswith("eye_l"))
+_ER = next(o.name for o in _eyes if o.name.startswith("eye_r"))
+def eye_push(f):
+    a_, b_ = fr("name_close"), fr("name_close", 1)
+    u = min(1.0, max(0.0, (f - a_) / max(1, b_ - a_ - 6))); u = u * u * (3 - 2 * u)          # ease in and out, then hold
+    el = eye_at(f, _EL); mid = (el + eye_at(f, _ER)) / 2
+    tgt_p = mid.lerp(el, u)
+    cam_p = (mid + V((0.55, -1.3, 0.0))).lerp(el + V((0.012, -0.21, 0.003)), u)
+    foc = tgt_p + V((0, -0.012, 0))
+    return cam_p, tgt_p, foc, 55 + 30 * u, 2.0 + 2.0 * u
+every("name_close", eye_push)
 shot("name_med", track(hs, (1.7, -4.6, 1.2), (0, 0, 1.35), 30, 2.8), track(hs, (1.4, -4.2, 1.25), (0, 0, 1.4), 30, 2.8))
 shot("shop", fixed((4.6, 51.5, 1.45), (6.9, 53.3, 1.62), (6.9, 53.0, 1.62), 45, 2.0),
      fixed((4.85, 51.75, 1.47), (6.9, 53.3, 1.62), (6.9, 53.0, 1.62), 45, 2.0))

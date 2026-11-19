@@ -73,6 +73,7 @@ def trail(a, m, f):
     global GHOSTS
     if not (TRAIL[0] <= f <= TRAIL[1]) or m is None:
         GHOSTS = []; return a
+    if GHOSTS and GHOSTS[0][0].shape != a.shape: GHOSTS = []          # (the full-resolution eye shot)
     out = a.copy(); free = (1 - np.clip(m * 1.5, 0, 1))[..., None]
     for k, (g, gm) in enumerate(reversed(GHOSTS)):
         w_ = (0.5 * 0.62 ** k) * gm[..., None] * free

@@ -378,22 +378,67 @@ def eye_mat(radius, iris="#7a5236", void=False, clear=False):
     return m
 
 def void_eye_mat(radius):
-    """The hero's eyes: black sclera with a small glowing white iris (only he has them)."""
+    """The hero's eyes, built to hold an extreme close-up: a glossy black sclera with the faintest indigo veins and a
+    cool rim, a glowing white iris with radial fibres, a collarette ring and a crisp grey-blue limbal edge, a soft halo
+    bleeding into the black, a small dark pupil with a bright inner ring, painted catchlights, and a wet cornea that
+    mirrors the neon (glossy on top of the emission)."""
     key = ("void_eye", round(radius, 4))
     if key in _cache:
         return _cache[key]
+    R = radius
     m = bpy.data.materials.new("eye_void")
     N, L, mth, mix = _nodes(m)
     out = N.new("ShaderNodeOutputMaterial"); tc = N.new("ShaderNodeTexCoord")
     sep = N.new("ShaderNodeSeparateXYZ"); L.new(tc.outputs["Object"], sep.inputs[0])
-    r = mth("SQRT", mth("ADD", mth("MULTIPLY", sep.outputs["X"], sep.outputs["X"]), mth("MULTIPLY", sep.outputs["Z"], sep.outputs["Z"])))
-    front = mth("LESS_THAN", sep.outputs["Y"], 0.0)
-    c = lin("#040405")
-    ring = mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.3), front)
-    c = mix(ring, c, lin("#f4f8ff"))
-    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.12), front), c, lin("#9fb2c8"))
+    X, Y, Z = sep.outputs["X"], sep.outputs["Y"], sep.outputs["Z"]
+    r = mth("SQRT", mth("ADD", mth("MULTIPLY", X, X), mth("MULTIPLY", Z, Z)))
+    rn = mth("DIVIDE", r, R)                                        # 0 at the centre of the iris, ~1 at the eye's edge
+    front = mth("LESS_THAN", Y, 0.0)
+    ang = mth("ARCTAN2", Z, X)
+    def noise(u, v, scale, detail=4.0, rough=0.6):
+        cv = N.new("ShaderNodeCombineXYZ"); L.new(u, cv.inputs[0]); L.new(v, cv.inputs[1])
+        nz = N.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = scale; nz.inputs["Detail"].default_value = detail
+        nz.inputs["Roughness"].default_value = rough; L.new(cv.outputs[0], nz.inputs["Vector"]); return nz.outputs["Fac"]
+    # sclera: deep black, a cool rim toward the lids, faint indigo veins
+    c = mix(mth("MINIMUM", mth("MAXIMUM", mth("MULTIPLY", mth("SUBTRACT", rn, 0.55), 2.2), 0.0), 1.0), lin("#030304"), lin("#0d1018"))
+    vein = mth("LESS_THAN", mth("ABSOLUTE", mth("SUBTRACT", noise(mth("MULTIPLY", ang, 1.2), mth("MULTIPLY", rn, 3.0), 3.0, 6.0), 0.5)), 0.018)
+    c = mix(mth("MULTIPLY", vein, mth("MULTIPLY", mth("GREATER_THAN", rn, 0.45), 0.6)), c, lin("#1a1f33"))
+    IR = 0.27
+    # halo: the iris light bleeding into the black around it
+    halo = mth("MULTIPLY", mth("POWER", mth("MAXIMUM", mth("SUBTRACT", 1.0, mth("DIVIDE", mth("SUBTRACT", rn, IR), 0.09)), 0.0), 2.0), front)
+    c = mix(mth("MULTIPLY", halo, 0.4), c, lin("#9fb6d6"))
+    # iris: radial fibres (noise stretched along the radius), crypt flecks, a brighter zigzag collarette
+    ri = mth("DIVIDE", rn, IR)
+    fib = noise(mth("MULTIPLY", ang, 9.0), mth("MULTIPLY", ri, 0.6), 4.0, 6.0, 0.7)
+    fib2 = noise(mth("MULTIPLY", ang, 23.0), mth("MULTIPLY", ri, 1.5), 3.0, 3.0, 0.5)
+    streak = mth("MINIMUM", mth("MAXIMUM", mth("MULTIPLY", mth("SUBTRACT", mth("ADD", mth("MULTIPLY", fib, 0.65), mth("MULTIPLY", fib2, 0.35)), 0.45), 5.0), 0.0), 1.0)
+    irc = mix(streak, lin("#ffffff"), lin("#7f94b8"))                 # bright fibres on a cooler grey-blue ground
+    irc = mix(mth("MULTIPLY", mth("SUBTRACT", 1.0, ri), 0.35), irc, lin("#ffffff"))   # brighter toward the pupil
+    zig = mth("ADD", 0.52, mth("MULTIPLY", mth("SINE", mth("MULTIPLY", ang, 14.0)), 0.035))
+    coll = mth("LESS_THAN", mth("ABSOLUTE", mth("SUBTRACT", ri, zig)), 0.045)
+    irc = mix(mth("MULTIPLY", coll, 0.7), irc, lin("#ffffff"))
+    crypt = mth("MULTIPLY", mth("GREATER_THAN", noise(mth("MULTIPLY", ang, 5.0), mth("MULTIPLY", ri, 2.0), 6.0, 2.0), 0.66),
+                mth("MULTIPLY", mth("GREATER_THAN", ri, 0.6), mth("LESS_THAN", ri, 0.9)))
+    irc = mix(mth("MULTIPLY", crypt, 0.45), irc, lin("#7f93b3"))
+    limb = mth("MINIMUM", mth("MAXIMUM", mth("DIVIDE", mth("SUBTRACT", ri, 0.86), 0.14), 0.0), 1.0)   # grey-blue limbal edge
+    irc = mix(mth("MULTIPLY", limb, 0.85), irc, lin("#5d7398"))
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", ri, 1.0), front), c, irc)
+    # pupil: small and dark, ringed with light
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", ri, 0.27), front), c, lin("#d8e6ff"))
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", ri, 0.22), front), c, lin("#0a0d14"))
+    # catchlights: a big soft window and a small sharp dot (anime), placed in object space
+    def dot(cx, cz, rad, soft):
+        dx = mth("SUBTRACT", X, cx * R); dz = mth("SUBTRACT", Z, cz * R)
+        d = mth("SQRT", mth("ADD", mth("MULTIPLY", dx, dx), mth("MULTIPLY", dz, dz)))
+        return mth("MULTIPLY", mth("MINIMUM", mth("MAXIMUM", mth("DIVIDE", mth("SUBTRACT", rad * R, d), soft * R), 0.0), 1.0), front)
+    c = mix(dot(0.09, 0.03, 0.06, 0.015), c, lin("#ffffff"))
+    c = mix(mth("MULTIPLY", dot(-0.08, -0.07, 0.025, 0.006), 0.9), c, lin("#ffffff"))
     e = N.new("ShaderNodeEmission"); L.new(c, e.inputs["Color"]); e.inputs["Strength"].default_value = 1.6
-    L.new(e.outputs[0], out.inputs[0])
+    # wet cornea: a mirror-glossy layer by Fresnel, so the street and the neon sit in the eye
+    gl = N.new("ShaderNodeBsdfGlossy"); gl.inputs["Roughness"].default_value = 0.015
+    fr = N.new("ShaderNodeFresnel"); fr.inputs["IOR"].default_value = 1.38
+    ms = N.new("ShaderNodeMixShader"); L.new(fr.outputs[0], ms.inputs[0]); L.new(e.outputs[0], ms.inputs[1]); L.new(gl.outputs[0], ms.inputs[2])
+    L.new(ms.outputs[0], out.inputs[0])
     _cache[key] = m
     return m
 
@@ -1700,10 +1745,23 @@ def build_v1(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0
     arm.location = loc
     contact_shadow(coll, arm)
     pelvis_z = arm.data.bones["upperleg01.L"].head_local.z
+    if void_eyes:   # the eye close-up: no skin ink line may cross the eyes (the hull of the lid rim draws one)
+        bpy.context.view_layer.update()
+        ecs = [ob.matrix_world.translation.copy() for ob in objs if ob.name.startswith("eye_")]
+        for ob in objs:
+            md = ob.modifiers.get("ink")
+            if ob.name.split(".")[0] != "skin" or md is None: continue
+            vg = ob.vertex_groups.new(name="ink_w"); mw = ob.matrix_world
+            for v in ob.data.vertices:
+                d = min((mw @ v.co - c).length for c in ecs)
+                vg.add([v.index], min(1.0, max(0.0, (d - 0.018) / 0.012)), "REPLACE")
+            md.vertex_group = "ink_w"; md.thickness_vertex_group = 0.0
     for ob in objs:
         if ob.name.split(".")[0] in ("coat_skirt", "skirt"):
             add_cloth_motion(ob, pelvis_z + 0.05)
         if void_eyes and ob.name.startswith("eye_"):
+            bm_ = bmesh.new(); bm_.from_mesh(ob.data)                                # weld the helper's seam (a dark crack
+            bmesh.ops.remove_doubles(bm_, verts=bm_.verts, dist=1e-4); bm_.to_mesh(ob.data); bm_.free()   # across the iris)
             rad = sum(v.co.length for v in ob.data.vertices) / len(ob.data.vertices)
             ob.data.materials[0] = void_eye_mat(rad)
     bpy.context.view_layer.update()
