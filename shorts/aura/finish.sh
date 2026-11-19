@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Aura + grade every frame, upscale to 1080x1920, burn subtitles, mux the mix, QA.
+# Aura + grade every frame, AI-upscale to 1080x1920 (upscale.py), burn subtitles, mux the mix, QA.
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p out
@@ -7,12 +7,13 @@ python3 audio.py
 VOICE=1 python3 mix.py   # the user's own voiceover (cut_vo.py -> cues2.py)
 python3 compose.py
 python3 subs.py
+rm -rf graded_hd; python3 upscale.py graded graded_hd       # Real-ESRGAN anime x4 -> 1080x1920, crisp ink lines
 if [ -f caps/frame_000001.png ]; then   # HyperFrames word-pop captions (captions.py), Whisper-timed
-  IN=(-framerate 30 -i 'graded/f%04d.png' -framerate 30 -i 'caps/frame_%06d.png' -i audio/mix.wav)
-  VF=(-filter_complex "[0]scale=1080:1920:flags=lanczos,unsharp=5:5:0.6:5:5:0.0,noise=alls=5:allf=t[v];[v][1]overlay=format=auto[o]" -map "[o]" -map 2:a)
+  IN=(-framerate 30 -i 'graded_hd/f%04d.png' -framerate 30 -i 'caps/frame_%06d.png' -i audio/mix.wav)
+  VF=(-filter_complex "[0]noise=alls=5:allf=t[v];[v][1]overlay=format=auto[o]" -map "[o]" -map 2:a)
 else                                     # fallback: burned-in ASS sentence subtitles
-  IN=(-framerate 30 -i 'graded/f%04d.png' -i audio/mix.wav)
-  VF=(-vf "scale=1080:1920:flags=lanczos,unsharp=5:5:0.6:5:5:0.0,noise=alls=5:allf=t,ass=subs.ass")
+  IN=(-framerate 30 -i 'graded_hd/f%04d.png' -i audio/mix.wav)
+  VF=(-vf "noise=alls=5:allf=t,ass=subs.ass")
 fi
 ffmpeg -v error -y "${IN[@]}" "${VF[@]}" \
   -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -c:a aac -b:a 192k -shortest -movflags +faststart \

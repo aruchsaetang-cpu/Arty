@@ -2022,9 +2022,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
-    "mtime": 1795095029.900605,
-    "seen": 1795095042.502598,
-    "ast_hash": "67bb015a71a7dedc52652855f0fb5566",
+    "mtime": 1795100283.5561254,
+    "seen": 1795100327.1786373,
+    "ast_hash": "9f8b68c1022f5d8d882e0ebddada250f",
     "semantic_hash": ""
   },
   "shorts/aura/hf/vendor/gsap.min.js": {
@@ -2040,9 +2040,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/render_all.sh": {
-    "mtime": 1795086369.591965,
-    "seen": 1795086401.1538317,
-    "ast_hash": "95dfc10f367da8d623168f4b0e3c46c2",
+    "mtime": 1795100274.962754,
+    "seen": 1795100327.1786416,
+    "ast_hash": "64379686aaedc3645422d88e31ba6df4",
     "semantic_hash": ""
   },
   "shorts/aura/sentences.json": {
@@ -7185,6 +7185,18 @@
     "mtime": 1795100067.049898,
     "seen": 1795100089.8235097,
     "ast_hash": "36026f9c897bf358ae54bfcb64a96402",
+    "semantic_hash": ""
+  },
+  "shorts/aura/upscale.py": {
+    "mtime": 1795100283.5556142,
+    "seen": 1795100327.178653,
+    "ast_hash": "0f2adb9c8f8acff99667cbd4652c9a0a",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/sharpness_before_after.png": {
+    "mtime": 1795100310.2699122,
+    "seen": 1795100327.179675,
+    "ast_hash": "7edc35cf7c8cea1aa72c488e742fe2bb",
     "semantic_hash": ""
   }
 }
