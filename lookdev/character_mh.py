@@ -13,8 +13,8 @@ from mathutils import Vector, Matrix, Quaternion, kdtree, bvhtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 MH = os.path.join(HERE, "assets", "makehuman")
 S = 0.1  # MakeHuman decimetres -> metres
-REAL = os.environ.get("CHAR_STYLE", "real") == "real"   # realistic materials lit by the scene (CHAR_STYLE=cel: flat manhwa)
-OUTLINE = 0.0022 if REAL else 0.005  # ink line width in metres (0 disables); thin on the realistic look
+REAL = os.environ.get("CHAR_STYLE", "cel") == "real"    # flat manhwa cel look (the first-version style); CHAR_STYLE=real: realistic materials
+OUTLINE = 0.0022 if REAL else 0.0042  # ink line width in metres (0 disables); first-version width on the cel look
 SHADOW = 0.2      # manhwa shading: deep, hard-edged shadow (fraction of base colour)
 SHADOW_TINT = (0.09, 0.07, 0.16)  # shadows lean cool violet, like printed webtoon panels
 
