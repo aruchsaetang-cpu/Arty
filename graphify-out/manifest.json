@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795048738.659899,
-    "seen": 1795048797.788116,
-    "ast_hash": "b50241b600e0b1cc02f7f4167c22a54c",
+    "mtime": 1795048929.0006258,
+    "seen": 1795048962.0306063,
+    "ast_hash": "c005b6d587686de89c5861a6dd91e9a6",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795048199.6567833,
-    "seen": 1795048391.268468,
+    "mtime": 1795048805.3995452,
+    "seen": 1795048962.0306144,
     "ast_hash": "2c5af67e24cf097dfaec9b701e8a2c2f",
     "semantic_hash": ""
   },
@@ -6903,6 +6903,36 @@
     "mtime": 1795048790.9195077,
     "seen": 1795048797.789011,
     "ast_hash": "688839914ebd0a15421001b8adc5acdd",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/hands_fix_preview.jpg": {
+    "mtime": 1795048954.9248283,
+    "seen": 1795048962.0315268,
+    "ast_hash": "0ccaa5d05bb54d5e0f89b413539c236d",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0044.png": {
+    "mtime": 1795048835.0888212,
+    "seen": 1795048962.0315404,
+    "ast_hash": "1ac26a54bafd838bb438d0f9693ebe5a",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0122.png": {
+    "mtime": 1795048870.8408234,
+    "seen": 1795048962.0315418,
+    "ast_hash": "bde22beb9d2fb79ef225638b7d380663",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0189.png": {
+    "mtime": 1795048896.9168248,
+    "seen": 1795048962.0315428,
+    "ast_hash": "e1be96053c1f4b55676acda50daadea6",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0268.png": {
+    "mtime": 1795048926.2328265,
+    "seen": 1795048962.0315437,
+    "ast_hash": "7147e5e7ea66e2d9d8529fa3c06d3e4d",
     "semantic_hash": ""
   }
 }

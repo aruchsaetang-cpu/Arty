@@ -1055,15 +1055,27 @@ def _reset(arm):
         if pb.name in ANIM_BONES:
             pb.rotation_quaternion = Quaternion()
 
+RELAX = {2: (8, 14, 10), 3: (11, 17, 12), 4: (13, 19, 13), 5: (16, 22, 15)}   # degrees per joint, index -> pinky
 def _fingers(arm, aim):
-    vl = bpy.context.view_layer
-    for side in ("L", "R"):
-        for k in range(2, 6):
-            for j in (1, 2, 3):
+    """A relaxed hand: each finger curls a little toward the palm (about the bone's local Z, mirrored L/R),
+    the little finger most; the thumb stays as modelled."""
+    for side, sgn in (("L", 1), ("R", -1)):
+        for k, angs in RELAX.items():
+            for j, ang in zip((1, 2, 3), angs):
                 n = f"finger{k}-{j}.{side}"
                 if n in arm.pose.bones:
-                    vl.update(); pb = arm.pose.bones[n]; d = (pb.tail - pb.head).normalized()
-                    aim(n, d + Vector((0, -0.25 * j, 0)))
+                    pb = arm.pose.bones[n]; pb.rotation_mode = "QUATERNION"
+                    pb.rotation_quaternion = Quaternion((0, 0, sgn), math.radians(ang))
+
+def grip(arm, side="R"):
+    """Close one hand round a handle (umbrella shaft, phone)."""
+    sgn = 1 if side == "L" else -1
+    for k in range(2, 6):
+        for j, ang in zip((1, 2, 3), (55, 70, 45)):
+            n = f"finger{k}-{j}.{side}"
+            if n in arm.pose.bones:
+                pb = arm.pose.bones[n]; pb.rotation_mode = "QUATERNION"
+                pb.rotation_quaternion = Quaternion((0, 0, sgn), math.radians(ang))
 
 def _walk_phase(arm, aim, p, prop=None):
     """Directions in rig space (facing -y). p in [0,1): 0 = left heel strike."""
@@ -1161,6 +1173,7 @@ def animate_walk(arm, start, heading_deg, f0, f1, phase=0.0, prop=None, cycle=32
 
 def add_umbrella(arm, coll, colour="#1d2230", clear=False):
     """Umbrella in the right fist (pose prop='umbrella'), parented to the wrist."""
+    grip(arm, "R")
     bpy.context.view_layer.update()
     pb = arm.pose.bones["wrist.R"]
     hand = arm.matrix_world @ (pb.head.lerp(pb.tail, 1.6))
@@ -1195,6 +1208,7 @@ def add_umbrella(arm, coll, colour="#1d2230", clear=False):
     return obs
 
 def add_phone(arm, coll):
+    grip(arm, "R")
     bpy.context.view_layer.update()
     pb = arm.pose.bones["wrist.R"]; hand = arm.matrix_world @ pb.tail
     bpy.ops.mesh.primitive_cube_add(size=1, location=hand + Vector((0, -0.02, 0.03)))
