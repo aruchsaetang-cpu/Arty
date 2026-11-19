@@ -6,7 +6,7 @@ face sculpt (FACES in character_mh)."""
 NARR_A = dict(body="m_slim", height=1.78, skin=("#f1d3ba", "#b4876e"), face="boy", hair="bangs", hair_col="#15171c",
               locks=False, top=("#1f2026", "#08090c"), turtleneck=True, hood=True, coat=None, manhwa_head=True,
               legs="trousers", leg_col=("#7c7f88", "#3a3c42"), shoes=("#e8bdb6", "#f2efe9"), sneakers=True,
-              brows="#16131a", iris="#2e2624", subsurf=1)
+              brows="#16131a", iris="#6e4a32", subsurf=1)
 # the narrator after a hundred nights: lean, lightly defined (not bulky), a fitted white T-shirt, black trousers
 NARR_B = dict(NARR_A, body="m_lean", vtaper=False, crease=0.009, top=("#f4f4f2", "#a3a9b5"), turtleneck=False, hood=False,
               sleeves="short", leg_col=("#1c1d22", "#08090b"), shoes=("#ecebe7", "#d9d7d0"))

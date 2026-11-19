@@ -65,7 +65,7 @@ BODY = {
 # charcoal slacks, black leather shoes. Original design in the Korean webtoon idiom (not any existing character).
 HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick", hair_col="#101216", locks=True,
             top=("#1d1f25", "#07080b"), turtleneck=False, coat=None, manhwa_head=True,
-            legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#2a2220")
+            legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#6e4a32")
 
 # the lead (only when build() is given HERO itself): tall and lean; a long light-grey jacket worn open and loose,
 # flaring off the shoulders, black V-neck top, light-grey creased trousers, black loafers; slicked-back hair,
@@ -233,7 +233,7 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
     _cache[key] = m
     return m
 
-def eye_mat(radius, iris="#5a4232", void=False):
+def eye_mat(radius, iris="#7a5236", void=False):
     if void:
         return void_eye_mat(radius)
     key = ("eye", round(radius, 4), iris)
@@ -245,11 +245,13 @@ def eye_mat(radius, iris="#5a4232", void=False):
     sep = N.new("ShaderNodeSeparateXYZ"); L.new(tc.outputs["Object"], sep.inputs[0])
     r = mth("SQRT", mth("ADD", mth("MULTIPLY", sep.outputs["X"], sep.outputs["X"]), mth("MULTIPLY", sep.outputs["Z"], sep.outputs["Z"])))
     front = mth("LESS_THAN", sep.outputs["Y"], 0.0)
-    c = mix(mth("GREATER_THAN", sep.outputs["Z"], radius * 0.45), lin("#e6e0d8"), lin("#9a958f"))
-    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.5), front), c, mix(mth("DIVIDE", r, radius * 0.5), lin(iris), lin("#1c1512")))
-    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.24), front), c, lin("#050505"))
-    gx = mth("SUBTRACT", sep.outputs["X"], radius * 0.18); gz = mth("SUBTRACT", sep.outputs["Z"], radius * 0.2)
-    glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * 0.11) ** 2)
+    # normal eyes (everyone but the hero): white sclera, a smaller warm-brown iris, dark pupil, clear catchlight
+    c = mix(mth("GREATER_THAN", sep.outputs["Z"], radius * 0.62), lin("#f4f1ec"), lin("#c9c4bd"))
+    IR = radius * 0.37
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, IR), front), c, mix(mth("DIVIDE", r, IR), lin(iris), lin("#2a1d14")))
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.15), front), c, lin("#08070a"))
+    gx = mth("SUBTRACT", sep.outputs["X"], radius * 0.13); gz = mth("SUBTRACT", sep.outputs["Z"], radius * 0.14)
+    glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * 0.085) ** 2)
     c = mix(mth("MULTIPLY", glint, front), c, lin("#ffffff"))
     e = N.new("ShaderNodeEmission"); L.new(c, e.inputs["Color"]); L.new(e.outputs[0], out.inputs[0])
     _cache[key] = m

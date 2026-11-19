@@ -696,7 +696,7 @@ def extra_style():
     st = dict(body=sex, skin=random.choice(SKIN), hair_col=random.choice(HAIR), locks=False,
               top=random.choice(TOPS), legs="trousers", leg_col=random.choice(LEGS),
               shoes=random.choice([("#1b1a1c", "#3a2a22"), ("#ecebe7", "#d9d7d0"), ("#2a2421", "#1a1512")]),
-              brows=random.choice(["#1a1714", "#2b211b"]), iris=random.choice(["#5a4232", "#3a2a22", "#4a3a2a"]))
+              brows=random.choice(["#1a1714", "#2b211b"]), iris=random.choice(["#7a5236", "#5e4030", "#6a4a34"]))
     st["sneakers"] = st["shoes"][0] == "#ecebe7"
     st["height"] = random.uniform(1.58, 1.72) if sex == "f" else random.uniform(1.68, 1.86)
     st["hair"] = random.choice(["bob", "long", "long"]) if sex == "f" else random.choice(["short", "short", "buzz"])
