@@ -124,7 +124,7 @@ narr_a, _ = ch.build(P, tuple(NARR_T), K.NARR_A, pose_mode="umbrella"); narr_a.n
 umb_a = ch.add_umbrella(narr_a, P, "#1d2230")
 # the hero teaching (rooftop / training alley): another rig of the same man, moved between the two sets
 hero_t, _ = ch.build(P, tuple(ROOF), ch.HERO, pose_mode="stand"); hero_t.name = "HERO_train"
-narr_m, _ = ch.build(P, (16, AL2_Y, 0), dict(K.NARR_A, body="m_fit", vtaper=True), pose_mode="umbrella"); narr_m.name = "NARR_mid"
+narr_m, _ = ch.build(P, (16, AL2_Y, 0), dict(K.NARR_A, body="m_lean"), pose_mode="umbrella"); narr_m.name = "NARR_mid"
 umb_m = ch.add_umbrella(narr_m, P, "#1d2230")
 narr_b, _ = ch.build(P, tuple(ROOF), K.NARR_B, pose_mode="umbrella"); narr_b.name = "NARR_after"
 umb_b = ch.add_umbrella(narr_b, P, "#1d2230")
@@ -249,24 +249,24 @@ carve(rain_alley2, lambda p: (p.xy - UT.xy).length < 0.6 or (p.xy - UN.xy).lengt
 carve(rain_roof, lambda p: (p.xy - RT.xy).length < 0.6 or (p.xy - RN.xy).length < 0.8)
 
 # ------------------------------------------------------------------ aura: the hero always; the kid once he closes it
-def aura(owner, f_on, f_full, f_off=None, watts=70):
-    ld = bpy.data.lights.new("aura", "POINT"); ld.color = (0.55, 0.92, 1.0); ld.shadow_soft_size = 0.6
+def aura(owner, f_on, f_full, f_off=None, watts=70, color=(0.55, 0.92, 1.0)):
+    ld = bpy.data.lights.new("aura", "POINT"); ld.color = color; ld.shadow_soft_size = 0.6
     ob = bpy.data.objects.new("aura", ld); C.FX.objects.link(ob); ob.parent = owner; ob.location = (0, 0, 1.15 / owner.scale[0])
     prefs.keyframe_new_interpolation_type = "BEZIER"
     for f, e in ((1, 0), (f_on, 0), (f_full, watts)) + (((f_off - 1, watts), (f_off, 0)) if f_off else ()):
         ld.energy = e; ld.keyframe_insert("energy", frame=f)
     return ob
 aura(hero_a, SLOW0 - 4, SLOW0 + 20, None, 60)
-aura(narr_b, FOLD + 4, FOLD + 26, None, 40)
-aura(narr_p, 1, 2, None, 40); aura(hero_p, 1, 2, None, 50)
+aura(narr_b, FOLD + 4, FOLD + 26, None, 40, color=(1.0, 0.82, 0.3))          # his aura is yellow
+aura(narr_p, 1, 2, None, 40, color=(1.0, 0.82, 0.3)); aura(hero_p, 1, 2, None, 50)
 # white aura composited from a per-frame mask (compose.py): heroes always, the narrator only after he can dodge
-for rig in (hero_s, hero_a, hero_t, hero_p, narr_p, narr_b):
+for rig, idx in ((hero_s, 7), (hero_a, 7), (hero_t, 7), (hero_p, 7), (narr_p, 8), (narr_b, 8)):   # 7 white, 8 yellow
     for o in [rig] + list(rig.children_recursive):
-        o.pass_index = 7
+        o.pass_index = idx
 for o in umb_b:
     o.pass_index = 0
-json.dump({"keys": [[1, 0.6], [SLOW0, 0.6], [SLOW0 + 16, 1.25], [SLOW1, 1.2], [SLOW1 + 8, 0.7],
-                    [MONT[2][0], 0.0], [FOLD, 0.0], [FOLD + 18, 1.15], [N, 1.1]],
+json.dump({"keys": [[1, 0.6], [SLOW0, 0.6], [SLOW0 + 16, 1.25], [SLOW1, 1.2], [SLOW1 + 8, 0.7], [N, 0.8]],
+           "keys_y": [[1, 0.0], [FOLD, 0.0], [FOLD + 18, 1.15], [N, 1.0]],
            "trail": [SLOW0, SLOW1]}, open(os.path.join(HERE, "aura.json"), "w"))
 
 # ------------------------------------------------------------------ camera
@@ -287,6 +287,11 @@ ng.links.new(rl.outputs["Image"], go.inputs[0]); ng.links.new(rl.outputs["Object
 fo = ng.nodes.new("CompositorNodeOutputFile"); fo.directory = os.path.join(HERE, "masks"); fo.file_name = "mask_"
 fo.format.media_type = "IMAGE"; fo.format.file_format = "PNG"; fo.format.color_mode = "BW"
 fo.file_output_items.new("FLOAT", ""); ng.links.new(idm.outputs["Alpha"], fo.inputs[0])
+idy = ng.nodes.new("CompositorNodeIDMask"); idy.inputs["Index"].default_value = 8      # the narrator (yellow aura)
+ng.links.new(rl.outputs["Object Index"], idy.inputs["ID value"])
+fy = ng.nodes.new("CompositorNodeOutputFile"); fy.directory = os.path.join(HERE, "masks_y"); fy.file_name = "mask_"
+fy.format.media_type = "IMAGE"; fy.format.file_format = "PNG"; fy.format.color_mode = "BW"
+fy.file_output_items.new("FLOAT", ""); ng.links.new(idy.outputs["Alpha"], fy.inputs[0])
 if os.environ.get("NORENDER"):
     print("built only"); sys.exit(0)
 if os.environ.get("STILLS"):

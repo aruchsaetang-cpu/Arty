@@ -8,7 +8,7 @@ SCALE = int(sys.argv[1]) if len(sys.argv) > 1 else 40
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scn = bpy.context.scene
 cc = bpy.data.collections.new("cast"); scn.collection.children.link(cc)
-LINE = [("hero", ch.HERO, "stand"), ("narr_a", K.NARR_A, "umbrella"), ("narr_b", K.NARR_B, "stand"), ("cop", K.COP, "stand"),
+LINE = [("hero", ch.HERO, "pockets"), ("narr_a", K.NARR_A, "umbrella"), ("narr_b", K.NARR_B, "stand"), ("cop", K.COP, "stand"),
         ("shop", K.SHOP, "stand"), ("w1", K.W1, "stand"), ("w2", K.W2, "stand"), ("w4", K.W4, "stand")]
 X = {}
 for k, (name, st, pose) in enumerate(LINE):
@@ -17,6 +17,8 @@ for k, (name, st, pose) in enumerate(LINE):
     arm.location.z = arm["ground"]
     if pose == "umbrella":
         ch.add_umbrella(arm, cc, "#1d2230")
+    if pose == "pockets":
+        ch.hands_in_pockets(arm)
 w = bpy.data.worlds.new("w"); scn.world = w; w.use_nodes = True
 w.node_tree.nodes["Background"].inputs[0].default_value = (0.78, 0.8, 0.84, 1)
 scn.render.engine = "CYCLES"; scn.cycles.samples = 16; scn.cycles.use_denoising = False

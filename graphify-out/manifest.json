@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795048929.0006258,
-    "seen": 1795048962.0306063,
-    "ast_hash": "c005b6d587686de89c5861a6dd91e9a6",
+    "mtime": 1795049022.0337074,
+    "seen": 1795049139.3357642,
+    "ast_hash": "20cd6986871a8efdeed23576ffc4ceb2",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -2004,9 +2004,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/compose.py": {
-    "mtime": 1795047813.4390392,
-    "seen": 1795048391.2684734,
-    "ast_hash": "001d5f4a206600f28b2e7f09f05aee15",
+    "mtime": 1795049022.0366275,
+    "seen": 1795049139.3357782,
+    "ast_hash": "80ceee7cf7cae57492d0c4900c352355",
     "semantic_hash": ""
   },
   "shorts/aura/cues.py": {
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795048781.1291733,
-    "seen": 1795048797.7881346,
-    "ast_hash": "cf0800fc6c24a64281946a986d6d99e2",
+    "mtime": 1795049022.0342467,
+    "seen": 1795049139.3357832,
+    "ast_hash": "9f52bb6217085d6141677afe4c935ffe",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -6654,15 +6654,15 @@
     "semantic_hash": ""
   },
   "lookdev/cast_v2.py": {
-    "mtime": 1795047324.9380808,
-    "seen": 1795048391.2684577,
-    "ast_hash": "784550d28ea2019bfc6fd7dec5aede5e",
+    "mtime": 1795049029.5926645,
+    "seen": 1795049139.3357608,
+    "ast_hash": "60db276f382e0fea955b7eac361a4c60",
     "semantic_hash": ""
   },
   "shorts/aura/cast.py": {
-    "mtime": 1795048354.5610049,
-    "seen": 1795048391.268471,
-    "ast_hash": "2106f496154db18c154cb4fd8aaa0d19",
+    "mtime": 1795049022.0339851,
+    "seen": 1795049139.3357759,
+    "ast_hash": "e01a05d6dfa50c5aafd43b4a4bdcb2c6",
     "semantic_hash": ""
   },
   "shorts/aura/cues2.py": {
@@ -6672,9 +6672,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film_camera.py": {
-    "mtime": 1795047788.704759,
-    "seen": 1795048391.2684784,
-    "ast_hash": "dbaf3ebd34cbb685671362861ef20856",
+    "mtime": 1795049132.1606572,
+    "seen": 1795049139.3357844,
+    "ast_hash": "92bb96a74839c437aa526394ce431f29",
     "semantic_hash": ""
   },
   "shorts/aura/film_sets.py": {
@@ -6720,9 +6720,9 @@
     "semantic_hash": ""
   },
   "lookdev/renders/v2_body_narr_b.png": {
-    "mtime": 1795047370.064734,
-    "seen": 1795048391.2694318,
-    "ast_hash": "02a30d34b872402a02df116e60842c6e",
+    "mtime": 1795049057.5488343,
+    "seen": 1795049139.3368075,
+    "ast_hash": "b85c558ee893b990d22f8e3e3a485814",
     "semantic_hash": ""
   },
   "lookdev/renders/v2_cop.png": {
@@ -6750,9 +6750,9 @@
     "semantic_hash": ""
   },
   "lookdev/renders/v2_lineup.png": {
-    "mtime": 1795047357.2807333,
-    "seen": 1795048391.2694368,
-    "ast_hash": "c98e90baf715b4edbd48e7fa3ecebccc",
+    "mtime": 1795049050.188834,
+    "seen": 1795049139.336816,
+    "ast_hash": "43b1f6489d8258940a892be0d444be05",
     "semantic_hash": ""
   },
   "shorts/aura/out/cop_uniform_preview.png": {
@@ -6933,6 +6933,48 @@
     "mtime": 1795048926.2328265,
     "seen": 1795048962.0315437,
     "ast_hash": "7147e5e7ea66e2d9d8529fa3c06d3e4d",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0341.png": {
+    "mtime": 1795048965.9168289,
+    "seen": 1795049139.3368433,
+    "ast_hash": "07489324719d2f3692fc41ecd172e8e8",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0390.png": {
+    "mtime": 1795048986.4848301,
+    "seen": 1795049139.3368447,
+    "ast_hash": "b71d6dc6db873151d9d3245318a7b256",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0441.png": {
+    "mtime": 1795049012.6048317,
+    "seen": 1795049139.336846,
+    "ast_hash": "dc19a3995a8da8b22316f22edf65578b",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0519.png": {
+    "mtime": 1795049039.1448333,
+    "seen": 1795049139.336847,
+    "ast_hash": "09254188ad2b7f07a0553207f8735eeb",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0593.png": {
+    "mtime": 1795049070.5888352,
+    "seen": 1795049139.336848,
+    "ast_hash": "72b8f93ce62075724459685dd9b324f6",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0666.png": {
+    "mtime": 1795049095.8088367,
+    "seen": 1795049139.3368495,
+    "ast_hash": "afb5e3632e97383843710b1e50013c5f",
+    "semantic_hash": ""
+  },
+  "shorts/aura/stills/s0775.png": {
+    "mtime": 1795049118.720838,
+    "seen": 1795049139.3368504,
+    "ast_hash": "b900d4bbbad62a67eb0203c0e6096c2d",
     "semantic_hash": ""
   }
 }

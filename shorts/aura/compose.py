@@ -8,19 +8,20 @@ from PIL import Image, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "beats.json")))["frames"]
-KEYS = json.load(open(os.path.join(HERE, "aura.json")))["keys"]
+_A = json.load(open(os.path.join(HERE, "aura.json"))); KEYS = _A["keys"]; KEYS_Y = _A.get("keys_y", [[1, 0.0]])
 first = int(sys.argv[1]) if len(sys.argv) > 1 else 1
 last = int(sys.argv[2]) if len(sys.argv) > 2 else N
 os.makedirs(os.path.join(HERE, "graded"), exist_ok=True)
-AURA = np.array([0.9, 0.96, 1.0], np.float32)
+AURA = np.array([0.9, 0.96, 1.0], np.float32)       # the hero: white
+AURA_Y = np.array([1.0, 0.82, 0.28], np.float32)    # the narrator once he can dodge: yellow
 
-def aura_k(f):
-    fs, vs = zip(*KEYS); return float(np.interp(f, fs, vs))
+def aura_k(f, keys=None):
+    fs, vs = zip(*(keys or KEYS)); return float(np.interp(f, fs, vs))
 
 def blur(m, r):
     return np.asarray(Image.fromarray((m * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(r)), np.float32) / 255
 
-def add_aura(a, mask, k):
+def add_aura(a, mask, k, col=AURA):
     h, w = mask.shape; s = w / 360.0
     grown = np.asarray(Image.fromarray((mask * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(3)), np.float32) / 255
     tight = np.clip(blur(grown, 2.2 * s) * 1.9, 0, 1)
@@ -29,7 +30,7 @@ def add_aura(a, mask, k):
     glow = (0.85 * tight + 0.55 * wide) * outside * k
     rim = np.clip(mask - np.clip(blur(mask, 1.2 * s) * 1.0 - 0.35, 0, 1), 0, 1) * 0.25 * k   # faint inner rim light
     g = np.clip(glow + rim, 0, 1.4)[..., None]
-    return 1 - (1 - a) * (1 - g * AURA)            # screen
+    return 1 - (1 - a) * (1 - g * col)             # screen
 
 def grade(a):
     h, w, _ = a.shape
@@ -92,6 +93,12 @@ for f in range(first, last + 1):
         a = trail(a, m, f)
         if m.max() > 0 and aura_k(f) > 0:
             a = add_aura(a, m, aura_k(f))
+    my = os.path.join(HERE, "masks_y", f"mask_{f:04d}.png")
+    if os.path.exists(my) and aura_k(f, KEYS_Y) > 0:
+        miy = Image.open(my).convert("L").filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(5))
+        m2 = np.asarray(miy, np.float32) / 255
+        if m2.max() > 0:
+            a = add_aura(a, m2, aura_k(f, KEYS_Y), AURA_Y)
     sid = shot_of(f)
     if sid in HAND:
         a = handheld(a, f, HAND[sid])

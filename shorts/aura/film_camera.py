@@ -111,16 +111,16 @@ def pov_umbrella():
     bm_ = bmesh.new(); R = 0.55; ribs = 10
     apex = bm_.verts.new((0, 0.07, 0))
     rim = [bm_.verts.new((R * math.cos(2 * math.pi * i / ribs), -0.2, R * math.sin(2 * math.pi * i / ribs))) for i in range(ribs)]
-    mid_ = [bm_.verts.new((0.62 * R * math.cos(2 * math.pi * (i + .5) / ribs), -0.06, 0.62 * R * math.sin(2 * math.pi * (i + .5) / ribs)))
-            for i in range(ribs)]
+    mid_ = [bm_.verts.new((0.8 * R * math.cos(2 * math.pi * (i + .5) / ribs), -0.12, 0.8 * R * math.sin(2 * math.pi * (i + .5) / ribs)))
+            for i in range(ribs)]                                        # scalloped edge between the ribs
     for i in range(ribs):
         bm_.faces.new((apex, rim[i], mid_[i])); bm_.faces.new((apex, mid_[i], rim[(i + 1) % ribs]))
         bm_.faces.new((mid_[i], rim[i], rim[(i + 1) % ribs]))
     me = bpy.data.meshes.new("pov_umbrella"); bm_.to_mesh(me); bm_.free()
     ob = bpy.data.objects.new("pov_umbrella", me); C.FX.objects.link(ob)
-    me.materials.append(ch.cel("#1d2230", None, rim="#cfe6ff", name="umbrella"))
+    me.materials.append(ch.cel("#34405e", "#1a2134", rim="#9fc4ff", rim_amt=0.9, name="pov_umbrella"))
     sol = ob.modifiers.new("ink", "SOLIDIFY"); sol.thickness = 0.006
-    ob.parent = cam; ob.location = (0.04, 0.4, -0.1); ob.rotation_euler = (math.radians(-12), 0, 0)
+    ob.parent = cam; ob.location = (0.05, 0.55, -0.05); ob.rotation_euler = (math.radians(-10), 0, 0)   # rim: top ~15% of frame
     return ob
 pov_umb = pov_umbrella()
 visible(pov_umb, [(fr("follow"), fr("alley_pov", 1)), (fr("turn"), fr("turn", 1))])

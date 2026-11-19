@@ -33,6 +33,11 @@ BODY = {
                  "universal-male-young-averagemuscle-minweight.target": 0.55,
                  "male-young-averagemuscle-averageweight-maxheight.target": 0.7,
                  "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
+    "m_slender": {"asian-male-young.target": 0.75, "caucasian-male-young.target": 0.25,     # tall, slim, lightly toned
+                  "universal-male-young-maxmuscle-averageweight.target": 0.3,
+                  "universal-male-young-averagemuscle-minweight.target": 0.6,
+                  "male-young-averagemuscle-averageweight-maxheight.target": 0.85,
+                  "male-young-averagemuscle-averageweight-idealproportions.target": 1.0},
     "m_fit": {"asian-male-young.target": 0.75, "caucasian-male-young.target": 0.25,
               "universal-male-young-maxmuscle-averageweight.target": 0.95,
               "universal-male-young-averagemuscle-minweight.target": 0.6,
@@ -65,7 +70,7 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
 # the lead (only when build() is given HERO itself): tall and lean; a long light-grey jacket worn open and loose,
 # flaring off the shoulders, black V-neck top, light-grey creased trousers, black loafers; slicked-back hair,
 # idol face, and the eyes nobody else has (black sclera, white irises)
-HERO_LOOK = dict(body="m_lean", vtaper=False, crease=0.006, turtleneck=False, vneck=True, top=("#17181c", "#050506"),
+HERO_LOOK = dict(body="m_slender", vtaper=False, crease=0.0, turtleneck=False, vneck=True, top=("#17181c", "#050506"),
                  coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, lapels=True, coat_flare=(0.07, 0.16), tie=None,
                  creases=True,
                  leg_col=("#c4c5ca", "#767880"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
