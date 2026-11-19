@@ -975,6 +975,9 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             low = min(low, min((mw @ v.co).z for v in e.data.vertices))
     arm["ground"] = -low if low < 9 else 0.0
     contact_shadow(coll, arm)
+    for ob in objs:   # coats, coat tails and skirts get hem motion (trail, step sway, flutter)
+        if ob.name.split(".")[0] in ("coat_drape", "coat_skirt", "skirt", "coat_sleeves"):
+            add_cloth_motion(ob, pelvis_z + 0.05)
     arm.location = Vector(location) + Vector((0, 0, arm["ground"]))
     bpy.context.view_layer.update()
     return arm, objs
@@ -1573,6 +1576,46 @@ def add_locks(coll, arm, V, J, hair, st, objs):
         bone_parent(lo, arm, "head")
         objs.append(lo)
 
+_FLUTTER = {}
+def add_cloth_motion(ob, z_top):
+    """Hem weights (0 at the waist -> 1 at the hem) and three displacements on top of the skinning:
+    cm_trail (hem lags behind while walking), cm_sway (swings with each step), cm_flutter (moving through a
+    still noise field in world space makes the cloth ripple as the wearer walks)."""
+    zs = [v.co.z for v in ob.data.vertices]
+    if not zs:
+        return
+    z_hem = min(zs); z_top = min(z_top, max(zs))
+    vg = ob.vertex_groups.new(name="hem")
+    for v in ob.data.vertices:
+        w = max(0.0, min(1.0, (z_top - v.co.z) / max(1e-4, z_top - z_hem))) ** 1.5
+        vg.add([v.index], w, "REPLACE")
+    if "tex" not in _FLUTTER:
+        t = bpy.data.textures.new("cloth_flutter", "CLOUDS"); t.noise_scale = 0.35; t.noise_depth = 1; _FLUTTER["tex"] = t
+    ai = ob.modifiers.find("arm")
+    for k, (name, direction) in enumerate((("cm_trail", "Y"), ("cm_sway", "X"), ("cm_flutter", "NORMAL"))):
+        m = ob.modifiers.new(name, "DISPLACE"); m.vertex_group = "hem"; m.direction = direction; m.space = "LOCAL"
+        m.mid_level = 0.0 if name != "cm_flutter" else 0.5; m.strength = 0.0
+        if name == "cm_flutter":
+            m.texture = _FLUTTER["tex"]; m.texture_coords = "GLOBAL"; m.strength = 0.03
+        ob.modifiers.move(ob.modifiers.find(name), ai + 1 + k)
+
+def cloth_walk(arm, f0, f1, cycle, phase=0.0, trail=0.07, sway=0.04):
+    """Drive the hem motion of a walking rig between frames f0 and f1 (simple-expression drivers, no Python)."""
+    on = f"max(0,min(1,(frame-{f0}+8)/8))*max(0,min(1,({f1}-frame+8)/8))"
+    for ob in arm.children_recursive:
+        if "cm_trail" not in ob.modifiers:
+            continue
+        for name, expr in (("cm_trail", f"{trail}*{on}"),
+                           ("cm_sway", f"{sway}*sin(6.2832*(frame-{f0})/{cycle}+{6.2832 * phase:.3f})*{on}")):
+            m = ob.modifiers[name]
+            try:
+                m.driver_remove("strength")
+            except TypeError:
+                pass
+            fc = m.driver_add("strength"); fc.driver.type = "SCRIPTED"; fc.driver.expression = expr
+            if fc.driver.expression != expr:
+                pass
+
 _CS = {}
 def contact_shadow(coll, arm):
     """A soft dark pool on the ground under the feet (follows the rig root): grounds the cel-shaded people."""
@@ -1805,6 +1848,7 @@ def animate_walk(arm, start, heading_deg, f0, f1, phase=0.0, prop=None, cycle=32
         arm.keyframe_insert("location", frame=f)
         f += step
     set_interp(arm, "LINEAR", "location")          # steady walking speed between keys
+    cloth_walk(arm, f0, f1, cycle, phase)
     return speed
 
 def add_umbrella(arm, coll, colour="#1d2230", clear=False):

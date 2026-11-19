@@ -81,6 +81,8 @@ def walk_path(arm, pts, f0, f1, cycle=34, stride=0.62, phase=0.0, prop=None, swa
         arm.rotation_euler = (0, 0, h); arm.keyframe_insert("rotation_euler", index=2, frame=f)
         f += step
     ch.set_interp(arm, "LINEAR", "location"); ch.set_interp(arm, "LINEAR", "rotation_euler")
+    total_f = f0 + int(total / speed * 30.0)
+    ch.cloth_walk(arm, f0, min(f1, total_f), cycle, phase)           # coat hem trails and swings with the walk
     return speed, (lambda f: at(min(total, speed * (f - f0) / 30.0)))
 
 HOLD = {}       # rig name -> frames whose keys must hold (CONSTANT): rigs jump between sets at cuts
