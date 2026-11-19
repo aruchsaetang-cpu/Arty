@@ -107,6 +107,28 @@ def glow(col, strength=6.0, flicker=None, name=None):
         drive(e.inputs["Strength"], f"{strength}*max(0.05, min(1, 3*sin(frame*0.8)*sin(frame*0.27)+0.6))")
     _M[key] = m; return m
 
+def rain_ripples(g, vec, clock, layers=((2.6, 0.9, 0.0), (4.3, 0.7, 17.0))):
+    """Raindrop rings on standing water (as a height for the bump): every Voronoi cell takes a drop on its own beat and
+    sends out a packet of 3-4 concentric wavelets that spread, flatten and fade; two layers so rings overlap.
+    clock: a socket counting frames (the film keys it with the rain clock, so it crawls in slow motion)."""
+    t = g.m("DIVIDE", clock, 30.0); total = None
+    for scale, period, off in layers:
+        mp = g.n("ShaderNodeMapping"); mp.inputs["Location"].default_value = (off, off * 0.6, 0); g.ln(vec, mp.inputs[0])
+        vor = g.n("ShaderNodeTexVoronoi", Scale=scale, _voronoi_dimensions="2D"); g.ln(mp.outputs[0], vor.inputs["Vector"])
+        sc = g.n("ShaderNodeSeparateColor"); g.ln(vor.outputs["Color"], sc.inputs[0])
+        phi = g.m("FRACT", g.m("ADD", g.m("DIVIDE", t, period), sc.outputs[0]))
+        R = g.m("MULTIPLY", phi, 0.55); lam = 0.06
+        x = g.m("SUBTRACT", vor.outputs["Distance"], R)
+        env = g.m("EXPONENT", g.m("MULTIPLY", g.m("POWER", g.m("DIVIDE", g.m("ADD", x, lam * 1.4), lam * 1.4), 2.0), -1.0))
+        env = g.m("MULTIPLY", env, g.m("LESS_THAN", x, lam * 0.6))
+        amp = g.m("POWER", g.m("SUBTRACT", 1.0, phi), 1.6)
+        h = g.m("MULTIPLY", g.m("MULTIPLY", g.m("SINE", g.m("MULTIPLY", x, 6.2832 / lam)), env), amp)
+        total = h if total is None else g.m("ADD", total, h)
+    return total
+
+def rain_clock(g):
+    v = g.n("ShaderNodeValue"); v.name = "rain_clock"; drive(v.outputs[0], "frame"); return v.outputs[0]
+
 def asphalt():
     m = bpy.data.materials.new("asphalt"); g = G(m); b = g.bsdf()
     tc = g.n("ShaderNodeTexCoord")
@@ -121,10 +143,8 @@ def asphalt():
     base = g.mix(g.m("MULTIPLY", grain.outputs["Fac"], 0.45), base, lin("#3a3c3f"))
     base = g.mix(M, base, lin("#0b0c0e"))
     g.ln(base, b.inputs["Base Color"]); g.ln(g.mix(M, 0.5, 0.02, rgba=False), b.inputs["Roughness"])
-    vor = g.n("ShaderNodeTexVoronoi", Scale=7.0, _voronoi_dimensions="4D"); g.ln(tc.outputs["Object"], vor.inputs["Vector"])
-    drive(vor.inputs["W"], "frame/7")                                      # rain ripples evolve every frame
-    rings = g.m("MULTIPLY", g.m("SINE", g.m("MULTIPLY", vor.outputs["Distance"], 70.0)), g.m("LESS_THAN", vor.outputs["Distance"], 0.1))
-    h = g.mix(M, g.m("MULTIPLY", grain.outputs["Fac"], 1.0), g.m("MULTIPLY", rings, 0.18), rgba=False)
+    rings = rain_ripples(g, tc.outputs["Object"], rain_clock(g))           # drops ringing the puddles
+    h = g.mix(M, g.m("MULTIPLY", grain.outputs["Fac"], 1.0), g.m("MULTIPLY", rings, 0.5), rgba=False)
     bp = g.n("ShaderNodeBump", Strength=0.35, Distance=0.002); g.ln(h, bp.inputs["Height"]); g.ln(bp.outputs[0], b.inputs["Normal"])
     b.inputs["Specular IOR Level"].default_value = 0.6
     return m
@@ -139,7 +159,8 @@ def pavers():
     W = g.m("GREATER_THAN", wet.outputs["Fac"], 0.5)
     g.ln(g.mix(W, br.outputs["Color"], lin("#1c1d20")), b.inputs["Base Color"])
     g.ln(g.mix(W, 0.32, 0.05, rgba=False), b.inputs["Roughness"])
-    bp = g.n("ShaderNodeBump", Strength=0.4); g.ln(br.outputs["Fac"], bp.inputs["Height"]); g.ln(bp.outputs[0], b.inputs["Normal"])
+    hgt = g.m("ADD", br.outputs["Fac"], g.m("MULTIPLY", g.m("MULTIPLY", rain_ripples(g, tc.outputs["Object"], rain_clock(g)), W), 0.25))
+    bp = g.n("ShaderNodeBump", Strength=0.4, Distance=0.004); g.ln(hgt, bp.inputs["Height"]); g.ln(bp.outputs[0], b.inputs["Normal"])
     return m
 
 FACADES = {   # base, base2, bay width, floor height, window w/h, lit chance

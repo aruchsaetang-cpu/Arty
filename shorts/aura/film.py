@@ -290,14 +290,34 @@ def splash_mat(name, crown):
             else: L_.new(v, n.inputs[i])
         return n.outputs[0]
     phase = M("FRACT", M("ADD", M("DIVIDE", clock.outputs[0], 7.0), geo.outputs["Random Per Island"]))
-    if crown:   # a quick crown flash as the drop lands
-        a = M("MULTIPLY", M("MULTIPLY", M("LESS_THAN", phase, 0.16), M("SUBTRACT", 1.0, M("DIVIDE", phase, 0.16))),
-              M("MULTIPLY", M("SUBTRACT", 1.0, sp.outputs["Y"]), 0.85))
-    else:       # an expanding ring that fades as it grows
-        dx = M("SUBTRACT", sp.outputs["X"], 0.5); dy = M("SUBTRACT", sp.outputs["Y"], 0.5)
+    X, Y = sp.outputs["X"], sp.outputs["Y"]
+    if crown:   # the drop lands: a crown sheet rises and opens, its spikes throw droplets up and out, then it all falls
+        LIFE = 0.36; p = M("DIVIDE", phase, LIFE); live = M("LESS_THAN", phase, LIFE)
+        s_ = M("MULTIPLY", M("ABSOLUTE", M("SUBTRACT", X, 0.5)), 2.0)
+        Hc = M("MULTIPLY", M("SINE", M("MULTIPLY", M("MINIMUM", p, 1.0), 3.1416)), 0.5)
+        yc = M("MULTIPLY", Hc, M("ADD", 0.12, M("MULTIPLY", M("MULTIPLY", s_, s_), 0.88)))
+        width = M("MULTIPLY", 0.75, M("ADD", 0.35, M("MULTIPLY", p, 0.65)))
+        sheet = M("MULTIPLY", M("LESS_THAN", M("ABSOLUTE", M("SUBTRACT", Y, yc)), 0.03), M("LESS_THAN", s_, width))
+        spikes = M("MULTIPLY", M("GREATER_THAN", M("SINE", M("MULTIPLY", X, 38.0)), 0.55),
+                   M("MULTIPLY", M("LESS_THAN", M("SUBTRACT", Y, yc), 0.08), M("GREATER_THAN", M("SUBTRACT", Y, yc), 0.0)))
+        sheet = M("MAXIMUM", sheet, M("MULTIPLY", spikes, M("LESS_THAN", s_, width)))
+        blob = M("MULTIPLY", M("LESS_THAN", Y, M("MULTIPLY", 0.07, M("SUBTRACT", 1.0, p))), M("LESS_THAN", s_, M("ADD", 0.15, M("MULTIPLY", p, 0.5))))
+        a = M("MAXIMUM", sheet, blob)
+        for i, (side, spread, vel) in enumerate(((-1, 0.36, 1.25), (1, 0.42, 1.1), (-1, 0.2, 1.55), (1, 0.26, 1.45), (-1, 0.47, 0.9), (1, 0.12, 1.7))):
+            xi = M("ADD", 0.5, M("MULTIPLY", p, side * spread)); yi = M("SUBTRACT", M("MULTIPLY", p, vel * 0.55), M("MULTIPLY", M("MULTIPLY", p, p), 0.45))
+            dxi = M("SUBTRACT", X, xi); dyi = M("SUBTRACT", Y, M("ADD", yi, 0.05))
+            d = M("SQRT", M("ADD", M("MULTIPLY", dxi, dxi), M("MULTIPLY", dyi, dyi)))
+            a = M("MAXIMUM", a, M("LESS_THAN", d, M("MULTIPLY", 0.028, M("SUBTRACT", 1.0, M("MULTIPLY", p, 0.4)))))
+        a = M("MULTIPLY", M("MULTIPLY", a, live), M("MULTIPLY", M("SUBTRACT", 1.0, M("POWER", M("MINIMUM", p, 1.0), 3.0)), 0.9))
+    else:       # three wavelets spreading out from the impact, the outer one strongest, all fading as they grow
+        dx = M("SUBTRACT", X, 0.5); dy = M("SUBTRACT", Y, 0.5)
         r = M("MULTIPLY", M("SQRT", M("ADD", M("MULTIPLY", dx, dx), M("MULTIPLY", dy, dy))), 2.0)
-        band = M("SUBTRACT", 1.0, M("DIVIDE", M("ABSOLUTE", M("SUBTRACT", r, phase)), 0.09), clamp=True)
-        a = M("MULTIPLY", M("MULTIPLY", band, M("SUBTRACT", 1.0, phase)), 0.3)
+        a = None
+        for k, amp in enumerate((1.0, 0.6, 0.35)):
+            band = M("SUBTRACT", 1.0, M("DIVIDE", M("ABSOLUTE", M("SUBTRACT", r, M("SUBTRACT", phase, 0.1 * k))), 0.035), clamp=True)
+            band = M("MULTIPLY", band, amp)
+            a = band if a is None else M("MAXIMUM", a, band)
+        a = M("MULTIPLY", M("MULTIPLY", a, M("POWER", M("SUBTRACT", 1.0, phase), 1.5)), 0.32)
     tr = N_.new("ShaderNodeBsdfTransparent"); em = N_.new("ShaderNodeEmission")
     em.inputs["Color"].default_value = C.lin("#d6e6ff"); em.inputs["Strength"].default_value = 1.1
     mx = N_.new("ShaderNodeMixShader"); L_.new(a, mx.inputs[0]); L_.new(tr.outputs[0], mx.inputs[1])
@@ -308,6 +328,14 @@ def splash_mat(name, crown):
     ch.set_interp(nt, "CONSTANT")
     return m
 SPL_R, SPL_C = splash_mat("splash_ripple", False), splash_mat("splash_crown", True)
+for _m in bpy.data.materials:   # the puddle ripples in the street/pavement shaders run on the same (slow-motion) clock
+    if not _m.node_tree or _m.name.startswith("splash_"): continue
+    for _n in _m.node_tree.nodes:
+        if _n.name == "rain_clock":
+            _n.outputs[0].driver_remove("default_value")
+            for f in range(1, N + 1):
+                _n.outputs[0].default_value = ph[f]; _n.outputs[0].keyframe_insert("default_value", frame=f)
+            ch.set_interp(_m.node_tree, "CONSTANT")
 def splashes(name, cx, cy, w, dep, z, n, dry):
     rng = _rnd.Random(name); bm = bmesh.new(); uv = bm.loops.layers.uv.new("UVMap"); crowns = []
     def quad(vs, crown):
@@ -321,7 +349,7 @@ def splashes(name, cx, cy, w, dep, z, n, dry):
             continue
         r = rng.uniform(0.06, 0.12); zz = z + 0.005
         quad([(x - r, y - r, zz), (x + r, y - r, zz), (x + r, y + r, zz), (x - r, y + r, zz)], False)
-        h = rng.uniform(0.04, 0.07); c_ = 0.03
+        h = rng.uniform(0.07, 0.11); c_ = 0.055
         quad([(x - c_, y, zz), (x + c_, y, zz), (x + c_, y, zz + h), (x - c_, y, zz + h)], True)
         quad([(x, y - c_, zz), (x, y + c_, zz), (x, y + c_, zz + h), (x, y - c_, zz + h)], True)
     me = bpy.data.meshes.new(name); me.materials.append(SPL_R); me.materials.append(SPL_C)
@@ -330,7 +358,21 @@ def splashes(name, cx, cy, w, dep, z, n, dry):
     ob = bpy.data.objects.new(name, me); C.FX.objects.link(ob); ob.visible_shadow = False
     ob.visible_diffuse = ob.visible_glossy = ob.visible_transmission = False   # camera only: no dark squares on the floor
     return ob
-splashes("splash_main", 0.0, 45.0, 18.0, 62.0, 0.0, 4200, dry_main)
+# the street's splashes in two sets, so a patch is only kept dry while someone dry is actually standing in it:
+# before the payoff only the hero's line stays dry; from the payoff only the walking pair's
+_P0 = fr("payoff_two") - 1
+def _dry_early(p):
+    return ((abs(p.x - HERO_X) < 0.3 and AL_Y - 0.6 < p.y < y_start + 2) or (p.x < HERO_X and abs(p.y - AL_Y) < 0.3)
+            or any((p.xy - u.xy).length < 0.6 for u in UMBS))
+def _dry_late(p):
+    return (-1.3 < p.x < 2.4 and 28 < p.y < 66) or any((p.xy - u.xy).length < 0.6 for u in UMBS)
+visible(splashes("splash_main", 0.0, 45.0, 18.0, 62.0, 0.0, 4200, _dry_early), [(1, _P0)])
+visible(splashes("splash_main_late", 0.0, 45.0, 18.0, 62.0, 0.0, 4200, _dry_late), [(_P0 + 1, N)])
+# the low shot at his feet (like the user's reference): a dense carpet of crowns all around, just not under his shoes
+_hf0, _hf1 = fr("hook_feet"), fr("hook_feet", 1)
+_hy = [hero_s_at(f)[0].y for f in (_hf0, _hf1)]
+visible(splashes("splash_feet", HERO_X, sum(_hy) / 2, 3.2, abs(_hy[1] - _hy[0]) + 3.0, 0.0,
+                 int(3.2 * (abs(_hy[1] - _hy[0]) + 3.0) * 38), lambda p: abs(p.x - HERO_X) < 0.34), [(_hf0, _hf1)])
 splashes("splash_alley", -22.0, AL_Y, 28.0, 5.0, 0.0, 1000,
          lambda p: (abs(p.y - AL_Y) < 0.5 and p.x > STOP.x - 1.0) or (p.xy - NARR_T.xy).length < 0.62)
 splashes("splash_alley2", 18.0, AL2_Y, 20.0, 5.0, 0.0, 700, lambda p: (p.xy - UT.xy).length < 0.6)
@@ -389,6 +431,7 @@ print("footsteps:", len(STEPS))
 
 # ------------------------------------------------------------------ render
 C.render_settings(SCALE, SAMPLES)
+scn.cycles.transparent_max_bounces = 48       # stacked splash crowns at grazing angles must not turn black
 scn.frame_start, scn.frame_end = FIRST, LAST
 scn.frame_step = int(os.environ.get("STEP", 1))       # STEP=2 renders on twos (held frames at encode)
 out_dir = os.path.join(HERE, "frames"); os.makedirs(out_dir, exist_ok=True)
