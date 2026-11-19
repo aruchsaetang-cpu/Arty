@@ -16,7 +16,7 @@ NARR_B = dict(NARR_A, body="m_lean")
 
 SHOP = dict(vary=101, manhwa_head=True, body="m_heavy", height=1.72, face="round", skin=("#e3b894", "#a2734f"), hair="buzz",
             hair_col="#22201f", coat=None, top=("#e9e6df", "#9a978f"), turtleneck=False, leg_col=("#4a4a4d", "#1d1d1f"),
-            head_yaw=28, subsurf=1)
+            head_yaw=0, subsurf=1)
 # Korean street police: light-grey jacket, navy vest with reflective band, navy trousers, cap with gold braid
 COP = dict(vary=102, manhwa_head=True, body="m", height=1.82, face="square", skin=("#d9a982", "#9a6a4a"), hair="short", locks=False,
            coat=("#1f2a3d", "#0c1220"), hem=0.62, top=("#8a9bb0", "#4b5868"), turtleneck=False,   # first-version uniform:

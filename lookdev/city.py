@@ -9,8 +9,9 @@ sagging wires, shopfronts with light spill, blade signs, AC units, balconies, ro
 parked and moving cars, a walking crowd (umbrellas, phones), rain, steam and flickering neon.
 Everything is generated here: no downloaded assets, no real signage or landmarks.
 """
-import bpy, bmesh, math, os, random, sys
+import bpy, json, bmesh, math, os, random, sys
 from mathutils import Vector, Matrix
+import mathutils, mathutils.bvhtree
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -225,6 +226,85 @@ def shopglass(col):
     g.ln(c, b.inputs["Emission Color"]); b.inputs["Emission Strength"].default_value = 1.3
     _M[key] = m; return m
 
+CUST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "shorts", "aura", "assets", "customers")
+_CUST = None
+def _customers():
+    global _CUST
+    if _CUST is None:
+        meta = os.path.join(CUST_DIR, "customers.json")
+        _CUST = json.load(open(meta)) if os.path.exists(meta) else {}
+    return _CUST
+
+def shop_room(col, gw, gh=3.1, seed=0, depth=3.2):
+    """See-through shop window: clear glass onto a lit room (interior mapping: back wall of shelves, side walls,
+    tiled floor, ceiling light panels) with customers standing inside at their own depths (cel sprites from
+    lookdev/customers.py). All in the glass shader, so the room has true parallax and costs no geometry.
+    Local frame of the glass box: street toward -x, room toward +x, y along the window, z up (centre 1.85 m)."""
+    cust = _customers()
+    if not cust:
+        return shopglass(col)
+    rnd = random.Random(seed)
+    m = bpy.data.materials.new(f"shoproom_{seed}"); g = G(m)
+    tc = g.n("ShaderNodeTexCoord"); P = g.n("ShaderNodeSeparateXYZ"); g.ln(tc.outputs["Object"], P.inputs[0])
+    geo = g.n("ShaderNodeNewGeometry")
+    vt = g.n("ShaderNodeVectorTransform", _vector_type="VECTOR", _convert_from="WORLD", _convert_to="OBJECT")
+    g.ln(geo.outputs["Incoming"], vt.inputs[0]); D = g.n("ShaderNodeSeparateXYZ"); g.ln(vt.outputs[0], D.inputs[0])
+    px, py, pz = P.outputs[0], P.outputs[1], P.outputs[2]
+    dx = g.m("MAXIMUM", g.m("MULTIPLY", D.outputs[0], -1.0), 0.002)            # into the room
+    def safe(v):   # -incoming component, kept away from zero
+        a = g.m("MULTIPLY", v, -1.0); sg = g.m("SUBTRACT", g.m("MULTIPLY", g.m("GREATER_THAN", a, 0.0), 2.0), 1.0)
+        return g.m("MULTIPLY", g.m("MAXIMUM", g.m("ABSOLUTE", a), 0.0005), sg), sg
+    dy, sy = safe(D.outputs[1]); dz, sz = safe(D.outputs[2])
+    hy = gw / 2; zlo, zhi = -1.7, 1.42
+    tb = g.m("DIVIDE", g.m("SUBTRACT", depth, px), dx)
+    ybound = g.m("MULTIPLY", sy, hy)
+    ty = g.m("DIVIDE", g.m("SUBTRACT", ybound, py), dy)
+    zbound = g.mix(g.m("GREATER_THAN", sz, 0.0), zlo, zhi, rgba=False)
+    tz = g.m("DIVIDE", g.m("SUBTRACT", zbound, pz), dz)
+    t = g.m("MINIMUM", tb, g.m("MINIMUM", ty, tz))
+    hx = g.m("ADD", px, g.m("MULTIPLY", t, dx)); hyv = g.m("ADD", py, g.m("MULTIPLY", t, dy)); hz = g.m("ADD", pz, g.m("MULTIPLY", t, dz))
+    is_b = g.m("LESS_THAN", g.m("SUBTRACT", tb, 1e-4), g.m("MINIMUM", ty, tz))
+    is_z = g.m("MULTIPLY", g.m("SUBTRACT", 1.0, is_b), g.m("LESS_THAN", g.m("SUBTRACT", tz, 1e-4), ty))
+    is_ceil = g.m("MULTIPLY", is_z, g.m("GREATER_THAN", sz, 0.0)); is_floor = g.m("MULTIPLY", is_z, g.m("LESS_THAN", sz, 0.0))
+    def shelves(u, v, base):    # shelving: wood bands every ~45 cm, rows of colourful goods between
+        sh = g.m("GREATER_THAN", g.m("FRACT", g.m("MULTIPLY", g.m("SUBTRACT", v, zlo), 2.2)), 0.14)
+        cv = g.n("ShaderNodeCombineXYZ"); g.ln(g.m("FLOOR", g.m("MULTIPLY", u, 9.0)), cv.inputs[0])
+        g.ln(g.m("FLOOR", g.m("MULTIPLY", v, 2.2)), cv.inputs[1]); cv.inputs[2].default_value = seed % 97
+        wn = g.n("ShaderNodeTexWhiteNoise", _noise_dimensions="3D"); g.ln(cv.outputs[0], wn.inputs["Vector"])
+        goods = g.mix(0.55, wn.outputs["Color"], lin(base))
+        gap = g.m("GREATER_THAN", g.m("FRACT", g.m("MULTIPLY", u, 9.0)), 0.08)
+        c = g.mix(g.m("MULTIPLY", sh, gap), lin("#3a2c22"), goods)
+        return g.mix(g.m("LESS_THAN", v, zlo + 0.35), c, lin("#d9d4c8"))            # a pale kick plate
+    back = shelves(hyv, hz, col); side = g.mix(0.35, shelves(hx, hz, col), lin("#6e6a62"))
+    chk = g.m("MODULO", g.m("ADD", g.m("FLOOR", g.m("MULTIPLY", hx, 2.0)), g.m("FLOOR", g.m("MULTIPLY", hyv, 2.0))), 2.0)
+    floor = g.mix(chk, lin("#9c978d"), lin("#837d73"))
+    panel = g.m("LESS_THAN", g.m("FRACT", g.m("MULTIPLY", hx, 0.9)), 0.12)
+    ceil = g.mix(panel, lin("#4e4b46"), (2.0, 1.95, 1.8, 1.0))
+    c = g.mix(is_b, side, back); c = g.mix(is_floor, c, floor); c = g.mix(is_ceil, c, ceil)
+    c = g.mix(g.m("MULTIPLY", g.m("DIVIDE", hx, depth), 0.3), c, lin("#2a2620"))          # a little darker toward the back
+    # customers, far to near
+    keys = sorted(cust); n = max(1, min(4, int(gw / 1.6) + rnd.randint(-1, 1)))
+    people = []
+    for k in range(n):
+        cid = rnd.choice(keys); view = rnd.choice(["front", "front", "side", "back"]); H = cust[cid]["height"]
+        people.append((rnd.uniform(0.7, depth - 0.5), rnd.uniform(-hy + 0.4, hy - 0.4), H, cid, view, rnd.random() < 0.5))
+    for dk, yk, H, cid, view, flip in sorted(people, reverse=True):
+        wk = H * 260 / 600
+        tk = g.m("DIVIDE", g.m("SUBTRACT", dk, px), dx)
+        u = g.m("ADD", g.m("DIVIDE", g.m("SUBTRACT", g.m("ADD", py, g.m("MULTIPLY", tk, dy)), yk), wk), 0.5)
+        if flip: u = g.m("SUBTRACT", 1.0, u)
+        v = g.m("DIVIDE", g.m("SUBTRACT", g.m("ADD", pz, g.m("MULTIPLY", tk, dz)), zlo + 0.02), H)
+        uv = g.n("ShaderNodeCombineXYZ"); g.ln(u, uv.inputs[0]); g.ln(v, uv.inputs[1])
+        im = bpy.data.images.load(os.path.join(CUST_DIR, f"{cid}_{view}.png"), check_existing=True)
+        tx = g.n("ShaderNodeTexImage", _extension="CLIP", _interpolation="Linear"); tx.image = im; g.ln(uv.outputs[0], tx.inputs["Vector"])
+        a = g.m("MULTIPLY", tx.outputs["Alpha"], g.m("LESS_THAN", tk, t))
+        c = g.mix(a, c, g.mix(0.12, tx.outputs["Color"], lin("#fff4e2")))
+    e = g.n("ShaderNodeEmission", Strength=1.2); g.ln(c, e.inputs["Color"])
+    gl = g.n("ShaderNodeBsdfGlossy", Roughness=0.03); lw = g.n("ShaderNodeLayerWeight", Blend=0.1)
+    mx = g.n("ShaderNodeMixShader"); g.ln(lw.outputs["Fresnel"], mx.inputs[0]); g.ln(e.outputs[0], mx.inputs[1]); g.ln(gl.outputs[0], mx.inputs[2])
+    g.ln(mx.outputs[0], g.out.inputs[0])
+    return m
+
 ASPH = asphalt(); PAVE = pavers()
 CURB = grimy("curb", "#6a6d70", "#3f4144", 0.35, 4.0)
 METAL = principled("metal_dark", "#202226", 0.45, 0.8)
@@ -336,7 +416,8 @@ def building(M, w, depth, h, kind, shop=True, blades=1, detail="ledges", rooftop
     # --- ground floor shopfront
     if shop:
         col = random.choice(["#ffd9a0", "#fff2d8", "#d8f0ff", "#ffe3c0", "#ffcf9a"])
-        g = obj_box(f"shop{tag}", M, (-0.02, w / 2, 1.85), (0.06, w - 0.9, 3.1), shopglass(col))
+        g = obj_box(f"shop{tag}", M, (-0.02, w / 2, 1.85), (0.06, w - 0.9, 3.1),
+                    shop_room(col, w - 0.9, seed=len(bpy.data.materials) * 7 + int(w * 10)))   # see-through, customers inside
         n_m = max(2, int(w / 1.6))
         for k in range(n_m + 1):
             B("mullion", METAL).box(M, (-0.07, 0.45 + k * (w - 0.9) / n_m, 1.85), (0.08, 0.07, 3.1))
@@ -559,25 +640,205 @@ def traffic_light(x, y, side):
     B("tl_box", METAL).box(M, (x, y - 0.2, 2.9), (0.3, 0.2, 0.6))
     obj_box("ped", M, (x, y - 0.31, 3.0), (0.2, 0.02, 0.2), grn, PROPS)
 
+# ----------------------------------------------------------------------- cars: a modern luxury SUV
+_CARM = {}
+def _car_mats(colour):
+    if "glass" not in _CARM:
+        def pr(name, col, rough, metal=0.0, coat=0.0):
+            m = principled(name, col, rough, metal); b = m.node_tree.nodes["Principled BSDF"]
+            if coat: b.inputs["Coat Weight"].default_value = coat; b.inputs["Coat Roughness"].default_value = 0.02
+            return m
+        _CARM["glass"] = pr("car_glass", "#06080b", 0.02, 0.0, 1.0)            # dark privacy glass, mirror-glossy
+        _CARM["black"] = pr("car_gloss_black", "#050507", 0.12, 0.0, 1.0)     # pillars, trim
+        _CARM["clad"] = pr("car_cladding", "#0e0f11", 0.55)                   # wheel arches, sills, lower bumper
+        _CARM["chrome"] = pr("car_chrome", "#e8eaee", 0.06, 1.0)
+        _CARM["rim"] = pr("car_rim", "#c9ccd1", 0.22, 1.0)
+        _CARM["rim_dark"] = pr("car_rim_dark", "#3a3d42", 0.3, 1.0)
+        _CARM["tyre"] = pr("car_tyre", "#040405", 0.9)
+        _CARM["disc"] = pr("car_disc", "#5a5c60", 0.35, 1.0)
+        _CARM["plate"] = pr("car_plate", "#f2f2ee", 0.4)
+        _CARM["lamp"] = pr("car_lamp_glass", "#0c0e12", 0.03, 0.2, 1.0)
+        m = bpy.data.materials.new("car_grille"); g = G(m); b_ = g.bsdf()          # diamond-mesh grille, chrome on black
+        tc = g.n("ShaderNodeTexCoord"); sp = g.n("ShaderNodeSeparateXYZ"); g.ln(tc.outputs["Object"], sp.inputs[0])
+        u = g.m("MULTIPLY", g.m("ADD", sp.outputs[0], sp.outputs[2]), 26.0); v = g.m("MULTIPLY", g.m("SUBTRACT", sp.outputs[0], sp.outputs[2]), 26.0)
+        dia = g.m("ADD", g.m("ABSOLUTE", g.m("SUBTRACT", g.m("FRACT", u), 0.5)), g.m("ABSOLUTE", g.m("SUBTRACT", g.m("FRACT", v), 0.5)))
+        hole = g.m("LESS_THAN", g.m("MAXIMUM", g.m("ABSOLUTE", g.m("SUBTRACT", g.m("FRACT", u), 0.5)), g.m("ABSOLUTE", g.m("SUBTRACT", g.m("FRACT", v), 0.5))), 0.36)
+        g.ln(g.mix(hole, lin("#8d9096"), lin("#030304")), b_.inputs["Base Color"]); g.ln(g.m("SUBTRACT", 1.0, hole), b_.inputs["Metallic"])
+        g.ln(g.mix(hole, 0.12, 0.6, rgba=False), b_.inputs["Roughness"])
+        bp = g.n("ShaderNodeBump", Strength=0.6, Distance=0.01); g.ln(g.m("SUBTRACT", 1.0, hole), bp.inputs["Height"]); g.ln(bp.outputs[0], b_.inputs["Normal"])
+        _CARM["grille"] = m
+    key = "paint_" + colour
+    if key not in _CARM:                                                       # metallic paint under a clear coat
+        m = principled(f"carpaint_{colour}", colour, 0.32, 0.4); b_ = m.node_tree.nodes["Principled BSDF"]
+        b_.inputs["Coat Weight"].default_value = 1.0; b_.inputs["Coat Roughness"].default_value = 0.025
+        _CARM[key] = m
+    return _CARM
+
+def _suv_profile(y):
+    """Side profile of the SUV at station y (m, +y = front): bottom, beltline, top, half width."""
+    L2 = 2.45
+    zb = 0.27 + 0.07 * max(0.0, (abs(y) - 1.95) / 0.5)
+    belt = 1.02 + 0.08 * max(0.0, min(1.0, (1.15 - y) / 3.1))
+    if y >= 1.15:   top = 1.02 - 0.15 * ((y - 1.15) / 1.3) ** 1.5                                   # hood
+    elif y >= 0.25: s_ = (1.15 - y) / 0.9; top = 1.02 + 0.64 * (1 - (1 - s_) ** 1.35)              # windshield
+    elif y >= -1.7: top = 1.66 - 0.03 * (0.25 - y) / 1.95                                           # roof
+    elif y >= -2.2: top = 1.63 - 0.33 * ((-1.7 - y) / 0.5) ** 1.2                                   # rear glass
+    else:           top = 1.30 - 0.2 * ((-2.2 - y) / 0.25)                                          # tailgate
+    hw = 0.98
+    if y > 1.55:  hw -= 0.13 * ((y - 1.55) / (L2 - 1.55)) ** 2
+    if y < -1.85: hw -= 0.10 * ((-1.85 - y) / (L2 - 1.85)) ** 2
+    return zb, belt, top, hw
+
 def car(M, colour, moving=False, name="car"):
-    """Simple hatch/sedan: rounded body, glass cabin, wheels, emissive lights. Local +y = forward."""
-    paint = principled(f"paint_{colour}", colour, 0.18, 0.6, 0.8)
-    parts = []
-    body = obj_box(name, M, (0, 0, 0.62), (1.78, 4.35, 0.62), paint, PROPS, bevel=0.14); parts.append(body)
-    cab = obj_box(name + "_cab", M, (0, -0.25, 1.17), (1.56, 2.3, 0.56), GLASS, PROPS, bevel=0.16); parts.append(cab)
-    roof = obj_box(name + "_roof", M, (0, -0.3, 1.47), (1.5, 1.9, 0.06), paint, PROPS, bevel=0.03); parts.append(roof)
-    for sx in (-0.86, 0.86):
-        for sy in (-1.35, 1.35):
-            bpy.ops.mesh.primitive_cylinder_add(vertices=20, radius=0.33, depth=0.24, rotation=(0, math.radians(90), 0))
-            wh = bpy.context.object; wh.matrix_world = M @ Matrix.Translation((sx, sy, 0.33)) @ Matrix.Rotation(math.radians(90), 4, "Y")
-            wh.data.materials.append(principled("tyre", "#0d0d0e", 0.7))
-            for c in wh.users_collection: c.objects.unlink(wh)
-            PROPS.objects.link(wh); parts.append(wh)
-    for sx in (-0.62, 0.62):
-        parts.append(obj_box(name + "_hl", M, (sx, 2.17, 0.72), (0.38, 0.04, 0.12), glow("#f4f8ff", 12 if moving else 0.6), PROPS))
-        parts.append(obj_box(name + "_tl", M, (sx, -2.17, 0.78), (0.4, 0.04, 0.1), glow("#ff1a2a", 6 if moving else 1.5), PROPS))
+    """A modern luxury SUV (~4.9 m): lofted clear-coated body with real wheel arches, dark privacy glass with gloss-black
+    pillars, chrome window line, diamond-mesh grille, slim LED lamps, multi-spoke alloys, mirrors, handles, plates.
+    Local frame: +y forward, x across, z up; origin on the ground at the middle."""
+    CM = _car_mats(colour); paint = CM["paint_" + colour]; parts = []
+    MATS = [paint, CM["glass"], CM["black"], CM["clad"]]
+    ys = sorted(set([-2.45, -2.43, -2.38, -2.3, -2.2, -2.1, -1.95, -1.82, -1.7, -1.6, -1.2, -1.12, -0.6, -0.08, 0.06, 0.25, 0.4, 0.6,
+                     0.8, 1.0, 1.08, 1.15, 1.35, 1.6, 1.85, 2.05, 2.2, 2.32, 2.4, 2.45]))
+    bm = bmesh.new(); rings = []
+    for y in ys:
+        zb, belt, top, hw = _suv_profile(y)
+        glassy = top > belt + 0.12
+        zbelt = min(belt, top - 0.03); zsh = zbelt - 0.1
+        xr = 0.75 if glassy else hw - 0.14
+        half = [(hw * 0.86, zb), (hw, zb + 0.2), (hw, zsh), (hw - 0.05, zbelt), (xr, top - 0.07), (xr * 0.55, top)]
+        pts = [(0.0, zb)] + half + [(0.0, top)] + [(-x, z) for x, z in reversed(half)]
+        e = {2.32: 0.995, 2.4: 0.975, 2.43: 0.94, 2.45: 0.85}.get(round(abs(y), 2), 1.0)   # round the nose and the tail
+        cz = 0.62
+        rings.append([bm.verts.new((x * e, y, cz + (z - cz) * e)) for x, z in pts])
+    nr = len(rings[0])
+    def seg_mat(i, y0, y1):   # ring segment i (between point i and i+1) between stations y0..y1
+        ym = (y0 + y1) / 2; zb, belt, top, hw = _suv_profile(ym); glassy = top > belt + 0.12
+        if i in (0, 13) or (i in (1, 12) and (abs(ym) > 1.9 or abs(abs(ym) - 1.47) < 0.55)):
+            return 3                                                                       # sills, arches, lower bumpers
+        if not glassy: return 0
+        if i in (4, 9):   # side glass, broken by gloss-black pillars
+            if -0.08 <= ym <= 0.06 or -1.2 <= ym <= -1.12: return 2
+            return 1 if -1.95 < ym < 1.08 else 2
+        if i in (5, 6, 7, 8):
+            return 1 if (ym > 0.25 or ym < -1.7) else 0                                    # windshield / rear glass vs roof
+        return 0
+    for a_, (r0, r1) in enumerate(zip(rings, rings[1:])):
+        for i in range(nr):
+            j = (i + 1) % nr
+            f = bm.faces.new((r0[i], r0[j], r1[j], r1[i])); f.material_index = seg_mat(i, ys[a_], ys[a_ + 1]); f.smooth = True
+    for r, flip in ((rings[0], True), (rings[-1], False)):
+        f = bm.faces.new(list(reversed(r)) if flip else r); f.material_index = 0
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    body = bpy.data.objects.new(name, me); PROPS.objects.link(body); body.matrix_world = M
+    for mt in MATS: me.materials.append(mt)
+    sub = body.modifiers.new("smooth", "SUBSURF"); sub.levels = 2; sub.render_levels = 2
+    # wheel arches cut into the body
+    cut_me = bpy.data.meshes.new(name + "_arches"); cb = bmesh.new()
+    for ay in (1.47, -1.45):
+        bmesh.ops.create_cone(cb, cap_ends=True, segments=40, radius1=0.45, radius2=0.45, depth=2.6,
+                              matrix=Matrix.Translation((0, ay, 0.38)) @ Matrix.Rotation(math.radians(90), 4, "Y"))
+    cb.to_mesh(cut_me); cb.free(); cut_me.materials.append(CM["clad"])
+    cutter = bpy.data.objects.new(name + "_arches", cut_me); PROPS.objects.link(cutter); cutter.matrix_world = M
+    cutter.hide_render = True; cutter.hide_viewport = True; cutter.display_type = "WIRE"
+    bo = body.modifiers.new("arches", "BOOLEAN"); bo.operation = "DIFFERENCE"; bo.object = cutter
+    try: bo.solver = "EXACT"; bo.material_mode = "TRANSFER"
+    except (TypeError, AttributeError): pass
+    parts.append(body); parts.append(cutter)   # (the cutter travels with the car)
+    # surface finder on the finished body (for parts that must sit on it)
+    dg = bpy.context.evaluated_depsgraph_get(); ev = body.evaluated_get(dg); em = ev.to_mesh()
+    bvh = mathutils.bvhtree.BVHTree.FromPolygons([v.co.copy() for v in em.vertices], [tuple(p.vertices) for p in em.polygons])
+    ev.to_mesh_clear()
+    def hit(origin, d):
+        h = bvh.ray_cast(Vector(origin), Vector(d)); return (h[0], h[1]) if h[0] else (None, None)
+    def put(ob): ob.matrix_world = M @ ob.matrix_world; parts.append(ob); return ob
+    def box(nm, c, size, mat, bevel=0.0, rot=None):
+        o = obj_box(nm, Matrix.Identity(4), c, size, mat, PROPS, bevel)
+        if rot: o.matrix_world = Matrix.Translation(c) @ rot
+        return put(o)
+    # front: grille, lamps, plate
+    fy, _ = hit((0, 4, 0.66), (0, -1, 0)); fy = fy.y if fy is not None else 2.4
+    gr = bmesh.new()                                                            # big shield grille (wide, tapering down)
+    shape = [(-0.4, 0.78), (0.4, 0.78), (0.36, 0.48), (0.2, 0.38), (-0.2, 0.38), (-0.36, 0.48)]
+    vf = [gr.verts.new((x, 0.0, z)) for x, z in shape]; vb = [gr.verts.new((x * 0.97, -0.08, z)) for x, z in shape]
+    gr.faces.new(vf[::-1]); gr.faces.new(vb)
+    for i in range(len(shape)): gr.faces.new((vf[i], vf[(i + 1) % 6], vb[(i + 1) % 6], vb[i]))
+    gme = bpy.data.meshes.new(name + "_grille"); gr.to_mesh(gme); gr.free(); gme.materials.append(CM["grille"])
+    go = bpy.data.objects.new(name + "_grille", gme); PROPS.objects.link(go); go.matrix_world = Matrix.Translation((0, fy + 0.005, 0)); put(go)
+    for s_ in (-1, 1):
+        box(name + "_grille_frame", (s_ * 0.385, fy + 0.012, 0.63), (0.022, 0.02, 0.32), CM["chrome"], 0.006, Matrix.Rotation(s_ * 0.13, 4, "Y"))
+        for k, z in enumerate((0.77, 0.735)):                                  # two slim LED lines per side
+            ly, _ = hit((s_ * 0.74, 4, z), (0, -1, 0)); ly = ly.y if ly is not None else fy - 0.1
+            box(name + "_hl", (s_ * 0.74, ly + 0.012, z), (0.5, 0.03, 0.022), glow("#f4f8ff", 14 if moving else 2.5), 0.006,
+                Matrix.Rotation(-s_ * 0.2, 4, "Z"))
+        ly, _ = hit((s_ * 0.72, 4, 0.66), (0, -1, 0)); ly = ly.y if ly is not None else fy - 0.12
+        box(name + "_lampbox", (s_ * 0.72, ly + 0.004, 0.66), (0.36, 0.015, 0.08), CM["lamp"], 0.008, Matrix.Rotation(-s_ * 0.2, 4, "Z"))
+        box(name + "_fog", (s_ * 0.72, fy - 0.04, 0.42), (0.16, 0.03, 0.035), glow("#f4f8ff", 6 if moving else 0.8), 0.005)
+    box(name + "_plate_f", (0, fy + 0.03, 0.36), (0.52, 0.012, 0.11), CM["plate"], 0.004)
+    rr = random.Random(int(abs(M.translation.x) * 100 + abs(M.translation.y) * 1000))           # (keeps the city's seeded layout)
+    num = f"{rr.randint(10, 99)}솔 {rr.randint(1000, 9999)}"                                  # a Sol plate
+    for py_, zp in ((fy + 0.037, 0.36), (None, 0.62)):
+        if py_ is None: continue
+        parts.append(text(num, M, (0, py_, zp), Matrix.Rotation(math.pi, 4, "Z") @ Matrix.Rotation(math.radians(90), 4, "X"),
+                          0.075, principled("plate_ink", "#111114", 0.5), PROPS, extrude=0.001))
+    # rear: tail lamps, light bar, plate
+    ry, _ = hit((0, -4, 1.0), (0, 1, 0)); ry = ry.y if ry is not None else -2.4
+    for s_ in (-1, 1):
+        for z in (1.03, 0.99):
+            ty_, _ = hit((s_ * 0.72, -4, z), (0, 1, 0)); ty_ = ty_.y if ty_ is not None else ry
+            box(name + "_tl", (s_ * 0.72, ty_ - 0.01, z), (0.42, 0.03, 0.018), glow("#ff1a2a", 8 if moving else 2.5), 0.005, Matrix.Rotation(s_ * 0.25, 4, "Z"))
+    box(name + "_tlbar", (0, ry - 0.012, 1.08), (0.95, 0.02, 0.01), glow("#ff2a36", 5 if moving else 1.5))
+    box(name + "_plate_r", (0, ry - 0.02, 0.62), (0.52, 0.012, 0.11), CM["plate"], 0.004)
+    # sides: mirrors, handles, chrome window line, door gaps, roof rails
+    for s_ in (-1, 1):
+        for y0, y1 in ((-1.92, -0.09), (0.07, 1.04)):                           # chrome strip under the side windows
+            yc = (y0 + y1) / 2; zb_, belt, top, hw = _suv_profile(yc)
+            p_, n_ = hit((s_ * 2, yc, min(belt, top) - 0.005), (-s_, 0, 0))
+            if p_ is not None:
+                box(name + "_chrome", (p_.x + s_ * 0.004, yc, p_.z), (0.012, y1 - y0, 0.014), CM["chrome"], 0.004)
+        for yd in (1.06, -0.03, -1.16):                                        # door shut lines
+            for z in (0.5, 0.65, 0.8, 0.94):
+                p_, n_ = hit((s_ * 2, yd, z), (-s_, 0, 0))
+                if p_ is not None: box(name + "_gap", (p_.x + s_ * 0.001, yd, z), (0.004, 0.006, 0.16), CM["clad"])
+        for yh in (0.62, -0.62):                                               # flush handles
+            p_, n_ = hit((s_ * 2, yh, 0.97), (-s_, 0, 0))
+            if p_ is not None: box(name + "_handle", (p_.x + s_ * 0.006, yh, 0.97), (0.012, 0.2, 0.025), CM["chrome"], 0.005)
+        p_, n_ = hit((s_ * 2, 0.92, 1.1), (-s_, 0, 0)); mx_ = p_.x if p_ is not None else s_ * 0.95
+        box(name + "_mirror", (mx_ + s_ * 0.08, 0.9, 1.1), (0.17, 0.09, 0.11), paint, 0.035)
+        box(name + "_mirror_arm", (mx_ + s_ * 0.05, 0.94, 1.06), (0.1, 0.05, 0.04), CM["black"], 0.01)
+        rz_, _ = hit((s_ * 0.6, -0.75, 3), (0, 0, -1)); rz_ = rz_.z if rz_ is not None else 1.6
+        box(name + "_rail", (s_ * 0.6, -0.75, rz_ + 0.022), (0.03, 1.6, 0.025), CM["black"], 0.01)
+    # wheels: tyre, multi-spoke alloy, brake disc
+    for sx in (-1, 1):
+        for ay in (1.47, -1.45):
+            W_ = Matrix.Translation((sx * 0.84, ay, 0.38))
+            bpy.ops.mesh.primitive_torus_add(major_radius=0.32, minor_radius=0.066, major_segments=48, minor_segments=16)
+            o = bpy.context.object; o.name = name + "_tyre"                    # tyre: a fat ring (the alloy shows through)
+            for c_ in list(o.users_collection): c_.objects.unlink(o)
+            PROPS.objects.link(o); o.data.materials.append(CM["tyre"])
+            for p in o.data.polygons: p.use_smooth = True
+            o.matrix_world = W_ @ Matrix.Rotation(math.radians(90), 4, "Y") @ Matrix.Diagonal((1.0, 1.0, 1.95, 1)); put(o)
+            bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=0.2, depth=0.03)
+            o = bpy.context.object; o.name = name + "_disc"
+            for c_ in list(o.users_collection): c_.objects.unlink(o)
+            PROPS.objects.link(o); o.data.materials.append(CM["disc"])
+            o.matrix_world = W_ @ Matrix.Translation((sx * 0.02, 0, 0)) @ Matrix.Rotation(math.radians(90), 4, "Y"); put(o)
+            rb = bmesh.new()                                                    # rim: lip ring + 10 twin spokes + hub
+            for k in range(36):
+                a0, a1 = 2 * math.pi * k / 36, 2 * math.pi * (k + 1) / 36
+                bmesh.ops.create_cube(rb, size=1.0, matrix=Matrix.Rotation(-(a0 + a1) / 2, 4, "X") @ Matrix.Translation((0, 0, 0.265))
+                                      @ Matrix.Diagonal((0.05, 0.27 * (a1 - a0) * 1.05, 0.03, 1)))
+            for k in range(10):
+                a = 2 * math.pi * k / 10
+                for tw in (-0.05, 0.05):
+                    bmesh.ops.create_cube(rb, size=1.0, matrix=Matrix.Rotation(a + tw, 4, "X") @ Matrix.Translation((0.01, 0, 0.16))
+                                          @ Matrix.Diagonal((0.03, 0.022, 0.2, 1)))
+            bmesh.ops.create_cone(rb, cap_ends=True, segments=24, radius1=0.07, radius2=0.06, depth=0.05,
+                                  matrix=Matrix.Translation((0.01, 0, 0)) @ Matrix.Rotation(math.radians(90), 4, "Y"))
+            rme = bpy.data.meshes.new(name + "_rim"); rb.to_mesh(rme); rb.free(); rme.materials.append(CM["rim"])
+            ro = bpy.data.objects.new(name + "_rim", rme); PROPS.objects.link(ro)
+            ro.matrix_world = W_ @ Matrix.Translation((sx * 0.1, 0, 0)) @ (Matrix.Rotation(math.pi, 4, "Z") if sx < 0 else Matrix.Identity(4))
+            put(ro)
     if moving:
-        sp = spot(M, (0, 2.3, 0.75), 900, "#eaf2ff", 50, 0.4); sp.matrix_world = M @ Matrix.Translation((0, 2.3, 0.75)) @ Matrix.Rotation(math.radians(-85), 4, "X")
+        sp = spot(M, (0, 2.5, 0.85), 900, "#eaf2ff", 50, 0.4); sp.matrix_world = M @ Matrix.Translation((0, 2.5, 0.85)) @ Matrix.Rotation(math.radians(-85), 4, "X")
         parts.append(sp)
     return parts
 
