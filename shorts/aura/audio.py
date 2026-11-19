@@ -1,4 +1,5 @@
-"""Synthesize the music bed and SFX stems for "Aura Monster" (no samples, all numpy).
+"""Synthesize the music bed and SFX stems for "Aura Monster" (numpy), with real recordings layered in where present:
+the user's footsteps (audio/footsteps/) and Openverse sounds (audio/sfx/, credits in audio/sfx/CREDITS.md).
 
     python3 shorts/aura/audio.py   -> shorts/aura/audio/music.wav, sfx.wav  (48 kHz stereo)
 Timing follows beats.json (v2): the rain slows and muffles in the slow-motion reveal, the music drops out at the turn,
@@ -81,6 +82,19 @@ sfx = np.zeros((n, 2))
 rain = rng.standard_normal(n); rain = hp(lp(rain, 3800), 500) * 0.5 + lp(rng.standard_normal(n), 250) * 0.5
 drops = (rng.random(n) < 0.0009) * rng.standard_normal(n) * 3.0
 rain = rain + lp(drops, 4000)
+SFXD = os.path.join(HERE, "audio", "sfx")
+def rec(name, t0=0.0, dur=None):
+    """A recording from audio/sfx/ (Openverse, see CREDITS.md) as mono float at SR, or None when absent."""
+    import subprocess
+    path = os.path.join(SFXD, name + ".wav")
+    if not os.path.exists(path): return None
+    a = ["ffmpeg", "-v", "error", "-ss", str(t0)] + (["-t", str(dur)] if dur else []) + ["-i", path, "-ac", "1", "-ar", str(SR), "-f", "s16le", "-"]
+    return np.frombuffer(subprocess.run(a, capture_output=True, check=True).stdout, "<i2").astype(np.float64) / 32768
+def rms(x): return np.sqrt((x ** 2).mean()) + 1e-12
+real = rec("storm_cc0", 16.0, DUR + 0.5)                               # real rain (the steady middle of the take, no gusts)
+if real is not None and len(real) >= n:
+    real = hp(real[:n], 250); real *= rms(rain) / rms(real)
+    rain = 0.45 * rain + 0.85 * real                                   # recorded rain on top, the synth fills the low end
 slow = env([(0, 0), (FREEZE - 0.05, 0), (FREEZE + 0.25, 1), (SLOW1 - 0.2, 1), (SLOW1 + 0.15, 0), (DUR, 0)])
 rain = rain * (1 - slow) + lp(rain, 520) * slow * 1.6                  # slow motion: the storm goes dull and heavy
 rain *= env([(0, 0), (0.8, 1), (FREEZE - 0.05, 1), (FREEZE + 0.25, 0.55), (SLOW1 - 0.2, 0.55), (SLOW1 + 0.15, 1),
@@ -93,8 +107,15 @@ def place(x, at, gain=1.0, width=0.4, seed=2):
 
 tl = np.arange(int(SR * 4.0)) / SR
 thunder = lp(rng.standard_normal(len(tl)), 180) * np.exp(-tl * 0.9) * (1 + 0.6 * np.sin(2 * np.pi * 2.3 * tl))
+far = lp(rng.standard_normal(len(tl)), 140) * np.exp(-tl * 1.1)
+real = rec("thunder", 0.0, 9.0)                                        # real thunder (Openverse / Wikimedia, CC BY)
+if real is not None:
+    fade = np.minimum(1, np.linspace(9, 0, len(real)) / 2.5)
+    real = real * fade * rms(thunder[:2 * SR]) / rms(real[:2 * SR])
+    thunder = 0.35 * np.pad(thunder, (0, max(0, len(real) - len(thunder))))[:len(real)] + real
+    far = lp(real, 500) * 0.7
 place(thunder, 0.4, 2.2)
-place(lp(rng.standard_normal(len(tl)), 140) * np.exp(-tl * 1.1), REVEAL + 1.0, 1.4)            # far thunder during the reveal
+place(far, REVEAL + 1.0, 1.4)                                                            # far thunder during the reveal
 tw = np.arange(int(SR * 1.2)) / SR                                                       # time-stop: reverse whoosh into a low boom
 whoosh = hp(lp(rng.standard_normal(len(tw)), 2400), 200) * (tw / tw[-1]) ** 3
 place(whoosh, FREEZE - 1.15, 1.6)
