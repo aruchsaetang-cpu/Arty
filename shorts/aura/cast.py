@@ -60,3 +60,10 @@ MAN_LONG = dict(vary=109, body="m", height=1.77, face="long", skin=("#e9c4a6", "
 MAN_DIAMOND = dict(vary=110, body="m_heavy", height=1.68, face="diamond", skin=("#c58f6a", "#86583d"), hair="buzz", hair_col="#2a2622",
                    coat=("#3b3f47", "#15171b"), hem=0.8, top=("#d9d4c8", "#8c877c"), legs="trousers",
                    leg_col=("#2a2c30", "#0f1012"), shoes=("#1b1a1c", "#3a2a22"), manhwa_head=True, subsurf=1)
+
+# first-version designs (body, face, hair and outfit exactly as in the first-half preview), built with ch.build_v1
+HERO_V1 = dict(body="m", height=1.86, skin=("#e8c2a2", "#a9775b"), hair="short", hair_col="#16181d", locks=True,
+               top=("#cfc4b2", "#7d7466"), coat=("#2f343c", "#11141a"), hem=0.36, open_skirt=True,
+               legs="trousers", leg_col=("#24272d", "#0c0e12"), shoes=("#1b1a1c", "#3a2a22"), brows="#1a1714")
+COP_V1 = dict(body="m", height=1.82, skin=("#f0cfb3", "#b48466"), hair="short", locks=False, coat=("#1f2a3d", "#0c1220"),
+              hem=0.62, top=("#8a9bb0", "#4b5868"), turtleneck=False, leg_col=("#1f2a3d", "#0c1220"), head_yaw=-24, subsurf=1)

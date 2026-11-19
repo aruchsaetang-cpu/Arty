@@ -98,7 +98,7 @@ def stand_at(arm, f, pos, heading_deg, pose="stand"):
 P = C.PEOPLE_C
 # the hero on the main street: down the middle of the road, then left into the lantern alley
 TURN_IN = fr("follow") + 30
-hero_s, _ = ch.build(P, (HERO_X, 60, 0), ch.HERO, pose_mode="walk"); hero_s.name = "HERO_street"
+hero_s, _ = ch.build_v1(P, (HERO_X, 60, 0), K.HERO_V1, pose_mode="walk", void_eyes=True); hero_s.name = "HERO_street"
 spd = (2 * 0.62 * hero_s.scale[0] / 0.83) / (34 / 30.0)
 y_start = AL_Y + spd * (TURN_IN + 40) / 30.0
 _, hero_s_at = walk_path(hero_s, [(HERO_X, y_start, 0), (HERO_X, AL_Y, 0), (-30, AL_Y, 0)], -40, fr("follow", 1) + 2,
@@ -111,7 +111,7 @@ def weave(f):   # side-steps between drops while the storm crawls
     if f < SLOW0 or f > SLOW1: return 0.0
     k = min(1.0, (f - SLOW0) / 12.0) * min(1.0, (SLOW1 - f) / 12.0)
     return k * (0.15 * math.sin(2 * math.pi * f / 17.0) + 0.06 * math.sin(2 * math.pi * f / 7.3))
-hero_a, _ = ch.build(P, (-11, AL_Y, 0), ch.HERO, pose_mode="walk"); hero_a.name = "HERO_alley"
+hero_a, _ = ch.build_v1(P, (-11, AL_Y, 0), K.HERO_V1, pose_mode="walk", void_eyes=True); hero_a.name = "HERO_alley"
 _, hero_a_at = walk_path(hero_a, [(-11.0, AL_Y, 0), (-40.0, AL_Y, 0)], fr("alley_pov"), TURN, sway=weave, prop="pockets")
 STOP = hero_a_at(TURN)[0].copy(); STOP.z = 0
 stand_at(hero_a, TURN + 6, STOP, -90, "pockets")                       # stands, still facing down the alley
@@ -125,13 +125,13 @@ NARR_T = STOP + V((1.35, 0, 0))                                # facing the hero
 narr_a, _ = ch.build(P, tuple(NARR_T), K.NARR_A, pose_mode="umbrella"); narr_a.name = "NARR_before"
 umb_a = ch.add_umbrella(narr_a, P, "#1d2230")
 # the hero teaching (rooftop / training alley): another rig of the same man, moved between the two sets
-hero_t, _ = ch.build(P, tuple(ROOF), ch.HERO, pose_mode="stand"); hero_t.name = "HERO_train"
+hero_t, _ = ch.build_v1(P, tuple(ROOF), K.HERO_V1, pose_mode="stand", void_eyes=True); hero_t.name = "HERO_train"
 narr_m, _ = ch.build(P, (16, AL2_Y, 0), dict(K.NARR_A, body="m_lean"), pose_mode="umbrella"); narr_m.name = "NARR_mid"
 umb_m = ch.add_umbrella(narr_m, P, "#1d2230")
 narr_b, _ = ch.build(P, tuple(ROOF), K.NARR_B, pose_mode="umbrella"); narr_b.name = "NARR_after"
 umb_b = ch.add_umbrella(narr_b, P, "#1d2230")
 # the payoff: the two of them walking up the street together, nothing in their hands
-hero_p, _ = ch.build(P, (0.0, 64, 0), ch.HERO, pose_mode="walk"); hero_p.name = "HERO_payoff"
+hero_p, _ = ch.build_v1(P, (0.0, 64, 0), K.HERO_V1, pose_mode="walk", void_eyes=True); hero_p.name = "HERO_payoff"
 narr_p, _ = ch.build(P, (1.25, 64, 0), K.NARR_B, pose_mode="walk"); narr_p.name = "NARR_payoff"
 PAY0 = fr("payoff_two") - 20
 _, hero_p_at = walk_path(hero_p, [(0.0, 62.5, 0), (0.0, 30.0, 0)], PAY0, N + 4, cycle=34, prop="pockets")
@@ -205,7 +205,7 @@ for f, sxy, sz in ((FOLD - 1, 1.0, 1.0), (FOLD + 10, 0.09, 1.25)):
 
 # the three theories: a shopkeeper, a police officer, two kids (and the women of Sol around them)
 shop, _ = ch.build(P, (6.9, 53.0, 0.15), K.SHOP, pose_mode="stand", heading=-90)
-cop, _ = ch.build(P, (-5.5, 49.0, 0.15), K.COP, pose_mode="umbrella", heading=90)
+cop, _ = ch.build_v1(P, (-5.5, 49.0, 0.15), K.COP_V1, pose_mode="umbrella", heading=90)
 ch.add_umbrella(cop, P, "#121214"); ch.add_cap(cop, P, "#18213a", "#d8b24a")
 kid1, _ = ch.build(P, (5.35, 45.1, 0.15), K.KID1, pose_mode="stand", heading=-90)
 kid2, _ = ch.build(P, (5.9, 44.3, 0.15), K.KID2, pose_mode="phone", heading=-90)

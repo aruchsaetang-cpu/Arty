@@ -972,19 +972,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             e = ob.evaluated_get(dg); mw = e.matrix_world
             low = min(low, min((mw @ v.co).z for v in e.data.vertices))
     arm["ground"] = -low if low < 9 else 0.0
-    _reset(arm); bpy.context.view_layer.update(); dg = bpy.context.evaluated_depsgraph_get(); low_r = 9.0
-    for ob in objs:   # legs at rest (standing poses, the walk solver's reference): sole height in rig units
-        if ob.name.startswith("shoe_sole"):
-            e = ob.evaluated_get(dg); mw = e.matrix_world
-            low_r = min(low_r, min((mw @ v.co).z for v in e.data.vertices))
-    arm["ground_rest"] = -low_r if low_r < 9 else arm["ground"]; arm["sole_rest"] = -arm["ground_rest"] / arm.scale[0]
-    inv = arm.matrix_world.inverted()
-    for ob in objs:   # toe tip and heel of each sole at rest (rig units): the pivots the walk rolls the foot over
-        if ob.name.startswith("shoe_sole"):
-            e = ob.evaluated_get(dg); P = [inv @ (e.matrix_world @ v.co) for v in e.data.vertices]
-            side = "L" if sum(q.x for q in P) > 0 else "R"; y0 = min(q.y for q in P); y1 = max(q.y for q in P)
-            toe = min((q for q in P if q.y < y0 + 0.02), key=lambda q: q.z); heel = min((q for q in P if q.y > y1 - 0.02), key=lambda q: q.z)
-            arm[f"toe_{side}"] = (toe.y, arm["sole_rest"]); arm[f"heel_{side}"] = (heel.y, arm["sole_rest"])
+    _ground_props(arm, objs)
     posed(arm, pose_mode, st.get("head_yaw", 0.0))
     contact_shadow(coll, arm)
     for ob in objs:   # coats, coat tails and skirts get hem motion (trail, step sway, flutter)
@@ -1629,6 +1617,43 @@ def cloth_walk(arm, f0, f1, cycle, phase=0.0, trail=0.07, sway=0.04):
                 pass
 
 _CS = {}
+def _ground_props(arm, objs):
+    """Rest-pose sole height, toe tip and heel (rig units): the references the planted-foot walk solves against."""
+    _reset(arm); bpy.context.view_layer.update(); dg = bpy.context.evaluated_depsgraph_get(); low_r = 9.0
+    for ob in objs:   # legs at rest (standing poses, the walk solver's reference): sole height in rig units
+        if ob.name.startswith("shoe_sole"):
+            e = ob.evaluated_get(dg); mw = e.matrix_world
+            low_r = min(low_r, min((mw @ v.co).z for v in e.data.vertices))
+    arm["ground_rest"] = -low_r if low_r < 9 else arm["ground"]; arm["sole_rest"] = -arm["ground_rest"] / arm.scale[0]
+    inv = arm.matrix_world.inverted()
+    for ob in objs:   # toe tip and heel of each sole at rest (rig units): the pivots the walk rolls the foot over
+        if ob.name.startswith("shoe_sole"):
+            e = ob.evaluated_get(dg); P = [inv @ (e.matrix_world @ v.co) for v in e.data.vertices]
+            side = "L" if sum(q.x for q in P) > 0 else "R"; y0 = min(q.y for q in P); y1 = max(q.y for q in P)
+            toe = min((q for q in P if q.y < y0 + 0.02), key=lambda q: q.z); heel = min((q for q in P if q.y > y1 - 0.02), key=lambda q: q.z)
+            arm[f"toe_{side}"] = (toe.y, arm["sole_rest"]); arm[f"heel_{side}"] = (heel.y, arm["sole_rest"])
+
+def build_v1(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0, void_eyes=False):
+    """Build a character with the first-version builder (character_v1: the preview's body, face, hair, outfit and
+    cel look), then give it what the film needs today: walk references, contact shadow, coat motion, relaxed hands,
+    and optionally the hero's void eyes."""
+    import character_v1 as v1
+    arm, objs = v1.build(coll, location, style, pose_mode, heading)
+    loc = arm.location.copy(); arm.location = (0, 0, 0); bpy.context.view_layer.update()
+    _ground_props(arm, objs)
+    posed(arm, pose_mode, (style or {}).get("head_yaw", 0.0))
+    arm.location = loc
+    contact_shadow(coll, arm)
+    pelvis_z = arm.data.bones["upperleg01.L"].head_local.z
+    for ob in objs:
+        if ob.name.split(".")[0] in ("coat_skirt", "skirt"):
+            add_cloth_motion(ob, pelvis_z + 0.05)
+        if void_eyes and ob.name.startswith("eye_"):
+            rad = sum(v.co.length for v in ob.data.vertices) / len(ob.data.vertices)
+            ob.data.materials[0] = void_eye_mat(rad)
+    bpy.context.view_layer.update()
+    return arm, objs
+
 def contact_shadow(coll, arm):
     """A soft dark pool on the ground under the feet (follows the rig root): grounds the cel-shaded people."""
     if "mat" not in _CS:

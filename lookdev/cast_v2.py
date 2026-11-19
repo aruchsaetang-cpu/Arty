@@ -8,12 +8,15 @@ SCALE = int(sys.argv[1]) if len(sys.argv) > 1 else 40
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scn = bpy.context.scene
 cc = bpy.data.collections.new("cast"); scn.collection.children.link(cc)
-LINE = [("hero", ch.HERO, "pockets"), ("narr_a", K.NARR_A, "umbrella"), ("narr_b", K.NARR_B, "stand"), ("cop", K.COP, "stand"),
+LINE = [("hero", K.HERO_V1, "pockets"), ("narr_a", K.NARR_A, "umbrella"), ("narr_b", K.NARR_B, "stand"), ("cop", K.COP_V1, "stand"),
         ("shop", K.SHOP, "stand"), ("w1", K.W1, "stand"), ("w2", K.W2, "stand"), ("w4", K.W4, "stand")]
 X = {}
 for k, (name, st, pose) in enumerate(LINE):
     x = (k - (len(LINE) - 1) / 2) * 0.75; X[name] = x
-    arm, _ = ch.build(cc, (x, 0, 0), dict(st, head_yaw=0) if st is not ch.HERO else st, pose_mode=pose)
+    if name in ("hero", "cop"):   # first-version designs
+        arm, _ = ch.build_v1(cc, (x, 0, 0), dict(st, head_yaw=0), pose_mode=pose, void_eyes=name == "hero")
+    else:
+        arm, _ = ch.build(cc, (x, 0, 0), dict(st, head_yaw=0), pose_mode=pose)
     arm.location.z = arm["ground"]
     if pose == "umbrella":
         ch.add_umbrella(arm, cc, "#1d2230")
