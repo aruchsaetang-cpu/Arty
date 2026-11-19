@@ -75,7 +75,7 @@ HERO_LOOK = dict(body="m_slender", vtaper=False, crease=0.0, turtleneck=False, v
                  tie=None,
                  creases=True,
                  leg_col=("#c4c5ca", "#767880"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
-                 face="idol", hair="crop", hair_col="#1d1713", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
+                 face="idol", hair="quiff", hair_col="#16120f", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
 
 # face sculpts from MakeHuman's CC0 face targets (assets/makehuman/targets/face): weights per target
 FACES = {
@@ -680,7 +680,11 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     for ob, used, sol in hair_objs:
         if ob.get("tufts"):
             vg = ob.vertex_groups.new(name="head"); vg.add(list(range(len(ob.data.vertices))), 1.0, "REPLACE")
-            add_mods(ob, arm, subsurf=0, outline=0.35); objs.append(ob)
+            if ob.get("locks"):
+                add_mods(ob, arm, subsurf=1, solidify=0.004, outline=0.5)
+            else:
+                add_mods(ob, arm, subsurf=0, outline=0.35)
+            objs.append(ob)
         elif ob.name.startswith("hair_fade"):
             assign_weights(ob, used, per_vert); add_mods(ob, arm, subsurf=st.get("subsurf", 1), outline=0); objs.append(ob)
         else:
@@ -1073,6 +1077,11 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
             if abs(c.x) > hx * 0.86 and c.z < eyeL.z + 0.025:
                 return False
             return c.z > thr
+        if style == "quiff":     # two-block: full top, short tapered sides above the ears, short at the nape
+            thr = eyeL.z - 0.015 + 0.08 * frontness
+            if abs(c.x) > hx * 0.86 and c.z < eyeL.z + 0.03:
+                return False
+            return c.z > thr
         if style == "crop":      # textured crop: hair only on top, above a high fade; a crisp hairline at the front
             return c.z > eyeL.z + 0.052 + 0.03 * frontness
         if style == "idol":      # two-block: soft fringe swept to one side, the forehead showing at the part
@@ -1095,6 +1104,10 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
         if style == "slick":   # swept back: volume on top, pushed toward the crown, tight sides
             th = 0.006 + 0.03 * up + 0.022 * front * up + 0.003 * math.sin(p.x * 260 + p.y * 120) * up
             HV[i] = p + n * th + Vector((0, 0.016 * up, 0.006 * up + 0.012 * front * up))   # high swept-back volume
+        elif style == "quiff":   # volume on top lifted at the front, swept back; sides cut close
+            thin = max(abs(n.x), max(0.0, n.y)) * (1 - min(1.0, max(0.0, (p.z - eyeL.z - 0.1) / 0.05)))   # sides + back
+            th = (0.004 + 0.024 * up + 0.016 * front * up) * (1 - 0.85 * thin ** 1.2) + 0.002 * math.sin(p.x * 260 + p.y * 180) * up
+            HV[i] = p + n * th + Vector((0.004 * up, 0.008 * up, 0.012 * front * up))
         elif style == "crop":    # short dense top, a little forward lift at the front edge
             th = 0.009 + 0.017 * up + 0.006 * front * up + 0.002 * math.sin(p.x * 520 + p.y * 330) * up
             HV[i] = p + n * th + Vector((0, -0.006 * front * up, 0.002 * up + 0.008 * front * up))
@@ -1121,17 +1134,91 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
     out = [(hair, used, 0.004)]
     if style == "crop":
         out += crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM)
+    if style == "quiff":
+        out += crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM, top_z=eyeL.z + 0.03,
+                           lo_z=eyeL.z - 0.075, tufts=False, front_max=0.62)
+        out += quiff_locks(coll, hair, HV, hf, eyeL, hx, hc, st, HM, V, head_faces)
     return out
 
-def crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM):
+def quiff_locks(coll, cap, HV, hf, eyeL, hx, hc, st, HM, V=None, head_faces=None):
+    """Wavy flat locks over the cap: swept up and back from the forehead and off to one side, the front ones
+    lifted into a quiff, a few short ones on the sides, and three loose strands falling onto the forehead."""
+    import random as _r
+    rng = _r.Random(23)
+    bvh = bvhtree.BVHTree.FromPolygons([tuple(HV[i]) for i in range(len(HV))], hf)
+    C0 = Vector((0.0, hc.y + 0.01, eyeL.z - 0.005))
+    sbvh = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], head_faces) if V is not None else None
+    def surf(el, az):
+        d = Vector((math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el)))
+        best = None
+        for b_ in ((bvh, sbvh) if sbvh else (bvh,)):
+            hit = b_.ray_cast(C0 + d * 0.4, -d)
+            if hit[0] is not None and (best is None or (hit[0] - C0).length > (best - C0).length):
+                best = hit[0]
+        if best is None:
+            best = bvh.find_nearest(C0 + d * 0.11)[0]
+        return best, (best - C0).normalized()
+    bm = bmesh.new(); faces_lite = []
+    def lock(path, w0, lift, lite):
+        pts = []
+        for k, (el, az, extra) in enumerate(path):
+            p, n = surf(el, az); t = k / (len(path) - 1)
+            pts.append((p + n * (0.003 + lift * math.sin(math.pi * min(1.0, t * 1.6)) + extra), n))
+        ring = []
+        for k, (p, n) in enumerate(pts):
+            t = k / (len(pts) - 1); d = (pts[min(k + 1, len(pts) - 1)][0] - pts[max(k - 1, 0)][0]).normalized()
+            side = d.cross(n).normalized(); w = w0 * (1 - t) ** 0.7 * 0.5 + 0.0006
+            ring.append((bm.verts.new(p - side * w), bm.verts.new(p + side * w)))
+        for a, b in zip(ring, ring[1:]):
+            fc = bm.faces.new((a[0], b[0], b[1], a[1]))
+            if lite: faces_lite.append(fc)
+    R = math.radians
+    # top: front hairline -> up and back over the crown, swept toward +x, tips curling
+    for j in range(30):
+        az0 = R(-58 + 116 * j / 29 + rng.uniform(-4, 4)); el0 = R(rng.uniform(40, 46) - 12 * (abs(-58 + 116 * j / 29) / 58) ** 2)
+        el1 = R(rng.uniform(95, 135)); sweep = R(rng.uniform(18, 34)); n_ = 12
+        path = []
+        for k in range(n_):
+            t = k / (n_ - 1)
+            wav = R(5) * math.sin(t * math.pi * 2.2 + j)                # the wave
+            curl = R(14) * max(0.0, t - 0.75) / 0.25
+            path.append((el0 + (el1 - el0) * t, az0 + sweep * t ** 0.8 + wav + curl, 0.0))
+        front = 1.0 - min(1.0, abs(az0) / R(60))
+        lock(path, rng.uniform(0.022, 0.032), 0.018 * front + 0.006, rng.random() < 0.35)
+    # sides: short locks swept back above the ears
+    for sx in (1, -1):
+        for j in range(6):
+            az0 = sx * R(62 + 7 * j); el0 = R(14 + rng.uniform(-3, 3)); n_ = 8
+            path = [(el0 + R(26) * k / (n_ - 1), az0 + sx * R(30) * k / (n_ - 1), 0.0) for k in range(n_)]
+            lock(path, rng.uniform(0.018, 0.024), 0.002, rng.random() < 0.3)
+    # three loose strands falling onto the forehead, curling at the ends
+    for j, az0 in enumerate((R(-22), R(-10), R(4))):
+        n_ = 9; path = []
+        for k in range(n_):
+            t = k / (n_ - 1)
+            path.append((R(48 - 44 * t), az0 + R(8) * math.sin(t * 3.0 + j) - R(10) * t, 0.012 * (1 - t)))
+        lock(path, 0.016, 0.004, j == 1)
+    me = bpy.data.meshes.new("hair_locks"); bm.to_mesh(me)
+    lite_idx = {f.index for f in faces_lite}; bm.free()
+    ob = bpy.data.objects.new("hair_locks", me); coll.objects.link(ob); ob.data.materials.append(HM)
+    c0 = [int(st["hair_col"][k:k + 2], 16) for k in (1, 3, 5)]
+    lite = "#%02x%02x%02x" % tuple(min(255, int(v * 2.0 + 18)) for v in c0)
+    ob.data.materials.append(cel(lite, st["hair_col"], rim="#6a5a4c", rim_amt=0.4, name="hair_lite"))
+    for pl in me.polygons:
+        if pl.index in lite_idx:
+            pl.material_index = 1
+    ob["tufts"] = True; ob["locks"] = True
+    return [(ob, None, 0.0)]
+
+def crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM, top_z=None, lo_z=None, tufts=True, front_max=0.72):
     """Skin fade on the sides and back (dark at the top, bare skin at the bottom) + textured spiky tufts on top."""
     import random as _r
     rng = _r.Random(11)
-    top_z = eyeL.z + 0.052; lo_z = eyeL.z - 0.03
+    top_z = eyeL.z + 0.052 if top_z is None else top_z; lo_z = eyeL.z - 0.03 if lo_z is None else lo_z
     def frontness(c): return min(1.0, max(0.0, (eyeL.y + 0.16 - c.y) / 0.16))
     fade_f = [f for f in head_faces
               if lo_z < sum(V[i].z for i in f) / len(f) <= top_z + 0.03 * frontness(sum((V[i] for i in f), Vector()) / len(f)) + 0.004
-              and frontness(sum((V[i] for i in f), Vector()) / len(f)) < 0.72
+              and frontness(sum((V[i] for i in f), Vector()) / len(f)) < front_max
               and max(abs(V[i].x) for i in f) < hx * 0.93]
     off = {i: nrm[i] * 0.0012 for f in fade_f for i in f}
     fd, used = make_mesh("hair_fade", coll, V, fade_f, off)
@@ -1151,6 +1238,8 @@ def crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM):
     L_.new(ad.outputs[0], mx.inputs[0]); L_.new(tr.outputs[0], mx.inputs[1]); L_.new(src, mx.inputs[2]); L_.new(mx.outputs[0], outn.inputs[0])
     fd.data.materials.append(m)
     res = [(fd, used, 0.0)]
+    if not tufts:
+        return res
     # tufts: small tapered spikes, pointing up and forward at the front, up on top, back at the crown
     bm = bmesh.new()
     pts = [i for i in hidx if HV[i].z > eyeL.z + 0.06]

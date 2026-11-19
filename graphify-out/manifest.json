@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795050317.6770735,
-    "seen": 1795050350.2043407,
-    "ast_hash": "4c97b013858fcd6f006ef0284cf88b48",
+    "mtime": 1795050506.3873198,
+    "seen": 1795050546.7480762,
+    "ast_hash": "a2f2d14a037470d5e6efe76374c2379d",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -6654,9 +6654,9 @@
     "semantic_hash": ""
   },
   "lookdev/cast_v2.py": {
-    "mtime": 1795049861.8526325,
-    "seen": 1795049978.5191095,
-    "ast_hash": "03b7aeb1b3707728262642b66eb50cf1",
+    "mtime": 1795050469.7198436,
+    "seen": 1795050546.7480729,
+    "ast_hash": "f669ab765ffb4659f4a3bbb61acc33bd",
     "semantic_hash": ""
   },
   "shorts/aura/cast.py": {
@@ -6732,9 +6732,9 @@
     "semantic_hash": ""
   },
   "lookdev/renders/v2_face_hero.png": {
-    "mtime": 1795050072.7808948,
-    "seen": 1795050090.4606948,
-    "ast_hash": "c092a9bc5a49ffa36d85598e2795a749",
+    "mtime": 1795050521.8369215,
+    "seen": 1795050546.7490265,
+    "ast_hash": "b143d0e859b505890eff03c85057d343",
     "semantic_hash": ""
   },
   "lookdev/renders/v2_face_narr_b.png": {
@@ -7050,9 +7050,9 @@
     "semantic_hash": ""
   },
   "lookdev/renders/v2_side_hero.png": {
-    "mtime": 1795049944.636887,
-    "seen": 1795049978.5200927,
-    "ast_hash": "b31a8987b53fd51cccf253e0031d67e3",
+    "mtime": 1795050526.8049216,
+    "seen": 1795050546.7490335,
+    "ast_hash": "1a4bb1b060537f780c95754c6e293776",
     "semantic_hash": ""
   },
   "shorts/aura/out/hero_hair_crop_preview.png": {
@@ -7083,6 +7083,12 @@
     "mtime": 1795050343.5107312,
     "seen": 1795050350.2052786,
     "ast_hash": "e28e23e4e3ba4989472ff40c0ad0ddde",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/hero_hair_quiff_preview.png": {
+    "mtime": 1795050539.721542,
+    "seen": 1795050546.7490475,
+    "ast_hash": "c54a56539d0eed6083606465c1da2e42",
     "semantic_hash": ""
   }
 }
