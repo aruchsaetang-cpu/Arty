@@ -121,8 +121,31 @@ def write(path, x):
     with wave.open(path, "wb") as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
         w.writeframes((x * 32767).astype("<i2").tobytes())
+# footsteps: the user's recorded steps (audio/footsteps/step_N.wav) on every heel strike film.py exported (steps.json),
+# louder the closer the walker is to the camera; the eight takes rotate, with a touch of pitch and pan variety
+steps = np.zeros((n, 2)); SP = os.path.join(HERE, "steps.json"); FS = os.path.join(HERE, "audio", "footsteps")
+takes = []
+for k in range(1, 9):
+    fp = os.path.join(FS, f"step_{k}.wav")
+    if os.path.exists(fp):
+        with wave.open(fp) as w_:
+            takes.append(np.frombuffer(w_.readframes(w_.getnframes()), "<i2").astype(np.float64) / 32768)
+if takes and os.path.exists(SP):
+    side = {}
+    for i, ev in enumerate(json.load(open(SP))):
+        x = takes[i % len(takes)]; r = 1 + rng.uniform(-0.04, 0.04)
+        x = np.interp(np.arange(0, len(x) - 1, r), np.arange(len(x)), x)       # small pitch variety
+        if FREEZE <= ev["t"] <= SLOW1:                                         # slow motion: heavier, duller steps
+            x = lp(np.interp(np.arange(0, len(x) - 1, 0.8), np.arange(len(x)), x), 1800)
+        side[ev["rig"]] = -side.get(ev["rig"], 0.15) or 0.15                   # alternate feet left / right
+        i0 = int(ev["t"] * SR); L = min(len(x), n - i0)
+        if L > 0:
+            g = ev["gain"]; pan = side[ev["rig"]]
+            steps[i0:i0 + L, 0] += x[:L] * g * (1 - pan); steps[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
 os.makedirs(os.path.join(HERE, "audio"), exist_ok=True)
 write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
 write(os.path.join(HERE, "audio", "rain.wav"), RAIN)
+if np.abs(steps).max() > 0:
+    write(os.path.join(HERE, "audio", "steps.wav"), steps)
 print(f"stems written: {DUR:.2f}s, slow {FREEZE:.2f}-{SLOW1:.2f}s, close at {CLOSE:.2f}s, payoff at {PAYOFF:.2f}s")

@@ -51,6 +51,7 @@ def visible(rig, windows, extra=()):
         for f in sorted(marks):
             o.hide_render = marks[f]; o.keyframe_insert("hide_render", frame=f)
 
+WALKS = []      # every walk_path: heel-strike timing for the footstep sounds (steps.json)
 def walk_path(arm, pts, f0, f1, cycle=34, stride=0.62, phase=0.0, prop=None, sway=None):
     """Walk along a polyline at constant speed from f0 (keys to f1). sway(f) -> sideways offset (m)."""
     lib, lift, step, speed = ch.walk_keys(arm, prop, cycle, stride); keys = len(lib)   # planted-foot IK walk
@@ -80,6 +81,7 @@ def walk_path(arm, pts, f0, f1, cycle=34, stride=0.62, phase=0.0, prop=None, swa
         f += step
     ch.set_interp(arm, "LINEAR", "location"); ch.set_interp(arm, "LINEAR", "rotation_euler")
     total_f = f0 + int(total / speed * 30.0)
+    WALKS.append(dict(rig=arm, f0=f0, f1=min(f1, total_f), step=step, n=keys, off=off))
     ch.cloth_walk(arm, f0, min(f1, total_f), keys * step, phase)           # coat hem trails and swings with the walk
     return speed, (lambda f: at(min(total, speed * (f - f0) / 30.0)))
 
@@ -358,6 +360,32 @@ json.dump({"keys": [[1, 0.6], [SLOW0, 0.6], [SLOW0 + 16, 1.25], [SLOW1, 1.2], [S
 
 # ------------------------------------------------------------------ camera
 exec(open(os.path.join(HERE, "film_camera.py")).read())
+
+# footsteps: a heel strike every half cycle of each walk (left at key 0, right at key n/2), where the walker is on
+# screen; gain falls off with the distance to the camera. Read by audio.py.
+def _fc(ob, path, idx, f, default):
+    from bpy_extras import anim_utils
+    ad = ob.animation_data
+    if not ad or not ad.action: return default
+    cb = anim_utils.action_get_channelbag_for_slot(ad.action, ad.action_slot)
+    fc = cb.fcurves.find(path, index=idx) if cb else None
+    return fc.evaluate(f) if fc else default
+def _loc(ob, f):
+    return V(tuple(_fc(ob, "location", i, f, ob.location[i]) for i in range(3)))
+STEPS = []
+try:
+    for w in WALKS:
+        rig = w["rig"]; k = 0
+        while True:
+            t = w["f0"] + w["step"] * (k * w["n"] / 2 - w["off"]); k += 1
+            if t > w["f1"]: break
+            if t < max(1, w["f0"]) or _fc(rig, "hide_render", 0, t, 0.0) > 0.5: continue
+            d = max(0.5, (_loc(cam, t) - _loc(rig, t)).length)
+            STEPS.append(dict(t=round((t - 1) / 30.0, 3), rig=rig.name, gain=round(min(1.0, 2.2 / d), 3)))
+    json.dump(sorted(STEPS, key=lambda e: e["t"]), open(os.path.join(HERE, "steps.json"), "w"), indent=0)
+except Exception as e_:                       # never let the sound bookkeeping stop a render
+    print("footsteps export failed:", repr(e_))
+print("footsteps:", len(STEPS))
 
 # ------------------------------------------------------------------ render
 C.render_settings(SCALE, SAMPLES)

@@ -25,6 +25,8 @@ voice, music, sfx, rain = [load(os.path.join(A, f)) for f in ("voice_fast.wav", 
 n = len(voice)
 fit = lambda x: np.pad(x[:n], ((0, max(0, n - len(x))), (0, 0)))
 music, sfx, rain = fit(music), fit(sfx), fit(rain)
+SPATH = os.path.join(A, "steps.wav")      # the user's footsteps on every heel strike (audio.py), peaks <= 0.4x voice peak
+steps = fit(load(SPATH)) if os.path.exists(SPATH) else np.zeros_like(music)
 vr = gated_rms(voice); vp = np.abs(voice).max()
 db = lambda d: 10 ** (d / 20)
 music *= db(-9) * vr / gated_rms(music)
@@ -32,6 +34,9 @@ rain *= db(-18) * vr / gated_rms(rain)
 sfx *= db(-10) * vr / gated_rms(sfx)
 if np.abs(sfx).max() > 0.6 * vp:
     sfx *= 0.6 * vp / np.abs(sfx).max()
+if np.abs(steps).max() > 0:
+    steps *= 0.4 * vp / np.abs(steps).max()
+sfx = sfx + steps
 for name, x in (("music", music), ("rain", rain), ("sfx", sfx)):
     print(f"{name}: {20 * np.log10(gated_rms(x) / vr):+.1f} dB vs voice (gated RMS), peak {np.abs(x).max() / vp:.2f}x voice peak")
 mix = voice + music + rain + sfx

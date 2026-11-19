@@ -3,6 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p out
+python3 audio.py
 python3 mix.py
 python3 compose.py
 python3 subs.py
