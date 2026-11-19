@@ -31,24 +31,24 @@ KID2 = dict(KID1, body="kid_m", face="boy", height=1.34, hair="bangs", legs="sho
 # midi skirt, a long mustard coat; long wavy hair, crossbody bags, face masks
 BAG = ("#8a5a32", "#4e321b")
 # long mustard double-breasted coat, grey turtleneck, wide beige trousers (the mom waiting with the kids)
-W1 = dict(body="f", height=1.68, face="sharp_f", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.3,
+W1 = dict(body="f", height=1.68, face="kstar_f", jaw_v=0.3, lips="#c25a62", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.3,
           hair_col="#2a1c15", coat=("#d9a51b", "#8a6608"), hem=0.3, open_skirt=True, open_coat=True, lapels=True,
           coat_flare=(0.04, 0.1), top=("#a29a90", "#5f5a53"),
           turtleneck=True, legs="trousers", leg_col=("#c4b9a6", "#7c7364"), shoes=("#141416", "#2a2a2e"), bag=BAG,
           manhwa_head=True, brows="#14110f", subsurf=1)
 # cream oversized blazer, white shirt, camel knit, brown pleated mini skirt, crossbody bag (in the shop, on her phone)
-W2 = dict(body="f", height=1.63, face="soft_f", skin=("#f3d6bf", "#bf9274"), hair="long", hair_len=0.32,
+W2 = dict(body="f", height=1.63, face="kstar_f", jaw_v=0.3, lips="#d27a7a", skin=("#f3d6bf", "#bf9274"), hair="long", hair_len=0.32,
           hair_col="#4a3022", coat=("#ece3d2", "#a49a88"), hem=0.66, open_skirt=True, open_coat=True, lapels=True,
           coat_flare=(0.1, 0.22), top=("#c09f74", "#7a6345"),
           turtleneck=False, legs="skirt", leg_col=("#7a5a3c", "#45321f"), skirt_hem=0.56, tights="#e9c9b2",
           shoes=("#1b1a1c", "#3a2a22"), bag=BAG, manhwa_head=True, subsurf=1)
 # sage cropped blazer + slit midi skirt, black socks, black-and-white sneakers, white mask (walking past the hero)
-W3 = dict(body="f", height=1.62, face="soft_f", skin=("#f0cfb3", "#b48466"), hair="long", hair_len=0.28,
+W3 = dict(body="f", height=1.62, face="kstar_f", jaw_v=0.3, lips="#d27a7a", skin=("#f0cfb3", "#b48466"), hair="long", hair_len=0.28,
           hair_col="#5a3a26", coat=("#8f9a82", "#566050"), hem=0.88, open_skirt=False, coat_flare=(0.02, 0.04),
           top=("#8f9a82", "#566050"), turtleneck=False, legs="skirt", leg_col=("#8f9a82", "#566050"), skirt_hem=0.3,
           socks="#141416", shoes=("#f2f2f0", "#141416"), sneakers=True, bag=BAG, mask="#f4f4f2", manhwa_head=True, subsurf=1)
 # taupe wrap blazer and wide-leg trousers, black mask (under the awning in the alley)
-W4 = dict(body="f", height=1.68, face="sharp_f", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.4,
+W4 = dict(body="f", height=1.68, face="kstar_f", jaw_v=0.3, lips="#b84a55", skin=("#f2d5c0", "#c0927a"), hair="long", hair_len=0.4,
           hair_col="#14110f", coat=("#9b8468", "#5e4d3a"), hem=0.78, open_skirt=False, coat_flare=(0.03, 0.06),
           top=("#9b8468", "#5e4d3a"), turtleneck=False, legs="trousers", leg_col=("#9b8468", "#5e4d3a"),
           shoes=("#141416", "#2a2a2e"), mask="#111114", manhwa_head=True, subsurf=1)

@@ -704,6 +704,8 @@ def extra_style():
     st["manhwa_head"] = True        # every passer-by gets a face of their own
     st["face"] = _LOOKS.choice(["soft_f", "sharp_f"]) if sex == "f" else _LOOKS.choice(["round", "long", "diamond", "square", "boy"])
     if sex == "f":
+        st["face"] = "kstar_f"; st["jaw_v"] = 0.3
+        st["lips"] = _LOOKS.choice(["#c25a62", "#d27a7a", "#b84a55", "#cf7468"])
         st["_women_look"] = _LOOKS.choice(WOMEN)
         if _LOOKS.random() < 0.6:
             st["bag"] = _LOOKS.choice([("#8a5a32", "#4e321b"), ("#1c1c1e", "#08080a"), ("#b88a5a", "#6e5032")])

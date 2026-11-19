@@ -110,6 +110,15 @@ FACES = {
     "sharp_f": {"head-invertedtriangular": 0.5, "l-eye-height2-decr": 0.3, "r-eye-height2-decr": 0.3, "l-eye-corner1-up": 0.6,
                 "r-eye-corner1-up": 0.6, "nose-greek-incr": 0.3, "nose-scale-horiz-decr": 0.4, "chin-triangle": 0.5,
                 "eyebrows-angle-up": 0.4, "mouth-scale-horiz-decr": 0.2, "head-age-decr": 0.3},
+    # K-drama actress: slim V-line, big bright eyes, small refined nose, full defined lips, smooth young skin
+    "kstar_f": {"head-oval": 0.6, "head-invertedtriangular": 0.35, "head-scale-horiz-decr": 0.2, "head-age-decr": 0.6,
+                "chin-width-decr": 0.8, "chin-triangle": 0.55, "chin-height-decr": 0.15, "l-cheek-volume-decr": 0.4,
+                "r-cheek-volume-decr": 0.4, "nose-scale-horiz-decr": 0.6, "nose-point-width-decr": 0.7,
+                "nose-volume-decr": 0.55, "nose-point-up": 0.3, "nose-flaring-decr": 0.5, "nose-nostrils-width-decr": 0.5,
+                "l-eye-scale-incr": 0.65, "r-eye-scale-incr": 0.65, "l-eye-height2-incr": 0.35, "r-eye-height2-incr": 0.35,
+                "l-eye-corner1-up": 0.25, "r-eye-corner1-up": 0.25, "mouth-lowerlip-volume-incr": 0.3,
+                "mouth-upperlip-volume-incr": 0.1, "mouth-cupidsbow-incr": 0.6, "mouth-scale-horiz-decr": 0.15,
+                "mouth-angles-up": 0.15, "eyebrows-angle-up": 0.15, "forehead-scale-vert-decr": 0.3, "neck-scale-vert-incr": 0.5},
     "boy": {"head-oval": 0.4, "head-age-decr": 0.6, "l-eye-scale-incr": 0.2, "r-eye-scale-incr": 0.2,
             "nose-scale-horiz-decr": 0.3, "chin-width-decr": 0.3, "nose-volume-decr": 0.3, "mouth-lowerlip-volume-incr": 0.2},
 }
@@ -677,8 +686,12 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
 
     # --- hair
     hair_objs = make_hair(coll, V, body_faces, region, nrm, J, st, per_vert)
+    kd_h, bused_h = kd, bused
     for ob, used, sol in hair_objs:
-        if ob.get("tufts"):
+        if ob.get("hang"):    # long locks: head-driven at the scalp, neck/chest-driven where they hang
+            weights_from_body(ob, kd_h, bused_h, per_vert, k=4)
+            add_mods(ob, arm, subsurf=1, solidify=0.004, outline=0.5); objs.append(ob)
+        elif ob.get("tufts"):
             vg = ob.vertex_groups.new(name="head"); vg.add(list(range(len(ob.data.vertices))), 1.0, "REPLACE")
             if ob.get("locks"):
                 add_mods(ob, arm, subsurf=1, solidify=0.004, outline=0.5)
@@ -815,6 +828,20 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             mk.data.materials.append(cel(st["mask"], "#1a1a1e" if sum(lin(st["mask"])[:3]) > 0.5 else "#050506",
                                          rim="#ffffff", name="face_mask"))
             finish(mk, used, solidify=0.002)
+
+    # --- lip colour: a tint over the lips (the oris muscle region), no ink line
+    if st.get("lips") and not st.get("mask"):
+        mc = (J("oris01") + J("oris05")) / 2                      # between upper- and lower-lip centres
+        def on_lips(f):
+            c = sum((V[i] for i in f), Vector()) / len(f)
+            u = (c.x / 0.025) ** 2 + ((c.z - mc.z) / 0.0105) ** 2
+            return u < 1.0 and c.y < mc.y + 0.012
+        lf = [f for f in skin_faces if region(f, ("oris",)) and on_lips(f)]
+        if lf:
+            off = {i: nrm[i] * 0.0007 for f in lf for i in f}
+            lp_, used = make_mesh("lips", coll, V, lf, off)
+            lp_.data.materials.append(cel(st["lips"], None, rim=st["lips"], spec=0.05, spec_col="#ffd6dc", name="lips"))
+            assign_weights(lp_, used, per_vert); add_mods(lp_, arm, subsurf=st.get("subsurf", 1), outline=0); objs.append(lp_)
 
     # --- shoes
     make_shoes(coll, V, bused, dom, kd, per_vert, st, finish)
@@ -1069,6 +1096,9 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
     def scalp(f):
         c = sum((V[i] for i in f), Vector()) / len(f)
         frontness = min(1.0, max(0.0, (eyeL.y + 0.16 - c.y) / 0.16))
+        if style == "long":      # parted, forehead showing, sides to the jaw; locks and a curtain added below
+            thr = eyeL.z - 0.1 + 0.16 * frontness
+            return c.z > thr
         if style in ("bob", "long"):   # fringe to the brows, sides to the jaw (long: plus a curtain down the back)
             thr = eyeL.z - 0.1 + 0.125 * frontness
             return c.z > thr
@@ -1134,11 +1164,75 @@ def make_hair(coll, V, body_faces, region, nrm, J, st, per_vert):
     out = [(hair, used, 0.004)]
     if style == "crop":
         out += crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM)
+    if style == "long":
+        out += long_locks(coll, HV, hf, V, head_faces, eyeL, hx, hc, st, HM, st.get("hair_len", 0.3))
     if style == "quiff":
         out += crop_extras(coll, V, head_faces, hidx, HV, nrm, eyeL, hx, hc, st, HM, top_z=eyeL.z + 0.03,
                            lo_z=eyeL.z - 0.075, tufts=False, front_max=0.62)
         out += quiff_locks(coll, hair, HV, hf, eyeL, hx, hc, st, HM, V, head_faces)
     return out
+
+def long_locks(coll, HV, hf, V, head_faces, eyeL, hx, hc, st, HM, drop):
+    """Long wavy hair: locks flowing from a side parting down over the head, and face-framing locks that leave the
+    head at the temples and fall in soft waves past the cheeks to the collarbone."""
+    import random as _r
+    rng = _r.Random(31)
+    bvh = bvhtree.BVHTree.FromPolygons([tuple(HV[i]) for i in range(len(HV))], hf)
+    sbvh = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], head_faces)
+    C0 = Vector((0.0, hc.y + 0.01, eyeL.z - 0.005))
+    def surf(el, az):
+        d = Vector((math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el)))
+        best = None
+        for b_ in (bvh, sbvh):
+            hit = b_.ray_cast(C0 + d * 0.4, -d)
+            if hit[0] is not None and (best is None or (hit[0] - C0).length > (best - C0).length):
+                best = hit[0]
+        if best is None:
+            best = bvh.find_nearest(C0 + d * 0.11)[0]
+        return best, (best - C0).normalized()
+    bm = bmesh.new(); lite_faces = []
+    def ribbon(pts, w0, lite):
+        ring = []
+        for k, (p, n) in enumerate(pts):
+            t = k / (len(pts) - 1); d = (pts[min(k + 1, len(pts) - 1)][0] - pts[max(k - 1, 0)][0]).normalized()
+            side = d.cross(n).normalized(); w = w0 * (1 - 0.75 * t ** 1.5) * 0.5 + 0.0006
+            ring.append((bm.verts.new(p - side * w), bm.verts.new(p + side * w)))
+        for a, b in zip(ring, ring[1:]):
+            fc = bm.faces.new((a[0], b[0], b[1], a[1]))
+            if lite: lite_faces.append(fc)
+    R = math.radians; part = R(-14)                         # side parting, a little off centre
+    for sx in (1, -1):                                      # over the head from the parting
+        for j in range(14):
+            az1 = sx * R(30 + 85 * j / 13) + rng.uniform(-0.05, 0.05); n_ = 12; pts = []
+            for k in range(n_):
+                t = k / (n_ - 1)
+                el = R(84 - 70 * t); az = part + (az1 - part) * t ** 0.8 + R(3) * math.sin(t * 7 + j)
+                p, n = surf(el, az); pts.append((p + n * (0.004 + 0.004 * math.sin(math.pi * t)), n))
+            ribbon(pts, rng.uniform(0.024, 0.034), rng.random() < 0.3)
+    for sx in (1, -1):                                      # face-framing waves
+        for j in range(3):
+            az_t = sx * R(48 + 9 * j); pts = []
+            for k in range(8):
+                t = k / 7
+                p, n = surf(R(80 - 62 * t), part + (az_t - part) * t)
+                pts.append((p + n * (0.006 + 0.002 * j), n))
+            p0, n0 = pts[-1]; out_ = Vector((n0.x, n0.y, 0)).normalized()
+            for k in range(1, 11):
+                t = k / 10
+                wave = 0.012 * math.sin(t * math.pi * 2.4 + j) * (0.4 + t)
+                p = p0 + Vector((sx * (0.006 * k + wave), -0.004 * k + 0.002 * j, -drop * 0.85 * t))
+                pts.append((p, out_))
+            ribbon(pts, 0.03 - 0.004 * j, j == 1)
+    me = bpy.data.meshes.new("hair_locks"); bm.to_mesh(me)
+    lite_idx = {f.index for f in lite_faces}; bm.free()
+    ob = bpy.data.objects.new("hair_locks", me); coll.objects.link(ob); ob.data.materials.append(HM)
+    c0 = [int(st["hair_col"][k:k + 2], 16) for k in (1, 3, 5)]
+    lite = "#%02x%02x%02x" % tuple(min(255, int(v * 1.6 + 16)) for v in c0)
+    ob.data.materials.append(cel(lite, st["hair_col"], rim="#8a7a6c", rim_amt=0.4, name="hair_lite"))
+    for pl in me.polygons:
+        if pl.index in lite_idx: pl.material_index = 1
+    ob["tufts"] = True; ob["locks"] = True; ob["hang"] = True
+    return [(ob, None, 0.0)]
 
 def quiff_locks(coll, cap, HV, hf, eyeL, hx, hc, st, HM, V=None, head_faces=None):
     """Wavy flat locks over the cap: swept up and back from the forehead and off to one side, the front ones
