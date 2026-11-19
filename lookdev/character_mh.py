@@ -176,6 +176,8 @@ def vary_body(seed, sex):
             "universal-male-young-maxmuscle-averageweight.target": rng.uniform(-0.15, 0.45),
             "male-young-averagemuscle-averageweight-maxheight.target": rng.uniform(-0.2, 0.4)}
 
+FACES["_clear"] = {"l-eye-scale-incr": 0.35, "r-eye-scale-incr": 0.35, "l-eye-height2-incr": 0.35, "r-eye-height2-incr": 0.35}
+
 def apply_face(V, name):
     for fn, w in FACES[name].items():
         key = "face/" + fn
@@ -349,10 +351,11 @@ def real_mat(hexc, name, spec=0.0, crease=0.0, crease_zmax=99.0):
         b.inputs["Base Color"].default_value = col
     return m
 
-def eye_mat(radius, iris="#7a5236", void=False):
+def eye_mat(radius, iris="#7a5236", void=False, clear=False):
+    """clear: manhwa eyes that still read at a distance: a big dark iris, a large pupil and a bold catchlight."""
     if void:
         return void_eye_mat(radius)
-    key = ("eye", round(radius, 4), iris)
+    key = ("eye", round(radius, 4), iris, clear)
     if key in _cache:
         return _cache[key]
     m = bpy.data.materials.new("eye")
@@ -363,11 +366,12 @@ def eye_mat(radius, iris="#7a5236", void=False):
     front = mth("LESS_THAN", sep.outputs["Y"], 0.0)
     # normal eyes (everyone but the hero): white sclera, a smaller warm-brown iris, dark pupil, clear catchlight
     c = mix(mth("GREATER_THAN", sep.outputs["Z"], radius * 0.62), lin("#f4f1ec"), lin("#c9c4bd"))
-    IR = radius * 0.37
-    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, IR), front), c, mix(mth("DIVIDE", r, IR), lin(iris), lin("#2a1d14")))
-    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * 0.15), front), c, lin("#08070a"))
-    gx = mth("SUBTRACT", sep.outputs["X"], radius * 0.13); gz = mth("SUBTRACT", sep.outputs["Z"], radius * 0.14)
-    glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * 0.085) ** 2)
+    IR = radius * (0.47 if clear else 0.37)
+    rim = "#140d09" if clear else "#2a1d14"; core = tuple(x * 0.6 for x in lin(iris)[:3]) + (1.0,) if clear else lin(iris)
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, IR), front), c, mix(mth("DIVIDE", r, IR), core, lin(rim)))
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * (0.21 if clear else 0.15)), front), c, lin("#08070a"))
+    gx = mth("SUBTRACT", sep.outputs["X"], radius * 0.15); gz = mth("SUBTRACT", sep.outputs["Z"], radius * 0.16)
+    glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * (0.12 if clear else 0.085)) ** 2)
     c = mix(mth("MULTIPLY", glint, front), c, lin("#ffffff"))
     e = N.new("ShaderNodeEmission"); L.new(c, e.inputs["Color"]); L.new(e.outputs[0], out.inputs[0])
     _cache[key] = m
@@ -557,6 +561,8 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
                 V[i] = V[i].lerp(Vl[i] + (cm - cl), t)
     if st.get("face"):
         apply_face(V, st["face"])
+    if st.get("clear_face"):                                             # manhwa eyes: larger and more open
+        apply_face(V, "_clear")
     if st.get("vary") is not None:                                        # ...and everyone's own face
         apply_targets(V, vary_face(st["vary"], pretty=st.get("face") == "kstar_f"))
     body_faces = [f for f, g in zip(F, G) if g == "body"]
@@ -871,17 +877,20 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         eidx = {i for f in ef for i in f}; c = sum((V[i] for i in eidx), Vector()) / len(eidx)
         rad = sum((V[i] - c).length for i in eidx) / len(eidx)
         ob, used = make_mesh(f"eye_{side}", coll, [v - c for v in V], ef)
-        ob.location = c; ob.data.materials.append(eye_mat(rad, st.get("iris", "#5a4232"), st.get("void_eyes", False))); assign_weights(ob, used, per_vert); add_mods(ob, arm, subsurf=2, outline=0); objs.append(ob)
+        ob.location = c; ob.data.materials.append(eye_mat(rad, st.get("iris", "#5a4232"), st.get("void_eyes", False), st.get("clear_face", False))); assign_weights(ob, used, per_vert); add_mods(ob, arm, subsurf=2, outline=0); objs.append(ob)
         for k in (1, 2):
             lf = [f for f, g in zip(F, G) if g == f"helper-{side}-eyelashes-{k}"]
             if lf:
                 lo, used = make_mesh(f"lash_{side}{k}", coll, V, lf)
-                lo.data.materials.append(cel("#0c0c0f", "#050506", rim="#0c0c0f", name="lash")); add_mods(lo, arm, subsurf=0, outline=0); assign_weights(lo, used, per_vert); objs.append(lo)
+                lo.data.materials.append(cel("#0c0c0f", "#050506", rim="#0c0c0f", name="lash"))
+                add_mods(lo, arm, subsurf=0, outline=(0.9 if k == 1 else 0.5) if st.get("clear_face") else 0)   # inked lid line
+                assign_weights(lo, used, per_vert); objs.append(lo)
 
     # --- brows ray-cast onto the forehead
     skin_bvh = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], skin_faces)
     bm = bmesh.new()
     thick = 0.0034 if st["body"] not in ("f", "kid_f") else 0.0024
+    if st.get("clear_face"): thick *= 1.45                          # bolder brows: the face reads from across the street
     for sx in (1, -1):
         ec = J("eye.L" if sx > 0 else "eye.R")
         rows = []

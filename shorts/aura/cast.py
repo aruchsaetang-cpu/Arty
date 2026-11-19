@@ -55,6 +55,9 @@ W4 = dict(vary=108, body="f", height=1.72, face="kstar_f", jaw_v=0.3, lips="#b84
           hair_col="#14110f", coat=("#9b8468", "#5e4d3a"), hem=0.78, open_skirt=False, coat_flare=(0.03, 0.06),
           top=("#9b8468", "#5e4d3a"), turtleneck=False, legs="trousers", leg_col=("#9b8468", "#5e4d3a"),
           shoes=("#141416", "#2a2a2e"), mask="#111114", manhwa_head=True, subsurf=1)
+# the townsfolk get clear manhwa faces: big dark irises, inked lids, bolder brows (hero and police keep theirs)
+for _st in (SHOP, KID1, KID2, W1, W2, W3, W4):
+    _st["clear_face"] = True
 W_LOOKS = [W1, W2, W3, W4]
 # shop customers (no two faces alike)
 MAN_LONG = dict(vary=109, body="m", height=1.77, face="long", skin=("#e9c4a6", "#a8795d"), hair="short", locks=False, coat=None,
@@ -63,6 +66,7 @@ MAN_LONG = dict(vary=109, body="m", height=1.77, face="long", skin=("#e9c4a6", "
 MAN_DIAMOND = dict(vary=110, body="m_heavy", height=1.68, face="diamond", skin=("#c58f6a", "#86583d"), hair="buzz", hair_col="#2a2622",
                    coat=("#3b3f47", "#15171b"), hem=0.8, top=("#d9d4c8", "#8c877c"), legs="trousers",
                    leg_col=("#2a2c30", "#0f1012"), shoes=("#1b1a1c", "#3a2a22"), manhwa_head=True, subsurf=1)
+MAN_LONG["clear_face"] = MAN_DIAMOND["clear_face"] = True
 
 # first-version designs (body, face, hair and outfit exactly as in the first-half preview), built with ch.build_v1
 HERO_V1 = dict(body="m", height=1.86, skin=("#e8c2a2", "#a9775b"), hair="short", hair_col="#16181d", locks=True,

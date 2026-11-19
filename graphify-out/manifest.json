@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795105289.379029,
-    "seen": 1795105349.461963,
-    "ast_hash": "d904da2173aa300c4a9483ae1408d651",
+    "mtime": 1795105933.265367,
+    "seen": 1795105997.6308708,
+    "ast_hash": "b7196c85b0fad9078500caa6d1affc95",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -6660,9 +6660,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/cast.py": {
-    "mtime": 1795105314.1751268,
-    "seen": 1795105349.4619823,
-    "ast_hash": "9802f2a73c481d1239cae30d044545b4",
+    "mtime": 1795105866.3913255,
+    "seen": 1795105997.630899,
+    "ast_hash": "833877a6370eb75726d056e72a1f3a0a",
     "semantic_hash": ""
   },
   "shorts/aura/cues2.py": {
@@ -7245,6 +7245,12 @@
     "mtime": 1795105340.8342113,
     "seen": 1795105349.463001,
     "ast_hash": "399fd017fb421179a866748c10d59492",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/npc_faces_before_after.png": {
+    "mtime": 1795105978.8102493,
+    "seen": 1795105997.6328738,
+    "ast_hash": "49b98ab47675b6c5977fa1a4febdd108",
     "semantic_hash": ""
   }
 }
