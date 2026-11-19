@@ -285,7 +285,7 @@ def splash_mat(name, crown):
         dx = M("SUBTRACT", sp.outputs["X"], 0.5); dy = M("SUBTRACT", sp.outputs["Y"], 0.5)
         r = M("MULTIPLY", M("SQRT", M("ADD", M("MULTIPLY", dx, dx), M("MULTIPLY", dy, dy))), 2.0)
         band = M("SUBTRACT", 1.0, M("DIVIDE", M("ABSOLUTE", M("SUBTRACT", r, phase)), 0.09), clamp=True)
-        a = M("MULTIPLY", M("MULTIPLY", band, M("SUBTRACT", 1.0, phase)), 0.5)
+        a = M("MULTIPLY", M("MULTIPLY", band, M("SUBTRACT", 1.0, phase)), 0.3)
     tr = N_.new("ShaderNodeBsdfTransparent"); em = N_.new("ShaderNodeEmission")
     em.inputs["Color"].default_value = C.lin("#d6e6ff"); em.inputs["Strength"].default_value = 1.1
     mx = N_.new("ShaderNodeMixShader"); L_.new(a, mx.inputs[0]); L_.new(tr.outputs[0], mx.inputs[1])

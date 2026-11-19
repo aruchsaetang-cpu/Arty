@@ -13,7 +13,8 @@ from mathutils import Vector, Matrix, Quaternion, kdtree, bvhtree
 HERE = os.path.dirname(os.path.abspath(__file__))
 MH = os.path.join(HERE, "assets", "makehuman")
 S = 0.1  # MakeHuman decimetres -> metres
-OUTLINE = 0.005  # ink line width in metres (0 disables); heavier webtoon ink
+REAL = os.environ.get("CHAR_STYLE", "real") == "real"   # realistic materials lit by the scene (CHAR_STYLE=cel: flat manhwa)
+OUTLINE = 0.0022 if REAL else 0.005  # ink line width in metres (0 disables); thin on the realistic look
 SHADOW = 0.2      # manhwa shading: deep, hard-edged shadow (fraction of base colour)
 SHADOW_TINT = (0.09, 0.07, 0.16)  # shadows lean cool violet, like printed webtoon panels
 
@@ -267,6 +268,9 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
     key = (hexc, shade, rim, spec, spec_col, light, rim_amt, glow, crease, crease_zmax, name)
     if key in _cache:
         return _cache[key]
+    if REAL and glow <= 1.0:
+        _cache[key] = real_mat(hexc, name, spec, crease, crease_zmax)
+        return _cache[key]
     m = bpy.data.materials.new(name or f"cel_{hexc}")
     N, L, mth, mix = _nodes(m)
     out = N.new("ShaderNodeOutputMaterial"); geo = N.new("ShaderNodeNewGeometry")
@@ -308,6 +312,44 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
     e = N.new("ShaderNodeEmission"); e.inputs["Strength"].default_value = glow
     L.new(c, e.inputs["Color"]); L.new(e.outputs[0], out.inputs[0])
     _cache[key] = m
+    return m
+
+def real_mat(hexc, name, spec=0.0, crease=0.0, crease_zmax=99.0):
+    """Physically based material for the realistic look: lit by the street lights, neon and the aura."""
+    m = bpy.data.materials.new((name or "mat") + "_real"); m.use_nodes = True; nt = m.node_tree
+    N_, L_ = nt.nodes, nt.links; N_.clear()
+    out = N_.new("ShaderNodeOutputMaterial"); b = N_.new("ShaderNodeBsdfPrincipled")
+    L_.new(b.outputs[0], out.inputs[0])
+    col = lin(hexc); n = name or ""
+    rough, spec_lvl, sheen = 0.72, 0.4, 0.25                  # cloth
+    if n == "skin":
+        rough, spec_lvl, sheen = 0.42, 0.45, 0.0
+        b.inputs["Subsurface Weight"].default_value = 0.12
+        b.inputs["Subsurface Radius"].default_value = (0.9, 0.4, 0.25)
+        b.inputs["Subsurface Scale"].default_value = 0.008
+    elif n.startswith("hair"):
+        rough, spec_lvl, sheen = 0.32, 0.55, 0.0
+        b.inputs["Coat Weight"].default_value = 0.15; b.inputs["Coat Roughness"].default_value = 0.25
+    elif n in ("shoe", "sole", "belt", "loafer_strap", "lips", "shaft", "umbrella", "pov_umbrella", "bag", "bag_strap"):
+        rough, spec_lvl, sheen = (0.22 if n in ("shoe", "loafer_strap", "lips") else 0.4), 0.6, 0.0
+    elif n in ("brow", "lash"):
+        rough, spec_lvl, sheen = 0.6, 0.2, 0.0
+    if spec:
+        rough = min(rough, 0.3)
+    b.inputs["Roughness"].default_value = rough
+    b.inputs["Specular IOR Level"].default_value = spec_lvl
+    if sheen:
+        b.inputs["Sheen Weight"].default_value = sheen; b.inputs["Sheen Roughness"].default_value = 0.5
+    if crease:   # keep the muscle definition: darken the concave creases a little (pointiness)
+        geo = N_.new("ShaderNodeNewGeometry"); mr = N_.new("ShaderNodeMapRange")
+        mr.inputs["From Min"].default_value = 0.5 - crease * 2.5; mr.inputs["From Max"].default_value = 0.5
+        mr.inputs["To Min"].default_value = 0.55; mr.inputs["To Max"].default_value = 1.0
+        L_.new(geo.outputs["Pointiness"], mr.inputs["Value"])
+        mx = N_.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"; mx.inputs[0].default_value = 1.0
+        mx.inputs[6].default_value = col; L_.new(mr.outputs["Result"], mx.inputs[7])
+        L_.new(mx.outputs[2], b.inputs["Base Color"])
+    else:
+        b.inputs["Base Color"].default_value = col
     return m
 
 def eye_mat(radius, iris="#7a5236", void=False):
@@ -361,7 +403,9 @@ def ink_mat():
         out = N.new("ShaderNodeOutputMaterial"); geo = N.new("ShaderNodeNewGeometry")
         e = N.new("ShaderNodeEmission"); e.inputs["Color"].default_value = lin("#0b0c10")
         t = N.new("ShaderNodeBsdfTransparent"); mx = N.new("ShaderNodeMixShader")
-        L.new(geo.outputs["Backfacing"], mx.inputs[0]); L.new(e.outputs[0], mx.inputs[1]); L.new(t.outputs[0], mx.inputs[2])
+        lp = N.new("ShaderNodeLightPath")   # only the camera sees the ink: lights and bounces pass through the shell
+        hide = mth("MAXIMUM", geo.outputs["Backfacing"], mth("SUBTRACT", 1.0, lp.outputs["Is Camera Ray"]))
+        L.new(hide, mx.inputs[0]); L.new(e.outputs[0], mx.inputs[1]); L.new(t.outputs[0], mx.inputs[2])
         L.new(mx.outputs[0], out.inputs[0]); m.use_backface_culling = True; _cache["ink"] = m
     return _cache["ink"]
 

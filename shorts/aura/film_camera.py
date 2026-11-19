@@ -125,3 +125,21 @@ def pov_umbrella():
     return ob
 pov_umb = pov_umbrella()
 visible(pov_umb, [(fr("follow"), fr("alley_pov", 1)), (fr("turn"), fr("turn", 1))])
+
+# realistic look: a soft key that travels with the camera (like a bounce card), so faces always read
+if ch.REAL:
+    kl = bpy.data.lights.new("cam_key", "AREA"); kl.shape = "DISK"; kl.size = 1.6; kl.energy = 380
+    kl.color = (1.0, 0.93, 0.86)
+    ko = bpy.data.objects.new("cam_key", kl); scn.collection.objects.link(ko)
+    ko.parent = cam; ko.location = (0.9, 0.6, 0.3); ko.rotation_euler = (math.radians(12), math.radians(20), 0)
+    fl = bpy.data.lights.new("cam_fill", "AREA"); fl.size = 2.5; fl.energy = 120; fl.color = (0.75, 0.82, 1.0)
+    fo = bpy.data.objects.new("cam_fill", fl); scn.collection.objects.link(fo)
+    fo.parent = cam; fo.location = (-1.2, -0.3, 0.2); fo.rotation_euler = (0, math.radians(-25), 0)
+    # same exposure on the faces in every shot: scale the key/fill with the camera-to-subject distance
+    for sid in [b["id"] for b in BEATS["shots"]]:
+        f0 = fr(sid); scn.frame_set(f0)
+        d = (cam.matrix_world.translation - focus.matrix_world.translation).length
+        k = max(0.12, min(1.6, (d / 3.6) ** 2))
+        kl.energy = 380 * k; kl.keyframe_insert("energy", frame=f0)
+        fl.energy = 120 * k; fl.keyframe_insert("energy", frame=f0)
+    ch.set_interp(kl, "CONSTANT"); ch.set_interp(fl, "CONSTANT")
