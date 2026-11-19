@@ -1,6 +1,8 @@
 """Mix voice (1.2x) + music + rain + SFX, levels relative to the voice's gated RMS: music -9 dB, rain -18 dB,
 SFX hits -10 dB with peaks <= 0.6x voice peak, so the narration always stays on top.
-Then one linear gain to -14 LUFS and a -1 dBFS limiter (ffmpeg).   python3 shorts/aura/mix.py"""
+Then one linear gain to -14 LUFS and a -1 dBFS limiter (ffmpeg).   python3 shorts/aura/mix.py
+The voice is only the level reference: mix.wav holds music + rain + SFX (the narrator records the voice himself);
+VOICE=1 puts the voice track in too. The loudness gain is measured with the voice, so a real take drops in at level."""
 import os, re, subprocess, wave
 import numpy as np
 
@@ -40,6 +42,11 @@ with wave.open(raw, "wb") as w:
 meas = subprocess.run(["ffmpeg", "-hide_banner", "-i", raw, "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
 I = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", meas)[-1])
 gain = -14.0 - I
+if not os.environ.get("VOICE"):          # bed only, same gain and the same headroom as the full mix
+    bed = music + rain + sfx
+    with wave.open(raw, "wb") as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
+        w.writeframes((np.clip(bed / max(1.0, np.abs(mix).max() * 1.01), -1, 1) * 32767).astype("<i2").tobytes())
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", raw, "-af", f"volume={gain:.2f}dB,alimiter=limit=0.891:level=false",
                 os.path.join(A, "mix.wav")], check=True)
-print(f"integrated {I:.1f} LUFS -> gain {gain:+.1f} dB -> mix.wav")
+print(f"integrated {I:.1f} LUFS -> gain {gain:+.1f} dB -> mix.wav ({'with' if os.environ.get('VOICE') else 'without'} voice)")

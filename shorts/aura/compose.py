@@ -50,7 +50,7 @@ def grade(a):
     yy, xx = np.mgrid[0:h, 0:w]
     r = np.sqrt(((xx - w / 2) / (w / 2)) ** 2 * 0.6 + ((yy - h / 2) / (h / 2)) ** 2)
     a = a * (1 - np.clip(r - 0.55, 0, 1)[..., None] * 0.45)
-    return a + np.random.default_rng(1).normal(0, 0.012, a.shape).astype(np.float32)
+    return a                                                      # film grain is added after the upscale (finish.sh)
 
 SHOTS = json.load(open(os.path.join(HERE, "beats.json")))["shots"]
 HAND = {"follow": 1.0, "alley_pov": 0.7, "turn": 0.45, "train_mont": 0.6}     # hand-held roll amount per shot

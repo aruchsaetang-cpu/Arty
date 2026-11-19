@@ -974,6 +974,20 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             e = ob.evaluated_get(dg); mw = e.matrix_world
             low = min(low, min((mw @ v.co).z for v in e.data.vertices))
     arm["ground"] = -low if low < 9 else 0.0
+    _reset(arm); bpy.context.view_layer.update(); dg = bpy.context.evaluated_depsgraph_get(); low_r = 9.0
+    for ob in objs:   # legs at rest (standing poses, the walk solver's reference): sole height in rig units
+        if ob.name.startswith("shoe_sole"):
+            e = ob.evaluated_get(dg); mw = e.matrix_world
+            low_r = min(low_r, min((mw @ v.co).z for v in e.data.vertices))
+    arm["ground_rest"] = -low_r if low_r < 9 else arm["ground"]; arm["sole_rest"] = -arm["ground_rest"] / arm.scale[0]
+    inv = arm.matrix_world.inverted()
+    for ob in objs:   # toe tip and heel of each sole at rest (rig units): the pivots the walk rolls the foot over
+        if ob.name.startswith("shoe_sole"):
+            e = ob.evaluated_get(dg); P = [inv @ (e.matrix_world @ v.co) for v in e.data.vertices]
+            side = "L" if sum(q.x for q in P) > 0 else "R"; y0 = min(q.y for q in P); y1 = max(q.y for q in P)
+            toe = min((q for q in P if q.y < y0 + 0.02), key=lambda q: q.z); heel = min((q for q in P if q.y > y1 - 0.02), key=lambda q: q.z)
+            arm[f"toe_{side}"] = (toe.y, arm["sole_rest"]); arm[f"heel_{side}"] = (heel.y, arm["sole_rest"])
+    posed(arm, pose_mode, st.get("head_yaw", 0.0))
     contact_shadow(coll, arm)
     for ob in objs:   # coats, coat tails and skirts get hem motion (trail, step sway, flutter)
         if ob.name.split(".")[0] in ("coat_drape", "coat_skirt", "skirt", "coat_sleeves"):
@@ -1766,6 +1780,10 @@ def _walk_phase(arm, aim, p, prop=None):
         aim(f"upperleg01.{side}", th); aim(f"upperleg02.{side}", th)
         aim(f"lowerleg01.{side}", sh); aim(f"lowerleg02.{side}", sh)
         aim(f"foot.{side}", (0, -math.cos(pitch - (a - flex) * 0.15), math.sin(pitch)))
+    _walk_arms(aim, p, prop)
+
+def _walk_arms(aim, p, prop=None):
+    """Arm swing opposite the legs (p as in _walk_phase); a prop overrides the arm(s) holding it."""
     for side, sx, ph in (("L", 1, p + 0.5), ("R", -1, p)):
         if prop and (side == "R" or prop == "pockets"):
             continue
@@ -1816,39 +1834,123 @@ def posed(arm, mode, head_yaw=0.0):
             pb.rotation_quaternion = pb.rotation_quaternion @ Quaternion((0, 1, 0), math.radians(head_yaw) / 2)
     bpy.context.view_layer.update()
 
-_LIB = {}
-def walk_library(arm, prop=None, keys=8):
-    """Rotation quaternions for each walk key, computed once per body type + prop."""
-    k = (arm["body"], prop)
-    if k not in _LIB:
-        aim = _aimer(arm); lib = []
-        for i in range(keys):
-            _reset(arm); _walk_phase(arm, aim, i / keys, prop)
-            bpy.context.view_layer.update()
-            lib.append({b: arm.pose.bones[b].rotation_quaternion.copy() for b in ANIM_BONES})
-        _LIB[k] = lib
-    return _LIB[k]
+class _MathAim:
+    """aim(bone, direction) like _aimer, solved in armature space without depsgraph updates (pure rotation maths).
+    Bones outside ANIM_BONES are taken at rest; .quats() gives the pose quaternion of every ANIM bone."""
+    def __init__(self, arm):
+        self.bones = arm.data.bones; self.rest = {b.name: b.matrix_local.to_3x3() for b in self.bones}; self.final = {}
+    def rot(self, name):
+        if name in self.final: return self.final[name]
+        b = self.bones[name]
+        if b.parent is None: return self.rest[name]
+        return self.rot(b.parent.name) @ self.rest[b.parent.name].inverted() @ self.rest[name]
+    def __call__(self, name, d):
+        r = self.rot(name); cur = r @ Vector((0, 1, 0))
+        self.final[name] = cur.rotation_difference(Vector(d).normalized()).to_matrix() @ r
+    def quats(self):
+        out = {}
+        for n in ANIM_BONES:
+            if n not in self.bones: continue
+            b = self.bones[n]
+            if n not in self.final: out[n] = Quaternion(); continue
+            inh = self.rot(b.parent.name) @ self.rest[b.parent.name].inverted() @ self.rest[n] if b.parent else self.rest[n]
+            out[n] = (inh.inverted() @ self.final[n]).to_quaternion()
+        return out
+
+def _smooth(x):
+    x = max(0.0, min(1.0, x)); return x * x * (3 - 2 * x)
+
+DUTY = 0.56         # share of the cycle a foot is planted
+def walk_keys(arm, prop=None, cycle=32, stride=0.62):
+    """A planted-foot walk cycle solved with two-bone leg IK, for this rig's own proportions.
+    Each foot lies flat on the ground and slides back at exactly the walking speed while planted, rolls up onto
+    the ball at push-off, swings through with toe clearance, and lands heel first; the pelvis rides as high as the
+    planted leg allows (the natural bob). Returns (keys, lift, step, speed): per key the bone quaternions and the
+    rig root height above the path (m); keys are `step` frames apart; speed in m/s."""
+    step = 2 if cycle >= 16 else 1; n = max(8, cycle // step); cyc = n * step; s = arm.scale[0]
+    speed = (2 * stride * s / 0.83) / (cyc / 30.0)
+    S = 2 * stride * DUTY / 0.83                     # stance travel of a planted foot (rig units)
+    B = arm.data.bones; zg = arm["sole_rest"]
+    leg = {}
+    for side in ("L", "R"):
+        hip = B[f"upperleg01.{side}"].head_local; knee = B[f"lowerleg01.{side}"].head_local
+        ank = B[f"foot.{side}"].head_local; tip = B[f"foot.{side}"].tail_local
+        leg[side] = dict(hip=hip, ank=ank, Lt=(knee - hip).length, Ls=(ank - knee).length, fdir=(tip - ank).normalized(),
+                         ah=ank.z - zg)
+    lift_sw = 0.11 / 0.836                          # swing clearance (~9 cm on the hero)
+    TH, PH = math.radians(34), math.radians(14)      # push-off heel lift, heel-strike toe lift
+    def foot_pose(g, side, yb, beta):
+        """Ankle (y, z) for a foot whose flat position puts the ankle at yb, pitched beta (+ toe down), rolled over
+        its toe tip (beta > 0) or heel (beta < 0) so that point stays on the ground."""
+        a = Vector((yb, zg + g["ah"]))
+        if abs(beta) < 1e-4: return a
+        py, pz = arm[f"toe_{side}"] if beta > 0 else arm[f"heel_{side}"]
+        r = Vector((py - g["ank"].y, pz - g["ank"].z))           # pivot relative to the ankle at rest
+        pivot = Vector((yb + r.x, zg)); c, s_ = math.cos(beta), math.sin(beta)
+        rr = Vector((r.x * c - r.y * s_, r.x * s_ + r.y * c))
+        return pivot - rr
+    keys, lift, plan = [], [], []
+    for j in range(n):
+        p = j / n; tgt = {}; delta = 0.0; first = True
+        for side, ph in (("L", p), ("R", (p + 0.5) % 1.0)):
+            g = leg[side]
+            if ph < DUTY:                                # planted: heel strike -> flat -> roll onto the toe
+                y = -S / 2 + S * ph / DUTY
+                beta = TH * _smooth((ph - 0.4) / (DUTY - 0.4)) - PH * (1 - _smooth(ph / 0.12)); up = 0.0; planted = True
+            else:                                        # swing: toe leaves last, heel lands first
+                u = (ph - DUTY) / (1 - DUTY); y = S / 2 - S * _smooth(u)
+                beta = TH * (1 - _smooth(u / 0.45)) - PH * _smooth((u - 0.5) / 0.5)
+                up = lift_sw * math.sin(math.pi * u) ** 1.3; planted = False
+            a = foot_pose(g, side, g["ank"].y + y, beta)
+            T = Vector((g["ank"].x, a.x, a.y + up))
+            tgt[side] = (T, beta)
+            if planted:                                  # the pelvis may only drop to keep the planted leg reachable
+                R = 0.995 * (g["Lt"] + g["Ls"]); dxy = (T - g["hip"]).to_2d().length
+                d = math.sqrt(max(0.0, R * R - dxy * dxy)) - (g["hip"].z - T.z)
+                delta = d if first else min(delta, d); first = False
+        plan.append((p, tgt, min(delta, 0.0)))
+    raw = [d for _, _, d in plan]                         # ease the bob: drop a key early, then smooth (cyclic)
+    lo = [min(raw[(j - 1) % n], raw[j], raw[(j + 1) % n]) for j in range(n)]
+    sm = [0.25 * lo[(j - 1) % n] + 0.5 * lo[j] + 0.25 * lo[(j + 1) % n] for j in range(n)]
+    for (p, tgt, _), delta in zip(plan, sm):
+        aim = _MathAim(arm)
+        for side in ("L", "R"):
+            g = leg[side]; T, pitch = tgt[side]; T = T - Vector((0, 0, delta))
+            v = T - g["hip"]; d = min(v.length, 0.999 * (g["Lt"] + g["Ls"])); vn = v.normalized()
+            ca = (g["Lt"] ** 2 + d * d - g["Ls"] ** 2) / (2 * g["Lt"] * d); a = math.acos(max(-1.0, min(1.0, ca)))
+            fwd = Vector((0, -1, 0)); w = (fwd - vn * fwd.dot(vn)).normalized()
+            thigh = vn * math.cos(a) + w * math.sin(a); knee = g["hip"] + thigh * g["Lt"]
+            shin = (g["hip"] + vn * d - knee).normalized()
+            aim(f"upperleg01.{side}", thigh); aim(f"upperleg02.{side}", thigh)
+            aim(f"lowerleg01.{side}", shin); aim(f"lowerleg02.{side}", shin)
+            aim(f"foot.{side}", Matrix.Rotation(pitch, 3, "X") @ g["fdir"])
+        _walk_arms(aim, p, prop)
+        keys.append(aim.quats()); lift.append((delta - zg) * s + 0.004)
+    return keys, lift, step, speed
+
+def key_ground(arm, f, lift):
+    """Keep the contact-shadow disc on the ground while the rig root rides lift (m) above it."""
+    for c in arm.children:
+        if c.name.startswith("contact_shadow"):
+            c.location.z = (0.004 - lift) / arm.scale[0]; c.keyframe_insert("location", index=2, frame=f)
 
 def animate_walk(arm, start, heading_deg, f0, f1, phase=0.0, prop=None, cycle=32, speed=None, stride=0.62):
     """Key a looping walk from frame f0 to f1, moving along heading (0 = toward -y)."""
-    lib = walk_library(arm, prop); keys = len(lib); step = cycle // keys
-    speed = speed or (2 * stride * arm.scale[0] / 0.83) / (cycle / 30.0)
+    keys, lift, step, speed = walk_keys(arm, prop, cycle, stride); n = len(keys)
     d = Vector((math.sin(math.radians(heading_deg)), -math.cos(math.radians(heading_deg)), 0))
     arm.rotation_euler = (0, 0, math.radians(heading_deg))
-    off = int(round(phase * keys))
+    off = int(round(phase * n))
     f = f0
     while f <= f1 + step:
-        j = ((f - f0) // step + off) % keys
-        for b, q in lib[j].items():
+        j = ((f - f0) // step + off) % n
+        for b, q in keys[j].items():
             pb = arm.pose.bones[b]; pb.rotation_quaternion = q
             pb.keyframe_insert("rotation_quaternion", frame=f)
-        p = (j / keys)
-        bob = 0.022 * (1 - math.cos(4 * math.pi * p)) / 2
-        arm.location = Vector(start) + d * speed * (f - f0) / 30.0 + Vector((0, 0, arm["ground"] + bob))
-        arm.keyframe_insert("location", frame=f)
+        arm.location = Vector(start) + d * speed * (f - f0) / 30.0 + Vector((0, 0, lift[j]))
+        arm.keyframe_insert("location", frame=f); key_ground(arm, f, lift[j])
         f += step
     set_interp(arm, "LINEAR", "location")          # steady walking speed between keys
-    cloth_walk(arm, f0, f1, cycle, phase)
+    cloth_walk(arm, f0, f1, n * step, phase)
     return speed
 
 def add_umbrella(arm, coll, colour="#1d2230", clear=False):

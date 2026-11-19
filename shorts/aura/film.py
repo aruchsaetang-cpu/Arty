@@ -53,8 +53,7 @@ def visible(rig, windows, extra=()):
 
 def walk_path(arm, pts, f0, f1, cycle=34, stride=0.62, phase=0.0, prop=None, sway=None):
     """Walk along a polyline at constant speed from f0 (keys to f1). sway(f) -> sideways offset (m)."""
-    lib = ch.walk_library(arm, prop); keys = len(lib); step = cycle // keys
-    speed = (2 * stride * arm.scale[0] / 0.83) / (cycle / 30.0)
+    lib, lift, step, speed = ch.walk_keys(arm, prop, cycle, stride); keys = len(lib)   # planted-foot IK walk
     P = [V(p) for p in pts]; seg = [(P[i + 1] - P[i]).length for i in range(len(P) - 1)]
     def at(d):
         for i, L in enumerate(seg):
@@ -75,14 +74,13 @@ def walk_path(arm, pts, f0, f1, cycle=34, stride=0.62, phase=0.0, prop=None, swa
         for b, q in lib[j].items():
             pb = arm.pose.bones[b]; pb.rotation_quaternion = q; pb.keyframe_insert("rotation_quaternion", frame=f)
         p, h, dirv = at(min(total, speed * (f - f0) / 30.0))
-        bob = 0.022 * (1 - math.cos(4 * math.pi * j / keys)) / 2
         side = V((-dirv.y, dirv.x, 0)) * (sway(f) if sway else 0.0)
-        arm.location = p + side + V((0, 0, arm["ground"] + bob)); arm.keyframe_insert("location", frame=f)
+        arm.location = p + side + V((0, 0, lift[j])); arm.keyframe_insert("location", frame=f); ch.key_ground(arm, f, lift[j])
         arm.rotation_euler = (0, 0, h); arm.keyframe_insert("rotation_euler", index=2, frame=f)
         f += step
     ch.set_interp(arm, "LINEAR", "location"); ch.set_interp(arm, "LINEAR", "rotation_euler")
     total_f = f0 + int(total / speed * 30.0)
-    ch.cloth_walk(arm, f0, min(f1, total_f), cycle, phase)           # coat hem trails and swings with the walk
+    ch.cloth_walk(arm, f0, min(f1, total_f), keys * step, phase)           # coat hem trails and swings with the walk
     return speed, (lambda f: at(min(total, speed * (f - f0) / 30.0)))
 
 HOLD = {}       # rig name -> frames whose keys must hold (CONSTANT): rigs jump between sets at cuts
@@ -92,7 +90,8 @@ def stand_at(arm, f, pos, heading_deg, pose="stand"):
     scn.frame_set(f); ch.posed(arm, pose)
     for b in ch.ANIM_BONES:
         arm.pose.bones[b].keyframe_insert("rotation_quaternion", frame=f)
-    arm.location = V(pos) + V((0, 0, arm["ground"])); arm.keyframe_insert("location", frame=f)
+    arm.location = V(pos) + V((0, 0, arm["ground_rest"])); arm.keyframe_insert("location", frame=f)
+    ch.key_ground(arm, f, arm["ground_rest"])
     arm.rotation_euler = (0, 0, math.radians(heading_deg)); arm.keyframe_insert("rotation_euler", index=2, frame=f)
 
 # ------------------------------------------------------------------ cast (built before the city: cheap pose solves)
@@ -168,9 +167,9 @@ def attempts(arm, f0, f1, base, heading, amp=0.22, rate=11.0):
     h = math.radians(heading); side = V((math.cos(h), math.sin(h), 0))
     for f in range(f0 + 2, f1, 3):
         s_ = math.sin(2 * math.pi * (f - f0) / rate)
-        arm.location = base + side * amp * s_ + V((0, 0, arm["ground"] - 0.05 * abs(s_)))
+        arm.location = base + side * amp * s_ + V((0, 0, arm["ground_rest"]))     # side-steps, feet stay on the ground
         arm.keyframe_insert("location", frame=f)
-    arm.location = base + V((0, 0, arm["ground"])); arm.keyframe_insert("location", frame=f1)   # settle, then hold
+    arm.location = base + V((0, 0, arm["ground_rest"])); arm.keyframe_insert("location", frame=f1)   # settle, then hold
     HOLD.setdefault(arm.name, set()).add(f1)
 
 def hold_jumps(arm):
@@ -359,12 +358,14 @@ scn.render.compositor_device = "CPU"
 scn.view_layers[0].use_pass_object_index = True
 ng = bpy.data.node_groups.new("comp", "CompositorNodeTree"); scn.compositing_node_group = ng
 rl = ng.nodes.new("CompositorNodeRLayers"); idm = ng.nodes.new("CompositorNodeIDMask"); idm.inputs["Index"].default_value = 7
+idm.inputs["Anti-Alias"].default_value = True                                          # soft mask edges (no stair-steps in the aura)
 go = ng.nodes.new("NodeGroupOutput"); ng.interface.new_socket("Image", in_out="OUTPUT", socket_type="NodeSocketColor")
 ng.links.new(rl.outputs["Image"], go.inputs[0]); ng.links.new(rl.outputs["Object Index"], idm.inputs["ID value"])
 fo = ng.nodes.new("CompositorNodeOutputFile"); fo.directory = os.path.join(HERE, "masks"); fo.file_name = "mask_"
 fo.format.media_type = "IMAGE"; fo.format.file_format = "PNG"; fo.format.color_mode = "BW"
 fo.file_output_items.new("FLOAT", ""); ng.links.new(idm.outputs["Alpha"], fo.inputs[0])
 idy = ng.nodes.new("CompositorNodeIDMask"); idy.inputs["Index"].default_value = 8      # the narrator (yellow aura)
+idy.inputs["Anti-Alias"].default_value = True
 ng.links.new(rl.outputs["Object Index"], idy.inputs["ID value"])
 fy = ng.nodes.new("CompositorNodeOutputFile"); fy.directory = os.path.join(HERE, "masks_y"); fy.file_name = "mask_"
 fy.format.media_type = "IMAGE"; fy.format.file_format = "PNG"; fy.format.color_mode = "BW"
