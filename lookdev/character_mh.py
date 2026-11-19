@@ -834,10 +834,10 @@ def build_drape_coat(coll, arm, V, body_faces, dom, kd, bused, per_vert, J, st, 
     zs_ = sh_z + 0.035      # where the shoulder slope ends (over the top of the deltoid)
     def W(z):   # half width: collar -> shoulder slope -> hanging, flaring out to the hem
         if z > zs_:
-            return 0.09 + (sh_x + 0.1 - 0.09) * smooth((neck_z + 0.025 - z) / (neck_z + 0.025 - zs_)) ** 0.7
+            return 0.1 + (sh_x + 0.1 - 0.1) * smooth((neck_z + 0.005 - z) / (neck_z + 0.005 - zs_)) ** 0.7
         return sh_x + 0.1 + 0.14 * smooth((zs_ - z) / (zs_ - hem_z)) ** 1.4
     ROWS, COLS = 34, 26
-    zs = [neck_z + 0.025 - (neck_z + 0.025 - hem_z) * (k / (ROWS - 1)) for k in range(ROWS)]
+    zs = [neck_z + 0.005 - (neck_z + 0.005 - hem_z) * (k / (ROWS - 1)) for k in range(ROWS)]
     prof = []
     for z in zs:
         cy, yf, yb = extents(min(z, sh_z))
@@ -845,7 +845,7 @@ def build_drape_coat(coll, arm, V, body_faces, dom, kd, bused, per_vert, J, st, 
             cy2, yf2, yb2 = extents(z); yf = min(yf, yf2); yb = max(yb, yb2)
         drop = smooth((sh_z - z) / (sh_z - hem_z))
         top = smooth((z - (sh_z - 0.06)) / 0.08)               # puff over the shoulders front and back
-        prof.append((z, W(z), yf - 0.04 - 0.05 * drop - 0.03 * top, yb + 0.04 + 0.08 * drop + 0.03 * top, (yf + yb) / 2))
+        prof.append((z, W(z), yf - 0.03 - 0.05 * drop - 0.01 * top, yb + 0.04 + 0.08 * drop + 0.02 * top, (yf + yb) / 2))
     P = 0.55
     def point(z, w, yf, yb, cy, phi, sx, out=0.0):
         x = sx * (w + out) * max(0.0, math.sin(phi)) ** P

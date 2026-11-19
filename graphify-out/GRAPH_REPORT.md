@@ -1,17 +1,17 @@
 # Graph Report - Arty  (2026-11-19)
 
 ## Corpus Check
-- 800 files · ~1,033,253 words
+- 800 files · ~1,033,271 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 196 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
 ## Summary
-- 7377 nodes · 10928 edges · 599 communities (501 shown, 98 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 185 edges (avg confidence: 0.85)
+- 7377 nodes · 10925 edges · 601 communities (503 shown, 98 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 182 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `885710ee`
+- Built from commit: `1fba1499`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -607,6 +607,8 @@
 - Yb
 - script-format.md
 - Batch
+- film.py
+- crowd
 - shop_interior
 
 ## God Nodes (most connected - your core abstractions)
@@ -636,7 +638,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (599 total, 98 thin omitted)
+## Communities (601 total, 98 thin omitted)
 
 ### Community 0 - "ref_node_fs"
 Cohesion: 0.05
@@ -671,8 +673,8 @@ Cohesion: 0.04
 Nodes (43): Ambient Glow Bloom, Critical Constraints, How It Works, Recipe, See also, Shimmer sweep (text-clipped status-phrase working-state), Values, Variations (+35 more)
 
 ### Community 8 - "character_mh.py"
-Cohesion: 0.06
-Nodes (40): add_cap(), add_locks(), add_mods(), add_phone(), add_umbrella(), apply_face(), assign_weights(), bone_parent() (+32 more)
+Cohesion: 0.07
+Nodes (37): add_cap(), add_locks(), add_mods(), apply_face(), assign_weights(), bone_parent(), build(), build_drape_coat() (+29 more)
 
 ### Community 9 - "city.py"
 Cohesion: 0.11
@@ -1087,7 +1089,7 @@ Cohesion: 0.10
 Nodes (20): Clarity / rhetoric technique catalog, Continuity across frames, Core rule, Emotional beats, Final checklist, Frame template, Hook strategy, Music & silence (+12 more)
 
 ### Community 112 - "paper_diorama.py"
-Cohesion: 0.13
+Cohesion: 0.15
 Nodes (14): area(), card(), disc(), ellipse(), keeper(), lin(), metal(), offset() (+6 more)
 
 ### Community 113 - "make-composition.cjs"
@@ -1339,8 +1341,8 @@ Cohesion: 0.22
 Nodes (14): Ae(), ce(), $d(), ee(), ha(), ka(), le(), me() (+6 more)
 
 ### Community 178 - "posed"
-Cohesion: 0.16
-Nodes (12): _aimer(), aim(), animate_walk(), _fingers(), posed(), _prop_arm(), _reset(), set_interp() (+4 more)
+Cohesion: 0.29
+Nodes (8): _aimer(), aim(), _fingers(), posed(), _prop_arm(), _reset(), walk_library(), _walk_phase()
 
 ### Community 179 - "On Activation"
 Cohesion: 0.15
@@ -1900,7 +1902,7 @@ Nodes (7): Example, Narration & Script, Number Pronunciation, Pacing, Structure,
 
 ### Community 318 - "film_camera.py"
 Cohesion: 0.17
-Nodes (14): every(), flat(), ha(), hp_(), hs(), key(), mont(), fn() (+6 more)
+Nodes (13): every(), flat(), ha(), hp_(), hs(), key(), mont(), fn() (+5 more)
 
 ### Community 319 - "Steps"
 Cohesion: 0.25
@@ -2083,8 +2085,8 @@ Cohesion: 0.29
 Nodes (6): Classify the request, Common workflow, Media treatments, Permission and scope, Seed or assemble, Translate vague feedback conservatively
 
 ### Community 364 - "film_v1.py"
-Cohesion: 0.06
-Nodes (15): carve(), hold_jumps(), stand_at(), visible(), walk_path(), fr(), hero_y(), hp() (+7 more)
+Cohesion: 0.14
+Nodes (10): fr(), hero_y(), hp(), key(), np_(), on_hero(), on_narr(), pov() (+2 more)
 
 ### Community 365 - "Discrete Text Sequence"
 Cohesion: 0.29
@@ -2638,6 +2640,14 @@ Nodes (3): paradigmRansomrail(), ransomChipCss(), setpieceRansomnote()
 Cohesion: 0.40
 Nodes (4): Example, `SCRIPT.md` — locked narration (optional), Shape, To TTS
 
+### Community 598 - "film.py"
+Cohesion: 0.09
+Nodes (5): carve(), hold_jumps(), stand_at(), visible(), walk_path()
+
+### Community 599 - "crowd"
+Cohesion: 0.20
+Nodes (7): add_phone(), add_umbrella(), animate_walk(), grip(), set_interp(), crowd(), extra_style()
+
 ### Community 601 - "shop_interior"
 Cohesion: 0.48
 Nodes (4): _box(), _emit(), rooftop(), shop_interior()
@@ -2649,11 +2659,11 @@ Nodes (4): _box(), _emit(), rooftop(), shop_interior()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `clone()` connect `heygen.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.174) - this node is a cross-community bridge._
+  _High betweenness centrality (0.179) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.046703296703296704 - nodes in this community are weakly interconnected._
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `Text To Speech` to `heygen.mjs`?**
-  _High betweenness centrality (0.174) - this node is a cross-community bridge._
+  _High betweenness centrality (0.179) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Should `json` be split into smaller, more focused modules?**

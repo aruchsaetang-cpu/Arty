@@ -79,8 +79,9 @@ def pov_turn(f):
     return (STOP + V((3.2, 0.12, 1.6)) + c, STOP + V((0, l.x, 1.62 + l.z)), STOP + V((0, 0, 1.7)), 38, 2.8)
 every("turn", pov_turn)
 mid = (STOP + NARR_T) / 2
-shot("teach", fixed(mid + V((0.15, -2.1, 1.25)), mid + V((0, 0, 1.45)), mid + V((0, 0, 1.5)), 24, 2.8),
-     fixed(mid + V((0.1, -1.85, 1.28)), mid + V((0, 0, 1.47)), mid + V((0, 0, 1.5)), 24, 2.8))
+# two-shot down the alley: the kid (umbrella) near and right, the hero beyond him, facing each other
+shot("teach", fixed(mid + V((2.9, -1.55, 1.3)), mid + V((-0.25, 0, 1.5)), mid + V((0, 0, 1.55)), 24, 2.8),
+     fixed(mid + V((2.6, -1.4, 1.32)), mid + V((-0.25, 0, 1.52)), mid + V((0, 0, 1.55)), 24, 2.8))
 
 # --- training: the rooftop, the second alley, then a hundred nights in three cuts
 rmid = (RT + RN) / 2
