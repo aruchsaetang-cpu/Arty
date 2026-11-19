@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795088118.8116953,
-    "seen": 1795089135.0061803,
-    "ast_hash": "e7e7b70066755f2c411a18695fabf680",
+    "mtime": 1795105289.379029,
+    "seen": 1795105349.461963,
+    "ast_hash": "d904da2173aa300c4a9483ae1408d651",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -6660,9 +6660,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/cast.py": {
-    "mtime": 1795087626.2382016,
-    "seen": 1795087992.9660282,
-    "ast_hash": "4ae677211bde34623a24aeaf5ae421ab",
+    "mtime": 1795105314.1751268,
+    "seen": 1795105349.4619823,
+    "ast_hash": "9802f2a73c481d1239cae30d044545b4",
     "semantic_hash": ""
   },
   "shorts/aura/cues2.py": {
@@ -7209,6 +7209,42 @@
     "mtime": 1795103349.738093,
     "seen": 1795103380.5915153,
     "ast_hash": "34bd2aafb541ba525e48d9728d21e805",
+    "semantic_hash": ""
+  },
+  "shorts/aura/assets/brand/make_prints.py": {
+    "mtime": 1795105123.9057307,
+    "seen": 1795105349.4619746,
+    "ast_hash": "1631aead1f1c15d831b8b61ecef2f0a5",
+    "semantic_hash": ""
+  },
+  "shorts/aura/assets/brand/banner_arty_clips.png": {
+    "mtime": 1795105091.938278,
+    "seen": 1795105349.4629693,
+    "ast_hash": "b76e1d6070d4c0eb1d1dcde075a7b21d",
+    "semantic_hash": ""
+  },
+  "shorts/aura/assets/brand/logo_A.png": {
+    "mtime": 1795105091.9359655,
+    "seen": 1795105349.462971,
+    "ast_hash": "105dff14c4839478c6c1081a0af80b38",
+    "semantic_hash": ""
+  },
+  "shorts/aura/assets/brand/print_back.png": {
+    "mtime": 1795105126.5941985,
+    "seen": 1795105349.4629722,
+    "ast_hash": "5f9c1dbdfb5d3099303b3a61600adb25",
+    "semantic_hash": ""
+  },
+  "shorts/aura/assets/brand/print_chest.png": {
+    "mtime": 1795105126.1181986,
+    "seen": 1795105349.4629736,
+    "ast_hash": "c5a2efc8d22d37da7907a34c915a5811",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/hoodie_merch_preview.png": {
+    "mtime": 1795105340.8342113,
+    "seen": 1795105349.463001,
+    "ast_hash": "399fd017fb421179a866748c10d59492",
     "semantic_hash": ""
   }
 }

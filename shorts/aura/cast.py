@@ -2,11 +2,15 @@
 Every face is different: the hero has the idol face and the only black-and-white eyes; everyone else gets their own
 face sculpt (FACES in character_mh)."""
 
+import os
+_BRAND = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "brand", "")
 # the narrator before training: skinny kid, black hoodie with the hood down, grey joggers, pink sneakers, umbrella
 NARR_A = dict(body="m_slim", height=1.78, skin=("#f1d3ba", "#b4876e"), face="boy", hair="bangs", hair_col="#15171c",
               locks=False, top=("#1f2026", "#08090c"), turtleneck=True, hood=True, coat=None, manhwa_head=True,
               legs="trousers", leg_col=("#7c7f88", "#3a3c42"), shoes=("#e8bdb6", "#f2efe9"), sneakers=True,
-              brows="#16131a", iris="#6e4a32", subsurf=1)
+              brows="#16131a", iris="#6e4a32", subsurf=1, prints=[       # the channel's merch: white prints
+                  dict(img=_BRAND + "print_chest.png", side="front", x=0.165, dz=0.07, w=0.14),  # "A" badge, left chest
+                  dict(img=_BRAND + "print_back.png", side="back", dz=0.40, w=0.48)])          # ARTY CLIPS across the back
 # the narrator after a hundred nights: leaner, same clothes (black hoodie, grey joggers, pink sneakers)
 NARR_B = dict(NARR_A, body="m_lean")
 

@@ -416,6 +416,47 @@ def glow_mat(hexc, strength):
     return _cache[key]
 
 # ---------------------------------------------------------------- mesh helpers
+def add_prints(ob, prints):
+    """Screen prints on a garment, projected straight on in rest pose so they ride the cloth as it moves.
+    prints: dicts with img (path), side ("front" or "back"), x, z (centre, rig units), w (width). The print keeps the
+    cel shading of the cloth (lit / mid / shadow bands) and sits on top of it where the image is opaque."""
+    me = ob.data; base = me.materials[0]
+    mat = base.copy(); mat.name = base.name + "_print"; me.materials[0] = mat
+    nt = mat.node_tree; N, L = nt.nodes, nt.links
+    em = next(n for n in N if n.type == "EMISSION"); col = em.inputs["Color"].links[0].from_socket
+    dot = next(n for n in N if n.type == "VECT_MATH" and n.operation == "DOT_PRODUCT").outputs["Value"]
+    def m(op, a, b):
+        n = N.new("ShaderNodeMath"); n.operation = op
+        for i, v in enumerate((a, b)):
+            if isinstance(v, (int, float)): n.inputs[i].default_value = v
+            else: L.new(v, n.inputs[i])
+        return n.outputs[0]
+    shade = m("ADD", 0.5, m("ADD", m("MULTIPLY", m("GREATER_THAN", dot, 0.02), 0.25), m("MULTIPLY", m("GREATER_THAN", dot, 0.42), 0.25)))
+    for k, p in enumerate(prints):
+        im = bpy.data.images.load(p["img"], check_existing=True); iw, ih = im.size; h = p["w"] * ih / iw
+        uv = me.uv_layers.new(name=f"print{k}"); front = p["side"] == "front"
+        def ok(v):
+            co, nr = v.co, v.normal
+            return ((nr.y < -0.02 and co.y < 0.02) if front else (nr.y > 0.15 and co.y > -0.02)) and abs(co.x) < 0.22
+        for poly in me.polygons:   # whole faces in or out: a face straddling the edge would smear the image across it
+            vs = [me.vertices[me.loops[li].vertex_index] for li in poly.loop_indices]
+            inside = all(ok(v) for v in vs)
+            for li, v in zip(poly.loop_indices, vs):
+                co = v.co
+                u = ((co.x - p["x"]) if front else -(co.x - p["x"])) / p["w"] + 0.5
+                uv.data[li].uv = (u, (co.z - p["z"]) / h + 0.5) if inside else (-5.0, -5.0)
+        um = N.new("ShaderNodeUVMap"); um.uv_map = uv.name
+        tx = N.new("ShaderNodeTexImage"); tx.image = im; tx.extension = "CLIP"; tx.interpolation = "Cubic"
+        L.new(um.outputs["UV"], tx.inputs["Vector"])
+        pc = N.new("ShaderNodeMix"); pc.data_type = "RGBA"; pc.blend_type = "MULTIPLY"; pc.inputs[0].default_value = 1.0
+        L.new(tx.outputs["Color"], pc.inputs[6])
+        sv = N.new("ShaderNodeCombineXYZ"); [L.new(shade, sv.inputs[i]) for i in range(3)]
+        L.new(sv.outputs[0], pc.inputs[7])
+        mx = N.new("ShaderNodeMix"); mx.data_type = "RGBA"
+        L.new(tx.outputs["Alpha"], mx.inputs[0]); L.new(col, mx.inputs[6]); L.new(pc.outputs[2], mx.inputs[7])
+        col = mx.outputs[2]
+    L.new(col, em.inputs["Color"])
+
 def make_mesh(name, coll, V, faces, offset=None):
     used = sorted({i for f in faces for i in f}); remap = {o: n for n, o in enumerate(used)}
     co = [V[i] + (offset[i] if offset else Vector()) for i in used]
@@ -651,6 +692,11 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
         snap_edge(tn, lambda co: co.y < -0.02 and co.z > vz - 0.01 and abs(co.x) < (co.z - vz) * 0.62 + 0.025,
                   lambda co: max(0.004, (co.z - vz) * 0.62), 0.0)
     tn.data.materials.append(cel(st["top"][0], st["top"][1], rim="#fff4e0" if sum(lin(st["top"][0])[:3]) > 0.3 else "#4a5874", rim_amt=0.8 if sum(lin(st["top"][0])[:3]) > 0.3 else 0.6, name="knit", crease=st.get("crease", 0.0))); finish(tn, used)
+    if st.get("prints"):   # screen prints on the top (channel logo on the chest, wordmark across the back)
+        torso = chin_z - pelvis_z; br = J("breast.L")
+        add_prints(tn, [dict(p, x=p.get("x", 0) * torso if p["side"] == "front" else 0.0,   # + = the wearer's left
+                             z=(br.z + p["dz"] * torso) if p["side"] == "front" else chin_z - p["dz"] * torso,
+                             w=p["w"] * torso) for p in st["prints"]])
 
     # --- coat / jacket
     if st.get("coat"):
