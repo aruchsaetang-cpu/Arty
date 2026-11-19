@@ -1950,9 +1950,9 @@
     "semantic_hash": ""
   },
   "lookdev/city.py": {
-    "mtime": 1795110714.6787736,
-    "seen": 1795111439.49865,
-    "ast_hash": "c8a173715e930b4fa25cb7fc1b3dcede",
+    "mtime": 1795111684.4325519,
+    "seen": 1795111874.6556432,
+    "ast_hash": "fd612201dab42aa7f6abaacc2609b84d",
     "semantic_hash": ""
   },
   "lookdev/grade.py": {
@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795111164.299123,
-    "seen": 1795111439.498667,
+    "mtime": 1795111742.1915824,
+    "seen": 1795111874.655672,
     "ast_hash": "b95b1d706a6fb6242d95cfeec9485b13",
     "semantic_hash": ""
   },
@@ -7575,6 +7575,12 @@
     "mtime": 1795111430.4785733,
     "seen": 1795111439.4998372,
     "ast_hash": "a976baf655b3dfc8735ef5e480214a55",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/car_types_preview.png": {
+    "mtime": 1795111858.9105988,
+    "seen": 1795111874.6579669,
+    "ast_hash": "b901fda6c595fb56e14483cd7ee53f9c",
     "semantic_hash": ""
   }
 }
