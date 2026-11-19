@@ -118,12 +118,12 @@ place(thunder, 0.4, 2.2)
 place(far, REVEAL + 1.0, 1.4)                                                            # far thunder during the reveal
 tw = np.arange(int(SR * 1.2)) / SR                                                       # time-stop: reverse whoosh into a low boom
 whoosh = hp(lp(rng.standard_normal(len(tw)), 2400), 200) * (tw / tw[-1]) ** 3
-place(whoosh, FREEZE - 1.15, 1.6)
+place(whoosh, FREEZE - 1.15, 0.9)      # ("Then I saw it" sits on the time-stop: keep the mids clear)
 tb = np.arange(int(SR * 2.5)) / SR
 boom = (np.sin(2 * np.pi * (55 - 20 * tb) * tb) * np.exp(-tb * 2.2) + lp(rng.standard_normal(len(tb)), 90) * np.exp(-tb * 3))
 place(boom, FREEZE, 2.6)
 ring = np.sin(2 * np.pi * 1760 * tb) * np.exp(-tb * 1.6) * 0.25 + np.sin(2 * np.pi * 2637 * tb) * np.exp(-tb * 2.2) * 0.15
-place(ring, FREEZE + 0.05, 1.0)                                                          # glassy shimmer of slowed drops
+place(ring, FREEZE + 0.05, 0.55)                                                          # glassy shimmer of slowed drops
 place(whoosh[::-1] * 0.8, SLOW1 - 0.05, 1.2)                                             # time snaps back
 tc = np.arange(int(SR * 3.0)) / SR                                                       # a car passing (hook)
 car = lp(rng.standard_normal(len(tc)), 900) * np.exp(-((tc - 1.5) / 0.6) ** 2)
@@ -132,9 +132,14 @@ sting = np.sin(2 * np.pi * 880 * tb) * np.exp(-tb * 2.0) + 0.5 * np.sin(2 * np.p
 place(sting, next(x["start"] for x in SENTS if "Teach me" in x["text"]) + 0.05, 0.8)       # "Teach me."
 tu = np.arange(int(SR * 0.5)) / SR                                                       # the umbrella snaps shut
 fwump = lp(rng.standard_normal(len(tu)), 1400) * np.exp(-tu * 14) + np.sin(2 * np.pi * 90 * tu) * np.exp(-tu * 18)
-place(fwump, next(x["start"] for x in SENTS if "closed it" in x["text"]) + 1.0, 1.4)
-place(sting * 0.7, CLOSE + 1.05, 0.6)
-place(boom * 0.6, DUR - 2.4, 1.2)                                                        # last word lands
+WORDS = json.load(open(os.path.join(HERE, "words.json")))
+cf0, cf1 = B["close"]["f0"], B["close"]["f1"]
+FOLD = (cf0 + int(0.45 * (cf1 - cf0)) - 1) / FPS                # the frame the umbrella folds (film.py FOLD)
+EYES = FOLD + 4 / FPS                                           # his eyes turn and the yellow aura lights
+LAST = WORDS[-1]["e"]                                           # right after "...wet.": the line, then the hit
+place(fwump, FOLD, 1.4)
+place(sting * 0.7, EYES + 0.02, 0.6)
+place(boom * 0.6, LAST, 1.2)                                                             # last word lands
 
 # a whoosh on every scene change: band-passed air sweeping up in pitch into the cut, panned across, peak on the cut
 # frame; the rain dips a little under it so it reads through the storm
@@ -201,10 +206,97 @@ shim *= np.minimum(1, ts / 0.004) / 4
 def put(x, at, g, pan=0.0):
     i0 = int(at * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
     WH[i0:i0 + L, 0] += x[:L] * g * (1 - pan); WH[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
-put(dive / np.abs(dive).max(), FREEZE - 0.1, 0.8)
-put(sw, DODGE - swp, 0.9, 0.3)
-put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.7, -0.2)
+put(dive / np.abs(dive).max(), FREEZE - 0.1, 0.3)
+put(sw, DODGE - swp, 0.4, 0.3)
+put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.4, -0.2)
 print(f"first dodge at {DODGE:.2f}s (frame {pk_f})")
+
+# ------------------------------------------------------------------ cinematic layer (anime-film style): its own stem
+# braams and sub drops on the big beats, risers into them, a reverse swell, taiko hits for the training, the "kiin"
+# glint when eyes catch light, a heartbeat while he follows, the aura's roar, and a held breath of silence before
+# the umbrella folds
+from scipy.signal import fftconvolve
+CINE = np.zeros((n, 2))
+def word_t(w): return next(x["s"] for x in WORDS if x["w"].strip('.,"“”!?').lower() == w)
+def verb(x, secs=2.2, seed=0, wet=0.5, bright=3500):
+    if x.ndim == 2: x = x.mean(1)
+    r = np.random.default_rng(500 + seed); m = int(SR * secs); tt = np.arange(m) / SR
+    out = []
+    for ch in range(2):
+        ir = lp(r.standard_normal(m), bright) * np.exp(-tt * 6.9 / secs); ir /= np.sqrt((ir ** 2).sum())
+        out.append(x * (1 - wet) + fftconvolve(np.pad(x, (0, m)), ir)[:len(x) + m][:len(x)] * wet * 3)
+    return np.stack(out, 1)
+def cput(x, at, g=1.0):
+    if x.ndim == 1: x = np.stack([x, x], 1)
+    i0 = int(at * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0); CINE[i0:i0 + L] += x[:L] * g
+def braam(secs=3.0, root=55.0, seed=0):
+    r = np.random.default_rng(600 + seed); tt = np.arange(int(SR * secs)) / SR; x = np.zeros(len(tt))
+    for f in (root, root * 1.5, root * 2, root * 3):                          # power chord of detuned saws
+        for det in (-0.6, 0.0, 0.7):
+            ph = 2 * np.pi * (f + det) * tt + r.random() * 6.28; x += (2 * ((ph / (2 * np.pi)) % 1) - 1) / (1 + f / 150)
+    x = np.tanh(1.8 * x / np.abs(x).max())
+    cut = 300 + 2600 * np.exp(-tt * 1.6)                                      # brassy "bwaah" closing down
+    y = np.zeros_like(x); a = np.exp(-2 * np.pi * cut / SR); acc = 0.0
+    for i in range(0, len(x), 256):                                           # block-wise sweeping low-pass
+        seg = x[i:i + 256]; ai = a[i]; from scipy.signal import lfilter
+        z, _ = lfilter([1 - ai], [1, -ai], seg, zi=[acc * ai]); y[i:i + 256] = z; acc = z[-1]
+    return y * np.minimum(1, tt / 0.03) * np.exp(-tt * 1.1)
+def subdrop(secs=1.6, f0=90, f1=28):
+    tt = np.arange(int(SR * secs)) / SR; f = f1 + (f0 - f1) * np.exp(-tt * 3.0)
+    return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 1.4) * np.minimum(1, tt / 0.005)
+def riser(secs=2.0, seed=0):
+    r = np.random.default_rng(700 + seed); tt = np.arange(int(SR * secs)) / SR; u = tt / secs
+    tone = sum(np.sin(2 * np.pi * np.cumsum(f * (1 + 3 * u ** 2)) / SR) for f in (220, 330.5, 441))
+    nz = r.standard_normal(len(tt)); air = hp(lp(nz, 1500) * (1 - u) + lp(nz, 7500) * u, 400)   # brightens as it climbs
+    return (0.25 * tone + air) * u ** 2.2
+def reverse_swell(secs=1.4, seed=0):
+    tt = np.arange(int(SR * secs)) / SR
+    x = sum(np.sin(2 * np.pi * f * tt) * np.exp(-tt * 3) for f in (220, 329.6, 440, 659.3))
+    return verb(x, 2.5, seed, 0.9)[::-1]
+def taiko(seed=0):
+    r = np.random.default_rng(800 + seed); tt = np.arange(int(SR * 1.2)) / SR
+    body = np.sin(2 * np.pi * np.cumsum(62 + 60 * np.exp(-tt * 30)) / SR) * np.exp(-tt * 5)
+    slap = lp(r.standard_normal(len(tt)), 2200) * np.exp(-tt * 60)
+    return verb(body + 0.5 * slap, 1.8, seed, 0.4, 1800)
+def glint(seed=0):                                                            # the anime "kiin"
+    tt = np.arange(int(SR * 1.4)) / SR
+    x = sum(np.sin(2 * np.pi * f * tt + 0.8 * np.sin(2 * np.pi * 6 * tt)) * np.exp(-tt * d)
+            for f, d in ((2793.8, 2.5), (4186.0, 3.2), (5587.7, 4.0), (8372.0, 6.0)))
+    return verb(x * np.minimum(1, tt / 0.002) / 4, 1.6, seed, 0.45, 9000)
+def heartbeat(at, beats_, period0, period1):
+    tt = np.arange(int(SR * 0.5)) / SR
+    thump = lambda: np.sin(2 * np.pi * np.cumsum(48 + 25 * np.exp(-tt * 25)) / SR) * np.exp(-tt * 14)
+    t_ = at
+    for k in range(beats_):
+        p = period0 + (period1 - period0) * k / max(1, beats_ - 1)
+        cput(thump(), t_, 0.55); cput(thump() * 0.6, t_ + 0.26 * p, 0.55); t_ += p
+def roar(secs=1.6, seed=0):                                                   # an aura igniting: a rushing flame
+    r = np.random.default_rng(900 + seed); tt = np.arange(int(SR * secs)) / SR
+    x = lp(r.standard_normal(len(tt)), 900) * (1 + 0.5 * np.sin(2 * np.pi * 11 * tt)) + 0.4 * hp(lp(r.standard_normal(len(tt)), 4000), 1200)
+    return x * np.minimum(1, tt / 0.08) * np.exp(-tt * 1.6)
+
+MON = word_t("monster")                                                       # title: riser -> braam + sub drop
+cput(riser(1.6, 1), MON - 1.6, 0.30); cput(verb(braam(3.2, 55.0, 1), 2.8, 1, 0.35), MON, 0.85)
+cput(subdrop(), MON, 0.9); cput(glint(1), MON + 0.05, 0.35)
+heartbeat(B["follow"]["start"] + 0.2, 4, 0.95, 0.62)                          # he follows: heartbeat quickening
+cput(subdrop(2.0, 70, 24), FREEZE, 0.8)
+cput(glint(2), word_t("dodging"), 0.25)                                        # "...dodging it."
+cput(taiko(1), SLOW1, 0.7)                                                    # time snaps back: a hit
+cput(glint(3), (B["turn"]["f0"] + 10 - 1) / FPS + 0.05, 0.45)                 # he turns: eyes catch the light
+cput(reverse_swell(1.2, 1), word_t("teach") - 1.2, 0.35)                      # "Teach me," with a swell and a big drum
+cput(taiko(2), word_t("teach"), 0.9); cput(subdrop(1.2, 80, 30), word_t("teach"), 0.5)
+m0, m1 = B["train_mont"]["f0"], B["train_mont"]["f1"]; ml = (m1 - m0 + 1) // 3
+for k, at in enumerate([B["train_roof"]["start"], B["train_umb"]["start"]] + [(m0 + i * ml - 1) / FPS for i in range(3)]):
+    cput(taiko(3 + k), at, 0.55 + 0.08 * k)                                   # training: drums build night by night
+cput(riser(1.4, 3), FOLD - 1.6, 0.28)                                         # the fold: rise, hold the breath, hit
+cput(reverse_swell(1.0, 2), FOLD - 1.0, 0.3)
+cput(verb(braam(4.0, 49.0, 2), 3.2, 2, 0.4), FOLD, 1.0); cput(subdrop(2.2, 95, 24), FOLD, 1.0)
+cput(glint(4), EYES, 0.55); cput(roar(1.8, 1), EYES, 0.5)                     # eyes turn void, the yellow aura roars up
+cput(verb(taiko(9), 2.5), LAST, 0.6); cput(verb(braam(4.5, 55.0, 3), 4.0, 3, 0.55), LAST, 0.45)   # "...never get wet."
+# the held breath: rain falls away in the half second before the fold, music and rain come back with the hit
+b0, b1 = int((FOLD - 0.55) * SR), int((FOLD + 0.05) * SR)
+duck[b0:b1] = np.minimum(duck[b0:b1], 1 - 0.75 * np.sin(np.linspace(0, np.pi, b1 - b0)) ** 0.5)
+print(f"cinematic: title {MON:.2f}s, fold {FOLD:.2f}s, eyes {EYES:.2f}s, last word {LAST:.2f}s")
 
 def write(path, x):
     x = x / max(1e-9, np.abs(x).max()) * 0.9
@@ -237,7 +329,8 @@ os.makedirs(os.path.join(HERE, "audio"), exist_ok=True)
 write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
 write(os.path.join(HERE, "audio", "rain.wav"), RAIN * duck[:, None])
-write(os.path.join(HERE, "audio", "whoosh.wav"), WH)                           # scene-change whooshes   # dips under each cut whoosh
+write(os.path.join(HERE, "audio", "whoosh.wav"), WH)                           # scene-change whooshes
+write(os.path.join(HERE, "audio", "cine.wav"), CINE)                           # anime-film hits, risers, glints
 if np.abs(steps).max() > 0:
     write(os.path.join(HERE, "audio", "steps.wav"), steps)
 print(f"stems written: {DUR:.2f}s, slow {FREEZE:.2f}-{SLOW1:.2f}s, close at {CLOSE:.2f}s, payoff at {PAYOFF:.2f}s")

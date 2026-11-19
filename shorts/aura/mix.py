@@ -1,5 +1,6 @@
 """Mix voice (1.2x) + music + rain + SFX, levels relative to the voice's gated RMS: music -9 dB, rain -18 dB,
-SFX hits -10 dB with peaks <= 0.6x voice peak, so the narration always stays on top.
+SFX hits -10 dB with peaks <= 0.6x voice peak, cut sounds and cinematic hits on their own stems, everything
+ducked under the voice (sidechain), so the narration always stays on top.
 Then one linear gain to -14 LUFS and a -1 dBFS limiter (ffmpeg).   python3 shorts/aura/mix.py
 The voice is only the level reference: mix.wav holds music + rain + SFX (the narrator records the voice himself);
 VOICE=1 puts the voice track in too. The loudness gain is measured with the voice, so a real take drops in at level."""
@@ -40,7 +41,24 @@ WPATH = os.path.join(A, "whoosh.wav")     # a whoosh on every scene change (audi
 whoosh = fit(load(WPATH)) if os.path.exists(WPATH) else np.zeros_like(music)
 if np.abs(whoosh).max() > 0:
     whoosh *= 0.55 * vp / np.abs(whoosh).max()
-sfx = sfx + steps + whoosh
+CPATH = os.path.join(A, "cine.wav")       # anime-film hits/risers/glints (audio.py), peaks 0.7x voice peak
+cine = fit(load(CPATH)) if os.path.exists(CPATH) else np.zeros_like(music)
+if np.abs(cine).max() > 0:
+    cine *= 0.7 * vp / np.abs(cine).max()
+# sidechain duck: while the narrator speaks, SFX/cinematic hits drop up to 9 dB and music 3 dB (fast attack,
+# slow release), so big moments swell in the gaps between words and never cover a line
+from scipy.signal import lfilter
+def follow(x, ms):
+    a = np.exp(-1 / (SR * ms / 1000)); return lfilter([1 - a], [1, -a], x)
+env = np.sqrt(follow(voice.mean(1) ** 2, 30)); on = np.clip(env / (0.35 * vr), 0, 1)
+att, rel = np.exp(-1 / (SR * 0.015)), np.exp(-1 / (SR * 0.35))
+sm = np.empty_like(on); y = 0.0
+for i0 in range(0, len(on), 4800):                      # attack/release smoother (blocks of 0.1 s, vectorised inside)
+    seg = on[i0:i0 + 4800]
+    up = lfilter([1 - att], [1, -att], seg, zi=[y * att])[0]; dn = lfilter([1 - rel], [1, -rel], seg, zi=[y * rel])[0]
+    out = np.where(seg > y, np.maximum(up, dn), dn); sm[i0:i0 + len(seg)] = out; y = out[-1]
+duck_fx = (1 - (1 - db(-9)) * sm)[:, None]; duck_mu = (1 - (1 - db(-3)) * sm)[:, None]
+sfx = (sfx + whoosh + cine) * duck_fx + steps; music = music * duck_mu
 for name, x in (("music", music), ("rain", rain), ("sfx", sfx)):
     print(f"{name}: {20 * np.log10(gated_rms(x) / vr):+.1f} dB vs voice (gated RMS), peak {np.abs(x).max() / vp:.2f}x voice peak")
 mix = voice + music + rain + sfx
