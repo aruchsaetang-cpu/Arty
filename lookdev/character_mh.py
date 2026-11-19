@@ -71,7 +71,8 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
 # flaring off the shoulders, black V-neck top, light-grey creased trousers, black loafers; slicked-back hair,
 # idol face, and the eyes nobody else has (black sclera, white irises)
 HERO_LOOK = dict(body="m_slender", vtaper=False, crease=0.0, turtleneck=False, vneck=True, top=("#17181c", "#050506"),
-                 coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, lapels=True, coat_flare=(0.07, 0.16), tie=None,
+                 coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, lapels=True, drape=True, coat_flare=(0.04, 0.08),
+                 tie=None,
                  creases=True,
                  leg_col=("#c4c5ca", "#767880"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
                  face="idol", hair="slick", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
@@ -516,7 +517,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     if st.get("sleeves") == "short":   # fitted T-shirt: sleeve ends on the upper arm
         TOP = ("spine", "clavicle", "shoulder", "upperarm01", "breast", "neck01", "neck02", "pelvis")
     neck_cut = chin_z - (0.035 if st.get("turtleneck", True) else 0.075)
-    sleeve = ("lowerarm",) if not st.get("coat") and st.get("sleeves") != "short" else ()
+    sleeve = ("lowerarm",) if (not st.get("coat") or st.get("drape")) and st.get("sleeves") != "short" else ()
     tn_faces = [f for f in body_faces if region(f, TOP + sleeve) and min(V[i].z for i in f) > pelvis_z - 0.12
                 and max(V[i].z for i in f) < neck_cut and not (st.get("vneck") and in_vneck(f))]
     off = {i: nrm[i] * 0.004 for f in tn_faces for i in f}
@@ -538,18 +539,36 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             if wide:
                 return c.y < -0.02 and abs(c.x) < gap_w(c.z)
             return c.y < -0.02 and c.z > sternum_z - 0.13 and abs(c.x) < 0.012 + max(0.0, sternum_z - c.z) * 0.22
+        drape = st.get("drape", False)         # jacket thrown over the shoulders, arms not in the sleeves
+        sh = J("upperarm01.L"); sh_z, sh_x = sh.z, abs(sh.x)
+        def side_push(x, z):   # the cape falls from the shoulder points and flares out to the sides
+            k = min(1.0, max(0.0, (abs(x) - 0.05) / 0.1))
+            return math.copysign(0.42 * max(0.0, sh_z + 0.03 - z) * k, x)
+        def to_torso(co, ws):  # rigid on the chest: arm swings don't drag the cape
+            out = {}
+            for b, w in ws.items():
+                key = "spine01" if b.startswith(("upperarm", "lowerarm", "wrist", "finger", "metacarpal", "shoulder")) else b
+                out[key] = out.get(key, 0) + w
+            return out
+        if drape:
+            build_drape_coat(coll, arm, V, body_faces, dom, kd, bused, per_vert, J, st, COAT, sh, neck_z, pelvis_z,
+                             sternum_z, gap_w, objs)
         COAT_SET = ("spine", "clavicle", "shoulder", "upperarm", "lowerarm", "breast", "pelvis")
-        coat_faces = [f for f in body_faces if region(f, COAT_SET) and min(V[i].z for i in f) > pelvis_z - 0.1
+        coat_faces = [] if drape else [f for f in body_faces if region(f, COAT_SET) and min(V[i].z for i in f) > pelvis_z - 0.1
                       and max(V[i].z for i in f) < neck_z + 0.01 and not open_front(f)]
         off = {i: nrm[i] * (0.013 if dom.get(i, "").startswith(("lowerarm", "upperarm")) else 0.016) for f in coat_faces for i in f}
-        cu, used = make_mesh("coat_upper", coll, V, coat_faces, off); cu.data.materials.append(COAT)
-        if wide:
+        if not drape:
+          cu, used = make_mesh("coat_upper", coll, V, coat_faces, off); cu.data.materials.append(COAT)
+        if drape:
+            pass
+        elif wide:
             snap_edge(cu, lambda co: co.y < -0.02 and abs(co.x) < 0.14, lambda co: gap_w(co.z) + 0.004, 0.0)
         else:
             snap_edge(cu, lambda co: co.y < -0.02 and co.z > sternum_z - 0.14 and abs(co.x) < 0.06,
                       lambda co: 0.028 + max(0.0, sternum_z - co.z) * 0.22, 0.0)
-        finish(cu, used, solidify=0.006)
-        if st.get("lapels") and wide:   # notched suit lapels folded back along the open front
+        if not drape:
+            finish(cu, used, solidify=0.006)
+        if st.get("lapels") and wide and not drape:   # notched suit lapels folded back along the open front
             body_bvh_l = bvhtree.BVHTree.FromPolygons([tuple(v) for v in V], body_faces)
             zb, zn, zt = pelvis_z + 0.13, sternum_z - 0.035, neck_z + 0.005
             LAP = cel(st["coat"][1] if not dark else st["coat"][0], st["coat"][1], rim="#d6efff", rim_amt=0.6, name="lapel")
@@ -569,7 +588,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
                     for u in (0.0, 1.0):
                         x = sx * (gap_w(min(z, sternum_z)) + 0.004 + u * w)
                         hit = body_bvh_l.ray_cast(Vector((x, -0.6, z)), Vector((0, 1, 0)))
-                        p_ = (hit[0] + hit[1] * 0.024) if hit[0] else Vector((x, -0.1, z))
+                        p_ = (hit[0] + hit[1] * (0.038 if drape else 0.024)) if hit[0] else Vector((x, -0.1, z))
                         row.append(bm.verts.new(p_))
                     rows.append(row)
                 for r0, r1 in zip(rows, rows[1:]):
@@ -578,8 +597,11 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             lp = bpy.data.objects.new("lapels", me); coll.objects.link(lp); lp.data.materials.append(LAP)
             weights_from_body(lp, kd, bused, per_vert, k=4); add_mods(lp, arm, subsurf=0, solidify=0.003, outline=1.0)
             objs.append(lp)
-        skirt_piece("coat_skirt", coll, V, F, G, kd, bused, per_vert, COAT, st.get("hem", 0.36), st.get("open_skirt", True),
-                    flare=st.get("coat_flare", (0.10, 0.22)), finish=finish, gap=0.075 if wide else 0.035)
+        if not drape:
+          skirt_piece("coat_skirt", coll, V, F, G, kd, bused, per_vert, COAT, st.get("hem", 0.36), st.get("open_skirt", True),
+                    flare=st.get("coat_flare", (0.10, 0.22)), finish=finish, gap=0.075 if wide else 0.035,
+                    side=(lambda x, z0, t: side_push(x, z0) + math.copysign(0.18 * t * min(1.0, max(0.0, (abs(x) - 0.05) / 0.1)), x))
+                    if drape else None)
 
     # --- police tactical vest: navy shell over the jacket, reflective band, white chest patch
     if st.get("vest"):
@@ -787,7 +809,118 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     bpy.context.view_layer.update()
     return arm, objs
 
-def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, flare, finish, solid=0.006, gap=0.035):
+def build_drape_coat(coll, arm, V, body_faces, dom, kd, bused, per_vert, J, st, COAT, sh, neck_z, pelvis_z, sternum_z,
+                     gap_w, objs):
+    """A suit jacket thrown over the shoulders (arms not in the sleeves): one lofted shell hanging from the shoulders,
+    open down the front with notched lapels, loose and flaring at the sides to mid-thigh; empty sleeves hang down
+    its sides. Rigid on the chest; the skirt part follows the thighs a little."""
+    sh_z, sh_x = sh.z, abs(sh.x)
+    knee_z = J("lowerleg01.L").z
+    hem_z = knee_z + 0.16
+    TORSO = ("spine", "pelvis", "breast", "clavicle", "neck01", "upperleg01", "upperleg02", "pectoral")
+    tv = [i for i in bused if dom.get(i, "").startswith(TORSO)]
+    def extents(z):
+        sl = [V[i] for i in tv if abs(V[i].z - z) < 0.025]
+        if not sl:
+            return 0.0, -0.1, 0.1
+        return sum(v.y for v in sl) / len(sl), min(v.y for v in sl), max(v.y for v in sl)
+    def smooth(t): t = min(1.0, max(0.0, t)); return t * t * (3 - 2 * t)
+    zs_ = sh_z + 0.035      # where the shoulder slope ends (over the top of the deltoid)
+    def W(z):   # half width: collar -> shoulder slope -> hanging, flaring out to the hem
+        if z > zs_:
+            return 0.09 + (sh_x + 0.1 - 0.09) * smooth((neck_z + 0.025 - z) / (neck_z + 0.025 - zs_)) ** 0.7
+        return sh_x + 0.1 + 0.14 * smooth((zs_ - z) / (zs_ - hem_z)) ** 1.4
+    ROWS, COLS = 34, 26
+    zs = [neck_z + 0.025 - (neck_z + 0.025 - hem_z) * (k / (ROWS - 1)) for k in range(ROWS)]
+    prof = []
+    for z in zs:
+        cy, yf, yb = extents(min(z, sh_z))
+        if z < pelvis_z - 0.05:
+            cy2, yf2, yb2 = extents(z); yf = min(yf, yf2); yb = max(yb, yb2)
+        drop = smooth((sh_z - z) / (sh_z - hem_z))
+        top = smooth((z - (sh_z - 0.06)) / 0.08)               # puff over the shoulders front and back
+        prof.append((z, W(z), yf - 0.04 - 0.05 * drop - 0.03 * top, yb + 0.04 + 0.08 * drop + 0.03 * top, (yf + yb) / 2))
+    P = 0.55
+    def point(z, w, yf, yb, cy, phi, sx, out=0.0):
+        x = sx * (w + out) * max(0.0, math.sin(phi)) ** P
+        c = math.cos(phi)
+        y = cy - (cy - yf + out) * c if c > 0 else cy - (yb - cy + out) * c
+        return Vector((x, y, z))
+    bm = bmesh.new(); grid = {}
+    for sx in (1, -1):
+        for r, (z, w, yf, yb, cy) in enumerate(prof):
+            g = gap_w(min(z, sternum_z)) + 0.006 if z < neck_z - 0.02 else 0.02
+            phi0 = math.asin(min(0.999, (g / w) ** (1 / P)))
+            for c in range(COLS):
+                phi = phi0 + (math.pi - phi0) * c / (COLS - 1)
+                grid[(sx, r, c)] = bm.verts.new(point(z, w, yf, yb, cy, phi, sx))
+        for r in range(ROWS - 1):
+            for c in range(COLS - 1):
+                q = (grid[(sx, r, c)], grid[(sx, r + 1, c)], grid[(sx, r + 1, c + 1)], grid[(sx, r, c + 1)])
+                bm.faces.new(q if sx > 0 else q[::-1])
+    bmesh.ops.remove_doubles(bm, verts=[grid[(sx, r, COLS - 1)] for sx in (1, -1) for r in range(ROWS)], dist=0.002)
+    me = bpy.data.meshes.new("coat_drape"); bm.to_mesh(me); bm.free()
+    for p_ in me.polygons: p_.use_smooth = True
+    ob = bpy.data.objects.new("coat_drape", me); coll.objects.link(ob); ob.data.materials.append(COAT)
+    def bias(co, ws):
+        out = {}; legs = 0.0
+        low = smooth((pelvis_z - co.z) / 0.25)
+        for b, w in ws.items():
+            if b.startswith(("upperarm", "lowerarm", "wrist", "finger", "metacarpal", "shoulder")):
+                b = "spine01"
+            if b.startswith(("upperleg", "lowerleg")):
+                out[b] = out.get(b, 0) + w * 0.35 * low; legs += w * (1 - 0.35 * low)
+            else:
+                out[b] = out.get(b, 0) + w
+        out["spine05"] = out.get("spine05", 0) + legs
+        return out
+    weights_from_body(ob, kd, bused, per_vert, k=6, bias=bias)
+    add_mods(ob, arm, subsurf=st.get("subsurf", 1), solidify=0.007); objs.append(ob)
+    # notched lapels: a lighter strip folded back along each front edge, chest to collar
+    LAP = cel("#bec0c6", st["coat"][1], rim="#eef6ff", rim_amt=0.7, name="lapel")
+    zb, zn = pelvis_z + 0.12, sternum_z - 0.04
+    bm = bmesh.new()
+    for sx in (1, -1):
+        rows = []
+        for z, w, yf, yb, cy in prof:
+            if not (zb <= z <= neck_z + 0.02):
+                continue
+            lw = 0.07 * (z - zb) / (zn - zb) if z < zn else (0.024 if z < zn + 0.014 else 0.045)
+            g = gap_w(min(z, sternum_z)) + 0.006 if z < neck_z - 0.02 else 0.02
+            row = []
+            for gx in (g, g + lw):
+                phi = math.asin(min(0.999, (min(gx, w * 0.98) / w) ** (1 / P)))
+                row.append(bm.verts.new(point(z, w, yf, yb, cy, phi, sx, out=0.006)))
+            rows.append(row)
+        for r0, r1 in zip(rows, rows[1:]):
+            q = (r0[0], r1[0], r1[1], r0[1])
+            bm.faces.new(q if sx > 0 else q[::-1])
+    me = bpy.data.meshes.new("lapels"); bm.to_mesh(me); bm.free()
+    lp = bpy.data.objects.new("lapels", me); coll.objects.link(lp); lp.data.materials.append(LAP)
+    weights_from_body(lp, kd, bused, per_vert, k=4, bias=bias); add_mods(lp, arm, subsurf=0, solidify=0.003); objs.append(lp)
+    # empty sleeves hanging down the outside, from the shoulder seam
+    bm = bmesh.new()
+    for sx in (1, -1):
+        rings = []
+        for k in range(12):
+            t = k / 11; z = sh_z - 0.03 - 0.58 * t
+            cy, yf, yb = extents(min(z, sh_z)); 
+            c = Vector((sx * (W(min(z, zs_ - 0.001)) + 0.04 + 0.02 * t), cy + 0.03 + 0.02 * t, z)); r = 0.06 - 0.01 * t; ring = []
+            for j in range(12):
+                a = 2 * math.pi * j / 12
+                ring.append(bm.verts.new(c + Vector((math.cos(a) * r * 0.75, math.sin(a) * r, 0))))
+            rings.append(ring)
+        for r0, r1 in zip(rings, rings[1:]):
+            for j in range(12):
+                bm.faces.new((r0[j], r0[(j + 1) % 12], r1[(j + 1) % 12], r1[j]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    me = bpy.data.meshes.new("coat_sleeves"); bm.to_mesh(me); bm.free()
+    for p_ in me.polygons: p_.use_smooth = True
+    sl = bpy.data.objects.new("coat_sleeves", me); coll.objects.link(sl); sl.data.materials.append(COAT)
+    weights_from_body(sl, kd, bused, per_vert, k=4, bias=bias)
+    add_mods(sl, arm, subsurf=st.get("subsurf", 1), solidify=0.004); objs.append(sl)
+
+def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, flare, finish, solid=0.006, gap=0.035, side=None):
     """MakeHuman skirt helper re-hemmed and flared: coat skirts, jacket tails, skirts."""
     sk_faces = [f for f, g in zip(F, G) if g == "helper-skirt"]
     sidx = {i for f in sk_faces for i in f}
@@ -799,6 +932,8 @@ def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, 
         v.z = top - t * (top - hem)
         rad = Vector((v.x - cx, v.y - cy, 0)); fl = 1.0 + flare[0] + flare[1] * t
         v.x = cx + rad.x * fl; v.y = cy + rad.y * fl + 0.015 * t
+        if side:   # continue a draped cape's sideways flare (x pushed out, front and back kept)
+            v.x += side(V[i].x - cx, top, t)
         Vs[i] = v
     if open_front:
         sk_faces = [f for f in sk_faces if not (sum((Vs[i] for i in f), Vector()).y / len(f) < cy - 0.03
@@ -1106,7 +1241,7 @@ def _walk_phase(arm, aim, p, prop=None):
 def _prop_arm(aim, prop):
     if prop == "pockets":      # both hands in the trouser pockets, elbows out and back
         for side, sx in (("L", 1), ("R", -1)):
-            ua = (sx * 0.22, 0.22, -1); fa = (-sx * 0.62, -0.42, -0.66); wr = (-sx * 0.25, -0.2, -1)
+            ua = (sx * 0.2, 0.04, -1); fa = (-sx * 0.6, -0.5, -0.62); wr = (-sx * 0.25, -0.25, -1)
             aim(f"upperarm01.{side}", ua); aim(f"upperarm02.{side}", ua)
             aim(f"lowerarm01.{side}", fa); aim(f"lowerarm02.{side}", fa); aim(f"wrist.{side}", wr)
         return

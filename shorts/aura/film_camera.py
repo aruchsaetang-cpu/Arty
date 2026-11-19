@@ -84,8 +84,8 @@ shot("teach", fixed(mid + V((0.15, -2.1, 1.25)), mid + V((0, 0, 1.45)), mid + V(
 
 # --- training: the rooftop, the second alley, then a hundred nights in three cuts
 rmid = (RT + RN) / 2
-shot("train_roof", fixed(ROOF + V((3.0, -4.6, 1.75)), rmid + V((0, 1.0, 1.35)), rmid + V((0, 0, 1.4)), 24, 4.0),
-     fixed(ROOF + V((2.6, -4.0, 1.8)), rmid + V((0, 1.0, 1.35)), rmid + V((0, 0, 1.4)), 24, 4.0))
+shot("train_roof", fixed(rmid + V((2.2, -3.6, 0.9)), rmid + V((0, 0.8, 1.45)), rmid + V((0, 0, 1.4)), 24, 4.0),
+     fixed(rmid + V((1.9, -3.1, 0.95)), rmid + V((0, 0.8, 1.45)), rmid + V((0, 0, 1.4)), 24, 4.0))
 shot("train_umb", fixed(UN + V((-2.2, -1.25, 1.35)), UN + V((0.5, 0.1, 1.42)), UN + V((0, 0, 1.45)), 40, 2.0),
      fixed(UN + V((-1.95, -1.1, 1.36)), UN + V((0.5, 0.1, 1.42)), UN + V((0, 0, 1.45)), 40, 2.0))
 def mont(base, cam_off, look_off, lens, fstop):

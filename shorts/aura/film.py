@@ -83,9 +83,10 @@ def walk_path(arm, pts, f0, f1, cycle=34, stride=0.62, phase=0.0, prop=None, swa
     ch.set_interp(arm, "LINEAR", "location"); ch.set_interp(arm, "LINEAR", "rotation_euler")
     return speed, (lambda f: at(min(total, speed * (f - f0) / 30.0)))
 
+HOLD = {}       # rig name -> frames whose keys must hold (CONSTANT): rigs jump between sets at cuts
 def stand_at(arm, f, pos, heading_deg, pose="stand"):
     """From frame f the rig stands at pos facing heading (0 = toward -y), held until the next key."""
-    prefs.keyframe_new_interpolation_type = "CONSTANT"
+    HOLD.setdefault(arm.name, set()).add(f)
     scn.frame_set(f); ch.posed(arm, pose)
     for b in ch.ANIM_BONES:
         arm.pose.bones[b].keyframe_insert("rotation_quaternion", frame=f)
@@ -162,18 +163,32 @@ visible(narr_b, [MONT[2], (fr("close"), fr("close", 1))], umb_b)
 
 # dodge attempts under the umbrella: quick side-steps and ducks (keyed on top of the held stands)
 def attempts(arm, f0, f1, base, heading, amp=0.22, rate=11.0):
-    prefs.keyframe_new_interpolation_type = "BEZIER"
     h = math.radians(heading); side = V((math.cos(h), math.sin(h), 0))
     for f in range(f0 + 2, f1, 3):
         s_ = math.sin(2 * math.pi * (f - f0) / rate)
         arm.location = base + side * amp * s_ + V((0, 0, arm["ground"] - 0.05 * abs(s_)))
         arm.keyframe_insert("location", frame=f)
+    arm.location = base + V((0, 0, arm["ground"])); arm.keyframe_insert("location", frame=f1)   # settle, then hold
+    HOLD.setdefault(arm.name, set()).add(f1)
+
+def hold_jumps(arm):
+    """Keys at HOLD frames are CONSTANT (a cut to another set never slides across the city); the rest ease."""
+    from bpy_extras import anim_utils
+    ad = arm.animation_data
+    cb = anim_utils.action_get_channelbag_for_slot(ad.action, ad.action_slot)
+    hold = HOLD.get(arm.name, set())
+    for fc in cb.fcurves:
+        if fc.data_path.startswith(("location", "rotation_euler", "pose.bones")):
+            for k in fc.keyframe_points:
+                k.interpolation = "CONSTANT" if round(k.co.x) in hold else "BEZIER"
 attempts(narr_a, fr("train_roof") + 6, fr("train_roof", 1), RN, deg_to(RN, RT))
 attempts(narr_a, fr("train_umb") + 4, fr("train_umb", 1), UN, deg_to(UN, UT), amp=0.16, rate=9.0)
 attempts(narr_a, MONT[0][0] + 2, MONT[0][1], RN, deg_to(RN, RT), amp=0.28, rate=8.0)
 attempts(narr_m, MONT[1][0] + 2, MONT[1][1], UN, deg_to(UN, UT), amp=0.3, rate=7.0)
 attempts(narr_b, MONT[2][0] + 2, MONT[2][1], RN, deg_to(RN, RT), amp=0.34, rate=6.0)
 stand_at(narr_b, fr("close"), CLOSE_P, 0, "umbrella")       # (re-key the close-shot stand after the attempts)
+for r_ in (narr_a, narr_m, narr_b, hero_t):
+    hold_jumps(r_)
 
 # "Then one night, I closed it.": the canopy folds shut and drops away
 can = next(o for o in umb_b if o.name.startswith("umbrella"))
