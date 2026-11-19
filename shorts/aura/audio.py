@@ -1,7 +1,8 @@
 """Synthesize the music bed and SFX stems for "Aura Monster" (no samples, all numpy).
 
     python3 shorts/aura/audio.py   -> shorts/aura/audio/music.wav, sfx.wav  (48 kHz stereo)
-Timing follows beats.json; the rain freezes on "The rain stopped around me" and returns at the payoff.
+Timing follows beats.json (v2): the rain slows and muffles in the slow-motion reveal, the music drops out at the turn,
+comes back warm for the training, swells when the umbrella closes, and resolves for the payoff.
 """
 import json, os, wave
 import numpy as np
@@ -11,8 +12,11 @@ SR = 48000
 beats = json.load(open(os.path.join(HERE, "beats.json")))
 DUR = beats["duration"]; n = int(DUR * SR)
 B = {b["id"]: b for b in beats["shots"]}
-FREEZE = beats["freeze"]
-PAYOFF = B["payoff_side"]["start"]; TURN = B["turn"]["start"]; REVEAL = B["reveal_low"]["start"]
+FPS = 30
+SENTS = json.load(open(os.path.join(HERE, "sentences.json")))
+FREEZE = beats["slow0"] / FPS; SLOW1 = beats["slow1"] / FPS          # slow-motion window (rain crawls)
+PAYOFF = B["payoff_two"]["start"]; TURN = B["turn"]["start"]; REVEAL = B["reveal_low"]["start"]
+TRAIN = B["train_roof"]["start"]; CLOSE = B["close"]["start"]
 rng = np.random.default_rng(3)
 t = np.arange(n) / SR
 
@@ -61,10 +65,15 @@ for i, at in enumerate(np.arange(1.0, TURN, 0.85)):
     if FREEZE - 0.2 < at < FREEZE + 1.6:  # hold the breath when time stops
         continue
     music += pluck(motif[i % len(motif)] / 2, at, 0.18)
-music += pad((A2, E3, A3, C4, E4), PAYOFF - 0.2, DUR, 0.45)           # resolve for the payoff
+tt0 = TRAIN - 0.3; k = 0                                               # training: the progression comes back, warmer
+while tt0 < CLOSE:
+    music += pad(prog[k % 4], tt0, min(tt0 + bar + 0.8, CLOSE + 0.6), 0.45); tt0 += bar; k += 1
+for i, at in enumerate(np.arange(TRAIN + 0.4, CLOSE - 0.3, 0.85)):
+    music += pluck(motif[i % len(motif)] / 2, at, 0.15)
+music += pad((A2, E3, A3, C4, E4), CLOSE - 0.1, DUR, 0.5)             # the umbrella closes: resolve through the payoff
 music += pad((A2 / 2,), 0.0, DUR, 0.25)                                # sub drone under everything
 music *= env([(0, 0), (1.2, 1), (FREEZE - 0.1, 1), (FREEZE + 0.2, 0.55), (TURN - 0.3, 0.9), (TURN + 0.6, 0.15),
-              (PAYOFF - 0.2, 0.15), (PAYOFF + 1.5, 1), (DUR - 1.5, 1), (DUR, 0)])
+              (TRAIN - 0.3, 0.2), (TRAIN + 1.0, 0.8), (CLOSE - 0.2, 0.7), (CLOSE + 1.2, 1), (DUR - 1.5, 1), (DUR, 0)])
 music = lp(music, 2800)
 
 # ------------------------------------------------------------------ SFX
@@ -72,7 +81,10 @@ sfx = np.zeros((n, 2))
 rain = rng.standard_normal(n); rain = hp(lp(rain, 3800), 500) * 0.5 + lp(rng.standard_normal(n), 250) * 0.5
 drops = (rng.random(n) < 0.0009) * rng.standard_normal(n) * 3.0
 rain = rain + lp(drops, 4000)
-rain *= env([(0, 0), (0.8, 1), (FREEZE - 0.05, 1), (FREEZE + 0.12, 0.0), (PAYOFF - 0.1, 0.0), (PAYOFF + 0.9, 1), (DUR, 1)])
+slow = env([(0, 0), (FREEZE - 0.05, 0), (FREEZE + 0.25, 1), (SLOW1 - 0.2, 1), (SLOW1 + 0.15, 0), (DUR, 0)])
+rain = rain * (1 - slow) + lp(rain, 520) * slow * 1.6                  # slow motion: the storm goes dull and heavy
+rain *= env([(0, 0), (0.8, 1), (FREEZE - 0.05, 1), (FREEZE + 0.25, 0.55), (SLOW1 - 0.2, 0.55), (SLOW1 + 0.15, 1),
+             (DUR - 0.8, 1), (DUR, 0.6)])
 RAIN = stereo(rain, 0.6, 1)
 
 def place(x, at, gain=1.0, width=0.4, seed=2):
@@ -90,12 +102,17 @@ tb = np.arange(int(SR * 2.5)) / SR
 boom = (np.sin(2 * np.pi * (55 - 20 * tb) * tb) * np.exp(-tb * 2.2) + lp(rng.standard_normal(len(tb)), 90) * np.exp(-tb * 3))
 place(boom, FREEZE, 2.6)
 ring = np.sin(2 * np.pi * 1760 * tb) * np.exp(-tb * 1.6) * 0.25 + np.sin(2 * np.pi * 2637 * tb) * np.exp(-tb * 2.2) * 0.15
-place(ring, FREEZE + 0.05, 1.0)                                                          # glassy shimmer of frozen drops
+place(ring, FREEZE + 0.05, 1.0)                                                          # glassy shimmer of slowed drops
+place(whoosh[::-1] * 0.8, SLOW1 - 0.05, 1.2)                                             # time snaps back
 tc = np.arange(int(SR * 3.0)) / SR                                                       # a car passing (hook)
 car = lp(rng.standard_normal(len(tc)), 900) * np.exp(-((tc - 1.5) / 0.6) ** 2)
 place(car, 2.0, 1.2, 0.8)
 sting = np.sin(2 * np.pi * 880 * tb) * np.exp(-tb * 2.0) + 0.5 * np.sin(2 * np.pi * 1318.5 * tb) * np.exp(-tb * 2.6)
-place(sting, next(x["start"] for x in json.load(open(os.path.join(HERE, "sentences.json"))) if "Your turn" in x["text"]) + 0.05, 0.8)                                               # "Your turn."
+place(sting, next(x["start"] for x in SENTS if "Teach me" in x["text"]) + 0.05, 0.8)       # "Teach me."
+tu = np.arange(int(SR * 0.5)) / SR                                                       # the umbrella snaps shut
+fwump = lp(rng.standard_normal(len(tu)), 1400) * np.exp(-tu * 14) + np.sin(2 * np.pi * 90 * tu) * np.exp(-tu * 18)
+place(fwump, next(x["start"] for x in SENTS if "closed it" in x["text"]) + 1.0, 1.4)
+place(sting * 0.7, CLOSE + 1.05, 0.6)
 place(boom * 0.6, DUR - 2.4, 1.2)                                                        # last word lands
 
 def write(path, x):
@@ -108,4 +125,4 @@ os.makedirs(os.path.join(HERE, "audio"), exist_ok=True)
 write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
 write(os.path.join(HERE, "audio", "rain.wav"), RAIN)
-print(f"stems written: {DUR:.2f}s, freeze at {FREEZE:.2f}s, payoff at {PAYOFF:.2f}s")
+print(f"stems written: {DUR:.2f}s, slow {FREEZE:.2f}-{SLOW1:.2f}s, close at {CLOSE:.2f}s, payoff at {PAYOFF:.2f}s")

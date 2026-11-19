@@ -1974,14 +1974,14 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio.py": {
-    "mtime": 1794989761.1030343,
-    "seen": 1795046142.4895153,
-    "ast_hash": "48f38ee745b4a7768201866d2113ee62",
+    "mtime": 1795063514.9533079,
+    "seen": 1795064307.5159986,
+    "ast_hash": "d0b1c83cab4cde2eb4576ddbac4be764",
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795056017.1745353,
-    "seen": 1795056206.1685297,
+    "mtime": 1795063825.0087874,
+    "seen": 1795064307.5160003,
     "ast_hash": "45dc7434399396d90e74a5eafe6608ee",
     "semantic_hash": ""
   },
@@ -1998,9 +1998,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/chunks.json": {
-    "mtime": 1795006770.202456,
-    "seen": 1795046142.489519,
-    "ast_hash": "3be8aead1da7a409e04567d1f070f816",
+    "mtime": 1795064132.4529054,
+    "seen": 1795064307.5160048,
+    "ast_hash": "7dd7d37ce4937180d40a85fc805a7cc7",
     "semantic_hash": ""
   },
   "shorts/aura/compose.py": {
@@ -2058,21 +2058,21 @@
     "semantic_hash": ""
   },
   "shorts/aura/whisper_words.json": {
-    "mtime": 1795006770.1638317,
-    "seen": 1795046142.4895313,
-    "ast_hash": "629cb921232162fae017c1dfa6dfff10",
+    "mtime": 1795063962.3255813,
+    "seen": 1795064307.516026,
+    "ast_hash": "5512649a9ffeb6896dd714c11bc15997",
     "semantic_hash": ""
   },
   "shorts/aura/words.json": {
-    "mtime": 1795006770.2011817,
-    "seen": 1795046142.4895325,
-    "ast_hash": "9c3dbc43a05738ab9e3084b7cd781dab",
+    "mtime": 1795064132.4491518,
+    "seen": 1795064307.5160272,
+    "ast_hash": "4a4c01b9531d6032d3b5217c189b264d",
     "semantic_hash": ""
   },
   "shorts/aura/words.py": {
-    "mtime": 1795006770.1668468,
-    "seen": 1795046142.4895334,
-    "ast_hash": "593c08796774e7983a51f46ce846311d",
+    "mtime": 1795064132.4019794,
+    "seen": 1795064307.5160282,
+    "ast_hash": "0ff63cf4ce23d8596a25cd113556231b",
     "semantic_hash": ""
   },
   "skills-lock.json": {
@@ -5688,9 +5688,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/hf/index.html": {
-    "mtime": 1795006797.568601,
-    "seen": 1795046142.4901254,
-    "ast_hash": "ace05ae3695c2f7bbc60a194a49e4b99",
+    "mtime": 1795064132.5206738,
+    "seen": 1795064307.5167391,
+    "ast_hash": "53b9ae329d8853c87789070ddd4bc297",
     "semantic_hash": ""
   },
   "videos/gelato-trailer/AGENTS.md": {
@@ -6528,27 +6528,27 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/mix.wav": {
-    "mtime": 1794989764.8881707,
-    "seen": 1795046142.4902682,
-    "ast_hash": "2a1219a7940c6d51ab2492dbac34e3f3",
+    "mtime": 1795063524.9816945,
+    "seen": 1795064307.5169692,
+    "ast_hash": "d9390ed84a5222c902a6994f35084c9d",
     "semantic_hash": ""
   },
   "shorts/aura/audio/music.wav": {
-    "mtime": 1794989763.3121707,
-    "seen": 1795046142.490269,
-    "ast_hash": "26bb7546b6fd8811d658caaf7095cc7b",
+    "mtime": 1795063523.2256942,
+    "seen": 1795064307.5169702,
+    "ast_hash": "20df5fc63c557e36406479f28c46e482",
     "semantic_hash": ""
   },
   "shorts/aura/audio/rain.wav": {
-    "mtime": 1794989763.3641708,
-    "seen": 1795046142.49027,
-    "ast_hash": "1e68640794bb49ef697e209837b8d84c",
+    "mtime": 1795063523.2936943,
+    "seen": 1795064307.5169713,
+    "ast_hash": "0b47eb12c8f91150eff195aa19ef6f48",
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx.wav": {
-    "mtime": 1794989763.3401706,
-    "seen": 1795046142.4902706,
-    "ast_hash": "6082071f3f817e2378742551260cac94",
+    "mtime": 1795063523.2616942,
+    "seen": 1795064307.5169723,
+    "ast_hash": "2601a9f05d64db3678cd1b6a2e5751a1",
     "semantic_hash": ""
   },
   "shorts/aura/audio/voice.wav": {

@@ -21,8 +21,8 @@ for i in range(len(out)):   # words Whisper missed: squeeze between neighbours
     if out[i] is None:
         p = out[i - 1][1] if i else 0.0
         n = next((o[0] for o in out[i + 1:] if o), p + 0.3); out[i] = (p, max(p + 0.05, n))
-KEY = {"dry.", "wet.", "aura", "monster.", "storm.", "magic.", "luck.", "trick.", "stopped", "your", "turn.", "sleep.", "sol"}
-words = [dict(w=w, s=round(s, 3), e=round(e, 3), sent=k, key=w.lower().strip("“”") in KEY)
+KEY = {"wet.", "aura", "monster.", "dry.", "luck.", "trick.", "magic.", "dodging", "storm", "kid.", "teach", "closed", "two", "wet."}
+words = [dict(w=w, s=round(s, 3), e=round(e, 3), sent=k, key=w.lower().strip('“”"') in KEY)
          for (w, k), (s, e) in zip(script, out)]
 json.dump(words, open(os.path.join(HERE, "words.json"), "w"), indent=0)
 chunks, cur = [], []
