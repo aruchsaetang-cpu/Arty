@@ -7,9 +7,8 @@ NARR_A = dict(body="m_slim", height=1.78, skin=("#f1d3ba", "#b4876e"), face="boy
               locks=False, top=("#1f2026", "#08090c"), turtleneck=True, hood=True, coat=None, manhwa_head=True,
               legs="trousers", leg_col=("#7c7f88", "#3a3c42"), shoes=("#e8bdb6", "#f2efe9"), sneakers=True,
               brows="#16131a", iris="#6e4a32", subsurf=1)
-# the narrator after a hundred nights: lean, lightly defined (not bulky), a fitted white T-shirt, black trousers
-NARR_B = dict(NARR_A, body="m_lean", vtaper=False, crease=0.009, top=("#f4f4f2", "#a3a9b5"), turtleneck=False, hood=False,
-              sleeves="short", leg_col=("#1c1d22", "#08090b"), shoes=("#ecebe7", "#d9d7d0"))
+# the narrator after a hundred nights: leaner, same clothes (black hoodie, grey joggers, pink sneakers)
+NARR_B = dict(NARR_A, body="m_lean")
 
 SHOP = dict(vary=101, manhwa_head=True, body="m_heavy", height=1.72, face="round", skin=("#e3b894", "#a2734f"), hair="buzz",
             hair_col="#22201f", coat=None, top=("#e9e6df", "#9a978f"), turtleneck=False, leg_col=("#4a4a4d", "#1d1d1f"),

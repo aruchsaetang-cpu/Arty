@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795087463.7354016,
-    "seen": 1795087570.4055634,
+    "mtime": 1795087828.494569,
+    "seen": 1795087992.9660246,
     "ast_hash": "45dc7434399396d90e74a5eafe6608ee",
     "semantic_hash": ""
   },
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795087227.1183493,
-    "seen": 1795087570.4055734,
-    "ast_hash": "75810164196ba42c5302e3428b6a0a8c",
+    "mtime": 1795087626.238673,
+    "seen": 1795087992.9660347,
+    "ast_hash": "fec4cd46bdfa8ebc46cdf02413e579d5",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -6660,9 +6660,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/cast.py": {
-    "mtime": 1795087227.1188486,
-    "seen": 1795087570.405567,
-    "ast_hash": "0a0acf1218c798192dd0ca8f8104b964",
+    "mtime": 1795087626.2382016,
+    "seen": 1795087992.9660282,
+    "ast_hash": "4ae677211bde34623a24aeaf5ae421ab",
     "semantic_hash": ""
   },
   "shorts/aura/cues2.py": {
@@ -7053,6 +7053,12 @@
     "mtime": 1795087556.0619638,
     "seen": 1795087570.4065773,
     "ast_hash": "b21b836fc96817a12d6c8aeda45eca50",
+    "semantic_hash": ""
+  },
+  "shorts/aura/VOICEOVER_SCRIPT.md": {
+    "mtime": 1795087986.555977,
+    "seen": 1795087992.96756,
+    "ast_hash": "a424d63945b7e3cf6cfa96acc4f0306d",
     "semantic_hash": ""
   }
 }

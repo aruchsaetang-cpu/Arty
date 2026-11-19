@@ -132,7 +132,7 @@ narr_b, _ = ch.build(P, tuple(ROOF), K.NARR_B, pose_mode="umbrella"); narr_b.nam
 umb_b = ch.add_umbrella(narr_b, P, "#1d2230")
 # the payoff: the two of them walking up the street together, nothing in their hands
 hero_p, _ = ch.build_v1(P, (0.0, 64, 0), K.HERO_V1, pose_mode="walk", void_eyes=True); hero_p.name = "HERO_payoff"
-narr_p, _ = ch.build(P, (1.25, 64, 0), K.NARR_B, pose_mode="walk"); narr_p.name = "NARR_payoff"
+narr_p, _ = ch.build(P, (1.25, 64, 0), dict(K.NARR_B, void_eyes=True), pose_mode="walk"); narr_p.name = "NARR_payoff"
 PAY0 = fr("payoff_two") - 20
 _, hero_p_at = walk_path(hero_p, [(0.0, 62.5, 0), (0.0, 30.0, 0)], PAY0, N + 4, cycle=34, prop="pockets")
 walk_path(narr_p, [(1.25, 62.5, 0), (1.25, 30.0, 0)], PAY0, N + 4, cycle=34, stride=0.6, phase=0.25)
@@ -161,6 +161,15 @@ visible(narr_a, [(fr("teach"), fr("train_umb", 1)), MONT[0]], umb_a)
 visible(hero_t, [(fr("train_roof"), MONT[2][1])])
 visible(narr_m, [MONT[1]], umb_m)
 visible(narr_b, [MONT[2], (fr("close"), fr("close", 1))], umb_b)
+def eyes_turn(rig, f, f_end):
+    """From frame f the rig has the hero's eyes (black sclera, white irises): void-eyed copies swap in."""
+    for o in [c for c in rig.children_recursive if c.name.startswith("eye_")]:
+        v = o.copy(); v.data = o.data.copy(); v.animation_data_clear(); v.name = o.name + "_void"
+        for c_ in o.users_collection: c_.objects.link(v)
+        v.data.materials[0] = ch.void_eye_mat(sum(p_.co.length for p_ in o.data.vertices) / len(o.data.vertices))
+        prefs.keyframe_new_interpolation_type = "CONSTANT"
+        o.hide_render = True; o.keyframe_insert("hide_render", frame=f)
+        visible(v, [(f, f_end)])
 
 # dodge attempts under the umbrella: quick side-steps and ducks (keyed on top of the held stands)
 def attempts(arm, f0, f1, base, heading, amp=0.22, rate=11.0):
@@ -334,6 +343,7 @@ def aura(owner, f_on, f_full, f_off=None, watts=70, color=(0.55, 0.92, 1.0)):
     return ob
 aura(hero_a, SLOW0 - 4, SLOW0 + 20, None, 60)
 aura(narr_b, FOLD + 4, FOLD + 26, None, 40, color=(1.0, 0.82, 0.3))          # his aura is yellow
+eyes_turn(narr_b, FOLD + 4, fr("close", 1))                                     # ...and he has the hero's eyes now
 aura(narr_p, 1, 2, None, 40, color=(1.0, 0.82, 0.3)); aura(hero_p, 1, 2, None, 50)
 # white aura composited from a per-frame mask (compose.py): heroes always, the narrator only after he can dodge
 for rig, idx in ((hero_s, 7), (hero_a, 7), (hero_t, 7), (hero_p, 7), (narr_p, 8), (narr_b, 8)):   # 7 white, 8 yellow
