@@ -1819,9 +1819,9 @@ def _walk_arms(aim, p, prop=None):
         _prop_arm(aim, prop)
 
 def _prop_arm(aim, prop):
-    if prop == "pockets":      # both hands in the trouser pockets, elbows out and back
+    if prop == "pockets":      # hands in the side pockets at the hips: arms hang relaxed, forearms angle forward
         for side, sx in (("L", 1), ("R", -1)):
-            ua = (sx * 0.2, 0.04, -1); fa = (-sx * 0.6, -0.5, -0.62); wr = (-sx * 0.25, -0.25, -1)
+            ua = (sx * 0.15, 0.1, -1); fa = (-sx * 0.17, -0.36, -1); wr = (-sx * 0.08, -0.12, -1)
             aim(f"upperarm01.{side}", ua); aim(f"upperarm02.{side}", ua)
             aim(f"lowerarm01.{side}", fa); aim(f"lowerarm02.{side}", fa); aim(f"wrist.{side}", wr)
         return
@@ -1835,7 +1835,7 @@ def _prop_arm(aim, prop):
 def hands_in_pockets(arm):
     """The hands disappear into the trouser pockets: scale them down inside the cloth (permanent for this rig)."""
     for side in ("L", "R"):
-        arm.pose.bones[f"wrist.{side}"].scale = (0.35, 0.35, 0.35)
+        arm.pose.bones[f"wrist.{side}"].scale = (0.02, 0.02, 0.02)
 
 def posed(arm, mode, head_yaw=0.0):
     aim = _aimer(arm); _reset(arm)
@@ -1850,6 +1850,12 @@ def posed(arm, mode, head_yaw=0.0):
             _prop_arm(aim, "phone"); aim("neck02", (0, -0.35, 1)); aim("head", (0, -0.45, 1))
         if mode in ("umbrella", "pockets"):
             _prop_arm(aim, mode)
+        if mode == "pockets":    # the hero's stance: feet about shoulder-width apart, legs straight
+            for side, sx in (("L", 1), ("R", -1)):
+                lg = (sx * 0.12, 0.0, -1)
+                for b in ("upperleg01", "upperleg02", "lowerleg01", "lowerleg02"):
+                    aim(f"{b}.{side}", lg)
+                fb = arm.data.bones[f"foot.{side}"]; aim(f"foot.{side}", fb.tail_local - fb.head_local)
     _fingers(arm, aim)
     if head_yaw:   # look sideways: twist neck and head about their own (vertical) axes
         for b in ("neck02", "head"):

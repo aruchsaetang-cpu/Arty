@@ -38,7 +38,8 @@ VIEWS = [("v2_lineup", (0, -6.6, 1.05), (0, 0, 1.0), 40, 1080, 1920),
          ("v2_side_hero", (hx - 0.85, 0.15, 1.84), (hx, 0, 1.82), 70, 1080, 1920),
          ("v2_feet_hero", (hx + 0.35, -0.75, 0.16), (hx, 0, 0.08), 40, 1080, 1920),
          ("v2_face_narr_b", (X["narr_b"] + 0.1, -0.95, 1.62), (X["narr_b"], 0, 1.62), 70, 1080, 1920),
-         ("v2_body_narr_b", (X["narr_b"], -2.0, 1.25), (X["narr_b"], 0, 1.2), 50, 1080, 1920)]
+         ("v2_body_narr_b", (X["narr_b"], -2.0, 1.25), (X["narr_b"], 0, 1.2), 50, 1080, 1920),
+         ("v2_body_hero", (hx, -3.2, 1.0), (hx, 0, 0.95), 50, 1080, 1920)]
 only = os.environ.get("VIEWS")
 for name, loc, tgt, lens, rx, ry in VIEWS:
     if only and name not in only.split(","):

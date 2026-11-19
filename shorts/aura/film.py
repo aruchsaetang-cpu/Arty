@@ -125,7 +125,7 @@ NARR_T = STOP + V((1.35, 0, 0))                                # facing the hero
 narr_a, _ = ch.build(P, tuple(NARR_T), K.NARR_A, pose_mode="umbrella"); narr_a.name = "NARR_before"
 umb_a = ch.add_umbrella(narr_a, P, "#1d2230")
 # the hero teaching (rooftop / training alley): another rig of the same man, moved between the two sets
-hero_t, _ = ch.build_v1(P, tuple(ROOF), K.HERO_V1, pose_mode="stand", void_eyes=True); hero_t.name = "HERO_train"
+hero_t, _ = ch.build_v1(P, tuple(ROOF), K.HERO_V1, pose_mode="pockets", void_eyes=True); hero_t.name = "HERO_train"
 narr_m, _ = ch.build(P, (16, AL2_Y, 0), dict(K.NARR_A, body="m_lean"), pose_mode="umbrella"); narr_m.name = "NARR_mid"
 umb_m = ch.add_umbrella(narr_m, P, "#1d2230")
 narr_b, _ = ch.build(P, tuple(ROOF), K.NARR_B, pose_mode="umbrella"); narr_b.name = "NARR_after"
@@ -326,6 +326,7 @@ def splashes(name, cx, cy, w, dep, z, n, dry):
     for f in crowns: f.material_index = 1
     bm.to_mesh(me); bm.free()
     ob = bpy.data.objects.new(name, me); C.FX.objects.link(ob); ob.visible_shadow = False
+    ob.visible_diffuse = ob.visible_glossy = ob.visible_transmission = False   # camera only: no dark squares on the floor
     return ob
 splashes("splash_main", 0.0, 45.0, 18.0, 62.0, 0.0, 4200, dry_main)
 splashes("splash_alley", -22.0, AL_Y, 28.0, 5.0, 0.0, 1000,

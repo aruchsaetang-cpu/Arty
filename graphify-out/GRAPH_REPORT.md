@@ -1,17 +1,17 @@
 # Graph Report - Arty  (2026-11-19)
 
 ## Corpus Check
-- 802 files · ~1,046,618 words
+- 802 files · ~1,046,693 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 196 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
 ## Summary
-- 7489 nodes · 11146 edges · 598 communities (500 shown, 98 thin omitted)
+- 7489 nodes · 11146 edges · 598 communities (501 shown, 97 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 190 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6ff2582d`
+- Built from commit: `5248307e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -287,7 +287,7 @@
 - Arty style: cinematic manhwa in Sol
 - gelato-trailer/hyperframes.json
 - tesla-roadster-short/hyperframes.json
-- crowd
+- animate_walk
 - BMad PRD
 - design-example-mobile.md
 - design-example-shadcn.md
@@ -368,7 +368,7 @@
 - Anchored Layout Expand
 - Center-Outward Expansion
 - Visual design — faceless-explainer per-frame shot method
-- cel
+- natural_locks
 - Depth-of-Field Blur (Selective Focus / Rack Focus)
 - Depth Scatter ↔ Assemble
 - plugin-cli.mjs
@@ -430,7 +430,7 @@
 - la
 - 7. Decide Render Strategy
 - Cinematic mode (pure embed) — one engine, six DNAs
-- _MathAim
+- posed
 - ib
 - ib
 - Compile Epic Context
@@ -636,7 +636,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (598 total, 98 thin omitted)
+## Communities (598 total, 97 thin omitted)
 
 ### Community 0 - "ref_node_fs"
 Cohesion: 0.05
@@ -672,11 +672,11 @@ Nodes (43): Ambient Glow Bloom, Critical Constraints, How It Works, Recipe, See 
 
 ### Community 8 - "character_mh.py"
 Cohesion: 0.05
-Nodes (47): add_cloth_motion(), add_locks(), add_mods(), _aimer(), aim(), animate_walk(), apply_face(), apply_targets() (+39 more)
+Nodes (51): add_cap(), add_cloth_motion(), add_locks(), add_mods(), add_phone(), add_umbrella(), apply_face(), apply_targets() (+43 more)
 
 ### Community 9 - "city.py"
 Cohesion: 0.11
-Nodes (32): lin(), alley(), alley_frame(), area(), asphalt(), B(), build_scene(), build_wires() (+24 more)
+Nodes (33): lin(), set_interp(), alley(), alley_frame(), area(), asphalt(), B(), build_scene() (+25 more)
 
 ### Community 10 - "hyperframes-creative/scripts/package-loader.mjs"
 Cohesion: 0.07
@@ -1714,9 +1714,9 @@ Nodes (9): authoringSkill, media, autoProxy, paths, assets, blocks, components, 
 Cohesion: 0.20
 Nodes (9): authoringSkill, media, autoProxy, paths, assets, blocks, components, registry (+1 more)
 
-### Community 271 - "crowd"
-Cohesion: 0.33
-Nodes (5): add_phone(), add_umbrella(), grip(), crowd(), extra_style()
+### Community 271 - "animate_walk"
+Cohesion: 0.25
+Nodes (5): animate_walk(), cloth_walk(), key_ground(), crowd(), extra_style()
 
 ### Community 272 - "BMad PRD"
 Cohesion: 0.22
@@ -2038,9 +2038,9 @@ Nodes (7): Center-Outward Expansion, Critical Constraints, How It Works, Recipe,
 Cohesion: 0.17
 Nodes (12): Before you finish — checklist, Caption-band keep-out (plan side), Inventing the visual — diagrams, type, data-viz, Layout — named inline per Scene, Palette & type — from `frame.md`, never invented, Pick the shape — instantiate a blueprint, Portrait & square (non-16:9 canvases), The unit is a time-coded shot sequence (+4 more)
 
-### Community 352 - "cel"
-Cohesion: 0.09
-Nodes (20): add_cap(), region(), cel(), crop_extras(), eye_mat(), glow_mat(), ink_mat(), long_locks() (+12 more)
+### Community 352 - "natural_locks"
+Cohesion: 0.29
+Nodes (6): natural_locks(), ribbon(), surf(), quiff_locks(), lock(), surf()
 
 ### Community 353 - "Depth-of-Field Blur (Selective Focus / Rack Focus)"
 Cohesion: 0.29
@@ -2281,6 +2281,10 @@ Nodes (6): 7. Decide Render Strategy, Confirm Visual Direction with User (DO THI
 ### Community 415 - "Cinematic mode (pure embed) — one engine, six DNAs"
 Cohesion: 0.40
 Nodes (5): Adding a DNA, Cinematic mode (pure embed) — one engine, six DNAs, What the engine generates (never author these), What you DON'T do, Workflow
+
+### Community 416 - "posed"
+Cohesion: 0.14
+Nodes (10): _aimer(), aim(), _fingers(), _MathAim, posed(), _prop_arm(), _smooth(), _walk_arms() (+2 more)
 
 ### Community 417 - "ib"
 Cohesion: 0.33
@@ -2639,17 +2643,17 @@ Cohesion: 0.48
 Nodes (4): _box(), _emit(), rooftop(), shop_interior()
 
 ## Knowledge Gaps
-- **98 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **97 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `Text To Speech` to `heygen.mjs`?**
-  _High betweenness centrality (0.157) - this node is a cross-community bridge._
+  _High betweenness centrality (0.149) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.04672057502246182 - nodes in this community are weakly interconnected._
 - **Why does `clone()` connect `heygen.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.157) - this node is a cross-community bridge._
+  _High betweenness centrality (0.149) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Should `json` be split into smaller, more focused modules?**
