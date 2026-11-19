@@ -38,11 +38,15 @@ def grade(a):
     bright = np.clip((lum - 0.62) / 0.38, 0, 1)[..., None] * a
     bi = Image.fromarray((np.clip(bright, 0, 1) * 255).astype(np.uint8))
     glow = sum(np.asarray(bi.filter(ImageFilter.GaussianBlur(r)), np.float32) / 255 * k for r, k in ((w * 0.012, 0.55), (w * 0.05, 0.45)))
-    a = 1 - (1 - a) * (1 - glow * 0.9)
+    a = 1 - (1 - a) * (1 - glow * 0.55)                          # restrained bloom: light scatter, not glow
     lum = (a @ np.array([0.2126, 0.7152, 0.0722], np.float32))[..., None]
     sh = np.clip(1 - lum * 2.2, 0, 1); hi = np.clip((lum - 0.55) * 2.2, 0, 1)
-    a = a + sh * np.array([-0.02, 0.025, 0.045], np.float32) + hi * np.array([0.03, 0.015, -0.01], np.float32)
-    a = (a - 0.5) * 1.06 + 0.5
+    warm = np.clip((a[..., :1] - a[..., 2:3]) * 3.0, 0, 1)        # keep warm street-light accents warm
+    a = a + sh * np.array([-0.012, 0.004, 0.03], np.float32) \
+          + hi * (1 - warm) * np.array([0.014, 0.006, 0.022], np.float32) + hi * warm * np.array([0.02, 0.01, -0.005], np.float32)
+    sat = a.mean(axis=2, keepdims=True); a = sat + (a - sat) * 0.94   # controlled saturation
+    a = (a - 0.5) * 1.05 + 0.5
+    a = a * 0.975 + 0.012                                         # rich blacks without crushing detail
     yy, xx = np.mgrid[0:h, 0:w]
     r = np.sqrt(((xx - w / 2) / (w / 2)) ** 2 * 0.6 + ((yy - h / 2) / (h / 2)) ** 2)
     a = a * (1 - np.clip(r - 0.55, 0, 1)[..., None] * 0.45)

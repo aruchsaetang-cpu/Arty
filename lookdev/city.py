@@ -633,6 +633,10 @@ def rain(cx, cy, w, dep, H=9.0, T=24, n=14000):
     e = g.n("ShaderNodeEmission", Strength=1.5); e.inputs["Color"].default_value = lin("#e3f2ff")
     t = g.n("ShaderNodeBsdfTransparent"); mx = g.n("ShaderNodeMixShader", Fac=0.1)
     g.ln(t.outputs[0], mx.inputs[1]); g.ln(e.outputs[0], mx.inputs[2]); g.ln(mx.outputs[0], g.out.inputs[0])
+    # every drop catches the light differently: per-drop brightness and opacity
+    geo = g.n("ShaderNodeNewGeometry")
+    g.ln(g.m("ADD", g.m("MULTIPLY", geo.outputs["Random Per Island"], 1.5), 0.6), e.inputs["Strength"])
+    g.ln(g.m("ADD", g.m("MULTIPLY", geo.outputs["Random Per Island"], 0.1), 0.06), mx.inputs["Fac"])
     bm = bmesh.new()
     pts = [(random.uniform(cx - w / 2, cx + w / 2), random.uniform(cy - dep / 2, cy + dep / 2), random.uniform(0, H)) for _ in range(n)]
     for x, y, z in pts:

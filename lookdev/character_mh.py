@@ -289,6 +289,20 @@ def cel(hexc, shade=None, rim="#cdeffd", spec=0.0, spec_col="#ffffff", light=(-0
         tc = N.new("ShaderNodeTexCoord"); sep = N.new("ShaderNodeSeparateXYZ"); L.new(tc.outputs["Object"], sep.inputs[0])
         cav = mth("MULTIPLY", cav, mth("LESS_THAN", sep.outputs["Z"], crease_zmax))
         c = mix(mth("MULTIPLY", cav, 0.85), c, tuple(x * 0.35 for x in sh[:3]) + (1.0,))
+    # soft contact shadows: under the chin, inside clothing folds, where arms meet the body (short-range AO)
+    ao = N.new("ShaderNodeAmbientOcclusion"); ao.samples = 4; ao.inputs["Distance"].default_value = 0.05
+    occ = mth("MULTIPLY", mth("SUBTRACT", 1.0, ao.outputs["AO"]), 0.4 if name == "skin" else 0.55)
+    c = mix(occ, c, tuple(x * 0.7 for x in sh[:3]) + (1.0,))
+    # light bounced from the neon signs either side of the street: magenta from one side, cyan from the other,
+    # warm from the wet road below (world-space normal, so it stays put as people turn)
+    sep_n = N.new("ShaderNodeSeparateXYZ"); L.new(geo.outputs["Normal"], sep_n.inputs[0])
+    blum = 0.2126 * base[0] + 0.7152 * base[1] + 0.0722 * base[2]
+    k_env = (0.03 if name == "skin" else 0.035) * (0.35 + min(1.0, blum * 1.5))   # a faint tint, fainter on dark cloth
+    for comp, sign, col in (("X", -1, "#ff3d8a"), ("X", 1, "#2fd8ff"), ("Z", -1, "#ffb070")):
+        f_ = mth("MULTIPLY", mth("MAXIMUM", mth("MULTIPLY", sep_n.outputs[comp], sign), 0.0), k_env)
+        ad = N.new("ShaderNodeMix"); ad.data_type = "RGBA"; ad.blend_type = "ADD"
+        L.new(f_, ad.inputs[0]); L.new(c, ad.inputs[6]); ad.inputs[7].default_value = lin(col)
+        c = ad.outputs[2]
     lw = N.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = 0.3
     c = mix(mth("MULTIPLY", mth("GREATER_THAN", lw.outputs["Facing"], 0.6), rim_amt), c, lin(rim))
     e = N.new("ShaderNodeEmission"); e.inputs["Strength"].default_value = glow
@@ -917,6 +931,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
             e = ob.evaluated_get(dg); mw = e.matrix_world
             low = min(low, min((mw @ v.co).z for v in e.data.vertices))
     arm["ground"] = -low if low < 9 else 0.0
+    contact_shadow(coll, arm)
     arm.location = Vector(location) + Vector((0, 0, arm["ground"]))
     bpy.context.view_layer.update()
     return arm, objs
@@ -1442,6 +1457,27 @@ def add_locks(coll, arm, V, J, hair, st, objs):
         lo = bpy.data.objects.new(f"lock{k}", cu); coll.objects.link(lo); lo.data.materials.append(HM)
         bone_parent(lo, arm, "head")
         objs.append(lo)
+
+_CS = {}
+def contact_shadow(coll, arm):
+    """A soft dark pool on the ground under the feet (follows the rig root): grounds the cel-shaded people."""
+    if "mat" not in _CS:
+        m = bpy.data.materials.new("contact_shadow"); m.use_nodes = True; nt = m.node_tree; N_, L_ = nt.nodes, nt.links
+        N_.clear(); out = N_.new("ShaderNodeOutputMaterial"); tc = N_.new("ShaderNodeTexCoord")
+        vm = N_.new("ShaderNodeVectorMath"); vm.operation = "LENGTH"; L_.new(tc.outputs["Object"], vm.inputs[0])
+        mr = N_.new("ShaderNodeMapRange"); mr.inputs["From Min"].default_value = 0.0; mr.inputs["From Max"].default_value = 1.0
+        mr.inputs["To Min"].default_value = 0.55; mr.inputs["To Max"].default_value = 0.0; mr.interpolation_type = "SMOOTHSTEP"
+        L_.new(vm.outputs["Value"], mr.inputs["Value"])
+        tr = N_.new("ShaderNodeBsdfTransparent"); em = N_.new("ShaderNodeEmission"); em.inputs["Color"].default_value = (0.004, 0.005, 0.01, 1)
+        mx = N_.new("ShaderNodeMixShader"); L_.new(mr.outputs["Result"], mx.inputs[0]); L_.new(tr.outputs[0], mx.inputs[1])
+        L_.new(em.outputs[0], mx.inputs[2]); L_.new(mx.outputs[0], out.inputs[0]); _CS["mat"] = m
+    bm = bmesh.new(); bmesh.ops.create_circle(bm, cap_ends=True, radius=1.0, segments=24)
+    me = bpy.data.meshes.new("contact_shadow"); bm.to_mesh(me); bm.free(); me.materials.append(_CS["mat"])
+    ob = bpy.data.objects.new("contact_shadow", me); coll.objects.link(ob)
+    ob.parent = arm; s_ = arm.scale[0]
+    ob.location = (0, 0, (-arm["ground"] + 0.004) / s_); ob.scale = (0.38 / s_, 0.3 / s_, 1)
+    ob.visible_shadow = False; ob["no_mask"] = True
+    return ob
 
 def make_shoes(coll, V, bused, dom, kd, per_vert, st, finish):
     up_c, sole_c = st["shoes"]

@@ -263,6 +263,66 @@ carve(rain_alley, lambda p: (abs(p.y - AL_Y) < 0.5 and p.x > STOP.x - 1.0) or (p
 carve(rain_alley2, lambda p: (p.xy - UT.xy).length < 0.6 or (p.xy - UN.xy).length < 0.75)
 carve(rain_roof, lambda p: (p.xy - RT.xy).length < 0.6 or (p.xy - RN.xy).length < 0.8)
 
+# ------------------------------------------------------------------ splashes + ripples where drops hit the ground
+import random as _rnd
+def splash_mat(name, crown):
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; N_, L_ = nt.nodes, nt.links; N_.clear()
+    out = N_.new("ShaderNodeOutputMaterial"); uvn = N_.new("ShaderNodeUVMap"); sp = N_.new("ShaderNodeSeparateXYZ")
+    L_.new(uvn.outputs[0], sp.inputs[0]); geo = N_.new("ShaderNodeNewGeometry")
+    clock = N_.new("ShaderNodeValue"); clock.name = "rain_clock"
+    def M(op, a, b=None, clamp=False):
+        n = N_.new("ShaderNodeMath"); n.operation = op; n.use_clamp = clamp
+        for i, v in enumerate((a, b)):
+            if v is None: continue
+            if isinstance(v, (int, float)): n.inputs[i].default_value = v
+            else: L_.new(v, n.inputs[i])
+        return n.outputs[0]
+    phase = M("FRACT", M("ADD", M("DIVIDE", clock.outputs[0], 7.0), geo.outputs["Random Per Island"]))
+    if crown:   # a quick crown flash as the drop lands
+        a = M("MULTIPLY", M("MULTIPLY", M("LESS_THAN", phase, 0.16), M("SUBTRACT", 1.0, M("DIVIDE", phase, 0.16))),
+              M("MULTIPLY", M("SUBTRACT", 1.0, sp.outputs["Y"]), 0.85))
+    else:       # an expanding ring that fades as it grows
+        dx = M("SUBTRACT", sp.outputs["X"], 0.5); dy = M("SUBTRACT", sp.outputs["Y"], 0.5)
+        r = M("MULTIPLY", M("SQRT", M("ADD", M("MULTIPLY", dx, dx), M("MULTIPLY", dy, dy))), 2.0)
+        band = M("SUBTRACT", 1.0, M("DIVIDE", M("ABSOLUTE", M("SUBTRACT", r, phase)), 0.09), clamp=True)
+        a = M("MULTIPLY", M("MULTIPLY", band, M("SUBTRACT", 1.0, phase)), 0.5)
+    tr = N_.new("ShaderNodeBsdfTransparent"); em = N_.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = C.lin("#d6e6ff"); em.inputs["Strength"].default_value = 1.1
+    mx = N_.new("ShaderNodeMixShader"); L_.new(a, mx.inputs[0]); L_.new(tr.outputs[0], mx.inputs[1])
+    L_.new(em.outputs[0], mx.inputs[2]); L_.new(mx.outputs[0], out.inputs[0])
+    prefs.keyframe_new_interpolation_type = "CONSTANT"
+    for f in range(1, N + 1):                 # same clock as the rain (crawls in the slow-motion reveal)
+        clock.outputs[0].default_value = ph[f]; clock.outputs[0].keyframe_insert("default_value", frame=f)
+    ch.set_interp(nt, "CONSTANT")
+    return m
+SPL_R, SPL_C = splash_mat("splash_ripple", False), splash_mat("splash_crown", True)
+def splashes(name, cx, cy, w, dep, z, n, dry):
+    rng = _rnd.Random(name); bm = bmesh.new(); uv = bm.loops.layers.uv.new("UVMap"); crowns = []
+    def quad(vs, crown):
+        f = bm.faces.new([bm.verts.new(v) for v in vs])
+        for l_, (u, v) in zip(f.loops, ((0, 0), (1, 0), (1, 1), (0, 1))):
+            l_[uv].uv = (u, v)
+        if crown: crowns.append(f)
+    for _ in range(n):
+        x = rng.uniform(cx - w / 2, cx + w / 2); y = rng.uniform(cy - dep / 2, cy + dep / 2)
+        if dry(V((x, y, 0))):
+            continue
+        r = rng.uniform(0.06, 0.12); zz = z + 0.005
+        quad([(x - r, y - r, zz), (x + r, y - r, zz), (x + r, y + r, zz), (x - r, y + r, zz)], False)
+        h = rng.uniform(0.04, 0.07); c_ = 0.03
+        quad([(x - c_, y, zz), (x + c_, y, zz), (x + c_, y, zz + h), (x - c_, y, zz + h)], True)
+        quad([(x, y - c_, zz), (x, y + c_, zz), (x, y + c_, zz + h), (x, y - c_, zz + h)], True)
+    me = bpy.data.meshes.new(name); me.materials.append(SPL_R); me.materials.append(SPL_C)
+    for f in crowns: f.material_index = 1
+    bm.to_mesh(me); bm.free()
+    ob = bpy.data.objects.new(name, me); C.FX.objects.link(ob); ob.visible_shadow = False
+    return ob
+splashes("splash_main", 0.0, 45.0, 18.0, 62.0, 0.0, 4200, dry_main)
+splashes("splash_alley", -22.0, AL_Y, 28.0, 5.0, 0.0, 1000,
+         lambda p: (abs(p.y - AL_Y) < 0.5 and p.x > STOP.x - 1.0) or (p.xy - NARR_T.xy).length < 0.62)
+splashes("splash_alley2", 18.0, AL2_Y, 20.0, 5.0, 0.0, 700, lambda p: (p.xy - UT.xy).length < 0.6)
+splashes("splash_roof", ROOF.x, ROOF.y + 2.0, 15.0, 12.0, ROOF.z, 1000, lambda p: (p.xy - RT.xy).length < 0.6)
+
 # ------------------------------------------------------------------ aura: the hero always; the kid once he closes it
 def aura(owner, f_on, f_full, f_off=None, watts=70, color=(0.55, 0.92, 1.0)):
     ld = bpy.data.lights.new("aura", "POINT"); ld.color = color; ld.shadow_soft_size = 0.6
@@ -277,7 +337,7 @@ aura(narr_p, 1, 2, None, 40, color=(1.0, 0.82, 0.3)); aura(hero_p, 1, 2, None, 5
 # white aura composited from a per-frame mask (compose.py): heroes always, the narrator only after he can dodge
 for rig, idx in ((hero_s, 7), (hero_a, 7), (hero_t, 7), (hero_p, 7), (narr_p, 8), (narr_b, 8)):   # 7 white, 8 yellow
     for o in [rig] + list(rig.children_recursive):
-        o.pass_index = idx
+        o.pass_index = 0 if o.get("no_mask") else idx            # the ground shadow never glows
 for o in umb_b:
     o.pass_index = 0
 json.dump({"keys": [[1, 0.6], [SLOW0, 0.6], [SLOW0 + 16, 1.25], [SLOW1, 1.2], [SLOW1 + 8, 0.7], [N, 0.8]],
