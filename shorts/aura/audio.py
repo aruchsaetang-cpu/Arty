@@ -147,17 +147,64 @@ def cut_whoosh(seed, length):
         w = np.exp(-((tt - at) / (0.09 + 0.05 * (j < 2))) ** 2) * np.where(tt > pk, np.exp(-(tt - pk) / 0.06), 1)
         x += sosfilt(butter(2, [fc / 1.5, min(fc * 1.5, 0.45 * SR)], "bandpass", fs=SR, output="sos"), r.standard_normal(m)) * w
     return x / (np.abs(x).max() + 1e-9), pk
+def click_sfx(seed):
+    """A crisp UI-style click: press and release, a few ms each, ~35 ms apart."""
+    r = np.random.default_rng(200 + seed); m = int(SR * 0.12); tt = np.arange(m) / SR; x = np.zeros(m)
+    for at, g, f in ((0.0, 1.0, 3400), (0.035 + 0.01 * r.random(), 0.55, 2600)):
+        u = np.clip(tt - at, 0, None); on = tt >= at
+        x += on * g * (np.sin(2 * np.pi * f * u) * np.exp(-u * 900) + hp(r.standard_normal(m), 2500) * np.exp(-u * 1400) * 0.6)
+    return x / np.abs(x).max(), 0.0
+
+def shutter_sfx(seed):
+    """A camera shutter: the mirror slap ("ka") on the cut, the shutter closing ("chk") ~80 ms later, with a little rattle."""
+    r = np.random.default_rng(300 + seed); m = int(SR * 0.3); tt = np.arange(m) / SR; x = np.zeros(m)
+    for at, g, bright in ((0.0, 1.0, 1800), (0.075 + 0.015 * r.random(), 0.8, 2600)):
+        u = np.clip(tt - at, 0, None); on = tt >= at
+        burst = sosfilt(butter(2, [bright, 7500], "bandpass", fs=SR, output="sos"), r.standard_normal(m))
+        x += on * g * (burst * np.exp(-u * 160) + np.sin(2 * np.pi * 180 * u) * np.exp(-u * 70) * 0.5)
+    x += hp(r.standard_normal(m), 3000) * np.exp(-((tt - 0.04) / 0.03) ** 2) * 0.15   # spring rattle between
+    return x / np.abs(x).max(), 0.0
+
 cuts = [b["start"] for b in beats["shots"][1:]]
+kinds = (["whoosh", "click", "shutter"] * (len(cuts) // 3 + 1))[:len(cuts)]
+np.random.default_rng(11).shuffle(kinds)                      # scene changes swap whoosh / click / shutter, no set order
 duck = np.ones(n); WH = np.zeros((n, 2))                      # own stem: mix.py sets its level
-for k, c in enumerate(cuts):
-    x, pk = cut_whoosh(k, 0.45 + 0.08 * (k % 3))
-    if FREEZE - 0.05 < c < SLOW1 + 0.1: x = lp(x, 1100)                # slow motion: heavier, duller
+for k, (c, kind) in enumerate(zip(cuts, kinds)):
+    slowmo = FREEZE - 0.05 < c < SLOW1 + 0.1
+    if kind == "whoosh": x, pk = cut_whoosh(k, 0.45 + 0.08 * (k % 3)); g = 1.0
+    elif kind == "click": x, pk = click_sfx(k); g = 0.8
+    else: x, pk = shutter_sfx(k); g = 0.9
+    if slowmo: x = lp(x, 1100); g *= 0.8                        # slow motion: heavier, duller
     i0 = int((c - pk) * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
-    pan = np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)             # sweep left-right, alternating direction
-    g = 0.8 if FREEZE - 0.05 < c < SLOW1 + 0.1 else 1.0
+    pan = (np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)) if kind == "whoosh" else np.full(L, 0.25 * (1 if k % 2 else -1))
     WH[i0:i0 + L, 0] += x[:L] * g * (1 - pan); WH[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
     d0, d1 = int((c - 0.3) * SR), min(n, int((c + 0.15) * SR))
-    if d0 > 0: duck[d0:d1] = np.minimum(duck[d0:d1], 1 - 0.35 * np.sin(np.linspace(0, np.pi, d1 - d0)))
+    if d0 > 0: duck[d0:d1] = np.minimum(duck[d0:d1], 1 - (0.35 if kind == "whoosh" else 0.15) * np.sin(np.linspace(0, np.pi, d1 - d0)))
+print("scene changes:", " ".join(f"{c:.2f}s {kind}" for c, kind in zip(cuts, kinds)))
+
+# the first time Aura Monster dodges: time bends (a tape-stop dive), then a bright swish and a shimmer on the side-step
+def weave(f):                                                   # the same side-step curve as film.py
+    S0, S1 = beats["slow0"], beats["slow1"]
+    if f < S0 or f > S1: return 0.0
+    k = min(1.0, (f - S0) / 12.0) * min(1.0, (S1 - f) / 12.0)
+    return k * (0.15 * np.sin(2 * np.pi * f / 17.0) + 0.06 * np.sin(2 * np.pi * f / 7.3))
+wv = [abs(weave(f)) for f in range(beats["slow0"], beats["slow1"])]
+pk_f = next(beats["slow0"] + i for i in range(1, len(wv) - 1) if wv[i] >= wv[i - 1] and wv[i] > wv[i + 1] and wv[i] > 0.05)
+DODGE = (pk_f - 1) / FPS
+tt = np.arange(int(SR * 0.7)) / SR                              # tape-stop: a falling tone into the slow motion
+dive = np.sin(2 * np.pi * np.cumsum(520 * np.exp(-tt * 4.2) + 40) / SR) * np.exp(-tt * 2.5) * np.minimum(1, tt / 0.02)
+dive = lp(dive + 0.4 * lp(rng.standard_normal(len(tt)), 900) * np.exp(-tt * 3), 2500)
+ts = np.arange(int(SR * 1.6)) / SR                              # swish into the dodge, shimmer as he slips the drop
+sw, swp = cut_whoosh(99, 0.35)
+shim = sum(np.sin(2 * np.pi * f * ts) * np.exp(-ts * d) for f, d in ((1318.5, 2.2), (1975.5, 2.8), (2637.0, 3.4), (3951.1, 4.0)))
+shim *= np.minimum(1, ts / 0.004) / 4
+def put(x, at, g, pan=0.0):
+    i0 = int(at * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
+    WH[i0:i0 + L, 0] += x[:L] * g * (1 - pan); WH[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
+put(dive / np.abs(dive).max(), FREEZE - 0.1, 0.8)
+put(sw, DODGE - swp, 0.9, 0.3)
+put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.7, -0.2)
+print(f"first dodge at {DODGE:.2f}s (frame {pk_f})")
 
 def write(path, x):
     x = x / max(1e-9, np.abs(x).max()) * 0.9
