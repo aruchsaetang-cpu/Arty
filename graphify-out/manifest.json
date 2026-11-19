@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795048324.9539237,
-    "seen": 1795048391.2684612,
-    "ast_hash": "35495ee441c86090fa5ff47c4efc721c",
+    "mtime": 1795048589.3262708,
+    "seen": 1795048619.1968474,
+    "ast_hash": "1f88e94d037782f7922015e2d8cccf4b",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -6903,6 +6903,18 @@
     "mtime": 1795047412.3166652,
     "seen": 1795048391.2695093,
     "ast_hash": "4c61d5e1692b25fd459dc7cc032cbec1",
+    "semantic_hash": ""
+  },
+  "lookdev/renders/v2_hero_greysuit.png": {
+    "mtime": 1795048600.6888072,
+    "seen": 1795048619.1977124,
+    "ast_hash": "ed80da4f565770d89c81161cde50d3bd",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/hero_greysuit_preview.png": {
+    "mtime": 1795048612.6097128,
+    "seen": 1795048619.1977215,
+    "ast_hash": "ed80da4f565770d89c81161cde50d3bd",
     "semantic_hash": ""
   }
 }

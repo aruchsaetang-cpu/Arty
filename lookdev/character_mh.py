@@ -62,11 +62,12 @@ HERO = dict(body="m_lean", height=1.9, skin=("#efcfb4", "#b0806a"), hair="slick"
             top=("#1d1f25", "#07080b"), turtleneck=False, coat=None, manhwa_head=True,
             legs="trousers", leg_col=("#2b2e35", "#0b0c10"), shoes=("#141416", "#3a3236"), brows="#121014", iris="#2a2220")
 
-# the lead (only when build() is given HERO itself): tall and lean in a black two-piece suit, white shirt, black tie,
-# penny loafers; slicked-back hair, idol face, and the eyes nobody else has (black sclera, white irises)
-HERO_LOOK = dict(body="m_lean", vtaper=False, crease=0.006, turtleneck=False, top=("#f1f1ee", "#a9aeb8"),
-                 coat=("#1b1c21", "#07080a"), hem=0.86, open_skirt=True, coat_flare=(0.02, 0.04), tie=("tie", "#0b0c0f"),
-                 leg_col=("#1e1f25", "#08090c"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
+# the lead (only when build() is given HERO itself): tall and lean; a long light-grey jacket worn open and loose,
+# flaring off the shoulders, black V-neck top, light-grey creased trousers, black loafers; slicked-back hair,
+# idol face, and the eyes nobody else has (black sclera, white irises)
+HERO_LOOK = dict(body="m_lean", vtaper=False, crease=0.006, turtleneck=False, vneck=True, top=("#17181c", "#050506"),
+                 coat=("#cfd0d4", "#7a7c84"), hem=0.72, open_skirt=True, open_coat=True, coat_flare=(0.05, 0.1), tie=None,
+                 leg_col=("#c4c5ca", "#767880"), shoes=("#121216", "#4a3c36"), loafer=True, sneakers=False,
                  face="idol", hair="slick", locks=False, brow_style="sharp", jaw_v=0.42, void_eyes=True)
 
 # face sculpts from MakeHuman's CC0 face targets (assets/makehuman/targets/face): weights per target
@@ -483,6 +484,12 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     if st.get("sleeves") == "short":
         keep += ["lowerarm01", "upperarm02"]
     skin_faces = [f for f in body_faces if region(f, keep)]
+    vz = J("neck01").z - 0.02 - 0.12                     # V-neck: bottom of the V, ~12 cm under the collarbone notch
+    def in_vneck(f):
+        c = sum((V[i] for i in f), Vector()) / len(f)
+        return c.y < -0.025 and c.z > vz and abs(c.x) < (c.z - vz) * 0.62
+    if st.get("vneck"):
+        skin_faces += [f for f in body_faces if in_vneck(f) and not region(f, keep)]
     if st.get("socks"):   # school uniform: bare legs between hem and knee socks
         knee_z0 = jpos[sk["bones"]["lowerleg01.L"]["head"]].z
         skin_faces += [f for f in body_faces if region(f, ("upperleg", "lowerleg")) and min(V[i].z for i in f) > knee_z0 - 0.08]
@@ -505,28 +512,39 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     neck_cut = chin_z - (0.035 if st.get("turtleneck", True) else 0.075)
     sleeve = ("lowerarm",) if not st.get("coat") and st.get("sleeves") != "short" else ()
     tn_faces = [f for f in body_faces if region(f, TOP + sleeve) and min(V[i].z for i in f) > pelvis_z - 0.12
-                and max(V[i].z for i in f) < neck_cut]
+                and max(V[i].z for i in f) < neck_cut and not (st.get("vneck") and in_vneck(f))]
     off = {i: nrm[i] * 0.004 for f in tn_faces for i in f}
     tn, used = make_mesh("top", coll, V, tn_faces, off)
+    if st.get("vneck"):   # clean straight V edges
+        snap_edge(tn, lambda co: co.y < -0.02 and co.z > vz - 0.01 and abs(co.x) < (co.z - vz) * 0.62 + 0.025,
+                  lambda co: max(0.004, (co.z - vz) * 0.62), 0.0)
     tn.data.materials.append(cel(st["top"][0], st["top"][1], rim="#fff4e0" if sum(lin(st["top"][0])[:3]) > 0.3 else "#4a5874", rim_amt=0.8 if sum(lin(st["top"][0])[:3]) > 0.3 else 0.6, name="knit", crease=st.get("crease", 0.0))); finish(tn, used)
 
     # --- coat / jacket
     if st.get("coat"):
         dark = sum(lin(st["coat"][0])[:3]) < 0.3
         COAT = cel(st["coat"][0], st["coat"][1], rim="#56668a" if dark else "#d6efff", rim_amt=0.6 if dark else 0.8, name="coat")
+        wide = st.get("open_coat", False)       # worn fully open: the shirt shows from collar to belt
+        def gap_w(z):
+            return 0.07 + 0.045 * min(1.0, max(0.0, (z - pelvis_z) / (sternum_z - pelvis_z)))
         def open_front(f):
             c = sum((V[i] for i in f), Vector()) / len(f)
+            if wide:
+                return c.y < -0.02 and abs(c.x) < gap_w(c.z)
             return c.y < -0.02 and c.z > sternum_z - 0.13 and abs(c.x) < 0.012 + max(0.0, sternum_z - c.z) * 0.22
         COAT_SET = ("spine", "clavicle", "shoulder", "upperarm", "lowerarm", "breast", "pelvis")
         coat_faces = [f for f in body_faces if region(f, COAT_SET) and min(V[i].z for i in f) > pelvis_z - 0.1
                       and max(V[i].z for i in f) < neck_z + 0.01 and not open_front(f)]
         off = {i: nrm[i] * (0.013 if dom.get(i, "").startswith(("lowerarm", "upperarm")) else 0.016) for f in coat_faces for i in f}
         cu, used = make_mesh("coat_upper", coll, V, coat_faces, off); cu.data.materials.append(COAT)
-        snap_edge(cu, lambda co: co.y < -0.02 and co.z > sternum_z - 0.14 and abs(co.x) < 0.06,
-                  lambda co: 0.028 + max(0.0, sternum_z - co.z) * 0.22, 0.0)
+        if wide:
+            snap_edge(cu, lambda co: co.y < -0.02 and abs(co.x) < 0.14, lambda co: gap_w(co.z) + 0.004, 0.0)
+        else:
+            snap_edge(cu, lambda co: co.y < -0.02 and co.z > sternum_z - 0.14 and abs(co.x) < 0.06,
+                      lambda co: 0.028 + max(0.0, sternum_z - co.z) * 0.22, 0.0)
         finish(cu, used, solidify=0.006)
         skirt_piece("coat_skirt", coll, V, F, G, kd, bused, per_vert, COAT, st.get("hem", 0.36), st.get("open_skirt", True),
-                    flare=st.get("coat_flare", (0.10, 0.22)), finish=finish)
+                    flare=st.get("coat_flare", (0.10, 0.22)), finish=finish, gap=0.075 if wide else 0.035)
 
     # --- police tactical vest: navy shell over the jacket, reflective band, white chest patch
     if st.get("vest"):
@@ -713,7 +731,7 @@ def build(coll, location=(0, 0, 0), style=None, pose_mode="walk", heading=0.0):
     bpy.context.view_layer.update()
     return arm, objs
 
-def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, flare, finish, solid=0.006):
+def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, flare, finish, solid=0.006, gap=0.035):
     """MakeHuman skirt helper re-hemmed and flared: coat skirts, jacket tails, skirts."""
     sk_faces = [f for f, g in zip(F, G) if g == "helper-skirt"]
     sidx = {i for f in sk_faces for i in f}
@@ -728,10 +746,10 @@ def skirt_piece(name, coll, V, F, G, kd, bused, per_vert, mat, hem, open_front, 
         Vs[i] = v
     if open_front:
         sk_faces = [f for f in sk_faces if not (sum((Vs[i] for i in f), Vector()).y / len(f) < cy - 0.03
-                    and abs(sum((Vs[i] for i in f), Vector()).x / len(f) - cx) < 0.035 + 0.03 * (top - sum((Vs[i] for i in f), Vector()).z / len(f)))]
+                    and abs(sum((Vs[i] for i in f), Vector()).x / len(f) - cx) < gap + 0.03 * (top - sum((Vs[i] for i in f), Vector()).z / len(f)))]
     cs, _ = make_mesh(name, coll, Vs, sk_faces); cs.data.materials.append(mat)
     if open_front:
-        snap_edge(cs, lambda co: co.y < cy - 0.02 and abs(co.x - cx) < 0.2, lambda co: 0.035 + 0.03 * (top - co.z), cx)
+        snap_edge(cs, lambda co: co.y < cy - 0.02 and abs(co.x - cx) < 0.2, lambda co: gap + 0.03 * (top - co.z), cx)
     def bias(co, ws):  # hem swings less than the legs: mostly pelvis-driven
         out = {}; legs = 0.0
         for b, w in ws.items():
