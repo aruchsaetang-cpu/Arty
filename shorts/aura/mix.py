@@ -36,7 +36,11 @@ if np.abs(sfx).max() > 0.6 * vp:
     sfx *= 0.6 * vp / np.abs(sfx).max()
 if np.abs(steps).max() > 0:
     steps *= 0.4 * vp / np.abs(steps).max()
-sfx = sfx + steps
+WPATH = os.path.join(A, "whoosh.wav")     # a whoosh on every scene change (audio.py), peaks 0.55x voice peak
+whoosh = fit(load(WPATH)) if os.path.exists(WPATH) else np.zeros_like(music)
+if np.abs(whoosh).max() > 0:
+    whoosh *= 0.55 * vp / np.abs(whoosh).max()
+sfx = sfx + steps + whoosh
 for name, x in (("music", music), ("rain", rain), ("sfx", sfx)):
     print(f"{name}: {20 * np.log10(gated_rms(x) / vr):+.1f} dB vs voice (gated RMS), peak {np.abs(x).max() / vp:.2f}x voice peak")
 mix = voice + music + rain + sfx

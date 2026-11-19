@@ -136,6 +136,29 @@ place(fwump, next(x["start"] for x in SENTS if "closed it" in x["text"]) + 1.0, 
 place(sting * 0.7, CLOSE + 1.05, 0.6)
 place(boom * 0.6, DUR - 2.4, 1.2)                                                        # last word lands
 
+# a whoosh on every scene change: band-passed air sweeping up in pitch into the cut, panned across, peak on the cut
+# frame; the rain dips a little under it so it reads through the storm
+from scipy.signal import butter, sosfilt
+def cut_whoosh(seed, length):
+    r = np.random.default_rng(100 + seed); m = int(SR * length); tt = np.arange(m) / SR; pk = 0.75 * length
+    x = np.zeros(m)
+    for j, fc in enumerate((260, 480, 900, 1700, 3200, 6000)):        # bands light up one after another: a rising sweep
+        at = pk * (0.35 + 0.65 * j / 5)
+        w = np.exp(-((tt - at) / (0.09 + 0.05 * (j < 2))) ** 2) * np.where(tt > pk, np.exp(-(tt - pk) / 0.06), 1)
+        x += sosfilt(butter(2, [fc / 1.5, min(fc * 1.5, 0.45 * SR)], "bandpass", fs=SR, output="sos"), r.standard_normal(m)) * w
+    return x / (np.abs(x).max() + 1e-9), pk
+cuts = [b["start"] for b in beats["shots"][1:]]
+duck = np.ones(n); WH = np.zeros((n, 2))                      # own stem: mix.py sets its level
+for k, c in enumerate(cuts):
+    x, pk = cut_whoosh(k, 0.45 + 0.08 * (k % 3))
+    if FREEZE - 0.05 < c < SLOW1 + 0.1: x = lp(x, 1100)                # slow motion: heavier, duller
+    i0 = int((c - pk) * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
+    pan = np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)             # sweep left-right, alternating direction
+    g = 0.8 if FREEZE - 0.05 < c < SLOW1 + 0.1 else 1.0
+    WH[i0:i0 + L, 0] += x[:L] * g * (1 - pan); WH[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
+    d0, d1 = int((c - 0.3) * SR), min(n, int((c + 0.15) * SR))
+    if d0 > 0: duck[d0:d1] = np.minimum(duck[d0:d1], 1 - 0.35 * np.sin(np.linspace(0, np.pi, d1 - d0)))
+
 def write(path, x):
     x = x / max(1e-9, np.abs(x).max()) * 0.9
     if x.ndim == 1: x = np.stack([x, x], 1)
@@ -166,7 +189,8 @@ if takes and os.path.exists(SP):
 os.makedirs(os.path.join(HERE, "audio"), exist_ok=True)
 write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
-write(os.path.join(HERE, "audio", "rain.wav"), RAIN)
+write(os.path.join(HERE, "audio", "rain.wav"), RAIN * duck[:, None])
+write(os.path.join(HERE, "audio", "whoosh.wav"), WH)                           # scene-change whooshes   # dips under each cut whoosh
 if np.abs(steps).max() > 0:
     write(os.path.join(HERE, "audio", "steps.wav"), steps)
 print(f"stems written: {DUR:.2f}s, slow {FREEZE:.2f}-{SLOW1:.2f}s, close at {CLOSE:.2f}s, payoff at {PAYOFF:.2f}s")
