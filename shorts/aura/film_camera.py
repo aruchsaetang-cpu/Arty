@@ -37,7 +37,7 @@ def shake(f, walk=1.0, amp=1.0):
     return c, l
 
 # --- the street
-shot("hook_wide", track(hs, (1.9, -17, 1.5), (-0.4, 10, 4.2), 24, 4.0), track(hs, (1.5, -12.5, 1.42), (-0.2, 8, 3.0), 26, 3.2))
+shot("hook_wide", track(hs, (1.9, -17, 1.5), (-0.4, 10, 4.2), 36, 4.0), track(hs, (1.5, -12.5, 1.42), (-0.2, 8, 3.0), 38, 3.2))   # longer lens: he reads clearly in the first shot
 shot("hook_feet", track(hs, (0.85, -1.25, 0.14), (0, 0, 0.13), 32, 2.2, V((0, 0, 0.1))),
      track(hs, (0.75, -1.1, 0.15), (0, 0, 0.14), 32, 2.2, V((0, 0, 0.1))))           # dry loafers, splashes all round
 # "They called him Aura Monster": push in from his face to an extreme close-up of one eye (black sclera, white iris),
