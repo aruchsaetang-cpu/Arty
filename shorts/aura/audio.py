@@ -176,7 +176,7 @@ for k, (c, kind) in enumerate(zip(cuts, kinds)):
     if slowmo and kind == "whoosh": x = lp(x, 1100); g *= 0.8  # slow motion: heavier, duller (click and swoosh stay crisp)
     i0 = int((c - pk) * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
     pan = (np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)) if kind == "whoosh" else np.full(L, 0.25 * (1 if k % 2 else -1))
-    DST = CL if kind == "click" else WH
+    DST = CL if kind in ("click", "dodge") else WH
     DST[i0:i0 + L, 0] += x[:L] * g * (1 - pan); DST[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
     d0, d1 = int((c - 0.3) * SR), min(n, int((c + 0.15) * SR))
     if d0 > 0: duck[d0:d1] = np.minimum(duck[d0:d1], 1 - (0.35 if kind == "whoosh" else 0.15) * np.sin(np.linspace(0, np.pi, d1 - d0)))
@@ -205,7 +205,8 @@ put(dive / np.abs(dive).max(), FREEZE - 0.1, 0.3)
 _ud = rec("dodge_user")                                         # the user's dodge swoosh, its peak on the side-step
 if _ud is not None and len(_ud):
     _env = np.convolve(np.abs(_ud), np.ones(480) / 480, "same"); _pk = int(np.argmax(_env)) / SR
-    put(_ud / np.abs(_ud).max(), DODGE - _pk, 0.9, 0.2)
+    _i = int((DODGE - _pk) * SR); _x = _ud / np.abs(_ud).max(); _L = min(len(_x), n - _i)
+    CL[_i:_i + _L, 0] += _x[:_L] * 0.8; CL[_i:_i + _L, 1] += _x[:_L] * 1.0     # loud stem with the clicks (never ducked)
 else:
     put(sw, DODGE - swp, 0.4, 0.3)
     put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.4, -0.2)
@@ -279,13 +280,8 @@ MON = word_t("monster")                                                       # 
 _ur = rec("riser_user")                                                      # the user's riser builds through the hook
 if _ur is not None and len(_ur):                                              # and peaks on the title hit
     _end = int(np.where(np.abs(_ur) > 0.05 * np.abs(_ur).max())[0][-1]); _ur = _ur[:_end + 1] / np.abs(_ur).max()
-    _tempo = (len(_ur) / SR) / MON                                            # stretch to start on the first frame
-    import subprocess as _sp
-    _ur = np.frombuffer(_sp.run(["ffmpeg", "-v", "error", "-f", "f64le", "-ar", str(SR), "-ac", "1", "-i", "-", "-af", f"atempo={_tempo:.4f}",
-                                 "-f", "f64le", "-ar", str(SR), "-ac", "1", "-"], input=_ur.astype("<f8").tobytes(), capture_output=True, check=True).stdout, "<f8")
-    _ur = _ur[:int(MON * SR)]
-    _env = np.sqrt(np.convolve(_ur ** 2, np.ones(4800) / 4800, "same")) + 1e-4      # even it out: audible from the start,
-    _ur = _ur * (np.max(_env) / _env) ** 0.6                                    # still growing into the hit
+    _env = np.sqrt(np.convolve(_ur ** 2, np.ones(4800) / 4800, "same")) + 1e-4      # natural speed from 0 s; nearly even
+    _ur = _ur * (np.max(_env) / _env) ** 0.85                                   # loudness, so it is loud from the first second
     _ur = _ur / np.abs(_ur).max()
     RISER = np.zeros(n); RISER[:len(_ur)] = _ur[:n]                              # its own stem (riser.wav, levelled in mix.py)
 else:

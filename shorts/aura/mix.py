@@ -66,8 +66,8 @@ RPATH = os.path.join(A, "riser.wav")      # the user's riser over the opening: i
 riser = fit(load(RPATH)) if os.path.exists(RPATH) else np.zeros_like(music)          # average, only lightly ducked (-4 dB)
 if np.abs(riser).max() > 0:
     win = SR // 2; e = np.sqrt(np.convolve(riser.mean(1) ** 2, np.ones(win) / win, "same"))
-    riser *= db(-7) * vr / e.max()
-duck_rs = (1 - (1 - db(-4)) * sm)[:, None]
+    riser *= db(-1) * vr / e.max()                                              # loud: about as loud as the voice
+duck_rs = (1 - (1 - db(-3)) * sm)[:, None]
 sfx = (sfx + whoosh + cine) * duck_fx + steps + clicks + riser * duck_rs; music = music * duck_mu
 for name, x in (("music", music), ("rain", rain), ("sfx", sfx)):
     print(f"{name}: {20 * np.log10(gated_rms(x) / vr):+.1f} dB vs voice (gated RMS), peak {np.abs(x).max() / vp:.2f}x voice peak")
