@@ -1,7 +1,7 @@
-# Graph Report - Arty  (2026-11-19)
+# Graph Report - Arty  (2026-11-20)
 
 ## Corpus Check
-- 813 files · ~1,062,227 words
+- 813 files · ~1,062,295 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 196 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2d7f0c52`
+- Built from commit: `3869c512`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -2716,15 +2716,15 @@ Nodes (3): natural_locks(), ribbon(), surf()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Text To Speech` connect `Text To Speech` to `faceless-explainer/SKILL.md`?**
-  _High betweenness centrality (0.199) - this node is a cross-community bridge._
+  _High betweenness centrality (0.157) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.04386839481555334 - nodes in this community are weakly interconnected._
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `Text To Speech` to `heygen.mjs`?**
-  _High betweenness centrality (0.198) - this node is a cross-community bridge._
+  _High betweenness centrality (0.157) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Why does `clone()` connect `heygen.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.198) - this node is a cross-community bridge._
+  _High betweenness centrality (0.157) - this node is a cross-community bridge._
 - **Should `json` be split into smaller, more focused modules?**
   _Cohesion score 0.11397849462365592 - nodes in this community are weakly interconnected._
 - **Should `Code editorial — Frame (video / frame layer)` be split into smaller, more focused modules?**
