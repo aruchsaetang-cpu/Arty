@@ -267,7 +267,13 @@ def roar(secs=1.6, seed=0):                                                   # 
     return x * np.minimum(1, tt / 0.08) * np.exp(-tt * 1.6)
 
 MON = word_t("monster")                                                       # title: riser -> braam + sub drop
-cput(riser(1.6, 1), MON - 1.6, 0.30); cput(verb(braam(3.2, 55.0, 1), 2.8, 1, 0.35), MON, 0.85)
+_ur = rec("riser_user")                                                      # the user's riser builds through the hook
+if _ur is not None and len(_ur):                                              # and peaks on the title hit
+    _end = int(np.where(np.abs(_ur) > 0.05 * np.abs(_ur).max())[0][-1]); _ur = _ur[:_end + 1] / np.abs(_ur).max()
+    cput(_ur, MON - len(_ur) / SR, 0.75)
+else:
+    cput(riser(1.6, 1), MON - 1.6, 0.30)
+cput(verb(braam(3.2, 55.0, 1), 2.8, 1, 0.35), MON, 0.85)
 cput(subdrop(), MON, 0.9); cput(glint(1), MON + 0.05, 0.35)
 heartbeat(B["follow"]["start"] + 0.2, 4, 0.95, 0.62)                          # he follows: heartbeat quickening
 cput(subdrop(2.0, 70, 24), FREEZE, 0.8)
@@ -306,7 +312,8 @@ for k in range(1, 9):
             takes.append(np.frombuffer(w_.readframes(w_.getnframes()), "<i2").astype(np.float64) / 32768)
 if takes and os.path.exists(SP):
     side = {}
-    for i, ev in enumerate(json.load(open(SP))):
+    F0, F1 = B["follow"]["start"], B["reveal_low"]["start"]                   # footsteps only while the narrator follows him
+    for i, ev in enumerate(e for e in json.load(open(SP)) if F0 <= e["t"] < F1):
         x = takes[i % len(takes)]; r = 1 + rng.uniform(-0.04, 0.04)
         x = np.interp(np.arange(0, len(x) - 1, r), np.arange(len(x)), x)       # small pitch variety
         if FREEZE <= ev["t"] <= SLOW1:                                         # slow motion: heavier, duller steps
