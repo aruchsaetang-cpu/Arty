@@ -280,7 +280,16 @@ MON = word_t("monster")                                                       # 
 _ur = rec("riser_user")                                                      # the user's riser opens the clip (own stem)
 if _ur is not None and len(_ur):
     _end = int(np.where(np.abs(_ur) > 0.05 * np.abs(_ur).max())[0][-1]); _ur = _ur[:_end + 1] / np.abs(_ur).max()
-    YEARS = word_t("years")                                                   # the riser must be over when "years" is said
+    def _voiced_onset(t0, t1, frac=0.2):
+        """Where the voice track really starts a word: first 5 ms frame after t0 above `frac` of the peak in [t0, t1].
+        (Whisper's start time for "years" is 0.4 s early: it includes "nine"'s tail and the pause before the word.)"""
+        with wave.open(os.path.join(HERE, "audio", "voice_fast.wav")) as w_:
+            v = np.frombuffer(w_.readframes(w_.getnframes()), "<i2").astype(np.float64) / 32768; vs = w_.getframerate()
+        win = int(vs * 0.005); e = np.sqrt((v[:len(v) // win * win].reshape(-1, win) ** 2).mean(1))
+        a_, b_ = int(t0 / 0.005), int(t1 / 0.005); seg = e[a_:b_]
+        return (a_ + int(np.argmax(seg > frac * seg.max()))) * 0.005 - 0.01
+    _y0 = word_t("years"); YEARS = _voiced_onset(_y0 + 0.30, _y0 + 1.0)         # the riser ends exactly as "years" is said
+    print(f"riser ends at {YEARS:.3f}s (Whisper says 'years' starts {_y0:.2f}s; voiced onset measured in the voice track)")
     _tempo = (len(_ur) / SR) / YEARS                                 # (compressed, pitch kept: two atempo stages)
     import subprocess as _sp
     _af = ",".join(f"atempo={t:.4f}" for t in ((2.0, _tempo / 2.0) if _tempo > 2.0 else (_tempo,)))
