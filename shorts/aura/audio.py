@@ -198,8 +198,13 @@ def put(x, at, g, pan=0.0):
     i0 = int(at * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
     WH[i0:i0 + L, 0] += x[:L] * g * (1 - pan); WH[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
 put(dive / np.abs(dive).max(), FREEZE - 0.1, 0.3)
-put(sw, DODGE - swp, 0.4, 0.3)
-put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.4, -0.2)
+_ud = rec("dodge_user")                                         # the user's dodge swoosh, its peak on the side-step
+if _ud is not None and len(_ud):
+    _env = np.convolve(np.abs(_ud), np.ones(480) / 480, "same"); _pk = int(np.argmax(_env)) / SR
+    put(_ud / np.abs(_ud).max(), DODGE - _pk, 0.9, 0.2)
+else:
+    put(sw, DODGE - swp, 0.4, 0.3)
+    put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.4, -0.2)
 print(f"first dodge at {DODGE:.2f}s (frame {pk_f})")
 
 # ------------------------------------------------------------------ cinematic layer (anime-film style): its own stem

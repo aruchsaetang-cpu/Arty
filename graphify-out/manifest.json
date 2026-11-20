@@ -1974,9 +1974,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio.py": {
-    "mtime": 1795186189.084409,
-    "seen": 1795186222.0329857,
-    "ast_hash": "5a4be444f426ab847ee48ad434915266",
+    "mtime": 1795186356.8357508,
+    "seen": 1795186377.536816,
+    "ast_hash": "c957398049cfaa335a39d120545c6cbe",
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
@@ -6528,26 +6528,26 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/mix.wav": {
-    "mtime": 1795186198.975562,
-    "seen": 1795186222.0341883,
-    "ast_hash": "0670ccec27264836712f02e525e38000",
+    "mtime": 1795186367.111572,
+    "seen": 1795186377.5381002,
+    "ast_hash": "1598b13066377368a93da401e78f1525",
     "semantic_hash": ""
   },
   "shorts/aura/audio/music.wav": {
-    "mtime": 1795186194.947562,
-    "seen": 1795186222.0341892,
+    "mtime": 1795186362.7195718,
+    "seen": 1795186377.5381014,
     "ast_hash": "cbef1540215c7cb127f77f9204fdcc71",
     "semantic_hash": ""
   },
   "shorts/aura/audio/rain.wav": {
-    "mtime": 1795186195.055562,
-    "seen": 1795186222.0341907,
+    "mtime": 1795186362.8315718,
+    "seen": 1795186377.5381029,
     "ast_hash": "521ebe28e0d16507d2b47a34beb0d67b",
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx.wav": {
-    "mtime": 1795186194.991562,
-    "seen": 1795186222.0341916,
+    "mtime": 1795186362.7715719,
+    "seen": 1795186377.538104,
     "ast_hash": "d7c084acefae5d50ed8880667e71c2fc",
     "semantic_hash": ""
   },
@@ -7158,9 +7158,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx/CREDITS.md": {
-    "mtime": 1795186212.863563,
-    "seen": 1795186222.0338318,
-    "ast_hash": "0395fe868080737f61c9446fd020027e",
+    "mtime": 1795186368.5555723,
+    "seen": 1795186377.537726,
+    "ast_hash": "d0c023ac8404c7bc29bf3502f512c8fb",
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx/storm_cc0.wav": {
@@ -7176,8 +7176,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/steps.wav": {
-    "mtime": 1795186195.195562,
-    "seen": 1795186222.0341992,
+    "mtime": 1795186363.039572,
+    "seen": 1795186377.5381138,
     "ast_hash": "f9797a0a0142dd9c45a10fc9182021ca",
     "semantic_hash": ""
   },
@@ -7200,14 +7200,14 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/whoosh.wav": {
-    "mtime": 1795186195.0915618,
-    "seen": 1795186222.034203,
-    "ast_hash": "af924e27177ee8a9abac58e19bdc7baf",
+    "mtime": 1795186362.879572,
+    "seen": 1795186377.5381181,
+    "ast_hash": "eca65649eb062674ab27a042e2dd713c",
     "semantic_hash": ""
   },
   "shorts/aura/audio/cine.wav": {
-    "mtime": 1795186195.1595619,
-    "seen": 1795186222.0341494,
+    "mtime": 1795186362.987572,
+    "seen": 1795186377.5380592,
     "ast_hash": "dc1ecad5b3a69c30f44d2ec2cae42185",
     "semantic_hash": ""
   },
@@ -7650,8 +7650,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/clicks.wav": {
-    "mtime": 1795186195.1235619,
-    "seen": 1795186222.0341508,
+    "mtime": 1795186362.931572,
+    "seen": 1795186377.538061,
     "ast_hash": "ac7d0d0fb142b84f8c8e45d0632a5331",
     "semantic_hash": ""
   },
@@ -7665,6 +7665,12 @@
     "mtime": 1795186188.8355615,
     "seen": 1795186222.0341947,
     "ast_hash": "453014f18471a404bfd990b04cfbfd8d",
+    "semantic_hash": ""
+  },
+  "shorts/aura/audio/sfx/dodge_user.wav": {
+    "mtime": 1795186356.8035715,
+    "seen": 1795186377.5381074,
+    "ast_hash": "be540efda90fccd34f3579a834d3dee6",
     "semantic_hash": ""
   }
 }

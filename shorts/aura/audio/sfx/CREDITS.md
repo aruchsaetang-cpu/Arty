@@ -8,3 +8,6 @@ The user's own click recording (from their screen recording, 20 Nov), cut to the
 
 ## riser_user.wav
 The user's chosen riser, from their screen recording of "Riser Sound Effect No Copyright (Free To Use For ...)" by @SoundEffectsTreasure (20 Nov). The free-to-use claim is the uploader's.
+
+## dodge_user.wav
+The user's chosen dodge swoosh, from their screen recording of a "Premium Sound Effects For Editing" post by @MFXTutorials4 (20 Nov). Licence unknown: check before monetising.
