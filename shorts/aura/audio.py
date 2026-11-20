@@ -281,13 +281,13 @@ _ur = rec("riser_user")                                                      # t
 if _ur is not None and len(_ur):
     _end = int(np.where(np.abs(_ur) > 0.05 * np.abs(_ur).max())[0][-1]); _ur = _ur[:_end + 1] / np.abs(_ur).max()
     YEARS = word_t("years")                                                   # the riser must be over when "years" is said
-    _tempo = (len(_ur) / SR) / (YEARS - 0.03)                                 # (compressed, pitch kept: two atempo stages)
+    _tempo = (len(_ur) / SR) / YEARS                                 # (compressed, pitch kept: two atempo stages)
     import subprocess as _sp
     _af = ",".join(f"atempo={t:.4f}" for t in ((2.0, _tempo / 2.0) if _tempo > 2.0 else (_tempo,)))
     _ur = np.frombuffer(_sp.run(["ffmpeg", "-v", "error", "-f", "f64le", "-ar", str(SR), "-ac", "1", "-i", "-", "-af", _af,
                                  "-f", "f64le", "-ar", str(SR), "-ac", "1", "-"], input=_ur.astype("<f8").tobytes(), capture_output=True, check=True).stdout, "<f8")
-    _ur = _ur[:int((YEARS - 0.03) * SR)]
-    _ur = _ur * np.minimum(1, (len(_ur) - np.arange(len(_ur))) / (0.04 * SR))       # 40 ms tail fade: clean stop before "years"
+    _ur = _ur[:int(YEARS * SR)]                                                 # ends exactly where "years" starts
+    _ur = _ur * np.minimum(1, (len(_ur) - np.arange(len(_ur))) / (0.003 * SR))      # 3 ms fade only: no click, no early stop
     _env = np.sqrt(np.convolve(_ur ** 2, np.ones(4800) / 4800, "same")) + 1e-4      # nearly even, so it is loud from 0 s
     _ur = _ur * (np.max(_env) / _env) ** 0.85                                   # loudness, so it is loud from the first second
     _ur = _ur / np.abs(_ur).max()
