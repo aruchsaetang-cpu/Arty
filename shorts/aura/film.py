@@ -249,6 +249,19 @@ rain_main = bpy.data.objects["rain"]
 
 exec(open(os.path.join(HERE, "film_sets.py")).read())        # shop interior, rooftop set, alley dressing, extra rain
 
+# ------------------------------------------------------------------ the Meridian GT-8 (lookdev/meridian.py, same car as car3d/meridian.html)
+# drives toward the camera in the opening wide shot, and away down the street past the pair in the last wide shot;
+# hidden in every other shot so it never pops in or out of a shot
+import meridian as MER
+mer, mer_wheels = MER.build(C.PROPS, "#9c1418", lights=True, name="meridian")
+hw0, hw1, pw0, pw1 = fr("hook_wide"), fr("hook_wide", 1), fr("payoff_wide"), N
+MER.drive(mer, mer_wheels, [(hw0, (-2.2, 112.0), 180), (hw1, (-2.2, 62.0), 180)])
+MER.drive(mer, mer_wheels, [(pw0 - 1, (-2.2, 82.0), 180), (pw0, (-2.2, 81.4), 180), (pw1, (-2.2, 30.0), 180)])
+mer_spot = bpy.data.lights.new("meridian_beam", "SPOT"); mer_spot.energy = 900; mer_spot.spot_size = math.radians(55); mer_spot.spot_blend = 0.4
+mer_spot.color = (0.92, 0.95, 1.0); ms = bpy.data.objects.new("meridian_beam", mer_spot); C.PROPS.objects.link(ms); ms.parent = mer
+ms.location = (0, 2.3, 0.62); ms.rotation_euler = (math.radians(85), 0, 0)    # forward (+y), slightly down
+visible(mer, [(hw0, hw1), (pw0, pw1)])
+
 # ------------------------------------------------------------------ rain: one clock for every rain object
 # normal speed, a crawl in the slow-motion reveal ("Then I saw it" -> "too fast for the storm to touch him")
 H, T = 9.0, 24
