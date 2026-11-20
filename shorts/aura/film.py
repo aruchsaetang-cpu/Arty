@@ -255,7 +255,7 @@ exec(open(os.path.join(HERE, "film_sets.py")).read())        # shop interior, ro
 import meridian as MER
 mer, mer_wheels = MER.build(C.PROPS, "#9c1418", lights=True, name="meridian")
 hw0, hw1, pw0, pw1 = fr("hook_wide"), fr("hook_wide", 1), fr("payoff_wide"), N
-MER.drive(mer, mer_wheels, [(hw0, (-2.2, 112.0), 180), (hw1, (-2.2, 62.0), 180)])
+MER.drive(mer, mer_wheels, [(hw0, (-2.2, 100.0), 180), (hw1, (-2.2, 38.0), 180)])    # passes him, then the camera
 MER.drive(mer, mer_wheels, [(pw0 - 1, (-2.2, 82.0), 180), (pw0, (-2.2, 81.4), 180), (pw1, (-2.2, 30.0), 180)])
 mer_spot = bpy.data.lights.new("meridian_beam", "SPOT"); mer_spot.energy = 900; mer_spot.spot_size = math.radians(55); mer_spot.spot_blend = 0.4
 mer_spot.color = (0.92, 0.95, 1.0); ms = bpy.data.objects.new("meridian_beam", mer_spot); C.PROPS.objects.link(ms); ms.parent = mer
