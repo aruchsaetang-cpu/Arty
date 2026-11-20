@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795169934.2474465,
-    "seen": 1795170198.3736162,
+    "mtime": 1795172100.4050937,
+    "seen": 1795177212.4848044,
     "ast_hash": "b95b1d706a6fb6242d95cfeec9485b13",
     "semantic_hash": ""
   },
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795170012.474901,
-    "seen": 1795170198.3736556,
+    "mtime": 1795172179.1627288,
+    "seen": 1795177212.4848356,
     "ast_hash": "eca65a59a9d4c994624df0cb6526edef",
     "semantic_hash": ""
   },
@@ -7605,6 +7605,42 @@
     "mtime": 1795116282.0508616,
     "seen": 1795116305.8937085,
     "ast_hash": "4cc60b7d1f4f70e2bd1a74bd55c1e222",
+    "semantic_hash": ""
+  },
+  "lookdev/renders/walk_stop_after.json": {
+    "mtime": 1795176732.7774262,
+    "seen": 1795177212.4847918,
+    "ast_hash": "803a24222bb0336211e40c5951fa3f88",
+    "semantic_hash": ""
+  },
+  "lookdev/renders/walk_stop_before.json": {
+    "mtime": 1795176615.2260468,
+    "seen": 1795177212.4847944,
+    "ast_hash": "0e61fa03921393871abb8eaf89d98e27",
+    "semantic_hash": ""
+  },
+  "lookdev/walk_stop.py": {
+    "mtime": 1795177201.815892,
+    "seen": 1795177212.4847965,
+    "ast_hash": "f52c6f045273fc225b90957bd788641a",
+    "semantic_hash": ""
+  },
+  ".claude/skills/blender/SKILL.md": {
+    "mtime": 1795176677.7229962,
+    "seen": 1795177212.4848733,
+    "ast_hash": "4759ad9d46d25c9d49e49aea6313db3a",
+    "semantic_hash": ""
+  },
+  "car3d/aura_walk.html": {
+    "mtime": 1795177081.564228,
+    "seen": 1795177212.4856548,
+    "ast_hash": "dcc948a20927fdcaab3db084e1bdac0d",
+    "semantic_hash": ""
+  },
+  "car3d/meridian.html": {
+    "mtime": 1795176116.146963,
+    "seen": 1795177212.4856563,
+    "ast_hash": "883483f283b5a9b9e47d13f20dccac01",
     "semantic_hash": ""
   }
 }
