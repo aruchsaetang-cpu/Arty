@@ -167,9 +167,13 @@ duck = np.ones(n); WH = np.zeros((n, 2))                      # own stem: mix.py
 CL = np.zeros((n, 2))                                          # the user's click: its own loud stem, not ducked (clicks.wav)
 for k, (c, kind) in enumerate(zip(cuts, kinds)):
     slowmo = FREEZE - 0.05 < c < SLOW1 + 0.1
+    if kind == "click" and FREEZE - 0.5 < c < SLOW1 - 0.1 and rec("dodge_user") is not None:
+        kind = "dodge"; kinds[k] = "cinematic"                  # while he dodges: the cinematic swoosh, not the click
     if kind == "whoosh": x, pk = cut_whoosh(k, 0.45 + 0.08 * (k % 3)); g = 1.0
+    elif kind == "dodge":
+        x = rec("dodge_user"); x = x / np.abs(x).max(); pk = int(np.argmax(np.convolve(np.abs(x), np.ones(480) / 480, "same"))) / SR; g = 0.9
     else: x, pk = click_sfx(k); g = 1.0
-    if slowmo and kind != "click": x = lp(x, 1100); g *= 0.8   # slow motion: heavier, duller (the click stays crisp)
+    if slowmo and kind == "whoosh": x = lp(x, 1100); g *= 0.8  # slow motion: heavier, duller (click and swoosh stay crisp)
     i0 = int((c - pk) * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
     pan = (np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)) if kind == "whoosh" else np.full(L, 0.25 * (1 if k % 2 else -1))
     DST = CL if kind == "click" else WH
@@ -275,7 +279,15 @@ MON = word_t("monster")                                                       # 
 _ur = rec("riser_user")                                                      # the user's riser builds through the hook
 if _ur is not None and len(_ur):                                              # and peaks on the title hit
     _end = int(np.where(np.abs(_ur) > 0.05 * np.abs(_ur).max())[0][-1]); _ur = _ur[:_end + 1] / np.abs(_ur).max()
-    cput(_ur, MON - len(_ur) / SR, 0.75)
+    _tempo = (len(_ur) / SR) / MON                                            # stretch to start on the first frame
+    import subprocess as _sp
+    _ur = np.frombuffer(_sp.run(["ffmpeg", "-v", "error", "-f", "f64le", "-ar", str(SR), "-ac", "1", "-i", "-", "-af", f"atempo={_tempo:.4f}",
+                                 "-f", "f64le", "-ar", str(SR), "-ac", "1", "-"], input=_ur.astype("<f8").tobytes(), capture_output=True, check=True).stdout, "<f8")
+    _ur = _ur[:int(MON * SR)]
+    _env = np.sqrt(np.convolve(_ur ** 2, np.ones(4800) / 4800, "same")) + 1e-4      # even it out: audible from the start,
+    _ur = _ur * (np.max(_env) / _env) ** 0.6                                    # still growing into the hit
+    _ur = _ur / np.abs(_ur).max()
+    RISER = np.zeros(n); RISER[:len(_ur)] = _ur[:n]                              # its own stem (riser.wav, levelled in mix.py)
 else:
     cput(riser(1.6, 1), MON - 1.6, 0.30)
 cput(verb(braam(3.2, 55.0, 1), 2.8, 1, 0.35), MON, 0.85)
@@ -333,6 +345,7 @@ write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
 write(os.path.join(HERE, "audio", "rain.wav"), RAIN * duck[:, None])
 write(os.path.join(HERE, "audio", "whoosh.wav"), WH)                           # scene-change whooshes
+if "RISER" in globals(): write(os.path.join(HERE, "audio", "riser.wav"), RISER)   # the user's riser opening the clip
 write(os.path.join(HERE, "audio", "clicks.wav"), CL)                           # scene-change clicks (the user's recording)
 write(os.path.join(HERE, "audio", "cine.wav"), CINE)                           # anime-film hits, risers, glints
 if np.abs(steps).max() > 0:
