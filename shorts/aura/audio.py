@@ -288,7 +288,7 @@ if _ur is not None and len(_ur):
         win = int(vs * 0.005); e = np.sqrt((v[:len(v) // win * win].reshape(-1, win) ** 2).mean(1))
         a_, b_ = int(t0 / 0.005), int(t1 / 0.005); seg = e[a_:b_]
         return (a_ + int(np.argmax(seg > frac * seg.max()))) * 0.005 - 0.01
-    RISER_DELAY = 0.10                                                        # seconds later than the voiced onset (user: "delay a bit")
+    RISER_DELAY = 0.30                                                        # seconds later than the voiced onset (user: "delay a bit")
     _y0 = word_t("years"); YEARS = _voiced_onset(_y0 + 0.30, _y0 + 1.0) + RISER_DELAY   # the riser ends as "years" is said
     print(f"riser ends at {YEARS:.3f}s incl. {RISER_DELAY}s delay (Whisper says 'years' starts {_y0:.2f}s; voiced onset measured in the voice track)")
     _tempo = (len(_ur) / SR) / YEARS                                 # (compressed, pitch kept: two atempo stages)
