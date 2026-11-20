@@ -58,7 +58,11 @@ for i0 in range(0, len(on), 4800):                      # attack/release smoothe
     up = lfilter([1 - att], [1, -att], seg, zi=[y * att])[0]; dn = lfilter([1 - rel], [1, -rel], seg, zi=[y * rel])[0]
     out = np.where(seg > y, np.maximum(up, dn), dn); sm[i0:i0 + len(seg)] = out; y = out[-1]
 duck_fx = (1 - (1 - db(-9)) * sm)[:, None]; duck_mu = (1 - (1 - db(-3)) * sm)[:, None]
-sfx = (sfx + whoosh + cine) * duck_fx + steps; music = music * duck_mu
+KPATH = os.path.join(A, "clicks.wav")     # the user's click on scene changes: loud (peaks 0.9x voice peak), never ducked
+clicks = fit(load(KPATH)) if os.path.exists(KPATH) else np.zeros_like(music)
+if np.abs(clicks).max() > 0:
+    clicks *= 0.9 * vp / np.abs(clicks).max()
+sfx = (sfx + whoosh + cine) * duck_fx + steps + clicks; music = music * duck_mu
 for name, x in (("music", music), ("rain", rain), ("sfx", sfx)):
     print(f"{name}: {20 * np.log10(gated_rms(x) / vr):+.1f} dB vs voice (gated RMS), peak {np.abs(x).max() / vp:.2f}x voice peak")
 mix = voice + music + rain + sfx

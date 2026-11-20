@@ -1974,15 +1974,15 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio.py": {
-    "mtime": 1795103344.2755246,
-    "seen": 1795103380.5892768,
-    "ast_hash": "b0afa4a6bd9f980b14b5a1e99d57e1db",
+    "mtime": 1795185666.9850469,
+    "seen": 1795185712.758578,
+    "ast_hash": "5e710caae5f811b1ff77821f6366f62b",
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795180082.377067,
-    "seen": 1795180445.6386623,
-    "ast_hash": "b95b1d706a6fb6242d95cfeec9485b13",
+    "mtime": 1795182235.1952484,
+    "seen": 1795185712.7585802,
+    "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
   "shorts/aura/beats.json": {
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795180423.1619205,
-    "seen": 1795180445.6386766,
-    "ast_hash": "292787525649d02c48e98edd70460d34",
+    "mtime": 1795181217.9701004,
+    "seen": 1795185712.7585962,
+    "ast_hash": "58de5f1b6ca5b4fc28fcabf64e1478f0",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -2034,9 +2034,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/mix.py": {
-    "mtime": 1795103271.207055,
-    "seen": 1795103380.5893166,
-    "ast_hash": "bab677e03e0faa4ca5728b05f07b639f",
+    "mtime": 1795185666.9855156,
+    "seen": 1795185712.7586038,
+    "ast_hash": "3f38a9c3a5befb70650f3bf3a98f3920",
     "semantic_hash": ""
   },
   "shorts/aura/render_all.sh": {
@@ -6528,26 +6528,26 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/mix.wav": {
-    "mtime": 1795165012.4463027,
-    "seen": 1795170198.3748882,
-    "ast_hash": "a27d15d7767b3ef2caf6b310cdcc539e",
+    "mtime": 1795185687.9835317,
+    "seen": 1795185712.7597868,
+    "ast_hash": "bb5b60c7623fac622ff82021a2aaa1ca",
     "semantic_hash": ""
   },
   "shorts/aura/audio/music.wav": {
-    "mtime": 1795103349.554093,
-    "seen": 1795103380.591607,
+    "mtime": 1795185673.491531,
+    "seen": 1795185712.759788,
     "ast_hash": "cbef1540215c7cb127f77f9204fdcc71",
     "semantic_hash": ""
   },
   "shorts/aura/audio/rain.wav": {
-    "mtime": 1795103349.6500928,
-    "seen": 1795103380.5916102,
+    "mtime": 1795185673.579531,
+    "seen": 1795185712.7597895,
     "ast_hash": "521ebe28e0d16507d2b47a34beb0d67b",
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx.wav": {
-    "mtime": 1795103349.5940928,
-    "seen": 1795103380.5916123,
+    "mtime": 1795185673.5315309,
+    "seen": 1795185712.7597907,
     "ast_hash": "d7c084acefae5d50ed8880667e71c2fc",
     "semantic_hash": ""
   },
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795180162.5112033,
-    "seen": 1795180445.6386962,
+    "mtime": 1795182333.5193324,
+    "seen": 1795185712.7586145,
     "ast_hash": "8acb09fa503cc2732cf7be18dac06ce6",
     "semantic_hash": ""
   },
@@ -7158,9 +7158,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx/CREDITS.md": {
-    "mtime": 1795099784.757881,
-    "seen": 1795100089.823136,
-    "ast_hash": "96906b9a7a20791a9645ddf3ea719a35",
+    "mtime": 1795185701.5395327,
+    "seen": 1795185712.7593932,
+    "ast_hash": "cc773de9c19784b5e3ede0eef1f625ec",
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx/storm_cc0.wav": {
@@ -7176,9 +7176,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/steps.wav": {
-    "mtime": 1795103349.802093,
-    "seen": 1795103380.591621,
-    "ast_hash": "82e72405ac69d8b7dc6b688c25f05f1c",
+    "mtime": 1795185673.7395308,
+    "seen": 1795185712.7597961,
+    "ast_hash": "21b2def6a3b13e18aebff506b7ad941b",
     "semantic_hash": ""
   },
   "shorts/aura/out/mix_preview.m4a": {
@@ -7200,14 +7200,14 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/whoosh.wav": {
-    "mtime": 1795103349.690093,
-    "seen": 1795103380.591629,
-    "ast_hash": "3235f1d1911ccc32debbde241acdb4f9",
+    "mtime": 1795185673.615531,
+    "seen": 1795185712.7598004,
+    "ast_hash": "42395aad424a05b35e8de21c7e58300c",
     "semantic_hash": ""
   },
   "shorts/aura/audio/cine.wav": {
-    "mtime": 1795103349.738093,
-    "seen": 1795103380.5915153,
+    "mtime": 1795185673.691531,
+    "seen": 1795185712.759746,
     "ast_hash": "34bd2aafb541ba525e48d9728d21e805",
     "semantic_hash": ""
   },
@@ -7647,6 +7647,18 @@
     "mtime": 1795180327.1152132,
     "seen": 1795180445.6386433,
     "ast_hash": "2e53850e308a3b05fb84a75c0db46723",
+    "semantic_hash": ""
+  },
+  "shorts/aura/audio/clicks.wav": {
+    "mtime": 1795185673.655531,
+    "seen": 1795185712.7597485,
+    "ast_hash": "b11f2ec86b8a214760c4be7457e002fd",
+    "semantic_hash": ""
+  },
+  "shorts/aura/audio/sfx/click_user.wav": {
+    "mtime": 1795185650.6699905,
+    "seen": 1795185712.7597919,
+    "ast_hash": "b50bb709ebe65151bd757b3c10f29388",
     "semantic_hash": ""
   }
 }

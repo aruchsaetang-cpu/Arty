@@ -153,7 +153,13 @@ def cut_whoosh(seed, length):
         x += sosfilt(butter(2, [fc / 1.5, min(fc * 1.5, 0.45 * SR)], "bandpass", fs=SR, output="sos"), r.standard_normal(m)) * w
     return x / (np.abs(x).max() + 1e-9), pk
 def click_sfx(seed):
-    """A crisp UI-style click: press and release, a few ms each, ~35 ms apart."""
+    """The user's own click (audio/sfx/click_user.wav: press + release, ~115 ms apart), lined up so the press lands
+    on the cut. Falls back to a synthesised click when the recording is absent."""
+    u = rec("click_user")
+    if u is not None and len(u):
+        on = int(np.argmax(np.abs(u) > 0.3 * np.abs(u).max()))      # the press transient
+        return u / np.abs(u).max(), on / SR
+    """(fallback) a crisp UI-style click: press and release, a few ms each, ~35 ms apart."""
     r = np.random.default_rng(200 + seed); m = int(SR * 0.12); tt = np.arange(m) / SR; x = np.zeros(m)
     for at, g, f in ((0.0, 1.0, 3400), (0.035 + 0.01 * r.random(), 0.55, 2600)):
         u = np.clip(tt - at, 0, None); on = tt >= at
@@ -174,15 +180,17 @@ cuts = [b["start"] for b in beats["shots"][1:]]
 kinds = (["whoosh", "click", "shutter"] * (len(cuts) // 3 + 1))[:len(cuts)]
 np.random.default_rng(11).shuffle(kinds)                      # scene changes swap whoosh / click / shutter, no set order
 duck = np.ones(n); WH = np.zeros((n, 2))                      # own stem: mix.py sets its level
+CL = np.zeros((n, 2))                                          # the user's click: its own loud stem, not ducked (clicks.wav)
 for k, (c, kind) in enumerate(zip(cuts, kinds)):
     slowmo = FREEZE - 0.05 < c < SLOW1 + 0.1
     if kind == "whoosh": x, pk = cut_whoosh(k, 0.45 + 0.08 * (k % 3)); g = 1.0
-    elif kind == "click": x, pk = click_sfx(k); g = 0.8
+    elif kind == "click": x, pk = click_sfx(k); g = 1.0
     else: x, pk = shutter_sfx(k); g = 0.9
-    if slowmo: x = lp(x, 1100); g *= 0.8                        # slow motion: heavier, duller
+    if slowmo and kind != "click": x = lp(x, 1100); g *= 0.8   # slow motion: heavier, duller (the click stays crisp)
     i0 = int((c - pk) * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
     pan = (np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)) if kind == "whoosh" else np.full(L, 0.25 * (1 if k % 2 else -1))
-    WH[i0:i0 + L, 0] += x[:L] * g * (1 - pan); WH[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
+    DST = CL if kind == "click" else WH
+    DST[i0:i0 + L, 0] += x[:L] * g * (1 - pan); DST[i0:i0 + L, 1] += x[:L] * g * (1 + pan)
     d0, d1 = int((c - 0.3) * SR), min(n, int((c + 0.15) * SR))
     if d0 > 0: duck[d0:d1] = np.minimum(duck[d0:d1], 1 - (0.35 if kind == "whoosh" else 0.15) * np.sin(np.linspace(0, np.pi, d1 - d0)))
 print("scene changes:", " ".join(f"{c:.2f}s {kind}" for c, kind in zip(cuts, kinds)))
@@ -330,6 +338,7 @@ write(os.path.join(HERE, "audio", "music.wav"), stereo(music, 0.35, 2))
 write(os.path.join(HERE, "audio", "sfx.wav"), sfx)
 write(os.path.join(HERE, "audio", "rain.wav"), RAIN * duck[:, None])
 write(os.path.join(HERE, "audio", "whoosh.wav"), WH)                           # scene-change whooshes
+write(os.path.join(HERE, "audio", "clicks.wav"), CL)                           # scene-change clicks (the user's recording)
 write(os.path.join(HERE, "audio", "cine.wav"), CINE)                           # anime-film hits, risers, glints
 if np.abs(steps).max() > 0:
     write(os.path.join(HERE, "audio", "steps.wav"), steps)
