@@ -149,6 +149,12 @@ stand_at(narr_a, fr("teach"), NARR_T, deg_to(NARR_T, STOP), "umbrella")
 stand_at(narr_a, fr("train_roof"), RN, deg_to(RN, RT), "umbrella")
 stand_at(narr_a, fr("train_umb"), UN, deg_to(UN, UT), "umbrella")
 stand_at(narr_a, MONT[0][0], RN, deg_to(RN, RT), "umbrella")
+# the reveal: he followed the hero into the alley and stopped dead ("Then I saw it"), so he stands behind him under
+# his umbrella, where the first-person camera stood (film_camera.pov_alley), held still (constant keys) until "teach"
+POV_P = V((hero_a_at(fr("alley_pov") + 16)[0].x + 3.6, AL_Y + 0.25, 0))
+prefs.keyframe_new_interpolation_type = "CONSTANT"
+stand_at(narr_a, fr("reveal_low"), POV_P, deg_to(POV_P, POV_P - V((1, 0, 0))), "umbrella")
+prefs.keyframe_new_interpolation_type = "BEZIER"
 stand_at(hero_t, fr("train_roof"), RT, deg_to(RT, RN), "pockets")
 stand_at(hero_t, fr("train_umb"), UT, deg_to(UT, UN), "pockets")
 stand_at(hero_t, MONT[0][0], RT, deg_to(RT, RN), "pockets")
@@ -159,7 +165,7 @@ for h_ in (hero_s, hero_a, hero_t, hero_p):        # his hands live in his trous
 stand_at(narr_m, 1, UN, deg_to(UN, UT), "umbrella")
 stand_at(narr_b, 1, RN, deg_to(RN, RT), "umbrella")
 stand_at(narr_b, fr("close"), CLOSE_P, 0, "umbrella")
-visible(narr_a, [(fr("teach"), fr("train_umb", 1)), MONT[0]], umb_a)
+visible(narr_a, [(fr("reveal_low"), fr("reveal_close", 1)), (fr("teach"), fr("train_umb", 1)), MONT[0]], umb_a)
 visible(hero_t, [(fr("train_roof"), MONT[2][1])])
 visible(narr_m, [MONT[1]], umb_m)
 visible(narr_b, [MONT[2], (fr("close"), fr("close", 1))], umb_b)
