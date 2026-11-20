@@ -1,17 +1,17 @@
 # Graph Report - Arty  (2026-11-20)
 
 ## Corpus Check
-- 817 files · ~1,071,238 words
+- 817 files · ~1,071,307 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 197 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
 ## Summary
-- 7646 nodes · 11449 edges · 603 communities (504 shown, 99 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 196 edges (avg confidence: 0.86)
+- 7646 nodes · 11453 edges · 602 communities (504 shown, 98 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 200 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `05200fe5`
+- Built from commit: `cd833aed`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -114,7 +114,7 @@
 - Creator Editing Recipes
 - design-spec.md
 - Tween
-- _MathAim
+- build_drape_coat
 - pr-to-video/scripts/captions.mjs
 - pr-to-video/scripts/transitions.mjs
 - character_v1.py
@@ -153,7 +153,6 @@
 - Stargazed.tsx
 - Standalone HyperFrames Slideshow Harness
 - r
-- void_eye_mat
 - multi-phase-camera.md
 - Chromatic Glitch
 - Typewriter
@@ -633,15 +632,15 @@
   .claude/skills/hyperframes-animation/adapters/animejs.md → videos/gelato-trailer/scripts/score.py
 - `4. Coat and hair motion` --references--> `add_cloth_motion()`  [INFERRED]
   .claude/skills/blender/SKILL.md → lookdev/character_mh.py
-- `5. Manhwa look (keep it)` --references--> `real_mat()`  [INFERRED]
-  .claude/skills/blender/SKILL.md → lookdev/character_mh.py
 - `Using the sounds` --references--> `place()`  [INFERRED]
   .claude/skills/openverse-sfx/SKILL.md → shorts/aura/audio.py
+- `5. Manhwa look (keep it)` --references--> `real_mat()`  [INFERRED]
+  .claude/skills/blender/SKILL.md → lookdev/character_mh.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (603 total, 99 thin omitted)
+## Communities (602 total, 98 thin omitted)
 
 ### Community 0 - "ref_node_fs"
 Cohesion: 0.04
@@ -681,15 +680,15 @@ Nodes (54): Mood inference (the generate prompt), anomalies, argv, audioMeta, bg
 
 ### Community 9 - "city.py"
 Cohesion: 0.07
-Nodes (47): 5. Manhwa look (keep it), alley(), alley_frame(), area(), asphalt(), B(), build_scene(), build_wires() (+39 more)
+Nodes (45): 5. Manhwa look (keep it), alley(), alley_frame(), area(), asphalt(), B(), build_scene(), build_wires() (+37 more)
 
 ### Community 10 - "hyperframes-creative/scripts/package-loader.mjs"
 Cohesion: 0.07
 Nodes (38): annotateFrame(), args, buildOverlaySVG(), COMP_DIR, compositeOver(), HEIGHT, isLargeText(), measureAgainstHiddenTextFrame() (+30 more)
 
 ### Community 11 - "walk_stop.py"
-Cohesion: 0.09
-Nodes (13): animate_walk(), cloth_walk(), hands_in_pockets(), key_ground(), set_interp(), _smooth(), walk_keys(), coat_settle() (+5 more)
+Cohesion: 0.08
+Nodes (14): animate_walk(), cloth_walk(), hands_in_pockets(), key_ground(), _MathAim, set_interp(), _smooth(), walk_keys() (+6 more)
 
 ### Community 12 - "sprint_plan.py"
 Cohesion: 0.11
@@ -1035,6 +1034,10 @@ Nodes (12): Consuming it, Design Spec — `frame.md` / `design.md`, Resolving wh
 Cohesion: 0.18
 Nodes (21): _a(), Ao(), _assertThisInitialized(), cb(), cc(), ga(), gb(), hb() (+13 more)
 
+### Community 98 - "build_drape_coat"
+Cohesion: 0.19
+Nodes (8): build_drape_coat(), bias(), smooth(), W(), gap_w(), open_front(), weights_from_body(), upscale()
+
 ### Community 99 - "pr-to-video/scripts/captions.mjs"
 Cohesion: 0.19
 Nodes (18): brandFontFaces(), buildCaptionsHtml(), buildFromSkin(), flag(), frameTokensCss(), r3(), runBuild(), wordCap() (+10 more)
@@ -1182,10 +1185,6 @@ Nodes (16): 1. Interim framing — why this exists, 2. The parent wrapper (`inde
 ### Community 136 - "r"
 Cohesion: 0.15
 Nodes (17): bc(), eb(), Eo(), fb(), ga(), ib(), mb(), pa() (+9 more)
-
-### Community 138 - "void_eye_mat"
-Cohesion: 0.31
-Nodes (7): eye_mat(), ink_mat(), _nodes(), mix(), mth(), void_eye_mat(), dot()
 
 ### Community 139 - "multi-phase-camera.md"
 Cohesion: 0.26
@@ -1741,7 +1740,7 @@ Nodes (9): Break boundaries, Caption Grouping, Editorial surgery is allowed, Exa
 
 ### Community 278 - "build"
 Cohesion: 0.05
-Nodes (48): add_cap(), add_locks(), add_mods(), add_phone(), add_prints(), add_umbrella(), apply_face(), apply_targets() (+40 more)
+Nodes (49): add_cap(), add_locks(), add_mods(), add_phone(), add_prints(), add_umbrella(), apply_face(), apply_targets() (+41 more)
 
 ### Community 279 - "Cut catalog — within-frame seams (worker-built)"
 Cohesion: 0.10
@@ -2045,7 +2044,7 @@ Nodes (9): isMainModule(), hasCliCommand(), main(), runCliPreflight(), flag(), m
 
 ### Community 356 - "film_camera.py"
 Cohesion: 0.15
-Nodes (15): every(), eye_at(), eye_push(), flat(), ha(), hp_(), hs(), key() (+7 more)
+Nodes (16): every(), eye_at(), eye_push(), flat(), ha(), hp_(), hs(), key() (+8 more)
 
 ### Community 357 - "Orbit with 3D Entry"
 Cohesion: 0.29
@@ -2636,7 +2635,7 @@ Cohesion: 0.40
 Nodes (4): Identities, Rules, Shortlisting heuristics (identity-level, not category-level), THE CATALOG — one front-end, three engines behind
 
 ### Community 598 - "film.py"
-Cohesion: 0.06
+Cohesion: 0.07
 Nodes (9): carve(), eyes_turn(), _fc(), hold_jumps(), _loc(), splash_mat(), splashes(), visible() (+1 more)
 
 ### Community 599 - "Cinematic mode (pure embed) — one engine, six DNAs"
@@ -2644,7 +2643,7 @@ Cohesion: 0.40
 Nodes (5): Adding a DNA, Cinematic mode (pure embed) — one engine, six DNAs, What the engine generates (never author these), What you DON'T do, Workflow
 
 ### Community 601 - "shop_dressing"
-Cohesion: 0.13
+Cohesion: 0.12
 Nodes (12): _box(), _emit(), rooftop(), shop_interior(), _Batch, _hexrgb(), _menu_mat(), _prod_mat() (+4 more)
 
 ### Community 602 - "Multi-Cursor Choreography"
@@ -2660,21 +2659,21 @@ Cohesion: 0.33
 Nodes (5): Batch dispatch — you build a small packet batch, Frame worker — PR-to-video delta, Mostly invented — you build the visual (except code blocks + the credits avatars), PR code beats, mechanism beats + the credits close, PR-specific self-check additions
 
 ## Knowledge Gaps
-- **99 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **98 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Text To Speech` connect `Text To Speech` to `faceless-explainer/SKILL.md`?**
-  _High betweenness centrality (0.162) - this node is a cross-community bridge._
+  _High betweenness centrality (0.183) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.03853397073736057 - nodes in this community are weakly interconnected._
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `Text To Speech` to `heygen.mjs`?**
-  _High betweenness centrality (0.162) - this node is a cross-community bridge._
+  _High betweenness centrality (0.179) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Why does `clone()` connect `heygen.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.162) - this node is a cross-community bridge._
+  _High betweenness centrality (0.179) - this node is a cross-community bridge._
 - **Should `json` be split into smaller, more focused modules?**
   _Cohesion score 0.07801418439716312 - nodes in this community are weakly interconnected._
 - **Should `Code editorial — Frame (video / frame layer)` be split into smaller, more focused modules?**

@@ -55,10 +55,11 @@ def eye_push(f):
     a_, b_ = fr("name_close"), fr("name_close", 1)
     u = min(1.0, max(0.0, (f - a_) / max(1, b_ - a_ - 6))); u = u * u * (3 - 2 * u)          # ease in and out, then hold
     el = eye_at(f, _EL); mid = (el + eye_at(f, _ER)) / 2
-    tgt_p = mid.lerp(el, u)
-    cam_p = (mid + V((0.55, -1.3, 0.0))).lerp(el + V((0.012, -0.21, 0.003)), u)
-    foc = tgt_p + V((0, -0.012, 0))
-    return cam_p, tgt_p, foc, 55 + 30 * u, 2.0 + 2.0 * u
+    face = mid + V((0, 0, -0.035))                                      # ends on a close-up of the whole face
+    tgt_p = mid.lerp(face, u)
+    cam_p = (mid + V((0.55, -1.3, 0.0))).lerp(face + V((0.17, -0.64, 0.02)), u)
+    foc = el + V((0, -0.012, 0))                                        # the near eye stays sharp
+    return cam_p, tgt_p, foc, 55 + 5 * u, 2.0 + 0.8 * u
 every("name_close", eye_push)
 shot("name_med", track(hs, (1.7, -4.6, 1.2), (0, 0, 1.35), 30, 2.8), track(hs, (1.4, -4.2, 1.25), (0, 0, 1.4), 30, 2.8))
 shot("shop", fixed((4.6, 51.5, 1.45), (6.9, 53.3, 1.62), (6.9, 53.0, 1.62), 45, 2.0),

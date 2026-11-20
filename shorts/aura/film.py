@@ -402,7 +402,8 @@ for rig, idx in ((hero_s, 7), (hero_a, 7), (hero_t, 7), (hero_p, 7), (narr_p, 8)
         o.pass_index = 0 if o.get("no_mask") else idx            # the ground shadow never glows
 for o in umb_b:
     o.pass_index = 0
-json.dump({"keys": [[1, 0.6], [SLOW0, 0.6], [SLOW0 + 16, 1.25], [SLOW1, 1.2], [SLOW1 + 8, 0.7], [N, 0.8]],
+json.dump({"keys": [[1, 0.0], [fr("name_close") - 1, 0.0], [fr("name_close"), 0.6], [SLOW0, 0.6],   # no aura until he is introduced
+           [SLOW0 + 16, 1.25], [SLOW1, 1.2], [SLOW1 + 8, 0.7], [N, 0.8]],
            "keys_y": [[1, 0.0], [FOLD, 0.0], [FOLD + 18, 1.15], [N, 1.0]],
            "trail": [SLOW0, SLOW1]}, open(os.path.join(HERE, "aura.json"), "w"))
 
