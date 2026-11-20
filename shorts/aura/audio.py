@@ -154,38 +154,21 @@ def cut_whoosh(seed, length):
     return x / (np.abs(x).max() + 1e-9), pk
 def click_sfx(seed):
     """The user's own click (audio/sfx/click_user.wav: press + release, ~115 ms apart), lined up so the press lands
-    on the cut. Falls back to a synthesised click when the recording is absent."""
+    on the cut. It is the only click sound in the film."""
     u = rec("click_user")
-    if u is not None and len(u):
-        on = int(np.argmax(np.abs(u) > 0.3 * np.abs(u).max()))      # the press transient
-        return u / np.abs(u).max(), on / SR
-    """(fallback) a crisp UI-style click: press and release, a few ms each, ~35 ms apart."""
-    r = np.random.default_rng(200 + seed); m = int(SR * 0.12); tt = np.arange(m) / SR; x = np.zeros(m)
-    for at, g, f in ((0.0, 1.0, 3400), (0.035 + 0.01 * r.random(), 0.55, 2600)):
-        u = np.clip(tt - at, 0, None); on = tt >= at
-        x += on * g * (np.sin(2 * np.pi * f * u) * np.exp(-u * 900) + hp(r.standard_normal(m), 2500) * np.exp(-u * 1400) * 0.6)
-    return x / np.abs(x).max(), 0.0
-
-def shutter_sfx(seed):
-    """A camera shutter: the mirror slap ("ka") on the cut, the shutter closing ("chk") ~80 ms later, with a little rattle."""
-    r = np.random.default_rng(300 + seed); m = int(SR * 0.3); tt = np.arange(m) / SR; x = np.zeros(m)
-    for at, g, bright in ((0.0, 1.0, 1800), (0.075 + 0.015 * r.random(), 0.8, 2600)):
-        u = np.clip(tt - at, 0, None); on = tt >= at
-        burst = sosfilt(butter(2, [bright, 7500], "bandpass", fs=SR, output="sos"), r.standard_normal(m))
-        x += on * g * (burst * np.exp(-u * 160) + np.sin(2 * np.pi * 180 * u) * np.exp(-u * 70) * 0.5)
-    x += hp(r.standard_normal(m), 3000) * np.exp(-((tt - 0.04) / 0.03) ** 2) * 0.15   # spring rattle between
-    return x / np.abs(x).max(), 0.0
+    on = int(np.argmax(np.abs(u) > 0.3 * np.abs(u).max()))          # the press transient
+    return u / np.abs(u).max(), on / SR
 
 cuts = [b["start"] for b in beats["shots"][1:]]
 kinds = (["whoosh", "click", "shutter"] * (len(cuts) // 3 + 1))[:len(cuts)]
-np.random.default_rng(11).shuffle(kinds)                      # scene changes swap whoosh / click / shutter, no set order
+np.random.default_rng(11).shuffle(kinds)                      # scene changes swap whoosh / click, no set order
+kinds = ["click" if k == "shutter" else k for k in kinds]     # the user's click replaces every other click-type sound
 duck = np.ones(n); WH = np.zeros((n, 2))                      # own stem: mix.py sets its level
 CL = np.zeros((n, 2))                                          # the user's click: its own loud stem, not ducked (clicks.wav)
 for k, (c, kind) in enumerate(zip(cuts, kinds)):
     slowmo = FREEZE - 0.05 < c < SLOW1 + 0.1
     if kind == "whoosh": x, pk = cut_whoosh(k, 0.45 + 0.08 * (k % 3)); g = 1.0
-    elif kind == "click": x, pk = click_sfx(k); g = 1.0
-    else: x, pk = shutter_sfx(k); g = 0.9
+    else: x, pk = click_sfx(k); g = 1.0
     if slowmo and kind != "click": x = lp(x, 1100); g *= 0.8   # slow motion: heavier, duller (the click stays crisp)
     i0 = int((c - pk) * SR); i0, x = max(0, i0), x[max(0, -i0):]; L = min(len(x), n - i0)
     pan = (np.linspace(-0.7, 0.7, L) * (1 if k % 2 else -1)) if kind == "whoosh" else np.full(L, 0.25 * (1 if k % 2 else -1))
