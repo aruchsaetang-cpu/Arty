@@ -422,6 +422,15 @@ json.dump({"keys": [[1, 0.0], [fr("name_close") - 1, 0.0], [fr("name_close"), 0.
 
 # ------------------------------------------------------------------ camera
 exec(open(os.path.join(HERE, "film_camera.py")).read())
+if os.environ.get("CAMDUMP"):   # QA: per-frame camera / look-target path from the keyed curves, then stop
+    from bpy_extras import anim_utils
+    def _fc(ob):
+        cb = anim_utils.action_get_channelbag_for_slot(ob.animation_data.action, ob.animation_data.action_slot)
+        return {(c.data_path, c.array_index): c for c in cb.fcurves}
+    _c, _t = _fc(cam), _fc(tgt)
+    json.dump([[f] + [_c[("location", i)].evaluate(f) for i in range(3)] + [_t[("location", i)].evaluate(f) for i in range(3)]
+               for f in range(1, N + 1)], open(os.environ["CAMDUMP"], "w"))
+    print("CAMDUMP", os.environ["CAMDUMP"]); sys.exit(0)
 
 # footsteps: a heel strike every half cycle of each walk (left at key 0, right at key n/2), where the walker is on
 # screen; gain falls off with the distance to the camera. Read by audio.py.

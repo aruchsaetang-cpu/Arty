@@ -22,6 +22,13 @@ def every(sid, fn, a=None, b=None):
     """Key every frame of a shot (hand-held / tracking moves)."""
     for f in range((a or fr(sid)), (b or fr(sid, 1)) + 1):
         key(f, *fn(f))
+import cine_camera as CC
+SMOOTH = os.environ.get("CAM_SMOOTH", "1") != "0"         # CAM_SMOOTH=0: the previous camera (for comparisons)
+def every_smooth(sid, fn, sigma, a=None, b=None):
+    """Evaluate a shot per frame, smooth camera / look / focus paths (zero-phase, ends kept), key every frame."""
+    a = a or fr(sid); b = b or fr(sid, 1); F = list(range(a, b + 1)); S = [fn(f) for f in F]
+    C_ = CC.smooth([x[0] for x in S], sigma); L_ = CC.smooth([x[1] for x in S], sigma); P_ = CC.smooth([x[2] for x in S], sigma)
+    for i, f in enumerate(F): key(f, C_[i], L_[i], P_[i], S[i][3], S[i][4])
 def track(of, cam_off, look_off, lens, fstop, foc=head):
     return lambda f: (of(f) + V(cam_off), of(f) + V(look_off), of(f) + foc, lens, fstop)
 def fixed(cam_p, look_p, foc_p, lens, fstop):
@@ -77,7 +84,14 @@ def pov_follow(f):
     fwd = (p_h - p_cam).normalized() if (p_h - p_cam).length > 1e-3 else V((0, -1, 0))
     side = V((-fwd.y, fwd.x, 0))
     return (p_cam + side * (0.3 + c.x) + V((0, 0, 1.62 + c.z)), p_h + side * l.x + V((0, 0, 1.3 + l.z)), p_h + head, 24, 4.0)
-every("follow", pov_follow)
+def pov_follow_v2(f):
+    c, l = CC.soft_handheld(f)
+    p_cam = flat(hero_s_at(f - LAG)[0]); p_h = hs(f)
+    fwd = (p_h - p_cam).normalized() if (p_h - p_cam).length > 1e-3 else V((0, -1, 0))
+    side = V((-fwd.y, fwd.x, 0))
+    return (p_cam + side * (0.3 + c.x) + V((0, 0, 1.62 + c.z)), p_h + side * l.x + V((0, 0, 1.3 + l.z)), p_h + head, 24, 4.0)
+if SMOOTH: every_smooth("follow", pov_follow_v2, 6)       # rounds the corner into the alley, no direction snap
+else: every("follow", pov_follow)
 STOP_POV = fr("alley_pov") + 16                         # "Then I saw it": he stops dead; the storm slows
 def pov_alley(f):
     walk = max(0.0, 1 - (f - fr("alley_pov")) / 16.0)
@@ -85,18 +99,40 @@ def pov_alley(f):
     xc = ha(min(f, STOP_POV)).x + 3.6
     p = V((xc, AL_Y + 0.25, 0))
     return (p + V((c.x * 0.3, c.x, 1.62 + c.z)), ha(f) + V((0, l.x, 1.35 + l.z)), ha(f) + head, 26, 4.0)
-every("alley_pov", pov_alley)
+def pov_alley_v2(f):
+    a_ = fr("alley_pov"); walk = 1 - CC.minjerk((f - a_) / 16.0)
+    c, l = CC.soft_handheld(f, walk=walk, amp=0.8)
+    xc = ha(min(f, STOP_POV)).x + 3.6
+    p = V((xc, AL_Y + 0.25, 0))
+    return (p + V((c.x * 0.3, c.x, 1.62 + c.z)), ha(f) + V((0, l.x, 1.35 + l.z)), ha(f) + head, 26, 4.0)
+if SMOOTH: every_smooth("alley_pov", pov_alley_v2, 6)     # he stops dead: the camera decelerates over ~0.4 s, not 1 frame
+else: every("alley_pov", pov_alley)
 
 # --- the reveal, in slow motion: he is weaving between the drops
-every("reveal_low", lambda f: (ha(f) + V((-2.7 + 0.004 * (f - fr("reveal_low")), -0.55, 0.32)), ha(f) + V((0, 0, 1.75)),
-                               ha(f) + head, 20, 5.6))
-every("reveal_close", lambda f: (ha(f) + V((-0.55, -1.45, 1.6)), ha(f) + V((-0.15, 0, 1.55)), ha(f) + V((0, 0, 1.6)), 45, 2.8))
+def reveal_low_v2(f):      # low-angle hero shot: a slow orbit round him (continuous angular speed) and a gentle push-in
+    u = (f - fr("reveal_low")) / max(1, fr("reveal_low", 1) - fr("reveal_low"))
+    off = CC.arc(V((-2.7, -0.55, 0.32)) * (1 - 0.12 * u), -16 * u)
+    return (ha(f) + off, ha(f) + V((0, 0, 1.75)), ha(f) + head, 20, 5.6)
+def reveal_close_v2(f):    # the close shot keeps creeping in, with a slight arc, as he weaves through the slowed drops
+    u = (f - fr("reveal_close")) / max(1, fr("reveal_close", 1) - fr("reveal_close"))
+    off = CC.arc(V((-0.55, -1.45, 1.6)), 7 * u) * 1.0; off = V((off.x, off.y, 0)) * (1 - 0.14 * CC.minjerk(u)) + V((0, 0, 1.6))
+    return (ha(f) + off, ha(f) + V((-0.15, 0, 1.55)), ha(f) + V((0, 0, 1.6)), 45, 2.8)
+if SMOOTH:
+    every_smooth("reveal_low", reveal_low_v2, 4); every_smooth("reveal_close", reveal_close_v2, 4)
+else:
+    every("reveal_low", lambda f: (ha(f) + V((-2.7 + 0.004 * (f - fr("reveal_low")), -0.55, 0.32)), ha(f) + V((0, 0, 1.75)),
+                                   ha(f) + head, 20, 5.6))
+    every("reveal_close", lambda f: (ha(f) + V((-0.55, -1.45, 1.6)), ha(f) + V((-0.15, 0, 1.55)), ha(f) + V((0, 0, 1.6)), 45, 2.8))
 
 # --- "He turned. You'll catch a cold, kid." (first person, standing still, the umbrella rim above)
 def pov_turn(f):
     c, l = shake(f, walk=0.0, amp=0.7)
     return (STOP + V((3.2, 0.12, 1.6)) + c, STOP + V((0, l.x, 1.62 + l.z)), STOP + V((0, 0, 1.7)), 38, 2.8)
-every("turn", pov_turn)
+def pov_turn_v2(f):
+    c, l = CC.soft_handheld(f, walk=0.0, amp=0.7)
+    return (STOP + V((3.2, 0.12, 1.6)) + c, STOP + V((0, l.x, 1.62 + l.z)), STOP + V((0, 0, 1.7)), 38, 2.8)
+if SMOOTH: every_smooth("turn", pov_turn_v2, 3)
+else: every("turn", pov_turn)
 mid = (STOP + NARR_T) / 2
 # two-shot down the alley: the kid (umbrella) near and right, the hero beyond him, facing each other
 shot("teach", fixed(mid + V((2.9, -1.55, 1.3)), mid + V((-0.25, 0, 1.5)), mid + V((0, 0, 1.55)), 24, 2.8),
@@ -110,7 +146,7 @@ shot("train_umb", fixed(UN + V((-2.2, -1.25, 1.35)), UN + V((0.5, 0.1, 1.42)), U
      fixed(UN + V((-1.95, -1.1, 1.36)), UN + V((0.5, 0.1, 1.42)), UN + V((0, 0, 1.45)), 40, 2.0))
 def mont(base, cam_off, look_off, lens, fstop):
     def fn(f):
-        c, l = shake(f, walk=0.0, amp=0.9)
+        c, l = (CC.soft_handheld(f, walk=0.0, amp=0.9) if SMOOTH else shake(f, walk=0.0, amp=0.9))
         return (base + V(cam_off) + c, base + V(look_off) + V((l.x, 0, l.z)), base + V((0, 0, 1.4)), lens, fstop)
     return fn
 every("train_mont", mont(RN, (-1.5, -1.7, 1.35), (0, 0, 1.3), 32, 2.8), *MONT[0])
@@ -121,7 +157,12 @@ shot("close", fixed(CLOSE_P + V((0.55, -2.3, 0.5)), CLOSE_P + V((0, 0, 1.8)), CL
 
 # --- the payoff: two of them, dry, walking up the street
 shot("payoff_two", track(hp_, (0.25, -3.7, 1.15), (0, 0, 1.4), 30, 2.8), track(hp_, (0.2, -3.3, 1.2), (0, 0, 1.45), 30, 2.8))
-shot("payoff_wide", track(hp_, (0.4, 4.0, 1.4), (0, -9, 1.7), 26, 3.5), track(hp_, (0.4, 7.5, 6.0), (0, -9, 1.4), 24, 4.0))
+def payoff_wide_v2(f):     # the crane rises and settles on the last frame (ease-out), instead of stopping at full speed
+    a_, b_ = fr("payoff_wide"), fr("payoff_wide", 1); t_ = (f - a_) / max(1, b_ - a_); k = 1 - (1 - t_) ** 2   # constant gentle deceleration
+    co = V((0.4, 4.0, 1.4)).lerp(V((0.4, 7.5, 6.0)), k); lo = V((0, -9, 1.7)).lerp(V((0, -9, 1.4)), k)
+    return (hp_(f) + co, hp_(f) + lo, hp_(f) + head, 26 - 2 * k, 3.5 + 0.5 * k)
+if SMOOTH: every_smooth("payoff_wide", payoff_wide_v2, 2)
+else: shot("payoff_wide", track(hp_, (0.4, 4.0, 1.4), (0, -9, 1.7), 26, 3.5), track(hp_, (0.4, 7.5, 6.0), (0, -9, 1.4), 24, 4.0))
 
 for idb in (cam, tgt, focus, cd, cd.dof):
     ch.set_interp(idb, "LINEAR")

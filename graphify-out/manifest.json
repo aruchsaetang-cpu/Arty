@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795189443.6390307,
-    "seen": 1795189717.049176,
+    "mtime": 1795220387.6251435,
+    "seen": 1795220503.781375,
     "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795181217.9701004,
-    "seen": 1795185712.7585962,
-    "ast_hash": "58de5f1b6ca5b4fc28fcabf64e1478f0",
+    "mtime": 1795219655.545366,
+    "seen": 1795220503.7813933,
+    "ast_hash": "f18844d4f4ede88a3e56edeb480ef0bd",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -6672,9 +6672,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film_camera.py": {
-    "mtime": 1795179974.4306161,
-    "seen": 1795179995.9543276,
-    "ast_hash": "3a3617dba4c3600374445f5624aed1fe",
+    "mtime": 1795220477.6379254,
+    "seen": 1795220503.7813952,
+    "ast_hash": "b73c6e1f3c7a551c8b6f6c092f19e8ac",
     "semantic_hash": ""
   },
   "shorts/aura/film_sets.py": {
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795189609.7916899,
-    "seen": 1795189717.0492358,
+    "mtime": 1795219442.0383449,
+    "seen": 1795220503.7814112,
     "ast_hash": "8acb09fa503cc2732cf7be18dac06ce6",
     "semantic_hash": ""
   },
@@ -7677,6 +7677,18 @@
     "mtime": 1795189387.5317516,
     "seen": 1795189717.0519829,
     "ast_hash": "16e7e9d3911de83b340818d0c60cd7ef",
+    "semantic_hash": ""
+  },
+  "shorts/aura/cam_qa.py": {
+    "mtime": 1795219693.2495532,
+    "seen": 1795220503.7813787,
+    "ast_hash": "16d62183531932efa511bfe81b85504d",
+    "semantic_hash": ""
+  },
+  "shorts/aura/cine_camera.py": {
+    "mtime": 1795219625.257549,
+    "seen": 1795220503.7813847,
+    "ast_hash": "4a7767f092fb052035d11b457eaa593f",
     "semantic_hash": ""
   }
 }
