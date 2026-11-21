@@ -164,3 +164,10 @@ the `caveman` skill; in other assistants just follow this rule.)
 **Standing rules from the user**
 36. The user records the voice. No TTS. No Seedance/Higgsfield spending. Only the user's character wears the hoodie. Keep what already works.
 37. Give the hand-off to ChatGPT (this file); the user has ChatGPT Pro; add caveman style and token saving (section 9); add all instructions (this section).
+
+## 11. Unattended render (added last)
+`shorts/aura/run_to_end.sh` renders all missing frames (re-running `render_all.sh` up to 8 times), then runs the finish pass, and writes `shorts/aura/run_to_end.done`
+when the film is ready (`shorts/aura/out/aura_monster.mp4`). Started detached with:
+`setsid nohup bash shorts/aura/run_to_end.sh > shorts/aura/run_to_end.log 2>&1 < /dev/null &`
+Check it: `cat shorts/aura/run_to_end.log` and `pgrep -af "run_to_end|film.py"`. If it is not running and `run_to_end.done` does not exist, start it again with the command above.
+Each `render_all.sh` pass loads the scene once per shot range (a few minutes each) even when those frames exist; that overhead is normal.

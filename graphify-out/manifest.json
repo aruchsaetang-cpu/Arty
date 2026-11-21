@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795238157.8311825,
-    "seen": 1795239513.4552052,
+    "mtime": 1795240070.4547644,
+    "seen": 1795240130.6869893,
     "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
@@ -7698,9 +7698,15 @@
     "semantic_hash": ""
   },
   "HANDOFF.md": {
-    "mtime": 1795239766.3907464,
-    "seen": 1795239774.2884846,
-    "ast_hash": "cbf68274c307f6507d358d9d778d4abf",
+    "mtime": 1795240122.5547676,
+    "seen": 1795240130.6878905,
+    "ast_hash": "ed4dba21dae6ab2f65cc7dddf75641b7",
+    "semantic_hash": ""
+  },
+  "shorts/aura/run_to_end.sh": {
+    "mtime": 1795240089.997308,
+    "seen": 1795240130.6870203,
+    "ast_hash": "3542e515de26bb7883fb27d529709bba",
     "semantic_hash": ""
   }
 }
