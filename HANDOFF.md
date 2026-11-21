@@ -104,3 +104,17 @@ builds `audio/voice_fast.wav`, `beats.json`, `slots.json`.
 `compose.py`, `audio.py`, `mix.py`, `finish.sh`, `upscale.py`, `cam_qa.py`, `frames/` (renders), `masks/`, `graded/`, `graded_hd/`, `out/` (previews and the film), `audio/`.
 `lookdev/` : `character_mh.py`, `character_v1.py`, `city.py`, `fashion.py`, `customers.py`, `meridian.py`, `walk_stop.py`. `car3d/` : the Three.js pages.
 `.claude/skills/` : `blender`, `openverse-sfx`, `graphify`, HyperFrames skills. `graphify-out/` : the code knowledge graph.
+
+## 9. Reply style and saving tokens (read this too)
+**Talk caveman.** Short, blunt sentences, small words, no filler, no long recaps. Example: "Render stopped. 700 of 1169 done. Restarted. 8 hours left."
+Keep it plain enough for a non-native English reader. Still say exactly what is done, what is not done, and what the user must decide. (In Claude Code this is
+the `caveman` skill; in other assistants just follow this rule.)
+
+**Spend as few tokens as possible:**
+- Read this file once, then work from it. Do not re-read big files (`film.py`, `character_mh.py`, `city.py` are 1000-2000 lines). Search first, read only the lines you need.
+- Use the code graph: `graphify query "<question>"` before grepping (project rule). Run `graphify update .` after code changes.
+- Do not look at images or contact sheets unless a visual check is really needed; measure with numbers instead (`cam_qa.py`, the foot-contact report in `walk_stop.py`, frame counts).
+- Render restarts are mechanical: run the command, do not re-explain. A restart reply is one or two lines with the frame count (done / 1169).
+- Do not ask questions the user already answered (section 7). Only ask when a choice changes the result.
+- Do not send many previews. Send one file when something finished, with one line of caption.
+- Do not rebuild or "improve" things that already work. Change only what the user asked.
