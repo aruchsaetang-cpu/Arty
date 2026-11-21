@@ -118,3 +118,49 @@ the `caveman` skill; in other assistants just follow this rule.)
 - Do not ask questions the user already answered (section 7). Only ask when a choice changes the result.
 - Do not send many previews. Send one file when something finished, with one line of caption.
 - Do not rebuild or "improve" things that already work. Change only what the user asked.
+
+## 10. Every instruction the user gave (oldest first). "REPLACED" = a later instruction overrides it. Follow the latest.
+**Sound and voice**
+1. Two voice WAVs: cut the quiet parts, speed to 1.2x. (done: `cut_vo.py`)
+2. Install Openverse for sound effects and use it from HyperFrames. (done: `.claude/skills/openverse-sfx`)
+3. Use HyperFrames to make the animation smooth and sharp (ชัด). (done: upscale + HyperFrames captions)
+4. A whoosh on every scene change. (now: whoosh on 6 cuts, user's click on 12; see 14-17)
+5. A transition sound at Aura Monster's first dodge; click and camera shutter on scene changes, swapping with the whoosh in no fixed order. (REPLACED by 14-17: no shutter, no built-in click)
+6. Cinematic anime-movie sound effects. (done: `cine` stem in `audio.py`)
+**Look and characters**
+7. Put the user's channel logo on THEIR character's hoodie: black hoodie, white print like the reference (A badge on chest, ARTY CLIPS on back). ONLY their character wears it; other NPCs do not wear hoodies.
+8. NPCs (except Aura Monster and the police) use the manhwa street-fashion style from the user's references (`fashion.py`); make faces clearer (ชัด).
+9. All shop windows see-through with a customer inside, each customer a different style. Render cars like real ones (SUV reference photo); then many car styles (sedan, hatch, crossover, SUV, off-roader), then sports cars and supercars from their photos.
+10. NPC clothes follow the user's fashion reference images.
+11. Rain drops must look like the user's two screen recordings: crown splashes with droplets on the road, multi-ring ripples on puddles.
+12. One scene: extreme close-up of the hero's eye (black sclera, white eyeball), as detailed as possible. (later: the name_close shot ends on the whole face, see 20)
+13. High-detail store interior ONLY in the shot where the inside clearly shows (the shop shot).
+**Scene and sound changes (later in the project)**
+14. "Use this click sound instead, it is louder, I want it to grab attention on scene change." (user's own click in `audio/sfx/click_user.wav`, loud, never ducked)
+15. "Delete all Openverse click sound and use my click instead." (done: shutter and synthesised click removed; there were no Openverse clicks)
+16. "Use this [riser] in the hook, and the step sound only when I follow him." (done)
+17. "Use this sound when he dodges." (dodge swoosh `dodge_user.wav`); then "when he dodges use cinematic instead of click" (the dodge cuts use the swoosh, not the click).
+18. Riser: "use at the opening of the clip", "make it loud", "start at 0 sec, not wait until the hook ends", "when I said 'year' it needs to end exactly at the same time and be louder", then "delay a bit", then "delay 0.2 sec". (now ends at 3.12 s; one number `RISER_DELAY` = 0.30 in `audio.py`)
+19. "In this scene [the reveal] my character is supposed to be on the back, isn't it, because I follow him." (done: narrator staged behind the hero)
+20. "I want the first scene, his character ชัด" (done: longer lens + full-resolution render). Then: "first scene no need to add aura, but when you start to introduce the character use the same aura. And this scene zoom too much, show only a close-up of his face." (done)
+21. "Use the Meridian GT-8 car in the film." (done: opening and final wide shots)
+22. "The dodge scene: add afterimage to make the scene cooler" (reference: Ultra Instinct dodge GIF). (done in `compose.py`)
+**Camera**
+23. Ultra-smooth cinematic camera master prompt: first frame and opening shot must stay identical; spline/min-jerk motion, no jitter or snapping, no roll; push-ins, orbits, low-angle, extreme close-ups, parallax, shake only on impacts; keep 70% of the existing look and add 30% camera improvement; 30 fps stable is better than inconsistent 60; make a before/after comparison; reusable controller. (done: `cine_camera.py`)
+24. "Red" + three screen recordings: the camera language reference (fast "In this world..." Shorts). (done: moving camera in teach, rooftop, umbrella alley, montage, close, payoff)
+**Process and delivery**
+25. "Send me progress every 2 hours" then "Every 2 hours, no need to send me progress now." (no progress cards)
+26. "When the first scene finishes rendering, send it to me to check first" then "Scene 1 is done, no need to check, I will sleep." (do not wait for the user)
+27. "Continue yourself when it stops, I allow you." (restart the render at each 2-hour stop)
+28. "Can you send me what is done." (previews sent; do this again when asked)
+29. "After done half of the video show me." (done)
+30. "How much does it take to do the whole clip?" (answer was ~16-18 h at that time; about 8-9 h of render left now)
+**Large master prompts (the user pasted them; each is a project of its own; status in section 5)**
+31. "PRESERVE WHAT ALREADY WORKS": upgrade the animation surgically on a separate branch, do not change what is good, keep identity and opening, compare before/after, revert changes that make it worse, upgrade only the weakest five-second movement. (partly done: foot-slide fix on branch `claude/aura-motion-upgrade`, NOT merged)
+32. "BUILD MY MANHWA CHARACTER" (the Emotionless Man, blueprint image): a fully rigged 3D character, one permanent expression, 10 stages, 3 lighting setups, renders. (NOT started)
+33. "PROFESSIONAL 3D CAR BLUEPRINT" (Three.js, reference blueprints): six-view dimensioned blueprint and animated car. (done: `car3d/meridian.html`)
+34. "UPGRADE MY EXISTING CITY WITHOUT REDESIGNING IT": traffic, pedestrians, traffic lights, doors, weather, iPad performance; keep the city identical; back up first; test each part. (NOT started; two options waiting for the user: upgrade the film's city, ~20 h re-render, or a live Three.js city)
+35. "Install or create a reusable Blender skill" and "Senior Blender Technical Artist": inspect, back up, Blender + bpy check, rig/walk/IK/coat/hair, manhwa cel look, Eevee only if possible, GLB + Three.js, a rainy-street test scene, before/after. (done: `.claude/skills/blender/SKILL.md`, `walk_stop.py`, GLB + `aura_walk.html`; Eevee impossible here)
+**Standing rules from the user**
+36. The user records the voice. No TTS. No Seedance/Higgsfield spending. Only the user's character wears the hoodie. Keep what already works.
+37. Give the hand-off to ChatGPT (this file); the user has ChatGPT Pro; add caveman style and token saving (section 9); add all instructions (this section).
