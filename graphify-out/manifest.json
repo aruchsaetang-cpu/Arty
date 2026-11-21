@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795220387.6251435,
-    "seen": 1795220503.781375,
+    "mtime": 1795221386.0043511,
+    "seen": 1795221699.3990617,
     "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
@@ -6672,9 +6672,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film_camera.py": {
-    "mtime": 1795220477.6379254,
-    "seen": 1795220503.7813952,
-    "ast_hash": "b73c6e1f3c7a551c8b6f6c092f19e8ac",
+    "mtime": 1795220694.861833,
+    "seen": 1795221699.3990817,
+    "ast_hash": "8572d3fba9c85eae8132efd7f065f045",
     "semantic_hash": ""
   },
   "shorts/aura/film_sets.py": {
@@ -7146,9 +7146,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795219442.0383449,
-    "seen": 1795220503.7814112,
-    "ast_hash": "8acb09fa503cc2732cf7be18dac06ce6",
+    "mtime": 1795221458.1949193,
+    "seen": 1795221699.3990977,
+    "ast_hash": "fabcb64423a692d30b44f07133fbfcd3",
     "semantic_hash": ""
   },
   ".claude/skills/openverse-sfx/SKILL.md": {
@@ -7689,6 +7689,12 @@
     "mtime": 1795219625.257549,
     "seen": 1795220503.7813847,
     "ast_hash": "4a7767f092fb052035d11b457eaa593f",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/camera_before_after.png": {
+    "mtime": 1795220603.1018207,
+    "seen": 1795221699.4002755,
+    "ast_hash": "5e33040a12bb629bc03ec57996a454b5",
     "semantic_hash": ""
   }
 }

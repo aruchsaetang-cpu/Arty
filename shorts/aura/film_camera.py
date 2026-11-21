@@ -155,8 +155,46 @@ every("train_mont", mont(RN, (0.9, -1.8, 1.45), (0, 0, 1.25), 38, 2.4), *MONT[2]
 shot("close", fixed(CLOSE_P + V((0.55, -2.3, 0.5)), CLOSE_P + V((0, 0, 1.8)), CLOSE_P + V((0, 0, 1.6)), 28, 2.8),
      fixed(CLOSE_P + V((0.45, -2.0, 0.55)), CLOSE_P + V((0, 0, 1.75)), CLOSE_P + V((0, 0, 1.6)), 28, 2.8))
 
+# --- reference camera language (the user's "In this world..." Shorts): the camera never sits still - steady push-ins,
+# slow orbits, punch-ins that settle on the face. Only for shots from "teach" on (the earlier shots are kept as rendered).
+def push(sid, cam0, cam1, look0, look1, foc, lens, fstop, a=None, b=None, prof=lambda t: t, hand=0.0):
+    a = a or fr(sid); b = b or fr(sid, 1)
+    def fn(f):
+        k = prof((f - a) / max(1, b - a)); c, l = CC.soft_handheld(f, walk=0.0, amp=hand) if hand else (V((0, 0, 0)), V((0, 0, 0)))
+        return (V(cam0).lerp(V(cam1), k) + c, V(look0).lerp(V(look1), k) + V((l.x, 0, l.z)), V(foc), lens, fstop)
+    every_smooth(sid, fn, 2, a, b)
+def orbit(sid, centre, off, deg, look, foc, lens, fstop, pushk=0.0):
+    a, b = fr(sid), fr(sid, 1)
+    def fn(f):
+        u = (f - a) / max(1, b - a); o = CC.arc(V(off), deg * u); o = V((o.x, o.y, 0)) * (1 - pushk * u) + V((0, 0, o.z))
+        return (V(centre) + o, V(look), V(foc), lens, fstop)
+    every_smooth(sid, fn, 2)
+quad_out = lambda t: 1 - (1 - t) ** 2                     # starts moving at the cut, settles without a dead stop
+if SMOOTH:
+    # "Teach me": a steady push-in over the kid's shoulder toward the hero
+    push("teach", mid + V((2.9, -1.55, 1.3)), mid + V((2.05, -1.1, 1.38)), mid + V((-0.25, 0, 1.5)), mid + V((-0.3, 0, 1.53)),
+         mid + V((0, 0, 1.55)), 24, 2.8)
+    # the rooftop: a slow orbit round the pair, constant angular speed
+    orbit("train_roof", rmid, (2.2, -3.6, 0.9), 18, rmid + V((0, 0.8, 1.45)), rmid + V((0, 0, 1.4)), 24, 4.0, pushk=0.08)
+    # the second alley: push in on the kid under the umbrella
+    push("train_umb", UN + V((-2.2, -1.25, 1.35)), UN + V((-1.55, -0.88, 1.38)), UN + V((0.5, 0.1, 1.42)), UN + V((0.45, 0.08, 1.43)),
+         UN + V((0, 0, 1.45)), 40, 2.0, prof=quad_out)
+    # a hundred nights: each cut punches in and settles (handheld kept, low frequency only)
+    for (base, co, lo, lens, fs), (a_, b_) in zip(((RN, (-1.5, -1.7, 1.35), (0, 0, 1.3), 32, 2.8), (UN, (1.3, -1.5, 0.55), (0, 0, 1.45), 26, 2.8),
+                                                    (RN, (0.9, -1.8, 1.45), (0, 0, 1.25), 38, 2.4)), MONT):
+        c0 = V(co); c1 = V((c0.x * 0.72, c0.y * 0.72, c0.z))
+        push("train_mont", base + c0, base + c1, base + V(lo), base + V(lo), base + V((0, 0, 1.4)), lens, fs, a_, b_, quad_out, hand=0.9)
+    # "Then one night, I closed it.": push in to his face as the umbrella closes
+    push("close", CLOSE_P + V((0.55, -2.3, 0.5)), CLOSE_P + V((0.38, -1.45, 0.78)), CLOSE_P + V((0, 0, 1.8)), CLOSE_P + V((0, 0, 1.72)),
+         CLOSE_P + V((0, 0, 1.6)), 28, 2.8, prof=quad_out)
+
 # --- the payoff: two of them, dry, walking up the street
-shot("payoff_two", track(hp_, (0.25, -3.7, 1.15), (0, 0, 1.4), 30, 2.8), track(hp_, (0.2, -3.3, 1.2), (0, 0, 1.45), 30, 2.8))
+def payoff_two_v2(f):
+    a_, b_ = fr("payoff_two"), fr("payoff_two", 1); u = (f - a_) / max(1, b_ - a_)
+    o = CC.arc(V((0.25, -3.7, 1.15)).lerp(V((0.2, -3.3, 1.2)), u), -12 * u)
+    return (hp_(f) + o, hp_(f) + V((0, 0, 1.4 + 0.05 * u)), hp_(f) + head, 30, 2.8)
+if SMOOTH: every_smooth("payoff_two", payoff_two_v2, 2)
+else: shot("payoff_two", track(hp_, (0.25, -3.7, 1.15), (0, 0, 1.4), 30, 2.8), track(hp_, (0.2, -3.3, 1.2), (0, 0, 1.45), 30, 2.8))
 def payoff_wide_v2(f):     # the crane rises and settles on the last frame (ease-out), instead of stopping at full speed
     a_, b_ = fr("payoff_wide"), fr("payoff_wide", 1); t_ = (f - a_) / max(1, b_ - a_); k = 1 - (1 - t_) ** 2   # constant gentle deceleration
     co = V((0.4, 4.0, 1.4)).lerp(V((0.4, 7.5, 6.0)), k); lo = V((0, -9, 1.7)).lerp(V((0, -9, 1.4)), k)
