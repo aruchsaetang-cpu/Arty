@@ -68,18 +68,37 @@ def handheld(a, f, amt):
     cw, ch_ = int(w / z), int(h / z); im = im.crop(((w - cw) // 2, (h - ch_) // 2, (w - cw) // 2 + cw, (h - ch_) // 2 + ch_))
     return np.asarray(im.resize((w, h), Image.BICUBIC), np.float32) / 255
 
-GHOSTS = []          # (rgb * mask, mask) of the last few frames: afterimages while he dodges in slow motion
+_SHOT_STARTS = sorted(s_["f0"] for s_ in json.load(open(os.path.join(HERE, "beats.json")))["shots"])
+def _shot_of(f): return sum(1 for s0 in _SHOT_STARTS if s0 <= f)
+GHOSTS = []          # (frame, rgb * mask, mask) of the last ~half second: afterimages while he dodges in slow motion
+GHOST_LAGS = (3, 6, 9, 13)                   # how far back each afterimage is (frames): spaced, so every side-step
+GHOST_ALPHA = (0.72, 0.55, 0.4, 0.26)        # leaves distinct copies (the reference's "Ultra Instinct" dodge)
+GHOST_TINT = np.array([0.62, 0.78, 1.0], np.float32)
 def trail(a, m, f):
+    """Afterimages: translucent blue-white copies of the hero from earlier frames, behind him, fading with age.
+    Each copy is weighted by how far he has moved since (no motion -> no ghost), so they bloom on the dodges."""
     global GHOSTS
     if not (TRAIL[0] <= f <= TRAIL[1]) or m is None:
         GHOSTS = []; return a
-    if GHOSTS and GHOSTS[0][0].shape != a.shape: GHOSTS = []          # (the full-resolution eye shot)
-    out = a.copy(); free = (1 - np.clip(m * 1.5, 0, 1))[..., None]
-    for k, (g, gm) in enumerate(reversed(GHOSTS)):
-        w_ = (0.5 * 0.62 ** k) * gm[..., None] * free
-        tint = g * np.array([0.85, 0.95, 1.15], np.float32) + 0.12
-        out = out * (1 - w_) + tint * w_
-    GHOSTS = (GHOSTS + [(a * m[..., None], m)])[-4:]
+    if GHOSTS and GHOSTS[0][1].shape != a.shape: GHOSTS = []          # (resolution changed between shots)
+    GHOSTS = [g for g in GHOSTS if _shot_of(g[0]) == _shot_of(f)]       # never carry a ghost across a cut
+    out = a.copy(); free = (1 - np.clip(m * 1.5, 0, 1))[..., None]    # never over the hero himself
+    ys, xs = np.nonzero(m > 0.5); c_now = (xs.mean(), ys.mean()) if len(xs) else None
+    hist = {g[0]: g for g in GHOSTS}
+    for lag, al in zip(reversed(GHOST_LAGS), reversed(GHOST_ALPHA)):     # oldest first, newest on top
+        g = hist.get(f - lag)
+        if g is None or c_now is None: continue
+        _, gc, gm = g; gy, gx = np.nonzero(gm > 0.5)
+        if not len(gx): continue
+        moved = np.hypot(gx.mean() - c_now[0], gy.mean() - c_now[1]) / (a.shape[1] / 540)   # px at 540 wide
+        k = min(1.0, max(0.0, (moved - 2.0) / 10.0))                        # bloom on real side-steps
+        if k <= 0: continue
+        lum = (gc @ np.array([0.3, 0.55, 0.15], np.float32))[..., None]
+        ghost = np.clip(0.35 * gc + 0.75 * lum * GHOST_TINT + 0.10 * GHOST_TINT, 0, 1)
+        w_ = (al * k) * gm[..., None] * free
+        out = out * (1 - w_) + ghost * w_
+        out = 1 - (1 - out) * (1 - 0.18 * w_ * GHOST_TINT)                 # a faint glow on the copies
+    GHOSTS = [g for g in GHOSTS if f - g[0] < max(GHOST_LAGS)] + [(f, a * m[..., None], m)]
     return out
 
 prev = None
