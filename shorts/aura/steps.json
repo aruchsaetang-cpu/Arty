@@ -282,7 +282,7 @@
 {
 "t": 15.067,
 "rig": "HERO_street",
-"gain": 0.578
+"gain": 0.579
 },
 {
 "t": 15.133,
@@ -307,7 +307,7 @@
 {
 "t": 16.2,
 "rig": "HERO_street",
-"gain": 0.658
+"gain": 0.656
 },
 {
 "t": 16.633,
@@ -317,7 +317,7 @@
 {
 "t": 16.767,
 "rig": "HERO_street",
-"gain": 0.733
+"gain": 0.731
 },
 {
 "t": 17.133,
@@ -337,7 +337,7 @@
 {
 "t": 17.733,
 "rig": "HERO_alley",
-"gain": 0.547
+"gain": 0.537
 },
 {
 "t": 18.133,
@@ -352,27 +352,27 @@
 {
 "t": 18.633,
 "rig": "W3_walker",
-"gain": 0.106
+"gain": 0.107
 },
 {
 "t": 18.867,
 "rig": "HERO_alley",
-"gain": 0.822
+"gain": 0.824
 },
 {
 "t": 19.133,
 "rig": "W3_walker",
-"gain": 0.107
+"gain": 0.108
 },
 {
 "t": 19.433,
 "rig": "HERO_alley",
-"gain": 0.844
+"gain": 0.845
 },
 {
 "t": 19.633,
 "rig": "W3_walker",
-"gain": 0.107
+"gain": 0.108
 },
 {
 "t": 20.0,
@@ -382,12 +382,12 @@
 {
 "t": 20.133,
 "rig": "W3_walker",
-"gain": 0.107
+"gain": 0.109
 },
 {
 "t": 20.567,
 "rig": "HERO_alley",
-"gain": 0.886
+"gain": 0.894
 },
 {
 "t": 20.633,
@@ -402,12 +402,12 @@
 {
 "t": 21.133,
 "rig": "W3_walker",
-"gain": 0.109
+"gain": 0.11
 },
 {
 "t": 21.633,
 "rig": "W3_walker",
-"gain": 0.109
+"gain": 0.11
 },
 {
 "t": 21.7,
@@ -417,22 +417,22 @@
 {
 "t": 22.133,
 "rig": "W3_walker",
-"gain": 0.108
+"gain": 0.109
 },
 {
 "t": 22.267,
 "rig": "HERO_alley",
-"gain": 0.993
+"gain": 1.0
 },
 {
 "t": 22.633,
 "rig": "W3_walker",
-"gain": 0.108
+"gain": 0.109
 },
 {
 "t": 22.833,
 "rig": "HERO_alley",
-"gain": 0.974
+"gain": 1.0
 },
 {
 "t": 23.133,
@@ -457,22 +457,22 @@
 {
 "t": 25.133,
 "rig": "W3_walker",
-"gain": 0.141
+"gain": 0.14
 },
 {
 "t": 25.633,
 "rig": "W3_walker",
-"gain": 0.138
+"gain": 0.137
 },
 {
 "t": 26.133,
 "rig": "W3_walker",
-"gain": 0.14
+"gain": 0.139
 },
 {
 "t": 26.633,
 "rig": "W3_walker",
-"gain": 0.142
+"gain": 0.139
 },
 {
 "t": 27.133,
@@ -497,22 +497,22 @@
 {
 "t": 29.133,
 "rig": "W3_walker",
-"gain": 0.109
+"gain": 0.108
 },
 {
 "t": 29.633,
 "rig": "W3_walker",
-"gain": 0.107
+"gain": 0.105
 },
 {
 "t": 30.133,
 "rig": "W3_walker",
-"gain": 0.105
+"gain": 0.103
 },
 {
 "t": 30.633,
 "rig": "W3_walker",
-"gain": 0.103
+"gain": 0.101
 },
 {
 "t": 31.133,
@@ -532,7 +532,7 @@
 {
 "t": 32.633,
 "rig": "W3_walker",
-"gain": 0.036
+"gain": 0.037
 },
 {
 "t": 33.133,
@@ -542,22 +542,22 @@
 {
 "t": 33.633,
 "rig": "W3_walker",
-"gain": 0.068
+"gain": 0.067
 },
 {
 "t": 34.133,
 "rig": "W3_walker",
-"gain": 0.067
+"gain": 0.066
 },
 {
 "t": 34.633,
 "rig": "W3_walker",
-"gain": 0.065
+"gain": 0.064
 },
 {
 "t": 34.967,
 "rig": "NARR_payoff",
-"gain": 0.543
+"gain": 0.541
 },
 {
 "t": 35.133,
@@ -567,12 +567,12 @@
 {
 "t": 35.233,
 "rig": "HERO_payoff",
-"gain": 0.568
+"gain": 0.574
 },
 {
 "t": 35.533,
 "rig": "NARR_payoff",
-"gain": 0.547
+"gain": 0.538
 },
 {
 "t": 35.633,
@@ -582,12 +582,12 @@
 {
 "t": 35.8,
 "rig": "HERO_payoff",
-"gain": 0.592
+"gain": 0.606
 },
 {
 "t": 36.1,
 "rig": "NARR_payoff",
-"gain": 0.549
+"gain": 0.535
 },
 {
 "t": 36.133,
@@ -597,72 +597,72 @@
 {
 "t": 36.367,
 "rig": "HERO_payoff",
-"gain": 0.47
+"gain": 0.444
 },
 {
 "t": 36.633,
 "rig": "W3_walker",
-"gain": 0.062
+"gain": 0.061
 },
 {
 "t": 36.667,
 "rig": "NARR_payoff",
-"gain": 0.481
+"gain": 0.413
 },
 {
 "t": 36.933,
 "rig": "HERO_payoff",
-"gain": 0.385
+"gain": 0.326
 },
 {
 "t": 37.133,
 "rig": "W3_walker",
-"gain": 0.061
+"gain": 0.059
 },
 {
 "t": 37.233,
 "rig": "NARR_payoff",
-"gain": 0.394
+"gain": 0.319
 },
 {
 "t": 37.5,
 "rig": "HERO_payoff",
-"gain": 0.323
+"gain": 0.269
 },
 {
 "t": 37.633,
 "rig": "W3_walker",
-"gain": 0.06
+"gain": 0.058
 },
 {
 "t": 37.8,
 "rig": "NARR_payoff",
-"gain": 0.332
+"gain": 0.276
 },
 {
 "t": 38.067,
 "rig": "HERO_payoff",
-"gain": 0.277
+"gain": 0.241
 },
 {
 "t": 38.133,
 "rig": "W3_walker",
-"gain": 0.059
+"gain": 0.057
 },
 {
 "t": 38.367,
 "rig": "NARR_payoff",
-"gain": 0.286
+"gain": 0.255
 },
 {
 "t": 38.633,
 "rig": "HERO_payoff",
-"gain": 0.242
+"gain": 0.228
 },
 {
 "t": 38.633,
 "rig": "W3_walker",
-"gain": 0.058
+"gain": 0.057
 },
 {
 "t": 38.933,
