@@ -171,3 +171,5 @@ when the film is ready (`shorts/aura/out/aura_monster.mp4`). Started detached wi
 `setsid nohup bash shorts/aura/run_to_end.sh > shorts/aura/run_to_end.log 2>&1 < /dev/null &`
 Check it: `cat shorts/aura/run_to_end.log` and `pgrep -af "run_to_end|film.py"`. If it is not running and `run_to_end.done` does not exist, start it again with the command above.
 Each `render_all.sh` pass loads the scene once per shot range (a few minutes each) even when those frames exist; that overhead is normal.
+`shorts/aura/after_done.sh` (also detached) waits for `run_to_end.done`, then commits and pushes the film (`shorts/aura/out/aura_monster.mp4`, or `_small` if over 95 MB) to the branch,
+so it can be downloaded from GitHub without any assistant. Start it with `setsid nohup bash shorts/aura/after_done.sh > /dev/null 2>&1 < /dev/null &` if it is not running.
