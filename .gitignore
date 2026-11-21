@@ -1,0 +1,15 @@
+__pycache__/
+lookdev/renders/clip/
+shorts/aura/frames/
+shorts/aura/graded/
+shorts/aura/masks/
+shorts/aura/masks_y/
+shorts/aura/audio/mix_raw.wav
+shorts/aura/caps/
+shorts/aura/hf/.hyperframes/
+shorts/aura/hf/renders/
+shorts/aura/stills/
+car3d/assets/*.gltf.json
+lookdev/renders/walk_stop_after/
+lookdev/renders/walk_stop_before/
+shorts/aura/old_cam_frames/

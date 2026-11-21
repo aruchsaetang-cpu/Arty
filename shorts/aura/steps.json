@@ -1,0 +1,672 @@
+[
+{
+"t": 0.133,
+"rig": "W3_walker",
+"gain": 0.067
+},
+{
+"t": 0.333,
+"rig": "HERO_street",
+"gain": 0.131
+},
+{
+"t": 0.633,
+"rig": "W3_walker",
+"gain": 0.068
+},
+{
+"t": 0.9,
+"rig": "HERO_street",
+"gain": 0.138
+},
+{
+"t": 1.133,
+"rig": "W3_walker",
+"gain": 0.069
+},
+{
+"t": 1.467,
+"rig": "HERO_street",
+"gain": 0.144
+},
+{
+"t": 1.633,
+"rig": "W3_walker",
+"gain": 0.07
+},
+{
+"t": 2.033,
+"rig": "HERO_street",
+"gain": 0.152
+},
+{
+"t": 2.133,
+"rig": "W3_walker",
+"gain": 0.072
+},
+{
+"t": 2.6,
+"rig": "HERO_street",
+"gain": 0.16
+},
+{
+"t": 2.633,
+"rig": "W3_walker",
+"gain": 0.073
+},
+{
+"t": 3.133,
+"rig": "W3_walker",
+"gain": 0.074
+},
+{
+"t": 3.167,
+"rig": "HERO_street",
+"gain": 0.169
+},
+{
+"t": 3.633,
+"rig": "W3_walker",
+"gain": 0.122
+},
+{
+"t": 3.733,
+"rig": "HERO_street",
+"gain": 1.0
+},
+{
+"t": 4.133,
+"rig": "W3_walker",
+"gain": 0.122
+},
+{
+"t": 4.3,
+"rig": "HERO_street",
+"gain": 1.0
+},
+{
+"t": 4.633,
+"rig": "W3_walker",
+"gain": 0.121
+},
+{
+"t": 4.867,
+"rig": "HERO_street",
+"gain": 1.0
+},
+{
+"t": 5.133,
+"rig": "W3_walker",
+"gain": 0.121
+},
+{
+"t": 5.433,
+"rig": "HERO_street",
+"gain": 0.95
+},
+{
+"t": 5.633,
+"rig": "W3_walker",
+"gain": 0.118
+},
+{
+"t": 6.0,
+"rig": "HERO_street",
+"gain": 1.0
+},
+{
+"t": 6.133,
+"rig": "W3_walker",
+"gain": 0.12
+},
+{
+"t": 6.567,
+"rig": "HERO_street",
+"gain": 1.0
+},
+{
+"t": 6.633,
+"rig": "W3_walker",
+"gain": 0.121
+},
+{
+"t": 7.133,
+"rig": "HERO_street",
+"gain": 1.0
+},
+{
+"t": 7.133,
+"rig": "W3_walker",
+"gain": 0.121
+},
+{
+"t": 7.633,
+"rig": "W3_walker",
+"gain": 0.099
+},
+{
+"t": 7.7,
+"rig": "HERO_street",
+"gain": 0.44
+},
+{
+"t": 8.133,
+"rig": "W3_walker",
+"gain": 0.099
+},
+{
+"t": 8.267,
+"rig": "HERO_street",
+"gain": 0.449
+},
+{
+"t": 8.633,
+"rig": "W3_walker",
+"gain": 0.099
+},
+{
+"t": 8.833,
+"rig": "HERO_street",
+"gain": 0.458
+},
+{
+"t": 9.133,
+"rig": "W3_walker",
+"gain": 0.099
+},
+{
+"t": 9.4,
+"rig": "HERO_street",
+"gain": 0.467
+},
+{
+"t": 9.633,
+"rig": "W3_walker",
+"gain": 0.099
+},
+{
+"t": 9.967,
+"rig": "HERO_street",
+"gain": 0.476
+},
+{
+"t": 10.133,
+"rig": "W3_walker",
+"gain": 0.233
+},
+{
+"t": 10.533,
+"rig": "HERO_street",
+"gain": 0.168
+},
+{
+"t": 10.633,
+"rig": "W3_walker",
+"gain": 0.241
+},
+{
+"t": 11.1,
+"rig": "HERO_street",
+"gain": 0.158
+},
+{
+"t": 11.133,
+"rig": "W3_walker",
+"gain": 0.249
+},
+{
+"t": 11.633,
+"rig": "W3_walker",
+"gain": 0.263
+},
+{
+"t": 11.667,
+"rig": "HERO_street",
+"gain": 0.208
+},
+{
+"t": 12.133,
+"rig": "W3_walker",
+"gain": 0.284
+},
+{
+"t": 12.233,
+"rig": "HERO_street",
+"gain": 0.193
+},
+{
+"t": 12.633,
+"rig": "W3_walker",
+"gain": 0.309
+},
+{
+"t": 12.8,
+"rig": "HERO_street",
+"gain": 0.18
+},
+{
+"t": 13.133,
+"rig": "W3_walker",
+"gain": 0.171
+},
+{
+"t": 13.367,
+"rig": "HERO_street",
+"gain": 0.286
+},
+{
+"t": 13.633,
+"rig": "W3_walker",
+"gain": 0.179
+},
+{
+"t": 13.933,
+"rig": "HERO_street",
+"gain": 0.259
+},
+{
+"t": 14.133,
+"rig": "W3_walker",
+"gain": 0.186
+},
+{
+"t": 14.5,
+"rig": "HERO_street",
+"gain": 0.237
+},
+{
+"t": 14.633,
+"rig": "W3_walker",
+"gain": 0.194
+},
+{
+"t": 15.067,
+"rig": "HERO_street",
+"gain": 0.579
+},
+{
+"t": 15.133,
+"rig": "W3_walker",
+"gain": 0.14
+},
+{
+"t": 15.633,
+"rig": "HERO_street",
+"gain": 0.578
+},
+{
+"t": 15.633,
+"rig": "W3_walker",
+"gain": 0.139
+},
+{
+"t": 16.133,
+"rig": "W3_walker",
+"gain": 0.138
+},
+{
+"t": 16.2,
+"rig": "HERO_street",
+"gain": 0.656
+},
+{
+"t": 16.633,
+"rig": "W3_walker",
+"gain": 0.137
+},
+{
+"t": 16.767,
+"rig": "HERO_street",
+"gain": 0.731
+},
+{
+"t": 17.133,
+"rig": "W3_walker",
+"gain": 0.135
+},
+{
+"t": 17.167,
+"rig": "HERO_alley",
+"gain": 0.552
+},
+{
+"t": 17.633,
+"rig": "W3_walker",
+"gain": 0.127
+},
+{
+"t": 17.733,
+"rig": "HERO_alley",
+"gain": 0.537
+},
+{
+"t": 18.133,
+"rig": "W3_walker",
+"gain": 0.106
+},
+{
+"t": 18.3,
+"rig": "HERO_alley",
+"gain": 0.805
+},
+{
+"t": 18.633,
+"rig": "W3_walker",
+"gain": 0.107
+},
+{
+"t": 18.867,
+"rig": "HERO_alley",
+"gain": 0.824
+},
+{
+"t": 19.133,
+"rig": "W3_walker",
+"gain": 0.108
+},
+{
+"t": 19.433,
+"rig": "HERO_alley",
+"gain": 0.845
+},
+{
+"t": 19.633,
+"rig": "W3_walker",
+"gain": 0.108
+},
+{
+"t": 20.0,
+"rig": "HERO_alley",
+"gain": 0.869
+},
+{
+"t": 20.133,
+"rig": "W3_walker",
+"gain": 0.109
+},
+{
+"t": 20.567,
+"rig": "HERO_alley",
+"gain": 0.894
+},
+{
+"t": 20.633,
+"rig": "W3_walker",
+"gain": 0.11
+},
+{
+"t": 21.133,
+"rig": "HERO_alley",
+"gain": 1.0
+},
+{
+"t": 21.133,
+"rig": "W3_walker",
+"gain": 0.11
+},
+{
+"t": 21.633,
+"rig": "W3_walker",
+"gain": 0.11
+},
+{
+"t": 21.7,
+"rig": "HERO_alley",
+"gain": 1.0
+},
+{
+"t": 22.133,
+"rig": "W3_walker",
+"gain": 0.109
+},
+{
+"t": 22.267,
+"rig": "HERO_alley",
+"gain": 1.0
+},
+{
+"t": 22.633,
+"rig": "W3_walker",
+"gain": 0.109
+},
+{
+"t": 22.833,
+"rig": "HERO_alley",
+"gain": 1.0
+},
+{
+"t": 23.133,
+"rig": "W3_walker",
+"gain": 0.13
+},
+{
+"t": 23.633,
+"rig": "W3_walker",
+"gain": 0.133
+},
+{
+"t": 24.133,
+"rig": "W3_walker",
+"gain": 0.135
+},
+{
+"t": 24.633,
+"rig": "W3_walker",
+"gain": 0.138
+},
+{
+"t": 25.133,
+"rig": "W3_walker",
+"gain": 0.14
+},
+{
+"t": 25.633,
+"rig": "W3_walker",
+"gain": 0.137
+},
+{
+"t": 26.133,
+"rig": "W3_walker",
+"gain": 0.139
+},
+{
+"t": 26.633,
+"rig": "W3_walker",
+"gain": 0.139
+},
+{
+"t": 27.133,
+"rig": "W3_walker",
+"gain": 0.033
+},
+{
+"t": 27.633,
+"rig": "W3_walker",
+"gain": 0.033
+},
+{
+"t": 28.133,
+"rig": "W3_walker",
+"gain": 0.034
+},
+{
+"t": 28.633,
+"rig": "W3_walker",
+"gain": 0.034
+},
+{
+"t": 29.133,
+"rig": "W3_walker",
+"gain": 0.108
+},
+{
+"t": 29.633,
+"rig": "W3_walker",
+"gain": 0.105
+},
+{
+"t": 30.133,
+"rig": "W3_walker",
+"gain": 0.103
+},
+{
+"t": 30.633,
+"rig": "W3_walker",
+"gain": 0.101
+},
+{
+"t": 31.133,
+"rig": "W3_walker",
+"gain": 0.036
+},
+{
+"t": 31.633,
+"rig": "W3_walker",
+"gain": 0.036
+},
+{
+"t": 32.133,
+"rig": "W3_walker",
+"gain": 0.089
+},
+{
+"t": 32.633,
+"rig": "W3_walker",
+"gain": 0.037
+},
+{
+"t": 33.133,
+"rig": "W3_walker",
+"gain": 0.037
+},
+{
+"t": 33.633,
+"rig": "W3_walker",
+"gain": 0.067
+},
+{
+"t": 34.133,
+"rig": "W3_walker",
+"gain": 0.066
+},
+{
+"t": 34.633,
+"rig": "W3_walker",
+"gain": 0.064
+},
+{
+"t": 34.967,
+"rig": "NARR_payoff",
+"gain": 0.541
+},
+{
+"t": 35.133,
+"rig": "W3_walker",
+"gain": 0.079
+},
+{
+"t": 35.233,
+"rig": "HERO_payoff",
+"gain": 0.574
+},
+{
+"t": 35.533,
+"rig": "NARR_payoff",
+"gain": 0.538
+},
+{
+"t": 35.633,
+"rig": "W3_walker",
+"gain": 0.079
+},
+{
+"t": 35.8,
+"rig": "HERO_payoff",
+"gain": 0.606
+},
+{
+"t": 36.1,
+"rig": "NARR_payoff",
+"gain": 0.535
+},
+{
+"t": 36.133,
+"rig": "W3_walker",
+"gain": 0.079
+},
+{
+"t": 36.367,
+"rig": "HERO_payoff",
+"gain": 0.444
+},
+{
+"t": 36.633,
+"rig": "W3_walker",
+"gain": 0.061
+},
+{
+"t": 36.667,
+"rig": "NARR_payoff",
+"gain": 0.413
+},
+{
+"t": 36.933,
+"rig": "HERO_payoff",
+"gain": 0.326
+},
+{
+"t": 37.133,
+"rig": "W3_walker",
+"gain": 0.059
+},
+{
+"t": 37.233,
+"rig": "NARR_payoff",
+"gain": 0.319
+},
+{
+"t": 37.5,
+"rig": "HERO_payoff",
+"gain": 0.269
+},
+{
+"t": 37.633,
+"rig": "W3_walker",
+"gain": 0.058
+},
+{
+"t": 37.8,
+"rig": "NARR_payoff",
+"gain": 0.276
+},
+{
+"t": 38.067,
+"rig": "HERO_payoff",
+"gain": 0.241
+},
+{
+"t": 38.133,
+"rig": "W3_walker",
+"gain": 0.057
+},
+{
+"t": 38.367,
+"rig": "NARR_payoff",
+"gain": 0.255
+},
+{
+"t": 38.633,
+"rig": "HERO_payoff",
+"gain": 0.228
+},
+{
+"t": 38.633,
+"rig": "W3_walker",
+"gain": 0.057
+},
+{
+"t": 38.933,
+"rig": "NARR_payoff",
+"gain": 0.251
+}
+]
