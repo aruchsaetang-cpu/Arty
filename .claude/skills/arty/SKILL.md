@@ -1,5 +1,5 @@
 ---
-name: aura-pipeline
+name: arty
 description: Lessons and setup for animated-short projects built in Blender (bpy) + Three.js + ffmpeg on a CPU-only cloud box, learned on the Aura Monster film. Use at the START of any new animation, film, render, camera, sound-mix or Blender/Three.js project, and whenever a render, preview, or user-supplied sound/reference is involved. Read before planning so the same mistakes are not repeated.
 ---
 
