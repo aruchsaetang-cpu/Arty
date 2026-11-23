@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795255412.836565,
-    "seen": 1795442737.2408934,
+    "mtime": 1795443735.3941176,
+    "seen": 1795445468.025279,
     "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795255511.9160993,
-    "seen": 1795442737.2409525,
+    "mtime": 1795443817.2668214,
+    "seen": 1795445468.025314,
     "ast_hash": "fabcb64423a692d30b44f07133fbfcd3",
     "semantic_hash": ""
   },
@@ -7767,6 +7767,12 @@
     "mtime": 1795442685.037707,
     "seen": 1795442737.2421477,
     "ast_hash": "4780139bb9dd166aa2c0121fb8029f7c",
+    "semantic_hash": ""
+  },
+  ".claude/skills/aura-pipeline/SKILL.md": {
+    "mtime": 1795445460.05667,
+    "seen": 1795445468.0253508,
+    "ast_hash": "eccc0c7d7da26e71ef7de8d5577667d0",
     "semantic_hash": ""
   }
 }
