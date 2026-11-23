@@ -222,22 +222,23 @@ for f, sxy, sz in ((FOLD - 1, 1.0, 1.0), (FOLD + 10, 0.09, 1.25)):
 
 # the three theories: a shopkeeper, a police officer, two kids (and the women of Sol around them)
 shop, _ = ch.build(P, (6.9, 53.0, 0.15), K.SHOP, pose_mode="stand", heading=-90)
-cop, _ = ch.build_v1(P, (-5.5, 49.0, 0.15), K.COP_V1, pose_mode="umbrella", heading=90)
+# (head_yaw turns the head but not the eyes: the irises pointed away and read as white. Turn the body instead.)
+cop, _ = ch.build_v1(P, (-5.5, 49.0, 0.15), dict(K.COP_V1, head_yaw=0), pose_mode="umbrella", heading=66)
 ch.add_umbrella(cop, P, "#121214"); ch.add_cap(cop, P, "#18213a", "#d8b24a")
-kid1, _ = ch.build(P, (5.35, 45.1, 0.15), K.KID1, pose_mode="stand", heading=-90)
-kid2, _ = ch.build(P, (5.9, 44.3, 0.15), K.KID2, pose_mode="phone", heading=-90)
-ch.add_phone(kid2, P)
+kid1, _ = ch.build(P, (5.35, 45.1, 0.15), dict(K.KID1, head_yaw=0), pose_mode="umbrella", heading=-60)
+kid2, _ = ch.build(P, (5.9, 44.3, 0.15), K.KID2, pose_mode="umbrella", heading=-90)
+ch.add_umbrella(kid1, P, "#c9475a"); ch.add_umbrella(kid2, P, "#2c4a8a")     # everyone but Aura Monster carries one
 for k_ in (kid1, kid2):                       # children: larger head for their height
     k_.pose.bones["head"].scale = (1.16, 1.16, 1.16)
-mom, _ = ch.build(P, (6.25, 45.75, 0.15), dict(K.W1, head_yaw=-20), pose_mode="umbrella", heading=-120)   # waiting with the kids
+mom, _ = ch.build(P, (6.25, 45.75, 0.15), dict(K.W1, head_yaw=0), pose_mode="umbrella", heading=-140)   # waiting with the kids
 ch.add_umbrella(mom, P, "#6b1d24")
 for st_, (cx, cy), hd, pm in ((K.W2, (9.4, 54.2), 180, "phone"), (K.MAN_LONG, (8.5, 55.5), 120, "stand"),
                               (K.MAN_DIAMOND, (10.2, 56.4), -120, "stand")):    # shop customers behind the glass
     c_, _ = ch.build(P, (cx, cy, 0.15), st_, pose_mode=pm, heading=hd)
     if pm == "phone":
         ch.add_phone(c_, P)
-w_al, _ = ch.build(P, (-15.5, AL_Y + 1.9, 0.0), dict(K.W4, head_yaw=35), pose_mode="phone", heading=180)   # under an alley awning
-ch.add_phone(w_al, P)
+w_al, _ = ch.build(P, (-15.5, AL_Y + 1.9, 0.0), dict(K.W4, head_yaw=0), pose_mode="umbrella", heading=145)   # by an alley awning
+ch.add_umbrella(w_al, P, "#3c3f44")
 w_st, _ = ch.build(P, (-2.6, 70, 0), K.W3, pose_mode="walk"); w_st.name = "W3_walker"      # walks past the hero
 walk_path(w_st, [(-2.6, 70, 0), (-2.6, 20, 0)], -40, N, cycle=30, stride=0.55, prop="umbrella")
 scn.frame_set(1); ch.add_umbrella(w_st, P, "#24405e", clear=True)
@@ -255,8 +256,8 @@ exec(open(os.path.join(HERE, "film_sets.py")).read())        # shop interior, ro
 import meridian as MER
 mer, mer_wheels = MER.build(C.PROPS, "#9c1418", lights=True, name="meridian")
 hw0, hw1, pw0, pw1 = fr("hook_wide"), fr("hook_wide", 1), fr("payoff_wide"), N
-MER.drive(mer, mer_wheels, [(hw0, (-2.2, 100.0), 180), (hw1, (-2.2, 38.0), 180)])    # passes him, then the camera
-MER.drive(mer, mer_wheels, [(pw0 - 1, (-2.2, 82.0), 180), (pw0, (-2.2, 81.4), 180), (pw1, (-2.2, 30.0), 180)])
+MER.drive(mer, mer_wheels, [(hw0, (-1.15, 100.0), 180), (hw1, (-1.15, 38.0), 180)])   # lane clear of the parked cars (x=-3.3)    # passes him, then the camera
+MER.drive(mer, mer_wheels, [(pw0 - 1, (-1.15, 82.0), 180), (pw0, (-1.15, 81.4), 180), (pw1, (-1.15, 30.0), 180)])
 mer_spot = bpy.data.lights.new("meridian_beam", "SPOT"); mer_spot.energy = 900; mer_spot.spot_size = math.radians(55); mer_spot.spot_blend = 0.4
 mer_spot.color = (0.92, 0.95, 1.0); ms = bpy.data.objects.new("meridian_beam", mer_spot); C.PROPS.objects.link(ms); ms.parent = mer
 ms.location = (0, 2.3, 0.62); ms.rotation_euler = (math.radians(85), 0, 0)    # forward (+y), slightly down

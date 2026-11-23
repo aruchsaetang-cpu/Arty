@@ -1174,6 +1174,7 @@ def extra_style():
         st["legs"] = "trousers"; st.update(look); st["turtleneck"] = look.get("turtleneck", False)
     return st
 
+_UMB_RNG = random.Random(4242)
 def crowd(with_hero=True, avoid=()):
     actors = []
     if with_hero:   # hero walks down the middle of the wet street toward camera
@@ -1189,18 +1190,20 @@ def crowd(with_hero=True, avoid=()):
             y = random.uniform(-2, 90)
         r = random.random()
         if r < 0.82:   # walkers
-            heading = random.choice([0.0, 180.0]); prop = "umbrella" if random.random() < 0.55 else None
+            heading = random.choice([0.0, 180.0]); had = random.random() < 0.55; prop = "umbrella"   # everyone in the rain has one
             arm, objs = ch.build(PEOPLE_C, (x, y, 0.15), st, pose_mode="walk", heading=heading)
             ch.animate_walk(arm, (x, y, 0.15), heading, -40, FRAMES, phase=random.random(), prop=prop,
                             cycle=random.choice([30, 32, 34, 36]))
             scn.frame_set(1)
-            if prop:
+            if had:
                 ch.add_umbrella(arm, PEOPLE_C, random.choice(UMB), clear=random.random() < 0.2)
+            else:   # (own random stream, so the crowd's layout stays exactly as before)
+                ch.add_umbrella(arm, PEOPLE_C, _UMB_RNG.choice(UMB), clear=_UMB_RNG.random() < 0.2)
         else:          # standing: on the phone outside a shop, or waiting at the crossing
             heading = random.choice([90.0, -90.0, 0.0, 180.0])
             y = CROSS_Y + random.uniform(-3, 3) if random.random() < 0.5 else y
-            arm, objs = ch.build(PEOPLE_C, (x, y, 0.15), st, pose_mode="phone", heading=heading)
-            ch.add_phone(arm, PEOPLE_C)
+            arm, objs = ch.build(PEOPLE_C, (x, y, 0.15), st, pose_mode="umbrella", heading=heading)
+            ch.add_umbrella(arm, PEOPLE_C, _UMB_RNG.choice(UMB))
         actors.append(arm)
     prefs.keyframe_new_interpolation_type = "BEZIER"
     return actors
@@ -1222,7 +1225,8 @@ def build_scene(with_hero=True, avoid=(), rain_box=(0, 22, 18, 46)):
                                 "curb", "paint", "manhole") else PROPS)
     _B.clear()
     prefs.keyframe_new_interpolation_type = "LINEAR"      # moving traffic: one car toward camera, one away
-    for (x, y0, y1, rz, col) in ((-2.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (2.3, 72, 72 + 11 * FRAMES / 30, 0, "#6cc832")):
+    # moving lanes at x=-1.2 / +1.3: the parked cars sit at x=+-3.3 (their bodies reach +-2.3), so traffic never passes through them
+    for (x, y0, y1, rz, col) in ((-1.2, 120, 120 - 13 * FRAMES / 30 * 1.0, 180, "#e5e3dd"), (1.3, 72, 72 + 11 * FRAMES / 30, 0, "#6cc832")):
         root = bpy.data.objects.new("traffic", None); PROPS.objects.link(root)
         for p in car(Matrix.Rotation(math.radians(rz), 4, "Z"), col, moving=True, name="mcar", kind="sedan" if rz else "supercar"):
             mw = p.matrix_world.copy(); p.parent = root; p.matrix_world = mw

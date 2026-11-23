@@ -1950,9 +1950,9 @@
     "semantic_hash": ""
   },
   "lookdev/city.py": {
-    "mtime": 1795112843.3154056,
-    "seen": 1795115479.8765125,
-    "ast_hash": "3af040cfee63b93ff42a18e7f945a3fd",
+    "mtime": 1795442647.930472,
+    "seen": 1795442737.2408588,
+    "ast_hash": "5b591b6cd18f04fc79a60eb444961f4f",
     "semantic_hash": ""
   },
   "lookdev/grade.py": {
@@ -1980,8 +1980,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795240070.4547644,
-    "seen": 1795240130.6869893,
+    "mtime": 1795255412.836565,
+    "seen": 1795442737.2408934,
     "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795219655.545366,
-    "seen": 1795220503.7813933,
-    "ast_hash": "f18844d4f4ede88a3e56edeb480ef0bd",
+    "mtime": 1795442647.9276865,
+    "seen": 1795442737.2409227,
+    "ast_hash": "4050880116bf2f7a60715272fd301437",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -5634,9 +5634,9 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1794844642.6201053,
-    "seen": 1795046142.4901161,
-    "ast_hash": "dfe5fa7939121e96d61b54077cc9ab84",
+    "mtime": 1795442685.0403402,
+    "seen": 1795442737.2421513,
+    "ast_hash": "a651cdc673c6d5b1ddda1a0c33f45d31",
     "semantic_hash": ""
   },
   "README.md": {
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795238229.023972,
-    "seen": 1795239513.455254,
+    "mtime": 1795255511.9160993,
+    "seen": 1795442737.2409525,
     "ast_hash": "fabcb64423a692d30b44f07133fbfcd3",
     "semantic_hash": ""
   },
@@ -7713,6 +7713,60 @@
     "mtime": 1795240176.7627707,
     "seen": 1795240187.3652842,
     "ast_hash": "5dd6e99f4922750fe2dde81ef06d1251",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-animation/SKILL.md": {
+    "mtime": 1795442685.027714,
+    "seen": 1795442737.2421293,
+    "ast_hash": "323a8d98027587555e59db75c4e2ab34",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-debugging/SKILL.md": {
+    "mtime": 1795442685.0361145,
+    "seen": 1795442737.2421324,
+    "ast_hash": "8677f0e4023b1348bcd788e5428cdebf",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-debugging/references/diagnostics.md": {
+    "mtime": 1795442685.0361588,
+    "seen": 1795442737.2421343,
+    "ast_hash": "c50ed0fab74188a0df56133b1eb7785f",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-performance/SKILL.md": {
+    "mtime": 1795442685.0344021,
+    "seen": 1795442737.2421365,
+    "ast_hash": "b122b91a0c05c7090a9964bd71316c0d",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-performance/references/profile.md": {
+    "mtime": 1795442685.0344539,
+    "seen": 1795442737.2421384,
+    "ast_hash": "244d81eab4ee714dc8a9dfb61a967a89",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-physics/SKILL.md": {
+    "mtime": 1795442685.0309987,
+    "seen": 1795442737.2421412,
+    "ast_hash": "59cc486aa24f454002b6634c852263a7",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-postprocessing/SKILL.md": {
+    "mtime": 1795442685.0326312,
+    "seen": 1795442737.2421434,
+    "ast_hash": "60c695dde5345d774ba2e84210c09d0d",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-scene/SKILL.md": {
+    "mtime": 1795442685.0294259,
+    "seen": 1795442737.2421455,
+    "ast_hash": "15e8f600fdcffa784e3e6549c6efdcd9",
+    "semantic_hash": ""
+  },
+  ".claude/skills/threejs-testing/SKILL.md": {
+    "mtime": 1795442685.037707,
+    "seen": 1795442737.2421477,
+    "ast_hash": "4780139bb9dd166aa2c0121fb8029f7c",
     "semantic_hash": ""
   }
 }
