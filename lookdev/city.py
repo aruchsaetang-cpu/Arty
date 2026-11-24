@@ -1079,7 +1079,7 @@ def rain(cx, cy, w, dep, H=9.0, T=24, n=14000):
     bm = bmesh.new()
     pts = [(random.uniform(cx - w / 2, cx + w / 2), random.uniform(cy - dep / 2, cy + dep / 2), random.uniform(0, H)) for _ in range(n)]
     for x, y, z in pts:
-        for dz in (0.0, H):                   # tiled twice so the loop is seamless
+        for dz in (0.0, H, 2 * H):            # tiled three times: the box falls H then wraps, so the top half must stay full (two tiles emptied the upper rain every 24 frames and it popped back)
             L_ = random.uniform(0.3, 0.6); W = 0.0045; lean = 0.08
             vs = [bm.verts.new(p) for p in ((x - W, y, z + dz), (x + W, y, z + dz), (x + W + lean * L_, y, z + dz + L_), (x - W + lean * L_, y, z + dz + L_))]
             bm.faces.new(vs)
