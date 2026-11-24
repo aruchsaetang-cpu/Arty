@@ -366,12 +366,12 @@ def eye_mat(radius, iris="#7a5236", void=False, clear=False):
     front = mth("LESS_THAN", sep.outputs["Y"], 0.0)
     # normal eyes (everyone but the hero): white sclera, a smaller warm-brown iris, dark pupil, clear catchlight
     c = mix(mth("GREATER_THAN", sep.outputs["Z"], radius * 0.62), lin("#e4dfd8" if clear else "#f4f1ec"), lin("#b4aea6" if clear else "#c9c4bd"))
-    IR = radius * (0.62 if clear else 0.37)
-    rim = "#140d09" if clear else "#2a1d14"; core = tuple(x * 0.6 for x in lin(iris)[:3]) + (1.0,) if clear else lin(iris)
+    IR = radius * (0.50 if clear else 0.37)
+    rim = "#140d09" if clear else "#2a1d14"; core = tuple(x * 1.15 for x in lin(iris)[:3]) + (1.0,) if clear else lin(iris)
     c = mix(mth("MULTIPLY", mth("LESS_THAN", r, IR), front), c, mix(mth("DIVIDE", r, IR), core, lin(rim)))
-    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * (0.28 if clear else 0.15)), front), c, lin("#08070a"))
+    c = mix(mth("MULTIPLY", mth("LESS_THAN", r, radius * (0.2 if clear else 0.15)), front), c, lin("#08070a"))
     gx = mth("SUBTRACT", sep.outputs["X"], radius * 0.15); gz = mth("SUBTRACT", sep.outputs["Z"], radius * 0.16)
-    glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * (0.12 if clear else 0.085)) ** 2)
+    glint = mth("LESS_THAN", mth("ADD", mth("MULTIPLY", gx, gx), mth("MULTIPLY", gz, gz)), (radius * (0.17 if clear else 0.085)) ** 2)
     c = mix(mth("MULTIPLY", glint, front), c, lin("#ffffff"))
     e = N.new("ShaderNodeEmission"); L.new(c, e.inputs["Color"]); L.new(e.outputs[0], out.inputs[0])
     _cache[key] = m

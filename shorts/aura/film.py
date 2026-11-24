@@ -225,7 +225,7 @@ shop, _ = ch.build(P, (6.9, 53.0, 0.15), K.SHOP, pose_mode="stand", heading=-90)
 # (head_yaw turns the head but not the eyes: the irises pointed away and read as white. Turn the body instead.)
 cop, _ = ch.build_v1(P, (-5.5, 49.0, 0.15), dict(K.COP_V1, head_yaw=0), pose_mode="umbrella", heading=66)
 ch.add_umbrella(cop, P, "#121214"); ch.add_cap(cop, P, "#18213a", "#d8b24a")
-kid1, _ = ch.build(P, (5.35, 45.1, 0.15), dict(K.KID1, head_yaw=0), pose_mode="umbrella", heading=-60)
+kid1, _ = ch.build(P, (5.35, 45.1, 0.15), dict(K.KID1, head_yaw=0), pose_mode="umbrella", heading=-90)
 kid2, _ = ch.build(P, (5.9, 44.3, 0.15), K.KID2, pose_mode="umbrella", heading=-90)
 ch.add_umbrella(kid1, P, "#c9475a"); ch.add_umbrella(kid2, P, "#2c4a8a")     # everyone but Aura Monster carries one
 for k_ in (kid1, kid2):                       # children: larger head for their height
