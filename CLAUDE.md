@@ -16,3 +16,7 @@ Rules:
 - Use the cheapest model that is reliable. Escalate only after a real failure. No extra agents without clear benefit.
 - Give each agent only the files it needs. Never run two full film renders at once (RAM). Report: task, model used, files, tests, open issues.
 - Reply style: caveman (short words, short sentences), see HANDOFF.md section 9.
+
+## Brainstorm first (user request)
+- Before starting a new project, or before fixing something the user says is wrong, use the `superpowers:brainstorming` skill first.
+- Find out what is wrong and what they want, then fix. Skip it only for tiny, fully clear requests.
