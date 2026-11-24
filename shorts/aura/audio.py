@@ -205,8 +205,13 @@ put(dive / np.abs(dive).max(), FREEZE - 0.1, 0.3)
 _ud = rec("dodge_user")                                         # the user's dodge swoosh, its peak on the side-step
 if _ud is not None and len(_ud):
     _env = np.convolve(np.abs(_ud), np.ones(480) / 480, "same"); _pk = int(np.argmax(_env)) / SR
-    _i = int((DODGE - _pk) * SR); _x = _ud / np.abs(_ud).max(); _L = min(len(_x), n - _i)
-    CL[_i:_i + _L, 0] += _x[:_L] * 0.8; CL[_i:_i + _L, 1] += _x[:_L] * 1.0     # loud stem with the clicks (never ducked)
+    _x = _ud / np.abs(_ud).max()
+    _peaks = [beats["slow0"] + i for i in range(1, len(wv) - 1) if wv[i] >= wv[i - 1] and wv[i] > wv[i + 1] and wv[i] > 0.05]
+    for _j, _pf in enumerate(_peaks):                           # every side-step gets the swoosh, not just the first
+        _i = int(((_pf - 1) / FPS - _pk) * SR); _L = min(len(_x), n - _i)
+        if _i < 0 or _L <= 0: continue
+        _g = 0.8 if _j == 0 else 0.55; _p = 0.3 * (1 if _j % 2 else -1)
+        CL[_i:_i + _L, 0] += _x[:_L] * _g * (1 - _p); CL[_i:_i + _L, 1] += _x[:_L] * _g * (1 + _p)
 else:
     put(sw, DODGE - swp, 0.4, 0.3)
     put(stereo(shim, 0.5, 4)[:, 0], DODGE, 0.4, -0.2)
