@@ -1,6 +1,7 @@
 # KURO ONI, Episode 1: 30-second script (hook, context, reveal)
 
 Naming rule: the story never gives him a name. The clan says "Young Master" to his face. "Kuro Oni" (the Black Oni) is the name the enemies give him when he defeats them. They say it out loud in the war, before his mother betrays him. The title card repeats it at the end.
+Timing note: the context narration is longer now; the exact times are in 2026-11-25-kuro-oni-ep1-30s-voice-script.md and win over the times here.
 Structure: HOOK (0-3 s) shows the biggest image first. CONTEXT (3-19 s) tells who he is and what he wants. REVEAL (19-30 s) is the betrayal and the new world.
 About 38 words of dialogue and narration.
 
@@ -20,7 +21,7 @@ He defeated an army alone. But he never felt fulfilled.
 Thirty clan members kneel. A thin boy stands before them. His eyes are black with white irises: the Demonic Eye, the mark of a clan leader. (Black bone: a short flash of a steel-hard shin.) His father sits slumped to one side and will not look at him.
 
 NARRATOR (V.O.)
-He was born with the Demonic Eye, the mark of a clan leader, and with black bone. But his father never gave him a name. They only called him Young Master.
+He was born with the Demonic Eye, the mark of a clan leader. And black bone: bones as hard as steel, that can stop even a katana. But his father never gave him a name. They only called him Young Master.
 
 **EXT. YAMAZAKI GATE - DAY (6-8 s)**
 Children play outside. He steps toward them. His mother slaps him.
