@@ -44,7 +44,9 @@ Everyone calls him "Young Master". His goal is to be acknowledged by his father 
 
 ## Latest (user): "Kuro Oni" appears only at the END (the title, and a fearful echo in the last seconds). The hook (30 s version) starts "He defeated an army alone. But he never felt fulfilled." The enemies in the war say "Monster...", not "Kuro Oni".
 
-## Latest (user): "Kuro Oni" is what enemies call him after he defeats them
+## Latest (user): "Kuro Oni" is said out loud by the defeated enemies in the war, BEFORE the betrayal (this replaces the end-only echo). The end title card repeats it.
+
+## Earlier (superseded): "Kuro Oni" is what enemies call him after he defeats them
 The war: defeated enemies say it with fear. We see their lips move but the name is heard only at the very end (an echo of the defeated enemies), then the title.
 
 ## Naming rule (user, latest): the name "Gojo" is deleted from the story

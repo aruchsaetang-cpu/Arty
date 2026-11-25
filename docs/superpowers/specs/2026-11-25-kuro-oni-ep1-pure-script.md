@@ -82,7 +82,8 @@ Kill him!
 They rush him, one at a time. He hits each once and straightens his sleeve. His eyes turn full white. He slips every blow. He walks through the fire, a black shape. Nobody can touch him.
 
 THE DEFEATED ENEMIES
-(crawling back; their lips move, we do not hear it yet)
+(crawling back, in fear)
+Kuro Oni... the Black Oni.
 
 The last twenty rush him. He throws one straight punch. The rain splits.
 
@@ -141,11 +142,6 @@ In the town square, people use fire magic. A woman lights a street lamp with a s
 The view stays on a fireball. It follows it from the hand to the target, before the throw. The edges of the view are dark; only the center is sharp, like the Demonic Eye.
 
 He looks at his hands again. Nothing.
-
-A faint whisper, many voices in fear, as if from the war:
-
-THE DEFEATED ENEMIES (echo, now we hear them, in fear)
-Kuro Oni... the Black Oni.
 
 **TITLE: KURO ONI**
 **TO BE CONTINUED**

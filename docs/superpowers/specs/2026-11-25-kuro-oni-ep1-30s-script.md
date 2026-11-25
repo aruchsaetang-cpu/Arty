@@ -1,6 +1,6 @@
 # KURO ONI, Episode 1: 30-second script (hook, context, reveal)
 
-Naming rule: the story never gives him a name. The clan says "Young Master" to his face. "Kuro Oni" (the Black Oni) is the name enemies give him once he has defeated them. We see their lips say it in the war but hear it only at the very end.
+Naming rule: the story never gives him a name. The clan says "Young Master" to his face. "Kuro Oni" (the Black Oni) is the name the enemies give him when he defeats them. They say it out loud in the war, before his mother betrays him. The title card repeats it at the end.
 Structure: HOOK (0-3 s) shows the biggest image first. CONTEXT (3-19 s) tells who he is and what he wants. REVEAL (19-30 s) is the betrayal and the new world.
 About 38 words of dialogue and narration.
 
@@ -44,7 +44,8 @@ He fought for one thing: his father's voice saying his name.
 His eyes go full white. He slips every blow, one against a hundred. Every clan leader kneels.
 
 DEFEATED ENEMIES
-(crawling back, their lips move; we do not hear the word yet)
+(crawling back, in fear)
+Kuro Oni...
 
 ## REVEAL (19-30 s)
 
@@ -66,9 +67,7 @@ Black.
 **FIRST-PERSON VIEW - UNKNOWN PLACE (24-30 s)**
 We open our eyes in grass under two moons. We sit up. A town. People use fire magic: a street lamp lit with a spark, children throwing small fireballs. The view follows one fireball before the throw. We look at our hands. Empty.
 
-The first-person view stays on his empty hands. A faint whisper, many voices in fear, as if from the war:
-THE DEFEATED ENEMIES (echo, now we hear them, in fear)
-Kuro Oni...
+The first-person view stays on his empty hands.
 
 **TITLE: KURO ONI**
 **TO BE CONTINUED**
