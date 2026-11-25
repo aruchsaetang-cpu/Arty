@@ -49,7 +49,7 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 | 8 | 19-22 | Silhouette, low, in fire | Image-2 composition: a black silhouette with white eyes walks forward through the flames, bodies behind him, nobody can touch him. Horned Oni shadow on the wall | Low drone |
 | 9 | 22-25 | Counter on screen | A small on-screen count of the fallen: 25, 50, 75, 100. Each number is one clean hit, no effects | Hit each number: each number lands with the full impact rule |
 | 10 | 25-29 | Wide | Every clan leader kneels. Korea is one. His fist is raised over the last leader and he does not stop; he nearly kills him. His mother steps into the edge of the frame and he freezes | Bells, then silence |
-| 11 | 29-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
+| 11 | 29-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea and gives him the smile he has wanted all his life, the same one as when he hurt someone. His eyes see the poison. He drinks anyway, for the smile | Low drone |
 
 ### Part 2: the poison (34-40 s)
 | 12 | 34-37 | Clan gate, rain, adult Gojo walking out | His steps slow. Black bone cannot stop poison. His eyes see it all: his own pulse, the clans watching, his mother at the gate with the empty cup. He drops to one knee, calm, aura to the end | Rain, heartbeat slows |
