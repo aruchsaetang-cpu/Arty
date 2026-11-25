@@ -71,11 +71,13 @@ He drinks.
 
 **9. EXT. YAMAZAKI STAIRS, NIGHT (0:37-0:40)**
 He walks down the stairs. His steps slow. He sees everything: his pulse, the clan watching, his mother at the top with the empty cup. He drops to one knee, calm.
+GOJO (V.O.): I never learned what the smile was for.
 *Sound: heartbeat, slowing.*
 
 **10. CLOSE: GOJO'S EYES (0:40-0:41)**
-He looks up at her. She turns away. His eyes close. Black.
-GOJO (V.O.): I never learned what the smile was for.
+He looks up at her. She turns away.
+GOJO (a whisper, his last word): ...Damn it.
+His eyes close. Black.
 *Sound: last heartbeat, silence.*
 
 ---
@@ -112,7 +114,7 @@ TITLE: KURO ONI, EP 1.
 ## Lines in the whole episode (about 60 words)
 Elder: "Black eyes... the Emperor Eye."
 Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "You did well. Drink."
-Gojo: "Can I play with them?" / (V.O.) "She is smiling." / "I never learned what the smile was for." / "No clan. No mother."
+Gojo: "Can I play with them?" / (V.O.) "She is smiling." / (V.O.) "I never learned what the smile was for." / his last word before he dies: "...Damn it." / (V.O., new world) "No clan. No mother."
 Master: "Soft first. Then hard." / (V.O.) "The war took your father."
 Enemy / leader: "Kill him!" / "Kuro Oni... the Black Oni." / "Please..."
 Knight: "A man with no grimoire? Burn him!" / "Black-eyed demon..."
