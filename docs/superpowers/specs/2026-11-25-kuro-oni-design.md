@@ -130,6 +130,13 @@ Whenever an opponent looks at Gojo, cut to the enemy's point of view: an extreme
 Use at: shot 5 (the 100 fighters see him), shot 6 (before the first fighter rushes), shot 8 (the Oni shadow beat), shot 9 (each count), and shot 18 (the knight in the fantasy world). Never on the mother: her calm is the scare.
 Prototype note: the 3D prototype does not have this look yet; it is added in the full version (red flat background plus a hard shadow across the face).
 
+## Setting and family (user, latest)
+- **Setting: Japan.** The Yamazaki clan and its house are in Japan. The war street (shot 6) is in Korea, where Gojo fights.
+- **No name:** Gojo was never given a name by his father. His father fell into a deep depression after he lost to the strongest gang in Korea and could not even name his son. (My call: the master gives him the name "Gojo" at the dojo; the enemies later call him "Kuro Oni", the Black Oni.)
+- **His mother** is one of his father's mistresses, not the wife. She wants to seize the Yamazaki clan and its power. Gojo, the heir with the Emperor Eye, is her weapon and then her obstacle. She trains him with her smile as a reward, then tries to kill him.
+- **The betrayal:** she takes a katana and stabs Gojo in the back while he sleeps. Black bone stops the blade (it can stop even a katana): the blade rings and bends on his back and does not cut. (My call, needs the user's yes: after the stab fails she offers the poisoned tea; he sees both and drinks anyway for the smile, and the poison is what kills him.)
+- **Why the war:** the father lost to the strongest gang in Korea and broke. Gojo goes to Korea, beats every clan, and unites them. (My call: his father dies in that war.)
+
 ## Gojo's past (user): a childhood like hell
 His mother only treats him well when he hurts people. He is loved only when he fights and wins. So he learns that love = violence, and he almost kills everything he sees (the reason he is called Kuro Oni, the Black Oni). Everything he wins, he wins for her smile.
 - She is cold and blank to him by default; the warm smile is the reward when he hurts someone.

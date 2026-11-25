@@ -10,8 +10,9 @@ Open point: the banners shot is cut in this script (only the father's cloak stay
 ## PART 1: THE YAMAZAKI HOUSE (0-37 s)
 
 **1. INT. YAMAZAKI HALL, DAY (0:00-0:03)**
-A long tatami hall. Thirty clan members kneel in three rows: elders, a tattooed vassal with a sword across his arms, young men. A lean boy, GOJO (age 8), stands alone in front of them. His eyes are black with white irises. His MOTHER stands beside him, cold and still. His FATHER stands apart with his arms folded. He is the only one not afraid.
-ELDER (whisper): Black eyes... the Emperor Eye.
+A long tatami hall. Thirty clan members kneel in three rows: elders, a tattooed vassal with a sword across his arms, young men. A lean boy stands alone in front of them. His eyes are black with white irises. His MOTHER (the father's mistress, not his wife) stands beside him, cold and still. His FATHER sits slumped apart, bandaged and broken after losing to the strongest gang in Korea; he does not look at the boy.
+ELDER (whisper): Black eyes... the Emperor Eye. What is the boy's name?
+The father says nothing. He never named him.
 *Sound: silence, one cup shatters somewhere.*
 
 **2. INT. YAMAZAKI HALL (0:03-0:06)**
@@ -29,7 +30,7 @@ He lowers his head and walks back inside.
 
 **4. INT. DOJO (0:10-0:15)**
 Gojo is a teen now. The MASTER sits at the edge: very old, white topknot, long white beard, black checkered kimono. He rises and attacks; Gojo turns, takes his wrist and throws him (aikido). The master lands, nods.
-MASTER: Soft first. Then hard.
+MASTER: You have no name. From today you are Gojo. Soft first. Then hard.
 Gojo does a Kyokushin kata, then breaks a steel bat on his shin. His mother watches from the veranda, blank, until the bat breaks. Then she smiles.
 *Sound: wood, breath, the crack.*
 
@@ -39,7 +40,7 @@ MASTER (V.O.): The war took your father.
 Gojo lifts the cloak and puts it on.
 *(Banner shot cut in this script.)*
 
-**6. EXT. BURNING STREET, NIGHT, RAIN (0:17-0:31)**
+**6. EXT. BURNING STREET IN KOREA, NIGHT, RAIN (0:17-0:31)**
 A hundred fighters in black suits fill the street, fires on both sides. Gojo stands alone, blank-faced.
 ENEMY (shout): Kill him!
 First wave: they rush one at a time; he moves a little, hits once each, and straightens his sleeve between them. ENEMY POV (red fear look): his face in shadow, one white eye.
@@ -57,9 +58,10 @@ MOTHER: Gojo.
 He freezes.
 *Sound: silence, a bell.*
 
-**8. EXT. YAMAZAKI HOUSE, NIGHT (0:34-0:37)**
-Full moon. The long stone stairway between lanterns. His mother waits at the top under the red torii with a cup of tea. The thirty watch from the courtyard.
-MOTHER (smiling, warm, the smile he has wanted all his life): You did well. Drink.
+**8. INT/EXT. YAMAZAKI HOUSE, JAPAN, NIGHT (0:34-0:37)**
+He is home, asleep. His mother, the father's mistress, slides the door open with a katana (she wants the Yamazaki and its power). She stabs him in the back. INK-SILHOUETTE FRAME. The blade rings on his back and bends: black bone stops even a katana. He opens his white eyes and does not turn.
+She smiles, warm, the smile he has wanted all his life, and holds out a cup. Full moon, the lantern-lit stairway behind her; the thirty watch from the courtyard.
+MOTHER: You must be thirsty. Drink.
 His eyes see the poison in the cup. He knows.
 GOJO (V.O.): She is smiling.
 He drinks.
@@ -113,6 +115,7 @@ TITLE: KURO ONI, EP 1.
 
 ## Lines in the whole episode (about 60 words)
 Elder: "Black eyes... the Emperor Eye."
+Elder: "What is the boy's name?" (father silent)
 Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "You did well. Drink."
 Gojo: "Can I play with them?" / (V.O.) "She is smiling." / (V.O.) "I never learned what the smile was for." / his last word before he dies: "...Damn it." / (V.O., new world) "No clan. No mother."
 Master: "Soft first. Then hard." / (V.O.) "The war took your father."
