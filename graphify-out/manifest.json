@@ -1944,15 +1944,15 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795110714.6776168,
-    "seen": 1795111439.4986386,
-    "ast_hash": "c2020714376796d7032f19d1097b625f",
+    "mtime": 1795527912.2915862,
+    "seen": 1795600524.3081949,
+    "ast_hash": "994b01a445350be8340bd8dbbdb993e6",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
-    "mtime": 1795442647.930472,
-    "seen": 1795442737.2408588,
-    "ast_hash": "5b591b6cd18f04fc79a60eb444961f4f",
+    "mtime": 1795520519.1125212,
+    "seen": 1795600524.3082004,
+    "ast_hash": "6a4a8a9e996680b6825692d26e432bd4",
     "semantic_hash": ""
   },
   "lookdev/grade.py": {
@@ -1974,14 +1974,14 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio.py": {
-    "mtime": 1795189381.7329419,
-    "seen": 1795189717.049172,
+    "mtime": 1795569102.8118536,
+    "seen": 1795600524.3082583,
     "ast_hash": "d6b84ceeb7f2737515a9cfe8be1b0a5f",
     "semantic_hash": ""
   },
   "shorts/aura/aura.json": {
-    "mtime": 1795443735.3941176,
-    "seen": 1795445468.025279,
+    "mtime": 1795571507.8225677,
+    "seen": 1795600524.3082595,
     "ast_hash": "888f3964eac88599c2c9dd006e2a0630",
     "semantic_hash": ""
   },
@@ -2016,9 +2016,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/film.py": {
-    "mtime": 1795442647.9276865,
-    "seen": 1795442737.2409227,
-    "ast_hash": "4050880116bf2f7a60715272fd301437",
+    "mtime": 1795527912.2903435,
+    "seen": 1795600524.3082776,
+    "ast_hash": "acf5936a3b1275139fba54126c7304de",
     "semantic_hash": ""
   },
   "shorts/aura/finish.sh": {
@@ -5634,9 +5634,9 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1795442685.0403402,
-    "seen": 1795442737.2421513,
-    "ast_hash": "a651cdc673c6d5b1ddda1a0c33f45d31",
+    "mtime": 1795533626.9307656,
+    "seen": 1795600524.3089607,
+    "ast_hash": "dab602c7451fe96f0f14793cf12410b9",
     "semantic_hash": ""
   },
   "README.md": {
@@ -6390,9 +6390,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/out/qa_sheet.jpg": {
-    "mtime": 1795083212.2604496,
-    "seen": 1795086401.154679,
-    "ast_hash": "fb91b66dd6de4a6839806291f8b57833",
+    "mtime": 1795579898.8079088,
+    "seen": 1795600524.3092332,
+    "ast_hash": "63a3056968e73cd0efb272a437000623",
     "semantic_hash": ""
   },
   "shorts/aura/out/shop_cop_preview.jpg": {
@@ -6528,26 +6528,26 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/mix.wav": {
-    "mtime": 1795189709.7317708,
-    "seen": 1795189717.0519736,
-    "ast_hash": "384c11645478a5b5b8b4b547bb38355a",
+    "mtime": 1795575801.8162518,
+    "seen": 1795600524.3092937,
+    "ast_hash": "9d473eb5aca453d9f4bd4da7df919422",
     "semantic_hash": ""
   },
   "shorts/aura/audio/music.wav": {
-    "mtime": 1795189387.3477516,
-    "seen": 1795189717.051977,
+    "mtime": 1795575791.6682513,
+    "seen": 1795600524.3092947,
     "ast_hash": "cbef1540215c7cb127f77f9204fdcc71",
     "semantic_hash": ""
   },
   "shorts/aura/audio/rain.wav": {
-    "mtime": 1795189387.4517517,
-    "seen": 1795189717.0519795,
+    "mtime": 1795575791.7602513,
+    "seen": 1795600524.3092957,
     "ast_hash": "521ebe28e0d16507d2b47a34beb0d67b",
     "semantic_hash": ""
   },
   "shorts/aura/audio/sfx.wav": {
-    "mtime": 1795189387.3957517,
-    "seen": 1795189717.0519857,
+    "mtime": 1795575791.7122512,
+    "seen": 1795600524.3093023,
     "ast_hash": "d7c084acefae5d50ed8880667e71c2fc",
     "semantic_hash": ""
   },
@@ -6564,9 +6564,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/out/aura_monster.mp4": {
-    "mtime": 1795083201.582864,
-    "seen": 1795086401.154739,
-    "ast_hash": "43172118a24e10db31d1c609c7a03e30",
+    "mtime": 1795579887.0924947,
+    "seen": 1795600524.3093128,
+    "ast_hash": "a308a1285578c2bb8c2ad58c3043acf4",
     "semantic_hash": ""
   },
   "shorts/aura/out/preview_first_half.mp4": {
@@ -7146,8 +7146,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/steps.json": {
-    "mtime": 1795443817.2668214,
-    "seen": 1795445468.025314,
+    "mtime": 1795571577.3799753,
+    "seen": 1795600524.3082955,
     "ast_hash": "fabcb64423a692d30b44f07133fbfcd3",
     "semantic_hash": ""
   },
@@ -7176,9 +7176,9 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/steps.wav": {
-    "mtime": 1795189387.6517518,
-    "seen": 1795189717.0520036,
-    "ast_hash": "f9797a0a0142dd9c45a10fc9182021ca",
+    "mtime": 1795575791.9642513,
+    "seen": 1795600524.3093088,
+    "ast_hash": "1be97555b4f256a954ff4316a28c0d93",
     "semantic_hash": ""
   },
   "shorts/aura/out/mix_preview.m4a": {
@@ -7200,14 +7200,14 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/whoosh.wav": {
-    "mtime": 1795189387.4957516,
-    "seen": 1795189717.0520117,
+    "mtime": 1795575791.7962513,
+    "seen": 1795600524.3093116,
     "ast_hash": "9c979eccad0ab306491df037237dbb7f",
     "semantic_hash": ""
   },
   "shorts/aura/audio/cine.wav": {
-    "mtime": 1795189387.6077516,
-    "seen": 1795189717.0518594,
+    "mtime": 1795575791.9162512,
+    "seen": 1795600524.3092654,
     "ast_hash": "3812437fefe75c100d1c45bad7166788",
     "semantic_hash": ""
   },
@@ -7650,8 +7650,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/clicks.wav": {
-    "mtime": 1795189387.5717516,
-    "seen": 1795189717.0518627,
+    "mtime": 1795575791.8762512,
+    "seen": 1795600524.3092668,
     "ast_hash": "c73e12cb123f10d57e5ba9cf957f97ed",
     "semantic_hash": ""
   },
@@ -7674,8 +7674,8 @@
     "semantic_hash": ""
   },
   "shorts/aura/audio/riser.wav": {
-    "mtime": 1795189387.5317516,
-    "seen": 1795189717.0519829,
+    "mtime": 1795575791.8362513,
+    "seen": 1795600524.309297,
     "ast_hash": "16e7e9d3911de83b340818d0c60cd7ef",
     "semantic_hash": ""
   },
@@ -7773,6 +7773,54 @@
     "mtime": 1795445523.4565527,
     "seen": 1795445531.3127742,
     "ast_hash": "d3e63d045735b70f12d3eef6f9c5cd40",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/compose.py": {
+    "mtime": 1795600256.0706997,
+    "seen": 1795600524.3083174,
+    "ast_hash": "45083c3740a207eef2b0d334486012bb",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/film.py": {
+    "mtime": 1795600239.4021347,
+    "seen": 1795600524.3083196,
+    "ast_hash": "561e8c3be5d1743c65c8b64202756000",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/proto.py": {
+    "mtime": 1795599226.752046,
+    "seen": 1795600524.3083205,
+    "ast_hash": "24fa340f1abc413d4ef7aa1b1a7cfc2b",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-design.md": {
+    "mtime": 1795599343.314624,
+    "seen": 1795600524.308972,
+    "ast_hash": "494e1a0a963a2fac80c89bbf75faa1e8",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/preview_half.mp4": {
+    "mtime": 1795500005.404767,
+    "seen": 1795600524.309316,
+    "ast_hash": "73e848497f58356b8f8d80db76303c89",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/preview_half2.mp4": {
+    "mtime": 1795517222.4017904,
+    "seen": 1795600524.309317,
+    "ast_hash": "e20397c3592d8e5b43a4bb643e55fce1",
+    "semantic_hash": ""
+  },
+  "shorts/aura/out/preview_half3.mp4": {
+    "mtime": 1795557105.1761613,
+    "seen": 1795600524.3093176,
+    "ast_hash": "5b3cbc865f000def83372030cf2d8fd6",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/out/proto_ep1.mp4": {
+    "mtime": 1795599249.4001634,
+    "seen": 1795600524.3093214,
+    "ast_hash": "7e9e138e8637a178aa6b0b7a1e213c3f",
     "semantic_hash": ""
   }
 }
