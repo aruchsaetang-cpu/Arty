@@ -32,38 +32,38 @@ In the fantasy world he never casts a spell. Everything he does is martial art, 
 ## Non-goals / anti-goals
 Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it before it happens", not as glowing aura spam.
 
-## Storyboard v2 (60 s, 30 fps, 1800 frames)
-Background setting (Yamazaki clan) -> his mother poisons him -> reincarnated as a human in a sword-and-magic world; he keeps the black eyes and Ultra Instinct.
-
-### Part 1: the clan war (0-34 s)
-Story (user): Gojo is the strongest Yamazaki in history and the clan leader who fought every clan in Korea and united them all into one. His own mother betrays him because of that power. The fight: one man against about 100, like a war. No martial-art enemies (user cut them); he uses his own arts (Kyokushin, aikido, black bone) on the crowd.
+## Storyboard v3 (60 s, 30 fps, 1800 frames): replaces v2 after the prototype feedback
+User feedback on the 3D prototype: no newborn opening (he is simply born with black eyes); fix the mother's outfit (dark kimono, not the yellow coat); no on-screen count; add the master who teaches him aikido and Kyokushin; the fights were not good: shoot from the side and over the shoulder, not only from behind; add the slap (his mother slaps him because he wants to play with normal kids); the kid must be lean, not fat; the clan is big, about 30 people.
+Fight camera reference (user clip: an anime boxing barrage): extreme close-ups of the face and the fist, over-the-shoulder and side-on shots, rapid punch barrages, white speed-blur backgrounds, smear frames, 2-3 frame cuts.
+### Part 1: the clan (0-37 s)
 | # | Time | Shot | Action | Sound |
 |---|------|------|--------|-------|
-| 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris. His mother's face leans in, cold and blank, no smile | Heartbeat, no lullaby |
-| 2 | 2.5-5.5 | Clan hall, low angle | Kid Gojo stands over a bigger boy he has beaten bloody. The elders recoil. His father stands apart, arms folded, not afraid. His mother, cold until now, kneels and smiles for the first time and takes his hand; a cup drops and he does not look at it, only at her smile | Silence, late shatter |
-| 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone). His mother watches from the veranda, blank until the bat breaks, then she smiles | Crack, breath |
-| 4 | 8-11 | Rain, then map of Korea, fast cuts | The father's black cloak lies in the mud (he died in the war). Gojo lifts it and puts it on. Then clan banners fall one by one across the country: every clan he fought | Drums |
-| 5 | 11-13 | Wide, burning street, rain | The clan's fighters pour in: about 100 in matching black suits. One man stands alone in the middle. Fires on both sides, fallen bodies already on the ground | Drums, crowd roar |
-| 6 | 13-16 | Medium, tracking | First wave rushes him. He does not run. Each one falls to one short motion (wrist turn, shin, elbow); he straightens his sleeve between each | Thuds, one after another, each with the impact rule |
-| 7 | 16-19 | Eye close-up, slow motion | Sound cuts out. Eyes go full white (Ultra Instinct). He sees every blade and fist before it moves | Silence |
-| 8 | 19-22 | Silhouette, low, in fire | Image-2 composition: a black silhouette with white eyes walks forward through the flames, bodies behind him, nobody can touch him. Horned Oni shadow on the wall | Low drone |
-| 9 | 22-25 | Counter on screen | A small on-screen count of the fallen: 25, 50, 75, 100. Each number is one clean hit, no effects | Hit each number: each number lands with the full impact rule |
-| 10 | 25-29 | Wide | Every clan leader kneels. Korea is one. His fist is raised over the last leader and he does not stop; he nearly kills him. His mother steps into the edge of the frame and he freezes | Bells, then silence |
-| 11 | 29-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea and gives him the smile he has wanted all his life, the same one as when he hurt someone. His eyes see the poison. He drinks anyway, for the smile | Low drone |
+| 1 | 0-3 | Clan hall, wide, low | About 30 clan members in rows. Lean kid Gojo (black sclera, white iris) stands in the middle. Cold mother, the father apart with arms folded, the elders stare | Silence, one cup shatter |
+| 2 | 3-6 | Medium, side | Kid Gojo has beaten a bigger boy bloody. The elders recoil. His mother, cold until now, kneels and smiles for the first time and takes his hand | Low drone, then a soft hum |
+| 3 | 6-10 | Courtyard gate | Outside the gate normal kids play. Gojo walks toward them. His mother steps in front of him and slaps him. Ink-silhouette frame on the slap. He bows his head and goes back in | Kids laughing, then the slap, silence |
+| 4 | 10-15 | Dojo, side and low | The master (old man, grey hakama) trains the teen: aikido throws (the master is thrown), Kyokushin kata, a steel bat breaks on his shin. The master nods; his mother, on the veranda, smiles only when the bat breaks | Crack, breath |
+| 5 | 15-17 | Rain, then banners | His father's black cloak lies in the mud (father died in the war). Gojo lifts it and puts it on. Clan banners fall across the country | Drums |
+| 6 | 17-31 | The war: about 100 fighters in a burning rain street | Alone against all. Camera from the side, over the shoulder, low, close on the fist and face; each cut 2-8 frames; barrage of punches; the enemy POV shots use the fear look; the biggest hits cut to ink silhouettes. Sub-beats: 17-20 first wave (Muay Thai and judo style fighters, all in suits), 20-24 Ultra Instinct (sound cut, eyes full white, slips every blow), 24-28 walks through fire (silhouette in flames), 28-31 one last straight punch, the shockwave parts the rain | Impacts, silence, sub drops |
+| 7 | 31-34 | Wide | Every clan leader kneels. His fist is raised over the last one and he does not stop; his mother steps into the edge of the frame and he freezes | Bells, silence |
+| 8 | 34-37 | Medium, rain | His mother walks through the kneeling clans with a cup of tea and gives him the smile he has wanted all his life. His Emperor Eye sees the poison. He drinks anyway, for the smile | Low drone |
 
-### Part 2: the poison (34-40 s)
-| 12 | 34-37 | Clan gate, rain, adult Gojo walking out | His steps slow. Black bone cannot stop poison. His eyes see it all: his own pulse, the clans watching, his mother at the gate with the empty cup. He drops to one knee, calm, aura to the end | Rain, heartbeat slows |
-| 13 | 37-40 | Eyes, then black | He looks up at her. Her face does not change; she turns away. His eyes stay open, black and white, then close. Cut to black, heartbeat stops | Last heartbeat, silence |
+### Part 2: the poison (37-41 s)
+| # | Time | Shot | Action | Sound |
+|---|------|------|--------|-------|
+| 9 | 37-40 | Clan gate, rain | Adult Gojo walks out, his steps slow. He sees everything: his pulse, the clan watching, his mother with the empty cup. He drops to one knee, calm | Rain, slowing heartbeat |
+| 10 | 40-41 | Eyes, then black | He looks up at her. She turns away. His eyes stay open, black and white, then close. Cut to black | Last heartbeat, silence |
 
-### Part 3: the fantasy world (40-60 s)
-| 14 | 40-43 | Black, eye close-up | The same shot as 1: eyes open (black sclera, white iris), now a human face | Heartbeat returns |
-| 15 | 43-47 | Meadow at dawn, pull-back | Young Gojo wakes in the grass. Floating lights, a castle, two moons. He looks at his hands | Wind, chimes |
-| 16 | 47-51 | Road, medium | A young magic knight (grimoire on his belt, squad crest on his robe) hurls a fire-magic ball at him. His eyes track it before the cast. Slow motion | Muffled |
-| 17 | 51-55 | Slow motion, orbit | He slips the fireball with afterimage, steps in, one Kyokushin counter-punch (the same stance as in the clan). The mage falls back | Hit |
-| 18 | 55-57 | Mage close-up | Mage, terrified: "Black-eyed demon" (subtitle) | Whisper |
-| 19 | 57-60 | Extreme close-up eyes, title | "KURO ONI" | Whisper, last hit |
+### Part 3: the Black Clover-style world (41-60 s)
+| # | Time | Shot | Action | Sound |
+|---|------|------|--------|-------|
+| 11 | 41-43 | Black, eye close-up | Eyes open again, a human face | Heartbeat returns |
+| 12 | 43-46 | Dawn meadow, pull-back | Young Gojo wakes in the grass. Floating lights, a castle, two moons. He looks at his hands | Wind, chimes |
+| 13 | 46-50 | Road | A young magic knight (grimoire at his belt, squad crest on his robe) throws a fire-magic ball. His eyes track it first. Slow motion | Muffled |
+| 14 | 50-54 | Side and over-the-shoulder, slow motion | He slips it with afterimage, steps in, one Kyokushin straight punch from the side-on angle. The knight falls back | Hit |
+| 15 | 54-56 | Knight close-up (fear look) | Terrified: "Black-eyed demon" (subtitle) | Whisper |
+| 16 | 56-60 | Extreme close-up eyes, title | "KURO ONI" | Whisper, last hit |
 
-Scare beats: 7 (sound cut), 8 (Oni shadow), 11 (the mother's unchanged smile), 13 (cut to black), 18, 19.
+Scare beats: 3 (the slap), 6 (sound cut, Oni shadow), 7 (he does not stop), 8 (the reward smile with the poison), 10 (cut to black), 15, 16.
 Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering, restarted every 2 h).
 
 ## Impact rule (user: every punch must look very hard)
