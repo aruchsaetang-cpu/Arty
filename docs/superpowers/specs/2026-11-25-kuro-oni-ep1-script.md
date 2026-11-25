@@ -23,7 +23,7 @@ Gojo looks only at her smile.
 **3. EXT. YAMAZAKI GATE, DAY (0:06-0:10)**
 Outside the gate, normal children play, laughing. Gojo walks toward them. His mother steps in front of him and slaps him. INK-SILHOUETTE FRAME on the slap.
 GOJO (quiet): Can I play with them?
-MOTHER (cold): Strong boys do not play.
+MOTHER (cold): A future clan leader will not play with those kids.
 He lowers his head and walks back inside.
 *Sound: kids laughing, the slap, silence.*
 
@@ -111,7 +111,7 @@ TITLE: KURO ONI, EP 1.
 
 ## Lines in the whole episode (about 60 words)
 Elder: "Black eyes... the Emperor Eye."
-Mother: "Good boy." / "Strong boys do not play." / "Gojo." / "You did well. Drink."
+Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "You did well. Drink."
 Gojo: "Can I play with them?" / (V.O.) "She is smiling." / "I never learned what the smile was for." / "No clan. No mother."
 Master: "Soft first. Then hard." / (V.O.) "The war took your father."
 Enemy / leader: "Kill him!" / "Kuro Oni... the Black Oni." / "Please..."
