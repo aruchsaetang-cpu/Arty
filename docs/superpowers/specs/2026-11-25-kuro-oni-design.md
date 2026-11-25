@@ -39,16 +39,16 @@ Background setting (Yamazaki clan) -> his mother poisons him -> reincarnated as 
 Story (user): Gojo is the strongest Yamazaki in history and the clan leader who fought every clan in Korea and united them all into one. His own mother betrays him because of that power. The fight: one man against about 100, like a war. No martial-art enemies (user cut them); he uses his own arts (Kyokushin, aikido, black bone) on the crowd.
 | # | Time | Shot | Action | Sound |
 |---|------|------|--------|-------|
-| 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris. His mother's smiling face leans in | Heartbeat, lullaby hum |
-| 2 | 2.5-5.5 | Clan hall, low angle | Kid Gojo, his mother holds his hand. His father stands apart, arms folded, not afraid. Elders stare. A cup drops, his eyes follow it before it falls | Silence, late shatter |
-| 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone) | Crack, breath |
+| 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris. His mother's face leans in, cold and blank, no smile | Heartbeat, no lullaby |
+| 2 | 2.5-5.5 | Clan hall, low angle | Kid Gojo stands over a bigger boy he has beaten bloody. The elders recoil. His father stands apart, arms folded, not afraid. His mother, cold until now, kneels and smiles for the first time and takes his hand; a cup drops and he does not look at it, only at her smile | Silence, late shatter |
+| 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone). His mother watches from the veranda, blank until the bat breaks, then she smiles | Crack, breath |
 | 4 | 8-11 | Rain, then map of Korea, fast cuts | The father's black cloak lies in the mud (he died in the war). Gojo lifts it and puts it on. Then clan banners fall one by one across the country: every clan he fought | Drums |
 | 5 | 11-13 | Wide, burning street, rain | The clan's fighters pour in: about 100 in matching black suits. One man stands alone in the middle. Fires on both sides, fallen bodies already on the ground | Drums, crowd roar |
 | 6 | 13-16 | Medium, tracking | First wave rushes him. He does not run. Each one falls to one short motion (wrist turn, shin, elbow); he straightens his sleeve between each | Thuds, one after another, each with the impact rule |
 | 7 | 16-19 | Eye close-up, slow motion | Sound cuts out. Eyes go full white (Ultra Instinct). He sees every blade and fist before it moves | Silence |
 | 8 | 19-22 | Silhouette, low, in fire | Image-2 composition: a black silhouette with white eyes walks forward through the flames, bodies behind him, nobody can touch him. Horned Oni shadow on the wall | Low drone |
 | 9 | 22-25 | Counter on screen | A small on-screen count of the fallen: 25, 50, 75, 100. Each number is one clean hit, no effects | Hit each number: each number lands with the full impact rule |
-| 10 | 25-29 | Wide | Every clan leader kneels. Korea is one. Gojo stands, steam in the rain | Bells |
+| 10 | 25-29 | Wide | Every clan leader kneels. Korea is one. His fist is raised over the last leader and he does not stop; he nearly kills him. His mother steps into the edge of the frame and he freezes | Bells, then silence |
 | 11 | 29-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
 
 ### Part 2: the poison (34-40 s)
@@ -118,7 +118,7 @@ Inspiration, not a copy: a kingdom where magic decides your place. Everyone has 
 - Series use (12 episodes): grimoire ceremony where he gets no book, the knight squads, a magic tournament, a dungeon, a magic-user rival, a demon-level enemy. He never gets magic (rule above).
 
 ## Gojo's mother: look (user ref image)
-Calm, composed, quiet. Black hair pinned up in a neat bun with a few loose strands, pale smooth face, narrow dark eyes, a faint closed-mouth expression, mature elegant build. Dark charcoal-purple kimono with a dark obi, and two small round white clan crests on the chest. Sits and stands very still, hands folded in her lap. This look is what makes the tea scene scary: she never changes expression. Style reference only; we build an original model.
+Calm, composed, quiet. Black hair pinned up in a neat bun with a few loose strands, pale smooth face, narrow dark eyes, a faint closed-mouth expression, mature elegant build. Dark charcoal-purple kimono with a dark obi, and two small round white clan crests on the chest. Sits and stands very still, hands folded in her lap. Her face is cold and blank except when he hurts someone: then she smiles warmly. That reward smile is what makes the tea scene scary. Style reference only; we build an original model.
 Prototype note: the 3D prototype uses a placeholder woman in a yellow coat (not this look); the real version uses a dark kimono with the crests.
 
 ## Gojo's father: look (user ref image)
@@ -129,6 +129,14 @@ Proposed role (my call, needs the user's yes): in shot 2 (the kid in the hall) t
 Whenever an opponent looks at Gojo, cut to the enemy's point of view: an extreme low angle looking up, the whole background one flat blood red, Gojo's face almost entirely in black shadow (a hard ink shadow across the eyes and the upper face), his hair a black mass with a few loose strands, only the lit lower face and neck visible in dark red tones, and ONE white eye glowing like a slit (the Emperor Eye). No smile, no movement but a slow breath. Hold it 8-12 frames, with the sound dropping to a low sub tone. The enemy's own shot shows his hands shaking or his eyes wide.
 Use at: shot 5 (the 100 fighters see him), shot 6 (before the first fighter rushes), shot 8 (the Oni shadow beat), shot 9 (each count), and shot 18 (the knight in the fantasy world). Never on the mother: her calm is the scare.
 Prototype note: the 3D prototype does not have this look yet; it is added in the full version (red flat background plus a hard shadow across the face).
+
+## Gojo's past (user): a childhood like hell
+His mother only treats him well when he hurts people. He is loved only when he fights and wins. So he learns that love = violence, and he almost kills everything he sees (the reason he is called Kuro Oni, the Black Oni). Everything he wins, he wins for her smile.
+- She is cold and blank to him by default; the warm smile is the reward when he hurts someone.
+- He never stops on his own; only she can stop him (shot 10) because her approval is the only thing he wants.
+- The poison scene (shot 11): his Emperor Eye sees the poison in the tea. He drinks anyway, for the smile. The tragedy is that he chooses it.
+- Series use: in the fantasy world he does not understand kindness, and the people who are kind to him without him fighting are the thing he cannot read.
+Content note: fiction about abuse and conditioned violence; keep it implied (looks, silence, one image of a bloodied boy), not graphic.
 
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
