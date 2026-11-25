@@ -66,6 +66,18 @@ Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering
 ## Impact rule (user: every punch must look very hard)
 Every punch, kick or block that lands gets: a freeze-frame of 2-3 frames, a short camera shake, a white flash on the contact point, a crack or dust burst on the ground or wall, a heavy low sound (sub drop) and a long recoil on the target (the body flies, the rain splashes off). The attacker's fist or shin shows a small shock ring. Smaller hits (slips, blocks) get no shake, only the sound.
 
+## Anime language (user refs: two screen-recorded anime fight clips, kept local only in local_refs/, not committed)
+The two clips (vertical, 10.7 s and 11.5 s) are the sound and impact reference. What the frames show, and what we copy as technique (not as artwork):
+- **Cuts every 0.3-0.5 s** during a hit sequence (8-15 frames), never a long static shot.
+- **Extreme close-ups** (an eye, a clenched jaw, a fist, a piece of skin) alternating with a wide pose.
+- **Dutch tilt**: the camera rolls 15-30 degrees on most hit shots and snaps back.
+- **Speed lines**: curved radial lines around the figure, and diagonal streaks across the frame.
+- **White flash frame** (1-2 frames) at the biggest hit, and a **dark vignette frame** after a block.
+- **Hit-stop**: the frame holds 2-3 frames at contact, then the motion explodes.
+- **Smear frames**: a blurred drag between two poses, and **floor and debris close-ups** (cracks, plank splinters, rain sparks).
+- Hand-drawn on-twos feel (12 drawings per second) with a heavy ink or halftone texture on the skin.
+Sound (I cannot hear the clips; this is from the waveform): dense bright hits, the spectral centre falls from about 4 kHz on the first hits to about 1 kHz on the heavy tail, peaks about 0.6-0.75. Plan: use the clips' own audio as the impact bed, layered with the sub drop from the impact rule. The source audio licence is unknown: fine for a private reference cut, check before publishing.
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
