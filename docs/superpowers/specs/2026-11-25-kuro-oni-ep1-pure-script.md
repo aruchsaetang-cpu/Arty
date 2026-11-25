@@ -5,8 +5,8 @@
 
 **NARRATOR (V.O.)**
 Born with two gifts.
+The Demonic Eye, the mark of a clan leader: it sees a blow before it lands.
 Black bone: a body as hard as steel. It can stop even a katana, if he is awake.
-The Demonic Eye: it sees a blow before it lands.
 And two arts he learned from his master.
 Kyokushin karate: hard. It breaks.
 Aikido: soft. It turns your force against you.
