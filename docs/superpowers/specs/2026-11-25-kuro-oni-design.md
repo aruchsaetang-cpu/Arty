@@ -58,7 +58,7 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 ### Part 3: the fantasy world (40-60 s)
 | 14 | 40-43 | Black, eye close-up | The same shot as 1: eyes open (black sclera, white iris), now a human face | Heartbeat returns |
 | 15 | 43-47 | Meadow at dawn, pull-back | Young Gojo wakes in the grass. Floating lights, a castle, two moons. He looks at his hands | Wind, chimes |
-| 16 | 47-51 | Road, medium | A mage hurls a fireball at him. His eyes track it before the cast. Slow motion | Muffled |
+| 16 | 47-51 | Road, medium | A young magic knight (grimoire on his belt, squad crest on his robe) hurls a fire-magic ball at him. His eyes track it before the cast. Slow motion | Muffled |
 | 17 | 51-55 | Slow motion, orbit | He slips the fireball with afterimage, steps in, one Kyokushin counter-punch (the same stance as in the clan). The mage falls back | Hit |
 | 18 | 55-57 | Mage close-up | Mage, terrified: "Black-eyed demon" (subtitle) | Whisper |
 | 19 | 57-60 | Extreme close-up eyes, title | "KURO ONI" | Whisper, last hit |
@@ -110,6 +110,12 @@ Research note: I could not confirm that any Lookism character is canonically a K
 - 9: one gyaku-zuki from zenkutsu-dachi, with the full impact rule.
 
 **Build note:** these are the hardest animations in the film (feet planted, hip rotation, hand paths). Use the strongest model for the choreography, and plant every foot with IK as in the Aura Monster rig.
+
+## The fantasy world (user): based on Black Clover
+Inspiration, not a copy: a kingdom where magic decides your place. Everyone has mana and a grimoire (a magic book); magic knights wear robes and a squad crest; towns, guild halls, magic towers, floating lights. Use original names, crests and designs (no Black Clover characters, names or artwork).
+- Gojo is the person with NO magic in a world made of magic: the people there call it a curse and look down on him, like the no-magic outsider of that kind of story. His black eyes, black bone and martial arts let him beat magic users anyway (the Emperor Eye sees the spell before it is cast).
+- Part 3 casting: the mage in shots 16-18 is a young magic knight with a grimoire at his belt and a squad crest on a robe; the fireball is fire magic; "Black-eyed demon" fits how that world reads a magic-less man.
+- Series use (12 episodes): grimoire ceremony where he gets no book, the knight squads, a magic tournament, a dungeon, a magic-user rival, a demon-level enemy. He never gets magic (rule above).
 
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
