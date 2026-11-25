@@ -23,3 +23,4 @@ local_refs/
 shorts/kuro_oni/frames/
 shorts/kuro_oni/stills/
 shorts/kuro_oni/render.log
+shorts/kuro_oni/out/*.wav
