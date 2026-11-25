@@ -1,12 +1,12 @@
-# Kuro Oni: Emperor Eye origin short (design, DRAFT for approval)
+# Kuro Oni: Demonic Eye origin short (design, DRAFT for approval)
 
 ## Intent
-A ~40 s vertical cel horror-action short: the origin of Gojo, "Kuro Oni" (Black Oni), born with the Emperor Eye
+A ~40 s vertical cel horror-action short: the origin of Gojo, "Kuro Oni" (Black Oni), born with the Demonic Eye
 (black sclera, glowing white iris: the Aura Monster hero's eyes). Every Yamazaki clan leader must have it; it
 stands for Ultra Instinct. Story: newborn -> kid -> teen -> the leadership fight -> adult Kuro Oni.
 
 ## Given by the user
-- Name: Gojo aka Kuro Oni. Born with the Emperor Eye, rare in the Yamazaki clan, required of every leader, = Ultra Instinct.
+- Name: Gojo aka Kuro Oni. Born with the Demonic Eye, rare in the Yamazaki clan, required of every leader, = Ultra Instinct.
 - Eyes "like the previous vid" (black sclera, white iris, Aura Monster hero material).
 - Wants the fight scene designed first (storyboard). Scare "like a real one".
 
@@ -14,10 +14,10 @@ stands for Ultra Instinct. Story: newborn -> kid -> teen -> the leadership fight
 In ep 1 Gojo is betrayed by his own mother.
 
 ## Rule (user): Gojo has NO magic
-In the fantasy world he never casts a spell. Everything he does is martial art, black bone and the Emperor Eye. Magic belongs to others (the mage, later enemies). Seeing a fireball early is the eyes, not magic. In the series arc, an episode where he sees or uses mana must be dropped or reframed.
+In the fantasy world he never casts a spell. Everything he does is martial art, black bone and the Demonic Eye. Magic belongs to others (the mage, later enemies). Seeing a fireball early is the eyes, not magic. In the series arc, an episode where he sees or uses mana must be dropped or reframed.
 
 ## Abilities (given by the user)
-- **Emperor Eye / Ultra Instinct:** black sclera, white iris; very fast reflexes, he reacts before the strike.
+- **Demonic Eye / Ultra Instinct:** black sclera, white iris; very fast reflexes, he reacts before the strike.
 - **Black bone:** Yamazaki-only. His body is as durable as steel.
 - **Aikido (added by user, the aura-farming skill):** calm, almost lazy redirection of an attacker's own force (wrist locks, throws). He never rushes, he never breaks a sweat, which is what makes it look cool.
 - **Yamazaki Kyokushin karate:** the clan's style (stances, shin and low kicks, straight punch, kata, full contact).
@@ -32,6 +32,13 @@ In the fantasy world he never casts a spell. Everything he does is martial art, 
 ## Non-goals / anti-goals
 Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it before it happens", not as glowing aura spam.
 
+## LATEST CHANGES (supersede anything below): script v2 is the source of truth
+- The poison is removed. The mother kills Gojo with a katana while he sleeps (black bone stops a katana only while he is awake and braced; asleep it is off). He does not fight back, for her smile. Last word: "...Damn it."
+- "Emperor Eye" is renamed the **Demonic Eye**.
+- A new opening (0-5 s) explains his abilities: black bone, the Demonic Eye, Yamazaki Kyokushin karate, aikido.
+- Timings: ability intro 0-5; hall 5-8; bigger boy and mother 8-10; slap at the gate 10-13; dojo 13-17; father's cloak 17-18.5; war in Korea 18.5-31; clans kneel 31-34; katana 34-38; he sinks and dies 38-41; new world 41-60.
+- See docs/superpowers/specs/2026-11-25-kuro-oni-ep1-script.md.
+
 ## Storyboard v3 (60 s, 30 fps, 1800 frames): replaces v2 after the prototype feedback
 User feedback on the 3D prototype: no newborn opening (he is simply born with black eyes); fix the mother's outfit (dark kimono, not the yellow coat); no on-screen count; add the master who teaches him aikido and Kyokushin; the fights were not good: shoot from the side and over the shoulder, not only from behind; add the slap (his mother slaps him because he wants to play with normal kids); the kid must be lean, not fat; the clan is big, about 30 people.
 Fight camera reference (user clip: an anime boxing barrage): extreme close-ups of the face and the fist, over-the-shoulder and side-on shots, rapid punch barrages, white speed-blur backgrounds, smear frames, 2-3 frame cuts.
@@ -45,7 +52,7 @@ Fight camera reference (user clip: an anime boxing barrage): extreme close-ups o
 | 5 | 15-17 | Rain, then banners | His father's black cloak lies in the mud (father died in the war). Gojo lifts it and puts it on. Clan banners fall across the country | Drums |
 | 6 | 17-31 | The war: about 100 fighters in a burning rain street | Alone against all. Camera from the side, over the shoulder, low, close on the fist and face; each cut 2-8 frames; barrage of punches; the enemy POV shots use the fear look; the biggest hits cut to ink silhouettes. Sub-beats: 17-20 first wave (Muay Thai and judo style fighters, all in suits), 20-24 Ultra Instinct (sound cut, eyes full white, slips every blow), 24-28 walks through fire (silhouette in flames), 28-31 one last straight punch, the shockwave parts the rain | Impacts, silence, sub drops |
 | 7 | 31-34 | Wide | Every clan leader kneels. His fist is raised over the last one and he does not stop; his mother steps into the edge of the frame and he freezes | Bells, silence |
-| 8 | 34-37 | Yamazaki house, night, top of the lantern-lit stone stairway (not the war street) | He comes home from the war. His mother waits at the top of the stairs under the red torii with a cup of tea and gives him the smile he has wanted all his life, the same one as when he hurt someone. The clan's 30 stand in the courtyard and watch. His Emperor Eye sees the poison. He drinks anyway, for the smile | Low drone |
+| 8 | 34-37 | Yamazaki house, night, top of the lantern-lit stone stairway (not the war street) | He comes home from the war. His mother waits at the top of the stairs under the red torii with a cup of tea and gives him the smile he has wanted all his life, the same one as when he hurt someone. The clan's 30 stand in the courtyard and watch. His Demonic Eye sees the poison. He drinks anyway, for the smile | Low drone |
 
 ### Part 2: the poison (37-41 s)
 | # | Time | Shot | Action | Sound |
@@ -113,7 +120,7 @@ Research note: I could not confirm that any Lookism character is canonically a K
 
 ## The fantasy world (user): based on Black Clover
 Inspiration, not a copy: a kingdom where magic decides your place. Everyone has mana and a grimoire (a magic book); magic knights wear robes and a squad crest; towns, guild halls, magic towers, floating lights. Use original names, crests and designs (no Black Clover characters, names or artwork).
-- Gojo is the person with NO magic in a world made of magic: the people there call it a curse and look down on him, like the no-magic outsider of that kind of story. His black eyes, black bone and martial arts let him beat magic users anyway (the Emperor Eye sees the spell before it is cast).
+- Gojo is the person with NO magic in a world made of magic: the people there call it a curse and look down on him, like the no-magic outsider of that kind of story. His black eyes, black bone and martial arts let him beat magic users anyway (the Demonic Eye sees the spell before it is cast).
 - Part 3 casting: the mage in shots 16-18 is a young magic knight with a grimoire at his belt and a squad crest on a robe; the fireball is fire magic; "Black-eyed demon" fits how that world reads a magic-less man.
 - Series use (12 episodes): grimoire ceremony where he gets no book, the knight squads, a magic tournament, a dungeon, a magic-user rival, a demon-level enemy. He never gets magic (rule above).
 
@@ -126,14 +133,14 @@ Tall, lean, long black hair worn loose past the shoulders with strands over the 
 Proposed role (my call, needs the user's yes): in shot 2 (the kid in the hall) the father stands apart from the elders, arms folded, and is the only one who is not afraid of the child's eyes. Fate (user): he is dead, killed in the clan war, before the story's present. My calls: Gojo takes his black cloak and the leadership, and fights every clan to end the war by uniting Korea.
 
 ## Fear look (user ref image): how an enemy sees Gojo
-Whenever an opponent looks at Gojo, cut to the enemy's point of view: an extreme low angle looking up, the whole background one flat blood red, Gojo's face almost entirely in black shadow (a hard ink shadow across the eyes and the upper face), his hair a black mass with a few loose strands, only the lit lower face and neck visible in dark red tones, and ONE white eye glowing like a slit (the Emperor Eye). No smile, no movement but a slow breath. Hold it 8-12 frames, with the sound dropping to a low sub tone. The enemy's own shot shows his hands shaking or his eyes wide.
+Whenever an opponent looks at Gojo, cut to the enemy's point of view: an extreme low angle looking up, the whole background one flat blood red, Gojo's face almost entirely in black shadow (a hard ink shadow across the eyes and the upper face), his hair a black mass with a few loose strands, only the lit lower face and neck visible in dark red tones, and ONE white eye glowing like a slit (the Demonic Eye). No smile, no movement but a slow breath. Hold it 8-12 frames, with the sound dropping to a low sub tone. The enemy's own shot shows his hands shaking or his eyes wide.
 Use at: shot 5 (the 100 fighters see him), shot 6 (before the first fighter rushes), shot 8 (the Oni shadow beat), shot 9 (each count), and shot 18 (the knight in the fantasy world). Never on the mother: her calm is the scare.
 Prototype note: the 3D prototype does not have this look yet; it is added in the full version (red flat background plus a hard shadow across the face).
 
 ## Setting and family (user, latest)
 - **Setting: Japan.** The Yamazaki clan and its house are in Japan. The war street (shot 6) is in Korea, where Gojo fights.
 - **No name:** Gojo was never given a name by his father. His father fell into a deep depression after he lost to the strongest gang in Korea and could not even name his son. (My call: the master gives him the name "Gojo" at the dojo; the enemies later call him "Kuro Oni", the Black Oni.)
-- **His mother** is one of his father's mistresses, not the wife. She wants to seize the Yamazaki clan and its power. Gojo, the heir with the Emperor Eye, is her weapon and then her obstacle. She trains him with her smile as a reward, then tries to kill him.
+- **His mother** is one of his father's mistresses, not the wife. She wants to seize the Yamazaki clan and its power. Gojo, the heir with the Demonic Eye, is her weapon and then her obstacle. She trains him with her smile as a reward, then tries to kill him.
 - **The betrayal:** she takes a katana and stabs Gojo in the back while he sleeps. Black bone stops the blade (it can stop even a katana): the blade rings and bends on his back and does not cut. (My call, needs the user's yes: after the stab fails she offers the poisoned tea; he sees both and drinks anyway for the smile, and the poison is what kills him.)
 - **Why the war:** the father lost to the strongest gang in Korea and broke. Gojo goes to Korea, beats every clan, and unites them. (My call: his father dies in that war.)
 
@@ -141,7 +148,7 @@ Prototype note: the 3D prototype does not have this look yet; it is added in the
 His mother only treats him well when he hurts people. He is loved only when he fights and wins. So he learns that love = violence, and he almost kills everything he sees (the reason he is called Kuro Oni, the Black Oni). Everything he wins, he wins for her smile.
 - She is cold and blank to him by default; the warm smile is the reward when he hurts someone.
 - He never stops on his own; only she can stop him (shot 10) because her approval is the only thing he wants.
-- The poison scene (shot 11): his Emperor Eye sees the poison in the tea. He drinks anyway, for the smile. The tragedy is that he chooses it.
+- The poison scene (shot 11): his Demonic Eye sees the poison in the tea. He drinks anyway, for the smile. The tragedy is that he chooses it.
 - Series use: in the fantasy world he does not understand kindness, and the people who are kind to him without him fighting are the thing he cannot read.
 Content note: fiction about abuse and conditioned violence; keep it implied (looks, silence, one image of a bloodied boy), not graphic.
 

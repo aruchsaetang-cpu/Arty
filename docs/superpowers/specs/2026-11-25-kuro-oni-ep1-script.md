@@ -1,78 +1,78 @@
-# KURO ONI, Episode 1: script (60 s, vertical)
+# KURO ONI, Episode 1: script v2 (60 s, vertical)
 
 Working title of the episode: "The Smile".
 Tone: cold, quiet, brutal. Very little talking. Gojo almost never speaks; the people around him do the talking.
-Rules from the design doc: Gojo has no magic; his face is blank when he fights; the mother is cold except when he hurts someone; every big hit is an ink-silhouette frame.
-Open point: the banners shot is cut in this script (only the father's cloak stays). Change if you pick the map or the montage.
+Changes in this version: the poison is gone; his mother kills him with a katana while he sleeps; the "Emperor Eye" is now the **Demonic Eye**; the film opens by explaining his abilities.
+Rules: Gojo has no magic; his face is blank when he fights; the mother is cold except when he hurts someone; every big hit is an ink-silhouette frame.
+My reading to confirm: black bone stops even a katana, but only while he is awake and braced. Asleep, it is off. That is why she waits until he sleeps.
 
 ---
 
-## PART 1: THE YAMAZAKI HOUSE (0-37 s)
+## PART 0: WHAT HE IS (0-5 s)
 
-**1. INT. YAMAZAKI HALL, DAY (0:00-0:03)**
-A long tatami hall. Thirty clan members kneel in three rows: elders, a tattooed vassal with a sword across his arms, young men. A lean boy stands alone in front of them. His eyes are black with white irises. His MOTHER (the father's mistress, not his wife) stands beside him, cold and still. His FATHER sits slumped apart, bandaged and broken after losing to the strongest gang in Korea; he does not look at the boy.
-ELDER (whisper): Black eyes... the Emperor Eye. What is the boy's name?
+**0. BLACK. ABILITY CARDS (0:00-0:05)**
+Over black, a white iris opens in a black eye. Short flash cuts, one per ability, each with a one-line caption and a voice-over:
+- Shin hits a steel bar: a metal clang. **BLACK BONE**: "A body as hard as steel. It can stop even a katana, if he is awake."
+- The white eye in extreme close-up, a punch stopping in front of it. **DEMONIC EYE**: "The eye that sees a blow before it lands. The eye of an Ultra Instinct."
+- A kata in silhouette. **YAMAZAKI KYOKUSHIN KARATE**: "Hard. It breaks."
+- A wrist throw in silhouette. **AIKIDO**: "Soft. It turns your force against you."
+NARRATOR (V.O., calm): "Black bone. The Demonic Eye. Karate and aikido. This is Gojo."
+*Sound: a heartbeat; a clang; a whoosh; one hit.*
+
+## PART 1: THE YAMAZAKI HOUSE (5-34 s)
+
+**1. INT. YAMAZAKI HALL, JAPAN, DAY (0:05-0:08)**
+A long tatami hall. Thirty clan members kneel in three rows: elders, a tattooed vassal with a sword across his arms, young men. A lean boy stands alone in front of them, eyes black with white irises. His MOTHER (the father's mistress, not his wife) stands beside him, cold and still. His FATHER sits slumped apart, bandaged and broken after losing to the strongest gang in Korea; he does not look at the boy.
+ELDER (whisper): The Demonic Eye... What is the boy's name?
 The father says nothing. He never named him.
-*Sound: silence, one cup shatters somewhere.*
 
-**2. INT. YAMAZAKI HALL (0:03-0:06)**
-A bigger boy lies bloody at Gojo's feet. The clan flinches. Gojo's face is blank. His mother walks to him for the first time, kneels, and smiles. She takes his hand.
+**2. INT. YAMAZAKI HALL (0:08-0:10)**
+A bigger boy lies bloody at the boy's feet. The clan flinches. His mother kneels and smiles for the first time. She takes his hand.
 MOTHER (soft): Good boy.
-Gojo looks only at her smile.
-*Sound: low drone, then a soft hum.*
+The boy looks only at her smile.
 
-**3. EXT. YAMAZAKI GATE, DAY (0:06-0:10)**
-Outside the gate, normal children play, laughing. Gojo walks toward them. His mother steps in front of him and slaps him. INK-SILHOUETTE FRAME on the slap.
-GOJO (quiet): Can I play with them?
+**3. EXT. YAMAZAKI GATE, DAY (0:10-0:13)**
+Normal children play outside the gate. He walks toward them. His mother steps in front of him and slaps him. INK-SILHOUETTE FRAME.
+GOJO-AS-A-BOY (quiet): Can I play with them?
 MOTHER (cold): A future clan leader will not play with those kids.
 He lowers his head and walks back inside.
-*Sound: kids laughing, the slap, silence.*
 
-**4. INT. DOJO (0:10-0:15)**
-Gojo is a teen now. The MASTER sits at the edge: very old, white topknot, long white beard, black checkered kimono. He rises and attacks; Gojo turns, takes his wrist and throws him (aikido). The master lands, nods.
+**4. INT. DOJO (0:13-0:17)**
+He is a teen. The MASTER (very old, white topknot, long white beard, black checkered kimono) attacks; the teen turns, takes his wrist and throws him. The master lands and nods.
 MASTER: You have no name. From today you are Gojo. Soft first. Then hard.
-Gojo does a Kyokushin kata, then breaks a steel bat on his shin. His mother watches from the veranda, blank, until the bat breaks. Then she smiles.
-*Sound: wood, breath, the crack.*
+Gojo does a Kyokushin kata and breaks a steel bat on his shin. His mother watches from the veranda, blank, until the bat breaks. Then she smiles.
 
-**5. EXT. MUD, RAIN (0:15-0:17)**
+**5. EXT. MUD, RAIN (0:17-0:18.5)**
 His father's black cloak lies in the mud.
 MASTER (V.O.): The war took your father.
 Gojo lifts the cloak and puts it on.
-*(Banner shot cut in this script.)*
 
-**6. EXT. BURNING STREET IN KOREA, NIGHT, RAIN (0:17-0:31)**
+**6. EXT. BURNING STREET IN KOREA, NIGHT, RAIN (0:18.5-0:31)**
 A hundred fighters in black suits fill the street, fires on both sides. Gojo stands alone, blank-faced.
-ENEMY (shout): Kill him!
-First wave: they rush one at a time; he moves a little, hits once each, and straightens his sleeve between them. ENEMY POV (red fear look): his face in shadow, one white eye.
-Ultra Instinct: sound cuts out. His eyes go full white. He slips every blow. Barrage cuts from the side, over the shoulder, close on fist and face. Ink-silhouette frames on the biggest hits.
-He walks through the fire, a black silhouette. Nobody can touch him.
-ENEMY (whisper, crawling back): Kuro Oni... the Black Oni.
-The last 20 rush. One straight punch; the shockwave parts the rain.
-*Sound: impacts, a sub drop on every big hit, silence on the cuts.*
+ENEMY: Kill him!
+First wave: they rush one at a time; he moves a little, hits once each, straightens his sleeve between them. ENEMY POV (red fear look): his face in shadow, one white eye.
+Demonic Eye: the sound cuts out, his eyes go full white, he slips every blow. Barrage cuts from the side, over the shoulder, close on fist and face. Ink-silhouette frames on the biggest hits. He walks through the fire, a black silhouette; nobody can touch him.
+ENEMY (crawling back): Kuro Oni... the Black Oni.
+The last 20 rush; one straight punch, the shockwave parts the rain.
 
 **7. EXT. BURNING STREET (0:31-0:34)**
 Every clan leader kneels. His fist is raised over the last one. He does not stop.
 LEADER: Please...
-His mother steps into the edge of the frame.
+His mother, who has come with the clan, steps into the edge of the frame.
 MOTHER: Gojo.
 He freezes.
-*Sound: silence, a bell.*
 
-**8. INT/EXT. YAMAZAKI HOUSE, JAPAN, NIGHT (0:34-0:37)**
-He is home, asleep. His mother, the father's mistress, slides the door open with a katana (she wants the Yamazaki and its power). She stabs him in the back. INK-SILHOUETTE FRAME. The blade rings on his back and bends: black bone stops even a katana. He opens his white eyes and does not turn.
-She smiles, warm, the smile he has wanted all his life, and holds out a cup. Full moon, the lantern-lit stairway behind her; the thirty watch from the courtyard.
-MOTHER: You must be thirsty. Drink.
-His eyes see the poison in the cup. He knows.
-GOJO (V.O.): She is smiling.
-He drinks.
-*Sound: low drone.*
+## PART 2: THE KATANA (34-41 s)
 
----
+**8. INT. YAMAZAKI HOUSE, JAPAN, NIGHT (0:34-0:38)**
+He is home, asleep on the floor of his room, worn out. Full moon at the window, the lantern-lit stairway outside. His mother, the father's mistress, slides the door open with a katana. She wants the Yamazaki and its power, and the heir with the Demonic Eye stands in her way. Black bone does not work while he sleeps.
+She stabs him in the back. INK-SILHOUETTE FRAME.
+His white eyes open. He does not turn.
+MOTHER (smiling, warm, the smile he has wanted all his life): Good boy.
+*Sound: a long silence, the blade, a gasp.*
 
-## PART 2: THE POISON (37-41 s)
-
-**9. EXT. YAMAZAKI STAIRS, NIGHT (0:37-0:40)**
-He walks down the stairs. His steps slow. He sees everything: his pulse, the clan watching, his mother at the top with the empty cup. He drops to one knee, calm.
+**9. INT. YAMAZAKI HOUSE (0:38-0:40)**
+He could kill her in one move. He looks at her smile and does not. He sinks to one knee, calm.
 GOJO (V.O.): I never learned what the smile was for.
 *Sound: heartbeat, slowing.*
 
@@ -81,8 +81,6 @@ He looks up at her. She turns away.
 GOJO (a whisper, his last word): ...Damn it.
 His eyes close. Black.
 *Sound: last heartbeat, silence.*
-
----
 
 ## PART 3: THE NEW WORLD (41-60 s)
 
@@ -100,29 +98,23 @@ He throws a ball of fire. Slow motion. Gojo's eyes follow it before the cast.
 
 **14. EXT. ROAD, SLOW MOTION (0:50-0:54)**
 Gojo slips the fireball and steps in. One straight punch from the side-on angle. INK-SILHOUETTE FRAME. The knight flies back. No magic, no expression.
-*Sound: one hit, silence.*
 
 **15. CLOSE: THE KNIGHT (0:54-0:56)**
 On the ground, red fear light, he looks up at Gojo's single white eye.
 KNIGHT (whisper): Black-eyed demon...
 
 **16. TITLE (0:56-1:00)**
-Extreme close-up of the eyes.
-TITLE: KURO ONI, EP 1.
+Extreme close-up of the eyes. TITLE: KURO ONI, EP 1.
 *Sound: a whisper, then the last hit.*
 
 ---
 
-## Lines in the whole episode (about 60 words)
-Elder: "Black eyes... the Emperor Eye."
-Elder: "What is the boy's name?" (father silent)
-Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "You did well. Drink."
-Gojo: "Can I play with them?" / (V.O.) "She is smiling." / (V.O.) "I never learned what the smile was for." / his last word before he dies: "...Damn it." / (V.O., new world) "No clan. No mother."
-Master: "Soft first. Then hard." / (V.O.) "The war took your father."
+## Lines in the whole episode (about 80 words)
+Narrator (opening): "A body as hard as steel. It can stop even a katana, if he is awake." / "The eye that sees a blow before it lands." / "Hard. It breaks." / "Soft. It turns your force against you." / "Black bone. The Demonic Eye. Karate and aikido. This is Gojo."
+Elder: "The Demonic Eye... What is the boy's name?" (father silent)
+Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "Good boy." (at the stab)
+Gojo as a boy: "Can I play with them?"
+Master: "You have no name. From today you are Gojo. Soft first. Then hard." / (V.O.) "The war took your father."
 Enemy / leader: "Kill him!" / "Kuro Oni... the Black Oni." / "Please..."
+Gojo (V.O.): "I never learned what the smile was for." / his last word: "...Damn it." / (new world) "No clan. No mother."
 Knight: "A man with no grimoire? Burn him!" / "Black-eyed demon..."
-
-## Notes
-- Mother's line count is small on purpose; her face does the acting.
-- Gojo talks only twice as a child (the question to play) and in short voice-over as an adult.
-- If you want no voice-over, drop the four V.O. lines; the film still works from images.
