@@ -7896,21 +7896,21 @@
     "semantic_hash": ""
   },
   "shorts/kuro_oni/cast_kuro.py": {
-    "mtime": 1795610953.4689863,
-    "seen": 1795611090.7913473,
-    "ast_hash": "c3ce083dc7358ff82ee76d2efd186242",
+    "mtime": 1795611801.2106702,
+    "seen": 1795612013.818342,
+    "ast_hash": "58c16121bb5d3ae1927fc4b82cfcb9bd",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/cast_test.py": {
-    "mtime": 1795610962.956987,
-    "seen": 1795611090.791349,
-    "ast_hash": "9e87eced0a8e511189a09b0a9db41d43",
+    "mtime": 1795611801.2113373,
+    "seen": 1795612013.8183453,
+    "ast_hash": "84c077627ad7bee6847b16fc0764e9a5",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-11-25-kuro-oni-STATUS.md": {
-    "mtime": 1795610886.8489823,
-    "seen": 1795611090.7921107,
-    "ast_hash": "4edea36266b22e19f2c6c33819075ba6",
+    "mtime": 1795611705.8218575,
+    "seen": 1795612013.8191621,
+    "ast_hash": "040347ecdeacf3f8099ebfd97aebb503",
     "semantic_hash": ""
   }
 }

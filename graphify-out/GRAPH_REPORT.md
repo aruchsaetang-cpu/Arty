@@ -1,7 +1,7 @@
 # Graph Report - Arty  (2026-11-25)
 
 ## Corpus Check
-- 851 files · ~1,120,354 words
+- 851 files · ~1,120,421 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 197 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2e9e2697`
+- Built from commit: `ca01098c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -646,10 +646,10 @@
 10. `cel()` - 24 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Timeline Pattern` --references--> `add()`  [INFERRED]
-  .claude/skills/hyperframes-animation/adapters/animejs.md → videos/gelato-trailer/scripts/score.py
 - `4. Everything that was built/changed (so it is not redone)` --references--> `void_eye_mat()`  [INFERRED]
   HANDOFF.md → lookdev/character_mh.py
+- `Timeline Pattern` --references--> `add()`  [INFERRED]
+  .claude/skills/hyperframes-animation/adapters/animejs.md → videos/gelato-trailer/scripts/score.py
 - `4. Coat and hair motion` --references--> `add_cloth_motion()`  [INFERRED]
   .claude/skills/blender/SKILL.md → lookdev/character_mh.py
 - `2. Characters (never redesign)` --references--> `void_eye_mat()`  [INFERRED]
@@ -2741,11 +2741,11 @@ Nodes (5): Honest time estimate (estimates, not measurements), KURO ONI Ep 1: th
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Text To Speech` connect `Text To Speech` to `tts.mjs`?**
-  _High betweenness centrality (0.180) - this node is a cross-community bridge._
+  _High betweenness centrality (0.153) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
   _Cohesion score 0.04242424242424243 - nodes in this community are weakly interconnected._
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `tts.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.180) - this node is a cross-community bridge._
+  _High betweenness centrality (0.153) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Should `kuro_oni/film.py` be split into smaller, more focused modules?**
