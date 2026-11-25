@@ -187,6 +187,16 @@ Prototype note: the 3D prototype uses plain boxes; the real version builds the s
 - **The master:** a very old man, white hair in a topknot with two long white side locks, a long white beard, deep wrinkles, half-closed hard eyes; black kimono with a small grey checkered pattern and a wide dark obi; sits cross-legged, hands on his knees. Teaches Gojo aikido and Kyokushin.
 - **A vassal elder (one of the 30):** older, slicked dark hair, tinted glasses, a full-body tattoo of flowers, waves and demons over his arms and chest, bare-chested in a pale loincloth, a sword resting across his crossed arms, a sake set in front of him. Style reference only; original design, no named characters.
 
+## Fight look (user refs: five Lookism panels of Gun's fights): how he fights
+Style reference only (official art); we draw original shots.
+- **Enemies are thrown into a white void:** they tumble upside down or sideways, limbs splayed, suits flapping, with ink and blood-like splatter; he stands calm in the middle of falling bodies.
+- **Low-angle hero shots** against a full moon and driving rain, enemies' fists in the foreground.
+- **One man's back against the whole crowd:** a wide shot from behind him, the crowd (even with headlights) facing him.
+- **Impact:** a white shockwave ring and a spray of debris and rain from the point of impact, speed lines, and a big word (BAM, THUD, CLANG, SLAP) drawn in the frame.
+- **Side-on kicks and straight punches** with the speed-line background, the opponent folding over the fist.
+- **Gojo's version (no emotion):** he never grins or shouts; the faces that show emotion are the enemies'.
+Used in: the hook, the war (18-21 s of the 30 s cut) and the slap, with words BAM / CLANG / SLAP / THUD and a white shockwave ring at each big hit (added in compose).
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 

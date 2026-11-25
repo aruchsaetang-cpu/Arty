@@ -56,6 +56,18 @@ def speed_lines(img, t):
     for _ in range(46):
         a = r.uniform(0, math.tau); r0 = r.uniform(230, 330); r1 = r0 + r.uniform(160, 420)
         d.line([(cx + r0 * math.cos(a), cy + r0 * math.sin(a)), (cx + r1 * math.cos(a), cy + r1 * math.sin(a))], fill=(255, 255, 255, 210), width=r.choice((2, 2, 3, 5)))
+ONO = {2.2: ("BAM", -10), 6.2: ("CLANG", 8), 12.0: ("SLAP", -6), 19.0: ("THUD", 12), 23.2: ("...", 0)}
+FO = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 120)
+def onomatopoeia(img, t):
+    for ht, (word, ang) in ONO.items():
+        if ht <= t < ht + 0.4 and word != "...":
+            k = (t - ht) / 0.4; sz = 1.0 + 0.5 * (1 - k)
+            lay = Image.new("RGBA", (W, 220), (0, 0, 0, 0)); ImageDraw.Draw(lay).text((W // 2, 110), word, font=FO, fill=(255, 255, 255, int(255 * (1 - k * 0.5))), stroke_width=7, stroke_fill=(0, 0, 0, 255), anchor="mm")
+            lay = lay.rotate(ang, resample=Image.BICUBIC, expand=False); lay = lay.resize((int(W * sz), int(220 * sz)))
+            img.paste(lay, ((W - lay.width) // 2, 150), lay)
+        if ht <= t < ht + 0.35:      # white shockwave ring from the impact (the Lookism panels)
+            k = (t - ht) / 0.35; r = 60 + 360 * k; d = ImageDraw.Draw(img, "RGBA"); cx, cy = W // 2, H // 2 - 60
+            d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=(255, 255, 255, int(230 * (1 - k))), width=int(10 * (1 - k)) + 2)
 def caption(img, t):
     cur = None
     for i, (s, who, line) in enumerate(VOICE):
@@ -79,7 +91,7 @@ def frame(f):
     if any(a <= t < b for a, b in SILH): img = silhouette(img, t)
     for ht in BIG:
         if ht <= t < ht + 0.2: speed_lines(img, t)
-    d = ImageDraw.Draw(img)
+    onomatopoeia(img, t); d = ImageDraw.Draw(img)
     if t >= 29.0:
         a = min(1, (t - 29.0) / 0.5); d.text((W // 2, 430), "KURO ONI", font=FX, fill=(int(245 * a),) * 3, stroke_width=3, stroke_fill=(0, 0, 0), anchor="mm")
         if t >= 29.5: d.text((W // 2, 505), "TO BE CONTINUED", font=FB, fill=(210, 210, 215), anchor="mm")
