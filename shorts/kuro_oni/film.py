@@ -25,7 +25,7 @@ RAD = math.radians
 
 # ------------------------------------------------------------------ cast styles
 KID = dict(K.KID2, body="kid_lean", height=1.3, tie=None, backpack=None, legs="trousers", leg_col=("#1c1a20", "#0c0b10"), coat=None,
-           top=("#d8d4cc", "#8a867e"), turtleneck=False, hair="bangs", void_eyes=True)
+           top=("#d8d4cc", "#8a867e"), turtleneck=False, hair="bangs", face="lean_boy", void_eyes=True)
 MOM = dict(K.W1, coat=("#4a4256", "#221e2a"), hem=1.0, open_skirt=False, open_coat=False, lapels=True, coat_flare=(0.02, 0.05),
            top=("#3a3446", "#1a1620"), turtleneck=False, legs="skirt", leg_col=("#3a3446", "#1a1620"), skirt_hem=1.0, bag=None,
            hair="long", hair_len=0.12, hair_col="#0c0a0a", lips="#8a4a52")

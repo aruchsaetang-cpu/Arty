@@ -120,6 +120,10 @@ FACES = {
                 "l-eye-corner1-up": 0.25, "r-eye-corner1-up": 0.25, "mouth-lowerlip-volume-incr": 0.3,
                 "mouth-upperlip-volume-incr": 0.1, "mouth-cupidsbow-incr": 0.6, "mouth-scale-horiz-decr": 0.15,
                 "mouth-angles-up": 0.15, "eyebrows-angle-up": 0.15, "forehead-scale-vert-decr": 0.3, "neck-scale-vert-incr": 0.5},
+    # a thin, hungry boy: narrow head, hollow cheeks, pointed chin (the clan's lean heir, not a chubby kid)
+    "lean_boy": {"head-oval": 0.5, "head-age-decr": 0.5, "head-scale-horiz-decr": 0.45, "l-cheek-volume-decr": 0.9, "r-cheek-volume-decr": 0.9,
+                 "chin-width-decr": 0.6, "chin-triangle": 0.45, "nose-scale-horiz-decr": 0.3, "mouth-scale-horiz-decr": 0.15,
+                 "l-eye-scale-incr": 0.2, "r-eye-scale-incr": 0.2},
     "boy": {"head-oval": 0.4, "head-age-decr": 0.6, "l-eye-scale-incr": 0.2, "r-eye-scale-incr": 0.2,
             "nose-scale-horiz-decr": 0.3, "chin-width-decr": 0.3, "nose-volume-decr": 0.3, "mouth-lowerlip-volume-incr": 0.2},
 }
