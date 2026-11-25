@@ -1,13 +1,14 @@
-"""Kuro Oni ep 1, REAL SCENE 1 v2 (the 3 s hook): a ring of street fighters (real men, faces, own clothes) round the hero
-on a burning street (no rain). ONE enemy lunges with a right haymaker; the hero ducks under it, plants, turns hips then spine
-then shoulder and drives a gyaku-zuki (right reverse punch) into the man's face. Hit-stop, head snaps sideways, face caves,
-eyes go white, spit flies; he spins, crumples and slams the ground. The others only flinch and step back.
-    /root/.venvs/bpy/bin/python shorts/kuro_oni/scene1.py [scale%] [first] [last]
-Renders PNGs to shorts/kuro_oni/frames_s1v2/ (existing frames skipped, so it resumes). Frames: odd frames (on twos) plus
-every frame of the punch (F_ONES). env: SAMPLES (12), STILLS="t1,t2" -> stills_s1v2/, NORENDER=1 build only, CHECK=1 print
-contact distances. Post (flash, ink frame, lines, sound, subtitle): shorts/kuro_oni/scene1_compose.py
-Cuts (level, steady, one slow move each): 0-0.8 low wide | 0.8-1.35 over the attacker's shoulder | 1.35-1.75 eyes ECU |
-1.75-2.5 side-on profile, push-in to fist + face, held contact | 2.5-3.0 high wide aftermath."""
+"""Kuro Oni ep 1, REAL SCENE 1 v3 (the 3 s hook, manhwa cut): a ring of street fighters (real men, faces, own clothes) round
+the hero on a burning street (no rain). ONE enemy lunges with a right haymaker; the hero ducks under it, plants, turns hips
+then spine then shoulder and drives a gyaku-zuki (right reverse punch) into the man's face. Hit-stop, head snaps, face caves,
+eyes go white, blood flies; he is launched, tumbles diagonally through the air and slams the road. The others flinch back.
+    /root/.venvs/bpy/bin/python shorts/kuro_oni/scene1.py [scale%]
+v3 renders JOBS: static manhwa-panel cameras (no camera animation at all), each a list of source frames, to
+shorts/kuro_oni/frames_s1v3/<shot>_<frame>.png (existing files skipped, so it resumes) + proj.json (screen positions of the
+contact point, the enemy's eyes/mouth, the fist, for the 2D post). env: SAMPLES (12), ONLY="shot,shot" render those shots,
+STILLS="shot:frame,..." -> stills_s1v3/, NORENDER=1 build only, CHECK=1 print contact distances.
+Post (manhwa ink grade, split panels, SFX, sound): shorts/kuro_oni/scene1_compose.py
+v2 frames (frames_s1v2/) are reused for the hero eyes ECU (unchanged shot)."""
 import math, os, random, sys, time, resource
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 FPS, DUR = 30, 3.0; NF = int(DUR * FPS)
@@ -77,12 +78,12 @@ A.key(2.04, x=1.05, y=-0.02, yaw=-88, twist=40, lean=22, side=4, drop=0.16, hp=1
 A.key(T_HIT, x=1.04, twist=40, lean=22, hp=12, hy=0, hr=0, hs=(1.0, 1.0, 1.0), fistR=("w", (0.34, -0.66, 1.48)))
 A.key(T_HIT + 0.02, hs=(0.78, 0.93, 1.12), ease="snap")                                  # face caves in on contact
 A.key(T_SNAP, x=1.05, twist=40, lean=22, hp=12, hy=-4, hr=-3, hs=(0.76, 0.93, 1.13), yaw=-88, drop=0.16, side=4)   # hit-stop: frozen
-A.key(T_SNAP + 0.09, hy=-58, hr=-30, hp=-26, x=1.14, ease="snap")                        # head snaps to his right, chin up
-A.key(2.50, x=1.32, y=0.04, yaw=-122, twist=-28, lean=4, side=-12, drop=0.34, hs=(0.84, 0.95, 1.08),
-      fistR=("c", (-0.58, 0.12, 1.46)), fistL=("c", (0.48, -0.18, 1.12)), hy=-50, hr=-28, hp=-18, ease="out")
-A.key(2.62, x=1.38, y=0.10, yaw=-150, twist=-30, drop=0.40, tilt=(-4.0, 0.4, 0.0), lean=0, side=-6,
-      fistR=("c", (-0.50, -0.32, 1.70)), fistL=("c", (0.50, -0.25, 1.62)), hp=-10, ease="in")
-A.key(2.73, x=1.40, y=0.22, tilt=(-77.6, 7.8, 0.0), drop=0.36, hs=(1.0, 1.0, 1.0), hy=-30, hr=-10, hp=20, ease="in")   # slams down
+A.key(T_SNAP + 0.09, hy=-58, hr=-30, hp=-26, x=1.14, tilt=(-4.0, 0.4, 0.0), ease="snap")   # (tilt held at v2's -4 deg until here)                        # head snaps to his right, chin up
+A.key(2.50, x=1.46, y=0.04, yaw=-122, twist=-28, lean=-12, side=-12, drop=0.02, tilt=(-22.0, 2.2, 0.0), hs=(0.84, 0.95, 1.08),
+      fistR=("c", (-0.58, 0.12, 1.46)), fistL=("c", (0.48, -0.18, 1.12)), hy=-50, hr=-28, hp=-30, ease="out")       # launched: feet leave the road
+A.key(2.62, x=1.64, y=0.16, yaw=-150, twist=-30, drop=-0.06, tilt=(-52.0, 5.2, 0.0), lean=-16, side=-6,
+      fistR=("c", (-0.50, -0.32, 1.80)), fistL=("c", (0.50, -0.25, 1.75)), hp=-24, ease="lin")                         # flying, arched, arms up
+A.key(2.73, x=1.72, y=0.30, tilt=(-77.6, 7.8, 0.0), drop=0.36, lean=0, hs=(1.0, 1.0, 1.0), hy=-30, hr=-10, hp=20, ease="in")   # slams down
 A.key(2.79, tilt=(-70.0, 7.0, 0.0), ease="out")                                                       # bounce
 A.key(2.88, tilt=(-78.6, 7.9, 0.0), fistR=("c", (-0.42, -0.45, 1.30)), fistL=("c", (0.40, -0.40, 1.25)), ease="in")
 A.key(3.2, tilt=(-78.6, 7.9, 0.0))
@@ -116,6 +117,27 @@ for it in range(3):                         # close the loop: measure the fist a
         if "fistR" in d and t >= T_HIT - 1e-6: d["fistR"] = ("w", tuple(V(d["fistR"][1]) + err))
 scn.frame_set(F_HIT - 6); bpy.context.view_layer.update(); print("fist at 1.93 s (chamber)", tuple(round(c, 2) for c in bone_w(hero, "wrist.R", "tail")))
 
+# ---- cloak follow-through: the back panel (rigid, on spine01) hinges at its top edge. It trails back while the body drives
+# in (1.97-2.10), whips forward past rest when the body stops dead on the hit (kime), swings back and settles.
+def swing_deg(t):
+    ks = [(0.0, 0.0), (1.80, 0.0), (1.97, -6.0), (2.10, 24.0), (2.24, -18.0), (2.40, 9.0), (2.56, -4.0), (2.75, 1.5), (2.95, 0.0)]
+    for (t0, a0), (t1, a1) in zip(ks, ks[1:]):
+        if t0 <= t <= t1: return a0 + (a1 - a0) * ez((t - t0) / (t1 - t0), "io")
+    return 0.0
+_cl = [o for o in hero.children_recursive if o.type == "MESH" and o.data.materials and o.data.materials[0] and o.data.materials[0].name.startswith("cloak")]
+if _cl:
+    pan = max(_cl, key=lambda o: o.dimensions.z); MW = {}
+    for f in FR_ALL:
+        scn.frame_set(f); bpy.context.view_layer.update(); MW[f] = pan.matrix_world.copy()
+    pan.parent = None; pan.animation_data_clear(); pan.rotation_mode = "QUATERNION"
+    prefs.keyframe_new_interpolation_type = "LINEAR"
+    for f in FR_ALL:
+        M = MW[f]; top = M @ V((0, 0, 0.5)); a = RAD(swing_deg(T_(f)))      # cube is unit size: +0.5 local z = the top edge
+        R = Matrix.Translation(top) @ Matrix.Rotation(a, 4, "Y") @ Matrix.Translation(-top)
+        pan.matrix_world = R @ M
+        pan.keyframe_insert("location", frame=f); pan.keyframe_insert("rotation_quaternion", frame=f); pan.keyframe_insert("scale", frame=f)
+    print("cloak follow-through keyed on", pan.name)
+
 # ---- the ring men: guard, small bob; after the hit they flinch, raise the guard and step back (nobody flies)
 NR = []
 for i, (g, (r, a)) in enumerate(zip(near, NEAR)):
@@ -137,9 +159,9 @@ for i, (g, (r, a)) in enumerate(zip(near, NEAR)):
 
 # ---- lookdev: the hero DIM (low glow, only a thin warm fire edge; his white eyes are the brightest thing on him);
 # the enemies lit by the fire (brighter, warm orange rim) so the contrast reads
-def brighten(g, glow, rim, blend):
+def brighten(g, glow, rim, blend, extra=()):
     done = {}
-    for ob in g.children_recursive:
+    for ob in list(g.children_recursive) + list(extra):
         if ob.type not in ("MESH", "CURVE"): continue
         mats = ob.data.materials
         for i, m in enumerate(mats):
@@ -155,7 +177,7 @@ def brighten(g, glow, rim, blend):
                     if mx.type == "MIX" and not mx.inputs[7].links: mx.inputs[7].default_value = rim
                 done[m.name] = m2
             mats[i] = done[m.name]
-brighten(hero, 0.62, (0.95, 0.42, 0.14, 1.0), 0.16)
+brighten(hero, 0.62, (2.2, 0.95, 0.32, 1.0), 0.10, extra=[pan] if _cl else [])          # v3: dim body, a thin but clearly bright fire rim
 for g in [att] + near + temps: brighten(g, 1.12, (1.0, 0.55, 0.2, 1.0), 0.30)
 # ---- extra looks: pose the temp rigs in a guard, bake them (and the near men) to static meshes for the back rows, then delete the temps
 def bake_variant(g, tag):
@@ -179,7 +201,7 @@ for me in [m for m in bpy.data.meshes if m.users == 0]: bpy.data.meshes.remove(m
 print(f"variants baked {len(VARS)}  {time.time() - T0:.0f}s rss {rss():.2f} GB", flush=True)
 
 # ---- back rows: instanced baked men (faces, colours), facing the fight; they flinch and lean back after the hit
-CAMS_XY = [V((0.7, -3.5)), V((2.9, 0.45)), V((0.6, -3.5)), V((0.4, -2.2)), V((0.9, -3.6))]
+CAMS_XY = [V((0.7, -3.5)), V((2.9, 0.45)), V((0.6, -3.5)), V((0.4, -2.2)), V((0.9, -3.6)), V((3.5, 0.2)), V((0.9, -2.9))]
 BACK = []; rng = random.Random(9)
 occupied = [V((r * math.cos(RAD(a)), r * math.sin(RAD(a)))) for r, a in NEAR] + [V((1.95, 0)), V((0, 0))]
 for r, n in ((4.4, 26), (5.3, 30), (6.3, 34)):
@@ -222,6 +244,13 @@ print("white eyes hero", white_eyes(hero, 1.5), "attacker", white_eyes(att, T_HI
 # ---- the street (reuse the city; no people, NO rain), then the fires
 C.build_scene(with_hero=False, avoid=[], rain_box=(0.0, 38.0, 1.0, 1.0, 1.0, 1, 10))
 for ob in [o for o in bpy.data.objects if o.name.startswith("rain")]: bpy.data.objects.remove(ob, do_unlink=True)
+# v3: a dry road (no rain): the mirror puddles reflected bright blobs; flatten them to a dull asphalt sheen, no ripples
+for m_ in [m for m in bpy.data.materials if m.name.startswith("asphalt") and m.use_nodes]:
+    for n_ in m_.node_tree.nodes:
+        if n_.type == "BSDF_PRINCIPLED":
+            for l_ in list(n_.inputs["Roughness"].links): m_.node_tree.links.remove(l_)
+            n_.inputs["Roughness"].default_value = 0.55
+        if n_.type == "BUMP": n_.inputs["Strength"].default_value = 0.12
 print(f"city built {time.time() - T0:.0f}s rss {rss():.2f} GB", flush=True)
 # a burning-city sky: red-black smoke above, an orange glow low down
 _w = scn.world.node_tree; _cr = next(n for n in _w.nodes if n.type == "VALTORGB"); _e = _cr.color_ramp.elements
@@ -271,25 +300,32 @@ def card_mat(name, smoke=False):
     L.new(mth("ADD", rnd, mth("MULTIPLY", clk.outputs[0], 0.25 if smoke else 0.9)), cv.inputs[2])
     nz = N.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 1.6 if smoke else 2.2; nz.inputs["Detail"].default_value = 4.0
     nz.inputs["Roughness"].default_value = 0.6; L.new(cv.outputs[0], nz.inputs["Vector"])
+    if "Distortion" in nz.inputs: nz.inputs["Distortion"].default_value = 0.0 if smoke else 0.6
+    cv2_ = N.new("ShaderNodeVectorMath"); cv2_.operation = "SCALE"; cv2_.inputs["Scale"].default_value = 3.1; L.new(cv.outputs[0], cv2_.inputs[0])
+    nz2 = N.new("ShaderNodeTexNoise"); nz2.inputs["Scale"].default_value = 2.6; nz2.inputs["Detail"].default_value = 6.0; nz2.inputs["Roughness"].default_value = 0.65
+    L.new(cv2_.outputs[0], nz2.inputs["Vector"])
+    nzs = mth("ADD", mth("MULTIPLY", nz.outputs["Fac"], 0.7), mth("MULTIPLY", nz2.outputs["Fac"], 0.3))      # big licks + fine flicker
     taper = mth("SUBTRACT", 1.0, mth("MULTIPLY", mth("ABSOLUTE", mth("SUBTRACT", u, 0.5)), 2.0))
-    if not smoke:      # tongue field: wide and hot at the bottom centre, torn into licks by the noise toward the top
-        body = mth("MULTIPLY", mth("POWER", taper, 0.7), mth("SUBTRACT", 1.18, v))
-        fld = mth("ADD", mth("MULTIPLY", body, 1.3), mth("MULTIPLY", mth("SUBTRACT", nz.outputs["Fac"], 0.5), 1.25))
-        fld = mth("SUBTRACT", fld, 0.08)
-        ramp = N.new("ShaderNodeValToRGB"); L.new(fld, ramp.inputs[0]); cr = ramp.color_ramp; cr.interpolation = "CONSTANT"
+    if not smoke:      # tongue field: wide and hot at the bottom centre, torn into tapered licks by the noise toward the top
+        body = mth("MULTIPLY", mth("POWER", taper, 0.9), mth("POWER", mth("MAXIMUM", mth("SUBTRACT", 1.12, v), 0.0), 1.3))
+        fld = mth("ADD", mth("MULTIPLY", body, 1.35), mth("MULTIPLY", mth("SUBTRACT", nzs, 0.5), mth("ADD", 0.7, mth("MULTIPLY", v, 1.1))))
+        fld = mth("SUBTRACT", fld, 0.06)
+        ramp = N.new("ShaderNodeValToRGB"); L.new(fld, ramp.inputs[0]); cr = ramp.color_ramp; cr.interpolation = "LINEAR"
         cr.elements[0].position = 0.0; cr.elements[0].color = (0.0, 0.0, 0.0, 1)
-        for pos, col in ((0.22, (0.78, 0.07, 0.015, 1)), (0.40, (1.0, 0.30, 0.03, 1)), (0.62, (1.0, 0.62, 0.10, 1)), (0.86, (1.0, 0.93, 0.62, 1))):
+        for pos, col in ((0.20, (0.30, 0.025, 0.005, 1)), (0.30, (0.85, 0.12, 0.02, 1)), (0.46, (1.0, 0.36, 0.05, 1)), (0.66, (1.0, 0.66, 0.18, 1)),
+                         (0.88, (1.0, 0.92, 0.70, 1))):
             el = cr.elements.new(pos); el.color = col
-        cr.elements[-1].position = 1.0; cr.elements[-1].color = (1.0, 0.93, 0.62, 1)
-        alpha = mth("GREATER_THAN", fld, 0.22)
-        em = N.new("ShaderNodeEmission"); L.new(ramp.outputs["Color"], em.inputs["Color"]); em.inputs["Strength"].default_value = 4.5
-    else:              # smoke: soft billows, dark, lit orange from below
+        cr.elements[-1].position = 1.0; cr.elements[-1].color = (1.0, 0.96, 0.85, 1)
+        alpha = mth("MINIMUM", mth("MAXIMUM", mth("MULTIPLY", mth("SUBTRACT", fld, 0.20), 7.0), 0.0), 1.0)      # soft torn edge
+        em = N.new("ShaderNodeEmission"); L.new(ramp.outputs["Color"], em.inputs["Color"])
+        L.new(mth("ADD", 2.5, mth("MULTIPLY", fld, 4.0)), em.inputs["Strength"])                                # hot core brighter
+    else:              # smoke: heavy dark billows, only the underside catches the fire
         body = mth("MULTIPLY", mth("POWER", taper, 0.5), mth("MINIMUM", mth("MULTIPLY", v, 5.0), 1.0))
         body = mth("MULTIPLY", body, mth("SUBTRACT", 1.05, mth("POWER", v, 2.0)))
-        fld = mth("ADD", mth("MULTIPLY", body, 1.1), mth("MULTIPLY", mth("SUBTRACT", nz.outputs["Fac"], 0.5), 1.4))
-        alpha = mth("MULTIPLY", mth("MINIMUM", mth("MAXIMUM", mth("MULTIPLY", mth("SUBTRACT", fld, 0.35), 3.0), 0.0), 1.0), 0.92)
-        mix = N.new("ShaderNodeMix"); mix.data_type = "RGBA"; L.new(mth("MINIMUM", mth("MULTIPLY", v, 3.0), 1.0), mix.inputs[0])
-        mix.inputs[6].default_value = (0.42, 0.10, 0.02, 1); mix.inputs[7].default_value = (0.018, 0.012, 0.012, 1)
+        fld = mth("ADD", mth("MULTIPLY", body, 1.15), mth("MULTIPLY", mth("SUBTRACT", nzs, 0.5), 1.5))
+        alpha = mth("MULTIPLY", mth("MINIMUM", mth("MAXIMUM", mth("MULTIPLY", mth("SUBTRACT", fld, 0.32), 2.6), 0.0), 1.0), 0.96)
+        mix = N.new("ShaderNodeMix"); mix.data_type = "RGBA"; L.new(mth("MINIMUM", mth("MULTIPLY", v, 4.0), 1.0), mix.inputs[0])
+        mix.inputs[6].default_value = (0.24, 0.06, 0.012, 1); mix.inputs[7].default_value = (0.006, 0.005, 0.005, 1)
         em = N.new("ShaderNodeEmission"); L.new(mix.outputs[2], em.inputs["Color"]); em.inputs["Strength"].default_value = 1.0
     tr = N.new("ShaderNodeBsdfTransparent"); ms = N.new("ShaderNodeMixShader")
     L.new(alpha, ms.inputs[0]); L.new(tr.outputs[0], ms.inputs[1]); L.new(em.outputs[0], ms.inputs[2]); L.new(ms.outputs[0], out.inputs[0])
@@ -309,6 +345,7 @@ def card(name, mat, loc, yaw, w, h, tilt=0.0):
 def fire_light(loc, energy, rng):
     ld = bpy.data.lights.new("fire_l", "POINT"); ld.shadow_soft_size = 1.2; ld.color = (1.0, 0.42, 0.12)
     lo = bpy.data.objects.new("fire_l", ld); scn.collection.objects.link(lo); lo.location = loc
+    lo.visible_glossy = False                    # v3: no specular blob of the light on the road
     for f in range(1, NF + 8, 2):
         ld.energy = energy * (0.7 + 0.6 * rng.random()); ld.keyframe_insert("energy", frame=f)
 def embers(loc, n, spread, rise, rng):
@@ -344,7 +381,7 @@ WINDOWS = [(-FX_, 40.6, 3.4, 3.0, 4.6), (-FX_, 36.8, 8.0, 2.6, 4.0), (-FX_, 46.0
            (FX_, 37.2, 3.6, 3.0, 4.6), (FX_, 44.8, 9.0, 2.8, 4.2), (FX_, 49.5, 4.2, 3.4, 5.2), (-FX_, 31.5, 4.0, 2.8, 4.4),
            (FX_, 31.0, 8.6, 2.6, 4.0), (-FX_, 57.0, 6.0, 3.6, 6.0), (FX_, 56.0, 5.0, 3.6, 6.0)]
 for i, (x, y, z, w, h) in enumerate(WINDOWS):
-    blaze((x, y, z), -90 if x < 0 else 90, w, h, n=4, light=5000.0, smoke_h=18.0, seed=100 + i)
+    blaze((x, y, z), -90 if x < 0 else 90, w, h, n=5, light=5000.0, smoke_h=18.0, seed=100 + i)
 STREET = [(0.9, 53.0, 3.2, 4.6), (-3.2, 50.5, 2.4, 3.6), (3.4, 28.5, 2.6, 3.8), (-2.8, 30.0, 2.4, 3.4), (-0.5, 62.0, 4.0, 6.0)]
 for i, (x, y, w, h) in enumerate(STREET):
     blaze((x, y, 0.3), 180, w, h, n=5, light=3500.0, smoke_h=14.0, seed=200 + i, wreck=True)
@@ -361,10 +398,10 @@ def warp(t):                                     # slow motion inside the held c
     if t <= T_HIT: return 0.0
     return min(t, 2.5) - T_HIT if t <= 2.5 else 0.4 + (t - 2.5) * 3.0
 rng = random.Random(3)
-for k in range(16):
-    bm = bmesh.new(); bmesh.ops.create_icosphere(bm, subdivisions=1, radius=rng.uniform(0.006, 0.016)); me = bpy.data.meshes.new("drop"); bm.to_mesh(me); bm.free()
-    ob = bpy.data.objects.new("drop", me); scn.collection.objects.link(ob); me.materials.append(M_BLOOD if k < 10 else M_SPIT); ob.visible_shadow = False
-    vel = V((rng.uniform(0.3, 1.4), rng.uniform(0.8, 2.6), rng.uniform(0.2, 1.6))) * (0.6 if k < 10 else 0.9)
+for k in range(40):
+    bm = bmesh.new(); bmesh.ops.create_icosphere(bm, subdivisions=1, radius=rng.uniform(0.008, 0.024)); me = bpy.data.meshes.new("drop"); bm.to_mesh(me); bm.free()
+    ob = bpy.data.objects.new("drop", me); scn.collection.objects.link(ob); me.materials.append(M_BLOOD if k < 32 else M_SPIT); ob.visible_shadow = False
+    vel = V((rng.uniform(0.3, 1.4), rng.uniform(0.8, 2.6), rng.uniform(0.2, 1.6))) * (0.6 if k < 32 else 0.9)
     ob.scale = (1, 1, 1)
     for f in FR_ALL:
         t = T_(f)
@@ -386,83 +423,86 @@ def ring(name, loc, rot, r0, r1, t0, t1, thick):
         ob.keyframe_insert("scale", frame=f); ob.keyframe_insert("hide_render", frame=f)
     return ob
 ring("shock_face", FACE + V((0.05, 0, 0)), (0, RAD(90), 0), 0.08, 0.55, T_HIT + 0.01, T_SNAP + 0.1, 0.012)
-ring("shock_dust", HC + V((1.2, 0.0, 0.02)), (0, 0, 0), 0.2, 1.4, 2.70, 2.95, 0.03)
+# v3: no dust ring on the road (it read as a bright blob in the aftermath); dust is drawn in post
 
-# ---- camera: five clean cuts, level horizon (no roll), no hand-held shake; one slow move per shot, a fast push before the hit
-cd = bpy.data.cameras.new("cam"); cd.sensor_fit = "VERTICAL"; cd.sensor_height = 36; cd.clip_start = 0.03; cd.clip_end = 3000
+# ---- cameras: v3 = manhwa PANELS. Every shot is a fixed camera (no move, no shake, no animated roll); a fixed diagonal
+# (roll) is allowed as a composition. Each job: shot name, source frames, camera (loc, look, lens, roll deg, f-stop).
+cd = bpy.data.cameras.new("cam"); cd.sensor_fit = "VERTICAL"; cd.sensor_height = 36; cd.clip_start = 0.02; cd.clip_end = 3000
 cam = bpy.data.objects.new("cam", cd); scn.collection.objects.link(cam); scn.camera = cam; cam.rotation_mode = "QUATERNION"
 cd.dof.use_dof = True
-def lerp(a, b, k): return a + (b - a) * k
-def vl(a, b, k): return V(a).lerp(V(b), k)
 def eye_c(o): return o.matrix_world @ (sum((V(c) for c in o.bound_box), V()) / 8)      # eyeball centre (origins sit on the head bone)
-def eyes_mid(f):
-    scn.frame_set(f); bpy.context.view_layer.update()
-    ps = [eye_c(o) for o in hero.children_recursive if o.name in ("eye_l", "eye_r")]
-    return sum(ps, V()) / max(1, len(ps))
-E = eyes_mid(F(1.55)); _, hfw_h, _, _ = head_frame(hero)
-_el, _er = [eye_c(next(o for o in hero.children_recursive if o.name == n)) for n in ("eye_l", "eye_r")]
-_fe = (_er - _el).cross(V((0, 0, 1))); _fe.z = 0; _fe.normalize()
-hfw_h = _fe if _fe.x > 0 else -_fe                   # straight in front of both eyes (he faces +x, toward the attacker)
-scn.frame_set(F(1.0)); bpy.context.view_layer.update(); AH = head_frame(att)[0]; HH = head_frame(hero)[0]
-CP = FACE + V((-0.12, 0, 0))                     # frame centre at the hit: between the fist and the face
-SHOTS = []
-def shot(t0, t1, fn, ease="io"): SHOTS.append((t0, t1, fn, ease))
-# 1 low wide: hero in his stance, the ring behind, the attacker on the right; slow push-in
-shot(0.0, 0.8, lambda k: (vl(HC + V((0.75, -3.7, 0.42)), HC + V((0.7, -3.3, 0.46)), k), HC + V((0.6, 0.0, 1.25)), 22, 9))
-# 2 over the attacker's right shoulder: the hero small and calm, the faces of the ring behind him (red fear grade in post)
-shot(0.8, 1.35, lambda k: (vl(AH + V((1.0, 0.45, 0.14)), AH + V((0.9, 0.42, 0.13)), k), HH + V((0, 0, -0.12)), 38, 5))
-# 3 extreme close-up of the eyes; they go white at 1.5 s; a slow push
-shot(1.35, 1.75, lambda k: (vl(E + hfw_h * 0.46, E + hfw_h * 0.36, k), E, 62, 4))
-# 4 pure side-on profile: both full bodies, then a fast push to the fist + face, held through the hit, a slow drift back
-def s4(k):
-    t = 1.75 + k * 0.75
-    wide_l, wide_c = HC + V((0.55, -3.5, 1.15)), HC + V((0.55, 0.0, 1.10))
-    near_l, near_c = V((CP.x - 0.38, HC.y - 2.15, CP.z)), V((CP.x - 0.33, HC.y, CP.z - 0.04))     # pure side-on: shoulder, fist path, face
-    if t < 1.95: return wide_l, wide_c, 30, 8
-    if t < 2.08: u = ez((t - 1.95) / 0.13, "in"); return vl(wide_l, near_l, u), vl(wide_c, near_c, u), lerp(30, 32, u), 8
-    if t < 2.24: return near_l, near_c, 32, 8
-    u = ez((t - 2.24) / 0.26, "io"); return vl(near_l, near_l + V((0.25, -0.6, -0.15)), u), vl(near_c, near_c + V((0.25, 0, -0.2)), u), 32, 8
-shot(1.75, 2.5, s4, "lin")
-# 5 high wide aftermath: the man on the ground, the ring stepping back, the hero still in his punch; slow rise
-shot(2.5, 3.01, lambda k: (vl(HC + V((0.9, -3.5, 2.7)), HC + V((0.9, -3.8, 3.0)), k), HC + V((0.9, 0.6, 0.55)), 24, 11))
-def key_cam(f):
-    t = T_(f); s = next((s for s in SHOTS if s[0] <= t < s[1]), SHOTS[-1])
-    k = ez((t - s[0]) / (s[1] - s[0]), s[3]); loc, look, lens, fst = s[2](k)
-    q = (V(look) - V(loc)).to_track_quat("-Z", "Y")             # level: no roll, no wobble
+def at(f): scn.frame_set(f); bpy.context.view_layer.update()
+def eyes_of(g): return [eye_c(next(o for o in g.children_recursive if o.name.split(".")[0] == n and not o.name.endswith("_white"))) for n in ("eye_l", "eye_r")]
+def place(c):
+    loc, look, lens, roll, fst = c
+    q = (V(look) - V(loc)).to_track_quat("-Z", "Y") @ Q((0, 0, 1), RAD(roll))
     cam.location = loc; cam.rotation_quaternion = q; cd.lens = lens; cd.dof.aperture_fstop = fst; cd.dof.focus_distance = max(0.2, (V(look) - V(loc)).length)
-    cam.keyframe_insert("location", frame=f); cam.keyframe_insert("rotation_quaternion", frame=f)
-    cd.keyframe_insert("lens", frame=f); cd.dof.keyframe_insert("aperture_fstop", frame=f); cd.dof.keyframe_insert("focus_distance", frame=f)
-prefs.keyframe_new_interpolation_type = "CONSTANT"
-for f in FR_ALL: key_cam(f)
+JOBS = {}
+# A low wide: the hero in his stance, the ring behind, the attacker on the right (held)
+JOBS["wide"] = (list(range(1, 17, 2)), (HC + V((0.72, -3.5, 0.36)), HC + V((0.6, 0.0, 1.30)), 22, 0, 9))
+# B the enemy's furious face, low, slightly under the chin, fixed diagonal
+at(F(1.3)); _el, _er = eyes_of(att); EM = (_el + _er) / 2; _hp, _fw, _up, _lt = head_frame(att)
+JOBS["rage"] = (list(range(F(1.10), F(1.56), 2)), (EM + _fw * 0.62 + _lt * 0.16 - _up * 0.10, EM - _up * 0.035, 55, 9, 2.8))
+# D the haymaker from behind the hero's left shoulder: the right arm winds up on the left of frame and sweeps over his head
+JOBS["swing"] = ([53, 55, 57, 59, 61, 63], (HC + V((-0.75, 1.45, 1.30)), HC + V((1.30, 0.05, 1.45)), 26, -6, 6))
+# E1 forced perspective: beside the enemy's cheek, looking back down the fist path (the fist huge, the hero behind it)
+at(63); _e63 = sum(eyes_of(att), V()) / 2; _f63 = head_frame(att)[1]; at(F(1.0))
+JOBS["p_fist"] = ([63], (_e63 + _f63 * 0.14, HC + V((0.05, -0.05, 1.50)), 18, 14, 11))   # his eyes: the fist flies at the lens
+# E2 the face caving round the knuckles
+JOBS["p_face"] = ([65, 67], (FACE + hfw * 0.38 + hlt * 0.30 + hup * 0.06, FACE + hup * 0.02, 40, -12, 4))
+# E3 the body launched, seen from low with the frame turned past upside-down
+at(F(2.40)); _ah = head_frame(att)[0]; _bc = _ah - V((0, 0, 0.45))
+JOBS["p_flip"] = ([72, 74], (V((_bc.x + 0.9, _bc.y - 1.9, max(0.18, _bc.z - 0.95))), _bc, 26, 158, 5.6))
+# F BAM: low behind the hero's right side, the punching arm a huge diagonal into the enemy's face (feather burst in post)
+JOBS["bam"] = ([66, 68, 70, 72], (HC + V((0.02, -0.62, 1.02)), FACE + V((0.10, 0.0, 0.05)), 19, -16, 8))
+# G the tumble: from the road, the man flying diagonally across a burning sky, blood drops in the air
+JOBS["tumble"] = ([77, 79, 81, 82], (HC + V((3.5, 0.2, 0.22)), HC + V((1.5, 0.6, 0.95)), 22, 32, 6))
+# H high aftermath: the man flat on the road, the ring stepping back, the hero still in his punch
+JOBS["after"] = ([81, 83, 85, 87, 89], (HC + V((0.9, -2.9, 4.3)), HC + V((1.2, 0.5, 0.25)), 20, 0, 11))
+cd.dof.use_dof = True
 if os.environ.get("CHECK"):
-    scn.frame_set(F(1.55)); bpy.context.view_layer.update()
-    print("EYES", [tuple(round(c, 3) for c in eye_c(o)) for o in hero.children_recursive if o.name in ("eye_l", "eye_r")], "fwd", tuple(round(c, 2) for c in hfw_h),
-          "hero headfwd", tuple(round(c, 2) for c in head_frame(hero)[1]), "chest fwd", tuple(round(c, 2) for c in (hero.matrix_world.to_3x3().normalized() @ hero.pose.bones["spine01"].matrix.to_3x3() @ hero.data.bones["spine01"].matrix_local.to_3x3().inverted() @ V((0, -1, 0)))))
-    for f in (F(1.75), F(1.9), F(1.97), F(2.03), F_HIT, F(2.3), F(2.5), F(2.75)):
-        scn.frame_set(f); bpy.context.view_layer.update()
+    for f in (F(1.75), F(1.9), F(1.97), F(2.03), F_HIT, F(2.3), F(2.5), F(2.62), F(2.75)):
+        at(f)
         print("CHECK", f, "fistR", tuple(round(c, 2) for c in bone_w(hero, "wrist.R", "tail")), "att head", tuple(round(c, 2) for c in head_frame(att)[0]),
               "hero feet", [tuple(round(c, 2) for c in bone_w(hero, f"foot.{s}")) for s in "LR"], "att feet", [round(bone_w(att, f"foot.{s}").z, 2) for s in "LR"])
 
 # ------------------------------------------------------------------ render
+from bpy_extras.object_utils import world_to_camera_view as w2c
 C.render_settings(SCALE, SAMPLES)
 scn.render.fps = FPS; scn.frame_start, scn.frame_end = 1, NF
 scn.render.image_settings.file_format = "PNG"
-OUT = os.path.join(HERE, "frames_s1v2"); os.makedirs(OUT, exist_ok=True)
-if os.environ.get("NORENDER"): print("built only", f"{time.time() - T0:.0f}s rss {rss():.2f} GB"); sys.exit(0)
+OUT = os.path.join(HERE, "frames_s1v3"); os.makedirs(OUT, exist_ok=True)
+import json
+def proj(f):
+    """screen positions (0..1, y down) of what the 2D post draws on: contact cheek, mouth, enemy eyes + head, fist, hero eyes."""
+    hp_, fw, up, lt = head_frame(att); pts = {"face": hp_ + up * 0.085 + fw * 0.095 + lt * 0.03, "mouth": hp_ + up * 0.015 + fw * 0.135,
+                                              "ahead": hp_, "fist": bone_w(hero, "wrist.R", "tail")}
+    ae = eyes_of(att); he = eyes_of(hero); pts.update(ae_l=ae[0], ae_r=ae[1], he_l=he[0], he_r=he[1], att_hip=bone_w(att, "spine05"))
+    out = {}
+    for k, p in pts.items():
+        c = w2c(scn, cam, p); out[k] = (round(c.x, 4), round(1 - c.y, 4), round(c.z, 3))
+    return out
+ONLY = [x for x in os.environ.get("ONLY", "").split(",") if x]
+todo = [(n, f) for n, (fs, _) in JOBS.items() if not ONLY or n in ONLY for f in fs]
 stills = os.environ.get("STILLS")
+if stills: todo = [(x.split(":")[0], int(x.split(":")[1])) for x in stills.split(",")]
+pj = os.path.join(OUT, "proj.json"); P_ = json.load(open(pj)) if os.path.exists(pj) else {}
+for n, f in todo:
+    at(f); place(JOBS[n][1]); bpy.context.view_layer.update(); P_[f"{n}_{f:04d}"] = proj(f)
+json.dump(P_, open(pj, "w"), indent=0)
+if os.environ.get("NORENDER"): print("built only", f"{time.time() - T0:.0f}s rss {rss():.2f} GB"); sys.exit(0)
 if stills:
-    sd = os.environ.get("STILLDIR") or os.path.join(HERE, "stills_s1v2"); os.makedirs(sd, exist_ok=True)
-    for s in stills.split(","):
-        f = F(float(s)); scn.frame_set(f); scn.render.filepath = os.path.join(sd, f"t{float(s):05.2f}.png")
-        t1 = time.time(); bpy.ops.render.render(write_still=True); print(f"STILL t={s} f={f} {time.time() - t1:.0f}s rss {rss():.2f} GB", flush=True)
+    sd = os.path.join(HERE, "stills_s1v3"); os.makedirs(sd, exist_ok=True)
+    for n, f in todo:
+        at(f); place(JOBS[n][1]); scn.render.filepath = os.path.join(sd, f"{n}_{f:04d}.png")
+        t1 = time.time(); bpy.ops.render.render(write_still=True); print(f"STILL {n} {f} {time.time() - t1:.0f}s rss {rss():.2f} GB", flush=True)
     sys.exit(0)
-done = sorted(int(n[1:5]) for n in os.listdir(OUT) if n.startswith("f") and n.endswith(".png"))
+done = sorted((os.path.getmtime(os.path.join(OUT, x)), x) for x in os.listdir(OUT) if x.endswith(".png"))
 if done and not os.environ.get("KEEPLAST"):            # the newest frame may be half-written by a killed run: redo it
-    os.remove(os.path.join(OUT, f"f{done[-1]:04d}.png")); print("removed last frame", done[-1])
-for f in RENDER:
-    if f < FIRST or f > LAST: continue
-    p = os.path.join(OUT, f"f{f:04d}.png")
+    os.remove(os.path.join(OUT, done[-1][1])); print("removed last frame", done[-1][1])
+for n, f in todo:
+    p = os.path.join(OUT, f"{n}_{f:04d}.png")
     if os.path.exists(p): continue
-    scn.frame_set(f); scn.render.filepath = p; t1 = time.time(); bpy.ops.render.render(write_still=True)
-    print(f"FRAME {f} {time.time() - t1:.0f}s peak rss {rss():.2f} GB", flush=True)
+    at(f); place(JOBS[n][1]); scn.render.filepath = p; t1 = time.time(); bpy.ops.render.render(write_still=True)
+    print(f"FRAME {n} {f} {time.time() - t1:.0f}s peak rss {rss():.2f} GB", flush=True)
 print("DONE", f"{time.time() - T0:.0f}s")

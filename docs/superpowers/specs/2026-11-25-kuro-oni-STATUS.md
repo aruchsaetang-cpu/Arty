@@ -40,3 +40,17 @@ Agent building shorts/kuro_oni/scene1.py + scene1_compose.py -> out/scene1.mp4 (
 - User rules for this film: no rain; realistic-colour anime fire (flame cards + smoke + embers); hero DIM (thin warm edge, white eyes);
   enemies fire-lit; level steady camera, 4-5 clean cuts, shake only 2-3 frames at impact, one 2-frame white flash;
   the punch hits ONE man (face caves, head snaps, eyes white, spit, spins, slams down); others only flinch/step back.
+
+## Scene 1 v3 (manhwa / Lookism polish of v2)
+- User sent Lookism panel refs (local only, not committed): upside-down/diagonal held angles, forced-perspective fists,
+  dense speed lines with a clean zone round the face, heavy ink + one red accent, enemy rage ECU, feather-burst impact
+  + blood, hollow SFX letters (퍽/쾅/BAM) cut by the frame, diagonal split panels, dark-red crowd.
+- shorts/kuro_oni/scene1.py (v3): JOBS of FIXED cameras (no camera animation; fixed roll allowed as a diagonal
+  composition) -> frames_s1v3/<shot>_<frame>.png + proj.json (contact/eyes/fist projected to screen for the post).
+  Enemy now launched + tumbles diagonally before the slam; cloak back panel has follow-through (hinged at the top);
+  hero rim brighter/thinner; fire cards: 2 noise octaves, blackbody ramp, soft torn edges, darker smoke; dry road (the
+  mirror puddles made the bright road blob); no dust ring; 40 blood drops.
+- scene1_compose.py (v3): upscale (aura/upscale.py, Real-ESRGAN) -> manhwa ink grade per shot -> 2D (snarl drawn on the
+  enemy from his projected eyes, panels page, burst, blood, SFX, narration box) -> out/scene1_v3.mp4 1080x1920.
+- Cut: wide | rage ECU | hero eyes ECU (v2 frames reused) | haymaker over shoulder | 3 diagonal panels | flash + ink frame |
+  BAM along the arm | tumble | high aftermath.
