@@ -41,10 +41,10 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 | 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone) | Crack, breath |
 | 4 | 8-11 | Map of Korea, fast cuts | Clan banners fall one by one across the country: every clan he fought. Rain begins | Drums |
 | 5 | 11-13 | Wide, burning street, rain | The clan's fighters pour in: about 100 in matching black suits. One man stands alone in the middle. Fires on both sides, fallen bodies already on the ground | Drums, crowd roar |
-| 6 | 13-16 | Medium, tracking | First wave rushes him. He does not run. Each one falls to one short motion (wrist turn, shin, elbow); he straightens his sleeve between each | Thuds, one after another |
+| 6 | 13-16 | Medium, tracking | First wave rushes him. He does not run. Each one falls to one short motion (wrist turn, shin, elbow); he straightens his sleeve between each | Thuds, one after another, each with the impact rule |
 | 7 | 16-19 | Eye close-up, slow motion | Sound cuts out. Eyes go full white (Ultra Instinct). He sees every blade and fist before it moves | Silence |
 | 8 | 19-22 | Silhouette, low, in fire | Image-2 composition: a black silhouette with white eyes walks forward through the flames, bodies behind him, nobody can touch him. Horned Oni shadow on the wall | Low drone |
-| 9 | 22-25 | Counter on screen | A small on-screen count of the fallen: 25, 50, 75, 100. Each number is one clean hit, no effects | Hit each number |
+| 9 | 22-25 | Counter on screen | A small on-screen count of the fallen: 25, 50, 75, 100. Each number is one clean hit, no effects | Hit each number: each number lands with the full impact rule |
 | 10 | 28-31 | Wide | Every clan leader kneels. Korea is one. Gojo stands, steam in the rain | Bells |
 | 11 | 31-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
 
@@ -62,6 +62,9 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 
 Scare beats: 7 (sound cut), 8 (Oni shadow), 11 (the mother's unchanged smile), 13 (cut to black), 18, 19.
 Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering, restarted every 2 h).
+
+## Impact rule (user: every punch must look very hard)
+Every punch, kick or block that lands gets: a freeze-frame of 2-3 frames, a short camera shake, a white flash on the contact point, a crack or dust burst on the ground or wall, a heavy low sound (sub drop) and a long recoil on the target (the body flies, the rain splashes off). The attacker's fist or shin shows a small shock ring. Smaller hits (slips, blocks) get no shake, only the sound.
 
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
