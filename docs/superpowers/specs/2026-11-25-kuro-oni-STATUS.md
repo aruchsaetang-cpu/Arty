@@ -24,3 +24,10 @@ USER UPDATE: send each SCENE as soon as it is done (no need to wait for the half
 
 ## Scene 1 (hook)
 Agent building shorts/kuro_oni/scene1.py + scene1_compose.py -> out/scene1.mp4 (started after the cast finished). When it reports, LOOK at the frames/stills and send scene1.mp4 to the user (they asked for each scene as it is done).
+
+## STANDING RULES (user, 2026-11-25)
+- After each scene: analyze the render critically, list what looks AI/fake, fix biggest problems BEFORE sending.
+- Quality standard = finished Aura Monster clip (look, motion polish, lighting, camera).
+- Kuro Oni fight moves = REUSABLE MOTION LIBRARY (shorts/kuro_oni/moves.py): stance_idle, step_in, slip_turn, gyaku_zuki, return_to_guard, then mae_geri, mawashi_geri_low, hiza_geri, hook, uchi_uke, irimi-nage. Study human anatomy (hip leads, spine twist, weight shift, easing, planted feet).
+- Style ref: real full-contact Kyokushin (upright, hands high, small bounce, compact fast strikes). Ref clips local only (local_refs/kyo, git-ignored).
+- Scene 1 v2 rules: calm anime camera (no tilt/shake), no rain, realistic fire, hero dim light, punch hits ONE enemy hard (steel feel), army with faces.
