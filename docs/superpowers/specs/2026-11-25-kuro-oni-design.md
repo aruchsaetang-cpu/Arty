@@ -16,12 +16,15 @@ In ep 1 Gojo is betrayed by his own mother.
 ## Abilities (given by the user)
 - **Emperor Eye / Ultra Instinct:** black sclera, white iris; very fast reflexes, he reacts before the strike.
 - **Black bone:** Yamazaki-only. His body is as durable as steel.
+- **Aikido (added by user, the aura-farming skill):** calm, almost lazy redirection of an attacker's own force (wrist locks, throws). He never rushes, he never breaks a sweat, which is what makes it look cool.
 - **Yamazaki Kyokushin karate:** the clan's style (stances, shin and low kicks, straight punch, kata, full contact).
 
 ## My calls (not yet confirmed)
 - Approach: copy the Aura Monster Blender pipeline (shorts/aura -> shorts/kuro_oni), 40 s, same hero model and eye material, kid body from the existing kid rig.
 - The opponent, the setting (rainy night courtyard of the clan hall) and the ending (he wins, but takes one hit) are invented.
 - Original art only, no official artwork. Lore beyond the user's four facts is unverified (Lookism wiki unreachable).
+
+## Aura-farm rule (user: aikido makes him aura farm): he never looks rushed. Calm face, tiny motions, the enemies do the falling. Every fight ends with one small calm gesture (sleeve straighten, a breath, eyes half closed).
 
 ## Non-goals / anti-goals
 Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it before it happens", not as glowing aura spam.
@@ -38,10 +41,10 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 | 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone) | Crack, breath |
 | 4 | 8-11 | Map of Korea, fast cuts | Clan banners fall one by one across the country: every clan he fought. Rain begins | Drums |
 | 5 | 11-14 | Rain street, wide | **Fight 1, Muay Thai:** knees and elbows in the clinch. Gojo checks a knee with his shin: steel clang. Rival's face changes | Clang |
-| 6 | 14-17 | Medium, tracking | **Fight 2, judo/wrestling:** a grappler grabs and tries to throw him; Gojo does not move (black bone), low kick drops him | Heavy thud |
+| 6 | 14-17 | Medium, tracking | **Fight 2, judo/wrestling:** a grappler grabs him; Gojo does not even set his feet, a tiny wrist turn (aikido kote-gaeshi) and the grappler flips himself onto the stones. Gojo straightens his sleeve | Heavy thud |
 | 7 | 17-20 | Eye close-up, slow motion | **Fight 3, boxing:** a blur of punches. Sound cuts out, eyes full white (Ultra Instinct), he slips five, afterimage, one body blow | Silence, one hit |
 | 8 | 20-24 | Orbit, low | **Fight 4, taekwondo/capoeira:** spinning high kicks and flips; he sees each before the hip turns. His shadow on the wall is a horned Oni. A Kyokushin front kick ends it | Drone, hit |
-| 9 | 24-28 | One long orbit, wide | **All the clans at once:** five fighters with five arts come at him; he flows through them in a single camera move, then one straight punch (gyaku-zuki) and a shockwave parts the rain | Silence, big hit |
+| 9 | 24-28 | One long orbit, wide | **All the clans at once:** five fighters with five arts come at him; in a single camera move he walks through them with aikido, each attacker's force redirected into the next, hands in his pockets for a beat; then one straight punch (gyaku-zuki) and a shockwave parts the rain | Silence, big hit |
 | 10 | 28-31 | Wide | Every clan leader kneels. Korea is one. Gojo stands, steam in the rain | Bells |
 | 11 | 31-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
 
