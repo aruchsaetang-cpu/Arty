@@ -138,6 +138,12 @@ His mother only treats him well when he hurts people. He is loved only when he f
 - Series use: in the fantasy world he does not understand kindness, and the people who are kind to him without him fighting are the thing he cannot read.
 Content note: fiction about abuse and conditioned violence; keep it implied (looks, silence, one image of a bloodied boy), not graphic.
 
+## Unemotional fight look (user ref image): ink silhouettes
+When Gojo fights he shows no emotion: face blank, mouth shut, eyes flat, breathing even, no shout, no grin. To sell it, the biggest hits cut to a pure ink-silhouette frame: flat solid black shapes on a flat white background (no shading, no face detail, only hair strands and the fingers of a flung hand), with an ink splatter spraying from the point of impact. The enemy is the one thrown or breaking in the silhouette; Gojo is a still black shape. Hold 3-6 frames, then cut back to colour.
+Use at: the big hits of shot 5-9 (each count number in shot 9), the shin check in shot 3, and the counter-punch in shot 17. Sound: the impact sub drop, then 2 frames of silence.
+Compose note: a silhouette frame is made in post (threshold the render, white background, add an ink-splatter overlay), so it needs no extra 3D work.
+Prototype note: not in the current 3D prototype; added in the full version.
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
