@@ -68,6 +68,37 @@ def onomatopoeia(img, t):
         if ht <= t < ht + 0.35:      # white shockwave ring from the impact (the Lookism panels)
             k = (t - ht) / 0.35; r = 60 + 360 * k; d = ImageDraw.Draw(img, "RGBA"); cx, cy = W // 2, H // 2 - 60
             d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=(255, 255, 255, int(230 * (1 - k))), width=int(10 * (1 - k)) + 2)
+def dense_lines(img, t, mode):
+    """Manga speed lines over the whole frame: 'radial' bursts from the impact, 'parallel' diagonal streaks (the Lookism panels)."""
+    d = ImageDraw.Draw(img, "RGBA"); r = random.Random(int(t * 30) + 7); cx, cy = W // 2 + r.randint(-40, 40), H // 2 - 60
+    if mode == "radial":
+        for _ in range(120):
+            a = r.uniform(0, math.tau); r0 = r.uniform(120, 300); r1 = r0 + r.uniform(200, 700)
+            d.line([(cx + r0 * math.cos(a), cy + r0 * math.sin(a)), (cx + r1 * math.cos(a), cy + r1 * math.sin(a))], fill=(0, 0, 0, 215) if r.random() < 0.5 else (255, 255, 255, 215), width=r.choice((1, 2, 2, 3, 6)))
+    else:
+        for _ in range(110):
+            x = r.uniform(-300, W + 300); y = r.uniform(-100, H + 100); L = r.uniform(300, 900); a = math.radians(115 + r.uniform(-4, 4))
+            d.line([(x, y), (x + L * math.cos(a), y + L * math.sin(a))], fill=(0, 0, 0, 200) if r.random() < 0.55 else (255, 255, 255, 200), width=r.choice((1, 2, 2, 4, 7)))
+def burst(img, t, k):
+    """Ink splatter dots bursting from the impact point (dark red and black)."""
+    d = ImageDraw.Draw(img, "RGBA"); r = random.Random(int(t * 100) + 3); cx, cy = W // 2 + r.randint(-50, 50), H // 2 - 80
+    for _ in range(int(150 * (1 - k * 0.4))):
+        a = r.uniform(0, math.tau); rr = (abs(r.gauss(0, 120)) + 30) * (1 + 1.6 * k); x, y = cx + rr * math.cos(a), cy + rr * math.sin(a); sz = r.choice((2, 3, 3, 4, 6, 9))
+        d.ellipse([x - sz, y - sz, x + sz, y + sz], fill=(90, 8, 12, 235) if r.random() < 0.6 else (10, 10, 12, 235))
+def cracks(img, t):
+    d = ImageDraw.Draw(img, "RGBA"); r = random.Random(int(t * 10)); cx, cy = W // 2, H // 2 - 80
+    for _ in range(14):
+        a = r.uniform(0, math.tau); x, y = cx, cy
+        for _ in range(r.randint(3, 6)):
+            L = r.uniform(30, 110); a += r.uniform(-0.6, 0.6); nx, ny = x + L * math.cos(a), y + L * math.sin(a)
+            d.line([(x, y), (nx, ny)], fill=(10, 10, 14, 235), width=3); x, y = nx, ny
+def grid(f):
+    """Comic-panel split: four moments of the same hit in a 2x2 grid with white gutters."""
+    g = Image.new("RGB", (W, H), (255, 255, 255)); pw, ph = (W - 18) // 2, (H - 18) // 2
+    for k in range(4):
+        s = src(max(1, f + (k - 1) * 8)); im = Image.open(s).convert("RGB").resize((pw, ph), Image.LANCZOS) if s else Image.new("RGB", (pw, ph), (0, 0, 0))
+        g.paste(im, (6 + (k % 2) * (pw + 6), 6 + (k // 2) * (ph + 6)))
+    return g
 def caption(img, t):
     cur = None
     for i, (s, who, line) in enumerate(VOICE):
@@ -89,8 +120,11 @@ def frame(f):
     if any(a <= t < b for a, b in FEAR): img = fear(img)
     if t >= 26.0: img = vignette(img, 1.0)
     if any(a <= t < b for a, b in SILH): img = silhouette(img, t)
+    if 18.6 <= t < 18.95: img = grid(f)
     for ht in BIG:
-        if ht <= t < ht + 0.2: speed_lines(img, t)
+        if ht - 0.12 <= t < ht + 0.45: dense_lines(img, t, "radial" if t < ht + 0.2 else "parallel")
+        if ht <= t < ht + 0.3: burst(img, t, (t - ht) / 0.3)
+        if ht in (2.2, 6.2) and ht <= t < ht + 0.5: cracks(img, t)
     onomatopoeia(img, t); d = ImageDraw.Draw(img)
     if t >= 29.0:
         a = min(1, (t - 29.0) / 0.5); d.text((W // 2, 430), "KURO ONI", font=FX, fill=(int(245 * a),) * 3, stroke_width=3, stroke_fill=(0, 0, 0), anchor="mm")

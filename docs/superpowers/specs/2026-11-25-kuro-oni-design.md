@@ -197,6 +197,10 @@ Style reference only (official art); we draw original shots.
 - **Gojo's version (no emotion):** he never grins or shouts; the faces that show emotion are the enemies'.
 Used in: the hook, the war (18-21 s of the 30 s cut) and the slap, with words BAM / CLANG / SLAP / THUD and a white shockwave ring at each big hit (added in compose).
 
+## Fight style, second reference set (user: "this is more his fight style")
+Five more Lookism panels: full-panel black and white speed lines (radial from the impact and parallel diagonal streaks), a huge hand-lettered impact word that runs off the frame edge, an ink and blood-red splatter burst from the impact point, cracks spreading in the wall behind the hit, blurred motion streaks on the limb that hits, a white starburst on a kick, and panels split into a 2x2 comic grid. Palette: hard black, white and dark red. Style reference only; original shots.
+Applied in compose (compose30.py): radial then parallel speed lines on each big hit, a splatter burst, cracks on the first two hits, and a 2x2 comic grid at 18.6-18.95 s. Kept stylised (ink dots), not graphic.
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
