@@ -85,18 +85,18 @@ His eyes close. Black.
 
 ## PART 3: THE NEW WORLD (41-60 s)
 
-**11. CLOSE: EYES OPEN (0:41-0:43)**
-A human face. Eyes open: black, white irises. A heartbeat returns.
+**11. FIRST-PERSON VIEW: EYES OPEN (0:41-0:43)**
+From here to the end we see through Gojo's eyes. Black. A heartbeat. The picture opens, blurry, then sharp. We look up at a pink sky.
 
-**12. EXT. MEADOW, DAWN (0:43-0:46)**
-He wakes in the grass. Floating lights, a castle on a hill, two moons. He looks at his hands.
+**12. FIRST-PERSON: EXT. MEADOW, DAWN (0:43-0:46)**
+We lie in the grass, two moons above, floating lights. The view sits up and turns to a castle on a hill and the edge of an unknown town. We look down at our own hands.
 GOJO (V.O.): No clan. No mother. No name.
 
-**13. EXT. TOWN SQUARE, UNKNOWN PLACE (0:46-0:54)**
-People use fire magic everywhere: a woman lights a street lamp with a spark, children throw small fireballs, a man burns a straw dummy with a big one. Gojo watches, still. His white eyes follow a fireball from the hand to the target before the throw.
+**13. FIRST-PERSON: TOWN SQUARE, UNKNOWN PLACE (0:46-0:54)**
+People use fire magic everywhere: a woman lights a street lamp with a spark, children throw small fireballs, a man burns a straw dummy with a big one. The view stays still. Dark edges, a sharp centre (the Demonic Eye): it follows a fireball from the hand to the target before the throw.
 
-**14. CLOSE: HIS HANDS (0:54-0:57)**
-He looks at his own hands. Nothing. No magic.
+**14. FIRST-PERSON: HIS HANDS (0:54-0:57)**
+We look down at our own hands. Nothing. No magic.
 
 **15. TITLE CARD (0:57-1:00)**
 KURO ONI. TO BE CONTINUED.

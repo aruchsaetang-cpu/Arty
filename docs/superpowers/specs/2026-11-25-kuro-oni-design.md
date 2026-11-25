@@ -35,6 +35,8 @@ Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it
 ## Goal and names (user, latest)
 Everyone calls him "Young Master". His goal is to be acknowledged by his father and to be given a name. His father dies in the war before he can; so he dies without ever being named ("...Damn it"). He names himself "Gojo" for the first time in the new world (my call). The master does not name him (earlier idea dropped).
 
+## Latest (user): the wake-up in the unknown place is a first-person (POV) view through Gojo's eyes; from the rebirth to TO BE CONTINUED the camera is his eyes (dark vignette edges, sharp centre, his hands visible, no Gojo in frame).
+
 ## Latest (user): ending and naming of the arts
 - Gojo is born with black bone and the Demonic Eye. He LEARNS Kyokushin karate and aikido from the master, over the years. Always say "Kyokushin karate", not "karate".
 - Everyone calls him "Young Master": the clan, the master and his mother.

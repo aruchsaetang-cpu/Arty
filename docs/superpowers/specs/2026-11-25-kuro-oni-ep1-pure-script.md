@@ -127,17 +127,19 @@ His eyes close. Black.
 
 ---
 
-**EXT. UNKNOWN PLACE - DAWN**
+**EXT. UNKNOWN PLACE - DAWN (FIRST-PERSON VIEW: we see through Gojo's eyes)**
 
-A human face. Eyes open: black, with white irises. He wakes in the grass at the edge of an unknown town. Floating lights. A castle on a hill. Two moons. He looks at his hands.
+Black. A heartbeat. His eyes open: the picture is blurry, then it sharpens. We are lying in grass, looking up at a pink sky with two moons. Floating lights drift by.
 
 GOJO (V.O.)
 No clan. No mother. No name.
 
+He sits up. The view turns: a castle on a hill, and the edge of an unknown town. He looks down at his own hands (we see them, empty).
+
 In the town square, people use fire magic. A woman lights a street lamp with a spark. Children throw small fireballs at each other. A man burns a straw dummy with a big fireball.
 
-Gojo watches. His white eyes follow a fireball from the hand to the target, before the throw.
+The view stays on a fireball. It follows it from the hand to the target, before the throw. The edges of the view are dark; only the center is sharp, like the Demonic Eye.
 
-He looks at his own hands. Nothing.
+He looks at his hands again. Nothing.
 
 **TO BE CONTINUED**
