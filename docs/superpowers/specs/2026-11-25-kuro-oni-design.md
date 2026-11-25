@@ -44,6 +44,9 @@ Everyone calls him "Young Master". His goal is to be acknowledged by his father 
 
 ## Latest (user): "Kuro Oni" appears only at the END (the title, and a fearful echo in the last seconds). The hook (30 s version) starts "He defeated an army alone. But he never felt fulfilled." The enemies in the war say "Monster...", not "Kuro Oni".
 
+## Latest (user): "Kuro Oni" is what enemies call him after he defeats them
+The war: defeated enemies say it with fear. We see their lips move but the name is heard only at the very end (an echo of the defeated enemies), then the title.
+
 ## Naming rule (user, latest): the name "Gojo" is deleted from the story
 No character is ever called Gojo on screen or in the credits. The hero has NO name. The clan, the master and his mother call him "Young Master". Everyone else calls him "Kuro Oni" (the Black Oni), in fear. "Gojo" and "Gojo (name)" in the notes below are only the old working name and must be read as "the Young Master". The self-naming scene is gone.
 

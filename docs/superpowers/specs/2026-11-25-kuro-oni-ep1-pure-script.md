@@ -81,9 +81,8 @@ Kill him!
 
 They rush him, one at a time. He hits each once and straightens his sleeve. His eyes turn full white. He slips every blow. He walks through the fire, a black shape. Nobody can touch him.
 
-ENEMY
-(crawling back, in fear)
-Monster...
+THE DEFEATED ENEMIES
+(crawling back; their lips move, we do not hear it yet)
 
 The last twenty rush him. He throws one straight punch. The rain splits.
 
@@ -145,7 +144,7 @@ He looks at his hands again. Nothing.
 
 A faint whisper, many voices in fear, as if from the war:
 
-VOICES (echo)
+THE DEFEATED ENEMIES (echo, now we hear them, in fear)
 Kuro Oni... the Black Oni.
 
 **TITLE: KURO ONI**
