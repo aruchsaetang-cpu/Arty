@@ -30,7 +30,7 @@ In ep 1 Gojo is betrayed by his own mother.
 Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it before it happens", not as glowing aura spam.
 
 ## Storyboard v2 (60 s, 30 fps, 1800 frames)
-Background setting (Yamazaki clan) -> truck -> reincarnated as a human in a sword-and-magic world; he keeps the black eyes and Ultra Instinct.
+Background setting (Yamazaki clan) -> his mother poisons him -> reincarnated as a human in a sword-and-magic world; he keeps the black eyes and Ultra Instinct.
 
 ### Part 1: the clan war (0-34 s)
 Story (user): Gojo is the strongest Yamazaki in history and the clan leader who fought every clan in Korea and united them all into one. His own mother betrays him because of that power. The fight must look cool, like a Lookism fight, with several martial arts.
@@ -48,9 +48,9 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 | 10 | 28-31 | Wide | Every clan leader kneels. Korea is one. Gojo stands, steam in the rain | Bells |
 | 11 | 31-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
 
-### Part 2: the truck (34-40 s)
-| 12 | 34-37 | Street at night, rain, adult Gojo walking | His steps slow, the poison from the tea. Headlights flare. His eyes see the truck and his mother's clan crest on the driver's sleeve; he understands, but his body won't answer | Engine rises |
-| 13 | 37-40 | Hit, then black | The truck hits him. Black bone stops blades, not a truck on a poisoned body. Cut to black, heartbeat stops | Impact, then silence |
+### Part 2: the poison (34-40 s)
+| 12 | 34-37 | Clan gate, rain, adult Gojo walking out | His steps slow. Black bone cannot stop poison. His eyes see it all: his own pulse, the clans watching, his mother at the gate with the empty cup. He drops to one knee, calm, aura to the end | Rain, heartbeat slows |
+| 13 | 37-40 | Eyes, then black | He looks up at her. Her face does not change; she turns away. His eyes stay open, black and white, then close. Cut to black, heartbeat stops | Last heartbeat, silence |
 
 ### Part 3: the fantasy world (40-60 s)
 | 14 | 40-43 | Black, eye close-up | The same shot as 1: eyes open (black sclera, white iris), now a human face | Heartbeat returns |
@@ -64,7 +64,7 @@ Scare beats: 7 (sound cut), 8 (Oni shadow), 11 (the mother's unchanged smile), 1
 Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering, restarted every 2 h).
 
 ## Open design point
-Betrayal (user): his own mother, because he is the strongest Yamazaki in history and the leader who united every clan in Korea. My calls: she poisons the victory tea and sends the truck (blades cannot cut black bone); she is the warmth in shots 1-2, so the smile in 11 lands as the scare. Needs the user's yes.
+Betrayal (user): his own mother poisons him, because he is the strongest Yamazaki in history and the leader who united every clan in Korea. No truck (user removed it). My calls: the poison is in the victory tea; black bone stops blades but not poison; the death is calm (aura to the end) and she is the warmth in shots 1-2, so her unchanged smile in 11 is the scare. Needs the user's yes.
 
 ## Open questions for the user
 Opponent identity, win or lose, whether the clan hall is a hall or a street.
