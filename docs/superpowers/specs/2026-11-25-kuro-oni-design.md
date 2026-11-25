@@ -117,6 +117,10 @@ Inspiration, not a copy: a kingdom where magic decides your place. Everyone has 
 - Part 3 casting: the mage in shots 16-18 is a young magic knight with a grimoire at his belt and a squad crest on a robe; the fireball is fire magic; "Black-eyed demon" fits how that world reads a magic-less man.
 - Series use (12 episodes): grimoire ceremony where he gets no book, the knight squads, a magic tournament, a dungeon, a magic-user rival, a demon-level enemy. He never gets magic (rule above).
 
+## Gojo's mother: look (user ref image)
+Calm, composed, quiet. Black hair pinned up in a neat bun with a few loose strands, pale smooth face, narrow dark eyes, a faint closed-mouth expression, mature elegant build. Dark charcoal-purple kimono with a dark obi, and two small round white clan crests on the chest. Sits and stands very still, hands folded in her lap. This look is what makes the tea scene scary: she never changes expression. Style reference only; we build an original model.
+Prototype note: the 3D prototype uses a placeholder woman in a yellow coat (not this look); the real version uses a dark kimono with the crests.
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
