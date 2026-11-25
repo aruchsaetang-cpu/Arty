@@ -4,9 +4,11 @@
 ---
 
 **NARRATOR (V.O.)**
+Born with two gifts.
 Black bone: a body as hard as steel. It can stop even a katana, if he is awake.
 The Demonic Eye: it sees a blow before it lands.
-Karate: hard. It breaks.
+And two arts he learned from his master.
+Kyokushin karate: hard. It breaks.
 Aikido: soft. It turns your force against you.
 He has no name. Everyone calls him Young Master.
 
@@ -27,7 +29,7 @@ From that day, the whole clan calls him Young Master.
 A bigger boy lies bloody at the boy's feet. The clan flinches. The mother kneels and smiles at her son for the first time. She takes his hand.
 
 MOTHER
-Good boy.
+Well done, Young Master.
 
 The boy looks only at her smile.
 
@@ -41,7 +43,7 @@ BOY
 Can I play with them?
 
 MOTHER
-A future clan leader will not play with those kids.
+Young Master, a future clan leader will not play with those kids.
 
 He lowers his head and walks back inside.
 
@@ -54,7 +56,7 @@ The boy is now a teen. The MASTER, very old, with a white topknot and a long whi
 MASTER
 Young Master. Soft first. Then hard.
 
-The teen does a karate kata and breaks a steel bat on his shin. On the veranda, his mother watches without any expression. When the bat breaks, she smiles.
+The master teaches him aikido, then Kyokushin karate, year after year. The teen does a Kyokushin kata and breaks a steel bat on his shin. On the veranda, his mother watches without any expression. When the bat breaks, she smiles.
 
 ---
 
@@ -108,7 +110,7 @@ His white eyes open. He does not turn.
 
 MOTHER
 (smiling, warm)
-Good boy.
+Young Master.
 
 He could kill her in one move. He looks at her smile, and he does not. He sinks to one knee.
 
@@ -125,31 +127,17 @@ His eyes close. Black.
 
 ---
 
-**EXT. MEADOW, A NEW WORLD - DAWN**
+**EXT. UNKNOWN PLACE - DAWN**
 
-A human face. Eyes open: black, with white irises. He wakes in the grass. Floating lights. A castle on a hill. Two moons. He looks at his hands.
+A human face. Eyes open: black, with white irises. He wakes in the grass at the edge of an unknown town. Floating lights. A castle on a hill. Two moons. He looks at his hands.
 
 GOJO (V.O.)
 No clan. No mother. No name.
 
----
+In the town square, people use fire magic. A woman lights a street lamp with a spark. Children throw small fireballs at each other. A man burns a straw dummy with a big fireball.
 
-**EXT. ROAD - DAY**
+Gojo watches. His white eyes follow a fireball from the hand to the target, before the throw.
 
-A young magic KNIGHT blocks the road, a grimoire at his belt.
+He looks at his own hands. Nothing.
 
-KNIGHT
-A man with no grimoire? Burn him!
-
-He throws a ball of fire. Gojo's eyes follow it before the cast. He slips it, steps in, and throws one straight punch. The knight flies back.
-
-The knight looks up from the ground at one white eye.
-
-KNIGHT
-Black-eyed demon... who are you?
-
-GOJO
-(quietly)
-...Gojo.
-
-**TITLE: KURO ONI**
+**TO BE CONTINUED**

@@ -35,6 +35,11 @@ Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it
 ## Goal and names (user, latest)
 Everyone calls him "Young Master". His goal is to be acknowledged by his father and to be given a name. His father dies in the war before he can; so he dies without ever being named ("...Damn it"). He names himself "Gojo" for the first time in the new world (my call). The master does not name him (earlier idea dropped).
 
+## Latest (user): ending and naming of the arts
+- Gojo is born with black bone and the Demonic Eye. He LEARNS Kyokushin karate and aikido from the master, over the years. Always say "Kyokushin karate", not "karate".
+- Everyone calls him "Young Master": the clan, the master and his mother.
+- The episode ends with him waking in an unknown place and seeing people use fire magic, then TO BE CONTINUED. The knight fight and the self-naming "Gojo" scene are cut.
+
 ## LATEST CHANGES (supersede anything below): script v2 is the source of truth
 - The poison is removed. The mother kills Gojo with a katana while he sleeps (black bone stops a katana only while he is awake and braced; asleep it is off). He does not fight back, for her smile. Last word: "...Damn it."
 - "Emperor Eye" is renamed the **Demonic Eye**.
