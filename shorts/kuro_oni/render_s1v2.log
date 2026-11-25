@@ -1,0 +1,132 @@
+cast built 34s rss 1.76 GB
+rig.001 ['bag', 'bag.001', 'bag_strap', 'brows.001', 'coat_skirt.001', 'coat_upper.001', 'contact_shadow.001', 'eye_l.001', 'eye_r.001', 'hair.001', 'hair_fade', 'hair_locks', 'lash_l1.001', 'lash_l2.001', 'lash_r1.001', 'lash_r2.001', 'loafer_strapL', 'loafer_strapR', 'shoe_soleL.001', 'shoe_soleR.001', 'shoe_upperL.001', 'shoe_upperR.001', 'skin.001', 'top.001', 'trousers.001']
+rig.002 ['bag.002', 'bag.003', 'bag_strap.001', 'brows.002', 'coat_skirt.002', 'coat_upper.002', 'contact_shadow.002', 'eye_l.002', 'eye_r.002', 'hair.002', 'hair_strands', 'lash_l1.002', 'lash_l2.002', 'lash_r1.002', 'lash_r2.002', 'loafer_strapL.001', 'loafer_strapR.001', 'shoe_soleL.002', 'shoe_soleR.002', 'shoe_upperL.002', 'shoe_upperR.002', 'skin.002', 'top.002', 'trousers.002']
+rig.003 ['bag.004', 'bag.005', 'bag_strap.002', 'brows.003', 'coat_skirt.003', 'coat_upper.003', 'contact_shadow.003', 'eye_l.003', 'eye_r.003', 'hair.003', 'hair_fade.001', 'hair_locks.001', 'lash_l1.003', 'lash_l2.003', 'lash_r1.003', 'lash_r2.003', 'loafer_strapL.002', 'loafer_strapR.002', 'shoe_soleL.003', 'shoe_soleR.003', 'shoe_upperL.003', 'shoe_upperR.003', 'skin.003', 'top.003', 'trousers.003']
+rig.004 ['bag.006', 'bag.007', 'bag_strap.003', 'brows.004', 'coat_skirt.004', 'coat_upper.004', 'contact_shadow.004', 'eye_l.004', 'eye_r.004', 'hair.004', 'hair_fade.002', 'hair_tufts', 'lash_l1.004', 'lash_l2.004', 'lash_r1.004', 'lash_r2.004', 'loafer_strapL.003', 'loafer_strapR.003', 'shoe_soleL.004', 'shoe_soleR.004', 'shoe_upperL.004', 'shoe_upperR.004', 'skin.004', 'top.004', 'trousers.004']
+rig.005 ['bag.008', 'bag.009', 'bag_strap.004', 'brows.005', 'contact_shadow.005', 'eye_l.005', 'eye_r.005', 'hair.005', 'hair_strands.001', 'lash_l1.005', 'lash_l2.005', 'lash_r1.005', 'lash_r2.005', 'loafer_strapL.004', 'loafer_strapR.004', 'shoe_soleL.005', 'shoe_soleR.005', 'shoe_upperL.005', 'shoe_upperR.005', 'skin.005', 'top.005', 'trousers.005']
+rig.006 ['bag.010', 'bag.011', 'bag_strap.005', 'brows.006', 'coat_skirt.005', 'coat_upper.005', 'contact_shadow.006', 'eye_l.006', 'eye_r.006', 'hair.006', 'hair_strands.002', 'lash_l1.006', 'lash_l2.006', 'lash_r1.006', 'lash_r2.006', 'loafer_strapL.005', 'loafer_strapR.005', 'shoe_soleL.006', 'shoe_soleR.006', 'shoe_upperL.006', 'shoe_upperR.006', 'skin.006', 'top.006', 'trousers.006']
+rig.007 ['bag.012', 'bag.013', 'bag_strap.006', 'brows.007', 'contact_shadow.007', 'eye_l.007', 'eye_r.007', 'hair.007', 'lash_l1.007', 'lash_l2.007', 'lash_r1.007', 'lash_r2.007', 'loafer_strapL.006', 'loafer_strapR.006', 'shoe_soleL.007', 'shoe_soleR.007', 'shoe_upperL.007', 'shoe_upperR.007', 'skin.007', 'top.007', 'trousers.007']
+rig.008 ['bag.014', 'bag.015', 'bag_strap.007', 'brows.008', 'coat_skirt.006', 'coat_upper.006', 'contact_shadow.008', 'eye_l.008', 'eye_r.008', 'hair.008', 'hair_strands.003', 'lash_l1.008', 'lash_l2.008', 'lash_r1.008', 'lash_r2.008', 'loafer_strapL.007', 'loafer_strapR.007', 'shoe_soleL.008', 'shoe_soleR.008', 'shoe_upperL.008', 'shoe_upperR.008', 'skin.008', 'top.008', 'trousers.008']
+rig.009 ['bag.016', 'bag.017', 'bag_strap.008', 'brows.009', 'coat_skirt.007', 'coat_upper.007', 'contact_shadow.009', 'eye_l.009', 'eye_r.009', 'hair.009', 'hair_fade.003', 'hair_tufts.001', 'lash_l1.009', 'lash_l2.009', 'lash_r1.009', 'lash_r2.009', 'loafer_strapL.008', 'loafer_strapR.008', 'shoe_soleL.009', 'shoe_soleR.009', 'shoe_upperL.009', 'shoe_upperR.009', 'skin.009', 'top.009', 'trousers.009']
+rig.010 ['bag.018', 'bag.019', 'bag_strap.009', 'brows.010', 'coat_skirt.008', 'coat_upper.008', 'contact_shadow.010', 'eye_l.010', 'eye_r.010', 'hair.010', 'hair_strands.004', 'lash_l1.010', 'lash_l2.010', 'lash_r1.010', 'lash_r2.010', 'loafer_strapL.009', 'loafer_strapR.009', 'shoe_soleL.010', 'shoe_soleR.010', 'shoe_upperL.010', 'shoe_upperR.010', 'skin.010', 'top.010', 'trousers.010']
+rig.011 ['bag.020', 'bag.021', 'bag_strap.010', 'brows.011', 'coat_skirt.009', 'coat_upper.009', 'contact_shadow.011', 'eye_l.011', 'eye_r.011', 'hair.011', 'hair_strands.005', 'lash_l1.011', 'lash_l2.011', 'lash_r1.011', 'lash_r2.011', 'loafer_strapL.010', 'loafer_strapR.010', 'shoe_soleL.011', 'shoe_soleR.011', 'shoe_upperL.011', 'shoe_upperR.011', 'skin.011', 'top.011', 'trousers.011']
+rig.012 ['bag.022', 'bag.023', 'bag_strap.011', 'brows.012', 'coat_skirt.010', 'coat_upper.010', 'contact_shadow.012', 'eye_l.012', 'eye_r.012', 'hair.012', 'lash_l1.012', 'lash_l2.012', 'lash_r1.012', 'lash_r2.012', 'loafer_strapL.011', 'loafer_strapR.011', 'shoe_soleL.012', 'shoe_soleR.012', 'shoe_upperL.012', 'shoe_upperR.012', 'skin.012', 'top.012', 'trousers.012']
+attacker head (0.87, 39.942, 1.5) fwd (-0.6, -0.61, -0.51) up (-0.43, -0.29, 0.86)
+fist (0.713, 39.842, 1.537) target (0.756, 39.837, 1.527) err 4.5 cm
+fist (0.76, 39.835, 1.523) target (0.756, 39.837, 1.527) err 0.6 cm
+fist at 1.93 s (chamber) (-0.13, 39.85, 0.84)
+/home/user/Arty/shorts/kuro_oni/scene1.py:146: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  if not m or not m.use_nodes or m.name in ("ink",) or "eye" in m.name: continue
+variants baked 11  40s rss 1.87 GB
+back-row men 58
+/home/user/Arty/shorts/kuro_oni/scene1.py:207: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  wm = bpy.data.materials.new("eye_white"); wm.use_nodes = True; nt = wm.node_tree; nt.nodes.clear()
+white eyes hero 2 attacker 2
+people 0.0 s
+objects 1967 build 63.9 s
+city built 104s rss 2.03 GB
+hidden props in the ring area: 181 ['car', 'car.001', 'car.006', 'car_arches', 'car_arches.001', 'car_arches.006', 'car_chrome', 'car_chrome.001', 'car_chrome.002', 'car_chrome.003']
+/home/user/Arty/shorts/kuro_oni/scene1.py:247: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear()
+/home/user/Arty/shorts/kuro_oni/scene1.py:256: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; N, L = nt.nodes, nt.links; N.clear()
+01:45.964  cycles           | WARNING CUEW initialization failed: Error opening the library
+02:36.321  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0001.png'
+FRAME 1 50s peak rss 6.40 GB
+03:23.608  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0003.png'
+FRAME 3 47s peak rss 6.87 GB
+04:10.761  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0005.png'
+FRAME 5 47s peak rss 6.88 GB
+04:56.463  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0007.png'
+FRAME 7 45s peak rss 6.89 GB
+05:42.968  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0009.png'
+FRAME 9 46s peak rss 6.94 GB
+06:28.133  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0011.png'
+FRAME 11 45s peak rss 6.96 GB
+07:12.487  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0013.png'
+FRAME 13 44s peak rss 6.96 GB
+07:59.186  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0015.png'
+FRAME 15 46s peak rss 6.96 GB
+08:42.599  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0017.png'
+FRAME 17 43s peak rss 6.96 GB
+09:26.637  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0019.png'
+FRAME 19 44s peak rss 6.96 GB
+10:12.333  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0021.png'
+FRAME 21 45s peak rss 6.96 GB
+11:00.323  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0023.png'
+FRAME 23 48s peak rss 6.96 GB
+11:42.736  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0025.png'
+FRAME 25 42s peak rss 6.96 GB
+12:23.359  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0027.png'
+FRAME 27 40s peak rss 6.96 GB
+13:04.306  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0029.png'
+FRAME 29 41s peak rss 6.96 GB
+13:43.710  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0031.png'
+FRAME 31 39s peak rss 6.96 GB
+14:22.230  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0033.png'
+FRAME 33 38s peak rss 6.96 GB
+15:01.354  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0035.png'
+FRAME 35 39s peak rss 6.96 GB
+15:43.260  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0037.png'
+FRAME 37 42s peak rss 6.96 GB
+16:23.391  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0039.png'
+FRAME 39 40s peak rss 6.96 GB
+17:00.493  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0041.png'
+FRAME 41 37s peak rss 6.96 GB
+17:29.164  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0043.png'
+FRAME 43 28s peak rss 6.96 GB
+17:57.421  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0045.png'
+FRAME 45 28s peak rss 6.96 GB
+18:25.096  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0047.png'
+FRAME 47 27s peak rss 6.96 GB
+18:54.208  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0049.png'
+FRAME 49 29s peak rss 6.96 GB
+19:21.335  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0051.png'
+FRAME 51 27s peak rss 6.96 GB
+19:48.772  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0053.png'
+FRAME 53 27s peak rss 6.96 GB
+20:32.850  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0055.png'
+FRAME 55 44s peak rss 7.00 GB
+21:17.035  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0057.png'
+FRAME 57 44s peak rss 7.00 GB
+22:01.373  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0058.png'
+FRAME 58 44s peak rss 7.00 GB
+22:45.198  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0059.png'
+FRAME 59 44s peak rss 7.00 GB
+23:28.694  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0060.png'
+FRAME 60 43s peak rss 7.00 GB
+24:14.110  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0061.png'
+FRAME 61 45s peak rss 7.00 GB
+24:58.262  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0062.png'
+FRAME 62 44s peak rss 7.02 GB
+25:38.102  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0063.png'
+FRAME 63 39s peak rss 7.02 GB
+26:18.242  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0064.png'
+FRAME 64 40s peak rss 7.02 GB
+26:58.349  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0065.png'
+FRAME 65 40s peak rss 7.02 GB
+27:38.733  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0067.png'
+FRAME 67 40s peak rss 7.02 GB
+28:19.714  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0069.png'
+FRAME 69 41s peak rss 7.02 GB
+29:02.154  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0071.png'
+FRAME 71 42s peak rss 7.02 GB
+29:53.428  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0073.png'
+FRAME 73 51s peak rss 7.05 GB
+30:37.525  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0075.png'
+FRAME 75 43s peak rss 7.05 GB
+31:25.092  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0077.png'
+FRAME 77 47s peak rss 7.05 GB
+32:13.854  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0079.png'
+FRAME 79 48s peak rss 7.05 GB
+33:02.398  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0081.png'
+FRAME 81 48s peak rss 7.05 GB
+33:58.323  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0083.png'
+FRAME 83 56s peak rss 7.05 GB
+34:57.574  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0085.png'
+FRAME 85 59s peak rss 7.05 GB
+35:51.039  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0087.png'
+FRAME 87 53s peak rss 7.05 GB
+36:42.822  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1v2/f0089.png'
+FRAME 89 51s peak rss 7.05 GB
+DONE 2203s

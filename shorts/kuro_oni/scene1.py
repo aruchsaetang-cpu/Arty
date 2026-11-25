@@ -34,146 +34,15 @@ T_SNAP = 2.23                               # hit-stop ends, the head snaps
 F_ONES = set(range(F(1.85), F_HIT + 1))     # rendered on ones (the punch itself); everything else on twos
 RENDER = sorted(set(range(1, NF + 1, 2)) | F_ONES)
 
-# ------------------------------------------------------------------ pose solver: hips (object), spine twist/lean, head,
-# two-bone IK for arms (fist targets) and legs (planted ankle targets). Pure maths per frame, keyed every frame.
-SPINE = [("spine05", 0.10), ("spine04", 0.20), ("spine03", 0.25), ("spine02", 0.25), ("spine01", 0.20)]
-DEF = dict(x=0.0, y=0.0, yaw=0.0, drop=0.0, twist=0.0, lean=0.0, side=0.0, hp=0.0, hy=0.0, hr=0.0, hs=(1.0, 1.0, 1.0),
-           tilt=(0.0, 0.0, 0.0))
-def ez(k, kind):
-    k = max(0.0, min(1.0, k))
-    if kind == "lin": return k
-    if kind == "in": return k * k
-    if kind == "out": return 1 - (1 - k) ** 2
-    if kind == "snap": return 1 - (1 - k) ** 3
-    return k * k * (3 - 2 * k)
-def _lerp(a, b, k):
-    if isinstance(a, (int, float)): return a + (b - a) * k
-    return tuple(x + (y - x) * k for x, y in zip(a, b))
-
-class Rig:
-    def __init__(self, g):
-        self.g = g; B = g.data.bones; self.B = B; self.s = g.scale[0]; self.base_z = g["base_z"]; zg = g["sole_rest"]
-        self.rest = {b.name: b.matrix_local.to_3x3() for b in B}
-        self.leg = {}
-        for sd in "LR":
-            hip = B[f"upperleg01.{sd}"].head_local; knee = B[f"lowerleg01.{sd}"].head_local
-            ank = B[f"foot.{sd}"].head_local; tip = B[f"foot.{sd}"].tail_local
-            self.leg[sd] = dict(hip=hip.copy(), Lt=(knee - hip).length, Ls=(ank - knee).length, fdir=(tip - ank).normalized(), ah=ank.z - zg)
-        self.arm = {sd: ((B[f"lowerarm01.{sd}"].head_local - B[f"upperarm01.{sd}"].head_local).length,
-                         (B[f"wrist.{sd}"].head_local - B[f"lowerarm01.{sd}"].head_local).length) for sd in "LR"}
-        self.piv = B["spine05"].head_local.copy()
-        g.rotation_mode = "QUATERNION"
-        for n in ch.ANIM_BONES + [n for n, _ in SPINE]:
-            if n in g.pose.bones: g.pose.bones[n].rotation_mode = "QUATERNION"
-        self.keys = []
-    def objmat(self, st):
-        qy = Q((0, 0, 1), RAD(st["yaw"])); loc = HC + V((st["x"], st["y"], self.base_z - st["drop"]))
-        tv = V(st["tilt"]); q = qy
-        if tv.length > 1e-6:
-            qt = Q(tv.normalized(), RAD(tv.length)); pivot = HC + V((st["x"], st["y"], 0.0))
-            loc = pivot + qt @ (loc - pivot); q = qt @ qy
-        return loc, q, Matrix.LocRotScale(loc, q, V((self.s,) * 3))
-    def chest(self, st):
-        A = ch._MathAim(self.g)
-        tw, ln, sd = RAD(st["twist"]), RAD(st["lean"]), RAD(st["side"])
-        for n, fr in SPINE:
-            R = Matrix.Rotation(tw * fr, 3, "Z") @ Matrix.Rotation(ln * fr, 3, "X") @ Matrix.Rotation(sd * fr, 3, "Y")
-            A.final[n] = R @ A.rot(n)
-        return A, A.final["spine01"] @ self.rest["spine01"].inverted()
-    def chest_to_world(self, st, p):
-        _, Rc = self.chest(st); _, _, M = self.objmat(st)
-        return M @ (self.piv + Rc @ (V(p) - self.piv))
-    def solve(self, st):
-        loc, q, M = self.objmat(st); Mi = M.inverted(); R3i = Mi.to_3x3()
-        A, Rc = self.chest(st)
-        Rh = Rc @ Matrix.Rotation(RAD(st["hy"]), 3, "Z") @ Matrix.Rotation(RAD(st["hp"]), 3, "X") @ Matrix.Rotation(RAD(st["hr"]), 3, "Y") @ Rc.inverted()
-        half = Q().slerp(Rh.to_quaternion(), 0.5).to_matrix()
-        A.final["neck02"] = half @ A.rot("neck02"); A.final["head"] = half @ A.rot("head")
-        B = self.B
-        def pos(n):
-            b = B[n]
-            if b.parent is None: return b.head_local.copy()
-            p = b.parent
-            return pos(p.name) + A.rot(p.name) @ self.rest[p.name].inverted() @ (b.head_local - p.head_local)
-        for sd, sx in (("L", 1), ("R", -1)):                      # arms: fist targets (world) -> two-bone IK
-            T = Mi @ V(st["fist" + sd]); S = pos(f"upperarm01.{sd}")
-            Wt = T - (T - S).normalized() * 0.075
-            Lu, Lf = self.arm[sd]; v = Wt - S
-            d = max(abs(Lu - Lf) + 0.03, min(v.length, 0.999 * (Lu + Lf))); vn = v.normalized()
-            a = math.acos(max(-1.0, min(1.0, (Lu * Lu + d * d - Lf * Lf) / (2 * Lu * d))))
-            pole = Rc @ V((sx * 0.55, 0.35, -1.0)); w = (pole - vn * pole.dot(vn)).normalized()
-            up = vn * math.cos(a) + w * math.sin(a); elbow = S + up * Lu; fore = (S + vn * d - elbow).normalized()
-            for b in ("upperarm01", "upperarm02"): A(f"{b}.{sd}", up)
-            for b in ("lowerarm01", "lowerarm02", "wrist"): A(f"{b}.{sd}", fore)
-        for sd in "LR":                                            # legs: planted ankle targets -> two-bone IK
-            gl = self.leg[sd]; fx, fy, fyaw, lift = st["foot" + sd]
-            T = Mi @ (HC + V((fx, fy, lift + gl["ah"] * self.s)))
-            h = gl["fdir"].to_2d().length
-            fdw = V((math.sin(RAD(fyaw)) * h, -math.cos(RAD(fyaw)) * h, gl["fdir"].z))
-            fd = (R3i @ fdw).normalized()
-            fwd = V((fd.x, fd.y, 0.0)).normalized() if fd.to_2d().length > 1e-3 else V((0, -1, 0))
-            v = T - gl["hip"]; d = min(v.length, 0.999 * (gl["Lt"] + gl["Ls"])); vn = v.normalized()
-            a = math.acos(max(-1.0, min(1.0, (gl["Lt"] ** 2 + d * d - gl["Ls"] ** 2) / (2 * gl["Lt"] * d))))
-            w = (fwd - vn * fwd.dot(vn)).normalized()
-            th = vn * math.cos(a) + w * math.sin(a); knee = gl["hip"] + th * gl["Lt"]; sh = (gl["hip"] + vn * d - knee).normalized()
-            A(f"upperleg01.{sd}", th); A(f"upperleg02.{sd}", th); A(f"lowerleg01.{sd}", sh); A(f"lowerleg02.{sd}", sh)
-            A(f"foot.{sd}", fd)
-        out = A.quats()
-        for n, _ in SPINE + [("neck02", 0), ("head", 0)]:
-            b = B[n]; inh = A.rot(b.parent.name) @ self.rest[b.parent.name].inverted() @ self.rest[n]
-            out[n] = (inh.inverted() @ A.final[n]).to_quaternion()
-        return loc, q, out
-    # timeline: list of (t, {channel: value}, ease); channels interpolate independently between the keys that set them
-    def key(self, t, ease="io", **ch_):
-        self.keys.append((t, ch_, ease))
-    def finalize(self):
-        """Convert chest-space fists ('c', p) to world at their key time (so fist paths are straight in the world)."""
-        self.keys.sort(key=lambda k: k[0])
-        for t, d, _ in self.keys:
-            for sd in "LR":
-                v = d.get("fist" + sd)
-                if v is not None and v[0] == "c": d["_c" + sd] = v
-        for t, d, _ in self.keys:
-            for sd in "LR":
-                if "_c" + sd in d:
-                    st = self.state(t, skip_fists=True); d["fist" + sd] = ("w", tuple(self.chest_to_world(st, d["_c" + sd][1])))
-    def chan(self, name, t):
-        ks = [(tk, d[name], e) for tk, d, e in self.keys if name in d]
-        if not ks: return DEF[name]
-        val = lambda v: v[1] if isinstance(v, tuple) and len(v) == 2 and isinstance(v[0], str) else v
-        if t <= ks[0][0]: return val(ks[0][1])
-        for (t0, v0, _), (t1, v1, e1) in zip(ks, ks[1:]):
-            if t0 <= t <= t1: return _lerp(val(v0), val(v1), ez((t - t0) / max(1e-6, t1 - t0), e1))
-        return val(ks[-1][1])
-    def state(self, t, skip_fists=False):
-        st = {n: self.chan(n, t) for n in list(DEF) + ["footL", "footR"]}
-        if not skip_fists:
-            for sd in "LR": st["fist" + sd] = self.chan("fist" + sd, t)
-        return st
-    def bake(self, frames):
-        g = self.g; pbs = g.pose.bones
-        for f in frames:
-            st = self.state(T_(f)); loc, q, qm = self.solve(st)
-            g.location = loc; g.rotation_quaternion = q
-            g.keyframe_insert("location", frame=f); g.keyframe_insert("rotation_quaternion", frame=f)
-            for n, qq in qm.items():
-                pbs[n].rotation_quaternion = qq; pbs[n].keyframe_insert("rotation_quaternion", frame=f)
-            pbs["head"].scale = st["hs"]; pbs["head"].keyframe_insert("scale", frame=f)
+# ------------------------------------------------------------------ pose solver + moves: shorts/kuro_oni/moves.py
+import moves as MV
+from moves import ez, stance_feet, GUARD_L, GUARD_R, HIKITE_L, HIKITE_R
+def Rig(g): return MV.Rig(g, origin=HC)
 
 def on_ground(g):
     """contact-shadow discs would float with a tilted body: hide them."""
     for c in g.children:
         if c.name.startswith("contact_shadow"): c.hide_render = True
-
-def stance_feet(x, y, yaw, front=(0.13, -0.30), back=(-0.15, 0.27), fy=(8, -38), shift=(0.0, 0.0)):
-    """feet of a fighting stance for hips at (x, y) facing yaw (deg). Offsets are in the body frame (+x = his left, -y = forward)."""
-    R = Matrix.Rotation(RAD(yaw), 3, "Z")
-    out = []
-    for (ox, oy), dy in ((front, fy[0]), (back, fy[1])):
-        p = R @ V((ox, oy, 0)); out.append((x + p.x + shift[0], y + p.y + shift[1], yaw + dy, 0.0))
-    return out
-GUARD_L = (0.12, -0.40, 1.50); GUARD_R = (-0.14, -0.24, 1.38)       # chest space: front fist at the chin, rear at the jaw
-HIKITE_L = (0.21, 0.02, 1.06); HIKITE_R = (-0.21, 0.02, 1.06)       # fist pulled to the hip
 
 # ------------------------------------------------------------------ cast (built before the city: cheap pose solves)
 NEAR = [(3.4, 106), (3.55, 134), (3.35, 163), (3.5, -156), (3.6, 72), (3.4, -126)]   # (radius, angle deg) of the full-rig ring men
@@ -233,19 +102,10 @@ print("attacker head", tuple(round(c, 3) for c in hp_), "fwd", tuple(round(c, 2)
 
 # ---- the hero: bladed stance facing +x, duck under the swing, rise: rear-foot pivot, hips, spine, shoulder, then the arm
 H = Rig(hero)
-HFL = (0.40, 0.10, 92, 0.0); HFR = (-0.36, -0.20, 40, 0.0)
-H.key(0.0, x=0.0, y=0.0, yaw=62, drop=0.11, twist=18, lean=6, hy=10, footL=HFL, footR=HFR, fistL=("c", GUARD_L), fistR=("c", GUARD_R))
-H.key(0.9, drop=0.12); H.key(1.75, drop=0.11, twist=18, lean=6, side=0, yaw=62, hy=10, hp=0, fistL=("c", GUARD_L), fistR=("c", GUARD_R), footR=HFR)
-H.key(1.90, drop=0.25, lean=24, side=-8, twist=-12, yaw=55, hy=30, hp=-14, fistR=("c", HIKITE_R), fistL=("c", (0.10, -0.42, 1.44)))  # duck + load
-H.key(1.97, x=0.0, drop=0.22, lean=20, side=-6, twist=-14, yaw=57, hp=-12, fistR=("c", HIKITE_R), footR=HFR)
-H.key(2.03, x=0.04, yaw=78, twist=-2, drop=0.14, lean=12, side=-2, hy=12, hp=-6, footR=(-0.35, -0.20, 60, 0.0), ease="in")   # hips fire first
-H.key(2.00, fistL=("c", (0.10, -0.42, 1.44)))
 PUNCH = FACE + V((-0.04, 0.0, 0.0))                 # fist centre just short of the cheek surface: knuckles touch
-H.key(T_HIT, x=0.08, yaw=92, twist=14, drop=0.08, lean=8, side=0, hy=-14, hp=-4, footR=(-0.34, -0.20, 78, 0.0), fistR=("w", tuple(PUNCH)),
-      fistL=("c", HIKITE_L), ease="in")
-H.key(T_SNAP, fistR=("w", tuple(PUNCH + V((0.03, 0.0, 0.0)))), twist=15)
-H.key(2.45, fistR=("w", tuple(PUNCH + V((0.07, 0.01, 0.0)))), twist=16, drop=0.08, ease="out")      # drives through
-H.key(3.2, fistR=("w", tuple(PUNCH + V((0.05, 0.0, -0.02)))), twist=15, drop=0.085, hy=-10)          # kime: stays extended
+MV.stance_idle(H, 0.0, 1.75, 0.0, 0.0, 90, seed=3)  # kamae, bouncing on the balls of the feet
+MV.slip_turn(H, 1.75, 0.15, hold=0.07)              # ducks under the haymaker, rear hip loaded (ends 1.97)
+MV.gyaku_zuki(H, 1.97, T_HIT - 1.97, PUNCH)         # heel pivot -> hips -> spine -> shoulder -> fist, contact at T_HIT
 H.finalize()
 for it in range(3):                         # close the loop: measure the fist against the cheek, correct the target, re-key
     hero.animation_data_clear(); H.bake(FR_ALL); scn.frame_set(F_HIT); bpy.context.view_layer.update()
@@ -319,7 +179,7 @@ for me in [m for m in bpy.data.meshes if m.users == 0]: bpy.data.meshes.remove(m
 print(f"variants baked {len(VARS)}  {time.time() - T0:.0f}s rss {rss():.2f} GB", flush=True)
 
 # ---- back rows: instanced baked men (faces, colours), facing the fight; they flinch and lean back after the hit
-CAMS_XY = [V((1.25, -2.8)), V((2.65, 0.38)), V((0.6, -3.3)), V((0.6, -1.9))]
+CAMS_XY = [V((0.7, -3.5)), V((2.9, 0.45)), V((0.6, -3.5)), V((0.4, -2.2)), V((0.9, -3.6))]
 BACK = []; rng = random.Random(9)
 occupied = [V((r * math.cos(RAD(a)), r * math.sin(RAD(a)))) for r, a in NEAR] + [V((1.95, 0)), V((0, 0))]
 for r, n in ((4.4, 26), (5.3, 30), (6.3, 34)):
@@ -379,6 +239,7 @@ for ob in bpy.data.objects:
     if _rig_child(ob) or ob.users_collection and ob.users_collection[0].name.startswith("VAR_"): continue
     c = ob.matrix_world @ (sum((V(b) for b in ob.bound_box), V()) / 8); d = ob.dimensions
     if abs(c.x - HC.x) < 5.6 and abs(c.y - HC.y) < 8.6 and c.z < 3.0 and d.z < 5.0 and d.x < 6.0 and d.y < 8.0: CLEAR.append(ob.name)
+    elif abs(c.x - HC.x) < 6.6 and abs(c.y - HC.y) < 12.0 and c.z < 8.0 and max(d) < 6.0: CLEAR.append(ob.name)      # street trees, lamps
 for n_ in CLEAR: bpy.data.objects[n_].hide_render = True
 print("hidden props in the ring area:", len(CLEAR), CLEAR[:10])
 
@@ -405,8 +266,8 @@ def card_mat(name, smoke=False):
     oi = N.new("ShaderNodeObjectInfo"); clk = N.new("ShaderNodeValue"); CLOCK.append(clk); u, v = sep.outputs[0], sep.outputs[1]
     rnd = mth("MULTIPLY", oi.outputs["Random"], 37.0)
     cv = N.new("ShaderNodeCombineXYZ")
-    L.new(mth("ADD", mth("MULTIPLY", u, 1.6 if smoke else 2.4), rnd), cv.inputs[0])
-    L.new(mth("SUBTRACT", mth("MULTIPLY", v, 1.3 if smoke else 1.9), mth("MULTIPLY", clk.outputs[0], 0.5 if smoke else 2.6)), cv.inputs[1])
+    L.new(mth("ADD", mth("MULTIPLY", u, 1.6 if smoke else 3.4), rnd), cv.inputs[0])            # flames: narrow across, long up = licks
+    L.new(mth("SUBTRACT", mth("MULTIPLY", v, 1.3 if smoke else 1.1), mth("MULTIPLY", clk.outputs[0], 0.5 if smoke else 2.2)), cv.inputs[1])
     L.new(mth("ADD", rnd, mth("MULTIPLY", clk.outputs[0], 0.25 if smoke else 0.9)), cv.inputs[2])
     nz = N.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 1.6 if smoke else 2.2; nz.inputs["Detail"].default_value = 4.0
     nz.inputs["Roughness"].default_value = 0.6; L.new(cv.outputs[0], nz.inputs["Vector"])
@@ -533,33 +394,37 @@ cam = bpy.data.objects.new("cam", cd); scn.collection.objects.link(cam); scn.cam
 cd.dof.use_dof = True
 def lerp(a, b, k): return a + (b - a) * k
 def vl(a, b, k): return V(a).lerp(V(b), k)
+def eye_c(o): return o.matrix_world @ (sum((V(c) for c in o.bound_box), V()) / 8)      # eyeball centre (origins sit on the head bone)
 def eyes_mid(f):
     scn.frame_set(f); bpy.context.view_layer.update()
-    ps = [o.matrix_world.translation for o in hero.children_recursive if o.name in ("eye_l", "eye_r")]
+    ps = [eye_c(o) for o in hero.children_recursive if o.name in ("eye_l", "eye_r")]
     return sum(ps, V()) / max(1, len(ps))
-E = eyes_mid(F(1.55)); _, hfw_h, _, _ = head_frame(hero); hfw_h.z = 0; hfw_h.normalize()
+E = eyes_mid(F(1.55)); _, hfw_h, _, _ = head_frame(hero)
+_el, _er = [eye_c(next(o for o in hero.children_recursive if o.name == n)) for n in ("eye_l", "eye_r")]
+_fe = (_er - _el).cross(V((0, 0, 1))); _fe.z = 0; _fe.normalize()
+hfw_h = _fe if _fe.x > 0 else -_fe                   # straight in front of both eyes (he faces +x, toward the attacker)
 scn.frame_set(F(1.0)); bpy.context.view_layer.update(); AH = head_frame(att)[0]; HH = head_frame(hero)[0]
 CP = FACE + V((-0.12, 0, 0))                     # frame centre at the hit: between the fist and the face
 SHOTS = []
 def shot(t0, t1, fn, ease="io"): SHOTS.append((t0, t1, fn, ease))
 # 1 low wide: hero in his stance, the ring behind, the attacker on the right; slow push-in
-shot(0.0, 0.8, lambda k: (vl(HC + V((1.55, -3.15, 0.40)), HC + V((1.35, -2.75, 0.44)), k), HC + V((0.45, 0.0, 1.30)), 22, 9))
+shot(0.0, 0.8, lambda k: (vl(HC + V((0.75, -3.7, 0.42)), HC + V((0.7, -3.3, 0.46)), k), HC + V((0.6, 0.0, 1.25)), 22, 9))
 # 2 over the attacker's right shoulder: the hero small and calm, the faces of the ring behind him (red fear grade in post)
-shot(0.8, 1.35, lambda k: (vl(AH + V((0.62, 0.36, 0.06)), AH + V((0.52, 0.32, 0.05)), k), HH + V((0, 0, -0.05)), 34, 5))
+shot(0.8, 1.35, lambda k: (vl(AH + V((1.0, 0.45, 0.14)), AH + V((0.9, 0.42, 0.13)), k), HH + V((0, 0, -0.12)), 38, 5))
 # 3 extreme close-up of the eyes; they go white at 1.5 s; a slow push
 shot(1.35, 1.75, lambda k: (vl(E + hfw_h * 0.46, E + hfw_h * 0.36, k), E, 62, 4))
 # 4 pure side-on profile: both full bodies, then a fast push to the fist + face, held through the hit, a slow drift back
 def s4(k):
     t = 1.75 + k * 0.75
     wide_l, wide_c = HC + V((0.55, -3.5, 1.15)), HC + V((0.55, 0.0, 1.10))
-    near_l, near_c = V((CP.x, HC.y - 1.45, CP.z)), V((CP.x, HC.y, CP.z))
+    near_l, near_c = V((CP.x - 0.38, HC.y - 2.15, CP.z)), V((CP.x - 0.33, HC.y, CP.z - 0.04))     # pure side-on: shoulder, fist path, face
     if t < 1.95: return wide_l, wide_c, 30, 8
-    if t < 2.08: u = ez((t - 1.95) / 0.13, "in"); return vl(wide_l, near_l, u), vl(wide_c, near_c, u), lerp(30, 36, u), 8
-    if t < 2.24: return near_l, near_c, 36, 8
-    u = ez((t - 2.24) / 0.26, "io"); return vl(near_l, near_l + V((0.12, -0.75, -0.12)), u), vl(near_c, near_c + V((0.12, 0, -0.15)), u), 36, 8
+    if t < 2.08: u = ez((t - 1.95) / 0.13, "in"); return vl(wide_l, near_l, u), vl(wide_c, near_c, u), lerp(30, 32, u), 8
+    if t < 2.24: return near_l, near_c, 32, 8
+    u = ez((t - 2.24) / 0.26, "io"); return vl(near_l, near_l + V((0.25, -0.6, -0.15)), u), vl(near_c, near_c + V((0.25, 0, -0.2)), u), 32, 8
 shot(1.75, 2.5, s4, "lin")
 # 5 high wide aftermath: the man on the ground, the ring stepping back, the hero still in his punch; slow rise
-shot(2.5, 3.01, lambda k: (vl(HC + V((1.0, -6.2, 4.3)), HC + V((1.0, -6.6, 4.8)), k), HC + V((0.9, 0.6, 0.6)), 27, 11))
+shot(2.5, 3.01, lambda k: (vl(HC + V((0.9, -3.5, 2.7)), HC + V((0.9, -3.8, 3.0)), k), HC + V((0.9, 0.6, 0.55)), 24, 11))
 def key_cam(f):
     t = T_(f); s = next((s for s in SHOTS if s[0] <= t < s[1]), SHOTS[-1])
     k = ez((t - s[0]) / (s[1] - s[0]), s[3]); loc, look, lens, fst = s[2](k)
@@ -570,6 +435,9 @@ def key_cam(f):
 prefs.keyframe_new_interpolation_type = "CONSTANT"
 for f in FR_ALL: key_cam(f)
 if os.environ.get("CHECK"):
+    scn.frame_set(F(1.55)); bpy.context.view_layer.update()
+    print("EYES", [tuple(round(c, 3) for c in eye_c(o)) for o in hero.children_recursive if o.name in ("eye_l", "eye_r")], "fwd", tuple(round(c, 2) for c in hfw_h),
+          "hero headfwd", tuple(round(c, 2) for c in head_frame(hero)[1]), "chest fwd", tuple(round(c, 2) for c in (hero.matrix_world.to_3x3().normalized() @ hero.pose.bones["spine01"].matrix.to_3x3() @ hero.data.bones["spine01"].matrix_local.to_3x3().inverted() @ V((0, -1, 0)))))
     for f in (F(1.75), F(1.9), F(1.97), F(2.03), F_HIT, F(2.3), F(2.5), F(2.75)):
         scn.frame_set(f); bpy.context.view_layer.update()
         print("CHECK", f, "fistR", tuple(round(c, 2) for c in bone_w(hero, "wrist.R", "tail")), "att head", tuple(round(c, 2) for c in head_frame(att)[0]),

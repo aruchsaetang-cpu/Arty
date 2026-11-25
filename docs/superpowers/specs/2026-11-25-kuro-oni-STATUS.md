@@ -31,3 +31,12 @@ Agent building shorts/kuro_oni/scene1.py + scene1_compose.py -> out/scene1.mp4 (
 - Kuro Oni fight moves = REUSABLE MOTION LIBRARY (shorts/kuro_oni/moves.py): stance_idle, step_in, slip_turn, gyaku_zuki, return_to_guard, then mae_geri, mawashi_geri_low, hiza_geri, hook, uchi_uke, irimi-nage. Study human anatomy (hip leads, spine twist, weight shift, easing, planted feet).
 - Style ref: real full-contact Kyokushin (upright, hands high, small bounce, compact fast strikes). Ref clips local only (local_refs/kyo, git-ignored).
 - Scene 1 v2 rules: calm anime camera (no tilt/shake), no rain, realistic fire, hero dim light, punch hits ONE enemy hard (steel feel), army with faces.
+
+## Scene 1 v2 (redo after user feedback)
+- shorts/kuro_oni/scene1.py (v2) + scene1_compose.py -> out/scene1_v2.mp4; frames in frames_s1v2/ (odd frames + every frame of the punch).
+- Motion library: shorts/kuro_oni/moves.py (Rig pose solver: hips/spine/head + arm and leg two-bone IK, per-channel eased keys;
+  moves stance_idle, step_in, slip_turn, gyaku_zuki, return_to_guard). TODO moves: mae_geri, mawashi_geri_low, hiza_geri, hook, uchi_uke, irimi_nage.
+- cast_kuro FIGHTERS now wear 12 different outfits/hair colours (no more all-black suits).
+- User rules for this film: no rain; realistic-colour anime fire (flame cards + smoke + embers); hero DIM (thin warm edge, white eyes);
+  enemies fire-lit; level steady camera, 4-5 clean cuts, shake only 2-3 frames at impact, one 2-frame white flash;
+  the punch hits ONE man (face caves, head snaps, eyes white, spit, spins, slams down); others only flinch/step back.

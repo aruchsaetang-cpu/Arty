@@ -7896,9 +7896,9 @@
     "semantic_hash": ""
   },
   "shorts/kuro_oni/cast_kuro.py": {
-    "mtime": 1795611801.2106702,
-    "seen": 1795612013.818342,
-    "ast_hash": "58c16121bb5d3ae1927fc4b82cfcb9bd",
+    "mtime": 1795617441.049372,
+    "seen": 1795619292.683677,
+    "ast_hash": "970a646b271115932379c5ca32936e6a",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/cast_test.py": {
@@ -7908,21 +7908,21 @@
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-11-25-kuro-oni-STATUS.md": {
-    "mtime": 1795612066.7782397,
-    "seen": 1795616937.0753303,
-    "ast_hash": "07494fb77f20c12b6ca03d7b6cb87f2a",
+    "mtime": 1795619035.6188252,
+    "seen": 1795619292.6856954,
+    "ast_hash": "0ccb72dac695bfc46a10560cbb03e387",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/scene1.py": {
-    "mtime": 1795614981.2791615,
-    "seen": 1795616937.0743876,
-    "ast_hash": "c9fdb7dce39fce5a889328891616e955",
+    "mtime": 1795618905.6195662,
+    "seen": 1795619292.6837332,
+    "ast_hash": "dc2e4189598135f9a3db06b1f3774de4",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/scene1_compose.py": {
-    "mtime": 1795615011.4732275,
-    "seen": 1795616937.0743914,
-    "ast_hash": "021fabbaaedf4976101ec6be41435e58",
+    "mtime": 1795618306.4014235,
+    "seen": 1795619292.683737,
+    "ast_hash": "d31f635fb2c63774c19a8768c3578028",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/frames_s1/f0001.png": {
@@ -8307,6 +8307,24 @@
     "mtime": 1795616920.461341,
     "seen": 1795616937.0758672,
     "ast_hash": "f47bb130bd350765d4d409b663fd05bc",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/moves.py": {
+    "mtime": 1795618237.7174194,
+    "seen": 1795619292.683726,
+    "ast_hash": "94fa39308bccfe15d93dcf46662d97bf",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1v2/f0001.png": {
+    "mtime": 1795619183.4534755,
+    "seen": 1795619292.6865785,
+    "ast_hash": "deac2fb38dd1d8661077bad715da5386",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1v2/f0003.png": {
+    "mtime": 1795619230.7414784,
+    "seen": 1795619292.6865811,
+    "ast_hash": "e77a0d4e6381849ca0cbd96a97fcb3e5",
     "semantic_hash": ""
   }
 }
