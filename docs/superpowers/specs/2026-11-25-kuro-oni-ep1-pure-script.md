@@ -10,7 +10,8 @@ The Demonic Eye: it sees a blow before it lands.
 And two arts he learned from his master.
 Kyokushin karate: hard. It breaks.
 Aikido: soft. It turns your force against you.
-He has no name. The clan calls him Young Master. Everyone else, in fear, calls him Kuro Oni.
+He defeated an army alone. But he never felt fulfilled.
+He has no name. The clan calls him Young Master.
 
 ---
 
@@ -82,7 +83,7 @@ They rush him, one at a time. He hits each once and straightens his sleeve. His 
 
 ENEMY
 (crawling back, in fear)
-Kuro Oni... the Black Oni.
+Monster...
 
 The last twenty rush him. He throws one straight punch. The rain splits.
 
@@ -142,4 +143,10 @@ The view stays on a fireball. It follows it from the hand to the target, before 
 
 He looks at his hands again. Nothing.
 
+A faint whisper, many voices in fear, as if from the war:
+
+VOICES (echo)
+Kuro Oni... the Black Oni.
+
+**TITLE: KURO ONI**
 **TO BE CONTINUED**

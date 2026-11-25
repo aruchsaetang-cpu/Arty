@@ -42,6 +42,8 @@ Everyone calls him "Young Master". His goal is to be acknowledged by his father 
 - Everyone calls him "Young Master": the clan, the master and his mother.
 - The episode ends with him waking in an unknown place and seeing people use fire magic, then TO BE CONTINUED. The knight fight and the self-naming "Gojo" scene are cut.
 
+## Latest (user): "Kuro Oni" appears only at the END (the title, and a fearful echo in the last seconds). The hook (30 s version) starts "He defeated an army alone. But he never felt fulfilled." The enemies in the war say "Monster...", not "Kuro Oni".
+
 ## Naming rule (user, latest): the name "Gojo" is deleted from the story
 No character is ever called Gojo on screen or in the credits. The hero has NO name. The clan, the master and his mother call him "Young Master". Everyone else calls him "Kuro Oni" (the Black Oni), in fear. "Gojo" and "Gojo (name)" in the notes below are only the old working name and must be read as "the Young Master". The self-naming scene is gone.
 
