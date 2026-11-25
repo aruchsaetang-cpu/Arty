@@ -2,6 +2,7 @@
 
 Working title of the episode: "The Smile".
 Tone: cold, quiet, brutal. Very little talking. Gojo almost never speaks; the people around him do the talking.
+Gojo's goal (user): to be acknowledged by his father and be given a name. Everyone in the clan calls him "Young Master" because he has no name. He fights the whole war for it, and his father dies before he can say it.
 Changes in this version: the poison is gone; his mother kills him with a katana while he sleeps; the "Emperor Eye" is now the **Demonic Eye**; the film opens by explaining his abilities.
 Rules: Gojo has no magic; his face is blank when he fights; the mother is cold except when he hurts someone; every big hit is an ink-silhouette frame.
 My reading to confirm: black bone stops even a katana, but only while he is awake and braced. Asleep, it is off. That is why she waits until he sleeps.
@@ -16,7 +17,7 @@ Over black, a white iris opens in a black eye. Short flash cuts, one per ability
 - The white eye in extreme close-up, a punch stopping in front of it. **DEMONIC EYE**: "The eye that sees a blow before it lands. The eye of an Ultra Instinct."
 - A kata in silhouette. **YAMAZAKI KYOKUSHIN KARATE**: "Hard. It breaks."
 - A wrist throw in silhouette. **AIKIDO**: "Soft. It turns your force against you."
-NARRATOR (V.O., calm): "Black bone. The Demonic Eye. Karate and aikido. This is Gojo."
+NARRATOR (V.O., calm): "Black bone. The Demonic Eye. Karate and aikido. He has no name. Everyone calls him Young Master."
 *Sound: a heartbeat; a clang; a whoosh; one hit.*
 
 ## PART 1: THE YAMAZAKI HOUSE (5-34 s)
@@ -24,7 +25,7 @@ NARRATOR (V.O., calm): "Black bone. The Demonic Eye. Karate and aikido. This is 
 **1. INT. YAMAZAKI HALL, JAPAN, DAY (0:05-0:08)**
 A long tatami hall. Thirty clan members kneel in three rows: elders, a tattooed vassal with a sword across his arms, young men. A lean boy stands alone in front of them, eyes black with white irises. His MOTHER (the father's mistress, not his wife) stands beside him, cold and still. His FATHER sits slumped apart, bandaged and broken after losing to the strongest gang in Korea; he does not look at the boy.
 ELDER (whisper): The Demonic Eye... What is the boy's name?
-The father says nothing. He never named him.
+The father says nothing. He never named him. From that day the whole clan calls the boy "Young Master".
 
 **2. INT. YAMAZAKI HALL (0:08-0:10)**
 A bigger boy lies bloody at the boy's feet. The clan flinches. His mother kneels and smiles for the first time. She takes his hand.
@@ -39,12 +40,12 @@ He lowers his head and walks back inside.
 
 **4. INT. DOJO (0:13-0:17)**
 He is a teen. The MASTER (very old, white topknot, long white beard, black checkered kimono) attacks; the teen turns, takes his wrist and throws him. The master lands and nods.
-MASTER: You have no name. From today you are Gojo. Soft first. Then hard.
+MASTER: Young Master. Soft first. Then hard.
 Gojo does a Kyokushin kata and breaks a steel bat on his shin. His mother watches from the veranda, blank, until the bat breaks. Then she smiles.
 
 **5. EXT. MUD, RAIN (0:17-0:18.5)**
 His father's black cloak lies in the mud.
-MASTER (V.O.): The war took your father.
+MASTER (V.O.): The war took your father, Young Master. He never said your name.
 Gojo lifts the cloak and puts it on.
 
 **6. EXT. BURNING STREET IN KOREA, NIGHT, RAIN (0:18.5-0:31)**
@@ -59,7 +60,7 @@ The last 20 rush; one straight punch, the shockwave parts the rain.
 Every clan leader kneels. His fist is raised over the last one. He does not stop.
 LEADER: Please...
 His mother, who has come with the clan, steps into the edge of the frame.
-MOTHER: Gojo.
+MOTHER: Young Master.
 He freezes.
 
 ## PART 2: THE KATANA (34-41 s)
@@ -73,7 +74,7 @@ MOTHER (smiling, warm, the smile he has wanted all his life): Good boy.
 
 **9. INT. YAMAZAKI HOUSE (0:38-0:40)**
 He could kill her in one move. He looks at her smile and does not. He sinks to one knee, calm.
-GOJO (V.O.): I never learned what the smile was for.
+GOJO (V.O.): I fought for a name my father never gave me.
 *Sound: heartbeat, slowing.*
 
 **10. CLOSE: GOJO'S EYES (0:40-0:41)**
@@ -89,7 +90,7 @@ A human face. Eyes open: black, white irises. A heartbeat returns.
 
 **12. EXT. MEADOW, DAWN (0:43-0:46)**
 He wakes in the grass. Floating lights, a castle on a hill, two moons. He looks at his hands.
-GOJO (V.O.): No clan. No mother.
+GOJO (V.O.): No clan. No mother. No name.
 
 **13. EXT. ROAD (0:46-0:50)**
 A young magic knight (grimoire at his belt, squad crest on his robe) blocks the road.
@@ -101,7 +102,9 @@ Gojo slips the fireball and steps in. One straight punch from the side-on angle.
 
 **15. CLOSE: THE KNIGHT (0:54-0:56)**
 On the ground, red fear light, he looks up at Gojo's single white eye.
-KNIGHT (whisper): Black-eyed demon...
+KNIGHT (whisper): Black-eyed demon... who are you?
+GOJO (quiet, the first time anyone has heard it): ...Gojo.
+(He names himself. My call, needs the user's yes.)
 
 **16. TITLE (0:56-1:00)**
 Extreme close-up of the eyes. TITLE: KURO ONI, EP 1.
@@ -110,11 +113,11 @@ Extreme close-up of the eyes. TITLE: KURO ONI, EP 1.
 ---
 
 ## Lines in the whole episode (about 80 words)
-Narrator (opening): "A body as hard as steel. It can stop even a katana, if he is awake." / "The eye that sees a blow before it lands." / "Hard. It breaks." / "Soft. It turns your force against you." / "Black bone. The Demonic Eye. Karate and aikido. This is Gojo."
+Narrator (opening): "A body as hard as steel. It can stop even a katana, if he is awake." / "The eye that sees a blow before it lands." / "Hard. It breaks." / "Soft. It turns your force against you." / "Black bone. The Demonic Eye. Karate and aikido. He has no name. Everyone calls him Young Master."
 Elder: "The Demonic Eye... What is the boy's name?" (father silent)
 Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "Good boy." (at the stab)
 Gojo as a boy: "Can I play with them?"
-Master: "You have no name. From today you are Gojo. Soft first. Then hard." / (V.O.) "The war took your father."
+Master: "Young Master. Soft first. Then hard." / (V.O.) "The war took your father."
 Enemy / leader: "Kill him!" / "Kuro Oni... the Black Oni." / "Please..."
-Gojo (V.O.): "I never learned what the smile was for." / his last word: "...Damn it." / (new world) "No clan. No mother."
+Gojo (V.O.): "I fought for a name my father never gave me." / his last word: "...Damn it." / (new world) "No clan. No mother."
 Knight: "A man with no grimoire? Burn him!" / "Black-eyed demon..."
