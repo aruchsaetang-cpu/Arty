@@ -45,7 +45,7 @@ Fight camera reference (user clip: an anime boxing barrage): extreme close-ups o
 | 5 | 15-17 | Rain, then banners | His father's black cloak lies in the mud (father died in the war). Gojo lifts it and puts it on. Clan banners fall across the country | Drums |
 | 6 | 17-31 | The war: about 100 fighters in a burning rain street | Alone against all. Camera from the side, over the shoulder, low, close on the fist and face; each cut 2-8 frames; barrage of punches; the enemy POV shots use the fear look; the biggest hits cut to ink silhouettes. Sub-beats: 17-20 first wave (Muay Thai and judo style fighters, all in suits), 20-24 Ultra Instinct (sound cut, eyes full white, slips every blow), 24-28 walks through fire (silhouette in flames), 28-31 one last straight punch, the shockwave parts the rain | Impacts, silence, sub drops |
 | 7 | 31-34 | Wide | Every clan leader kneels. His fist is raised over the last one and he does not stop; his mother steps into the edge of the frame and he freezes | Bells, silence |
-| 8 | 34-37 | Medium, rain | His mother walks through the kneeling clans with a cup of tea and gives him the smile he has wanted all his life. His Emperor Eye sees the poison. He drinks anyway, for the smile | Low drone |
+| 8 | 34-37 | Yamazaki house, night, top of the lantern-lit stone stairway (not the war street) | He comes home from the war. His mother waits at the top of the stairs under the red torii with a cup of tea and gives him the smile he has wanted all his life, the same one as when he hurt someone. The clan's 30 stand in the courtyard and watch. His Emperor Eye sees the poison. He drinks anyway, for the smile | Low drone |
 
 ### Part 2: the poison (37-41 s)
 | # | Time | Shot | Action | Sound |
