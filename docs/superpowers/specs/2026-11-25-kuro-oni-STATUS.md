@@ -10,7 +10,7 @@ First deliverable to send: the FIRST HALF (0-15 s) when its frames are done. The
 - Prototype code (throwaway): shorts/kuro_oni/film.py, film30.py, compose30.py, proto.py (compose30 effects are reusable: speed lines, comic grid, ink silhouette, fear tint, impact words, vignette).
 
 ## Phases and owners
-1. Yamazaki house set: sonnet agent -> lookdev/yamazaki.py (+ yamazaki_test.py). STATUS: running (check commit log).
+1. Yamazaki house set: sonnet agent -> lookdev/yamazaki.py (+ yamazaki_test.py). STATUS: DONE (commit 3c7944a). hall/gate_courtyard/dojo/bedroom/stairway(O,...) + set_world(); stills in /tmp/yamazaki/ (may be gone). Limits: own light cel shader ignores scene lights; bedroom dark; rough tuning.
 2. Cast: sonnet agent -> shorts/kuro_oni/cast_kuro.py (+ cast_test.py). STATUS: running. lookdev/kimono.py (obi, crests, bun, topknot, beard, cloak, katana, robe) is done (lead).
 3. Choreography: opus agent (to start after 1 and 2): war barrage, slap, throw, kata, stab, slump; planted feet; impact frames.
 4. Shots/camera: lead; 30 s shot list; real sets; side-on/over-shoulder/low angles; first-person ending.
