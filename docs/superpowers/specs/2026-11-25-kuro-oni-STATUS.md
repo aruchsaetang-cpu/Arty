@@ -1,7 +1,7 @@
 # KURO ONI Ep 1: working status (read this first after a context reset)
 
 User approved the 30 s script (2026-11-25-kuro-oni-ep1-30s-voice-script.md) and chose the FULL REAL VERSION (wait 2-3 days).
-First deliverable to send: the FIRST HALF (0-15 s) when its frames are done. Then the second half. Do not send the prototype again.
+USER UPDATE: send each SCENE as soon as it is done (no need to wait for the half). First scene = the HOOK (0-3 s, burning street, one punch, 'He defeated an army alone...'); then the next scenes in order. Do not send the prototype again.
 
 ## Source of truth
 - Script: 2026-11-25-kuro-oni-ep1-30s-voice-script.md (voice lines as subtitles) and ...-30s-script.md (scene actions).
