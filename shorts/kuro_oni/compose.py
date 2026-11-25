@@ -4,7 +4,7 @@ import math, os, random, subprocess
 from PIL import Image, ImageDraw
 import proto as PR
 HERE = os.path.dirname(os.path.abspath(__file__)); FR = os.path.join(HERE, "frames"); OUT = os.path.join(HERE, "out")
-W, H, FPS, N = PR.W, PR.H, PR.FPS, PR.N
+W, H, FPS, N = PR.W, PR.H, PR.FPS, int(os.environ.get("LAST_FRAME", PR.N)); NAME = os.environ.get("OUT_NAME", "proto3d_ep1.mp4")
 def src(f):
     for k in (f, f - 1, f + 1, f - 2, f + 2, f - 3):
         p = os.path.join(FR, f"f{k:04d}.png")
@@ -43,7 +43,7 @@ def main():
     PR.sound()
     p = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                           "-i", os.path.join(OUT, "proto_ep1.wav"), "-c:v", "libx264", "-preset", "fast", "-crf", "21", "-pix_fmt", "yuv420p",
-                          "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", os.path.join(OUT, "proto3d_ep1.mp4")], stdin=subprocess.PIPE)
+                          "-c:a", "aac", "-b:a", "160k", "-t", str(N / FPS), "-movflags", "+faststart", os.path.join(OUT, NAME)], stdin=subprocess.PIPE)
     last = None
     for f in range(1, N + 1):
         t = (f - 1) / FPS; s = src(f)
