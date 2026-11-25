@@ -37,7 +37,10 @@ so.rotation_euler = (0.9, 0.2, 0.5)
 w = bpy.data.worlds.new("w"); w.use_nodes = True; w.node_tree.nodes["Background"].inputs["Color"].default_value = (0.6, 0.65, 0.75, 1)
 w.node_tree.nodes["Background"].inputs["Strength"].default_value = 0.8; scn.world = w
 cd = bpy.data.cameras.new("cam"); cd.lens = 40; cam = bpy.data.objects.new("cam", cd); scn.collection.objects.link(cam); scn.camera = cam
-cam.location = (0, -17, 4.2); cam.rotation_euler = (1.43, 0, 0)
+if os.environ.get("CLOSE"):
+    cam.location = (0, -13, 1.4); cam.rotation_euler = (1.5, 0, 0); cd.lens = 40
+else:
+    cam.location = (0, -17, 4.2); cam.rotation_euler = (1.43, 0, 0)
 C.render_settings(SCALE, SAMPLES)
 scn.render.resolution_x, scn.render.resolution_y = 1920, 1080; scn.render.resolution_percentage = SCALE
 scn.render.filepath = OUT; scn.frame_set(1)

@@ -70,6 +70,7 @@ _GROUPS = dict(CLAN_MEN="CLAN_MEN", CLAN_WOMEN="CLAN_WOMEN", FIGHTERS="FIGHTER",
 # ------------------------------------------------------------------ build
 def _glasses(arm, coll, objs, colour):
     """Tinted round lenses + bridge on the head bone (the rig has no glasses of its own)."""
+    bpy.context.view_layer.update()
     eyes = [o for o in objs if o.name.startswith("eye_")]
     if len(eyes) < 2: return []
     s = arm.scale[0] / 0.83; R = arm.matrix_world.to_3x3(); fwd = R @ V((0, -1, 0)); fwd.normalize()
@@ -147,7 +148,7 @@ def _sil_mesh():
     o = nt.nodes.new("ShaderNodeOutputMaterial"); e = nt.nodes.new("ShaderNodeEmission"); t = nt.nodes.new("ShaderNodeBsdfTransparent")
     bf = nt.nodes.new("ShaderNodeNewGeometry"); mx = nt.nodes.new("ShaderNodeMixShader")
     e.inputs["Color"].default_value = (1, 1, 1, 1); e.inputs["Strength"].default_value = 3.0
-    nt.links.new(bf.outputs["Backfacing"], mx.inputs[0]); nt.links.new(t.outputs[0], mx.inputs[1]); nt.links.new(e.outputs[0], mx.inputs[2])
+    nt.links.new(bf.outputs["Backfacing"], mx.inputs[0]); nt.links.new(e.outputs[0], mx.inputs[1]); nt.links.new(t.outputs[0], mx.inputs[2])   # near shell (backfacing) clear, far shell white
     nt.links.new(mx.outputs[0], o.inputs[0])
     me.materials.append(m0); me.materials.append(m1); _SIL["me"] = me
     return me
