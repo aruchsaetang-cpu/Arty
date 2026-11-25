@@ -7882,5 +7882,35 @@
     "seen": 1795610771.058582,
     "ast_hash": "b7962c6643a0e7e3c4052ad42ab42589",
     "semantic_hash": ""
+  },
+  "lookdev/yamazaki.py": {
+    "mtime": 1795611074.9269755,
+    "seen": 1795611090.7912831,
+    "ast_hash": "72909b8090e9511f35eaf7db1133a6e4",
+    "semantic_hash": ""
+  },
+  "lookdev/yamazaki_test.py": {
+    "mtime": 1795611074.9275875,
+    "seen": 1795611090.7912862,
+    "ast_hash": "ff90bf4b63f81be05fdd9988353de93c",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/cast_kuro.py": {
+    "mtime": 1795610953.4689863,
+    "seen": 1795611090.7913473,
+    "ast_hash": "c3ce083dc7358ff82ee76d2efd186242",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/cast_test.py": {
+    "mtime": 1795610962.956987,
+    "seen": 1795611090.791349,
+    "ast_hash": "9e87eced0a8e511189a09b0a9db41d43",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-STATUS.md": {
+    "mtime": 1795610886.8489823,
+    "seen": 1795611090.7921107,
+    "ast_hash": "4edea36266b22e19f2c6c33819075ba6",
+    "semantic_hash": ""
   }
 }
