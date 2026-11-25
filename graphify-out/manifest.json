@@ -7908,9 +7908,405 @@
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-11-25-kuro-oni-STATUS.md": {
-    "mtime": 1795611705.8218575,
-    "seen": 1795612013.8191621,
-    "ast_hash": "040347ecdeacf3f8099ebfd97aebb503",
+    "mtime": 1795612066.7782397,
+    "seen": 1795616937.0753303,
+    "ast_hash": "07494fb77f20c12b6ca03d7b6cb87f2a",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/scene1.py": {
+    "mtime": 1795614981.2791615,
+    "seen": 1795616937.0743876,
+    "ast_hash": "c9fdb7dce39fce5a889328891616e955",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/scene1_compose.py": {
+    "mtime": 1795615011.4732275,
+    "seen": 1795616937.0743914,
+    "ast_hash": "021fabbaaedf4976101ec6be41435e58",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0001.png": {
+    "mtime": 1795615187.945238,
+    "seen": 1795616937.0756233,
+    "ast_hash": "0d29bf055941242347d5e4362d7bb7f9",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0003.png": {
+    "mtime": 1795615231.7452407,
+    "seen": 1795616937.0756245,
+    "ast_hash": "a8766796fe01db178dcbc2eedc1be6ed",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0005.png": {
+    "mtime": 1795615273.2412431,
+    "seen": 1795616937.0756254,
+    "ast_hash": "b979bc0975788b9cd5cf32b4a489a10f",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0007.png": {
+    "mtime": 1795615313.8652456,
+    "seen": 1795616937.0756266,
+    "ast_hash": "a9c59f364e580311be85d2a78fe9178e",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0009.png": {
+    "mtime": 1795615354.7652478,
+    "seen": 1795616937.0756273,
+    "ast_hash": "8f055560afafe5bb93f0eea632523be8",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0011.png": {
+    "mtime": 1795615394.8812504,
+    "seen": 1795616937.0756285,
+    "ast_hash": "4132cfa6b391649052c1d516e60cdc51",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0013.png": {
+    "mtime": 1795615434.5332527,
+    "seen": 1795616937.0756295,
+    "ast_hash": "9ae1239d635dec03fcfd3a17781869ab",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0015.png": {
+    "mtime": 1795615475.0812552,
+    "seen": 1795616937.0756307,
+    "ast_hash": "f7a58cc56248f203a7e0826b3b8d8bdd",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0017.png": {
+    "mtime": 1795615513.7812574,
+    "seen": 1795616937.0756316,
+    "ast_hash": "da41f4ecd0a6914ec2bfcbe4f3950c40",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0019.png": {
+    "mtime": 1795615551.4132595,
+    "seen": 1795616937.0756323,
+    "ast_hash": "b79a1d0f9112ae17e12f71a652a83918",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0021.png": {
+    "mtime": 1795615589.0812619,
+    "seen": 1795616937.075633,
+    "ast_hash": "97577bdc8ff4259a7767004fb414ac47",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0023.png": {
+    "mtime": 1795615626.745264,
+    "seen": 1795616937.0756342,
+    "ast_hash": "84115306b3bc0094a3ac214771bc0538",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0025.png": {
+    "mtime": 1795615666.1092665,
+    "seen": 1795616937.0756352,
+    "ast_hash": "7fb4b4cf7455d883671264b53dc38238",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0027.png": {
+    "mtime": 1795615703.8372686,
+    "seen": 1795616937.075636,
+    "ast_hash": "26c15a93280dba0d042702c04b4c6536",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0029.png": {
+    "mtime": 1795615744.569271,
+    "seen": 1795616937.075637,
+    "ast_hash": "72267ca7edcb99ed48e55fd6f7366c97",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0031.png": {
+    "mtime": 1795615781.3172734,
+    "seen": 1795616937.0756378,
+    "ast_hash": "10ada4a1cf22a331c2693d6504c70c3f",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0033.png": {
+    "mtime": 1795615816.4172754,
+    "seen": 1795616937.0756385,
+    "ast_hash": "dabadb9527f9d3a3e99919a0a5cf67b1",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0035.png": {
+    "mtime": 1795615853.9332776,
+    "seen": 1795616937.0756395,
+    "ast_hash": "675d4e75fb7fca97916161059fd04cd9",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0037.png": {
+    "mtime": 1795615891.4852798,
+    "seen": 1795616937.0756407,
+    "ast_hash": "2e047fc84bebff34c09a9bbea2c09eea",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0039.png": {
+    "mtime": 1795615926.969282,
+    "seen": 1795616937.0756414,
+    "ast_hash": "5217ebe277bb49b1abe477476021bb34",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0041.png": {
+    "mtime": 1795615962.661284,
+    "seen": 1795616937.075642,
+    "ast_hash": "aa8559c50e9a4d5b291142d848dd9d6b",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0043.png": {
+    "mtime": 1795616003.1812866,
+    "seen": 1795616937.075643,
+    "ast_hash": "ee38a166005e35cb54ebc71cb3a000d6",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0045.png": {
+    "mtime": 1795616044.197289,
+    "seen": 1795616937.0756443,
+    "ast_hash": "7e7bf77b559c0150f1224d4ba268fea1",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0047.png": {
+    "mtime": 1795616085.9012914,
+    "seen": 1795616937.075645,
+    "ast_hash": "fdb55f9a180fcbe1a7df50b939cb9566",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0049.png": {
+    "mtime": 1795616126.8372939,
+    "seen": 1795616937.075646,
+    "ast_hash": "11ad8cd445701b338ebf5a8404ce00d4",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0051.png": {
+    "mtime": 1795616169.0532963,
+    "seen": 1795616937.0756469,
+    "ast_hash": "8696396a1060c78454e5c46984f8a3fa",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0053.png": {
+    "mtime": 1795616199.545298,
+    "seen": 1795616937.0756478,
+    "ast_hash": "f7281edf3aeed1caae62d54059370c32",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0055.png": {
+    "mtime": 1795616229.7453,
+    "seen": 1795616937.0756485,
+    "ast_hash": "e079683ff6ff9123685860cc78617290",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0057.png": {
+    "mtime": 1795616260.8533018,
+    "seen": 1795616937.0756495,
+    "ast_hash": "d775540a5c61ad68aabf6c10430d4aab",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0059.png": {
+    "mtime": 1795616291.3533037,
+    "seen": 1795616937.0756502,
+    "ast_hash": "2d7b1b8964a9e8ba11854a06e482d78b",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0061.png": {
+    "mtime": 1795616320.7333055,
+    "seen": 1795616937.0756512,
+    "ast_hash": "13e64a0318c1fb0022b40e5dff430af0",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0063.png": {
+    "mtime": 1795616350.197307,
+    "seen": 1795616937.0756521,
+    "ast_hash": "44c871a7db26a3dd4a6be058bb7b8b10",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0065.png": {
+    "mtime": 1795616378.3133087,
+    "seen": 1795616937.0756528,
+    "ast_hash": "ed8ae869bfebefb29c3fe3a10307ea6d",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0067.png": {
+    "mtime": 1795616422.8693113,
+    "seen": 1795616937.0756538,
+    "ast_hash": "2984f12e75220b55c8e00288764fb0ca",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0069.png": {
+    "mtime": 1795616467.301314,
+    "seen": 1795616937.0756547,
+    "ast_hash": "4b452c46b8337e4d20f03b7caa393d9b",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0071.png": {
+    "mtime": 1795616511.8133168,
+    "seen": 1795616937.075676,
+    "ast_hash": "f2d1adc33713c84b2f71287f5ce961ea",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0073.png": {
+    "mtime": 1795616549.625319,
+    "seen": 1795616937.0756783,
+    "ast_hash": "d8bb4bd99a7016ff6030640c930b1c54",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0075.png": {
+    "mtime": 1795616588.5413213,
+    "seen": 1795616937.0756803,
+    "ast_hash": "4ea9665a26a846de695d8df0530d8129",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0077.png": {
+    "mtime": 1795616628.4413238,
+    "seen": 1795616937.0756822,
+    "ast_hash": "f12e2d9cbc897ee2add465e7ea38afb3",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0079.png": {
+    "mtime": 1795616671.9013262,
+    "seen": 1795616937.075684,
+    "ast_hash": "7ad1476e216897d36d58d8c8eb2068e5",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0081.png": {
+    "mtime": 1795616718.241329,
+    "seen": 1795616937.075686,
+    "ast_hash": "396b9821db5afb395d57be128bd7a3c7",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0083.png": {
+    "mtime": 1795616764.6853318,
+    "seen": 1795616937.0756874,
+    "ast_hash": "17cd56e1ec9a1ed43b1a4f21313e0ef0",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0085.png": {
+    "mtime": 1795616810.6453345,
+    "seen": 1795616937.075689,
+    "ast_hash": "b80328c54712bdebb6bbf57d0393c590",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0087.png": {
+    "mtime": 1795616855.961337,
+    "seen": 1795616937.0756905,
+    "ast_hash": "698a741947e1ec9e1f08ffe3f7717301",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/frames_s1/f0089.png": {
+    "mtime": 1795616899.6733398,
+    "seen": 1795616937.0756917,
+    "ast_hash": "26fae5210702295ac8aaf3769871156c",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t00.30.png": {
+    "mtime": 1795614901.589221,
+    "seen": 1795616937.0757124,
+    "ast_hash": "64d40e0f6ee932f3e5ca98c2d985f662",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t00.55.png": {
+    "mtime": 1795614734.0972111,
+    "seen": 1795616937.075714,
+    "ast_hash": "09764c29e376c33e7c84c4ae4c38fb81",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t00.60.png": {
+    "mtime": 1795614558.0172005,
+    "seen": 1795616937.0757158,
+    "ast_hash": "56dca12c8c934e7253c84358a12d948c",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t00.70.png": {
+    "mtime": 1795614285.2971845,
+    "seen": 1795616937.0757172,
+    "ast_hash": "322dc750bc8cf4f09ac59be19fe409d7",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t00.80.png": {
+    "mtime": 1795614917.701222,
+    "seen": 1795616937.0757186,
+    "ast_hash": "b0191433d3cb9b41c4e0fd9051ca894e",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t00.90.png": {
+    "mtime": 1795614576.1852016,
+    "seen": 1795616937.0757198,
+    "ast_hash": "1b9753d95accb1ac6252ac4cf06c843d",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t01.00.png": {
+    "mtime": 1795614765.2092128,
+    "seen": 1795616937.075721,
+    "ast_hash": "abb0f9dbf879cf4d1ed3ec0d63e54013",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t01.20.png": {
+    "mtime": 1795614932.3932228,
+    "seen": 1795616937.0757225,
+    "ast_hash": "51bcfe8e44c077ff342fdec8d09d4f03",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t01.50.png": {
+    "mtime": 1795614302.8931854,
+    "seen": 1795616937.075724,
+    "ast_hash": "6011fa2d6a2722fdcafcb8b7146d6a0d",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t01.90.png": {
+    "mtime": 1795613723.841151,
+    "seen": 1795616937.075725,
+    "ast_hash": "46f1d100551b06f677a238bef24a48e6",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.15.png": {
+    "mtime": 1795613736.6331518,
+    "seen": 1795616937.0757265,
+    "ast_hash": "4d47e2759ec03d188b6643465208781d",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.25.png": {
+    "mtime": 1795613923.5771627,
+    "seen": 1795616937.0757277,
+    "ast_hash": "1f1fbf0d6b947bbfb427c7c9e4fa054f",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.30.png": {
+    "mtime": 1795614951.217224,
+    "seen": 1795616937.0757284,
+    "ast_hash": "bf0ba1468fffec464600149385bc8c0c",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.45.png": {
+    "mtime": 1795613960.4651651,
+    "seen": 1795616937.0757294,
+    "ast_hash": "90bcb1d4b2fa05dd0fe0ce8372caca68",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.60.png": {
+    "mtime": 1795614342.809188,
+    "seen": 1795616937.0757303,
+    "ast_hash": "0d3151ad1e58854cf8bc8d525ce29e05",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.70.png": {
+    "mtime": 1795614970.465225,
+    "seen": 1795616937.0757313,
+    "ast_hash": "f73d59f609a3cc011e44499da822e841",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.80.png": {
+    "mtime": 1795614362.657189,
+    "seen": 1795616937.0757322,
+    "ast_hash": "9441b35f4e8204ac2f888631f150e06f",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/stills_s1/t02.98.png": {
+    "mtime": 1795614382.52519,
+    "seen": 1795616937.0757332,
+    "ast_hash": "ed8bb1c9a04624b319d05ddf897107e0",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/out/scene1.mp4": {
+    "mtime": 1795616920.461341,
+    "seen": 1795616937.0758672,
+    "ast_hash": "f47bb130bd350765d4d409b663fd05bc",
     "semantic_hash": ""
   }
 }
