@@ -34,7 +34,7 @@ The boy looks only at her smile.
 
 **3. EXT. YAMAZAKI GATE, DAY (0:10-0:13)**
 Normal children play outside the gate. He walks toward them. His mother steps in front of him and slaps him. INK-SILHOUETTE FRAME.
-GOJO-AS-A-BOY (quiet): Can I play with them?
+BOY (quiet): Can I play with them?
 MOTHER (cold): Young Master, a future clan leader will not play with those kids.
 He lowers his head and walks back inside.
 
@@ -74,12 +74,12 @@ MOTHER (smiling, warm, the smile he has wanted all his life): Young Master.
 
 **9. INT. YAMAZAKI HOUSE (0:38-0:40)**
 He could kill her in one move. He looks at her smile and does not. He sinks to one knee, calm.
-GOJO (V.O.): I fought for a name my father never gave me.
+YOUNG MASTER (V.O.): I fought for a name my father never gave me.
 *Sound: heartbeat, slowing.*
 
 **10. CLOSE: GOJO'S EYES (0:40-0:41)**
 He looks up at her. She turns away.
-GOJO (a whisper, his last word): ...Damn it.
+YOUNG MASTER (a whisper, his last word): ...Damn it.
 His eyes close. Black.
 *Sound: last heartbeat, silence.*
 
@@ -90,7 +90,7 @@ From here to the end we see through Gojo's eyes. Black. A heartbeat. The picture
 
 **12. FIRST-PERSON: EXT. MEADOW, DAWN (0:43-0:46)**
 We lie in the grass, two moons above, floating lights. The view sits up and turns to a castle on a hill and the edge of an unknown town. We look down at our own hands.
-GOJO (V.O.): No clan. No mother. No name.
+YOUNG MASTER (V.O.): No clan. No mother. No name.
 
 **13. FIRST-PERSON: TOWN SQUARE, UNKNOWN PLACE (0:46-0:54)**
 People use fire magic everywhere: a woman lights a street lamp with a spark, children throw small fireballs, a man burns a straw dummy with a big one. The view stays still. Dark edges, a sharp centre (the Demonic Eye): it follows a fireball from the hand to the target before the throw.

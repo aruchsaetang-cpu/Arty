@@ -10,7 +10,7 @@ The Demonic Eye: it sees a blow before it lands.
 And two arts he learned from his master.
 Kyokushin karate: hard. It breaks.
 Aikido: soft. It turns your force against you.
-He has no name. Everyone calls him Young Master.
+He has no name. The clan calls him Young Master. Everyone else, in fear, calls him Kuro Oni.
 
 ---
 
@@ -81,7 +81,7 @@ Kill him!
 They rush him, one at a time. He hits each once and straightens his sleeve. His eyes turn full white. He slips every blow. He walks through the fire, a black shape. Nobody can touch him.
 
 ENEMY
-(crawling back)
+(crawling back, in fear)
 Kuro Oni... the Black Oni.
 
 The last twenty rush him. He throws one straight punch. The rain splits.
@@ -114,12 +114,12 @@ Young Master.
 
 He could kill her in one move. He looks at her smile, and he does not. He sinks to one knee.
 
-GOJO (V.O.)
+YOUNG MASTER (V.O.)
 I fought for a name my father never gave me.
 
 He looks up at her. She turns away.
 
-GOJO
+YOUNG MASTER
 (a whisper)
 ...Damn it.
 
@@ -127,11 +127,11 @@ His eyes close. Black.
 
 ---
 
-**EXT. UNKNOWN PLACE - DAWN (FIRST-PERSON VIEW: we see through Gojo's eyes)**
+**EXT. UNKNOWN PLACE - DAWN (FIRST-PERSON VIEW: we see through his eyes)**
 
 Black. A heartbeat. His eyes open: the picture is blurry, then it sharpens. We are lying in grass, looking up at a pink sky with two moons. Floating lights drift by.
 
-GOJO (V.O.)
+YOUNG MASTER (V.O.)
 No clan. No mother. No name.
 
 He sits up. The view turns: a castle on a hill, and the edge of an unknown town. He looks down at his own hands (we see them, empty).

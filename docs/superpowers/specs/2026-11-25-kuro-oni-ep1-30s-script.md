@@ -1,5 +1,6 @@
 # KURO ONI, Episode 1: 30-second script (hook, context, reveal)
 
+Naming rule: the story never gives him a name. The clan says "Young Master" to his face. Everyone else, in fear, calls him "Kuro Oni".
 Structure: HOOK (0-3 s) shows the biggest image first. CONTEXT (3-19 s) tells who he is and what he wants. REVEAL (19-30 s) is the betrayal and the new world.
 About 38 words of dialogue and narration.
 
@@ -11,7 +12,7 @@ About 38 words of dialogue and narration.
 Fires. A hundred men in black suits around one man in a black cloak, his face blank. One straight punch. The rain splits.
 
 NARRATOR (V.O.)
-A hundred men. One man.
+A hundred men. One man. They call him Kuro Oni, the Black Oni, out of fear.
 
 ## CONTEXT (3-19 s)
 
@@ -43,6 +44,7 @@ He fought for one thing: his father's voice saying his name.
 His eyes go full white. He slips every blow, one against a hundred. Every clan leader kneels.
 
 ENEMY
+(whispering, in fear)
 Kuro Oni...
 
 ## REVEAL (19-30 s)
@@ -57,7 +59,7 @@ Young Master.
 **INT. YAMAZAKI HOUSE (22-24 s)**
 He looks at her smile and does not fight back. He sinks to one knee.
 
-GOJO
+YOUNG MASTER
 ...Damn it.
 
 Black.

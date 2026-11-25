@@ -42,6 +42,9 @@ Everyone calls him "Young Master". His goal is to be acknowledged by his father 
 - Everyone calls him "Young Master": the clan, the master and his mother.
 - The episode ends with him waking in an unknown place and seeing people use fire magic, then TO BE CONTINUED. The knight fight and the self-naming "Gojo" scene are cut.
 
+## Naming rule (user, latest): the name "Gojo" is deleted from the story
+No character is ever called Gojo on screen or in the credits. The hero has NO name. The clan, the master and his mother call him "Young Master". Everyone else calls him "Kuro Oni" (the Black Oni), in fear. "Gojo" and "Gojo (name)" in the notes below are only the old working name and must be read as "the Young Master". The self-naming scene is gone.
+
 ## LATEST CHANGES (supersede anything below): script v2 is the source of truth
 - The poison is removed. The mother kills Gojo with a katana while he sleeps (black bone stops a katana only while he is awake and braced; asleep it is off). He does not fight back, for her smile. Last word: "...Damn it."
 - "Emperor Eye" is renamed the **Demonic Eye**.
