@@ -51,6 +51,8 @@ BODY = {
     # children: slim, soft, no muscle definition (no muscle or height targets)
     "kid_m": {"asian-male-young.target": 0.8, "caucasian-male-young.target": 0.2,
               "universal-male-young-averagemuscle-minweight.target": 0.55},
+    "kid_lean": {"asian-male-young.target": 0.85, "caucasian-male-young.target": 0.15,          # a thin, wiry boy
+                 "universal-male-young-averagemuscle-minweight.target": 1.0},
     "kid_f": {"asian-female-young.target": 0.8, "caucasian-female-young.target": 0.2,
               "universal-female-young-averagemuscle-minweight.target": 0.5},
     "m_heavy": {"asian-male-young.target": 0.5, "african-male-young.target": 0.2, "caucasian-male-young.target": 0.3,
