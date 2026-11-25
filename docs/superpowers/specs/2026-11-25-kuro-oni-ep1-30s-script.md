@@ -12,7 +12,7 @@ About 38 words of dialogue and narration.
 Fires. A hundred men in black suits around one man in a black cloak, his face blank. One straight punch. The rain splits.
 
 NARRATOR (V.O.)
-A hundred men. One man. They call him Kuro Oni, the Black Oni, out of fear.
+He defeated a hundred men, alone. They call him Kuro Oni, the Black Oni, out of fear.
 
 ## CONTEXT (3-19 s)
 
