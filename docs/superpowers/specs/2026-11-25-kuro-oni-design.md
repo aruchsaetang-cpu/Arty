@@ -125,6 +125,11 @@ Prototype note: the 3D prototype uses a placeholder woman in a yellow coat (not 
 Tall, lean, long black hair worn loose past the shoulders with strands over the face, a sharp tired face, dark eyes. Black kimono with a dark obi, a long black cloak or haori over the shoulders, dark stripe bands on both forearms and wrists, one hand at his collar. Calm and dangerous. Style reference only; we build an original model.
 Proposed role (my call, needs the user's yes): in shot 2 (the kid in the hall) the father stands apart from the elders, arms folded, and is the only one who is not afraid of the child's eyes. Fate (user): he is dead, killed in the clan war, before the story's present. My calls: Gojo takes his black cloak and the leadership, and fights every clan to end the war by uniting Korea.
 
+## Fear look (user ref image): how an enemy sees Gojo
+Whenever an opponent looks at Gojo, cut to the enemy's point of view: an extreme low angle looking up, the whole background one flat blood red, Gojo's face almost entirely in black shadow (a hard ink shadow across the eyes and the upper face), his hair a black mass with a few loose strands, only the lit lower face and neck visible in dark red tones, and ONE white eye glowing like a slit (the Emperor Eye). No smile, no movement but a slow breath. Hold it 8-12 frames, with the sound dropping to a low sub tone. The enemy's own shot shows his hands shaking or his eyes wide.
+Use at: shot 5 (the 100 fighters see him), shot 6 (before the first fighter rushes), shot 8 (the Oni shadow beat), shot 9 (each count), and shot 18 (the knight in the fantasy world). Never on the mother: her calm is the scare.
+Prototype note: the 3D prototype does not have this look yet; it is added in the full version (red flat background plus a hard shadow across the face).
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
