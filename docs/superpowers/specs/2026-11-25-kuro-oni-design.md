@@ -18,25 +18,39 @@ stands for Ultra Instinct. Story: newborn -> kid -> teen -> the leadership fight
 ## Non-goals / anti-goals
 Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it before it happens", not as glowing aura spam.
 
-## Storyboard (30 fps, 1200 frames)
+## Storyboard v2 (60 s, 30 fps, 1800 frames)
+Background setting (Yamazaki clan) -> truck -> reincarnated as a human in a sword-and-magic world; he keeps the black eyes and Ultra Instinct.
+
+### Part 1: the clan (0-34 s)
 | # | Time | Shot | Action | Sound |
 |---|------|------|--------|-------|
-| 1 | 0.0-2.5 | Black, extreme close-up | Newborn eyes open: black sclera, white iris | Heartbeat only |
-| 2 | 2.5-6.0 | Clan hall, low angle | Kid Gojo. Elders stare, silence. An elder drops a cup; the kid's eyes follow it before it falls | Silence, cup shatter late |
-| 3 | 6.0-9.0 | Dojo, medium | Teen Gojo. Staff swings at his head, he does not move; it stops an inch away. Elders whisper | Wood creak, whispers |
-| 4 | 9.0-12.0 | Hall, lantern light | The rival (the Challenger) claims the leadership. Gojo stands. Rain starts | Rain rises |
-| 5 | 12.0-14.0 | Courtyard, wide, rain | Face-off. Lanterns, clan in a ring, nobody moves | Rain only |
-| 6 | 14.0-16.0 | Eye extreme close-up | Challenger lunges. The white iris contracts. Sound cuts out | Total silence |
-| 7 | 16.0-19.0 | Slow motion, orbit | Gojo slips the first strike, hands still. Afterimage trail | Muffled, heartbeat |
-| 8 | 19.0-22.0 | Medium tracking | Three-hit combo. Gojo moves a few centimetres each time. The Challenger breathes harder | Breath, cloth |
-| 9 | 22.0-25.0 | Challenger's POV | Feint. Gojo moves early. His shadow on the wall shows a horned Oni silhouette | Low drone |
-| 10 | 25.0-28.0 | Wide, low | Dread beat: the Challenger lands one hit. Gojo's head snaps, blood in the rain. The ring gasps | Hit, ring |
-| 11 | 28.0-31.0 | Eye close-up, then wide | Both eyes full white. He reacts before the next strike. One counter-punch, a shockwave parts the rain | Silence, then one hit |
-| 12 | 31.0-34.0 | Wide | Challenger on his knees. The elders bow, Gojo does not look at them | Rain, bells |
-| 13 | 34.0-37.0 | Adult, walking away | Adult Kuro Oni walks alone through rain, eyes glowing | Footsteps |
-| 14 | 37.0-40.0 | Extreme close-up eyes | Whisper line, title "KURO ONI" | Whisper, last hit |
+| 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris | Heartbeat |
+| 2 | 2.5-6 | Clan hall, low angle | Kid Gojo. Elders stare. A cup drops; his eyes follow it before it falls | Silence, late shatter |
+| 3 | 6-8.5 | Dojo, medium | Teen. A staff stops an inch from his head, he never moved | Wood, whispers |
+| 4 | 8.5-11 | Hall, lanterns | The rival claims leadership. Gojo stands. Rain starts | Rain rises |
+| 5 | 11-13 | Courtyard, wide | Face-off in a ring of the clan | Rain |
+| 6 | 13-14.5 | Eye extreme close-up | Lunge. Iris contracts. All sound cuts | Silence |
+| 7 | 14.5-17.5 | Slow motion, orbit | Slips the first strike, afterimage | Muffled heartbeat |
+| 8 | 17.5-20.5 | Tracking | Three-hit combo, a few centimetres each | Breath, cloth |
+| 9 | 20.5-23 | Rival POV | Feint, Gojo moves early, horned Oni shadow on the wall | Low drone |
+| 10 | 23-26 | Wide, low | He takes one hit. Blood in the rain. The ring gasps | Hit |
+| 11 | 26-29.5 | Eyes, then wide | Eyes go full white, reacts early, one counter, shockwave parts the rain | Silence, one hit |
+| 12 | 29.5-34 | Wide, then back | Rival kneels, elders bow, Gojo walks out of the gate | Bells |
 
-Scare beats: 1 (heartbeat in black), 6 (sound cut), 9 (Oni shadow), 10 (he can be hurt), 14 (title hit).
+### Part 2: the truck (34-40 s)
+| 13 | 34-37 | Street at night, rain, adult Gojo walking | Headlights flare behind him. His eyes see it, but his body is tired and does not move | Engine rises |
+| 14 | 37-40 | Hit, then black | Truck hit, shot cut to black. Heartbeat stops | Impact, then silence |
+
+### Part 3: the fantasy world (40-60 s)
+| 15 | 40-43 | Black, eye close-up | The same shot as 1: eyes open (black sclera, white iris), now a human face | Heartbeat returns |
+| 16 | 43-47 | Meadow at dawn, pull-back | Young Gojo wakes in the grass. Floating lights, a castle, two moons. He looks at his hands | Wind, chimes |
+| 17 | 47-51 | Road, medium | A mage hurls a fireball at him. His eyes track it before the cast. Slow motion | Muffled |
+| 18 | 51-55 | Slow motion, orbit | He slips the fireball with afterimage, steps in, one counter-punch. The mage falls back | Hit |
+| 19 | 55-57 | Mage close-up | Mage, terrified: "Black-eyed demon" (subtitle) | Whisper |
+| 20 | 57-60 | Extreme close-up eyes, title | "KURO ONI" | Whisper, last hit |
+
+Scare beats: 1, 6, 9, 10, 14 (the cut to black), 19, 20.
+Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering, restarted every 2 h).
 
 ## Open questions for the user
 Opponent identity, win or lose, whether the clan hall is a hall or a street.
