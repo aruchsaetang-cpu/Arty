@@ -11,7 +11,7 @@ And two arts he learned from his master.
 Kyokushin karate: hard. It breaks.
 Aikido: soft. It turns your force against you.
 He defeated an army alone. But he never felt fulfilled.
-He has no name. The clan calls him Young Master.
+His father never gave him a name. The clan calls him Young Master.
 
 ---
 

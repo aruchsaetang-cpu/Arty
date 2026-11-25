@@ -20,7 +20,7 @@ He defeated an army alone. But he never felt fulfilled.
 Thirty clan members kneel. A thin boy stands before them. His eyes are black with white irises: the Demonic Eye, the mark of a clan leader. (Black bone: a short flash of a steel-hard shin.) His father sits slumped to one side and will not look at him.
 
 NARRATOR (V.O.)
-He was born with the Demonic Eye, the mark of a clan leader, and with black bone. But no name. They only called him Young Master.
+He was born with the Demonic Eye, the mark of a clan leader, and with black bone. But his father never gave him a name. They only called him Young Master.
 
 **EXT. YAMAZAKI GATE - DAY (6-8 s)**
 Children play outside. He steps toward them. His mother slaps him.

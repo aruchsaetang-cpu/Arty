@@ -6,7 +6,7 @@ The narrator speaks through the whole clip, 0:00 to 0:29, with no gap. The chara
 |---|---|---|
 | 0:00 | NARRATOR | He defeated an army alone. But he never felt fulfilled. |
 | 0:03 | NARRATOR | He was born with the Demonic Eye, the mark of a clan leader, and with black bone. |
-| 0:05 | NARRATOR | But no name. They only called him Young Master. |
+| 0:05 | NARRATOR | But his father never gave him a name. They only called him Young Master. |
 | 0:06 | MOTHER | Young Master, a future clan leader will not play with those kids. |
 | 0:08 | MASTER | I can't believe you've mastered it already, Young Master. |
 | 0:10 | NARRATOR | Hard like karate. Soft like aikido. |
