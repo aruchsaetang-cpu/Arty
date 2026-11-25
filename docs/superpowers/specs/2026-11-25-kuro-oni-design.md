@@ -11,7 +11,7 @@ stands for Ultra Instinct. Story: newborn -> kid -> teen -> the leadership fight
 - Wants the fight scene designed first (storyboard). Scare "like a real one".
 
 ## Story point (user)
-In ep 1 Gojo is betrayed by his own clan.
+In ep 1 Gojo is betrayed by his own mother.
 
 ## Abilities (given by the user)
 - **Emperor Eye / Ultra Instinct:** black sclera, white iris; very fast reflexes, he reacts before the strike.
@@ -29,39 +29,39 @@ Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it
 ## Storyboard v2 (60 s, 30 fps, 1800 frames)
 Background setting (Yamazaki clan) -> truck -> reincarnated as a human in a sword-and-magic world; he keeps the black eyes and Ultra Instinct.
 
-### Part 1: the clan (0-34 s)
+### Part 1: the clan war (0-34 s)
+Story (user): Gojo is the strongest Yamazaki in history and the clan leader who fought every clan in Korea and united them all into one. His own mother betrays him because of that power. The fight must look cool, like a Lookism fight, with several martial arts.
 | # | Time | Shot | Action | Sound |
 |---|------|------|--------|-------|
-| 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris | Heartbeat |
-| 2 | 2.5-6 | Clan hall, low angle | Kid Gojo. Elders stare. A cup drops; his eyes follow it before it falls | Silence, late shatter |
-| 3 | 6-8.5 | Dojo, medium | Teen. A staff stops an inch from his head, he never moved | Wood, whispers |
-| 4 | 8.5-11 | Hall, lanterns | The rival claims leadership. Gojo stands. Rain starts | Rain rises |
-| 5 | 11-13 | Courtyard, wide | Face-off in a ring of the clan | Rain |
-| 6 | 13-14.5 | Eye extreme close-up | Lunge. Iris contracts. All sound cuts | Silence |
-| 7 | 14.5-17.5 | Slow motion, orbit | Slips the first strike, afterimage | Muffled heartbeat |
-| 8 | 17.5-20.5 | Tracking | Rival's three-hit combo; Gojo slips two with tiny moves, blocks the third with his shin: a metal clang (black bone) and the rival's face changes | Breath, clang |
-| 9 | 20.5-23 | Rival POV | Feint, Gojo moves early, horned Oni shadow on the wall | Low drone |
-| 10 | 23-26 | Wide, low | The rival lands a hit on Gojo's ribs: a steel ring, the rival's fist cracks and he screams. Gojo only breathes out; he did not even try to dodge | Steel ring, crack |
-| 11 | 26-29.5 | Eyes, then wide | Eyes go full white, reacts early, one Kyokushin straight punch (gyaku-zuki) from a low stance, shockwave parts the rain | Silence, one hit |
-| 12 | 29.5-34 | Wide, then back | Rival kneels. The elders bow, one lifts his head just enough to smile. An elder hands Gojo the victory cup of tea; he drinks, then walks out of the gate | Bells, then a low drone |
+| 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris. His mother's smiling face leans in | Heartbeat, lullaby hum |
+| 2 | 2.5-5.5 | Clan hall, low angle | Kid Gojo, his mother holds his hand. Elders stare. A cup drops, his eyes follow it before it falls | Silence, late shatter |
+| 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone) | Crack, breath |
+| 4 | 8-11 | Map of Korea, fast cuts | Clan banners fall one by one across the country: every clan he fought. Rain begins | Drums |
+| 5 | 11-14 | Rain street, wide | **Fight 1, Muay Thai:** knees and elbows in the clinch. Gojo checks a knee with his shin: steel clang. Rival's face changes | Clang |
+| 6 | 14-17 | Medium, tracking | **Fight 2, judo/wrestling:** a grappler grabs and tries to throw him; Gojo does not move (black bone), low kick drops him | Heavy thud |
+| 7 | 17-20 | Eye close-up, slow motion | **Fight 3, boxing:** a blur of punches. Sound cuts out, eyes full white (Ultra Instinct), he slips five, afterimage, one body blow | Silence, one hit |
+| 8 | 20-24 | Orbit, low | **Fight 4, taekwondo/capoeira:** spinning high kicks and flips; he sees each before the hip turns. His shadow on the wall is a horned Oni. A Kyokushin front kick ends it | Drone, hit |
+| 9 | 24-28 | One long orbit, wide | **All the clans at once:** five fighters with five arts come at him; he flows through them in a single camera move, then one straight punch (gyaku-zuki) and a shockwave parts the rain | Silence, big hit |
+| 10 | 28-31 | Wide | Every clan leader kneels. Korea is one. Gojo stands, steam in the rain | Bells |
+| 11 | 31-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
 
 ### Part 2: the truck (34-40 s)
-| 13 | 34-37 | Street at night, rain, adult Gojo walking | His steps slow, the poison from the tea. Headlights flare. His eyes see the truck and the clan crest on the driver's sleeve; he knows, but his body won't answer | Engine rises |
-| 14 | 37-40 | Hit, then black | The truck hits him. Black bone stops blades, not a truck on a poisoned body. Cut to black, heartbeat stops | Impact, then silence |
+| 12 | 34-37 | Street at night, rain, adult Gojo walking | His steps slow, the poison from the tea. Headlights flare. His eyes see the truck and his mother's clan crest on the driver's sleeve; he understands, but his body won't answer | Engine rises |
+| 13 | 37-40 | Hit, then black | The truck hits him. Black bone stops blades, not a truck on a poisoned body. Cut to black, heartbeat stops | Impact, then silence |
 
 ### Part 3: the fantasy world (40-60 s)
-| 15 | 40-43 | Black, eye close-up | The same shot as 1: eyes open (black sclera, white iris), now a human face | Heartbeat returns |
-| 16 | 43-47 | Meadow at dawn, pull-back | Young Gojo wakes in the grass. Floating lights, a castle, two moons. He looks at his hands | Wind, chimes |
-| 17 | 47-51 | Road, medium | A mage hurls a fireball at him. His eyes track it before the cast. Slow motion | Muffled |
-| 18 | 51-55 | Slow motion, orbit | He slips the fireball with afterimage, steps in, one Kyokushin counter-punch (the same stance as in the clan). The mage falls back | Hit |
-| 19 | 55-57 | Mage close-up | Mage, terrified: "Black-eyed demon" (subtitle) | Whisper |
-| 20 | 57-60 | Extreme close-up eyes, title | "KURO ONI" | Whisper, last hit |
+| 14 | 40-43 | Black, eye close-up | The same shot as 1: eyes open (black sclera, white iris), now a human face | Heartbeat returns |
+| 15 | 43-47 | Meadow at dawn, pull-back | Young Gojo wakes in the grass. Floating lights, a castle, two moons. He looks at his hands | Wind, chimes |
+| 16 | 47-51 | Road, medium | A mage hurls a fireball at him. His eyes track it before the cast. Slow motion | Muffled |
+| 17 | 51-55 | Slow motion, orbit | He slips the fireball with afterimage, steps in, one Kyokushin counter-punch (the same stance as in the clan). The mage falls back | Hit |
+| 18 | 55-57 | Mage close-up | Mage, terrified: "Black-eyed demon" (subtitle) | Whisper |
+| 19 | 57-60 | Extreme close-up eyes, title | "KURO ONI" | Whisper, last hit |
 
-Scare beats: 1, 6, 9, 10, 12 (the elder's smile), 14 (the cut to black), 19, 20.
+Scare beats: 7 (sound cut), 8 (Oni shadow), 11 (the mother's unchanged smile), 13 (cut to black), 18, 19.
 Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering, restarted every 2 h).
 
 ## Open design point
-Betrayal (user: in ep 1 the clan betrays him). My call: the elders fear a leader this strong, so they poison the victory tea and send a truck, since blades cannot cut black bone. He sees it coming (Emperor Eye) but cannot move. The traitor is the elders; the user may name someone specific (a father, a brother). Needs the user's yes.
+Betrayal (user): his own mother, because he is the strongest Yamazaki in history and the leader who united every clan in Korea. My calls: she poisons the victory tea and sends the truck (blades cannot cut black bone); she is the warmth in shots 1-2, so the smile in 11 lands as the scare. Needs the user's yes.
 
 ## Open questions for the user
 Opponent identity, win or lose, whether the clan hall is a hall or a street.
