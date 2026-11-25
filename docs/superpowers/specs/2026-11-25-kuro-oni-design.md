@@ -78,6 +78,36 @@ The two clips (vertical, 10.7 s and 11.5 s) are the sound and impact reference. 
 - Hand-drawn on-twos feel (12 drawings per second) with a heavy ink or halftone texture on the skin.
 Sound (I cannot hear the clips; this is from the waveform): dense bright hits, the spectral centre falls from about 4 kHz on the first hits to about 1 kHz on the heavy tail, peaks about 0.6-0.75. Plan: use the clips' own audio as the impact bed, layered with the sub drop from the impact rule. The source audio licence is unknown: fine for a private reference cut, check before publishing.
 
+## Gojo's martial art: Yamazaki Kyokushin + Aikido (hard and soft)
+Research note: I could not confirm that any Lookism character is canonically a Kyokushin or aikido user (Vin Jin's style is Kudo/judo and ssireum; Daniel Park copies moves). So this is a design built from the real arts, not a Lookism fact. Marked as my design.
+
+**Principle:** Kyokushin is the hard half (full contact, break the opponent). Aikido is the soft half (never meet force with force, turn the attacker's own force against him). Gojo shows both in every sequence: a calm, small redirect (soft), then one huge hit (hard). That contrast is the aura.
+
+**Kyokushin moves (hard), the poses to animate:**
+- Stances: sanchin-dachi (hourglass stance, feet pigeon-toed, knees in) as his idle; kiba-dachi (horse stance) when he takes a hit; zenkutsu-dachi (long forward stance) for the finisher.
+- Gyaku-zuki: reverse straight punch from the rear hand, hip rotation, the big finisher.
+- Mawashi-geri gedan: low roundhouse kick to the thigh, and the shin-on-shin block that rings like steel (black bone).
+- Hiza-geri: knee strike in the clinch.
+- Mae-geri: front kick to the chest.
+- Ibuki: the forced exhale through the nose, with the stomach tight, before he takes a hit.
+- Kata: sanchin (slow, tense) in the teen dojo shot.
+
+**Aikido moves (soft):**
+- Irimi (enter) and tenkan (turn): step into or around the line of the attack; he is never where the hit lands.
+- Kote-gaeshi: wrist throw; the attacker flips himself.
+- Irimi-nage: the entering throw, arm across the neck and chest.
+- Shiho-nage: four-direction throw with the arm over the head.
+- Ikkyo and nikyo: arm pins and wrist locks for the 'hands in pockets' beat.
+- Redirect: one attacker's punch pulls him into the next attacker.
+
+**Where each appears (war fight, shots 5-9):**
+- 6: tenkan plus kote-gaeshi (soft), straighten sleeve.
+- 6: mawashi-geri gedan (hard) into a charging fighter; the shin rings.
+- 8: silhouette walk, irimi through the crowd; no strikes, only redirects.
+- 9: one gyaku-zuki from zenkutsu-dachi, with the full impact rule.
+
+**Build note:** these are the hardest animations in the film (feet planted, hip rotation, hand paths). Use the strongest model for the choreography, and plant every foot with IK as in the Aura Monster rig.
+
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
