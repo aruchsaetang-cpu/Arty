@@ -1944,9 +1944,9 @@
     "semantic_hash": ""
   },
   "lookdev/character_mh.py": {
-    "mtime": 1795527912.2915862,
-    "seen": 1795600524.3081949,
-    "ast_hash": "994b01a445350be8340bd8dbbdb993e6",
+    "mtime": 1795608569.739666,
+    "seen": 1795610771.057197,
+    "ast_hash": "65fca4daa76a3837f859f4899461d9b4",
     "semantic_hash": ""
   },
   "lookdev/city.py": {
@@ -7776,15 +7776,15 @@
     "semantic_hash": ""
   },
   "shorts/kuro_oni/compose.py": {
-    "mtime": 1795600256.0706997,
-    "seen": 1795600524.3083174,
-    "ast_hash": "45083c3740a207eef2b0d334486012bb",
+    "mtime": 1795603972.2280962,
+    "seen": 1795610771.0573032,
+    "ast_hash": "f85bac6bd5e07f8d4713df759ecc2743",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/film.py": {
-    "mtime": 1795600239.4021347,
-    "seen": 1795600524.3083196,
-    "ast_hash": "561e8c3be5d1743c65c8b64202756000",
+    "mtime": 1795608569.7403326,
+    "seen": 1795610771.0573072,
+    "ast_hash": "43ad359b042bc457ea770d45a6f0e6a3",
     "semantic_hash": ""
   },
   "shorts/kuro_oni/proto.py": {
@@ -7794,9 +7794,9 @@
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-11-25-kuro-oni-design.md": {
-    "mtime": 1795599343.314624,
-    "seen": 1795600524.308972,
-    "ast_hash": "494e1a0a963a2fac80c89bbf75faa1e8",
+    "mtime": 1795609428.2752912,
+    "seen": 1795610771.058138,
+    "ast_hash": "9ca1c75d5d26d40d61e90461a6f6132f",
     "semantic_hash": ""
   },
   "shorts/aura/out/preview_half.mp4": {
@@ -7821,6 +7821,66 @@
     "mtime": 1795599249.4001634,
     "seen": 1795600524.3093214,
     "ast_hash": "7e9e138e8637a178aa6b0b7a1e213c3f",
+    "semantic_hash": ""
+  },
+  "lookdev/kimono.py": {
+    "mtime": 1795610744.0854776,
+    "seen": 1795610771.0572128,
+    "ast_hash": "daa9b35c80c584b08021c87582412f1d",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/compose30.py": {
+    "mtime": 1795609428.2741673,
+    "seen": 1795610771.0573046,
+    "ast_hash": "27d6b056a39fb2243b7859a752ee904a",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/film30.py": {
+    "mtime": 1795609186.494959,
+    "seen": 1795610771.0573092,
+    "ast_hash": "4c804ba44d89eb7039a9cb4b48ec4c97",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/film_v1.py": {
+    "mtime": 1795600239.4021347,
+    "seen": 1795610771.057311,
+    "ast_hash": "561e8c3be5d1743c65c8b64202756000",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-ep1-30s-script.md": {
+    "mtime": 1795607388.0451708,
+    "seen": 1795610771.0581393,
+    "ast_hash": "84b9d2d49a55c66c3cf2423b9d0b22d3",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-ep1-30s-voice-script.md": {
+    "mtime": 1795607388.0320728,
+    "seen": 1795610771.058141,
+    "ast_hash": "731416e9b3aed93651902886abb7cad9",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-ep1-pure-script.md": {
+    "mtime": 1795607388.0456405,
+    "seen": 1795610771.058142,
+    "ast_hash": "07b31135cf27bab307f6cb9f85398d4d",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-ep1-script.md": {
+    "mtime": 1795606851.5601056,
+    "seen": 1795610771.058143,
+    "ast_hash": "96d5ce08261a747f9473cff1c13e631a",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-11-25-kuro-oni-real-version-plan.md": {
+    "mtime": 1795610570.8143985,
+    "seen": 1795610771.0581443,
+    "ast_hash": "9d40fc180b2a8752373aff685d917f61",
+    "semantic_hash": ""
+  },
+  "shorts/kuro_oni/out/proto3d_half.mp4": {
+    "mtime": 1795604040.356129,
+    "seen": 1795610771.058582,
+    "ast_hash": "b7962c6643a0e7e3c4052ad42ab42589",
     "semantic_hash": ""
   }
 }

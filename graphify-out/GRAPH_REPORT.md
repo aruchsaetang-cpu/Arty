@@ -1,17 +1,17 @@
 # Graph Report - Arty  (2026-11-25)
 
 ## Corpus Check
-- 837 files · ~1,094,589 words
+- 846 files · ~1,111,499 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 197 file(s) not represented in the graph (top: .target 82, .woff2 68, .toml 20)
 
 ## Summary
-- 7848 nodes · 11796 edges · 608 communities (503 shown, 105 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 231 edges (avg confidence: 0.86)
+- 7988 nodes · 12072 edges · 626 communities (519 shown, 107 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 239 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0d974e90`
+- Built from commit: `904096ff`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -55,7 +55,7 @@
 - Anti-Patterns
 - sprint_status.py
 - Card Morph Anchor
-- wait-bgm.mjs
+- tts.mjs
 - Failure Modes — learned the hard way
 - render_skill.py
 - Step 3: Generate Epics and Stories
@@ -125,16 +125,15 @@
 - Workflow
 - CLIMAX entrances
 - house-style.md
-- Kuro Oni: Emperor Eye origin short (design, DRAFT for approval)
+- Kuro Oni: Demonic Eye origin short (design, DRAFT for approval)
 - music-to-video/scripts/assemble-index.mjs
-- Story design — PR → narrative
+- kuro_oni/film_v1.py
 - make-composition.cjs
 - faceless-explainer/scripts/audio.mjs
 - cutlist.mjs
 - pr-to-video/scripts/audio.mjs
 - ScannerTest
 - Setup, Adoption, and Refresh Steps
-- embedded-captions/SKILL.md
 - The 10 moves
 - lib-dna.cjs
 - preview-frames.cjs
@@ -143,7 +142,7 @@
 - transcribe.mjs
 - music-to-video/scripts/lib/storyboard.mjs
 - product-launch-video/scripts/audio.mjs
-- cel
+- Aura Monster: handoff (project memory and work done)
 - Step 4: Final Validation
 - Embedded Captions
 - verify-motion.mjs
@@ -153,7 +152,7 @@
 - Standalone HyperFrames Slideshow Harness
 - r
 - posed
-- G
+- test_lint_spine.py
 - multi-phase-camera.md
 - Chromatic Glitch
 - Typewriter
@@ -366,13 +365,15 @@
 - 3D Page Scroll
 - Anchored Layout Expand
 - Part 1 — the move vocabulary
-- pr-to-video/SKILL.md
+- Part 2 — the motion doctrine (load-bearing)
+- Frame worker — PR-to-video delta
 - Depth-of-Field Blur (Selective Focus / Rack Focus)
+- film30.py
 - product-launch-video/scripts/audio.test.mjs
 - film_camera.py
 - Orbit with 3D Entry
 - Transition Registry — machine source of truth
-- natural_locks
+- cel
 - Pitch round — the intent layer's divergent step
 - Registry discovery
 - numpy
@@ -395,6 +396,7 @@
 - Headless Mode
 - Template: portrait-header
 - Typography Presets
+- git_evidence.py
 - Frame worker — general-video delta
 - Sine Wave Loop (subtle jitter / bounded ambient)
 - Dissolve
@@ -425,6 +427,7 @@
 - Transitions translation: @remotion/transitions → HF crossfades / shader-transitions
 - la
 - 7. Decide Render Strategy
+- extract-audio-data.py
 - Visual design — faceless-explainer per-frame shot method
 - ib
 - ib
@@ -433,6 +436,8 @@
 - Finalize: Retrospective Document and Sprint Status
 - Excalidraw Wireframe Renderer
 - Creative Tools
+- void_eye_mat
+- DNA registry — pick a visual language, not a preset
 - render-and-composite.sh
 - Cover
 - Light
@@ -599,6 +604,7 @@
 - Yb
 - Xb
 - Yb
+- pil
 - proto.py
 - film.py
 - make-theme.test.mjs
@@ -606,66 +612,77 @@
 - shop_dressing
 - walk_stop.py
 - Brief contract
-- Storyboard format — `STORYBOARD.md` + parsed manifest
+- animation-map.test.mjs
+- KURO ONI, Episode 1: script v2 (60 s, vertical)
 - diagnostics.md
 - profile.md
+- sound
 - Animation and Timelines
+- shots
+- sound
 - Cinematic mode (pure embed) — one engine, six DNAs
 - after_done.sh
 - Physics Integration
 - Postprocessing Pipelines
 - Scenes, Cameras, and Math
 - 3D Testing and Visual QA
+- HyperFrames Creative
+- KURO ONI, Episode 1: 30-second script (hook, context, reveal)
 - Batch
+- KURO ONI Ep 1: the real version (30 s): plan
+- _MathAim
+- THE CATALOG — one front-end, three engines behind
+- KURO ONI
+- 2026-11-25-kuro-oni-ep1-30s-voice-script.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `_run()` - 66 edges
 2. `_json()` - 53 edges
 3. `build()` - 39 edges
-4. `main()` - 35 edges
-5. `_write_fixture()` - 26 edges
-6. `esc()` - 26 edges
-7. `lin()` - 25 edges
-8. `_json()` - 25 edges
-9. `_proc()` - 24 edges
-10. `G` - 21 edges
+4. `Kuro Oni: Demonic Eye origin short (design, DRAFT for approval)` - 35 edges
+5. `main()` - 35 edges
+6. `_write_fixture()` - 26 edges
+7. `esc()` - 26 edges
+8. `lin()` - 25 edges
+9. `_json()` - 25 edges
+10. `cel()` - 24 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `2. Characters (never redesign)` --references--> `void_eye_mat()`  [INFERRED]
   .claude/skills/blender/SKILL.md → lookdev/character_mh.py
 - `Timeline Pattern` --references--> `add()`  [INFERRED]
   .claude/skills/hyperframes-animation/adapters/animejs.md → videos/gelato-trailer/scripts/score.py
-- `5. Manhwa look (keep it)` --references--> `real_mat()`  [INFERRED]
-  .claude/skills/blender/SKILL.md → lookdev/character_mh.py
 - `4. Everything that was built/changed (so it is not redone)` --references--> `void_eye_mat()`  [INFERRED]
   HANDOFF.md → lookdev/character_mh.py
 - `4. Coat and hair motion` --references--> `add_cloth_motion()`  [INFERRED]
+  .claude/skills/blender/SKILL.md → lookdev/character_mh.py
+- `5. Manhwa look (keep it)` --references--> `real_mat()`  [INFERRED]
   .claude/skills/blender/SKILL.md → lookdev/character_mh.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (608 total, 105 thin omitted)
+## Communities (626 total, 107 thin omitted)
 
 ### Community 0 - "ref_node_fs"
-Cohesion: 0.03
-Nodes (56): gate, gateEnd, gateStart, source, presetsDir, skins, buildFramePackets(), buildRolePayload() (+48 more)
+Cohesion: 0.04
+Nodes (47): gate, gateEnd, gateStart, source, presetsDir, skins, HERE, HERE (+39 more)
 
 ### Community 1 - "test_sprint_status.py"
 Cohesion: 0.07
 Nodes (77): _json(), _load(), _module(), _run(), test_action_items_updated_is_always_reported(), test_action_status_vocabulary_is_exactly_the_three(), test_appended_items_carry_id_and_ref(), test_atomic_write_failure_leaves_target_byte_identical() (+69 more)
 
 ### Community 2 - "kuro_oni/film.py"
-Cohesion: 0.10
-Nodes (25): animate(), ball(), box(), build_all(), constant(), crowd_action(), lie(), dummy() (+17 more)
+Cohesion: 0.15
+Nodes (24): animate(), ball(), box(), build_all(), constant(), dummy(), ease(), F() (+16 more)
 
 ### Community 3 - "Code editorial — Frame (video / frame layer)"
-Cohesion: 0.08
-Nodes (24): 1 · Cover (identity · move: oversized EB Garamond · cream), 2 · Statement (statement · move: single EB Garamond line · cream or navy), 3 · Code Surface (code · move: warm-navy code window · the PR-critical frame), 4 · Number / Impact (data · move: oversized figure · cream), 5 · Pull-quote (quote · move: EB Garamond italic · cream), 6 · Closing / CTA (closer · move: coral voltage · cream or navy), Approved Real Entities, Aspect-Ratio Behavior (+16 more)
+Cohesion: 0.04
+Nodes (44): 1 · Cover (identity · move: oversized EB Garamond · cream), 2 · Statement (statement · move: single EB Garamond line · cream or navy), 3 · Code Surface (code · move: warm-navy code window · the PR-critical frame), 4 · Number / Impact (data · move: oversized figure · cream), 5 · Pull-quote (quote · move: EB Garamond italic · cream), 6 · Closing / CTA (closer · move: coral voltage · cream or navy), Approved Real Entities, Aspect-Ratio Behavior (+36 more)
 
 ### Community 4 - "test_git_evidence.py"
-Cohesion: 0.08
-Nodes (50): _accented_repo(), _assert_accented_path(), _binary_repo(), _fake_git(), _git(), _git_env(), _git_unchecked(), _json() (+42 more)
+Cohesion: 0.10
+Nodes (46): _accented_repo(), _assert_accented_path(), _binary_repo(), _fake_git(), _git(), _git_env(), _git_unchecked(), _json() (+38 more)
 
 ### Community 5 - "animation-map.mjs"
 Cohesion: 0.06
@@ -680,12 +697,12 @@ Cohesion: 0.06
 Nodes (28): ASR Keyword Glow, Critical Constraints, How It Works, Recipe, See also, Values, Variations, 1. Highlight Mode (+20 more)
 
 ### Community 8 - "tts.mjs"
-Cohesion: 0.05
-Nodes (57): Cloned voices — `scripts/heygen-voice.mjs`, argv, dur, output, positional, clone(), list(), main() (+49 more)
+Cohesion: 0.08
+Nodes (31): Cloned voices — `scripts/heygen-voice.mjs`, argv, dur, output, positional, clone(), list(), main() (+23 more)
 
 ### Community 9 - "city.py"
-Cohesion: 0.08
-Nodes (48): 5. Manhwa look (keep it), lin(), set_interp(), alley(), alley_frame(), area(), asphalt(), B() (+40 more)
+Cohesion: 0.07
+Nodes (50): 5. Manhwa look (keep it), lin(), real_mat(), alley(), alley_frame(), area(), asphalt(), B() (+42 more)
 
 ### Community 10 - "hyperframes-creative/scripts/package-loader.mjs"
 Cohesion: 0.07
@@ -693,19 +710,19 @@ Nodes (38): annotateFrame(), args, buildOverlaySVG(), COMP_DIR, compositeOver(),
 
 ### Community 11 - "audio/scripts/audio.mjs"
 Cohesion: 0.05
-Nodes (43): anomalies, argv, audioMeta, bgmFields, bgmModeOverride, HERE, hyperframesDir, langOverride (+35 more)
+Nodes (33): Background music (BGM), Driving it from the request, Failure modes, HeyGen retrieval (default), Local generation (fallback) — Lyria → MusicGen, Lyria knobs (direct recipe use), Mood inference (the generate prompt), anomalies (+25 more)
 
 ### Community 12 - "sprint_plan.py"
 Cohesion: 0.12
-Nodes (21): _atomic_write(), build_parser(), build_status(), classify_key(), cmd_generate(), cmd_status(), cmd_validate(), _counts() (+13 more)
+Nodes (20): _atomic_write(), build_parser(), build_status(), classify_key(), cmd_generate(), cmd_status(), cmd_validate(), _counts() (+12 more)
 
 ### Community 13 - "test_sprint_plan.py"
-Cohesion: 0.05
-Nodes (57): cats(), test_duplicate_ad_id_caught(), test_fenced_stack_heading_not_live(), test_fenced_stack_rows_not_parsed(), test_mermaid_braces_not_flagged(), test_missing_spine_file_reports_error(), test_no_frontmatter_body_still_scanned(), test_no_stack_section_ok() (+49 more)
+Cohesion: 0.11
+Nodes (42): load(), out_json(), run_generate(), run_status(), run_validate(), test_action_items_carried_verbatim(), test_argument_errors_emit_json(), test_dry_run_in_sync_after_generate() (+34 more)
 
 ### Community 14 - "Blender in this project"
-Cohesion: 0.20
-Nodes (8): 0. Before anything, 1. Runtime, 2. Characters (never redesign), 6. Rainy-street test scene, 7. GLB export -> Three.js, 8. Checklist after any animation change, Blender in this project, foot_report()
+Cohesion: 0.15
+Nodes (10): 0. Before anything, 1. Runtime, 2. Characters (never redesign), 4. Coat and hair motion, 6. Rainy-street test scene, 7. GLB export -> Three.js, 8. Checklist after any animation change, Blender in this project (+2 more)
 
 ### Community 15 - "pr-to-video/scripts/assemble-index.mjs"
 Cohesion: 0.06
@@ -744,8 +761,8 @@ Cohesion: 0.07
 Nodes (34): allowPendingBgm, anomalies, approvedVideoAttrs(), approvedVideoLayout(), argv, attrPresent(), attrValue(), attrValueFrom() (+26 more)
 
 ### Community 24 - "math"
-Cohesion: 0.15
-Nodes (24): arch_at(), build(), add(), box(), cap_quad(), cell_mat(), clamp(), _cr() (+16 more)
+Cohesion: 0.13
+Nodes (25): arch_at(), build(), add(), box(), cap_quad(), cell_mat(), clamp(), _cr() (+17 more)
 
 ### Community 25 - "Text To Speech"
 Cohesion: 0.12
@@ -768,11 +785,11 @@ Cohesion: 0.05
 Nodes (33): Archive size and `.hyperframesignore`, Authentication, cloud — HeyGen-hosted rendering (zero-infra), Fire-and-forget and webhooks, Managing renders, Render options, Safe retries, Templates and variables (+25 more)
 
 ### Community 30 - "bgm.mjs"
-Cohesion: 0.09
-Nodes (25): Background music (BGM), Driving it from the request, Failure modes, HeyGen retrieval (default), Local generation (fallback) — Lyria → MusicGen, Lyria knobs (direct recipe use), Mood inference (the generate prompt), BGM_PY_DEPS (+17 more)
+Cohesion: 0.15
+Nodes (20): BGM_PY_DEPS, generateBgmDetached(), LYRIA_PY_DEPS, lyriaKey(), musicgenScript(), pipInstall(), pyOk(), r3() (+12 more)
 
 ### Community 31 - "analyze-beatgrid.py"
-Cohesion: 0.10
+Cohesion: 0.11
 Nodes (19): analyze(), annotate_section_feel(), band_energy_curves(), beat_grid(), classify_drum(), classify_metric(), count_in(), derive_phase_budgets() (+11 more)
 
 ### Community 32 - "faceless-explainer/scripts/build-frame.mjs"
@@ -796,16 +813,16 @@ Cohesion: 0.06
 Nodes (33): Animation, Anti-Patterns, Blending, Grouping, Layout, Matting, Scene admission, The meta anti-pattern (+25 more)
 
 ### Community 37 - "sprint_status.py"
-Cohesion: 0.11
-Nodes (18): _atomic_write(), build_parser(), cmd_detect_epic(), cmd_update(), _fail(), _comment_counts(), _dump_bytes(), _emit() (+10 more)
+Cohesion: 0.12
+Nodes (16): build_parser(), cmd_detect_epic(), cmd_update(), _fail(), _comment_counts(), _dump_bytes(), _emit(), _emit_error() (+8 more)
 
 ### Community 38 - "Card Morph Anchor"
 Cohesion: 0.07
 Nodes (27): Card Morph Anchor, Critical Constraints, How It Works, Morph channels, Recipe, See also, Values, Variations (+19 more)
 
-### Community 39 - "wait-bgm.mjs"
-Cohesion: 0.11
-Nodes (10): argv, audioMeta, audioMetaPath, base, hyperframesDir, intervalMs, outPath, started (+2 more)
+### Community 39 - "tts.mjs"
+Cohesion: 0.08
+Nodes (32): geminiAuth(), geminiConfigured(), GEMINI_TTS_MODEL, GEMINI_TTS_MODELS, pcmToWav(), synthesizeGemini(), defaultProbe(), pythonCommand() (+24 more)
 
 ### Community 40 - "Failure Modes — learned the hard way"
 Cohesion: 0.07
@@ -840,8 +857,8 @@ Cohesion: 0.08
 Nodes (21): Control-Target Sync, Critical Constraints, How It Works, Recipe, See also, Values, Variations, Counting with Dynamic Scale (+13 more)
 
 ### Community 48 - "sys"
-Cohesion: 0.11
-Nodes (17): blank_fences(), find_ad_issues(), find_frontmatter_placeholders(), find_placeholders(), find_unpinned_stack(), line_of(), lint(), main() (+9 more)
+Cohesion: 0.14
+Nodes (13): blank_fences(), find_ad_issues(), find_frontmatter_placeholders(), find_placeholders(), find_unpinned_stack(), line_of(), lint(), main() (+5 more)
 
 ### Community 49 - "carve.mjs"
 Cohesion: 0.19
@@ -936,12 +953,12 @@ Cohesion: 0.25
 Nodes (8): 1 — Growth Bars (CSS `scaleY` stagger), 2 — Progress Fill, 3 — Star-Rating Fill (fractional), Critical Constraints, Recipe, See also, Stat Bars & Fills, Values
 
 ### Community 72 - "Story design — product launch video"
-Cohesion: 0.08
+Cohesion: 0.09
 Nodes (23): 1. Extract the product truth, 2. Choose the arc (the sequence backbone), 3. Lay out the beats, each with a role, 4. Write each beat's VO in its blueprint's script shape, Asset candidates, BENEFITS, BRAND_OUTRO, CTA (+15 more)
 
 ### Community 73 - "manifest.mjs"
-Cohesion: 0.10
-Nodes (46): formatDims(), formatDur(), generateIndexContent(), pad(), regenerateIndex(), allocateId(), appendRecord(), currentRecords() (+38 more)
+Cohesion: 0.05
+Nodes (63): recordInManifest(), SFX_SOURCES, noBgm, voicePaths(), writtenAssets(), record(), argv, audioMeta (+55 more)
 
 ### Community 74 - "Slideshow authoring contract"
 Cohesion: 0.08
@@ -992,7 +1009,7 @@ Cohesion: 0.14
 Nodes (12): Critical Constraints, Physics Press Reaction (Cursor + Element Synced), Recipe, See also, Values, Variations, Critical Constraints, Press-Release Spring Chain (+4 more)
 
 ### Community 86 - "prefs-store.mjs"
-Cohesion: 0.19
+Cohesion: 0.20
 Nodes (18): globalMediaDir(), mediaHome(), dedupe(), emptyFile(), isRecord(), mergedPreferences(), PREFERENCE_KEYS, preferenceKeyFor() (+10 more)
 
 ### Community 87 - "BMad Architecture"
@@ -1005,18 +1022,18 @@ Nodes (8): argv, destDir, fromAbs, fromDir, hyperframesDir, into, landed, MEDIA
 
 ### Community 89 - "test_brain.py"
 Cohesion: 0.05
-Nodes (57): _card(), categories(), category_style(), filter_cats(), find(), fmt_show(), _good_for_label(), _hsl_hex() (+49 more)
+Nodes (59): _card(), categories(), category_style(), filter_cats(), find(), fmt_categories(), fmt_list(), fmt_show() (+51 more)
 
 ### Community 90 - "QA Generate E2E Tests Workflow"
 Cohesion: 0.10
 Nodes (20): Conventions, Execution, Keep It Simple, On Activation, On Complete, Output, Paths, QA Generate E2E Tests Workflow (+12 more)
 
 ### Community 91 - "general-video/scripts/lib/frame-packets-core.mjs"
-Cohesion: 0.24
-Nodes (14): blueprintId(), buildFramePackets(), buildRolePayload(), citedRules(), escapeRegExp(), field(), flag(), frameId() (+6 more)
+Cohesion: 0.16
+Nodes (18): buildFramePackets(), buildRolePayload(), CONFIG, SKILL_DIR, blueprintId(), buildFramePackets(), buildRolePayload(), citedRules() (+10 more)
 
 ### Community 92 - "faceless-explainer/scripts/lib/frame-packets-core.mjs"
-Cohesion: 0.17
+Cohesion: 0.15
 Nodes (18): buildFramePackets(), buildRolePayload(), CONFIG, SKILL_DIR, blueprintId(), buildFramePackets(), buildRolePayload(), citedRules() (+10 more)
 
 ### Community 93 - "faceless-explainer/scripts/transitions.mjs"
@@ -1032,7 +1049,7 @@ Cohesion: 0.10
 Nodes (20): Add media (image, video, audio), Align a sound to an on-screen event, Audio alignment, Clip-path wipe / reveal / mask / split-screen, Constant speed / slow motion, Copy a group of clips to another time, Creator Editing Recipes, Crop / reframe (+12 more)
 
 ### Community 96 - "design-spec.md"
-Cohesion: 0.11
+Cohesion: 0.10
 Nodes (12): Consuming it, Design Spec — `frame.md` / `design.md`, Resolving which spec to read, Starting from a preset (optional), What `frame.md` is, Color Presence, Density, Frame Composition (+4 more)
 
 ### Community 97 - "Tween"
@@ -1048,8 +1065,8 @@ Cohesion: 0.19
 Nodes (18): brandFontFaces(), buildCaptionsHtml(), buildFromSkin(), flag(), frameTokensCss(), r3(), runBuild(), wordCap() (+10 more)
 
 ### Community 100 - "pr-to-video/scripts/transitions.mjs"
-Cohesion: 0.20
-Nodes (18): padFrameInternalDuration(), DEFAULT_REGISTRY_PATH, here, loadTransitionRegistry(), transitionsByName(), buildGsap(), extendFrameTail(), flag() (+10 more)
+Cohesion: 0.19
+Nodes (19): padFrameInternalDuration(), parseStoryboard(), DEFAULT_REGISTRY_PATH, here, loadTransitionRegistry(), transitionsByName(), buildGsap(), extendFrameTail() (+11 more)
 
 ### Community 101 - "character_v1.py"
 Cohesion: 0.09
@@ -1064,8 +1081,8 @@ Cohesion: 0.17
 Nodes (18): buildFramePackets(), buildRolePayload(), CONFIG, SKILL_DIR, blueprintId(), buildFramePackets(), buildRolePayload(), citedRules() (+10 more)
 
 ### Community 104 - "product-launch-video/scripts/transitions.mjs"
-Cohesion: 0.20
-Nodes (19): padFrameInternalDuration(), parseStoryboard(), DEFAULT_REGISTRY_PATH, here, loadTransitionRegistry(), transitionsByName(), buildGsap(), extendFrameTail() (+11 more)
+Cohesion: 0.21
+Nodes (18): padFrameInternalDuration(), DEFAULT_REGISTRY_PATH, here, loadTransitionRegistry(), transitionsByName(), buildGsap(), extendFrameTail(), flag() (+10 more)
 
 ### Community 105 - "Tween"
 Cohesion: 0.18
@@ -1083,17 +1100,17 @@ Nodes (19): atelier (design-forward), Caption Template — Motion Language, CLIM
 Cohesion: 0.10
 Nodes (9): Bold / Energetic, Clean / Corporate, Dark / Premium, Jewel / Rich, Monochrome, Nature / Earth, Neon / Electric, Pastel / Soft (+1 more)
 
-### Community 109 - "Kuro Oni: Emperor Eye origin short (design, DRAFT for approval)"
-Cohesion: 0.10
-Nodes (19): Abilities (given by the user), Anime language (user refs: two screen-recorded anime fight clips, kept local only in local_refs/, not committed), Aura-farm rule (user: aikido makes him aura farm): he never looks rushed. Calm face, tiny motions, the enemies do the falling. Every fight ends with one small calm gesture (sleeve straighten, a breath, eyes half closed)., Given by the user, Gojo's martial art: Yamazaki Kyokushin + Aikido (hard and soft), Impact rule (user: every punch must look very hard), Intent, Kuro Oni: Emperor Eye origin short (design, DRAFT for approval) (+11 more)
+### Community 109 - "Kuro Oni: Demonic Eye origin short (design, DRAFT for approval)"
+Cohesion: 0.05
+Nodes (38): Abilities (given by the user), Anime language (user refs: two screen-recorded anime fight clips, kept local only in local_refs/, not committed), Aura-farm rule (user: aikido makes him aura farm): he never looks rushed. Calm face, tiny motions, the enemies do the falling. Every fight ends with one small calm gesture (sleeve straighten, a breath, eyes half closed)., Clan member looks (user refs, 2 images), Earlier (superseded): "Kuro Oni" is what enemies call him after he defeats them, Fear look (user ref image): how an enemy sees Gojo, Fight look (user refs: five Lookism panels of Gun's fights): how he fights, Fight style, second reference set (user: "this is more his fight style") (+30 more)
 
 ### Community 110 - "music-to-video/scripts/assemble-index.mjs"
 Cohesion: 0.10
 Nodes (16): anomalies, argv, audio, audiomapPath, audioMetaPath, bgmRel, body, FRAME_SUM (+8 more)
 
-### Community 111 - "Story design — PR → narrative"
+### Community 111 - "kuro_oni/film_v1.py"
 Cohesion: 0.10
-Nodes (20): Clarity / rhetoric technique catalog, Continuity across frames, Core rule, Emotional beats, Final checklist, Frame template, Hook strategy, Music & silence (+12 more)
+Nodes (25): animate(), ball(), box(), build_all(), constant(), crowd_action(), lie(), dummy() (+17 more)
 
 ### Community 113 - "make-composition.cjs"
 Cohesion: 0.19
@@ -1108,16 +1125,12 @@ Cohesion: 0.25
 Nodes (16): bareToken(), clampRanges(), cleanRange(), compileCutList(), durationFrom(), fillerRanges(), finalizeKept(), hasRemovalSource() (+8 more)
 
 ### Community 116 - "pr-to-video/scripts/audio.mjs"
-Cohesion: 0.24
-Nodes (17): DEFAULT_ENGINE, flag(), HERE, neutralPath(), pad2(), parseScript(), previousHostAudio(), runEngine() (+9 more)
+Cohesion: 0.25
+Nodes (16): DEFAULT_ENGINE, flag(), HERE, neutralPath(), pad2(), parseScript(), previousHostAudio(), runEngine() (+8 more)
 
 ### Community 118 - "Setup, Adoption, and Refresh Steps"
 Cohesion: 0.11
 Nodes (17): 1. Assess and report, 2. Ask what they bring, 3. Discover and verify, 4. Interview the gaps, 5. Show the block, then write it, 6. Close, Adoption, Audit (+9 more)
-
-### Community 119 - "embedded-captions/SKILL.md"
-Cohesion: 0.23
-Nodes (4): Identities, Rules, Shortlisting heuristics (identity-level, not category-level), THE CATALOG — one front-end, three engines behind
 
 ### Community 120 - "The 10 moves"
 Cohesion: 0.11
@@ -1140,20 +1153,20 @@ Cohesion: 0.24
 Nodes (16): withFileLock(), anonymousId(), __anonymousIdForTest(), heygenAccountDistinctId(), identifyAccount(), isTestOrCiContext(), legacyMediaAnonId(), optedOut() (+8 more)
 
 ### Community 125 - "transcribe.mjs"
-Cohesion: 0.23
-Nodes (10): resolveNpxCliPath(), resolveNpxInvocation(), mergeTokensToWords(), atomicWrite(), inputPath, outPath, report(), runCli() (+2 more)
+Cohesion: 0.18
+Nodes (12): resolveNpxCliPath(), resolveNpxInvocation(), mergeTokensToWords(), dist, root, atomicWrite(), inputPath, outPath (+4 more)
 
 ### Community 126 - "music-to-video/scripts/lib/storyboard.mjs"
 Cohesion: 0.18
 Nodes (17): applyDuration(), applyMeta(), applyPoster(), applyStatus(), buildFrame(), DEFAULT_FRAME_STATUS, endsFrameSection(), FRAME_STATUSES (+9 more)
 
 ### Community 127 - "product-launch-video/scripts/audio.mjs"
-Cohesion: 0.25
-Nodes (16): DEFAULT_ENGINE, flag(), HERE, neutralPath(), pad2(), parseScript(), previousHostAudio(), runEngine() (+8 more)
+Cohesion: 0.24
+Nodes (17): DEFAULT_ENGINE, flag(), HERE, neutralPath(), pad2(), parseScript(), previousHostAudio(), runEngine() (+9 more)
 
-### Community 128 - "cel"
-Cohesion: 0.07
-Nodes (26): 10. Every instruction the user gave (oldest first). "REPLACED" = a later instruction overrides it. Follow the latest., 11. Unattended render (added last), 1. What this project is, 2. Current state (most important), 3. Finish procedure (after all 1169 frames exist), 4. Everything that was built/changed (so it is not redone), 5. Open items / decisions waiting, 6. Environment facts and gotchas (+18 more)
+### Community 128 - "Aura Monster: handoff (project memory and work done)"
+Cohesion: 0.17
+Nodes (11): 10. Every instruction the user gave (oldest first). "REPLACED" = a later instruction overrides it. Follow the latest., 11. Unattended render (added last), 1. What this project is, 2. Current state (most important), 3. Finish procedure (after all 1169 frames exist), 5. Open items / decisions waiting, 6. Environment facts and gotchas, 7. The user's standing preferences (how they like to work) (+3 more)
 
 ### Community 129 - "Step 4: Final Validation"
 Cohesion: 0.12
@@ -1188,8 +1201,12 @@ Cohesion: 0.15
 Nodes (17): bc(), eb(), Eo(), fb(), ga(), ib(), mb(), pa() (+9 more)
 
 ### Community 137 - "posed"
-Cohesion: 0.31
-Nodes (7): _aimer(), aim(), _fingers(), posed(), _prop_arm(), _walk_arms(), _walk_phase()
+Cohesion: 0.17
+Nodes (11): _aimer(), aim(), build_v1(), _fingers(), _ground_props(), posed(), _prop_arm(), _reset() (+3 more)
+
+### Community 138 - "test_lint_spine.py"
+Cohesion: 0.10
+Nodes (12): cats(), test_duplicate_ad_id_caught(), test_fenced_stack_heading_not_live(), test_fenced_stack_rows_not_parsed(), test_mermaid_braces_not_flagged(), test_no_frontmatter_body_still_scanned(), test_no_stack_section_ok(), test_placeholder_markers_caught() (+4 more)
 
 ### Community 139 - "multi-phase-camera.md"
 Cohesion: 0.31
@@ -1260,8 +1277,8 @@ Cohesion: 0.13
 Nodes (14): 1. The clean original, if it exists, 2. The pauses, 3. The speech's own tilt, for a suspected filter, 4. The file against itself over time, Band energy, in proportional bands, Compare against something inside the same file, Compare loudness from the bytes the listener actually hears, Diagnosing audio you cannot hear (+6 more)
 
 ### Community 156 - "plugin-installation.md"
-Cohesion: 0.10
-Nodes (14): Boundaries, HyperFrames Creative, Routing, Scripts, Workflow, Running from an installed plugin, Diagnose and update, Skill installation and freshness (+6 more)
+Cohesion: 0.13
+Nodes (9): Running from an installed plugin, Diagnose and update, Skill installation and freshness, What `init` does, Be proactive — run a media opportunity pass, media-use, Resolve — the one verb, Treat broad visual feedback as media intent (+1 more)
 
 ### Community 157 - "Part 1 — the move vocabulary"
 Cohesion: 0.08
@@ -1468,7 +1485,7 @@ Cohesion: 0.17
 Nodes (11): Basic Pattern, Contract, Deterministic Rendering, Frosted Blur via Downsample Pass, Render-environment prerequisite (WebGPU + html-in-canvas), Rounded-Rect SDF (Liquid Glass Pill), Timeline Registration, Transparent vs Opaque Canvas (+3 more)
 
 ### Community 209 - "HyperFrames CLI"
-Cohesion: 0.15
+Cohesion: 0.17
 Nodes (12): Agent conventions, Commands you should not run, Development loop, HyperFrames CLI, Mandatory creator-edit cross-references, Preview before render, Project history in your turn, Read the matching reference before running a command (+4 more)
 
 ### Community 210 - "Per-Beat Direction"
@@ -1500,8 +1517,8 @@ Cohesion: 0.23
 Nodes (12): _a(), Be(), $d(), de(), fe(), ka(), ma(), me() (+4 more)
 
 ### Community 217 - "numpy"
-Cohesion: 0.09
-Nodes (17): Using the sounds, click_sfx(), cput(), env(), glint(), heartbeat(), hp(), lp() (+9 more)
+Cohesion: 0.08
+Nodes (19): Network, Openverse sound effects, Using the sounds, click_sfx(), cput(), env(), glint(), heartbeat() (+11 more)
 
 ### Community 218 - "de"
 Cohesion: 0.23
@@ -1667,13 +1684,17 @@ Nodes (9): check, Deprecated: validate, inspect, layout, Discipline (motion-heav
 Cohesion: 0.20
 Nodes (9): A. Content scene (default), B. Host media + main-timeline driver (one pattern for `<video>`/`<audio>`), C. Multi-scene merge, Composition Patterns, D. Audio at root, reactive visual inside, Modular Orchestrator Pattern, Naming Conventions, Sub-Composition Archetypes (+1 more)
 
+### Community 259 - "test_list_customizable_skills.py"
+Cohesion: 0.09
+Nodes (4): AuthenticationTests, generate_bgm(), main(), parse_args()
+
 ### Community 260 - "rain_street.py"
 Cohesion: 0.19
 Nodes (10): area(), asphalt(), concrete(), emissive(), facade(), fog_mat(), G, lin() (+2 more)
 
 ### Community 261 - "PR to HyperFrames"
-Cohesion: 0.20
-Nodes (10): PR to HyperFrames, Quick Reference, Step 0: Setup, Step 1: Ingest the PR (no capture), Step 2: Design System, Step 3.1: Audio, Step 3: Storyboard and Script, Step 4: Frame Visual Design (+2 more)
+Cohesion: 0.11
+Nodes (16): Code vocabulary — the `code-*` animation blocks, Install + use, PR beat → block cheat-sheet, Showing behavior — the mechanism beat (not a `code-*` block), The animation blocks, The `code-snippet-*` theme family (standalone, not palettes), PR to HyperFrames, Quick Reference (+8 more)
 
 ### Community 262 - "Visual design — product-launch per-frame shot method"
 Cohesion: 0.20
@@ -1740,8 +1761,8 @@ Cohesion: 0.22
 Nodes (9): Break boundaries, Caption Grouping, Editorial surgery is allowed, Example (champion), Goal, Input, Style & tone (cross-reference), Timing the group (+1 more)
 
 ### Community 278 - "character_mh.py"
-Cohesion: 0.05
-Nodes (41): 4. Coat and hair motion, add_cap(), add_cloth_motion(), add_locks(), add_phone(), add_prints(), add_umbrella(), apply_face() (+33 more)
+Cohesion: 0.06
+Nodes (34): add_cap(), add_locks(), add_mods(), add_phone(), add_prints(), add_umbrella(), apply_face(), apply_targets() (+26 more)
 
 ### Community 279 - "Cut catalog — within-frame seams (worker-built)"
 Cohesion: 0.10
@@ -1840,7 +1861,7 @@ Cohesion: 0.25
 Nodes (7): Brand & Style, Colors, Components, Elevation & Depth, Layout & Spacing, Shapes, Typography
 
 ### Community 303 - "compose.py"
-Cohesion: 0.11
+Cohesion: 0.14
 Nodes (8): add_aura(), blur(), handheld(), _shot_of(), trail(), finish.sh script, missing(), run_to_end.sh script
 
 ### Community 304 - "Timelines and Labels"
@@ -1900,8 +1921,8 @@ Cohesion: 0.25
 Nodes (7): Example, Narration & Script, Number Pronunciation, Pacing, Structure, The Opening Line, Tone
 
 ### Community 318 - "pr-to-video/SKILL.md"
-Cohesion: 0.06
-Nodes (27): Designing each element (faceless-explainer constraint), Frame worker — faceless-explainer delta, Your `focal:` / `roles:` — invented elements, Blueprints (the proven shapes), Motion coverage, Picking guidance, Role → blueprint menu, The 22 blueprints (+19 more)
+Cohesion: 0.05
+Nodes (35): Designing each element (faceless-explainer constraint), Frame worker — faceless-explainer delta, Your `focal:` / `roles:` — invented elements, Blueprints (the proven shapes), Motion coverage, Picking guidance, Role → blueprint menu, The 22 blueprints (+27 more)
 
 ### Community 319 - "Steps"
 Cohesion: 0.25
@@ -2028,16 +2049,24 @@ Cohesion: 0.29
 Nodes (7): Anchored Layout Expand, Critical Constraints, How It Works, Recipe, See also, Values, Variations
 
 ### Community 350 - "Part 1 — the move vocabulary"
-Cohesion: 0.08
-Nodes (23): 1. Smooth beats bouncy — `power3` is the default, 2. Sequential reveal in the back ~50%, timed to the voiceover, 3. No lazy breathing, no bad pan/push — "no motion over bad motion", 4. Internal seams are velocity-matched cuts, Aliveness during a hold (use sparingly — see Part 2), Camera, Count-up / data, Emphasis / marker (+15 more)
+Cohesion: 0.15
+Nodes (13): Aliveness during a hold (use sparingly — see Part 2), Camera, Count-up / data, Emphasis / marker, Kinetic type, Layout motion, Morph / handoff, Part 1 — the move vocabulary (+5 more)
 
-### Community 352 - "pr-to-video/SKILL.md"
-Cohesion: 0.09
-Nodes (16): Concurrency cap → batching rule (cap never changes scope), Harness mapping, Subagent dispatch — harness adapter, The contract (identical on every harness), Vocabulary mapping, Code vocabulary — the `code-*` animation blocks, Install + use, PR beat → block cheat-sheet (+8 more)
+### Community 351 - "Part 2 — the motion doctrine (load-bearing)"
+Cohesion: 0.12
+Nodes (14): 1. Smooth beats bouncy — `power3` is the default, 2. Sequential reveal in the back ~50%, timed to the voiceover, 3. No lazy breathing, no bad pan/push — "no motion over bad motion", 4. Internal seams are velocity-matched cuts, Forbidden — the failure modes, Motion language — the move vocabulary + the motion doctrine + the seek-safe core, Naming motion in a shot — example, One-line summary (+6 more)
+
+### Community 352 - "Frame worker — PR-to-video delta"
+Cohesion: 0.33
+Nodes (5): Batch dispatch — you build a small packet batch, Frame worker — PR-to-video delta, Mostly invented — you build the visual (except code blocks + the credits avatars), PR code beats, mechanism beats + the credits close, PR-specific self-check additions
 
 ### Community 353 - "Depth-of-Field Blur (Selective Focus / Rack Focus)"
 Cohesion: 0.29
 Nodes (7): Critical Constraints, Depth-of-Field Blur (Selective Focus / Rack Focus), How It Works, Recipe, See also, Values, Variations
+
+### Community 354 - "film30.py"
+Cohesion: 0.18
+Nodes (5): shots30(), add(), cuts(), setup(), town_extra()
 
 ### Community 355 - "product-launch-video/scripts/audio.test.mjs"
 Cohesion: 0.14
@@ -2055,9 +2084,9 @@ Nodes (7): Critical Constraints, How It Works, Orbit with 3D Entry, Recipe, See 
 Cohesion: 0.29
 Nodes (6): Choosing as a planner (the only agent touchpoint), Default-derivation (used by prep.mjs when the planner omits `**Transition:**`), How the injector applies a transition, Registry, Template placeholders, Transition Registry — machine source of truth
 
-### Community 359 - "natural_locks"
-Cohesion: 0.67
-Nodes (3): natural_locks(), ribbon(), surf()
+### Community 359 - "cel"
+Cohesion: 0.09
+Nodes (22): region(), cel(), crop_extras(), long_locks(), make_hair(), natural_locks(), ribbon(), surf() (+14 more)
 
 ### Community 360 - "Pitch round — the intent layer's divergent step"
 Cohesion: 0.29
@@ -2068,8 +2097,8 @@ Cohesion: 0.29
 Nodes (7): Available items, Components, Item manifest fields, Read the registry manifest as a fallback, Reading an item's manifest, Registry discovery, Use the catalog command first
 
 ### Community 362 - "numpy"
-Cohesion: 0.07
-Nodes (31): compute_band_edges(), compute_fft_bands(), decode_audio(), extract(), main(), classify(), opened(), rgba() (+23 more)
+Cohesion: 0.10
+Nodes (27): lowpass(), stats(), atempo(), load(), trim(), load(), save(), squeeze() (+19 more)
 
 ### Community 363 - "Media treatments"
 Cohesion: 0.29
@@ -2101,7 +2130,7 @@ Nodes (7): Asset treatments — weaving user media onto the beat spine, `beat_cu
 
 ### Community 371 - "json"
 Cohesion: 0.09
-Nodes (12): fmt_categories(), fmt_list(), authenticate(), credit(), ctx(), fetch(), get(), save() (+4 more)
+Nodes (11): test_missing_spine_file_reports_error(), test_unreadable_spine_returns_error_not_crash(), _atomic_write(), authenticate(), credit(), ctx(), fetch(), get() (+3 more)
 
 ### Community 372 - "run.sh"
 Cohesion: 0.57
@@ -2146,6 +2175,10 @@ Nodes (5): Layout decisions, Plan.json shape, Slot assignment, Template: portrai
 ### Community 383 - "Typography Presets"
 Cohesion: 0.33
 Nodes (6): Font-size scales with column width, Picking automatically, Tone field, Typography Presets, What NOT to do, When scene luminance affects color choice
+
+### Community 384 - "git_evidence.py"
+Cohesion: 0.26
+Nodes (7): _emit(), _file_list(), _git_log(), JsonArgumentParser, main(), _parse_log(), _parse_numstat_line()
 
 ### Community 385 - "Frame worker — general-video delta"
 Cohesion: 0.33
@@ -2263,6 +2296,10 @@ Nodes (6): Animation(), Da(), la(), ma(), Ua(), Va()
 Cohesion: 0.33
 Nodes (6): 7. Decide Render Strategy, Confirm Visual Direction with User (DO THIS FIRST), Layout Compositions (Card + Video), Render Strategy Inputs, Storyboard Render Contract, Visual Design Library (<SKILL_DIR>/references/)
 
+### Community 415 - "extract-audio-data.py"
+Cohesion: 0.26
+Nodes (5): compute_band_edges(), compute_fft_bands(), decode_audio(), extract(), main()
+
 ### Community 416 - "Visual design — faceless-explainer per-frame shot method"
 Cohesion: 0.17
 Nodes (12): Before you finish — checklist, Caption-band keep-out (plan side), Inventing the visual — diagrams, type, data-viz, Layout — named inline per Scene, Palette & type — from `frame.md`, never invented, Pick the shape — instantiate a blueprint, Portrait & square (non-16:9 canvases), The unit is a time-coded shot sequence (+4 more)
@@ -2294,6 +2331,14 @@ Nodes (4): Content, CRITICAL: two-character `index` fields only, Excalidraw Wire
 ### Community 423 - "Creative Tools"
 Cohesion: 0.40
 Nodes (4): Artifact handling, Creative Tools, Renderer contract, When to invoke
+
+### Community 424 - "void_eye_mat"
+Cohesion: 0.27
+Nodes (8): 4. Everything that was built/changed (so it is not redone), eye_mat(), ink_mat(), _nodes(), mix(), mth(), void_eye_mat(), dot()
+
+### Community 425 - "DNA registry — pick a visual language, not a preset"
+Cohesion: 0.18
+Nodes (11): Adding a DNA, Authoring, Category lock (deliveries field, enforced by the compilers), Climax placement — the lockup is the default, NOT the only composition, Climax selection — what earns the promotion, DNA registry — pick a visual language, not a preset, fx fields (hero block) the engine understands, How to pick (agent) (+3 more)
 
 ### Community 426 - "render-and-composite.sh"
 Cohesion: 0.70
@@ -2420,8 +2465,8 @@ Cohesion: 0.40
 Nodes (4): Before you write, Levels, Ponytail, The smallest complete change
 
 ### Community 457 - "lint_source.py"
-Cohesion: 0.10
-Nodes (9): generate_bgm(), main(), parse_args(), _find_matching_paren(), Finding, lint_file(), main(), _regex_matcher() (+1 more)
+Cohesion: 0.13
+Nodes (6): _find_matching_paren(), Finding, lint_file(), main(), _regex_matcher(), _use_effect_with_deps()
 
 ### Community 458 - "Tier 1 — title-card-fade"
 Cohesion: 0.40
@@ -2615,13 +2660,17 @@ Nodes (3): paradigmRansomrail(), ransomChipCss(), setpieceRansomnote()
 Cohesion: 0.50
 Nodes (3): Brainstorm first (user request), graphify, Model routing (user request)
 
+### Community 596 - "pil"
+Cohesion: 0.25
+Nodes (3): classify(), opened(), rgba()
+
 ### Community 597 - "proto.py"
-Cohesion: 0.15
-Nodes (20): W(), caption(), decorate(), main(), speed_lines(), src(), draw(), eye() (+12 more)
+Cohesion: 0.11
+Nodes (27): W(), burst(), caption(), cracks(), dense_lines(), fear(), frame(), grid() (+19 more)
 
 ### Community 598 - "film.py"
 Cohesion: 0.07
-Nodes (12): 3. Walking without sliding, carve(), eyes_turn(), _fc(), hold_jumps(), _loc(), splash_mat(), splashes() (+4 more)
+Nodes (11): 3. Walking without sliding, carve(), eyes_turn(), _fc(), hold_jumps(), _loc(), splash_mat(), splashes() (+3 more)
 
 ### Community 599 - "make-theme.test.mjs"
 Cohesion: 0.22
@@ -2636,16 +2685,20 @@ Cohesion: 0.13
 Nodes (12): _box(), _emit(), rooftop(), shop_interior(), _Batch, _hexrgb(), _menu_mat(), _prod_mat() (+4 more)
 
 ### Community 602 - "walk_stop.py"
-Cohesion: 0.08
-Nodes (13): animate_walk(), cloth_walk(), hands_in_pockets(), key_ground(), _MathAim, _smooth(), walk_keys(), coat_settle() (+5 more)
+Cohesion: 0.09
+Nodes (13): animate_walk(), cloth_walk(), hands_in_pockets(), key_ground(), set_interp(), _smooth(), walk_keys(), coat_settle() (+5 more)
 
 ### Community 603 - "Brief contract"
 Cohesion: 0.20
 Nodes (9): 1. Run shape, 2. Shared fields, 3. Question protocol, Brief contract, Checkpoint feedback, Contents, Gate behavior, Remembered defaults (+1 more)
 
-### Community 604 - "Storyboard format — `STORYBOARD.md` + parsed manifest"
+### Community 604 - "animation-map.test.mjs"
 Cohesion: 0.25
-Nodes (7): Example, Frontmatter (global direction), Notes, Parsed manifest, Per-frame sections, `SCRIPT.md` (out of scope here), Storyboard format — `STORYBOARD.md` + parsed manifest
+Nodes (5): FAKE_PARENT_DRIVER_ENV, FAKE_PRODUCER_COMMON, FAKE_PROXY_DRIVER_ENV, HELPERS, REPO_ROOT
+
+### Community 605 - "KURO ONI, Episode 1: script v2 (60 s, vertical)"
+Cohesion: 0.29
+Nodes (6): KURO ONI, Episode 1: script v2 (60 s, vertical), Lines in the whole episode (about 80 words), PART 0: WHAT HE IS (0-5 s), PART 1: THE YAMAZAKI HOUSE (5-34 s), PART 2: THE KATANA (34-41 s), PART 3: THE NEW WORLD (41-60 s)
 
 ### Community 606 - "diagnostics.md"
 Cohesion: 0.40
@@ -2655,27 +2708,55 @@ Nodes (3): Symptom tree, API reference, Rendering Diagnostics
 Cohesion: 0.40
 Nodes (3): Profiling worksheet, API reference, Performance and Memory
 
+### Community 608 - "sound"
+Cohesion: 0.52
+Nodes (6): sound(), add(), beat(), lp(), thud(), tt()
+
+### Community 610 - "shots"
+Cohesion: 0.52
+Nodes (7): lerp(), shots(), add(), cuts(), GP(), s7(), setup()
+
+### Community 611 - "sound"
+Cohesion: 0.52
+Nodes (6): sound(), add(), beat(), lp(), thud(), tt()
+
 ### Community 612 - "Cinematic mode (pure embed) — one engine, six DNAs"
-Cohesion: 0.09
-Nodes (20): Adding a DNA, Authoring, Category lock (deliveries field, enforced by the compilers), Climax placement — the lockup is the default, NOT the only composition, Climax selection — what earns the promotion, DNA registry — pick a visual language, not a preset, fx fields (hero block) the engine understands, How to pick (agent) (+12 more)
+Cohesion: 0.17
+Nodes (9): Adding a DNA, Cinematic mode (pure embed) — one engine, six DNAs, What the engine generates (never author these), What you DON'T do, Workflow, How to use with fresh-eyes review, Per register, The five positive checks (run on the preview sheet, after the failure checks) (+1 more)
+
+### Community 618 - "HyperFrames Creative"
+Cohesion: 0.33
+Nodes (5): Boundaries, HyperFrames Creative, Routing, Scripts, Workflow
+
+### Community 619 - "KURO ONI, Episode 1: 30-second script (hook, context, reveal)"
+Cohesion: 0.33
+Nodes (5): CONTEXT (3-19 s), HOOK (0-3 s), KURO ONI, Episode 1: 30-second script (hook, context, reveal), Notes, REVEAL (19-30 s)
+
+### Community 621 - "KURO ONI Ep 1: the real version (30 s): plan"
+Cohesion: 0.33
+Nodes (5): Honest time estimate (estimates, not measurements), KURO ONI Ep 1: the real version (30 s): plan, Look, Open points (my assumptions, tell me if wrong), Phases
+
+### Community 623 - "THE CATALOG — one front-end, three engines behind"
+Cohesion: 0.40
+Nodes (4): Identities, Rules, Shortlisting heuristics (identity-level, not category-level), THE CATALOG — one front-end, three engines behind
 
 ## Knowledge Gaps
-- **105 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **107 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Text To Speech` connect `Text To Speech` to `tts.mjs`?**
-  _High betweenness centrality (0.181) - this node is a cross-community bridge._
+  _High betweenness centrality (0.182) - this node is a cross-community bridge._
 - **Should `ref_node_fs` be split into smaller, more focused modules?**
-  _Cohesion score 0.03409090909090909 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.03936531007751938 - nodes in this community are weakly interconnected._
 - **Why does `Cloned voices — `scripts/heygen-voice.mjs`` connect `tts.mjs` to `Text To Speech`?**
-  _High betweenness centrality (0.180) - this node is a cross-community bridge._
+  _High betweenness centrality (0.181) - this node is a cross-community bridge._
 - **Should `test_sprint_status.py` be split into smaller, more focused modules?**
   _Cohesion score 0.07441860465116279 - nodes in this community are weakly interconnected._
 - **Should `kuro_oni/film.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.09915966386554621 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14942528735632185 - nodes in this community are weakly interconnected._
 - **Should `Code editorial — Frame (video / frame layer)` be split into smaller, more focused modules?**
-  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04439746300211417 - nodes in this community are weakly interconnected._
 - **Should `test_git_evidence.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.08186341022161918 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09643483343074226 - nodes in this community are weakly interconnected._
