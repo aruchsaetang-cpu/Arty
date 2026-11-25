@@ -40,7 +40,7 @@ He lowers his head and walks back inside.
 
 **4. INT. DOJO (0:13-0:17)**
 He is a teen. The MASTER (very old, white topknot, long white beard, black checkered kimono) attacks; the teen turns, takes his wrist and throws him. The master lands and nods.
-MASTER: Young Master. Soft first. Then hard.
+MASTER: I can't believe you've mastered it already, Young Master.
 Gojo does a Kyokushin kata and breaks a steel bat on his shin. His mother watches from the veranda, blank, until the bat breaks. Then she smiles.
 
 **5. EXT. MUD, RAIN (0:17-0:18.5)**
@@ -108,6 +108,6 @@ Narrator (opening): "A body as hard as steel. It can stop even a katana, if he i
 Elder: "The Demonic Eye... What is the boy's name?" (father silent)
 Mother: "Good boy." / "A future clan leader will not play with those kids." / "Gojo." / "Good boy." (at the stab)
 Gojo as a boy: "Can I play with them?"
-Master: "Young Master. Soft first. Then hard." / (V.O.) "The war took your father."
+Master: "I can't believe you've mastered it already, Young Master." / (V.O.) "The war took your father."
 Enemy / leader: "Kill him!" / "Kuro Oni... the Black Oni." / "Please..."
 Gojo (V.O.): "I fought for a name my father never gave me." / his last word: "...Damn it." / (new world) "No clan. No mother."

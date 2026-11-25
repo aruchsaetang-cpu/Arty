@@ -32,7 +32,7 @@ Young Master, a future clan leader will not play with those kids.
 The old master throws him. He learns it: aikido, then Kyokushin karate. He breaks a steel bat on his shin. On the veranda his mother, blank until now, smiles.
 
 MASTER
-Young Master. Soft first. Then hard.
+I can't believe you've mastered it already, Young Master.
 
 **EXT. MUD, RAIN (11-14 s)**
 His father's black cloak lies in the mud. He puts it on.

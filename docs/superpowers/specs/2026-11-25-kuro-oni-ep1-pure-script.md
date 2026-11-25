@@ -54,7 +54,7 @@ He lowers his head and walks back inside.
 The boy is now a teen. The MASTER, very old, with a white topknot and a long white beard, attacks. The teen turns, takes his wrist, and throws him. The master lands and nods.
 
 MASTER
-Young Master. Soft first. Then hard.
+I can't believe you've mastered it already, Young Master.
 
 The master teaches him aikido, then Kyokushin karate, year after year. The teen does a Kyokushin kata and breaks a steel bat on his shin. On the veranda, his mother watches without any expression. When the bat breaks, she smiles.
 
