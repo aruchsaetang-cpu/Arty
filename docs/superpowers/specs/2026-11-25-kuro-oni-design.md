@@ -50,7 +50,7 @@ Fight camera reference (user clip: an anime boxing barrage): extreme close-ups o
 ### Part 2: the poison (37-41 s)
 | # | Time | Shot | Action | Sound |
 |---|------|------|--------|-------|
-| 9 | 37-40 | Clan gate, rain | Adult Gojo walks out, his steps slow. He sees everything: his pulse, the clan watching, his mother with the empty cup. He drops to one knee, calm | Rain, slowing heartbeat |
+| 9 | 37-40 | Yamazaki house stairway, night | Adult Gojo walks down the stone stairs, his steps slow. He sees everything: his pulse, the clan watching, his mother with the empty cup. He drops to one knee, calm | Rain, slowing heartbeat |
 | 10 | 40-41 | Eyes, then black | He looks up at her. She turns away. His eyes stay open, black and white, then close. Cut to black | Last heartbeat, silence |
 
 ### Part 3: the Black Clover-style world (41-60 s)
@@ -143,6 +143,15 @@ When Gojo fights he shows no emotion: face blank, mouth shut, eyes flat, breathi
 Use at: the big hits of shot 5-9 (each count number in shot 9), the shin check in shot 3, and the counter-punch in shot 17. Sound: the impact sub drop, then 2 frames of silence.
 Compose note: a silhouette frame is made in post (threshold the render, white background, add an ink-splatter overlay), so it needs no extra 3D work.
 Prototype note: not in the current 3D prototype; added in the full version.
+
+## Yamazaki house (user refs, 2 images): the setting of the clan scenes
+A large traditional Japanese compound, shown at night under a full moon and by day: a tall dark-tiled multi-storey main hall at the back with wooden lattice windows, a red torii gate in front of it, a big tiled gate-roof with a wide courtyard, a long straight stone stairway climbing between two rows of paper lanterns on poles, lawns and a pink cherry tree, smaller dark-tiled houses on the sides, a stone wall. Palette: black roofs, grey stone, warm lantern light, moon white, cherry pink.
+Use for: shots 1-4 (the hall, the gate where he is slapped, the dojo yard), and the tea and poison (shots 8-9 at the top and on the stairs). The war itself (shot 6) stays in the burning rain street.
+Prototype note: the 3D prototype uses plain boxes; the real version builds the stairway, torii and lantern rows from these refs (original models, not copies).
+
+## Clan member looks (user refs, 2 images)
+- **The master:** a very old man, white hair in a topknot with two long white side locks, a long white beard, deep wrinkles, half-closed hard eyes; black kimono with a small grey checkered pattern and a wide dark obi; sits cross-legged, hands on his knees. Teaches Gojo aikido and Kyokushin.
+- **A vassal elder (one of the 30):** older, slicked dark hair, tinted glasses, a full-body tattoo of flowers, waves and demons over his arms and chest, bare-chested in a pale loincloth, a sword resting across his crossed arms, a sake set in front of him. Style reference only; original design, no named characters.
 
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
