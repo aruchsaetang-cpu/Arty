@@ -53,9 +53,24 @@ _FH = ["short", "buzz", "bangs", "slick", "crop", "quiff"]
 _FF = ["long", "square", "diamond", "round", "boy", "long"]
 _FB = ["m", "m_heavy", "m_lean", "m_fit", "m_slim", "m_muscle"]
 _FS = [("#e6c5a8", "#a8795d"), ("#d9a982", "#9a6a4a"), ("#efd2b8", "#b0806a"), ("#c58f6a", "#86583d")]
+# street gang fighters: each man his own jacket / shirt / hair colour (v1 was all black suits and read as blobs)
+_FO = [  # (coat or None, top, trousers, hair colour)
+    (("#7a2230", "#3a0e16"), ("#1c1c22", "#0a0a0e"), ("#2a3550", "#121828"), "#0e0e12"),     # burgundy leather, jeans
+    (("#5a6234", "#2a2e16"), ("#dcd6c8", "#8a8478"), ("#3a3428", "#181510"), "#3a2616"),     # olive bomber
+    (("#22325a", "#0e1630"), ("#e4e0d8", "#908c84"), ("#22325a", "#0e1630"), "#0e0e12"),     # navy suit, white shirt
+    (None, ("#8a8a92", "#3e3e46"), ("#1c1c22", "#0a0a0e"), "#d8bc6a"),                       # grey hoodie, bleached hair
+    (("#6a4026", "#30180c"), ("#c8962a", "#7a5410"), ("#24242a", "#0e0e12"), "#1a1410"),     # brown leather, mustard tee
+    (None, ("#e0dcd2", "#8e8a80"), ("#18181e", "#08080c"), "#0e0e12"),                       # white shirt
+    (("#1f6a6a", "#0c2e2e"), ("#18181e", "#08080c"), ("#18181e", "#08080c"), "#8a2a1a"),     # teal track jacket, red hair
+    (("#a02a24", "#4a100e"), ("#1c1c22", "#0a0a0e"), ("#2a2c34", "#101216"), "#0e0e12"),     # red jacket
+    (("#3a3a44", "#16161c"), ("#6a3a8a", "#2e1640"), ("#2a2a30", "#0e0e12"), "#2a1a10"),     # charcoal, purple shirt
+    (("#a8834e", "#5a4024"), ("#2a2a30", "#0e0e12"), ("#3a3226", "#181410"), "#0e0e12"),     # camel coat
+    (("#1c1c22", "#0a0a0e"), ("#9a1e1e", "#480a0a"), ("#1c1c22", "#0a0a0e"), "#c0c0c8"),     # black jacket, red shirt, grey hair
+    (("#3a5a86", "#1a2a44"), ("#d8d2c4", "#8a8478"), ("#24242a", "#0e0e12"), "#1a1410"),     # denim jacket
+]
 FIGHTERS = [dict(K.MAN_LONG, vary=200 + i * 7, body=_FB[i % 6], height=1.70 + 0.02 * (i % 6), face=_FF[(i + i // 6) % 6], skin=_FS[i % 4],
-                 hair=_FH[(i * 5) % 6], hair_col=("#0e0e12", "#1a1410", "#2a2622")[i % 3], coat=_BLACK, hem=0.6,
-                 top=("#202028", "#0c0c12"), legs="trousers", leg_col=("#16161c", "#08080c"), clear_face=False) for i in range(12)]
+                 hair=_FH[(i * 5) % 6], hair_col=_FO[i][3], coat=_FO[i][0], hem=(0.6 if i in (2, 9) else 0.3),
+                 top=_FO[i][1], turtleneck=False, legs="trousers", leg_col=_FO[i][2], clear_face=False) for i in range(12)]
 _KC = [("#e8574a", "#9a2a20"), ("#4a9ae8", "#20609a"), ("#f2c230", "#a07c10"), ("#5cc46a", "#2a7a36")]
 KIDS = [dict(K.KID1 if i % 2 == 0 else K.KID2, vary=340 + i, top=_KC[i], leg_col=_KC[(i + 1) % 4], coat=None, tie=None, backpack=None,
              hair=("bob", "bangs")[i % 2], hair_col=("#1a1414", "#3a2616", "#14100c", "#5a3a20")[i], height=1.22 + 0.04 * i) for i in range(4)]
