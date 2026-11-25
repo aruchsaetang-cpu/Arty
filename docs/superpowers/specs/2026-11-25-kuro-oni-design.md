@@ -33,18 +33,18 @@ Not a loud trailer. Not a power-up montage: Ultra Instinct must read as "sees it
 Background setting (Yamazaki clan) -> his mother poisons him -> reincarnated as a human in a sword-and-magic world; he keeps the black eyes and Ultra Instinct.
 
 ### Part 1: the clan war (0-34 s)
-Story (user): Gojo is the strongest Yamazaki in history and the clan leader who fought every clan in Korea and united them all into one. His own mother betrays him because of that power. The fight must look cool, like a Lookism fight, with several martial arts.
+Story (user): Gojo is the strongest Yamazaki in history and the clan leader who fought every clan in Korea and united them all into one. His own mother betrays him because of that power. The fight: one man against about 100, like a war. No martial-art enemies (user cut them); he uses his own arts (Kyokushin, aikido, black bone) on the crowd.
 | # | Time | Shot | Action | Sound |
 |---|------|------|--------|-------|
 | 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris. His mother's smiling face leans in | Heartbeat, lullaby hum |
 | 2 | 2.5-5.5 | Clan hall, low angle | Kid Gojo, his mother holds his hand. Elders stare. A cup drops, his eyes follow it before it falls | Silence, late shatter |
 | 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone) | Crack, breath |
 | 4 | 8-11 | Map of Korea, fast cuts | Clan banners fall one by one across the country: every clan he fought. Rain begins | Drums |
-| 5 | 11-14 | Rain street, wide | **Fight 1, Muay Thai:** knees and elbows in the clinch. Gojo checks a knee with his shin: steel clang. Rival's face changes | Clang |
-| 6 | 14-17 | Medium, tracking | **Fight 2, judo/wrestling:** a grappler grabs him; Gojo does not even set his feet, a tiny wrist turn (aikido kote-gaeshi) and the grappler flips himself onto the stones. Gojo straightens his sleeve | Heavy thud |
-| 7 | 17-20 | Eye close-up, slow motion | **Fight 3, boxing:** a blur of punches. Sound cuts out, eyes full white (Ultra Instinct), he slips five, afterimage, one body blow | Silence, one hit |
-| 8 | 20-24 | Orbit, low | **Fight 4, taekwondo/capoeira:** spinning high kicks and flips; he sees each before the hip turns. His shadow on the wall is a horned Oni. A Kyokushin front kick ends it | Drone, hit |
-| 9 | 24-28 | One long orbit, wide | **All the clans at once:** five fighters with five arts come at him; in a single camera move he walks through them with aikido, each attacker's force redirected into the next, hands in his pockets for a beat; then one straight punch (gyaku-zuki) and a shockwave parts the rain | Silence, big hit |
+| 5 | 11-13 | Wide, burning street, rain | The clan's fighters pour in: about 100 in matching black suits. One man stands alone in the middle. Fires on both sides, fallen bodies already on the ground | Drums, crowd roar |
+| 6 | 13-16 | Medium, tracking | First wave rushes him. He does not run. Each one falls to one short motion (wrist turn, shin, elbow); he straightens his sleeve between each | Thuds, one after another |
+| 7 | 16-19 | Eye close-up, slow motion | Sound cuts out. Eyes go full white (Ultra Instinct). He sees every blade and fist before it moves | Silence |
+| 8 | 19-22 | Silhouette, low, in fire | Image-2 composition: a black silhouette with white eyes walks forward through the flames, bodies behind him, nobody can touch him. Horned Oni shadow on the wall | Low drone |
+| 9 | 22-25 | Counter on screen | A small on-screen count of the fallen: 25, 50, 75, 100. Each number is one clean hit, no effects | Hit each number |
 | 10 | 28-31 | Wide | Every clan leader kneels. Korea is one. Gojo stands, steam in the rain | Bells |
 | 11 | 31-34 | Medium, rain | His mother walks through the kneeling clans with a cup of tea. She smiles. He drinks. Her smile does not change, which is the scare | Low drone |
 
@@ -62,6 +62,9 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 
 Scare beats: 7 (sound cut), 8 (Oni shadow), 11 (the mother's unchanged smile), 13 (cut to black), 18, 19.
 Size: a project; roughly 1.5x the Aura Monster render (about 2 days of rendering, restarted every 2 h).
+
+## Look reference (user, 2026-11-25)
+Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
 
 ## Open design point
 Betrayal (user): his own mother poisons him, because he is the strongest Yamazaki in history and the leader who united every clan in Korea. No truck (user removed it). My calls: the poison is in the victory tea; black bone stops blades but not poison; the death is calm (aura to the end) and she is the warmth in shots 1-2, so her unchanged smile in 11 is the scare. Needs the user's yes.
