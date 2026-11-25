@@ -42,7 +42,7 @@ Story (user): Gojo is the strongest Yamazaki in history and the clan leader who 
 | 1 | 0-2.5 | Black, extreme eye close-up | Newborn eyes open: black sclera, white iris. His mother's smiling face leans in | Heartbeat, lullaby hum |
 | 2 | 2.5-5.5 | Clan hall, low angle | Kid Gojo, his mother holds his hand. His father stands apart, arms folded, not afraid. Elders stare. A cup drops, his eyes follow it before it falls | Silence, late shatter |
 | 3 | 5.5-8 | Dojo | Teen. Kyokushin kata; he breaks a steel-hard bat on his shin (black bone) | Crack, breath |
-| 4 | 8-11 | Map of Korea, fast cuts | Clan banners fall one by one across the country: every clan he fought. Rain begins | Drums |
+| 4 | 8-11 | Rain, then map of Korea, fast cuts | The father's black cloak lies in the mud (he died in the war). Gojo lifts it and puts it on. Then clan banners fall one by one across the country: every clan he fought | Drums |
 | 5 | 11-13 | Wide, burning street, rain | The clan's fighters pour in: about 100 in matching black suits. One man stands alone in the middle. Fires on both sides, fallen bodies already on the ground | Drums, crowd roar |
 | 6 | 13-16 | Medium, tracking | First wave rushes him. He does not run. Each one falls to one short motion (wrist turn, shin, elbow); he straightens his sleeve between each | Thuds, one after another, each with the impact rule |
 | 7 | 16-19 | Eye close-up, slow motion | Sound cuts out. Eyes go full white (Ultra Instinct). He sees every blade and fist before it moves | Silence |
@@ -123,7 +123,7 @@ Prototype note: the 3D prototype uses a placeholder woman in a yellow coat (not 
 
 ## Gojo's father: look (user ref image)
 Tall, lean, long black hair worn loose past the shoulders with strands over the face, a sharp tired face, dark eyes. Black kimono with a dark obi, a long black cloak or haori over the shoulders, dark stripe bands on both forearms and wrists, one hand at his collar. Calm and dangerous. Style reference only; we build an original model.
-Proposed role (my call, needs the user's yes): in shot 2 (the kid in the hall) the father stands apart from the elders, arms folded, and is the only one who is not afraid of the child's eyes. His fate at the time of the betrayal is still open (dead before it, or alive and not knowing).
+Proposed role (my call, needs the user's yes): in shot 2 (the kid in the hall) the father stands apart from the elders, arms folded, and is the only one who is not afraid of the child's eyes. Fate (user): he is dead, killed in the clan war, before the story's present. My calls: Gojo takes his black cloak and the leadership, and fights every clan to end the war by uniting Korea.
 
 ## Look reference (user, 2026-11-25)
 Gojo's look: short slicked black hair, dark suit, sharp eyes, white glowing eyes in fights (image 1 style). War scene: silhouette in fire, a crowd of fallen men (image 2 style). Image 3 (long-haired man in a black robe) is not yet assigned: ask the user. These are style references only; we build an original model, we do not copy official artwork.
