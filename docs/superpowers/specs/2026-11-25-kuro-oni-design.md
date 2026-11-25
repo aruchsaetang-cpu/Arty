@@ -13,6 +13,9 @@ stands for Ultra Instinct. Story: newborn -> kid -> teen -> the leadership fight
 ## Story point (user)
 In ep 1 Gojo is betrayed by his own mother.
 
+## Rule (user): Gojo has NO magic
+In the fantasy world he never casts a spell. Everything he does is martial art, black bone and the Emperor Eye. Magic belongs to others (the mage, later enemies). Seeing a fireball early is the eyes, not magic. In the series arc, an episode where he sees or uses mana must be dropped or reframed.
+
 ## Abilities (given by the user)
 - **Emperor Eye / Ultra Instinct:** black sclera, white iris; very fast reflexes, he reacts before the strike.
 - **Black bone:** Yamazaki-only. His body is as durable as steel.
