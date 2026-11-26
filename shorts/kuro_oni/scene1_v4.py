@@ -72,12 +72,12 @@ TPL = [
     (-0.22, dict(fistR=("c", (0.05, -0.40, 1.80))), "io"),
     (-0.20, dict(footL=(0.92, -0.14, -96, 0.0)), "in"),                                                              # front foot lands
     (-0.15, dict(x=1.30, y=-0.02, yaw=-96, twist=34, lean=12, drop=0.14, hy=0, hp=2, fistR=("c", (0.20, -0.62, 1.72)), footR=(1.92, 0.20, -128, 0.03)), "io"),
-    (-0.06, dict(x=1.05, y=-0.02, yaw=-88, twist=40, lean=14, side=4, drop=0.16, hp=0, fistR=("c", (0.28, -0.80, 1.50)), fistL=("c", (0.16, -0.22, 1.22)),
+    (-0.06, dict(x=0.95, y=-0.02, yaw=-88, twist=40, lean=14, side=4, drop=0.16, hp=-8, fistR=("c", (0.28, -0.80, 1.50)), fistL=("c", (0.16, -0.22, 1.22)),
                  footR=(1.62, 0.18, -120, 0.0)), "io"),
-    (0.0, dict(x=1.04, twist=40, lean=14, hp=0, hy=0, hr=0, hs=(1.0, 1.0, 1.0), fistR=("c", (0.28, -0.82, 1.48))), "io"),
+    (0.0, dict(x=0.94, twist=40, lean=14, hp=-8, hy=0, hr=0, hs=(1.0, 1.0, 1.0), fistR=("c", (0.28, -0.82, 1.48))), "io"),
     (0.02, dict(hs=(0.78, 0.93, 1.12)), "snap"),                                                                     # face caves in on contact
-    (SNAP, dict(x=1.05, twist=40, lean=14, hp=0, hy=-4, hr=-3, hs=(0.76, 0.93, 1.13), yaw=-88, drop=0.16, side=4), "io"),   # hit-stop
-    (SNAP + 0.09, dict(hy=-58, hr=-30, hp=-26, x=1.14, tilt=(-4.0, 0.4, 0.0)), "snap"),                               # head snaps to his right
+    (SNAP, dict(x=0.95, twist=40, lean=14, hp=-8, hy=-4, hr=-3, hs=(0.76, 0.93, 1.13), yaw=-88, drop=0.16, side=4), "io"),   # hit-stop
+    (SNAP + 0.09, dict(hy=-58, hr=-30, hp=-26, x=1.04, tilt=(-4.0, 0.4, 0.0)), "snap"),                               # head snaps to his right
     (0.40, dict(x=1.46, y=0.04, yaw=-122, twist=-28, lean=-12, side=-12, drop=0.02, tilt=(-22.0, 2.2, 0.0), hs=(0.84, 0.95, 1.08),
                 fistR=("c", (-0.58, 0.12, 1.46)), fistL=("c", (0.48, -0.18, 1.12)), hy=-50, hr=-28, hp=-30), "out"),   # launched
     (0.52, dict(x=1.64, y=0.16, yaw=-150, twist=-30, drop=-0.06, tilt=(-52.0, 5.2, 0.0), lean=-16, side=-6,
@@ -87,7 +87,8 @@ TPL = [
     (0.78, dict(tilt=(-78.6, 7.9, 0.0), fistR=("c", (-0.42, -0.45, 1.30)), fistL=("c", (0.40, -0.40, 1.25))), "in"),
     (1.10, dict(tilt=(-78.6, 7.9, 0.0)), "io"),
 ]
-def enemy(g, T, phi, off=(0.0, 0.0)):
+LTS = [1.0, -1.0, -1.0]                     # which cheek is hit (+1 his left, -1 his right): the one facing the camera of that cut
+def enemy(g, T, phi, off=(0.0, 0.0), sn=1.0):
     R_ = Rig(g); last = dict(x=1.95, y=0.0)
     def xyz(f): x_, y_ = rot2(f[0], f[1], phi); return (x_ + off[0], y_ + off[1], f[2] + phi) + tuple(f[3:])
     x0, y0 = rot2(1.95, 0.0, phi); x0 += off[0]; y0 += off[1]; fa0 = [xyz(f) for f in _fa]
@@ -99,14 +100,17 @@ def enemy(g, T, phi, off=(0.0, 0.0)):
         if "x" in kw or "y" in kw:
             last.update({k: kw[k] for k in ("x", "y") if k in kw}); kw["x"], kw["y"] = (v_ + o_ for v_, o_ in zip(rot2(last["x"], last["y"], phi), off))
         if "yaw" in kw: kw["yaw"] += phi
+        if tr >= SNAP + 0.05:
+            for k in ("hy", "hr"):
+                if k in kw: kw[k] *= sn
         for k in ("footL", "footR"):
             if k in kw: kw[k] = xyz(kw[k])
         if "tilt" in kw:
             tx, ty = rot2(kw["tilt"][0], kw["tilt"][1], phi); kw["tilt"] = (tx, ty, 0.0)
         R_.key(T + tr, ease=ease, **kw)
     R_.finalize(); R_.bake(FR_ALL); on_ground(g); return R_
-OFFS = [(0.0, 0.0), (0.08, 0.0), (0.0, 0.0)]          # the hero drifts 8 cm into each punch: the next man stands where he can be reached
-for g_, T_h, ph, of_ in zip(ATT, THIT, ANG, OFFS): enemy(g_, T_h, ph, of_)
+OFFS = [(0.0, 0.0), (0.12, 0.0), (0.0, 0.0)]          # the hero drifts 12 cm into each punch: the next man stands where he can be reached
+for g_, T_h, ph, of_, sn_ in zip(ATT, THIT, ANG, OFFS, LTS): enemy(g_, T_h, ph, of_, sn_)
 def bone_w(g, n, at="head"):
     pb = g.pose.bones[n]; return g.matrix_world @ (pb.head if at == "head" else pb.tail)
 def head_frame(g):
@@ -114,9 +118,9 @@ def head_frame(g):
     pb = g.pose.bones["head"]; Rr = g.matrix_world.to_3x3().normalized() @ pb.matrix.to_3x3() @ g.data.bones["head"].matrix_local.to_3x3().inverted()
     return (g.matrix_world @ pb.head), (Rr @ V((0, -1, 0))).normalized(), (Rr @ V((0, 0, 1))).normalized(), (Rr @ V((1, 0, 0))).normalized()
 FACES = []                                   # where each fist must land: the enemy's left cheek at the contact frame
-for g_, fh in zip(ATT, FHIT):
+for g_, fh, ls_ in zip(ATT, FHIT, LTS):
     scn.frame_set(fh); bpy.context.view_layer.update(); hp_, hfw, hup, hlt = head_frame(g_)
-    FACES.append(dict(P=hp_ + hup * 0.085 + hfw * 0.095 + hlt * 0.03, up=hup, fw=hfw, lt=hlt, head=hp_))
+    FACES.append(dict(P=hp_ + hup * 0.015 + hfw * 0.10 + hlt * 0.03 * ls_, up=hup, fw=hfw, lt=hlt, head=hp_))
     print("enemy head", g_.name, tuple(round(c, 2) for c in hp_), flush=True)
 FACE = FACES[0]["P"]; hup, hfw, hlt = FACES[0]["up"], FACES[0]["fw"], FACES[0]["lt"]
 
@@ -131,7 +135,7 @@ MV.pocket_idle(H, 0.0, THIT[0] - 0.35, 0.0, 0.0, FACING[0], seed=3)
 for i, (T_h, f_) in enumerate(zip(THIT, FACING)):
     if i: MV.turn_to(H, THIT[i - 1] + 0.08, 0.17, f_)
     MV.slip_turn(H, T_h - 0.35, 0.15, hold=0.07, pocket=True)              # loose duck + hip turn under the swing, hands stay in
-    MV.gyaku_zuki(H, T_h - 0.13, 0.13, PUNCH[i], pocket=True)
+    MV.gyaku_zuki(H, T_h - 0.13, 0.13, PUNCH[i], pocket=True, drive=0.12)
 MV.pocket_idle(H, THIT[-1] + 0.5, THIT[-1] + 0.9, H.ctx["x"], H.ctx["y"], FACING[-1], seed=4) if False else None
 H.finalize()
 for it in range(7):                         # close the loop: measure each fist against its cheek, correct the targets, re-key
@@ -160,8 +164,10 @@ if _cl:
     pan.parent = None; pan.animation_data_clear(); pan.rotation_mode = "QUATERNION"
     prefs.keyframe_new_interpolation_type = "LINEAR"
     for f in FR_ALL:
+        scn.frame_set(f); bpy.context.view_layer.update()
+        lat = bone_w(hero, "upperarm01.L") - bone_w(hero, "upperarm01.R"); lat.z = 0.0; lat.normalize()      # his left, whichever way he faces
         M = MW[f]; top = M @ V((0, 0, 0.5)); a = RAD(swing_deg(T_(f)))      # cube is unit size: +0.5 local z = the top edge
-        R = Matrix.Translation(top) @ Matrix.Rotation(a, 4, "Y") @ Matrix.Translation(-top)
+        R = Matrix.Translation(top) @ Matrix.Rotation(a, 4, lat) @ Matrix.Translation(-top)
         pan.matrix_world = R @ M
         pan.keyframe_insert("location", frame=f); pan.keyframe_insert("rotation_quaternion", frame=f); pan.keyframe_insert("scale", frame=f)
     print("cloak follow-through keyed on", pan.name)
@@ -229,7 +235,7 @@ for me in [m for m in bpy.data.meshes if m.users == 0]: bpy.data.meshes.remove(m
 print(f"variants baked {len(VARS)}  {time.time() - T0:.0f}s rss {rss():.2f} GB", flush=True)
 
 # ---- back rows: instanced baked men (faces, colours), facing the fight; they flinch and lean back after the hit
-CAMS_XY = [V((0.7, -3.5)), V((0.6, -3.5)), V((-2.7, -1.0)), V((-2.2, 0.45)), V((0.0, -3.9)), V((0.9, -2.9))]
+CAMS_XY = [V((0.7, -3.5)), V((0.6, -3.5)), V((0.8, -1.5)), V((-2.2, 0.45)), V((0.0, -3.9)), V((0.9, -2.9))]
 BACK = []; rng = random.Random(9)
 occupied = [V((r * math.cos(RAD(a)), r * math.sin(RAD(a)))) for r, a in NEAR] + [V((1.95, 0)), V((0, 0)), V((-1.95, 0)), V((0.34, 1.92)), V((1.7, 1.0)), V((-1.7, -1.0)), V((0.0, 1.74)), V((-1.1, 0.0)), V((-0.8, 1.9))]
 for r, n in ((4.4, 26), (5.3, 30), (6.3, 34)):
@@ -408,30 +414,32 @@ prefs.keyframe_new_interpolation_type = "CONSTANT"
 M_SPIT, _ = emissive("spit", (0.9, 0.95, 1.0), 2.0)
 def bruise_mat(name, strength):
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; N, L = nt.nodes, nt.links; N.clear()
-    out = N.new("ShaderNodeOutputMaterial"); tc = N.new("ShaderNodeTexCoord"); vm = N.new("ShaderNodeVectorMath"); vm.operation = "LENGTH"
-    L.new(tc.outputs["Object"], vm.inputs[0])
-    rp = N.new("ShaderNodeMapRange"); rp.inputs[1].default_value = 0.35; rp.inputs[2].default_value = 1.0; rp.inputs[3].default_value = 1.0; rp.inputs[4].default_value = 0.0
-    L.new(vm.outputs["Value"], rp.inputs[0]); rp.clamp = True
-    nz = N.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 6.0; L.new(tc.outputs["Object"], nz.inputs["Vector"])
+    out = N.new("ShaderNodeOutputMaterial"); lw = N.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = 0.5
+    rp = N.new("ShaderNodeMapRange"); rp.inputs[1].default_value = 0.0; rp.inputs[2].default_value = 0.85; rp.inputs[3].default_value = 1.0; rp.inputs[4].default_value = 0.0   # soft edge: opaque where it faces the lens
+    L.new(lw.outputs["Facing"], rp.inputs[0]); rp.clamp = True
     al = N.new("ShaderNodeMath"); al.operation = "MULTIPLY"; L.new(rp.outputs[0], al.inputs[0]); al.inputs[1].default_value = 0.85
     em = N.new("ShaderNodeEmission"); em.inputs["Strength"].default_value = strength
     rgb = N.new("ShaderNodeRGB"); L.new(rgb.outputs[0], em.inputs["Color"])
     tr = N.new("ShaderNodeBsdfTransparent"); ms = N.new("ShaderNodeMixShader")
     L.new(al.outputs[0], ms.inputs[0]); L.new(tr.outputs[0], ms.inputs[1]); L.new(em.outputs[0], ms.inputs[2]); L.new(ms.outputs[0], out.inputs[0])
+    if os.environ.get("BSOLID"): L.new(em.outputs[0], out.inputs[0])
     return m, rgb
 def bruise(g, fc, T_h, cheek_dir):
     pb = g.pose.bones["head"]; scn.frame_set(F(T_h)); bpy.context.view_layer.update()
     ks = []
-    for k, (dx, dy, dz, sx, sy, sz) in enumerate(((0.0, 0.0, 0.0, 0.060, 0.030, 0.046), (0.0, 0.02, -0.035, 0.038, 0.030, 0.030))):
+    dg = bpy.context.evaluated_depsgraph_get(); org = fc["P"] + fc["fw"] * 0.35; dirv = (fc["P"] - org).normalized()
+    ok, hit, nrm, _i, _o, _m = scn.ray_cast(dg, org, dirv, distance=0.8)                  # where the skin really is
+    if not ok: hit, nrm = fc["P"], -dirv
+    n = nrm.normalized(); upt = (fc["up"] - n * fc["up"].dot(n)).normalized(); rgt = upt.cross(n).normalized()
+    print("bruise", g.name, "ray", ok, "hit", tuple(round(c, 3) for c in hit), "P", tuple(round(c, 3) for c in fc["P"]), flush=True)
+    for k, (dx, dy, sx, sy, sz) in enumerate(((0.0, 0.0, 0.075, 0.060, 0.024), (0.02, -0.05, 0.045, 0.035, 0.022))):
         m, rgb = bruise_mat(f"bruise{k}_{g.name}", 1.0)
         bm = bmesh.new(); bmesh.ops.create_icosphere(bm, subdivisions=3, radius=1.0); me = bpy.data.meshes.new("bruise"); bm.to_mesh(me); bm.free(); me.materials.append(m)
         ob = bpy.data.objects.new(f"bruise_{g.name}_{k}", me); scn.collection.objects.link(ob); ob.visible_shadow = False
         ob.parent = g; ob.parent_type = "BONE"; ob.parent_bone = "head"
         ob.matrix_basis = Matrix.Identity(4); bpy.context.view_layer.update(); Pm = ob.matrix_world.copy(); ob.matrix_parent_inverse = Pm.inverted()
-        z = fc["up"] * dz + fc["lt"] * dx + fc["fw"] * dy
-        zz = fc["fw"].cross(fc["up"]).normalized() if False else fc["lt"]
-        Rm = Matrix((zz, fc["fw"], fc["up"])).transposed() if False else Matrix(((zz.x, fc["fw"].x, fc["up"].x), (zz.y, fc["fw"].y, fc["up"].y), (zz.z, fc["fw"].z, fc["up"].z)))
-        ob.matrix_world = Matrix.Translation(fc["P"] - fc["fw"] * 0.012 + z) @ Rm.to_4x4() @ Matrix.Diagonal((sx, sy, sz, 1.0))
+        Rm = Matrix(((rgt.x, upt.x, n.x), (rgt.y, upt.y, n.y), (rgt.z, upt.z, n.z)))
+        ob.matrix_world = Matrix.Translation(hit + n * 0.004 + rgt * dx + upt * dy) @ Rm.to_4x4() @ Matrix.Diagonal((sx, sy, sz, 1.0))
         base = ob.matrix_basis.copy(); loc0, rot0, sc0 = base.decompose(); ob.rotation_mode = "QUATERNION"
         for f in FR_ALL:
             t = T_(f); vis = t >= T_h + 0.005
@@ -439,7 +447,7 @@ def bruise(g, fc, T_h, cheek_dir):
             kk = min(1.0, max(0.0, (t - T_h) / 0.10)); sw = 0.55 + 0.45 * kk if vis else 0.0       # swells over 3 frames
             ob.scale = tuple(c * sw for c in sc0); ob.location = loc0; ob.rotation_quaternion = rot0
             d = min(1.0, max(0.0, (t - T_h) / 0.9))                                                  # red -> purple
-            rgb.outputs[0].default_value = (0.50 - 0.22 * d, 0.07, 0.07 + 0.14 * d, 1.0)
+            rgb.outputs[0].default_value = (0.36 - 0.15 * d, 0.045, 0.05 + 0.12 * d, 1.0)
             ob.keyframe_insert("hide_render", frame=f); ob.keyframe_insert("scale", frame=f); rgb.outputs[0].keyframe_insert("default_value", frame=f)
         ks.append(ob)
     return ks
@@ -487,7 +495,7 @@ def s2(k):
     u = ez((t - a2) / 0.25, "io"); return vl(nl, nl + V((0.25, -0.6, -0.15)), u), vl(nc, nc + V((0.25, 0, -0.2)), u), 32, 8
 shot(0.60, 1.30, s2, "lin")
 # 3 hit 2, over enemy B's shoulder (he comes from the left): fist and his face in profile, the hero behind
-shot(1.30, 1.95, lambda k: (vl(V((CP2.x - 1.50, HC.y - 1.05, 1.62)), V((CP2.x - 1.30, HC.y - 1.0, 1.60)), k), V((CP2.x + 0.60, HC.y, 1.42)), 36, 5))
+shot(1.30, 1.95, lambda k: (vl(V((CP2.x + 1.9, HC.y - 1.5, 1.50)), V((CP2.x + 1.7, HC.y - 1.4, 1.50)), k), V((CP2.x - 0.05, HC.y, 1.42)), 34, 6))
 # 4 hit 3 (enemy C comes from behind the hero): low, from the left, fist and face in profile
 shot(1.95, 2.65, lambda k: (vl(V((-2.3, HC.y + 0.45, 0.55)), V((-2.0, HC.y + 0.45, 0.58)), k), V((CP3.x - 0.1, CP3.y, 1.40)), 30, 5))
 # 5 high wide aftermath: three men down, the ring stepping back, the hero hands back in his pockets
@@ -512,12 +520,22 @@ scn.view_settings.look = "None"; scn.view_settings.exposure = float(os.environ.g
 scn.render.fps = FPS; scn.frame_start, scn.frame_end = 1, NF
 scn.render.image_settings.file_format = "PNG"
 OUT = os.path.join(HERE, "frames_s1v4"); os.makedirs(OUT, exist_ok=True)
+if os.environ.get("DEBUGB"):
+    for tt in (1.58, 1.62, 1.8):
+        scn.frame_set(F(tt)); bpy.context.view_layer.update(); dg = bpy.context.evaluated_depsgraph_get()
+        for ob in bpy.data.objects:
+            if ob.name == f"bruise_{ATT[1].name}_0":
+                e = ob.evaluated_get(dg); print("BRUISE", tt, "hide", ob.hide_render, "loc", tuple(round(c, 3) for c in e.matrix_world.translation), "scale", tuple(round(c, 3) for c in e.matrix_world.to_scale()), "head", tuple(round(c, 3) for c in head_frame(ATT[1])[0]), "P", tuple(round(c, 3) for c in FACES[1]["P"]))
 if os.environ.get("NORENDER"): print("built only", f"{time.time() - T0:.0f}s rss {rss():.2f} GB"); sys.exit(0)
 stills = os.environ.get("STILLS")
 if stills:
     sd = os.environ.get("STILLDIR") or os.path.join(HERE, "stills_s1v4"); os.makedirs(sd, exist_ok=True)
     for s_ in stills.split(","):
-        f = F(float(s_)); scn.frame_set(f); scn.render.filepath = os.path.join(sd, f"t{float(s_):05.2f}.png")
+        f = F(float(s_)); scn.frame_set(f)
+        if os.environ.get("CAMFACE"):                     # debug: close-up of one enemy's face
+            gi = int(os.environ["CAMFACE"]); cam.animation_data_clear(); cd.animation_data_clear(); bpy.context.view_layer.update(); hp2, fw2, up2, lt2 = head_frame(ATT[gi])
+            cam.location = hp2 + fw2 * 0.5 + lt2 * 0.25 * LTS[gi]; cam.rotation_quaternion = ((hp2 + up2 * -0.03) - cam.location).to_track_quat("-Z", "Y"); cd.lens = 50
+        scn.render.filepath = os.path.join(sd, f"t{float(s_):05.2f}.png")
         t1 = time.time(); bpy.ops.render.render(write_still=True); print(f"STILL t={s_} f={f} {time.time() - t1:.0f}s rss {rss():.2f} GB", flush=True)
     sys.exit(0)
 done = sorted(int(n[1:5]) for n in os.listdir(OUT) if n.startswith("f") and n.endswith(".png"))
