@@ -1,0 +1,73 @@
+{
+ "seq": "combat_test",
+ "builds": [
+  "ct_slip_punch_a",
+  "ct_turn_punch_b",
+  "ct_low_kick_a",
+  "combat_test"
+ ],
+ "styles": {
+  "HERO": {
+   "builds": 4,
+   "bones": 163,
+   "bone_hash": "e4088238ae28edca",
+   "height_m": 1.905,
+   "max_bone_len_diff_mm": 0.0,
+   "face_parts": [
+    "brows",
+    "eye_l",
+    "eye_r",
+    "lash_l1",
+    "lash_l2",
+    "lash_r1",
+    "lash_r2",
+    "skin"
+   ],
+   "max_posed_stretch_mm": 0.0031,
+   "max_head_scale_dev": 0.0,
+   "max_face_vertex_dev_mm": 0.001
+  },
+  "FIGHTER_7": {
+   "builds": 4,
+   "bones": 163,
+   "bone_hash": "559779c0db1280b9",
+   "height_m": 1.8692,
+   "max_bone_len_diff_mm": 0.0,
+   "face_parts": [
+    "brows",
+    "eye_l",
+    "eye_r",
+    "lash_l1",
+    "lash_l2",
+    "lash_r1",
+    "lash_r2",
+    "skin"
+   ],
+   "max_posed_stretch_mm": 0.0063,
+   "max_head_scale_dev": 0.0,
+   "max_face_vertex_dev_mm": 0.001
+  },
+  "FIGHTER_4": {
+   "builds": 4,
+   "bones": 163,
+   "bone_hash": "8408fcc83d724f78",
+   "height_m": 2.064,
+   "max_bone_len_diff_mm": 0.0,
+   "face_parts": [
+    "brows",
+    "eye_l",
+    "eye_r",
+    "lash_l1",
+    "lash_l2",
+    "lash_r1",
+    "lash_r2",
+    "skin"
+   ],
+   "max_posed_stretch_mm": 0.0043,
+   "max_head_scale_dev": 0.0,
+   "max_face_vertex_dev_mm": 0.001
+  }
+ },
+ "mismatches": [],
+ "pass": true
+}

@@ -1,0 +1,855 @@
+{
+ "seq": "combat_test",
+ "fps": 30,
+ "frames": 150,
+ "glb": "combat_test.glb",
+ "actors": {
+  "hero": "rig",
+  "A": "rig.001",
+  "B": "rig.002"
+ },
+ "materials": {
+  "skin.001": "#c38d69",
+  "knit.001": "#212126",
+  "coat.001": "#9e2e28",
+  "trousers.001": "#2e2f37",
+  "bag": "#1f1f21",
+  "bag.001": "#101011",
+  "bag_strap": "#101011",
+  "hair.001": "#151519",
+  "hair_fade_base": "#151519",
+  "hair_lite": "#313138",
+  "lash.001": "#131316",
+  "brow.001": "#19171a",
+  "shoe.001": "#9a7551",
+  "loafer_strap": "#37383f",
+  "sole.001": "#5a432c",
+  "skin.002": "#e5c3a6",
+  "knit.002": "#c6942e",
+  "coat.002": "#69422a",
+  "trousers.002": "#28282e",
+  "hair.002": "#1f1a17",
+  "hair_lite.001": "#302924",
+  "skin": "#e7c0a0",
+  "knit": "#cdc2b0",
+  "coat": "#32373e",
+  "trousers": "#282b30",
+  "hair": "#1c1e22",
+  "lash": "#131316",
+  "brow": "#1f1d1a",
+  "shoe": "#201f21",
+  "sole": "#3c2e26"
+ },
+ "clips": [
+  {
+   "id": "ct_slip_punch_a",
+   "start_frame": 1,
+   "frames": 43,
+   "duration": 1.4333,
+   "hits": [
+    {
+     "id": "h1",
+     "frame": 32,
+     "time": 1.0667,
+     "attacker": "hero",
+     "target": "A",
+     "part": "cheek_L",
+     "effector": "fist_R",
+     "hitstop": 3,
+     "point": [
+      0.9002,
+      1.5414,
+      0.196
+     ]
+    }
+   ],
+   "plants": [
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 1.3333,
+     "point": [
+      0.2678,
+      0.0477,
+      -0.1295
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 1.3,
+     "point": [
+      -0.098,
+      0.0477,
+      0.1689
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 1.4,
+     "t1": 1.4,
+     "point": [
+      -0.038,
+      0.0477,
+      0.1689
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 0.5333,
+     "point": [
+      0.8021,
+      0.0475,
+      0.0624
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.7667,
+     "t1": 1.3,
+     "point": [
+      0.6024,
+      0.0475,
+      0.0716
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 1.2,
+     "point": [
+      1.5689,
+      0.0475,
+      -0.289
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 1.4,
+     "point": [
+      -0.4832,
+      0.0512,
+      -0.7027
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 1.4,
+     "point": [
+      -1.2584,
+      0.0512,
+      -1.0444
+     ]
+    }
+   ],
+   "cuts": [
+    {
+     "time": 0.0,
+     "clip": "ct_slip_punch_a"
+    }
+   ]
+  },
+  {
+   "id": "ct_turn_punch_b",
+   "start_frame": 44,
+   "frames": 36,
+   "duration": 1.2,
+   "hits": [
+    {
+     "id": "h2",
+     "frame": 20,
+     "time": 0.6667,
+     "attacker": "hero",
+     "target": "B",
+     "part": "solar_plexus",
+     "effector": "fist_R",
+     "hitstop": 3,
+     "point": [
+      -0.5757,
+      1.0403,
+      -0.5778
+     ]
+    }
+   ],
+   "plants": [
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0333,
+     "t1": 0.0333,
+     "point": [
+      0.3278,
+      0.0477,
+      -0.1295
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.3,
+     "t1": 1.0,
+     "point": [
+      -0.5061,
+      0.0477,
+      0.1077
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 0.9,
+     "point": [
+      -0.038,
+      0.0477,
+      0.1689
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 1.1,
+     "t1": 1.1667,
+     "point": [
+      -0.0929,
+      0.0477,
+      0.1107
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "pivot",
+     "t0": 0.1333,
+     "t1": 1.1667,
+     "point": [
+      0.8223,
+      0.0475,
+      0.0705
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 0.5333,
+     "point": [
+      1.7717,
+      0.0475,
+      -0.2956
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "plant",
+     "t0": 1.0,
+     "t1": 1.1667,
+     "point": [
+      1.5216,
+      0.0475,
+      -0.401
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 0.1667,
+     "point": [
+      -0.4832,
+      0.0512,
+      -0.7027
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.4,
+     "t1": 0.9,
+     "point": [
+      -0.2744,
+      0.0512,
+      -0.36
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 1.1667,
+     "t1": 1.1667,
+     "point": [
+      -0.3285,
+      0.0512,
+      -0.4955
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 0.8,
+     "point": [
+      -1.2584,
+      0.0512,
+      -1.0444
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "R",
+     "kind": "plant",
+     "t0": 1.0333,
+     "t1": 1.1667,
+     "point": [
+      -1.3068,
+      0.0512,
+      -1.1591
+     ]
+    }
+   ],
+   "cuts": [
+    {
+     "time": 0.0,
+     "clip": "ct_turn_punch_b"
+    }
+   ]
+  },
+  {
+   "id": "ct_low_kick_a",
+   "start_frame": 80,
+   "frames": 71,
+   "duration": 2.3667,
+   "hits": [
+    {
+     "id": "h3",
+     "frame": 25,
+     "time": 0.8333,
+     "attacker": "hero",
+     "target": "A",
+     "part": "thigh_L",
+     "effector": "shin_R",
+     "hitstop": 4,
+     "point": [
+      0.5999,
+      0.7411,
+      0.1912
+     ]
+    }
+   ],
+   "plants": [
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 0.0333,
+     "point": [
+      -0.561,
+      0.0477,
+      0.0495
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "pivot",
+     "t0": 0.3333,
+     "t1": 2.3333,
+     "point": [
+      0.218,
+      0.0477,
+      -0.2445
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 0.4667,
+     "point": [
+      -0.0929,
+      0.0477,
+      0.1107
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "plant",
+     "t0": 1.4333,
+     "t1": 2.3333,
+     "point": [
+      -0.1603,
+      0.0477,
+      0.0378
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 0.1,
+     "point": [
+      0.8223,
+      0.0475,
+      0.0705
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.3333,
+     "t1": 0.9667,
+     "point": [
+      0.4079,
+      0.0475,
+      0.1389
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 1.1333,
+     "t1": 1.1333,
+     "point": [
+      0.5032,
+      0.0475,
+      0.0841
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 0.2667,
+     "point": [
+      1.5216,
+      0.0475,
+      -0.401
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.4667,
+     "t1": 1.1333,
+     "point": [
+      1.1072,
+      0.0475,
+      -0.3326
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 2.3333,
+     "point": [
+      -0.3285,
+      0.0512,
+      -0.4955
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "R",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 2.3333,
+     "point": [
+      -1.3068,
+      0.0512,
+      -1.1591
+     ]
+    }
+   ],
+   "cuts": [
+    {
+     "time": 0.0,
+     "clip": "ct_low_kick_a"
+    }
+   ]
+  },
+  {
+   "id": "combat_test",
+   "start_frame": 1,
+   "frames": 150,
+   "duration": 5.0,
+   "hits": [
+    {
+     "id": "h1",
+     "frame": 32,
+     "time": 1.0667,
+     "attacker": "hero",
+     "target": "A",
+     "part": "cheek_L",
+     "effector": "fist_R",
+     "hitstop": 3,
+     "point": [
+      0.9002,
+      1.5414,
+      0.196
+     ]
+    },
+    {
+     "id": "h2",
+     "frame": 63,
+     "time": 2.1,
+     "attacker": "hero",
+     "target": "B",
+     "part": "solar_plexus",
+     "effector": "fist_R",
+     "hitstop": 3,
+     "point": [
+      -0.5757,
+      1.0403,
+      -0.5778
+     ]
+    },
+    {
+     "id": "h3",
+     "frame": 104,
+     "time": 3.4667,
+     "attacker": "hero",
+     "target": "A",
+     "part": "thigh_L",
+     "effector": "shin_R",
+     "hitstop": 4,
+     "point": [
+      0.5999,
+      0.7411,
+      0.1912
+     ]
+    }
+   ],
+   "plants": [
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 1.3333,
+     "point": [
+      0.2678,
+      0.0477,
+      -0.1295
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 1.4667,
+     "t1": 1.4667,
+     "point": [
+      0.3278,
+      0.0477,
+      -0.1295
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 1.7333,
+     "t1": 2.4333,
+     "point": [
+      -0.5061,
+      0.0477,
+      0.1077
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "plant",
+     "t0": 2.6333,
+     "t1": 2.6667,
+     "point": [
+      -0.561,
+      0.0477,
+      0.0495
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "L",
+     "kind": "pivot",
+     "t0": 2.9667,
+     "t1": 4.9667,
+     "point": [
+      0.218,
+      0.0477,
+      -0.2445
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 1.3,
+     "point": [
+      -0.098,
+      0.0477,
+      0.1689
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 1.4,
+     "t1": 2.3333,
+     "point": [
+      -0.038,
+      0.0477,
+      0.1689
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 2.5333,
+     "t1": 3.1,
+     "point": [
+      -0.0929,
+      0.0477,
+      0.1107
+     ]
+    },
+    {
+     "actor": "hero",
+     "side": "R",
+     "kind": "plant",
+     "t0": 4.0667,
+     "t1": 4.9667,
+     "point": [
+      -0.1603,
+      0.0477,
+      0.0378
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 0.5333,
+     "point": [
+      0.8021,
+      0.0475,
+      0.0624
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.7667,
+     "t1": 1.3,
+     "point": [
+      0.6024,
+      0.0475,
+      0.0716
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "pivot",
+     "t0": 1.5667,
+     "t1": 2.7333,
+     "point": [
+      0.8223,
+      0.0475,
+      0.0705
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 2.9667,
+     "t1": 3.6,
+     "point": [
+      0.4079,
+      0.0475,
+      0.1389
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "L",
+     "kind": "plant",
+     "t0": 3.7667,
+     "t1": 3.7667,
+     "point": [
+      0.5032,
+      0.0475,
+      0.0841
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 1.2,
+     "point": [
+      1.5689,
+      0.0475,
+      -0.289
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "plant",
+     "t0": 1.4333,
+     "t1": 1.9667,
+     "point": [
+      1.7717,
+      0.0475,
+      -0.2956
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "plant",
+     "t0": 2.4333,
+     "t1": 2.9,
+     "point": [
+      1.5216,
+      0.0475,
+      -0.401
+     ]
+    },
+    {
+     "actor": "A",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 3.1,
+     "t1": 3.7667,
+     "point": [
+      1.1072,
+      0.0475,
+      -0.3326
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 0.0,
+     "t1": 1.6,
+     "point": [
+      -0.4832,
+      0.0512,
+      -0.7027
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 1.8333,
+     "t1": 2.3333,
+     "point": [
+      -0.2744,
+      0.0512,
+      -0.36
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "L",
+     "kind": "plant",
+     "t0": 2.6,
+     "t1": 4.9667,
+     "point": [
+      -0.3285,
+      0.0512,
+      -0.4955
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "R",
+     "kind": "pivot",
+     "t0": 0.0,
+     "t1": 2.2333,
+     "point": [
+      -1.2584,
+      0.0512,
+      -1.0444
+     ]
+    },
+    {
+     "actor": "B",
+     "side": "R",
+     "kind": "plant",
+     "t0": 2.4667,
+     "t1": 4.9667,
+     "point": [
+      -1.3068,
+      0.0512,
+      -1.1591
+     ]
+    }
+   ],
+   "cuts": [
+    {
+     "time": 0.0,
+     "clip": "ct_slip_punch_a"
+    },
+    {
+     "time": 1.4333,
+     "clip": "ct_turn_punch_b"
+    },
+    {
+     "time": 2.6333,
+     "clip": "ct_low_kick_a"
+    }
+   ]
+  }
+ ]
+}

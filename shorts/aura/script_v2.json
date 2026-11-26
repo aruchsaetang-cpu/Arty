@@ -1,0 +1,22 @@
+[
+ ["hook", "It had rained in Sol for nine years.", 0.35],
+ ["hook", "One man never got wet.", 0.45],
+ ["name", "They called him Aura Monster.", 0.35],
+ ["name", "Midnight. No umbrella. Bone dry.", 0.5],
+ ["theory", "The shopkeepers said luck.", 0.25],
+ ["theory", "The police said a trick.", 0.25],
+ ["theory", "The kids said magic.", 0.5],
+ ["follow", "So one night, I followed him into the alleys.", 0.4],
+ ["follow", "Then I saw it.", 0.55],
+ ["reveal", "He wasn't stopping the rain. He was dodging it.", 0.35],
+ ["reveal", "Every drop. Too fast for the storm to touch him.", 0.55],
+ ["turn", "He turned.", 0.3],
+ ["turn", "\"You'll catch a cold, kid.\"", 0.4],
+ ["turn", "\"Teach me,\" I said.", 0.5],
+ ["train", "So he did. Every night, in the rain.", 0.3],
+ ["train", "I held my umbrella. I couldn't dodge yet.", 0.35],
+ ["train", "A hundred nights. A thousand drops.", 0.5],
+ ["close", "Then one night, I closed it.", 0.55],
+ ["payoff", "Now there are two of us.", 0.35],
+ ["payoff", "And we never get wet.", 1.2]
+]

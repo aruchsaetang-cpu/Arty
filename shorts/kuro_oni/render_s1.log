@@ -1,0 +1,103 @@
+cast built 15s rss 1.16 GB
+hero head (-0.0, 39.95, 1.56) stance drop 0.186
+/home/user/Arty/shorts/kuro_oni/scene1.py:120: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  wm = bpy.data.materials.new("eye_white"); wm.use_nodes = True; nt = wm.node_tree; nt.nodes.clear()
+silhouettes 94 (wanted 94; skipped 0 for camera gaps)
+people 0.0 s
+objects 1729 build 50.6 s
+city built 111s rss 1.59 GB
+hidden props in the ring area: 113 ['car', 'car.001', 'car_arches', 'car_arches.001', 'car_chrome.001', 'car_chrome.003', 'car_chrome.004', 'car_chrome.005', 'car_chrome.006', 'car_chrome.007', 'car_disc', 'car_disc.002']
+/home/user/Arty/shorts/kuro_oni/scene1.py:211: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear()
+01:51.727  cycles           | WARNING CUEW initialization failed: Error opening the library
+02:36.954  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0001.png'
+FRAME 1 45s peak rss 4.34 GB
+03:20.754  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0003.png'
+FRAME 3 43s peak rss 4.69 GB
+04:02.249  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0005.png'
+FRAME 5 41s peak rss 4.69 GB
+04:42.875  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0007.png'
+FRAME 7 40s peak rss 4.73 GB
+05:23.776  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0009.png'
+FRAME 9 41s peak rss 4.79 GB
+06:03.890  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0011.png'
+FRAME 11 40s peak rss 4.79 GB
+06:43.541  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0013.png'
+FRAME 13 39s peak rss 4.79 GB
+07:24.091  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0015.png'
+FRAME 15 40s peak rss 4.79 GB
+08:02.791  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0017.png'
+FRAME 17 38s peak rss 4.79 GB
+08:40.424  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0019.png'
+FRAME 19 37s peak rss 4.79 GB
+09:18.092  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0021.png'
+FRAME 21 37s peak rss 4.79 GB
+09:55.754  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0023.png'
+FRAME 23 37s peak rss 4.79 GB
+10:35.120  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0025.png'
+FRAME 25 39s peak rss 4.79 GB
+11:12.846  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0027.png'
+FRAME 27 37s peak rss 4.79 GB
+11:53.578  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0029.png'
+FRAME 29 40s peak rss 4.79 GB
+12:30.327  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0031.png'
+FRAME 31 36s peak rss 4.79 GB
+13:05.425  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0033.png'
+FRAME 33 35s peak rss 4.79 GB
+13:42.944  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0035.png'
+FRAME 35 37s peak rss 4.79 GB
+14:20.495  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0037.png'
+FRAME 37 37s peak rss 4.79 GB
+14:55.977  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0039.png'
+FRAME 39 35s peak rss 4.79 GB
+15:31.670  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0041.png'
+FRAME 41 35s peak rss 4.79 GB
+16:12.190  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0043.png'
+FRAME 43 40s peak rss 4.79 GB
+16:53.208  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0045.png'
+FRAME 45 41s peak rss 4.79 GB
+17:34.909  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0047.png'
+FRAME 47 41s peak rss 4.79 GB
+18:15.845  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0049.png'
+FRAME 49 41s peak rss 4.83 GB
+18:58.064  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0051.png'
+FRAME 51 42s peak rss 4.83 GB
+19:28.554  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0053.png'
+FRAME 53 30s peak rss 4.83 GB
+19:58.754  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0055.png'
+FRAME 55 30s peak rss 4.83 GB
+20:29.861  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0057.png'
+FRAME 57 31s peak rss 4.83 GB
+21:00.363  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0059.png'
+FRAME 59 30s peak rss 4.84 GB
+21:29.744  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0061.png'
+FRAME 61 29s peak rss 4.84 GB
+21:59.205  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0063.png'
+FRAME 63 29s peak rss 4.84 GB
+22:27.323  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0065.png'
+FRAME 65 28s peak rss 4.86 GB
+23:11.877  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0067.png'
+FRAME 67 44s peak rss 4.86 GB
+23:56.312  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0069.png'
+FRAME 69 44s peak rss 4.86 GB
+24:40.821  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0071.png'
+FRAME 71 44s peak rss 4.86 GB
+25:18.635  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0073.png'
+FRAME 73 37s peak rss 4.86 GB
+25:57.552  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0075.png'
+FRAME 75 39s peak rss 4.86 GB
+26:37.451  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0077.png'
+FRAME 77 40s peak rss 4.86 GB
+27:20.910  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0079.png'
+FRAME 79 43s peak rss 4.86 GB
+28:07.250  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0081.png'
+FRAME 81 46s peak rss 4.86 GB
+28:53.694  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0083.png'
+FRAME 83 46s peak rss 4.86 GB
+29:39.656  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0085.png'
+FRAME 85 46s peak rss 4.86 GB
+30:24.971  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0087.png'
+FRAME 87 45s peak rss 4.86 GB
+31:08.682  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_s1/f0089.png'
+FRAME 89 43s peak rss 4.86 GB
+DONE 1869s

@@ -1,0 +1,37 @@
+{
+  "id": "ct_slip_punch_a",
+  "title": "combat_test 1/3: enemy A throws a right haymaker, the hero slips it with his hands in his pockets and answers with a gyaku-zuki to the cheek",
+  "fps": 30,
+  "story_frames": 40,
+  "duration": 43,
+  "refs": ["local_refs/kyo/1801077b-ScreenRecording_11-25-2569_21-42-56_1.png (gyaku-zuki timing, t=4.3-4.5 s of the upload)"],
+  "actors": {
+    "hero": {"style": "HERO", "role": "hero", "pockets": true, "cloak": false, "start": {"x": 0.0, "y": 0.0, "facing": 90}},
+    "A": {"style": "FIGHTER_7", "role": "enemy", "start": {"x": 1.25, "y": 0.04, "facing": -90}},
+    "B": {"style": "FIGHTER_4", "role": "enemy", "start": {"x": -0.86, "y": 0.975, "facing": 41.4}}
+  },
+  "moves": [
+    {"actor": "hero", "move": "pocket_idle", "start": 0, "end": 19, "params": {"seed": 3}},
+    {"actor": "hero", "move": "slip_turn", "start": 19, "end": 26, "easing": "snap", "blend_in": 2, "blend_out": 1, "params": {"pocket": true, "hold": 0.07}},
+    {"actor": "hero", "move": "gyaku_zuki", "start": 28, "end": 32, "easing": "in", "blend_in": 1, "blend_out": 2, "params": {"pocket": true, "drive": 0.06, "hit": "h1"}},
+    {"actor": "hero", "move": "pocket_recover", "start": 36, "end": 40, "easing": "io", "blend_in": 3, "params": {}},
+    {"actor": "A", "move": "guard_idle", "start": 0, "end": 14, "params": {"seed": 1, "bounce": 0.016}},
+    {"actor": "A", "move": "hook_r", "start": 14, "end": 30, "easing": "in", "blend_in": 2, "params": {"aim": "hero", "step": 0.2}},
+    {"actor": "B", "move": "guard_idle", "start": 0, "end": 40, "params": {"seed": 2, "bounce": 0.014}}
+  ],
+  "hits": [
+    {"id": "h1", "frame": 32, "attacker": "hero", "target": "A", "part": "cheek_L", "effector": "fist_R",
+     "force": [30.0, 7.0, 4.0], "hitstop": 3, "decal": "bruise", "fall": false}
+  ],
+  "camera": {
+    "cuts": [
+      {"frame": 0, "motion_blur": true, "keys": [
+        {"frame": 0, "pos": [0.72, -4.05, 1.22], "look_mid": ["hero", "A"], "look_off": [0, 0, -0.05], "lens": 30, "fstop": 5.6},
+        {"frame": 32, "pos": [0.74, -3.30, 1.18], "look_mid": ["hero", "A"], "look_off": [0, 0, 0.10], "lens": 32, "fstop": 5.6, "ease": "io"},
+        {"frame": 40, "pos": [0.76, -3.36, 1.18], "look_mid": ["hero", "A"], "look_off": [0, 0, 0.08], "lens": 32, "fstop": 5.6, "ease": "io"}
+      ]}
+    ]
+  },
+  "physics": {"reaction_strength": 2.4, "mass": 74, "damping": 0.30, "freq": 2.6, "friction": 5.0},
+  "impact_frame": {"exposure": 0.18, "frames": 1}
+}

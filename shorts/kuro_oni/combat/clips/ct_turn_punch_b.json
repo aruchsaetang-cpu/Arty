@@ -1,0 +1,38 @@
+{
+  "id": "ct_turn_punch_b",
+  "title": "combat_test 2/3: enemy B lunges from behind; the hero turns on the ball of his foot, slips the straight right and punches B in the solar plexus",
+  "fps": 30,
+  "story_frames": 33,
+  "duration": 36,
+  "refs": ["local_refs/kyo/1801077b-ScreenRecording_11-25-2569_21-42-56_1.png (body gyaku-zuki at close range, t=4.33-4.47 s)"],
+  "actors": {
+    "hero": {"style": "HERO", "role": "hero", "pockets": true, "cloak": false, "start": {"x": 0.05, "y": 0.0, "facing": 90}},
+    "A": {"style": "FIGHTER_7", "role": "enemy", "start": {"x": 1.6, "y": 0.1, "facing": -90}},
+    "B": {"style": "FIGHTER_4", "role": "enemy", "start": {"x": -0.86, "y": 0.975, "facing": 41.4}}
+  },
+  "moves": [
+    {"actor": "hero", "move": "turn_step", "start": 0, "end": 8, "easing": "io", "blend_in": 1, "params": {"face": "B", "pocket": true}},
+    {"actor": "hero", "move": "slip_turn", "start": 7, "end": 14, "easing": "snap", "blend_in": 2, "blend_out": 1, "params": {"pocket": true, "hold": 0.06}},
+    {"actor": "hero", "move": "gyaku_zuki", "start": 16, "end": 20, "easing": "in", "blend_in": 1, "blend_out": 2, "params": {"pocket": true, "drive": 0.08, "hit": "h2"}},
+    {"actor": "hero", "move": "pocket_recover", "start": 24, "end": 33, "easing": "io", "blend_in": 3, "params": {}},
+    {"actor": "B", "move": "guard_idle", "start": 0, "end": 4, "params": {"seed": 4, "bounce": 0.014}},
+    {"actor": "B", "move": "lunge_punch", "start": 4, "end": 17, "easing": "in", "blend_in": 2, "params": {"aim": "hero", "step": 0.4}},
+    {"actor": "A", "move": "guard_recover", "start": 14, "end": 26, "easing": "io", "blend_in": 3, "params": {"face": "hero"}},
+    {"actor": "A", "move": "guard_idle", "start": 26, "end": 33, "blend_in": 2, "params": {"seed": 6, "bounce": 0.012}}
+  ],
+  "hits": [
+    {"id": "h2", "frame": 20, "attacker": "hero", "target": "B", "part": "solar_plexus", "effector": "fist_R",
+     "force": [27.0, 0.0, 5.0], "hitstop": 3, "decal": null, "fall": false}
+  ],
+  "camera": {
+    "cuts": [
+      {"frame": 0, "motion_blur": true, "keys": [
+        {"frame": 0, "pos": [-3.65, -1.85, 1.25], "look_mid": ["hero", "B"], "look_off": [0, 0, 0.05], "lens": 32, "fstop": 5.6},
+        {"frame": 20, "pos": [-3.35, -1.62, 1.22], "look_mid": ["hero", "B"], "look_off": [0, 0, 0.05], "lens": 31, "fstop": 5.6, "ease": "io"},
+        {"frame": 33, "pos": [-3.42, -1.68, 1.22], "look_mid": ["hero", "B"], "look_off": [0, 0, 0.0], "lens": 31, "fstop": 5.6, "ease": "io"}
+      ]}
+    ]
+  },
+  "physics": {"reaction_strength": 2.0, "mass": 78, "damping": 0.32, "freq": 2.4, "friction": 5.5},
+  "impact_frame": {"exposure": 0.18, "frames": 1}
+}

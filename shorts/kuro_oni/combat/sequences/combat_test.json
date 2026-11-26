@@ -1,0 +1,6 @@
+{
+  "id": "combat_test",
+  "title": "5 s combat test: hero (hands in pockets) vs two enemies, three moves, three steady cuts",
+  "clips": ["ct_slip_punch_a", "ct_turn_punch_b", "ct_low_kick_a"],
+  "render": {"scale": 50, "samples": 12, "twos": true}
+}
