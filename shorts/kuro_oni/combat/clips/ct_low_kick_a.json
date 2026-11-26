@@ -1,0 +1,38 @@
+{
+  "id": "ct_low_kick_a",
+  "title": "combat_test 3/3: A comes back in; the hero turns to him and, hands still in his pockets, chops his lead thigh with a low mawashi geri. A's leg gives and he goes down",
+  "fps": 30,
+  "story_frames": 67,
+  "duration": 71,
+  "refs": ["local_refs/kyo/6c78c241-ScreenRecording_11-25-2569_21-42-29_1.png (mawashi geri phases, t=1.9-3.5 s)",
+           "local_refs/kyo/1801077b-ScreenRecording_11-25-2569_21-42-56_1.png (gedan mawashi to the thigh, t=4.8-4.95 s)"],
+  "actors": {
+    "hero": {"style": "HERO", "role": "hero", "pockets": true, "cloak": false, "start": {"x": 0.1, "y": 0.0, "facing": 42}},
+    "A": {"style": "FIGHTER_7", "role": "enemy", "start": {"x": 1.4, "y": 0.1, "facing": -90}},
+    "B": {"style": "FIGHTER_4", "role": "enemy", "start": {"x": -0.85, "y": 1.0, "facing": 41.4}}
+  },
+  "moves": [
+    {"actor": "hero", "move": "turn_step", "start": 0, "end": 9, "easing": "io", "blend_in": 1, "params": {"face": "A", "pocket": true}},
+    {"actor": "hero", "move": "mawashi_geri_low", "start": 12, "end": 25, "easing": "in", "blend_in": 2, "blend_out": 2, "params": {"side": "R", "pocket": true, "hit": "h3"}},
+    {"actor": "hero", "move": "kick_recover", "start": 27, "end": 40, "easing": "io", "blend_in": 2, "params": {"side": "R"}},
+    {"actor": "hero", "move": "pocket_idle", "start": 42, "end": 67, "blend_in": 3, "params": {"seed": 7}},
+    {"actor": "A", "move": "step_in", "start": 3, "end": 13, "easing": "io", "blend_in": 2, "params": {"dist": 0.42, "face": "hero"}},
+    {"actor": "A", "move": "guard_idle", "start": 13, "end": 67, "blend_in": 2, "params": {"seed": 8, "bounce": 0.012}},
+    {"actor": "B", "move": "hurt_idle", "start": 0, "end": 67, "blend_in": 4, "params": {"seed": 5}}
+  ],
+  "hits": [
+    {"id": "h3", "frame": 25, "attacker": "hero", "target": "A", "part": "thigh_L", "effector": "shin_R",
+     "force": [12.0, 26.0, -2.0], "hitstop": 4, "decal": null, "fall": true}
+  ],
+  "camera": {
+    "cuts": [
+      {"frame": 0, "motion_blur": true, "keys": [
+        {"frame": 0, "pos": [0.55, -3.70, 0.85], "look_mid": ["hero", "A"], "look_off": [0, 0, -0.30], "lens": 28, "fstop": 6.3},
+        {"frame": 25, "pos": [0.60, -3.35, 0.80], "look_mid": ["hero", "A"], "look_off": [0, 0, -0.35], "lens": 30, "fstop": 6.3, "ease": "io"},
+        {"frame": 67, "pos": [0.70, -3.85, 1.00], "look_mid": ["hero", "A"], "look_off": [0, 0, -0.30], "lens": 30, "fstop": 6.3, "ease": "io"}
+      ]}
+    ]
+  },
+  "physics": {"reaction_strength": 2.2, "mass": 74, "damping": 0.30, "freq": 2.6, "friction": 5.0, "fall_threshold": 0.6},
+  "impact_frame": {"exposure": 0.15, "frames": 1}
+}
