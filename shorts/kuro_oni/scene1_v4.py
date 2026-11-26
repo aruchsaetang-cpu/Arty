@@ -29,8 +29,8 @@ T0 = time.time()
 HC = V((0.0, 40.0, 0.0))                    # ring centre; the hero stands here and faces +x (the attacker)
 THIT = [0.95, 1.60, 2.25]                   # fist meets face: enemy A, B, C (0.65 s apart)
 FHIT = [F(t) for t in THIT]
-ANG = [0.0, 180.0, -55.0]                   # where each enemy stands round the hero (deg, CCW from +x)
-FACING = [90.0, -90.0, 35.0]                # hero hip facing toward each (0 = -y, 90 = +x)
+ANG = [0.0, 180.0, 80.0]                   # where each enemy stands round the hero (deg, CCW from +x)
+FACING = [90.0, -90.0, 170.0]                # hero hip facing toward each (0 = -y, 90 = +x)
 SNAP = 0.13                                 # hit-stop length after contact
 F_ONES = set(); [F_ONES.update(range(F(t - 0.25), F(t) + 1)) for t in THIT]    # the punches on ones; everything else on twos
 RENDER = sorted(set(range(1, NF + 1, 2)) | F_ONES)
@@ -71,12 +71,12 @@ TPL = [
     (-0.26, dict(footL=(1.30, -0.15, -95, 0.10), footR=_fa[1]), "io"),
     (-0.22, dict(fistR=("c", (0.05, -0.40, 1.80))), "io"),
     (-0.20, dict(footL=(0.92, -0.14, -96, 0.0)), "in"),                                                              # front foot lands
-    (-0.15, dict(x=1.30, y=-0.02, yaw=-96, twist=34, lean=18, drop=0.14, hy=0, hp=8, fistR=("c", (0.20, -0.62, 1.72)), footR=(1.92, 0.20, -128, 0.03)), "io"),
-    (-0.06, dict(x=1.05, y=-0.02, yaw=-88, twist=40, lean=22, side=4, drop=0.16, hp=12, fistR=("c", (0.28, -0.80, 1.50)), fistL=("c", (0.16, -0.22, 1.22)),
+    (-0.15, dict(x=1.30, y=-0.02, yaw=-96, twist=34, lean=12, drop=0.14, hy=0, hp=2, fistR=("c", (0.20, -0.62, 1.72)), footR=(1.92, 0.20, -128, 0.03)), "io"),
+    (-0.06, dict(x=1.05, y=-0.02, yaw=-88, twist=40, lean=14, side=4, drop=0.16, hp=0, fistR=("c", (0.28, -0.80, 1.50)), fistL=("c", (0.16, -0.22, 1.22)),
                  footR=(1.62, 0.18, -120, 0.0)), "io"),
-    (0.0, dict(x=1.04, twist=40, lean=22, hp=12, hy=0, hr=0, hs=(1.0, 1.0, 1.0), fistR=("c", (0.28, -0.82, 1.48))), "io"),
+    (0.0, dict(x=1.04, twist=40, lean=14, hp=0, hy=0, hr=0, hs=(1.0, 1.0, 1.0), fistR=("c", (0.28, -0.82, 1.48))), "io"),
     (0.02, dict(hs=(0.78, 0.93, 1.12)), "snap"),                                                                     # face caves in on contact
-    (SNAP, dict(x=1.05, twist=40, lean=22, hp=12, hy=-4, hr=-3, hs=(0.76, 0.93, 1.13), yaw=-88, drop=0.16, side=4), "io"),   # hit-stop
+    (SNAP, dict(x=1.05, twist=40, lean=14, hp=0, hy=-4, hr=-3, hs=(0.76, 0.93, 1.13), yaw=-88, drop=0.16, side=4), "io"),   # hit-stop
     (SNAP + 0.09, dict(hy=-58, hr=-30, hp=-26, x=1.14, tilt=(-4.0, 0.4, 0.0)), "snap"),                               # head snaps to his right
     (0.40, dict(x=1.46, y=0.04, yaw=-122, twist=-28, lean=-12, side=-12, drop=0.02, tilt=(-22.0, 2.2, 0.0), hs=(0.84, 0.95, 1.08),
                 fistR=("c", (-0.58, 0.12, 1.46)), fistL=("c", (0.48, -0.18, 1.12)), hy=-50, hr=-28, hp=-30), "out"),   # launched
@@ -150,7 +150,7 @@ def swing_deg(t):
     for T_h in THIT:
         ks = [(-0.30, 0.0), (-0.13, -6.0), (0.0, 24.0), (0.14, -18.0), (0.30, 9.0), (0.46, -4.0), (0.65, 1.5), (0.85, 0.0)]
         for (t0, a0), (t1, a1) in zip(ks, ks[1:]):
-            if T_h + t0 <= t <= T_h + t1: tot += a0 + (a1 - a0) * ez((t - T_h - t0) / (t1 - t0), "io")
+            if T_h + t0 <= t <= T_h + t1: tot += 0.3 * (a0 + (a1 - a0) * ez((t - T_h - t0) / (t1 - t0), "io"))
     return tot
 _cl = [o for o in hero.children_recursive if o.type == "MESH" and o.data.materials and o.data.materials[0] and o.data.materials[0].name.startswith("cloak")]
 if _cl:
@@ -229,9 +229,9 @@ for me in [m for m in bpy.data.meshes if m.users == 0]: bpy.data.meshes.remove(m
 print(f"variants baked {len(VARS)}  {time.time() - T0:.0f}s rss {rss():.2f} GB", flush=True)
 
 # ---- back rows: instanced baked men (faces, colours), facing the fight; they flinch and lean back after the hit
-CAMS_XY = [V((0.7, -3.5)), V((0.6, -3.5)), V((-2.7, -1.0)), V((0.14, 1.4)), V((0.0, -3.9)), V((0.9, -2.9))]
+CAMS_XY = [V((0.7, -3.5)), V((0.6, -3.5)), V((-2.7, -1.0)), V((-2.2, 0.45)), V((0.0, -3.9)), V((0.9, -2.9))]
 BACK = []; rng = random.Random(9)
-occupied = [V((r * math.cos(RAD(a)), r * math.sin(RAD(a)))) for r, a in NEAR] + [V((1.95, 0)), V((0, 0)), V((-1.95, 0)), V((1.12, -1.6)), V((1.7, 1.0)), V((-1.7, -1.0)), V((1.4, -0.8)), V((-1.1, 0.0))]
+occupied = [V((r * math.cos(RAD(a)), r * math.sin(RAD(a)))) for r, a in NEAR] + [V((1.95, 0)), V((0, 0)), V((-1.95, 0)), V((0.34, 1.92)), V((1.7, 1.0)), V((-1.7, -1.0)), V((0.0, 1.74)), V((-1.1, 0.0)), V((-0.8, 1.9))]
 for r, n in ((4.4, 26), (5.3, 30), (6.3, 34)):
     for k in range(n):
         a = 360.0 * k / n + rng.uniform(-4, 4) + (6 if r > 5 else 0)
@@ -488,8 +488,8 @@ def s2(k):
 shot(0.60, 1.30, s2, "lin")
 # 3 hit 2, over enemy B's shoulder (he comes from the left): fist and his face in profile, the hero behind
 shot(1.30, 1.95, lambda k: (vl(V((CP2.x - 1.50, HC.y - 1.05, 1.62)), V((CP2.x - 1.30, HC.y - 1.0, 1.60)), k), V((CP2.x + 0.60, HC.y, 1.42)), 36, 5))
-# 4 hit 3, low behind the hero's shoulder looking up at enemy C's face
-shot(1.95, 2.65, lambda k: (vl(V((0.14, HC.y + 1.40, 0.55)), V((0.10, HC.y + 1.28, 0.58)), k), V((CP3.x, CP3.y, 1.45)), 32, 5))
+# 4 hit 3 (enemy C comes from behind the hero): low, from the left, fist and face in profile
+shot(1.95, 2.65, lambda k: (vl(V((-2.3, HC.y + 0.45, 0.55)), V((-2.0, HC.y + 0.45, 0.58)), k), V((CP3.x - 0.1, CP3.y, 1.40)), 30, 5))
 # 5 high wide aftermath: three men down, the ring stepping back, the hero hands back in his pockets
 shot(2.65, 3.01, lambda k: (vl(HC + V((0.0, -3.9, 3.0)), HC + V((0.0, -4.1, 3.3)), k), HC + V((0.0, 0.0, 0.5)), 20, 11))
 def key_cam(f):
