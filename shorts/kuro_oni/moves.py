@@ -46,6 +46,7 @@ DEF = dict(x=0.0, y=0.0, yaw=0.0, drop=0.0, twist=0.0, lean=0.0, side=0.0, hp=0.
            tilt=(0.0, 0.0, 0.0))
 GUARD_L = (0.12, -0.36, 1.52); GUARD_R = (-0.13, -0.24, 1.44)       # chest space: front fist at the chin, rear at the jaw
 HIKITE_L = (0.21, 0.02, 1.06); HIKITE_R = (-0.21, 0.02, 1.06)       # fist pulled to the hip
+POCKET_L = (0.215, -0.045, 0.80); POCKET_R = (-0.215, -0.045, 0.80)  # hand inside the front pants pocket (armature-local, follows the hips)
 
 def ez(k, kind):
     k = max(0.0, min(1.0, k))
@@ -108,7 +109,9 @@ class Rig:
             p = b.parent
             return pos(p.name) + A.rot(p.name) @ self.rest[p.name].inverted() @ (b.head_local - p.head_local)
         for sd, sx in (("L", 1), ("R", -1)):                      # arms: fist targets -> two-bone IK, elbows down and tucked
-            T = Mi @ V(st["fist" + sd]); S = pos(f"upperarm01.{sd}")
+            v0, v1, kk = st["fist" + sd]
+            loc_ = lambda v: V(v[1]) if v[0] == "h" else Mi @ V(v[1])
+            T = loc_(v0).lerp(loc_(v1), kk); S = pos(f"upperarm01.{sd}")
             Wt = T - (T - S).normalized() * 0.075
             Lu, Lf = self.arm[sd]; v = Wt - S
             d = max(abs(Lu - Lf) + 0.03, min(v.length, 0.999 * (Lu + Lf))); vn = v.normalized()
@@ -163,8 +166,16 @@ class Rig:
     def state(self, t, skip_fists=False):
         st = {n: self.chan(n, t) for n in list(DEF) + ["footL", "footR"]}
         if not skip_fists:
-            for sd in "LR": st["fist" + sd] = self.chan("fist" + sd, t)
+            for sd in "LR": st["fist" + sd] = self.chan_fist("fist" + sd, t)
         return st
+    def chan_fist(self, name, t):
+        """-> (v0, v1, k): two raw keys ((\"w\", world pt) or (\"h\", armature-local pt)) and the blend 0..1, resolved in solve()."""
+        ks = [(tk, d[name], e) for tk, d, e in self.keys if name in d]
+        if not ks: return (("h", (0, 0, 0)),) * 2 + (0.0,)
+        if t <= ks[0][0]: return ks[0][1], ks[0][1], 0.0
+        for (t0, v0, _), (t1, v1, e1) in zip(ks, ks[1:]):
+            if t0 <= t <= t1: return v0, v1, ez((t - t0) / max(1e-6, t1 - t0), e1)
+        return ks[-1][1], ks[-1][1], 0.0
     def bake(self, frames):
         g = self.g; pbs = g.pose.bones
         for f in frames:
@@ -227,10 +238,17 @@ def step_in(r, t0, dur, dist):
     r.key(t0 + dur, footR=nr, ease="out")
     c.update(x=c["x"] + dv.x, y=c["y"] + dv.y, footL=nl, footR=nr)
 
-def slip_turn(r, t0, dur=0.15, hold=0.07):
+def slip_turn(r, t0, dur=0.15, hold=0.07, pocket=False):
     """Duck under a swing with a hip turn: sink, bend forward and away, load the rear hip (shoulders twisted back), rear fist
     chambers at the hip, front hand out as a shield, eyes on the man. 1-frame anticipation (a tiny rise) before the sink."""
     c = r.ctx; yaw = c["facing"] - 35; tw = -12
+    if pocket:      # nonchalant slip: the body drops and turns away from the swing, both hands stay in the pockets
+        PR, PL = ("h", POCKET_R), ("h", POCKET_L)
+        r.key(t0, drop=c.get("drop", 0.11), lean=c.get("lean", 4), side=0, twist=c["twist"], yaw=c["yaw"], hp=c.get("hp", 0), fistR=PR, fistL=PL)
+        r.key(t0 + dur, drop=0.24, lean=20, side=-8, twist=tw, yaw=yaw, hy=_look(c, yaw, tw) * 0.8, hp=-10, fistR=PR, fistL=PL, ease="snap")
+        r.key(t0 + dur + hold, drop=0.21, lean=17, side=-6, twist=tw - 2, yaw=yaw + 2, hp=-9, fistR=PR, fistL=PL)
+        c.update(yaw=yaw + 2, twist=tw - 2, drop=0.21)
+        return
     r.key(t0, drop=c.get("drop", 0.11), lean=7, side=0, twist=c["twist"], yaw=c["yaw"], hp=6, fistR=("c", GUARD_R), fistL=("c", GUARD_L))
     r.key(t0 + 0.035, drop=c.get("drop", 0.11) - 0.015, ease="out")                     # anticipation
     r.key(t0 + dur, drop=0.25, lean=24, side=-8, twist=tw, yaw=yaw, hy=_look(c, yaw, tw) * 0.8, hp=-14,
@@ -238,27 +256,33 @@ def slip_turn(r, t0, dur=0.15, hold=0.07):
     r.key(t0 + dur + hold, drop=0.22, lean=20, side=-6, twist=tw - 2, yaw=yaw + 2, hp=-12, fistR=("c", HIKITE_R))
     c.update(yaw=yaw + 2, twist=tw - 2, drop=0.22)
 
-def gyaku_zuki(r, t0, dur, target, drive=0.08, overshoot=0.035):
+def gyaku_zuki(r, t0, dur, target, drive=0.08, overshoot=0.035, pocket=False):
     """Reverse punch with the rear (right) hand, contact at t0 + dur. Kinetic chain with overlap:
     rear heel lifts + pivots (0-60%) -> hips fire (10-75%, then square at 100%) -> spine/shoulder (35-100%, snap) ->
     fist leaves the hip late (25%) and accelerates in a straight line into the target; hikite pulls the front fist back;
     weight drives forward by `drive`; after contact the twist overshoots a touch and settles (kime)."""
     c = r.ctx; f = c["facing"]; fwd, _ = basis(f); fr = c["footR"]; tgt = V(target)
     nx, ny = c["x"] + fwd.x * drive, c["y"] + fwd.y * drive
-    r.key(t0, x=c["x"], y=c["y"], footR=fr, fistR=("c", HIKITE_R))
+    r.key(t0, x=c["x"], y=c["y"], footR=fr, fistR=("h", POCKET_R) if pocket else ("c", HIKITE_R))
     r.key(t0 + dur * 0.6, footR=(fr[0], fr[1], f - 22, 0.0, 24.0), ease="out")                 # heel up, pivot on the ball
     r.key(t0 + dur, footR=(fr[0], fr[1], f - 12, 0.0, 30.0), ease="out")
     r.key(t0 + dur * 0.75, yaw=f - 6, ease="in"); r.key(t0 + dur, yaw=f + 2, ease="out")       # hips lead
     r.key(t0 + dur * 0.35, twist=c["twist"])
     r.key(t0 + dur, twist=14, ease="in")                                                         # shoulder whips through
     r.key(t0 + dur, x=nx, y=ny, drop=0.08, lean=8, side=0, hp=-4, hy=_look(c, f + 2, 14), ease="io")
-    r.key(t0 + dur * 0.25, fistR=("c", HIKITE_R))
+    r.key(t0 + dur * 0.25, fistR=("c", HIKITE_R))                                              # out of the pocket up to the hip
     r.key(t0 + dur, fistR=("w", tuple(tgt)), ease="in")                                         # fist accelerates
-    r.key(t0 + dur * 0.2, fistL=("c", (0.10, -0.42, 1.44)))
-    r.key(t0 + dur, fistL=("c", HIKITE_L), ease="snap")                                          # hikite
+    if pocket: r.key(t0, fistL=("h", POCKET_L)); r.key(t0 + dur + 0.2, fistL=("h", POCKET_L))   # the other hand stays in its pocket
+    else:
+        r.key(t0 + dur * 0.2, fistL=("c", (0.10, -0.42, 1.44)))
+        r.key(t0 + dur, fistL=("c", HIKITE_L), ease="snap")                                      # hikite
     d = (tgt - r.chest_to_world(r.state(t0 + dur, skip_fists=True), (-0.2, 0.0, 1.45))).normalized()
     r.key(t0 + dur + 0.05, twist=17, fistR=("w", tuple(tgt + d * overshoot)), ease="out")        # drives through
     r.key(t0 + dur + 0.16, twist=15, fistR=("w", tuple(tgt + d * overshoot * 0.7)), ease="io")   # settles: kime
+    if pocket:
+        r.key(t0 + dur + 0.30, fistR=("h", POCKET_R), ease="io")                                 # the fist goes back into the pocket
+        c.update(x=nx, y=ny, yaw=f + 2, twist=15, drop=0.08, footR=(fr[0], fr[1], f - 12, 0.0, 30.0), fistR=("h", POCKET_R), fistL=("h", POCKET_L))
+        return
     c.update(x=nx, y=ny, yaw=f + 2, twist=15, drop=0.08, footR=(fr[0], fr[1], f - 12, 0.0, 30.0),
              fistR=("w", tuple(tgt + d * overshoot * 0.7)), fistL=("c", HIKITE_L))
 
@@ -269,3 +293,36 @@ def return_to_guard(r, t0, dur=0.25):
     r.key(t0 + dur, yaw=yaw, twist=18, drop=0.11, lean=7, side=0, hp=6, hy=_look(c, yaw, 18), footL=fl, footR=fr,
           fistL=("c", GUARD_L), fistR=("c", GUARD_R), ease="io")
     c.update(yaw=yaw, twist=18, drop=0.11, footL=fl, footR=fr)
+
+
+def pocket_feet(x, y, facing):
+    """relaxed stance: feet about shoulder width, front foot a little ahead, toes slightly out."""
+    fwd, left = basis(facing); p = V((x, y))
+    a = p + fwd * 0.20 + left * 0.12; b = p - fwd * 0.16 - left * 0.14
+    return (a.x, a.y, facing + 8, 0.0, 0.0), (b.x, b.y, facing - 25, 0.0, 0.0)
+
+def pocket_idle(r, t0, t1, x, y, facing, seed=0):
+    """Nonchalant stance, both hands in the front pants pockets (hands_in_pockets): shoulders relaxed, a slight slouch (a little
+    forward lean, chin down), a slow weight shift side to side and a small breath every ~1.3 s. No guard, no bounce."""
+    import random
+    rng = random.Random(seed); fl, fr = pocket_feet(x, y, facing); yaw = facing - 14; tw = 6
+    PR, PL = ("h", POCKET_R), ("h", POCKET_L)
+    r.ctx.update(x=x, y=y, facing=facing, yaw=yaw, twist=tw, footL=fl, footR=fr, drop=0.05, lean=4, hp=3)
+    r.key(t0, x=x, y=y, yaw=yaw, drop=0.05, twist=tw, lean=4, side=0, hp=3, hy=_look(r.ctx, yaw, tw), hr=0, footL=fl, footR=fr,
+          fistL=PL, fistR=PR, tilt=(0, 0, 0), hs=(1, 1, 1))
+    fwd, left = basis(facing); t = t0; k = 0
+    while t < t1 - 0.2:
+        t += 0.65 * rng.uniform(0.9, 1.1); k += 1; sh = 0.012 * (1 if k % 2 else -1)
+        r.key(t, drop=0.05 + (0.008 if k % 2 else -0.004), side=1.5 * (1 if k % 2 else -1), twist=tw + rng.uniform(-1.5, 1.5), lean=4 + (0.8 if k % 2 else 0),
+              x=x + left.x * sh, y=y + left.y * sh, fistL=PL, fistR=PR)
+    r.key(t1, x=x, y=y, yaw=yaw, drop=0.05, twist=tw, lean=4, side=0, hp=3, hy=_look(r.ctx, yaw, tw), footL=fl, footR=fr, fistL=PL, fistR=PR)
+
+def turn_to(r, t0, dur, newf):
+    """turn on the spot to a new facing (pivot via small stepping arcs), ending in the pocket stance; hands stay in the pockets."""
+    c = r.ctx; x, y = c["x"], c["y"]; fl0, fr0 = c["footL"], c["footR"]; fl, fr = pocket_feet(x, y, newf); yaw = newf - 14
+    PR, PL = ("h", POCKET_R), ("h", POCKET_L)
+    r.key(t0, footL=fl0, footR=fr0, yaw=c["yaw"], twist=c["twist"], drop=c["drop"], fistL=PL, fistR=PR, x=x, y=y)
+    mid_f = 0.5 * (fl0[2] + fl[2]); mid_r = 0.5 * (fr0[2] + fr[2])
+    r.key(t0 + dur * 0.45, footL=(x, y - 0.28, mid_f, 0.07), footR=(x, y + 0.28, mid_r, 0.05), yaw=0.5 * (c["yaw"] + yaw), drop=0.08)   # feet swing past each other
+    r.key(t0 + dur, footL=fl, footR=fr, yaw=yaw, twist=6, drop=0.05, lean=4, side=0, hp=3, hy=_look(r.ctx | dict(facing=newf), yaw, 6), fistL=PL, fistR=PR, ease="out")
+    c.update(facing=newf, yaw=yaw, twist=6, footL=fl, footR=fr, drop=0.05, lean=4, hp=3)

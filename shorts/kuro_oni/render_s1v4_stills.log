@@ -11,27 +11,42 @@ rig.009 ['bag.016', 'bag.017', 'bag_strap.008', 'brows.009', 'coat_skirt.007', '
 rig.010 ['bag.018', 'bag.019', 'bag_strap.009', 'brows.010', 'coat_skirt.008', 'coat_upper.008', 'contact_shadow.010', 'eye_l.010', 'eye_r.010', 'hair.010', 'hair_strands.004', 'lash_l1.010', 'lash_l2.010', 'lash_r1.010', 'lash_r2.010', 'loafer_strapL.009', 'loafer_strapR.009', 'shoe_soleL.010', 'shoe_soleR.010', 'shoe_upperL.010', 'shoe_upperR.010', 'skin.010', 'top.010', 'trousers.010']
 rig.011 ['bag.020', 'bag.021', 'bag_strap.010', 'brows.011', 'coat_skirt.009', 'coat_upper.009', 'contact_shadow.011', 'eye_l.011', 'eye_r.011', 'hair.011', 'hair_strands.005', 'lash_l1.011', 'lash_l2.011', 'lash_r1.011', 'lash_r2.011', 'loafer_strapL.010', 'loafer_strapR.010', 'shoe_soleL.011', 'shoe_soleR.011', 'shoe_upperL.011', 'shoe_upperR.011', 'skin.011', 'top.011', 'trousers.011']
 rig.012 ['bag.022', 'bag.023', 'bag_strap.011', 'brows.012', 'coat_skirt.010', 'coat_upper.010', 'contact_shadow.012', 'eye_l.012', 'eye_r.012', 'hair.012', 'lash_l1.012', 'lash_l2.012', 'lash_r1.012', 'lash_r2.012', 'loafer_strapL.011', 'loafer_strapR.011', 'shoe_soleL.012', 'shoe_soleR.012', 'shoe_upperL.012', 'shoe_upperR.012', 'skin.012', 'top.012', 'trousers.012']
-attacker head (0.87, 39.942, 1.5) fwd (-0.6, -0.61, -0.51) up (-0.43, -0.29, 0.86)
-fist (0.713, 39.842, 1.537) target (0.756, 39.837, 1.527) err 4.5 cm
-fist (0.76, 39.835, 1.523) target (0.756, 39.837, 1.527) err 0.6 cm
-fist at 1.93 s (chamber) (-0.13, 39.85, 0.84)
+enemy head rig.001 (0.87, 39.93, 1.5)
+enemy head rig.002 (-0.87, 40.07, 1.54)
+enemy head rig.003 (0.44, 39.24, 1.38)
+hit 0 fist (0.432, 39.835, 1.369) target (0.758, 39.822, 1.527) err 36.3 cm
+hit 1 fist (-0.708, 40.178, 1.557) target (-0.755, 40.177, 1.565) err 4.8 cm
+hit 2 fist (0.28, 39.293, 1.429) target (0.287, 39.273, 1.41) err 2.8 cm
+hit 0 fist (0.657, 39.828, 1.449) target (0.758, 39.822, 1.527) err 12.8 cm
+hit 1 fist (-0.708, 40.179, 1.556) target (-0.755, 40.177, 1.565) err 4.8 cm
+hit 2 fist (0.287, 39.271, 1.409) target (0.287, 39.273, 1.41) err 0.3 cm
+hit 0 fist (0.731, 39.822, 1.489) target (0.758, 39.822, 1.527) err 4.7 cm
+hit 1 fist (-0.708, 40.179, 1.556) target (-0.755, 40.177, 1.565) err 4.8 cm
+hit 2 fist (0.287, 39.273, 1.41) target (0.287, 39.273, 1.41) err 0.0 cm
+hit 0 fist (0.747, 39.819, 1.506) target (0.758, 39.822, 1.527) err 2.4 cm
+hit 1 fist (-0.708, 40.179, 1.556) target (-0.755, 40.177, 1.565) err 4.8 cm
+hit 2 fist (0.287, 39.273, 1.41) target (0.287, 39.273, 1.41) err 0.0 cm
 cloak follow-through keyed on Cube
-/home/user/Arty/shorts/kuro_oni/scene1_v4.py:164: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+/home/user/Arty/shorts/kuro_oni/scene1_v4.py:194: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   if not m or not m.use_nodes or m.name in ("ink",) or "eye" in m.name: continue
-variants baked 11  35s rss 1.86 GB
-back-row men 58
+variants baked 9  41s rss 1.87 GB
+back-row men 57
 people 0.0 s
-objects 1963 build 44.5 s
-/home/user/Arty/shorts/kuro_oni/scene1_v4.py:229: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+objects 1915 build 50.5 s
+/home/user/Arty/shorts/kuro_oni/scene1_v4.py:259: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   for m_ in [m for m in bpy.data.materials if m.name.startswith("asphalt") and m.use_nodes]:
-city built 79s rss 2.03 GB
+city built 92s rss 2.02 GB
 hidden props in the ring area: 182 ['car', 'car.001', 'car.006', 'car_arches', 'car_arches.001', 'car_arches.006', 'car_chrome', 'car_chrome.001', 'car_chrome.002', 'car_chrome.003']
-/home/user/Arty/shorts/kuro_oni/scene1_v4.py:257: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+/home/user/Arty/shorts/kuro_oni/scene1_v4.py:287: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; nt.nodes.clear()
-/home/user/Arty/shorts/kuro_oni/scene1_v4.py:266: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+/home/user/Arty/shorts/kuro_oni/scene1_v4.py:296: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; N, L = nt.nodes, nt.links; N.clear()
-01:26.883  cycles           | WARNING CUEW initialization failed: Error opening the library
-02:07.716  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t00.40.png'
-STILL t=0.4 f=13 41s rss 6.39 GB
-02:38.527  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t01.00.png'
-STILL t=1.0 f=31 30s rss 6.63 GB
+/home/user/Arty/shorts/kuro_oni/scene1_v4.py:409: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; N, L = nt.nodes, nt.links; N.clear()
+01:35.831  cycles           | WARNING CUEW initialization failed: Error opening the library
+02:10.451  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t00.30.png'
+STILL t=0.3 f=10 34s rss 6.01 GB
+02:42.935  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t00.70.png'
+STILL t=0.7 f=22 32s rss 6.27 GB
+03:13.411  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t00.97.png'
+STILL t=0.97 f=30 30s rss 6.29 GB
