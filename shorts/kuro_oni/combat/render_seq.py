@@ -50,7 +50,7 @@ def assemble(seq_id, n_out, fps, frozen):
             fh.write(f"file 'f{src:04d}.png'\nduration {1.0 / fps:.6f}\n"); last = src
         fh.write(f"file 'f{last:04d}.png'\n")
     os.makedirs(OUTV, exist_ok=True); out = os.path.join(OUTV, f"{seq_id}.mp4")
-    cmd = ["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-vf", f"fps={fps},format=yuv420p", "-an",
+    cmd = ["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-vf", f"fps={fps},format=yuv420p", "-an", "-frames:v", str(n_out),
            "-c:v", "libx264", "-crf", "17", "-preset", "medium", "-movflags", "+faststart", out]
     subprocess.run(cmd, check=True); print("MP4", out, os.path.getsize(out), "bytes", flush=True); return out
 

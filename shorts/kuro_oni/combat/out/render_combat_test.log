@@ -113,3 +113,40 @@ FRAME 111 7.3s peak rss 2.05 GB
 FRAME 113 7.7s peak rss 2.05 GB
 09:28.632  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0115.png'
 FRAME 115 7.2s peak rss 2.05 GB
+09:36.084  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0117.png'
+FRAME 117 7.4s peak rss 2.05 GB
+09:43.397  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0119.png'
+FRAME 119 7.2s peak rss 2.05 GB
+09:50.611  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0121.png'
+FRAME 121 7.1s peak rss 2.05 GB
+09:57.676  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0123.png'
+FRAME 123 7.0s peak rss 2.05 GB
+10:04.463  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0125.png'
+FRAME 125 6.7s peak rss 2.05 GB
+10:11.092  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0127.png'
+FRAME 127 6.5s peak rss 2.05 GB
+10:17.485  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0129.png'
+FRAME 129 6.3s peak rss 2.05 GB
+10:23.987  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0131.png'
+FRAME 131 6.4s peak rss 2.05 GB
+10:30.474  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0133.png'
+FRAME 133 6.4s peak rss 2.05 GB
+10:37.042  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0135.png'
+FRAME 135 6.5s peak rss 2.05 GB
+10:43.755  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0137.png'
+FRAME 137 6.6s peak rss 2.05 GB
+10:50.239  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0139.png'
+FRAME 139 6.4s peak rss 2.05 GB
+10:56.404  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0141.png'
+FRAME 141 6.1s peak rss 2.05 GB
+11:02.861  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0143.png'
+FRAME 143 6.4s peak rss 2.05 GB
+11:09.425  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0145.png'
+FRAME 145 6.5s peak rss 2.05 GB
+11:16.137  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0147.png'
+FRAME 147 6.6s peak rss 2.05 GB
+11:22.389  render           | Saved: '/home/user/Arty/shorts/kuro_oni/frames_seq/combat_test/f0149.png'
+FRAME 149 6.2s peak rss 2.05 GB
+RENDERED 71 frames in 669s (71 planned, twos=True)
+MP4 /home/user/Arty/shorts/kuro_oni/out/combat_test.mp4 805718 bytes
+wall 685 s
