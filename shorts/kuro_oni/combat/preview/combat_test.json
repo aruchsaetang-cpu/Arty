@@ -30,15 +30,15 @@
   "trousers.002": "#28282e",
   "hair.002": "#1f1a17",
   "hair_lite.001": "#302924",
-  "brow": "#19171a",
-  "coat": "#9e2e28",
-  "hair": "#151519",
-  "knit": "#212126",
+  "skin": "#e7c0a0",
+  "knit": "#cdc2b0",
+  "coat": "#32373e",
+  "trousers": "#282b30",
+  "hair": "#1c1e22",
   "lash": "#131316",
-  "shoe": "#9a7551",
-  "skin": "#c38d69",
-  "sole": "#5a432c",
-  "trousers": "#2e2f37"
+  "brow": "#1f1d1a",
+  "shoe": "#201f21",
+  "sole": "#3c2e26"
  },
  "clips": [
   {

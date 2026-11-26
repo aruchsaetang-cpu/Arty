@@ -127,9 +127,11 @@ def fingerprint(W, frames=None):
             base = o.name.split(".")[0]
             if o.type != "MESH" or not base.startswith(FACE_PREFIX): continue
             M = Hm @ inv @ o.matrix_world
-            co = [tuple(round(c, 5) for c in (M @ v.co)) for v in o.data.vertices]
+            co = [M @ v.co for v in o.data.vertices]
+            if base == "skin": co = [p for p in co if p.length < 0.16][::3]          # the face region of the skin, every 3rd vertex
             sk = {k.name: round(k.value, 4) for k in o.data.shape_keys.key_blocks} if o.data.shape_keys else {}
-            face[base] = dict(verts=len(co), geom=_hash(co), mats=[m.name.split(".")[0] for m in o.data.materials if m], shape_keys=sk)
+            face[base] = dict(verts=len(o.data.vertices), coords=[round(c, 6) for p in co for c in p],
+                              mats=[m.name.split(".")[0] for m in o.data.materials if m], shape_keys=sk)
         dev = 0.0; hs_max = 0.0
         for f in frames:
             scn.frame_set(f)

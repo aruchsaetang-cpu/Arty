@@ -117,7 +117,7 @@ async function init() {
   }
   tick();
   Object.assign(window.__preview, { ready: true, clips: man.clips.map(c => c.id), animations: gltf.animations.map(a => [a.name, a.duration, a.tracks.length]),
-    setClip: (id) => { sel.value = id; setClip(id); }, setTime: (t) => { playing = false; act.paused = true; scrub.value = t; setTime(t); }, manifest: man });
+    setClip: (id) => { sel.value = id; setClip(id); }, cam, ctl, setTime: (t) => { playing = false; act.paused = true; scrub.value = t; setTime(t); }, manifest: man });
 }
 window.addEventListener("error", e => window.__preview && window.__preview.errors.push(e.message));
 </script>

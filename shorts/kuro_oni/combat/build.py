@@ -89,6 +89,11 @@ def build(ident, verbose=True, with_camera=True, with_secondary=True, with_hooks
                                       twist=6 if a.get("pockets") else 18, drop=0.05 if a.get("pockets") else 0.11, lean=4, hp=3)
         fl, fr = (MV.pocket_feet if a.get("pockets") else MV.kamae_feet)(st["x"], st["y"], st["facing"])
         R.ctx.update(footL=fl, footR=fr)
+        c = R.ctx; pk = bool(a.get("pockets"))             # base layer: the full start pose, so every channel is defined
+        base = R.layer("base", 0.0, 0.0, kind="idle")
+        base.key(0.0, x=c["x"], y=c["y"], yaw=c["yaw"], twist=c["twist"], drop=c["drop"], lean=c["lean"], side=0.0, hp=c["hp"],
+                 hy=MX._look(c["facing"], c["yaw"], c["twist"], 35), hr=0.0, hs=(1.0, 1.0, 1.0), tilt=(0.0, 0.0, 0.0), footL=fl, footR=fr,
+                 fistL=MX.PL if pk else ("c", MV.GUARD_L), fistR=MX.PR if pk else ("c", MV.GUARD_R))
         W.actors[n] = R; W.objs[n] = objs
     if verbose: print(f"[combat] cast {time.time() - T0:.1f}s rss {rss():.2f} GB", flush=True)
     # ---- moves + hits in global story time

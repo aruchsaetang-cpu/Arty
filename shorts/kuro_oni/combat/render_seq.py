@@ -1,7 +1,7 @@
 """Render ONE combat sequence (or one clip) on its own - never the whole film.
 
     python shorts/kuro_oni/combat/render_seq.py <seq_or_clip_id> [--frames a-b] [--scale 50] [--samples 12] [--twos]
-           [--stills 12,40] [--check] [--no-mp4] [--mp4-only] [--keeplast]
+           [--stills 12,40] [--check] [--check-only] [--no-mp4] [--mp4-only] [--keeplast]
 
 Frames -> shorts/kuro_oni/frames_seq/<id>/f####.png (existing frames are skipped, so a killed run resumes; the newest
 frame is re-rendered in case it was half written). --twos renders odd frames + every contact frame; hit-stop held
@@ -20,7 +20,7 @@ except ImportError:
 import argparse
 ap = argparse.ArgumentParser(); ap.add_argument("seq"); ap.add_argument("--frames"); ap.add_argument("--scale", type=int)
 ap.add_argument("--samples", type=int); ap.add_argument("--twos", action="store_true"); ap.add_argument("--ones", action="store_true")
-ap.add_argument("--stills"); ap.add_argument("--check", action="store_true"); ap.add_argument("--no-mp4", action="store_true")
+ap.add_argument("--stills"); ap.add_argument("--check", action="store_true"); ap.add_argument("--check-only", action="store_true"); ap.add_argument("--no-mp4", action="store_true")
 ap.add_argument("--mp4-only", action="store_true"); ap.add_argument("--keeplast", action="store_true"); ap.add_argument("--blur-steps", type=int, default=1)
 A = ap.parse_args()
 sys.path.insert(0, HERE)
@@ -65,9 +65,10 @@ W = build.build(A.seq)
 import bpy
 import city as C
 scn = bpy.context.scene
-if A.check:
+if A.check or A.check_only:
     import checks
     rep = checks.run(W); print(checks.summary(rep), flush=True)
+    if A.check_only: sys.exit(0 if rep["pass"] else 1)
 C.render_settings(scale, samples)
 scn.view_settings.look = "None"; base_exp = scn.view_settings.exposure
 scn.render.image_settings.file_format = "PNG"; scn.render.fps = seq["fps"]
