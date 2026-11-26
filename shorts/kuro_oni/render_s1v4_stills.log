@@ -31,3 +31,7 @@ hidden props in the ring area: 182 ['car', 'car.001', 'car.006', 'car_arches', '
 /home/user/Arty/shorts/kuro_oni/scene1_v4.py:266: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
   m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; N, L = nt.nodes, nt.links; N.clear()
 01:26.883  cycles           | WARNING CUEW initialization failed: Error opening the library
+02:07.716  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t00.40.png'
+STILL t=0.4 f=13 41s rss 6.39 GB
+02:38.527  render           | Saved: '/home/user/Arty/shorts/kuro_oni/stills_s1v4/t01.00.png'
+STILL t=1.0 f=31 30s rss 6.63 GB
