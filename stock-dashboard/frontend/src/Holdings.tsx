@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Banner, Chip, MosText, OwnedBox, QualityChip, QuoteChip, ValChip } from "./common";
-import { holdingTickers, pct, price, useApi, useHoldings, usePrefs } from "./lib";
+import { holdingTickers, pct, price, useApi, useHoldings, usePrefs , stockHref, openStock} from "./lib";
 
 export default function Holdings() {
   const held = useHoldings();
@@ -32,8 +32,8 @@ export default function Holdings() {
             <thead><tr><th>Stock</th><th>Owned</th><th>Latest price</th><th>Quality</th><th>Valuation</th><th>Margin of safety</th><th>Watch price</th></tr></thead>
             <tbody>
               {shown.map((r) => (
-                <tr key={r.ticker} className="click" onClick={() => (location.hash = "#/stock/" + r.ticker)} data-testid={`hold-${r.ticker}`}>
-                  <td><a href={"#/stock/" + r.ticker} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a><div className="tiny mute" style={{ whiteSpace: "normal" }}>{r.name}{r.in_index === false && <> · <Chip>not in S&amp;P 500 list</Chip></>}</div></td>
+                <tr key={r.ticker} className="click" onClick={() => openStock(r.ticker)} data-testid={`hold-${r.ticker}`}>
+                  <td><a href={stockHref(r.ticker)} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a><div className="tiny mute" style={{ whiteSpace: "normal" }}>{r.name}{r.in_index === false && <> · <Chip>not in S&amp;P 500 list</Chip></>}</div></td>
                   <td style={{ textAlign: "center" }}><OwnedBox ticker={r.ticker} compact /></td>
                   <td>{r.pending || r.price == null ? <span className="mute">{r.status === "failed_fetch" ? "data fetch failed" : "awaiting data"}</span> : <>{price(r.price, r.currency)}<div className="tiny mute">{r.price_time}</div><QuoteChip status={r.quote_status} reason={r.quote_reason} /></>}</td>
                   <td><QualityChip q={r.quality} /></td>

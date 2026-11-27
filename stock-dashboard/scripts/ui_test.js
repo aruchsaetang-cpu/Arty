@@ -22,11 +22,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.goto(BASE + "/#/");
   await page.evaluate(() => localStorage.clear());
   await page.reload();
-  await page.waitForSelector("text=Ranking timestamp", { timeout: 30000 });
+  await page.waitForSelector("text=Top qualifying stocks", { timeout: 30000 });
   const tickers = async () => (await page.$$eval(".pick .tk", (els) => els.map((e) => e.textContent))).join(",");
   const rank0 = await tickers();
   check("Home: shortlist rendered", rank0.length > 0, rank0);
-  check("Home: ranking timestamp + coverage shown", await page.isVisible("text=securities in the universe") && await page.isVisible("text=usable valuations"));
+  check("Home: ranking timestamp + coverage shown", (await page.textContent(".cov")).includes("usable valuations") && (await page.textContent("main")).includes("Ranked "));
   check("Holdings start empty (badge 0)", (await page.textContent("[data-testid=holdings-count]")) === "0");
   await page.screenshot({ path: path.join(OUT, "home_portrait.png"), fullPage: false });
   const pickCols = await page.$eval(`[data-testid^=pick-]`, (el) => ({ own: !!el.querySelector("input[type=checkbox]"), tk: !!el.querySelector(".tk"), px: !!el.querySelector(".px"), mos: !!el.querySelector(".mosc"), why: (el.querySelector(".why")?.offsetParent !== null) }));
@@ -153,7 +153,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.waitForSelector("[data-testid=scr-STM]");
   check("Screener checkbox now unticked", !(await page.isChecked("[data-testid=scr-STM] input[type=checkbox]")));
   await page.goto(BASE + "/#/");
-  await page.waitForSelector("text=Ranking timestamp");
+  await page.waitForSelector("text=Top qualifying stocks");
   check("Ranking identical after the full ownership flow", (await tickers()) === rank0);
 
   // other archetypes
@@ -176,7 +176,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   // ------------------------------------------------ LANDSCAPE
   ({ ctx, page } = await mk(1180, 820, "landscape"));
   await page.goto(BASE + "/#/");
-  await page.waitForSelector("text=Ranking timestamp", { timeout: 30000 });
+  await page.waitForSelector("text=Top qualifying stocks", { timeout: 30000 });
   await page.screenshot({ path: path.join(OUT, "home_landscape.png") });
   const wide = await page.$eval(`[data-testid^=pick-]`, (el) => el.querySelector(".why").getBoundingClientRect().top - el.querySelector(".id").getBoundingClientRect().top);
   check("Landscape: reason sits on the same line as the ticker", Math.abs(wide) < 30, String(wide));

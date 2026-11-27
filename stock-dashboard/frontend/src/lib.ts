@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { getJson } from "./api";
 
 /* ---------------- formatting ---------------- */
 export const N = (x: any) => x === null || x === undefined || (typeof x === "number" && !isFinite(x));
@@ -72,17 +73,21 @@ export const usePrefs = () => prefsStore.use();
 export const setMos = (m: number) => prefsStore.set({ ...prefsStore.get(), mos: Math.min(0.9, Math.max(0, m)) });
 
 /* ---------------- hash router ---------------- */
+/* Plain #name routes (artifact-safe): #home #screener #holdings #method #stock-TICKER */
 export function useRoute() {
-  const [h, setH] = useState(location.hash || "#/");
+  const [h, setH] = useState(location.hash);
   useEffect(() => {
-    const f = () => setH(location.hash || "#/");
+    const f = () => { setH(location.hash); window.scrollTo(0, 0); };
     window.addEventListener("hashchange", f);
     return () => window.removeEventListener("hashchange", f);
   }, []);
-  const parts = h.replace(/^#\/?/, "").split("/").filter(Boolean);
-  return { parts, go: (p: string) => (location.hash = p) };
+  const raw = h.replace(/^#\/?/, "");
+  if (raw.startsWith("stock-")) return { parts: ["stock", raw.slice(6)] };
+  if (raw.startsWith("stock/")) return { parts: ["stock", raw.slice(6)] };
+  return { parts: raw ? [raw] : [] };
 }
-export const href = (p: string) => "#/" + p;
+export const stockHref = (t: string) => "#stock-" + t;
+export const openStock = (t: string) => (location.hash = stockHref(t));
 
 /* ---------------- data hooks: keep last good data, never blank the screen ---------------- */
 export function useApi<T = any>(url: string | null, opts: { every?: number; enabled?: boolean; keep?: boolean } = {}) {
@@ -97,9 +102,7 @@ export function useApi<T = any>(url: string | null, opts: { every?: number; enab
     if (!u) return;
     setLoading(true);
     try {
-      const r = await fetch(u);
-      if (!r.ok) throw new Error((await r.text()).slice(0, 200) || r.statusText);
-      const j = await r.json();
+      const j = await getJson(u);
       if (urlRef.current === u) {
         setData(j);
         setError(null);

@@ -1,5 +1,5 @@
 import React from "react";
-import { pct, price, spct, toggleHolding, useHoldings } from "./lib";
+import { pct, price, spct, toggleHolding, useHoldings , stockHref, openStock} from "./lib";
 
 /** Ownership checkbox: its own 48px tap target; never bubbles to the row, so it cannot open the stock page. */
 export function OwnedBox({ ticker, label = "Owned", compact = false }: { ticker: string; label?: string; compact?: boolean }) {
@@ -72,7 +72,7 @@ export function PickRow({ r, rank, open, onToggle, go, closest }: any) {
         <div className="id">
           <div className="row" style={{ gap: 6 }}>
             {rank && <span className="rank">{rank}</span>}
-            <a className="tk" href={"#/stock/" + r.ticker} onClick={(e) => e.stopPropagation()}>{r.ticker}</a>
+            <a className="tk" href={stockHref(r.ticker)} onClick={(e) => e.stopPropagation()}>{r.ticker}</a>
           </div>
           <div className="nm">{r.name}</div>
         </div>
@@ -103,7 +103,7 @@ export function PickRow({ r, rank, open, onToggle, go, closest }: any) {
           {!closest && r.risk && <div><b>Biggest risk:</b> {r.risk}</div>}
           {closest && <div className="small mute">Closest candidates are assessed stocks that did NOT qualify; the rules each one missed are shown above.</div>}
           <div className="row">
-            <a className="btn primary" href={"#/stock/" + r.ticker}>Open full analysis →</a>
+            <a className="btn primary" href={stockHref(r.ticker)}>Open full analysis</a>
           </div>
         </div>
       )}

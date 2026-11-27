@@ -5,7 +5,8 @@ import Method from "./Method";
 import Screener from "./Screener";
 import Stock from "./Stock";
 import { Chip } from "./common";
-import { useApi, useHoldings, useRoute } from "./lib";
+import { useApi, useHoldings, useRoute , stockHref, openStock} from "./lib";
+import { STATIC, getJson } from "./api";
 
 function Search() {
   const [q, setQ] = useState("");
@@ -16,10 +17,10 @@ function Search() {
     clearTimeout(t.current);
     if (!q.trim()) { setRes([]); return; }
     t.current = setTimeout(async () => {
-      try { const r = await fetch("/api/search?q=" + encodeURIComponent(q)); setRes((await r.json()).results || []); } catch { setRes([]); }
+      try { setRes((await getJson("/api/search?q=" + encodeURIComponent(q))).results || []); } catch { setRes([]); }
     }, 200);
   }, [q]);
-  const pick = (tk: string) => { location.hash = "#/stock/" + tk; setQ(""); setOpen(false); };
+  const pick = (tk: string) => { location.hash = stockHref(tk); setQ(""); setOpen(false); };
   return (
     <div className="search">
       <input placeholder="Search any ticker or company (e.g. STM, JPM, O)…" value={q} onChange={(e) => { setQ(e.target.value); setOpen(true); }} onFocus={() => setOpen(true)}
@@ -40,15 +41,16 @@ export default function App() {
   const held = useHoldings();
   const { data: meta } = useApi<any>("/api/meta", { every: 300000, keep: true });
   const page = parts[0] || "home";
-  const tab = (k: string, l: string, extra?: any) => <a href={"#/" + (k === "home" ? "" : k)} className={page === k ? "on" : ""}>{l}{extra}</a>;
+  const tab = (k: string, l: string, extra?: any) => <a href={"#" + k} className={page === k ? "on" : ""}>{l}{extra}</a>;
   useEffect(() => { document.getElementById("root")?.setAttribute("data-page", page); }, [page]);
   return (
     <>
       <header className="top"><div className="top-in">
-        <span className="brand">📈 Research</span>
+        <a className="brand" href="#home" style={{ color: "var(--ink)", textDecoration: "none" }}><i />Margin of Safety</a>
         <nav className="tabs">{tab("home", "Home")}{tab("screener", "Screener")}{tab("holdings", "My Holdings", <span className="badge-n" data-testid="holdings-count">{Object.keys(held).length}</span>)}{tab("method", "Method")}</nav>
         <Search />
-        {meta && <Chip cls={meta.session.phase === "OPEN" ? "good" : ""} title={`Now ${meta.session.now_et}`}>NYSE {meta.session.phase === "OPEN" ? "open" : meta.session.closed_reason ? `closed (${meta.session.closed_reason})` : meta.session.phase.replaceAll("_", " ").toLowerCase()}</Chip>}
+        {STATIC && meta && <Chip cls="warn" title="Published snapshot: prices and ranking are frozen at this time">Snapshot · {meta.snapshot}</Chip>}
+        {!STATIC && meta && <Chip cls={meta.session.phase === "OPEN" ? "good" : ""} title={`Now ${meta.session.now_et}`}>NYSE {meta.session.phase === "OPEN" ? "open" : meta.session.closed_reason ? `closed (${meta.session.closed_reason})` : meta.session.phase.replaceAll("_", " ").toLowerCase()}</Chip>}
       </div></header>
       <main className="wrap">
         {page === "home" && <Home />}

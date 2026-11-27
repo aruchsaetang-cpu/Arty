@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Banner, Chip } from "./common";
 import { pct, usePrefs, useApi } from "./lib";
+import { STATIC } from "./api";
 
 export default function Method() {
   const { mos } = usePrefs();
@@ -20,7 +21,7 @@ export default function Method() {
       <div className="card"><h3>S&amp;P 500 membership</h3>
         <div className="row"><Chip cls={m.verified ? "good" : "bad"}>{m.verified ? "Verified against S&P DJI file" : "NOT verified against S&P DJI"}</Chip><span>{m.label}</span><span className="mute small">as of {m.as_of} · {m.count} securities</span></div>
         <div className="small mute">{m.note} S&amp;P DJI blocks automated downloads, so verification needs the official constituents spreadsheet (download from <a href={m.url ?? data.sources.spdji.url} target="_blank" rel="noreferrer">spglobal.com/spdji</a>, “Constituents”). Upload it (.xlsx or .csv) and the app will use it instead of the secondary source.</div>
-        <input type="file" accept=".xlsx,.csv" onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} aria-label="Official S&P constituents file" />
+        {!STATIC && <input type="file" accept=".xlsx,.csv" onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} aria-label="Official S&P constituents file" />}
         {msg && <Banner kind="info">{msg}</Banner>}</div>
       <div className="card"><h3>Formulas</h3>
         <ul className="tight"><li><b>Margin of safety</b> = {data.formulas.margin_of_safety}</li><li><b>Upside to fair value</b> = {data.formulas.upside}</li><li><b>Watch price</b> = {data.formulas.watch_price}</li></ul>

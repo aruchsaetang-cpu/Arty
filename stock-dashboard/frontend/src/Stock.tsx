@@ -3,6 +3,7 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxi
 import { Banner, Chip, ConfChip, MosText, OwnedBox, QualityChip, QuoteChip, RuleList, ValChip } from "./common";
 import { Compare, Extras, Fundamentals, ImportPanel, Perspectives, Sources } from "./StockData";
 import { N, cell, num, pct, price, spct, useApi, useDebounced, usePrefs } from "./lib";
+import { STATIC, getJson, postValuation } from "./api";
 
 const fmtVal = (v: any, unit: string, ccy = "USD") =>
   unit === "pct" ? pct(v, 1) : unit === "pct2" ? `${pct(v[0], 1)} → ${pct(v[1], 1)}` : unit === "years" ? `${v} yrs` : unit === "money" ? price(v, ccy) : unit === "x" ? `${num(v, 2)}x` : String(v);
@@ -19,7 +20,7 @@ export default function Stock({ ticker }: { ticker: string }) {
   // 60 s auto-refresh while visible and trading is active (pricing hook polls; this adds the FORCE flag for a real Yahoo hit)
   const forceRef = useRef(0);
   useEffect(() => {
-    if (!d || !auto) return;
+    if (!d || !auto || STATIC) return;
     const id = setInterval(() => {
       const st = (pricing.data?.quote || d.quote)?.market_state;
       if (document.visibilityState === "visible" && active(st)) refreshNow(false);
@@ -29,9 +30,8 @@ export default function Stock({ ticker }: { ticker: string }) {
   async function refreshNow(manualClick = true) {
     if (manualClick) setManual({ busy: true, err: null });
     try {
-      const r = await fetch(`/api/pricing/${ticker}?mos=${mos}&force=1`);
-      if (!r.ok) throw new Error((await r.text()).slice(0, 120));
-      pricing.setData(await r.json());
+      if (STATIC) throw new Error("This is a published snapshot; live quote refresh runs in the local app (scripts/run.sh).");
+      pricing.setData(await getJson(`/api/pricing/${ticker}?mos=${mos}&force=1`));
       forceRef.current = Date.now();
       setManual({ busy: false, err: null });
     } catch (e: any) {
@@ -49,8 +49,8 @@ export default function Stock({ ticker }: { ticker: string }) {
   return (
     <>
       <div className="row" style={{ marginTop: 10 }}>
-        <div className="sp"><h1>{d.name} <span className="mute">({d.ticker})</span></h1>
-          <div className="small mute">{d.exchange} · {d.sector} · {d.industry} · {d.in_sp500_list ? <Chip cls="good">in S&amp;P 500 list</Chip> : <Chip>not in S&amp;P 500 list</Chip>} · {d.kind === "financial" ? "bank / insurer model" : d.kind === "reit" ? "REIT model" : "operating-company model"}</div></div>
+        <div className="sp"><div className="eyebrow">{d.ticker} · {d.exchange}</div><h1>{d.name}</h1>
+          <div className="small mute">{d.sector} · {d.industry} · {d.in_sp500_list ? <Chip cls="good">in S&amp;P 500 list</Chip> : <Chip>not in S&amp;P 500 list</Chip>} · {d.kind === "financial" ? "bank / insurer model" : d.kind === "reit" ? "REIT model" : "operating-company model"}</div></div>
         <OwnedBox ticker={d.ticker} label="I own this stock" />
       </div>
 
@@ -66,14 +66,14 @@ export default function Stock({ ticker }: { ticker: string }) {
             {q.pre_market && <div>Pre-market <b>{price(q.pre_market.price, ccy)}</b> ({q.pre_market.change_vs_regular_close >= 0 ? "+" : ""}{q.pre_market.change_vs_regular_close.toFixed(2)}, {spct(q.pre_market.pct_vs_regular_close / 100, 2)} vs regular close) <span className="mute">{q.pre_market.time_et}</span></div>}
             {q.post_market && <div>After-hours <b>{price(q.post_market.price, ccy)}</b> ({q.post_market.change_vs_regular_close >= 0 ? "+" : ""}{q.post_market.change_vs_regular_close.toFixed(2)}, {spct(q.post_market.pct_vs_regular_close / 100, 2)} vs regular close) <span className="mute">{q.post_market.time_et}</span></div>}
           </div>
-          <div style={{ textAlign: "right" }}>
-            <QuoteChip status={q.freshness?.status} reason={q.freshness?.reason} />
-            <div className="tiny mute" style={{ maxWidth: 260 }}>{q.freshness?.reason}</div>
+          <div style={{ textAlign: "right", minWidth: 220 }}>
+            <div className="row" style={{ justifyContent: "flex-end", gap: 6 }}><QuoteChip status={q.freshness?.status} reason={q.freshness?.reason} /><span className="tiny mute">{q.freshness?.reason}</span></div>
+            {STATIC ? <div className="tiny mute" style={{ marginTop: 6 }}>Snapshot quote stored {q.stored_at_et}. Live refresh runs in the local app.</div> : <>
             <div className="row" style={{ justifyContent: "flex-end", marginTop: 6 }}>
               <label className="own"><input type="checkbox" checked={auto} onChange={(e) => setAuto(e.target.checked)} /><span>Auto 60 s</span></label>
-              <button className="btn" onClick={() => refreshNow(true)} disabled={manual.busy} data-testid="refresh">{manual.busy ? "Refreshing…" : "↻ Refresh"}</button>
+              <button className="btn" onClick={() => refreshNow(true)} disabled={manual.busy} data-testid="refresh">{manual.busy ? "Refreshing…" : "Refresh"}</button>
             </div>
-            <div className="tiny mute">Auto-refresh {auto && active(q.market_state) ? "active (market trading)" : auto ? "paused: market not in a trading state" : "off"} · stored {q.stored_at_et}</div>
+            <div className="tiny mute">Auto-refresh {auto && active(q.market_state) ? "on while the market trades" : auto ? "paused: market not trading" : "off"} · stored {q.stored_at_et}</div></>}
           </div>
         </div>
         {(manual.err || pricing.error || q.refresh_error) && <Banner>Quote refresh failed - showing the last successful quote ({q.stored_at_et}). {q.refresh_error || ""}</Banner>}
@@ -115,9 +115,9 @@ export default function Stock({ ticker }: { ticker: string }) {
       {tab === "fund" && <><Fundamentals d={d} /><Extras ticker={d.ticker} ccy={d.basis.reporting_currency} /></>}
       {tab === "compare" && <Compare d={d} />}
       {tab === "persp" && <Perspectives d={d} />}
-      {tab === "sources" && <><Sources d={d} /><ImportPanel d={d} onDone={() => base.reload()} /></>}
+      {tab === "sources" && <><Sources d={d} />{!STATIC && <ImportPanel d={d} onDone={() => base.reload()} />}</>}
 
-      <div className="card" data-testid="thesis" style={{ borderLeft: "5px solid var(--accent)" }}>
+      <div className="card thesis" data-testid="thesis">
         <h2 style={{ marginTop: 0 }}>Long-term thesis</h2>
         <p>{narr.thesis}</p>
         <p><b>Biggest risk.</b> {narr.risk}</p>
@@ -191,9 +191,7 @@ function Valuation({ d, pv, rev, ccy, mos, price_ }: any) {
   useEffect(() => {
     if (!has || !v.usable) { setRes(null); setErr(null); return; }
     let live = true;
-    fetch(`/api/valuation/${d.ticker}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ overrides: dv, mos }) })
-      .then(async (r) => { const j = await r.json(); if (!live) return; if (!r.ok) { setErr(j.detail || "error"); } else { setRes(j); setErr(null); } })
-      .catch((e) => live && setErr(String(e)));
+    postValuation(d.ticker, dv, mos).then((j) => { if (live) { setRes(j); setErr(null); } }).catch((e) => live && setErr(String(e.message || e)));
     return () => { live = false; };
   }, [dv, mos, d.ticker]);
   if (!v.usable) return <div className="card">No standard valuation available: {(v.blockers || []).join("; ")}</div>;

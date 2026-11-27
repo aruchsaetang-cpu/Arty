@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Banner, Chip, ConfChip, MosText, OwnedBox, QualityChip, QuoteChip, StatusLabel, ValChip } from "./common";
-import { price, useApi, useHoldings, usePrefs } from "./lib";
+import { price, useApi, useHoldings, usePrefs , stockHref, openStock} from "./lib";
 
 const sel = (v: string, set: any, opts: string[], label: string) => (
   <select value={v} onChange={(e) => set(e.target.value)} aria-label={label}>
@@ -70,8 +70,8 @@ export default function Screener() {
           <thead><tr>{th("ticker", "Ticker")}<th>Owned</th>{th("name", "Name", "hide-p")}{th("sector", "Sector", "hide-p")}{th("price", "Price")}{th("margin_of_safety", "Margin of safety")}{th("quality", "Quality")}{th("valuation_label", "Valuation", "hide-p")}{th("confidence", "Confidence", "hide-p")}{th("years", "Yrs", "hide-p")}{th("quote_status", "Quote", "hide-p")}{th("status", "Status")}</tr></thead>
           <tbody>
             {shown.map((r) => (
-              <tr key={r.ticker} className="click" onClick={() => (location.hash = "#/stock/" + r.ticker)} data-testid={`scr-${r.ticker}`}>
-                <td><a href={"#/stock/" + r.ticker} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a>{r.extra && <div><Chip title="Analysable and holdable, but not part of the S&P 500 ranking">not in S&amp;P 500 list</Chip></div>}</td>
+              <tr key={r.ticker} className="click" onClick={() => openStock(r.ticker)} data-testid={`scr-${r.ticker}`}>
+                <td><a href={stockHref(r.ticker)} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a>{r.extra && <div><Chip title="Analysable and holdable, but not part of the S&P 500 ranking">not in S&amp;P 500 list</Chip></div>}</td>
                 <td style={{ textAlign: "center" }}><OwnedBox ticker={r.ticker} compact /></td>
                 <td className="hide-p" style={{ textAlign: "left", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</td>
                 <td className="hide-p" style={{ textAlign: "left" }}>{r.sector}</td>
