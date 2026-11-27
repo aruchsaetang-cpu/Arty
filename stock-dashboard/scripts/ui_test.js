@@ -71,6 +71,14 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.reload();
   await page.waitForSelector("[data-testid=about]");
   check("Own-words description saved and persists after reload", (await page.textContent("[data-testid=about]")).includes("Chipmaker for cars and factories."));
+  await page.waitForSelector("[data-testid=ratio-charts] .mini .recharts-line");
+  check("Ratio charts render for each Buffett ratio", (await page.$$("[data-testid=ratio-charts] .mini")).length >= 6);
+  await page.fill("[data-testid=peer-input]", "TXN");
+  await page.press("[data-testid=peer-input]", "Enter");
+  await page.waitForFunction(() => document.querySelectorAll("[data-testid=ratio-charts] .mini .recharts-line").length >= 12, null, { timeout: 30000 });
+  check("Compare overlays a second company on every chart", (await page.textContent("[data-testid=ratio-charts]")).includes("TXN"));
+  const an = await page.textContent("[data-testid=analyst]");
+  check("Analyst target shown separately from model value", an.includes("Analyst target") && an.includes("not used"), an.replace(/\s+/g, " "));
 
   // Screener: tick STM there
   await page.goto(BASE + "/#/screener");

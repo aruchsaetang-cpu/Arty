@@ -20,6 +20,7 @@ INFO_KEYS = [
     "marketState", "preMarketPrice", "preMarketTime", "postMarketPrice", "postMarketTime",
     "exchangeDataDelayedBy", "fiftyTwoWeekHigh", "fiftyTwoWeekLow", "averageDailyVolume3Month",
     "lastFiscalYearEnd", "mostRecentQuarter", "underlyingSymbol", "fullTimeEmployees",
+    "targetMeanPrice", "targetMedianPrice", "targetHighPrice", "targetLowPrice", "numberOfAnalystOpinions", "recommendationKey",
 ]
 
 

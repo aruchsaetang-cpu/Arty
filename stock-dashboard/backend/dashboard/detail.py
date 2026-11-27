@@ -91,6 +91,7 @@ def build(t: str, mos: float, quote_force=False) -> dict:
         "narrative": A.thesis(a, pv), "reason": reason, "risk": risk,
         "ratios": buffett_ratios(kind, d, cols, info, price, a.get("rf")), "ceo": ceo_block(t, info),
         "pe_yahoo": info.get("trailingPE"), "employees": info.get("fullTimeEmployees"),
+        "analyst": analyst_block(a, info),
         "imports": (service.load_import(t) or {}).get("files", []), "has_import": a.get("has_import"),
         "sources": {
             "quote": {"label": "Yahoo Finance quote", "url": f"https://finance.yahoo.com/quote/{t}", "fetched": market.fmt_ny((quote or {}).get("stored_at")), "type": "reported (market data)"},
@@ -179,13 +180,17 @@ def buffett_ratios(kind, d, cols, info, price, rf):
     yrs = lambda key: [(c["label"], d[key][i]) for i, c in enumerate(cols) if c["end"] and d[key][i] is not None]
     rows = []
 
+    TV = {"gross_margin": (.40, "min"), "op_margin": (.20, "min"), "net_margin": (.20, "min"), "roa": ((.01 if kind == "financial" else .10), "min"),
+          "roe": (.15, "min"), "debt_equity": (.80, "max")}
+
     def add(key, name, formula, series, target_txt, test, basis, url, unit="pct", latest=None, status=None):
         vals = [v for _, v in series]
         lt = latest if latest is not None else (series[-1][1] if series else None)
         st = status or ("n/a" if not vals else "pass" if test(vals, lt) else "fail")
         rows.append({"key": key, "name": name, "formula": formula, "latest": lt, "latest_fy": series[-1][0] if series else None,
                      "avg": (sum(vals) / len(vals)) if vals else None, "years": len(vals), "target": target_txt, "status": st,
-                     "basis": basis, "url": url, "unit": unit})
+                     "basis": basis, "url": url, "unit": unit, "series": [{"fy": fy, "v": v} for fy, v in series],
+                     "target_value": TV.get(key, (None, None))[0], "target_dir": TV.get(key, (None, None))[1]})
     every = lambda th: (lambda v, lt: all(x >= th for x in v))
     fin = kind == "financial"
     add("gross_margin", "Gross margin", "Gross profit / revenue", yrs("gross_margin"), "≥ 40% every year", every(.40), BOOK, BOOK_URL)
@@ -254,3 +259,14 @@ def ceo_news(t):
         return {"items": uniq, "fetched_at": market.fmt_ny(time.time())}
     except Exception as e:  # noqa: BLE001
         return {"items": cur or [], "fetched_at": market.fmt_ny(ts) if ts else None, "error": f"{type(e).__name__}"}
+
+
+def analyst_block(a, info):
+    """Yahoo consensus 12-month price target (analyst estimate). Shown for comparison only; never used by the model or ranking."""
+    med = info.get("targetMedianPrice") or info.get("targetMeanPrice")
+    if not med:
+        return None
+    rv = A.reverse(a, med) if a.get("valuation", {}).get("usable") else None
+    return {"median": info.get("targetMedianPrice"), "mean": info.get("targetMeanPrice"), "high": info.get("targetHighPrice"),
+            "low": info.get("targetLowPrice"), "n": info.get("numberOfAnalystOpinions"), "rec": info.get("recommendationKey"),
+            "implied": rv["short"] if rv else None}

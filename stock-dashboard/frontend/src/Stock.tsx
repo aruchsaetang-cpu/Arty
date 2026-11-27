@@ -5,6 +5,7 @@ import { Compare, Extras, Fundamentals, ImportPanel, Perspectives, Sources } fro
 import { N, cell, num, pct, price, spct, useApi, useDebounced, usePrefs, when } from "./lib";
 import { STATIC, getJson, postValuation } from "./api";
 import { About, CeoLink, CeoPanel } from "./Ceo";
+import RatioCharts from "./RatioCharts";
 
 const fmtVal = (v: any, unit: string, ccy = "USD") =>
   unit === "pct" ? pct(v, 1) : unit === "pct2" ? `${pct(v[0], 1)} → ${pct(v[1], 1)}` : unit === "years" ? `${v} yrs` : unit === "money" ? price(v, ccy) : unit === "x" ? `${num(v, 2)}x` : String(v);
@@ -86,6 +87,9 @@ export default function Stock({ ticker }: { ticker: string }) {
             <div><small>Upside</small><b>{spct(pv.upside)}</b></div>
             <div><small>Watch price</small><b>{price(pv.watch_price, ccy)}</b></div>
           </div>
+          {d.analyst && <div className="small mute" style={{ marginTop: 8 }} data-testid="analyst">
+            Analyst target <b style={{ color: "var(--ink)" }}>{price(d.analyst.median ?? d.analyst.mean, ccy)}</b> · {price(d.analyst.low, ccy)}–{price(d.analyst.high, ccy)} · {d.analyst.n} analysts <Chip>estimate, not used</Chip>
+          </div>}
         </div>
       </div>
 
@@ -125,6 +129,7 @@ function Overview({ d, pv, ccy, mos }: any) {
     <>
       <About d={d} />
       <Ratios rows={d.ratios || []} ccy={ccy} />
+      <RatioCharts d={d} />
       {v.usable && (
         <div className="card">
           <div className="kv">
@@ -221,7 +226,8 @@ function Valuation({ d, pv, rev, ccy, mos, price_ }: any) {
         <Sens s={res?.sensitivity || v.sensitivity} price_={price_} mos={mos} ccy={ccy} kind={v.kind} />
       </div>
 
-      {rev && <div className="card" data-testid="reverse"><h3>Priced in</h3><p className="small" style={{ margin: 0 }}>{rev.text}</p></div>}
+      {rev && <div className="card" data-testid="reverse"><h3>Priced in</h3><p className="small" style={{ margin: 0 }}>{rev.text}</p>
+        {d.analyst?.implied && <p className="small" style={{ margin: "8px 0 0" }}>Analyst target {price(d.analyst.median ?? d.analyst.mean, ccy)}: {d.analyst.implied.replace("Price implies", "needs")}</p>}</div>}
       {v.midcycle && <MidCycle m={v.midcycle} ccy={ccy} />}
     </>
   );
