@@ -43,6 +43,7 @@ extras = {}
 for t in [r["ticker"] for r in sl["qualifying"]] + ["STM", "JPM", "O", "AAPL"]:
     try:
         extras[t] = get(f"/api/extra/{t}")
+        extras[t]["ceo_news"] = get(f"/api/ceo/{t}")["news"]
     except Exception:  # noqa: BLE001
         pass
 snap = {"generated_at": time.time(), "generated_at_et": sl["as_of"], "meta": meta, "universe": uni,

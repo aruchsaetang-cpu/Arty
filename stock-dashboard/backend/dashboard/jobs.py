@@ -96,6 +96,26 @@ def refresh_fundamentals(tickers=None, force=False):
         _tick("fundamentals", running=False, finished=time.time())
 
 
+def refresh_info_all(tickers=None):
+    """Re-fetch company profile/quote info (CEO, P/E, dividend) for the universe, rate-limited."""
+    m = membership.load_membership()
+    tickers = tickers or [x["ticker"] for x in m["members"]] + ["STM"]
+    done = 0
+    for i in range(0, len(tickers), C.BATCH_SIZE):
+        chunk = tickers[i:i + C.BATCH_SIZE]
+
+        def work(t):
+            try:
+                service.load_info(t, max_age=0)
+                return True
+            except Exception:  # noqa: BLE001
+                return False
+        with ThreadPoolExecutor(C.WORKERS) as ex:
+            done += sum(ex.map(work, chunk))
+        time.sleep(C.BATCH_PAUSE_SEC)
+    return done
+
+
 def reassess_cached(tickers=None):
     """Recompute assessments from cached raw data (no network): after rf / model-version / import changes."""
     s = store()

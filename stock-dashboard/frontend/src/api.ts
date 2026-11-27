@@ -139,6 +139,11 @@ async function staticGet(url: string): Promise<any> {
       .filter((x: any) => x.s < 9).sort((a: any, b: any) => a.s - b.s || a.r.ticker.localeCompare(b.r.ticker)).slice(0, 20);
     return { results: res.map(({ r }: any) => ({ ticker: r.ticker, name: r.name, in_index: !r.extra })) };
   }
+  const cm = p.match(/^\/api\/ceo\/(.+)$/);
+  if (cm) {
+    const d = await detailOf(decodeURIComponent(cm[1]));
+    return { ...d.ceo, news: s.extras[d.ticker]?.ceo_news || { items: [], error: "Live headlines run in the local app." } };
+  }
   const m = p.match(/^\/api\/(stock|pricing|extra|compare)\/(.+)$/);
   if (m) {
     const d = await detailOf(decodeURIComponent(m[2]));

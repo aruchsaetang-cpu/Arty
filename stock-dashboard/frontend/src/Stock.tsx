@@ -4,6 +4,7 @@ import { Banner, Chip, ConfChip, MosText, OwnedBox, QualityChip, QuoteChip, Rule
 import { Compare, Extras, Fundamentals, ImportPanel, Perspectives, Sources } from "./StockData";
 import { N, cell, num, pct, price, spct, useApi, useDebounced, usePrefs, when } from "./lib";
 import { STATIC, getJson, postValuation } from "./api";
+import { About, CeoLink, CeoPanel } from "./Ceo";
 
 const fmtVal = (v: any, unit: string, ccy = "USD") =>
   unit === "pct" ? pct(v, 1) : unit === "pct2" ? `${pct(v[0], 1)} → ${pct(v[1], 1)}` : unit === "years" ? `${v} yrs` : unit === "money" ? price(v, ccy) : unit === "x" ? `${num(v, 2)}x` : String(v);
@@ -18,6 +19,7 @@ export default function Stock({ ticker }: { ticker: string }) {
   const pricing = useApi<any>(`/api/pricing/${ticker}?mos=${mos}`, { every: 60000, enabled: !!d, keep: true });
   const [manual, setManual] = useState<{ busy: boolean; err: string | null }>({ busy: false, err: null });
   const [auto, setAuto] = useState(true);
+  const [ceoOpen, setCeoOpen] = useState(false);
   useEffect(() => {
     if (!d || !auto || STATIC) return;
     const id = setInterval(() => {
@@ -48,7 +50,7 @@ export default function Stock({ ticker }: { ticker: string }) {
     <>
       <div className="page-head">
         <div className="sp"><div className="eyebrow">{d.ticker} · {d.exchange}</div><h1>{d.name}</h1>
-          <div className="row small mute" style={{ marginTop: 4, gap: 8 }}>{d.industry}{!d.in_sp500_list && <Chip>not in S&amp;P 500 list</Chip>}</div></div>
+          <div className="row small mute" style={{ marginTop: 4, gap: 8 }}>{d.industry}{!d.in_sp500_list && <Chip>not in S&amp;P 500 list</Chip>}<CeoLink d={d} onOpen={() => setCeoOpen(true)} /></div></div>
         <OwnedBox ticker={d.ticker} label="I own this stock" />
       </div>
 
@@ -64,6 +66,7 @@ export default function Stock({ ticker }: { ticker: string }) {
           <span><b>{q.price_label}</b> · {when(q.regular_time_et)} ET</span>
           <QuoteChip status={q.freshness?.status} reason={q.freshness?.reason} />
           {ext && <span>{ext[0]} {price(ext[1].price, ccy)} ({spct(ext[1].pct_vs_regular_close / 100, 2)})</span>}
+          {(() => { const pe = d.ratios?.find((r: any) => r.key === "pe")?.latest; return pe ? <span data-testid="pe">P/E <b>{pe.toFixed(1)}</b></span> : null; })()}
         </div>
         {(manual.err || pricing.error || q.refresh_error) && <Banner>{STATIC ? "Snapshot: live refresh runs in the local app." : `Quote refresh failed. Showing ${when(q.stored_at_et)}.`}</Banner>}
       </div>
@@ -101,6 +104,7 @@ export default function Stock({ ticker }: { ticker: string }) {
       {tab === "persp" && <Perspectives d={d} />}
       {tab === "sources" && <><Sources d={d} />{!STATIC && <ImportPanel d={d} onDone={() => base.reload()} />}</>}
 
+      {ceoOpen && <CeoPanel ticker={d.ticker} onClose={() => setCeoOpen(false)} />}
       <div className="card thesis" data-testid="thesis">
         <h2>Thesis</h2>
         <p>{narr.thesis}</p>
@@ -119,6 +123,8 @@ function Overview({ d, pv, ccy, mos }: any) {
   const items = news.data?.news?.items || [];
   return (
     <>
+      <About d={d} />
+      <Ratios rows={d.ratios || []} ccy={ccy} />
       {v.usable && (
         <div className="card">
           <div className="kv">
@@ -278,5 +284,26 @@ function Quality({ d }: any) {
         <ul className="tight small">{q.moat.supports.map((s: string, i: number) => <li key={i}>{s}</li>)}</ul>
         <h3 style={{ marginTop: 10 }}>Would weaken it</h3><ul className="tight small">{q.moat.weakens.map((s: string, i: number) => <li key={i}>{s}</li>)}</ul></div>}
     </>
+  );
+}
+
+function Ratios({ rows, ccy }: any) {
+  const f = (r: any, v: any) => (v == null ? "N/A" : r.unit === "pct" ? pct(v, 1) : r.unit === "x" ? v.toFixed(2) : price(v, ccy));
+  const mark = (s: string) => (s === "pass" ? <b className="pill-pass">✓</b> : s === "fail" ? <b className="pill-fail">✗</b> : <span className="mute">–</span>);
+  return (
+    <div className="card" data-testid="ratios">
+      <div className="row"><h3 className="sp" style={{ margin: 0 }}>Buffett checklist</h3><span className="small mute">{rows.filter((r: any) => r.status === "pass").length}/{rows.filter((r: any) => r.status === "pass" || r.status === "fail").length} pass</span></div>
+      <div className="scroll" style={{ marginTop: 10 }}><table className="t">
+        <thead><tr><th>Ratio</th><th>Latest</th><th className="hide-p">Avg</th><th>Target</th><th></th></tr></thead>
+        <tbody>{rows.map((r: any) => (
+          <tr key={r.key}>
+            <td title={r.formula}>{r.name}<div className="tiny mute">{r.formula}</div></td>
+            <td>{f(r, r.latest)}<div className="tiny mute">{r.latest_fy || ""}{r.yahoo_trailing_pe ? ` · TTM ${r.yahoo_trailing_pe.toFixed(1)}` : ""}</div></td>
+            <td className="hide-p">{r.avg == null ? "" : f(r, r.avg)}</td>
+            <td style={{ whiteSpace: "normal", minWidth: 120 }}><a href={r.url} target="_blank" rel="noreferrer" title={r.basis} style={{ color: "inherit" }}>{r.target}</a></td>
+            <td>{mark(r.status)}</td>
+          </tr>))}</tbody>
+      </table></div>
+    </div>
   );
 }

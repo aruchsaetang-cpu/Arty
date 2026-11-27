@@ -56,6 +56,21 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   check("STM label is Yahoo's reported delay, not 'Real-time'", lbl === "Delayed 20 min", lbl);
   check("Pre-market shown separately", (await page.textContent("[data-testid=quote-card]")).includes("Pre-market") || (await page.textContent("[data-testid=quote-card]")).includes("After-hours") || true);
   await page.screenshot({ path: path.join(OUT, "stm_portrait.png"), fullPage: false });
+  const peTxt = await page.textContent("[data-testid=pe]");
+  check("P/E shown in quote card", peTxt.startsWith("P/E") && /\d/.test(peTxt), peTxt);
+  const ratiosTxt = await page.textContent("[data-testid=ratios]");
+  check("Buffett checklist table with targets", ratiosTxt.includes("every year") && (await page.$$("[data-testid=ratios] tbody tr")).length === 9);
+  await page.click("[data-testid=ceo-link]");
+  await page.waitForSelector("[data-testid=ceo-panel] >> text=How they run the company");
+  const ceoTxt = await page.textContent("[data-testid=ceo-panel]");
+  check("CEO panel opens with approach, working style and sources", ceoTxt.includes("Jean-Marc Chery") && ceoTxt.includes("Sources"));
+  await page.click("[data-testid=ceo-panel] button:has-text('Close')");
+  await page.click("[data-testid=about-edit]");
+  await page.fill("[data-testid=about-text]", "Chipmaker for cars and factories.");
+  await page.click("[data-testid=about-save]");
+  await page.reload();
+  await page.waitForSelector("[data-testid=about]");
+  check("Own-words description saved and persists after reload", (await page.textContent("[data-testid=about]")).includes("Chipmaker for cars and factories."));
 
   // Screener: tick STM there
   await page.goto(BASE + "/#/screener");

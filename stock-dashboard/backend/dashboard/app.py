@@ -169,6 +169,13 @@ def api_pricing(ticker: str, mos: float = Query(C.DEFAULT_REQUIRED_MOS, ge=0, le
                "narrative": A.thesis(a, pv), "session": market.session_state()})
 
 
+@app.get("/api/ceo/{ticker}")
+def api_ceo(ticker: str):
+    t = service.norm_ticker(ticker)
+    info = store().val(f"info:{t}") or {}
+    return ok({**detail.ceo_block(t, info), "news": detail.ceo_news(t)})
+
+
 @app.get("/api/extra/{ticker}")
 def api_extra(ticker: str):
     t = service.norm_ticker(ticker)

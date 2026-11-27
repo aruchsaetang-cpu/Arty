@@ -19,8 +19,20 @@ INFO_KEYS = [
     "regularMarketChangePercent", "regularMarketDayHigh", "regularMarketDayLow", "regularMarketVolume",
     "marketState", "preMarketPrice", "preMarketTime", "postMarketPrice", "postMarketTime",
     "exchangeDataDelayedBy", "fiftyTwoWeekHigh", "fiftyTwoWeekLow", "averageDailyVolume3Month",
-    "lastFiscalYearEnd", "mostRecentQuarter", "underlyingSymbol",
+    "lastFiscalYearEnd", "mostRecentQuarter", "underlyingSymbol", "fullTimeEmployees",
 ]
+
+
+def ceos_from(officers) -> list[dict]:
+    out = []
+    for o in officers or []:
+        t = (o.get("title") or "")
+        if "ceo" in t.lower() or "chief executive" in t.lower():
+            if "ceo of " in t.lower() and not t.lower().startswith(("ceo &", "ceo,", "president", "chairman", "co-")):
+                continue  # divisional CEOs
+            name = " ".join(str(o.get("name", "")).replace("Mr. ", "").replace("Ms. ", "").replace("Mrs. ", "").replace("Dr. ", "").split())
+            out.append({"name": name, "title": t, "age": o.get("age"), "pay": o.get("totalPay"), "year_born": o.get("yearBorn")})
+    return out
 
 
 def retry(fn, tries=3, base=1.5):
@@ -47,6 +59,7 @@ def _num(x):
 def fetch_info(ticker: str) -> dict:
     info = retry(lambda: yf.Ticker(ticker).info) or {}
     out = {k: info.get(k) for k in INFO_KEYS if info.get(k) is not None}
+    out["ceos"] = ceos_from(info.get("companyOfficers"))
     if "regularMarketPrice" not in out and "currentPrice" in info:
         out["regularMarketPrice"] = info["currentPrice"]
     if not out.get("regularMarketPrice") and not out.get("longName"):
@@ -112,6 +125,20 @@ def fetch_news(ticker: str, limit=8) -> list[dict]:
         res.append({"title": c.get("title"), "publisher": (c.get("provider") or {}).get("displayName") or it.get("publisher"),
                     "published": c.get("pubDate") or it.get("providerPublishTime"), "url": link})
     return [r for r in res if r["title"]]
+
+
+def fetch_ceo_news(name: str, company: str, limit=8) -> list[dict]:
+    """Yahoo Finance news search for the CEO's name (what they have said / been quoted on)."""
+    q = f"{name} {company}".strip()
+    res = retry(lambda: yf.Search(q, max_results=1, news_count=limit))
+    last = name.split()[-1].lower() if name else ""
+    out = []
+    for n in res.news or []:
+        out.append({"title": n.get("title"), "publisher": n.get("publisher"), "url": n.get("link"),
+                    "published": n.get("providerPublishTime"),
+                    "mentions_ceo": last.replace("’", "'") in (n.get("title") or "").lower().replace("’", "'")})
+    out.sort(key=lambda x: (not x["mentions_ceo"], -(x["published"] or 0)))
+    return out
 
 
 def quote_from_info(info: dict) -> dict:

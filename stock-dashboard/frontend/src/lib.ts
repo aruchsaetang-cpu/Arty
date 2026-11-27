@@ -145,3 +145,12 @@ export function when(s: any) {
   const d = `${+m[3]} ${MON[+m[2] - 1]}`;
   return m[4] ? `${d} ${m[4]}:${m[5]}` : `${d} ${m[1]}`;
 }
+
+/* Personal company descriptions (own words), per ticker, in this browser only. */
+const notesStore = makeStore<Record<string, string>>("notes.v1", {});
+export const useNotes = () => notesStore.use();
+export const setNote = (t: string, text: string) => {
+  const cur = { ...notesStore.get() };
+  if (text.trim()) cur[t] = text.trim(); else delete cur[t];
+  notesStore.set(cur);
+};
