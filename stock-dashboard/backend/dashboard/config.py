@@ -9,7 +9,7 @@ UPLOAD_DIR = DATA_DIR / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 TZ_NY = "America/New_York"
-MODEL_VERSION = "2026.11-r3"
+MODEL_VERSION = "2026.11-r4"
 
 # ---- user-editable default (dashboard assumption, NOT a Buffett quote) -----------------------
 DEFAULT_REQUIRED_MOS = 0.20

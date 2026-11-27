@@ -1,5 +1,5 @@
 import React from "react";
-import { pct, price, spct, toggleHolding, useHoldings , stockHref, openStock} from "./lib";
+import { pct, price, spct, toggleHolding, useHoldings , stockHref, openStock, when} from "./lib";
 
 /** Ownership checkbox: its own 48px tap target; never bubbles to the row, so it cannot open the stock page. */
 export function OwnedBox({ ticker, label = "Owned", compact = false }: { ticker: string; label?: string; compact?: boolean }) {
@@ -47,8 +47,9 @@ export const StatusLabel: Record<string, string> = {
 };
 
 export function Missed({ missed }: { missed: string[] }) {
-  if (!missed?.length) return <Chip cls="good">Meets all four rules</Chip>;
-  return <>{missed.map((m) => <Chip key={m} cls="bad">Missed: {m}</Chip>)}</>;
+  if (!missed?.length) return <Chip cls="good">Meets all rules</Chip>;
+  const short = (m: string) => (m.startsWith("Business") ? "Quality" : m.startsWith("Price") ? "Margin of safety" : m.startsWith("Valuation") ? "Confidence" : "Quote");
+  return <>{missed.map((m) => <Chip key={m} cls="bad">✗ {short(m)}</Chip>)}</>;
 }
 
 export function RuleList({ rules }: { rules: any[] }) {
@@ -56,7 +57,7 @@ export function RuleList({ rules }: { rules: any[] }) {
     <ul className="tight">
       {rules.map((r) => (
         <li key={r.key}>
-          <b className={r.passed ? "pill-pass" : "pill-fail"}>{r.passed ? "✓" : "✗"}</b> {r.rule} <span className="mute small">- {r.detail}</span>
+          <b className={r.passed ? "pill-pass" : "pill-fail"}>{r.passed ? "✓" : "✗"}</b> <span title={r.detail}>{r.rule.replace(" (dashboard assumption)", "").replace("Price at least", "Price ≥").replace(" below base fair value", " below fair value").replace("Valuation confidence is Medium or High", "Confidence Medium or High").replace("Business quality is Strong", "Quality Strong").replace("Quote is current for the trading session", "Quote current")}</span>
         </li>
       ))}
     </ul>
@@ -78,11 +79,11 @@ export function PickRow({ r, rank, open, onToggle, go, closest }: any) {
         </div>
         <div className="px">
           <div className="b">{price(r.price, ccy)}</div>
-          <div className="tiny mute">{r.price_time || ""}</div>
+          <div className="tiny mute">{when(r.price_time)}</div>
         </div>
         <div className="mosc">
           <MosText m={r.margin_of_safety} />
-          <div className="tiny mute">margin of safety</div>
+
         </div>
         <div className="why">
           {closest ? <span><Missed missed={r.missed} /></span> : <span>{r.reason || r.weakest}</span>}
@@ -91,20 +92,13 @@ export function PickRow({ r, rank, open, onToggle, go, closest }: any) {
       {open && (
         <div className="pick-more">
           <div className="kv">
-            <div><small>Fair value bear / base / bull</small>{[r.fv_bear, r.fv_base, r.fv_bull].map((x) => (x === null || x === undefined ? "N/A" : x <= 0 ? "≤0" : x.toFixed(2))).join(" / ")}</div>
-            <div><small>Base fair value</small><b>{price(r.fv_base, ccy)}</b></div>
-            <div><small>Upside to fair value</small>{spct(r.upside)}</div>
-            <div><small>Watch price (buy below)</small>{price(r.watch_price, ccy)}{r.decline_to_watch ? <span className="mute small"> (needs −{pct(r.decline_to_watch, 0)})</span> : null}</div>
+            <div><small>Fair value</small><b>{price(r.fv_base, ccy)}</b></div>
+            <div><small>Bear / bull</small>{[r.fv_bear, r.fv_bull].map((x) => (x == null ? "N/A" : x <= 0 ? "≤0" : x.toFixed(2))).join(" / ")}</div>
+            <div><small>Watch price</small>{price(r.watch_price, ccy)}</div>
             <div><small>Confidence</small><ConfChip c={r.confidence} /></div>
-            <div><small>Business quality</small><QualityChip q={r.quality} /> <span className="small mute">{r.quality_score ?? ""}{r.quality_score != null ? "/100" : ""}</span></div>
-            <div><small>Valuation</small><ValChip v={r.valuation_label} /></div>
-            <div><small>Quote</small><QuoteChip status={r.quote_status} reason={r.quote_reason} /></div>
           </div>
-          {!closest && r.risk && <div><b>Biggest risk:</b> {r.risk}</div>}
-          {closest && <div className="small mute">Closest candidates are assessed stocks that did NOT qualify; the rules each one missed are shown above.</div>}
-          <div className="row">
-            <a className="btn primary" href={stockHref(r.ticker)}>Open full analysis</a>
-          </div>
+          {!closest && r.risk && <div className="small"><b>Risk.</b> {r.risk}</div>}
+          <div className="row"><a className="btn primary" href={stockHref(r.ticker)}>Open</a></div>
         </div>
       )}
     </div>

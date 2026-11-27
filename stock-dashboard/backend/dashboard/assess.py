@@ -232,9 +232,7 @@ def value_company(kind, d, cols, info, rf, years, fx_rate, fx_pair):
         return res
     base_fv = res["scenarios"]["base"]["fair_value"]
     if base_fv is None or base_fv <= 0:
-        res["blockers"] = [f"Base-case model value is not positive ({base_fv:.2f}): normalized margins/returns are zero or negative once anchored toward the "
-                           f"weakest of the {years} fiscal years available (a loss year or one-off charge, or capex above cash earnings), so this method is unsuitable"
-                           if base_fv is not None else "No base value"]
+        res["blockers"] = ["Model value ≤ 0 (a loss year or heavy capex drags normalized cash flow below zero)"]
         res["confidence"] = V.confidence(years, 0, 1, False, res["blockers"])
         res["usable"] = False
         return res
@@ -460,28 +458,24 @@ def reverse(a: dict, price: float):
         return {"kind": kind, "required_year1_growth": g_req, "required_margin": m_req,
                 "history": {"revenue_cagr": h["revenue_cagr"], "median_margin": h["median_op_margin"], "max_margin": h["max_op_margin"],
                             "min_margin": h["min_op_margin"]},
-                "text": _reverse_text_op(g_req, m_req, h, p)}
+                "text": _reverse_text_op(g_req, m_req, h, p), "short": _reverse_text_op(g_req, m_req, h, p)}
     if kind == "financial":
         roe = p["g"] + (price / p["bvps"]) * (p["r"] - p["g"])
         h = v["history"]
         return {"kind": kind, "required_roe": roe, "history": {"median_roe": h["median_roe"]},
-                "text": f"At {price:.2f} the market needs a sustainable ROE of about {roe:.1%} (growth {p['g']:.1%}, cost of equity {p['r']:.1%}); "
-                        f"verified history: median ROE {h['median_roe']:.1%}."}
+                "text": f"Price implies {roe:.1%} ROE (history median {h['median_roe']:.1%}).",
+                "short": f"Price implies {roe:.1%} ROE (history median {h['median_roe']:.1%})."}
     g = (price * p["r"] - p["affo_ps"]) / (price + p["affo_ps"])
     return {"kind": kind, "required_growth": g,
-            "text": f"At {price:.2f} the market needs perpetual AFFO growth of about {g:.1%} (discount rate {p['r']:.1%}, AFFO/share {p['affo_ps']:.2f})."}
+            "text": f"Price implies {g:.1%} perpetual AFFO growth.", "short": f"Price implies {g:.1%} perpetual AFFO growth."}
 
 
 def _reverse_text_op(g, m, h, p):
+    gt = f"{g:.1%}" if g is not None else ">60%"
+    mt = f"{m:.1%}" if m is not None else ">90%"
     rc = "n/m" if h["revenue_cagr"] is None else f"{h['revenue_cagr']:.1%}"
-    a = (f"Holding the base margin path ({p['margin_target']:.1%}) and discount rate ({p['r']:.1%}), today's price requires "
-         + (f"year-1 revenue growth of {g:.1%} (fading to {p['g_term']:.1%})" if g is not None
-            else "more year-1 revenue growth than the solver range allows (above 60%)")
-         + f"; verified revenue CAGR is {rc}.")
-    b = (f" Holding base growth ({p['g1']:.1%}), it requires "
-         + (f"a sustained operating margin of {m:.1%}" if m is not None else "a margin above 90%, which is not achievable")
-         + f"; verified margins ranged {h['min_op_margin']:.1%} to {h['max_op_margin']:.1%} (median {h['median_op_margin']:.1%}).")
-    return a + b
+    return (f"Price implies {gt} growth (history {rc}) or a {mt} operating margin "
+            f"(history {h['min_op_margin']:.1%}–{h['max_op_margin']:.1%}).")
 
 
 # ------------------------------------------------------------------ price-dependent view + rules
@@ -535,31 +529,24 @@ def reason_and_risk(a, pv):
     if "balance_sheet" in fig and fig["balance_sheet"]["status"] == "pass":
         reason_bits.append(fig["balance_sheet"]["summary"].split(":", 1)[-1].strip().rstrip("."))
     reason = "; ".join(reason_bits[:2])
-    if pv.get("margin_of_safety") is not None:
-        reason += f". Price is {pv['margin_of_safety']:.0%} below base fair value ({pv['fv_base']:.2f})" if pv["margin_of_safety"] > 0 else ""
-    risk = "Model risk: fair value rests on Yahoo's statements and the listed assumptions."
+    risk = "Relies on 4 years of Yahoo data and the stated assumptions."
     if v.get("usable"):
         bear = pv.get("fv_bear")
         weakest = sorted((p for p in q.get("pillars", [])), key=lambda p: p["points"])
+        sp = v.get("spread")
         if bear is not None and bear <= 0:
-            risk = ("In the bear case the model value is zero or negative: capital spending and working capital absorb more cash than "
-                    "the thinner margins generate, so equity would have no model value under those assumptions.")
+            risk = "Bear case: no equity value if margins stay thin."
         elif bear is not None and pv["price"] and bear < pv["price"]:
-            risk = (f"In the bear case fair value is {bear:.2f}, {1 - bear / pv['price']:.0%} below today's price - "
-                    f"the margin of safety depends on margins and growth holding up.")
+            risk = f"Bear case {bear:.2f} is {1 - bear / pv['price']:.0%} below the price."
         elif weakest and weakest[0]["status"] != "pass":
-            risk = f"Weakest quality pillar - {weakest[0]['name']}: {weakest[0]['summary']}"
-        else:
-            sp = v.get("spread")
-            if sp and sp > 0.5:
-                risk = f"Fair value is sensitive: ±1 pp discount rate and ±2 pp growth moves it by {sp:.0%} of base."
-            elif pv.get("margin_of_safety") is not None and pv["margin_of_safety"] >= 0.4:
-                rv = reverse(a, pv["price"])
-                risk = (f"A {pv['margin_of_safety']:.0%} margin of safety means the market disagrees with this model, and the history it uses ends at the "
-                        f"last fiscal year-end. " + (rv["text"] if rv else "") +
-                        " If something has changed since then (guidance, competition, demand), the history overstates what the business will deliver.")
+            risk = f"Weak spot: {weakest[0]['name'].lower()}."
+        elif sp and sp > 0.5:
+            risk = f"Value swings {sp:.0%} on small rate or growth changes."
+        elif pv.get("margin_of_safety") is not None and pv["margin_of_safety"] >= 0.4:
+            rv = reverse(a, pv["price"])
+            risk = "Market expects a sharp decline. " + (rv["short"] if rv else "")
         if v.get("midcycle") and v["midcycle"]["range_pp"] >= 10:
-            risk = f"Cyclical earnings: operating margin ranged {v['midcycle']['range_pp']:.0f} pp across the available years. " + risk
+            risk = f"Cyclical: margins swung {v['midcycle']['range_pp']:.0f} pp. " + risk
     return reason, risk
 
 
@@ -567,23 +554,20 @@ def thesis(a, pv):
     q, v = a["quality"], a.get("valuation", {})
     kind = a["kind"]
     if not v.get("usable"):
-        why = "; ".join(v.get("blockers", ["insufficient data"]))
-        return {"thesis": f"No credible long-term valuation can be made from the available data: {why}.",
-                "risk": "Missing or inconsistent data is itself the main risk - do not act on this page without importing more history.",
-                "watch": "Import older annual statements (Yahoo CSV) or wait for more fiscal years so coverage reaches 4+ years."}
-    reason, risk = reason_and_risk(a, pv)
-    mid = v.get("midcycle")
-    bp = v["base_params"]
+        return {"thesis": "Not enough reliable data for a valuation.", "risk": "Missing or inconsistent data.",
+                "watch": "Import older annual statements to reach 4+ years."}
+    _, risk = reason_and_risk(a, pv)
+    bp, mid = v["base_params"], v.get("midcycle")
+    short = {"Business quality is Strong": "quality", "Valuation confidence is Medium or High": "confidence",
+             "Quote is current for the trading session": "quote"}
+    missed = [short.get(m, "margin of safety") for m in pv["missed"]]
+    t = (f"{q['label']} business, {pv['valuation_label'].split(' /')[0].lower()} at {pv['price']:.2f} vs fair value {pv['fv_base']:.2f}. "
+         + ("Meets all buy rules." if pv["qualifies"] else f"Misses: {', '.join(missed)}.")
+         + (f" EPS {mid['reported_eps_latest']:.2f} vs mid-cycle {mid['midcycle_eps_estimate']:.2f}." if mid else ""))
     if kind == "operating":
-        watch = (f"Operating margin reaching the base target of {bp['margin_target']:.1%} within {bp['ramp_years']} years "
-                 f"(it was {bp['margin_start']:.1%} in the latest fiscal year) would confirm the base case; staying below "
-                 f"{v['scenarios']['bear']['params'][2]['value'][1]:.1%} would confirm the bear case.")
+        watch = f"Operating margin reaching {bp['margin_target']:.1%} (now {bp['margin_start']:.1%})."
     elif kind == "financial":
-        watch = f"Return on equity holding at or above {bp['roe']:.1%} (the model's sustainable ROE); a fall toward {bp['r']:.1%} (cost of equity) would remove the premium to book."
+        watch = f"ROE holding above {bp['roe']:.1%}."
     else:
-        watch = f"AFFO-proxy per share growing at {bp['g']:.1%} or better with dividends covered (<= 100% of AFFO)."
-    t = (f"{a['name']} is rated {q['label']} on business quality and {pv['valuation_label']} on valuation "
-         f"(base fair value {pv['fv_base']:.2f} vs price {pv['price']:.2f}). "
-         + ("It cleared every shortlist rule." if pv["qualifies"] else f"It misses: {'; '.join(pv['missed'])}.")
-         + (f" Reported latest EPS is {mid['reported_eps_latest']:.2f} versus an approximate mid-cycle EPS of {mid['midcycle_eps_estimate']:.2f}." if mid else ""))
+        watch = f"AFFO per share growing {bp['g']:.1%}+ with the dividend covered."
     return {"thesis": t, "risk": risk, "watch": watch}

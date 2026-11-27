@@ -51,10 +51,9 @@ export default function Screener() {
   if (!data) return <div className="card">{error ? <Banner kind="bad">{error}</Banner> : "Loading screener…"}</div>;
   return (
     <>
-      <h1>Screener · all {idxRows.length} S&amp;P 500 securities</h1>
-      <div className="small mute">Includes every listed share class (e.g. GOOG/GOOGL, FOX/FOXA, NWS/NWSA, BRK-B). Membership source: {data.membership.label} (as of {data.membership.as_of}). Below the index list, non-index securities you hold or pinned (e.g. STM) appear flagged “not in S&amp;P 500 list”; they are never part of the index ranking or coverage.</div>
+      <div className="page-head"><h1>Screener</h1><span className="mute small">{idxRows.length} securities</span></div>
       <div className="card filters">
-        <input type="text" placeholder="Search ticker or name" value={f.q} onChange={(e) => set("q")(e.target.value)} aria-label="Search" />
+        <input type="text" placeholder="Filter" value={f.q} onChange={(e) => set("q")(e.target.value)} aria-label="Search" />
         {sel(f.sector, set("sector"), sectors, "Sector")}
         {sel(f.quality, set("quality"), ["Strong", "Mixed", "Weak", "Insufficient evidence", "Awaiting analysis"], "Business quality")}
         {sel(f.valuation, set("valuation"), ["Undervalued", "Moderate / Fairly valued", "Expensive", "Insufficient evidence", "Not assessed"], "Valuation")}
@@ -62,16 +61,15 @@ export default function Screener() {
         {sel(f.cov, set("cov"), ["8+", "4-7", "<4", "awaiting", "stale"], "Data coverage")}
         {sel(f.status, set("status"), Object.keys(StatusLabel), "Status")}
         <label className="own"><input type="checkbox" checked={f.owned} onChange={(e) => set("owned")(e.target.checked)} /><span>Owned only</span></label>
-        <span className="mute small">{shown.length} shown</span>
+        <span className="mute small">{shown.length}</span>
       </div>
-      <div className="small mute" style={{ marginBottom: 6 }}>Data coverage: 8+ = ≥8 fiscal years (high-confidence eligible); 4-7 = Yahoo's usual 4-5 years; stale = quote older than the last completed session.</div>
       <div className="scroll tall">
         <table className="t">
-          <thead><tr>{th("ticker", "Ticker")}<th>Owned</th>{th("name", "Name", "hide-p")}{th("sector", "Sector", "hide-p")}{th("price", "Price")}{th("margin_of_safety", "Margin of safety")}{th("quality", "Quality")}{th("valuation_label", "Valuation", "hide-p")}{th("confidence", "Confidence", "hide-p")}{th("years", "Yrs", "hide-p")}{th("quote_status", "Quote", "hide-p")}{th("status", "Status")}</tr></thead>
+          <thead><tr>{th("ticker", "Ticker")}<th>Owned</th>{th("name", "Name", "hide-p")}{th("sector", "Sector", "hide-p")}{th("price", "Price")}{th("margin_of_safety", "Margin")}{th("quality", "Quality")}{th("valuation_label", "Valuation", "hide-p")}{th("confidence", "Confidence", "hide-p")}{th("years", "Yrs", "hide-p")}{th("quote_status", "Quote", "hide-p")}{th("status", "Status")}</tr></thead>
           <tbody>
             {shown.map((r) => (
               <tr key={r.ticker} className="click" onClick={() => openStock(r.ticker)} data-testid={`scr-${r.ticker}`}>
-                <td><a href={stockHref(r.ticker)} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a>{r.extra && <div><Chip title="Analysable and holdable, but not part of the S&P 500 ranking">not in S&amp;P 500 list</Chip></div>}</td>
+                <td><a href={stockHref(r.ticker)} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a>{r.extra && <div><Chip>not in S&amp;P 500 list</Chip></div>}</td>
                 <td style={{ textAlign: "center" }}><OwnedBox ticker={r.ticker} compact /></td>
                 <td className="hide-p" style={{ textAlign: "left", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</td>
                 <td className="hide-p" style={{ textAlign: "left" }}>{r.sector}</td>

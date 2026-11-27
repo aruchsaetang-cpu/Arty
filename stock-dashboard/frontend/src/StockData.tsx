@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Banner, Chip } from "./common";
-import { N, cell, mm, num, pct, pp, spct, useApi } from "./lib";
+import { N, cell, mm, num, pct, pp, spct, useApi , when} from "./lib";
 
 const STM_NAMES: any = { income: "Income statement", balance: "Balance sheet", cashflow: "Cash flow" };
 
@@ -28,21 +28,16 @@ export function Fundamentals({ d }: any) {
         <div className="tabbar" style={{ margin: 0 }}>
           {Object.keys(STM_NAMES).map((k) => <button key={k} className={st === k ? "on" : ""} onClick={() => { setSt(k); setSel(null); }}>{STM_NAMES[k]}</button>)}
           <span className="sp" />
-          {[["values", "Values"], ["yoy", "Year-over-year"], ["detail", "All Yahoo line items"]].map(([k, l]) => <button key={k} className={view === k ? "on" : ""} onClick={() => setView(k)}>{l}</button>)}
+          {[["values", "Values"], ["yoy", "YoY"], ["detail", "All lines"]].map(([k, l]) => <button key={k} className={view === k ? "on" : ""} onClick={() => setView(k)}>{l}</button>)}
         </div>
-        <div className="small mute">
-          Annual fiscal years, oldest → newest (FY label = calendar year in which the fiscal year ends; the month is shown under it) · {ccy} · {view === "detail" ? "millions unless the value is per-share or a ratio" : "money in millions; EPS per share; shares in millions"} ·
-          Yahoo supplied <b>{t.coverage.years_with_data}</b> of {t.coverage.slots} years ({t.coverage.first ? `${t.coverage.first}–${t.coverage.last}` : "none"}); missing years are <b>N/A</b>, never zero. Source: <a href={d.sources[st].url} target="_blank" rel="noreferrer">Yahoo Finance</a> (fetched {d.sources[st].fetched}).
-          {view === "yoy" && " YoY uses consecutive fiscal years only; margins show percentage-point change; profit↔loss transitions are flagged and no % is shown on a zero or negative base."}
-        </div>
+        <div className="tiny mute">{ccy} · millions · N/A = not reported · {t.coverage.years_with_data}/{t.coverage.slots} years</div>
       </div>
       <div className="scroll tall"><table className="t stick" data-testid="fund-table">
         <thead><tr><th>{view === "detail" ? "Yahoo line item" : "Metric"}</th>{cols.map((c: any) => <th key={c.slot}>{c.label}<div className="tiny">{c.end ? c.end.slice(0, 7) : "—"}</div></th>)}</tr></thead>
         <tbody>
           {rows.map((r: any) => (
             <tr key={r.key || r.label} className="click" onClick={() => setSel(r)}>
-              <td>{r.label}{r.cagr?.value != null && view === "values" && <div className="tiny mute">CAGR {pct(r.cagr.value)} over {r.cagr.years} yrs ({r.cagr.from.slice(0, 4)}–{r.cagr.to.slice(0, 4)})</div>}
-                {r.cagr && r.cagr.value == null && view === "values" && <div className="tiny mute">CAGR n/m: {r.cagr.reason}</div>}</td>
+              <td>{r.label}{r.cagr?.value != null && view === "values" && <div className="tiny mute">CAGR {pct(r.cagr.value)}</div>}</td>
               {r.values.map((v: any, i: number) => {
                 const txt = view === "yoy" && r.kind ? yoyCell(r, i) : view === "detail" ? rawCell(v) : cell(v, r.kind);
                 return <td key={i} className={txt === "N/A" ? "na" : v < 0 ? "neg" : ""}>{txt}{view === "detail" && r.imported?.[i] ? <sup title="imported from CSV"> ⤓</sup> : null}</td>;
@@ -51,7 +46,6 @@ export function Fundamentals({ d }: any) {
           ))}
         </tbody>
       </table></div>
-      <div className="tiny mute" style={{ margin: "6px 2px" }}>Tap any row to chart it. Capital expenditure is shown as positive spend and deducted once to reach free cash flow. If Yahoo omits “Capital Expenditure” for a year, PP&amp;E + intangibles purchases are used (matching Yahoo’s own free-cash-flow definition). {d.valuation.owner_earnings_note}</div>
       {sel && (
         <div className="card" data-testid="chart-card">
           <div className="row"><b className="sp">{sel.label}</b><button className="btn" onClick={() => setSel(null)}>Close</button></div>
@@ -66,7 +60,6 @@ export function Fundamentals({ d }: any) {
               )}
             </ResponsiveContainer>
           </div>
-          <div className="tiny mute">Gaps are years Yahoo did not supply (N/A) - not zeros.</div>
         </div>
       )}
     </>
@@ -81,7 +74,7 @@ export function Extras({ ticker, ccy }: any) {
   const firstVal = (o: any) => { const ks = Object.keys(o).sort(); return o[ks[ks.length - 1]]; };
   return (
     <div className="card" data-testid="extras">
-      <h3>Trailing twelve months and forward analyst estimates <span className="mute small">(kept separate from the annual table)</span></h3>
+      <h3>Trailing 12 months &amp; estimates</h3>
       {!te && <span className="mute">Loading…</span>}
       {te?.stale_error && <Banner>{te.stale_error}</Banner>}
       {ttmRows.length > 0 && <div className="scroll"><table className="t"><thead><tr><th>Trailing 12 months (reported, {ccy})</th><th>Value</th></tr></thead><tbody>{ttmRows.map(([k, v]: any) => { const val = firstVal(v); return <tr key={k}><td>{k}</td><td>{k.includes("EPS") ? num(val) : mm(val)}</td></tr>; })}</tbody></table></div>}
@@ -93,7 +86,6 @@ export function Extras({ ticker, ccy }: any) {
         <div className="scroll" style={{ marginTop: 8 }}><table className="t"><thead><tr><th>Analyst revenue estimate (consensus)</th><th>Avg (M)</th><th>Low (M)</th><th>High (M)</th><th>Analysts</th><th>Growth</th></tr></thead>
           <tbody>{Object.entries(te.revenue_estimate).map(([p, r]: any) => <tr key={p}><td>{p}</td><td>{mm(r.avg)}</td><td>{mm(r.low)}</td><td>{mm(r.high)}</td><td>{r.numberOfAnalysts ?? "N/A"}</td><td>{N(r.growth) ? "N/A" : spct(r.growth)}</td></tr>)}</tbody></table></div>
       )}
-      <div className="tiny mute">Trailing figures are reported (Yahoo). Estimates are analyst opinions from Yahoo and are never used in the valuation or the ranking. Fetched {te?.fetched_at ? new Date(te.fetched_at * 1000).toLocaleString() : "…"}.</div>
     </div>
   );
 }
@@ -109,7 +101,6 @@ export function Compare({ d }: any) {
       <div className="card row">
         <label>Year A <select className="num" value={a} onChange={(e) => setA(e.target.value)} aria-label="Year A">{ends.map((c: any) => <option key={c.end} value={c.end}>{c.label} · {c.end}</option>)}</select></label>
         <label>Year B <select className="num" value={b} onChange={(e) => setB(e.target.value)} aria-label="Year B">{ends.map((c: any) => <option key={c.end} value={c.end}>{c.label} · {c.end}</option>)}</select></label>
-        <span className="small mute">Every reported line item, side by side. N/A = Yahoo did not report it. % change is blank when the baseline is zero or negative; an absolute change and any profit↔loss transition are shown instead.</span>
       </div>
       {error && <Banner kind="bad">{error}</Banner>}
       {data && Object.entries(data.rows).map(([st, rows]: any) => (
@@ -133,16 +124,15 @@ export function Perspectives({ d }: any) {
   const g = d.graham, l = d.lynch;
   return (
     <>
-      <div className="banner info">Secondary perspectives. The main ranking uses the Buffett-inspired framework only.</div>
-      <div className="card" data-testid="graham"><h3>Graham: defensive-investor criteria</h3>
-        <div className="row"><Chip cls={g.passed / Math.max(g.applicable, 1) >= .75 ? "good" : "warn"}>{g.verdict}</Chip><span className="small mute">{g.passed} of {g.applicable} applicable tests passed</span></div>
-        <ul className="tight">{g.tests.map((t: any, i: number) => <li key={i}><Chip cls={resClass(t.result)}>{t.result}</Chip> {t.test} <span className="mute small">- {t.detail}</span></li>)}</ul>
-        <div className="small">Graham number (√(22.5 × avg EPS × book value/share)): <b>{g.graham_number ? g.graham_number.toFixed(2) : "n/a"}</b>{g.graham_mos != null && <> · margin of safety vs Graham number <b>{pct(g.graham_mos, 0)}</b></>}</div>
-        <div className="tiny mute">{g.note} Source: Benjamin Graham, <i>The Intelligent Investor</i> (rev. ed. 1973), chs. 14 and 20.</div></div>
-      <div className="card" data-testid="lynch"><h3>Lynch: business type and per-share growth</h3>
+      <div className="card" data-testid="graham"><h3>Graham</h3>
+        <div className="row"><Chip cls={g.passed / Math.max(g.applicable, 1) >= .75 ? "good" : "warn"}>{g.verdict}</Chip><span className="small mute">{g.passed}/{g.applicable}</span></div>
+        <ul className="tight">{g.tests.map((t: any, i: number) => <li key={i} title={t.detail}><Chip cls={resClass(t.result)}>{t.result}</Chip> {t.test.split(" (")[0].split(":")[0]}</li>)}</ul>
+        <div className="small">Graham number <b>{g.graham_number ? g.graham_number.toFixed(2) : "n/a"}</b>{g.graham_mos != null && <> · margin <b>{pct(g.graham_mos, 0)}</b></>}</div>
+        </div>
+      <div className="card" data-testid="lynch"><h3>Lynch</h3>
         <div className="row"><Chip>{l.category}</Chip><span className="small mute">{l.category_reason}</span></div>
-        <ul className="tight">{l.checks.map((t: any, i: number) => <li key={i}><Chip cls={resClass(t.result)}>{t.result}</Chip> {t.test} <span className="mute small">- {t.detail}</span></li>)}</ul>
-        <div className="tiny mute">{l.note} Source: Peter Lynch, <i>One Up on Wall Street</i> (1989).</div></div>
+        <ul className="tight">{l.checks.map((t: any, i: number) => <li key={i} title={t.detail}><Chip cls={resClass(t.result)}>{t.result}</Chip> {t.test.split(" (")[0].split(":")[0]}</li>)}</ul>
+        </div>
     </>
   );
 }
@@ -150,13 +140,11 @@ export function Perspectives({ d }: any) {
 export function Sources({ d }: any) {
   return (
     <>
-      <div className="card"><h3>Data sources and what kind of figure each is</h3>
-        <div className="small mute">{d.data_kinds}</div>
-        <ul className="tight">{Object.values(d.sources).map((s: any) => <li key={s.label}>{s.url ? <a href={s.url} target="_blank" rel="noreferrer">{s.label}</a> : s.label} <Chip>{s.type}</Chip> <span className="small mute">{s.fetched ? `fetched ${s.fetched}` : s.version ? `model ${s.version}` : ""}</span></li>)}
+      <div className="card"><h3>Data</h3>
+        <ul className="tight">{Object.values(d.sources).map((s: any) => <li key={s.label}>{s.url ? <a href={s.url} target="_blank" rel="noreferrer">{s.label}</a> : s.label} <span className="tiny mute">{s.fetched ? when(s.fetched) : ""}</span></li>)}
           <li><a href={d.membership.url} target="_blank" rel="noreferrer">{d.membership.label}</a> <Chip>{d.membership.verified ? "official" : "unverified secondary"}</Chip> <span className="small mute">as of {d.membership.as_of}</span></li></ul></div>
-      <div className="card"><h3>Investing principles behind the model (primary sources)</h3>
-        <ul className="tight small">{d.principles.map((p: any) => <li key={p.id}><b>{p.title}</b> - {p.source}, dated {p.date}. <a href={p.url} target="_blank" rel="noreferrer">link</a> <span className="mute">Used for: {p.used_for}.</span></li>)}</ul>
-        <div className="tiny mute">Results are labelled “Buffett-inspired model assessment”. No stock-specific opinion is attributed to Warren Buffett: none is used, because no dated primary source for such an opinion is part of this model. Letter links were not machine-verified in this environment (host not reachable from the build sandbox) - confirm wording at the link.</div></div>
+      <div className="card"><h3>Principles</h3>
+        <ul className="tight small">{d.principles.map((p: any) => <li key={p.id}><a href={p.url} target="_blank" rel="noreferrer">{p.title}</a> <span className="tiny mute">{p.date.slice(0, 4)}</span></li>)}</ul></div>
     </>
   );
 }
@@ -184,8 +172,7 @@ export function ImportPanel({ d, onDone }: any) {
   }
   return (
     <div className="card" data-testid="import">
-      <h3>Import older Yahoo Finance annual CSV data</h3>
-      <div className="small mute">Export the annual Income Statement / Balance Sheet / Cash Flow table from Yahoo Finance (Download). Ticker, periods, currency, units, duplicates and conflicts are validated before anything is merged. Imported cells fill gaps only; Yahoo values win unless you choose otherwise.</div>
+      <h3>Import older years (Yahoo CSV)</h3>
       <div className="filters" style={{ margin: "8px 0" }}>
         <input type="file" accept=".csv,text/csv" onChange={(e) => { setFile(e.target.files?.[0] || null); setRes(null); }} aria-label="CSV file" />
         <label>Currency <input className="num" style={{ width: 80 }} value={ccy} onChange={(e) => setCcy(e.target.value.toUpperCase())} /></label>

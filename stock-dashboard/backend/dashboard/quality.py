@@ -170,8 +170,8 @@ def _q_operating(d, cols, info):
         lev = 0.0
     s = "fail" if lev is None else "pass" if (lev <= 2.5 and (cov is None or cov >= 6)) else "partial" if lev <= 4 else "fail"
     out.append(_grade("balance_sheet", "Balance-sheet strength", s,
-                      f"{cols[i]['label']}: {'net cash' if nd <= 0 else ('net debt/EBITDA n/m' if lev is None else f'net debt/EBITDA {lev:.1f}x')}; "
-                      f"interest cover {'n/a' if cov is None else f'{cov:.1f}x'}.",
+                      f"{'net cash' if nd <= 0 else ('net debt/EBITDA n/m' if lev is None else f'net debt/EBITDA {lev:.1f}x')}; "
+                      f"{'' if cov is None else f'interest cover {cov:.0f}x'}".rstrip("; ") + ".",
                       [_fig("Net cash (cash - debt)", _series(d, cols, "net_cash"), "money")]))
     out.append(_per_share_pillar(d, cols, "eps", .05, .01, .0, .02))
     return out
@@ -206,7 +206,7 @@ def _q_financial(d, cols, info):
     last = lev[-1][2] if lev else None
     s = "fail" if last is None else "pass" if last >= .08 else "partial" if last >= .05 else "fail"
     out.append(_grade("balance_sheet", "Balance-sheet strength", s,
-                      "n/a" if last is None else f"Common equity / assets {last:.1%} in {lev[-1][0]}.", [_fig("Equity / assets", lev, "pct")]))
+                      "n/a" if last is None else f"equity/assets {last:.1%}.", [_fig("Equity / assets", lev, "pct")]))
     out.append(_per_share_pillar(d, cols, "eps", .05, .005, 0, .02))
     return out
 

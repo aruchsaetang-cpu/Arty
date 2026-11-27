@@ -136,3 +136,12 @@ export function useDebounced<T>(v: T, ms: number) {
   }, [v, ms]);
   return d;
 }
+
+/* "2026-11-25 16:00:02 ET" -> "25 Nov 16:00" ; "2026-11-25" -> "25 Nov 2026" */
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export function when(s: any) {
+  const m = String(s ?? "").match(/(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2}))?/);
+  if (!m) return s ?? "";
+  const d = `${+m[3]} ${MON[+m[2] - 1]}`;
+  return m[4] ? `${d} ${m[4]}:${m[5]}` : `${d} ${m[1]}`;
+}

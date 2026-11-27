@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Banner, Chip, MosText, OwnedBox, QualityChip, QuoteChip, ValChip } from "./common";
-import { holdingTickers, pct, price, useApi, useHoldings, usePrefs , stockHref, openStock} from "./lib";
+import { holdingTickers, pct, price, useApi, useHoldings, usePrefs , stockHref, openStock, when} from "./lib";
 
 export default function Holdings() {
   const held = useHoldings();
@@ -23,23 +23,22 @@ export default function Holdings() {
         <span className="sp" />
         <label className="own"><input type="checkbox" checked={onlyQ} onChange={(e) => setOnlyQ(e.target.checked)} /><span>Qualifying only</span></label>
       </div>
-      <div className="small mute">Buying criteria = the four shortlist rules at your {pct(mos, 0)} required margin of safety. Owning a stock has no effect on its valuation or rank. Holdings are saved in this browser only.</div>
-      {error && <Banner>Refresh failed ({error.slice(0, 80)}). Showing last successful data{okAt ? ` from ${new Date(okAt).toLocaleTimeString()}` : ""}.</Banner>}
-      {tickers.length === 0 && <div className="card">No holdings yet. Tick “Owned” beside any ticker on the Home, Screener, or a stock page.</div>}
+      {error && <Banner>Refresh failed. Showing last data.</Banner>}
+      {tickers.length === 0 && <div className="card mute">No holdings. Tick “Owned” on any stock.</div>}
       {tickers.length > 0 && (
         <div className="scroll">
           <table className="t">
-            <thead><tr><th>Stock</th><th>Owned</th><th>Latest price</th><th>Quality</th><th>Valuation</th><th>Margin of safety</th><th>Watch price</th></tr></thead>
+            <thead><tr><th>Stock</th><th>Owned</th><th>Price</th><th>Quality</th><th>Valuation</th><th>Margin</th><th>Watch</th></tr></thead>
             <tbody>
               {shown.map((r) => (
                 <tr key={r.ticker} className="click" onClick={() => openStock(r.ticker)} data-testid={`hold-${r.ticker}`}>
                   <td><a href={stockHref(r.ticker)} onClick={(e) => e.stopPropagation()} className="b">{r.ticker}</a><div className="tiny mute" style={{ whiteSpace: "normal" }}>{r.name}{r.in_index === false && <> · <Chip>not in S&amp;P 500 list</Chip></>}</div></td>
                   <td style={{ textAlign: "center" }}><OwnedBox ticker={r.ticker} compact /></td>
-                  <td>{r.pending || r.price == null ? <span className="mute">{r.status === "failed_fetch" ? "data fetch failed" : "awaiting data"}</span> : <>{price(r.price, r.currency)}<div className="tiny mute">{r.price_time}</div><QuoteChip status={r.quote_status} reason={r.quote_reason} /></>}</td>
+                  <td>{r.pending || r.price == null ? <span className="mute">{r.status === "failed_fetch" ? "no data" : "loading"}</span> : <>{price(r.price, r.currency)}<div className="tiny mute">{when(r.price_time)}</div></>}</td>
                   <td><QualityChip q={r.quality} /></td>
                   <td><ValChip v={r.valuation_label} /></td>
                   <td><MosText m={r.margin_of_safety} /></td>
-                  <td>{r.watch_price != null ? <>{price(r.watch_price, r.currency)}{r.decline_to_watch ? <div className="tiny mute">needs −{pct(r.decline_to_watch, 0)}</div> : <div className="tiny up">at/below watch</div>}</> : <span className="mute">N/A</span>}</td>
+                  <td>{r.watch_price != null ? <>{price(r.watch_price, r.currency)}{r.decline_to_watch ? <div className="tiny mute">needs −{pct(r.decline_to_watch, 0)}</div> : null}</> : <span className="mute">N/A</span>}</td>
                 </tr>
               ))}
             </tbody>

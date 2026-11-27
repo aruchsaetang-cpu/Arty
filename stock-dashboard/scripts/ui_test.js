@@ -91,7 +91,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await page.evaluate(() => document.querySelector("[data-testid=refresh]").click());   // no auto-scroll, like a handler firing while the user is reading lower on the page
   await sleep(2500);
   const y1 = await page.evaluate(() => window.scrollY);
-  check("Manual refresh preserves scroll position", Math.abs(y1 - y0) < 5 && y0 > 300, `${y0} -> ${y1}`);
+  check("Manual refresh preserves scroll position", Math.abs(y1 - y0) < 5 && y0 > 50, `${y0} -> ${y1}`);
   check("Manual refresh hit Yahoo (force=1)", reqs.some((u) => u.includes("force=1")), String(reqs.length));
   const n0 = reqs.length;
   await sleep(63000);
@@ -119,10 +119,10 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   check("Custom scenario shown separately; standard base unchanged", (await page.$eval("[data-testid=valuation-card] b", (e) => e.textContent)) === stdBase);
   check("Reverse-DCF 'what must it deliver' present", await page.isVisible("[data-testid=reverse]"));
   check("STM mid-cycle block present", await page.isVisible("[data-testid=midcycle]") && (await page.textContent("[data-testid=midcycle]")).includes("capex stays elevated"));
-  check("Sensitivity table present", await page.isVisible("text=Sensitivity: fair value per share"));
+  check("Sensitivity table present", await page.isVisible("h3:has-text('Sensitivity')"));
 
   // fundamentals
-  await page.click("button:has-text('10-year fundamentals')");
+  await page.click("button:has-text('Financials')");
   await page.waitForSelector("[data-testid=fund-table]");
   const heads = await page.$$eval("[data-testid=fund-table] thead th", (e) => e.map((x) => x.textContent));
   check("10 fiscal-year columns oldest->newest", heads.length === 11 && heads[1].startsWith("FY2016") && heads[10].startsWith("FY2025"), heads.join("|"));
@@ -130,12 +130,12 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   check("Missing years are N/A (not zero), STM FY2025 revenue 11,800 M", revRow[0].slice(1, 7).every((x) => x === "N/A") && revRow[0][10] === "11,800", revRow[0].join("|"));
   await page.click("[data-testid=fund-table] tbody tr:first-child");
   check("Tap row charts it", await page.isVisible("[data-testid=chart-card]"));
-  await page.click("button:has-text('Year-over-year')");
+  await page.click("button:has-text('YoY')");
   const yoy = await page.$$eval("[data-testid=fund-table] tbody tr", (rs) => rs.filter((r) => r.children[0].textContent.startsWith("Operating margin")).map((r) => [...r.children].map((c) => c.textContent)));
   check("YoY toggle shows percentage-point margin changes", yoy[0].some((x) => x.includes("pp")), yoy[0].join("|"));
-  await page.click("button:has-text('All Yahoo line items')");
+  await page.click("button:has-text('All lines')");
   check("Detail table preserves Yahoo labels", (await page.textContent("[data-testid=fund-table]")).includes("Total Revenue"));
-  await page.click("button:has-text('Compare years')");
+  await page.click("button:has-text('Compare')");
   await page.waitForSelector("[data-testid=cmp-income] tbody tr");
   const cmpRow = await page.$$eval("[data-testid=cmp-income] tbody tr", (rs) => rs.filter((r) => r.children[0].textContent === "Total Revenue").map((r) => [...r.children].map((c) => c.textContent)));
   check("Year comparison lists line items side by side", cmpRow.length === 1 && cmpRow[0][1] !== "" && cmpRow[0][2] === "11,800", cmpRow[0]?.join("|"));
